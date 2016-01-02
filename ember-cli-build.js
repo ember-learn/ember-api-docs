@@ -13,6 +13,8 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import(app.bowerDirectory + '/pouchdb/dist/pouchdb.js');
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //

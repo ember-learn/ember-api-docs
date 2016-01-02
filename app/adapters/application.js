@@ -1,24 +1,39 @@
-import {Adapter} from 'ember-pouch';
-import PouchDB from 'pouchdb';
 import Ember from 'ember';
+import DS from 'ember-data';
 
-const db = new PouchDB('local_pouch');
-const remote = new PouchDB('http://localhost:5984/documentation');
+import Pouch from 'pouchdb';
 
-db.sync(remote, {
-  live: true,
-  remote: true
-});
+function generatePouchID(type, id) {
+  return `${type.modelName}-${id}`
+}
 
-export default Adapter.extend({
-  db: db,
+function replicate(local, remote) {
+}
 
-  findRecord(store, type, id) {
-    return this._super(store, type, id);
+export default DS.JSONAPIAdapter.extend({
+  coalesceFindRequests: true,
+
+  pouch: Ember.inject.service('database-manager'),
+
+  findRecord(store, type, id, snapshot) {
+    return this.get('pouch').get(generatePouchID(type, id));
   },
 
-  getRecordTypeName(type) {
-    return Ember.String.dasherize(type.modelName);
+  findMany(store, type, ids) {
+    const db = this.get('db');
+
+    const remappedIDs = ids.map(id => generatePouchID(type, id));
+    console.log(remappedIDs);
+
+    return db.allDocs({
+      include_docs: true,
+      keys: remappedIDs
+    }).then(response => {
+      return {
+        data: response.rows.map(row => row.doc.data)
+      };
+    });
   }
+
 });
 

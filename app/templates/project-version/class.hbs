@@ -1,0 +1,16 @@
+<article class="chapter">
+  <h1>{{model.name}}</h1>
+
+  <section>
+    <h2>Methods</h2>
+
+    <ul>
+      {{#each model.methods as |method|}}
+        <li>
+          {{method.name}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+
+</article>

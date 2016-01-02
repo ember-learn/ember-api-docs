@@ -9,16 +9,43 @@ const {
 
 export default Ember.Service.extend({
   init() {
-    Ember.Service.prototype.init.apply(this, arguments);
-    this.dbMap = Object.create(null);
+    this._super(...arguments);
+
+    this._local = new Pouch('local_pouch')
+    this._remote = new Pouch('http://localhost:5984/documentation');
+
+    this._remote.put({
+      _id: '_design/types',
+      views: {
+        'project-versions': {
+          map: function (doc) {
+            if (doc.data.type === 'project-version') {
+              emit(doc._id);
+            }
+          }.toString()
+        }
+      }
+    }).catch(() => true).then(() => {
+      this._remote.replicate.to(this._local, {
+        filter: '_view',
+        view: 'types/project-versions'
+      });
+    });
   },
 
-  db(modelName, host) {
-    return this.dbMap[modelName] || this._instantiateDb(modelName, host);
-  },
+  get(id) {
+    const local = this._local;
+    const remote = this._remote;
 
-  _instantiateDb(modelName, host) {
-    const pluralized = pluralize(modelName);
-    return new Pouch(`http://${host}/${encodeURIComponent(pluralized)}`);
+
+    return local.get(id).catch((err) => {
+      if (err.status === 404) {
+        return remote.get(id, {revs: true}).then((doc) => {
+          return local.bulkDocs([doc], {new_edits: false});
+        }).then(() => {
+          return local.get(id);
+        });
+      }
+    });
   }
 });

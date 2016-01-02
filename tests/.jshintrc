@@ -1,5 +1,6 @@
 {
   "predef": [
+    "server",
     "document",
     "window",
     "location",
@@ -12,6 +13,7 @@
     "exists",
     "fillIn",
     "click",
+    "select",
     "keyEvent",
     "triggerEvent",
     "find",
