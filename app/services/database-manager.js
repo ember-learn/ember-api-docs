@@ -41,16 +41,18 @@ export default Ember.Service.extend({
     const remote = this._remote;
     const local = this._local;
 
-    let pouchOptions = Ember.$.extend({}, options, {keys: ids});
+    const pouchOptions = Ember.$.extend({}, options, {include_docs: true, keys: ids});
 
     return local.allDocs(pouchOptions).then(documents => {
       const notFound = documents.rows.filter(doc => doc.error === 'not_found');
 
       if (notFound.length > 0) {
-        return remote.allDocs(pouchOptions).then((docs) => {
-          return local.bulkDocs(docs, {new_edits: false});
+        const remotePouchOptions = Ember.$.extend({include_docs: true}, pouchOptions);
+        return remote.allDocs(Ember.$.extend(remotePouchOptions, pouchOptions)).then((docs) => {
+          const extractedDocs = extractDocuments(docs);
+          return local.bulkDocs(extractedDocs, {new_edits: false});
         }).then(() => {
-          return local.allDocs(pouchOptions).then(extractDocuments);
+          return this.allDocs(ids, options);
         });
       }
 
@@ -60,5 +62,13 @@ export default Ember.Service.extend({
 });
 
 function extractDocuments(docs) {
-  return docs.rows;
+  const data = docs.rows.map(row=> {
+    const {doc} = row;
+    return Ember.$.extend({}, doc.data, {
+      _id: doc._id,
+      _rev: doc._rev,
+    });
+  });
+  return {data};
 }
+

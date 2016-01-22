@@ -1,4 +1,10 @@
 <aside class="sidebar">
+
+{{#x-select value=model action="updateProject" default=model.id project=model.project}}
+  {{#each model.project.projectVersions as |projectVersion|}}
+    {{#x-option value=projectVersion}}{{projectVersion.version}}{{/x-option}}
+  {{/each}}
+{{/x-select}}
 <ol class="toc-level-0">
   <li class="toc-level-0">Classes
     <ol class="toc-level-1 selected" style="display: block;">
