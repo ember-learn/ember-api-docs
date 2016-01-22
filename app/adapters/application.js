@@ -20,19 +20,9 @@ export default DS.JSONAPIAdapter.extend({
   },
 
   findMany(store, type, ids) {
-    const db = this.get('db');
-
     const remappedIDs = ids.map(id => generatePouchID(type, id));
-    console.log(remappedIDs);
 
-    return db.allDocs({
-      include_docs: true,
-      keys: remappedIDs
-    }).then(response => {
-      return {
-        data: response.rows.map(row => row.doc.data)
-      };
-    });
+    return this.get('pouch').allDocs(remappedIDs);
   }
 
 });

@@ -26,7 +26,7 @@ module.exports = function(environment) {
       enabled: false
     };
     ENV.contentSecurityPolicy = {
-      "connect-src": "'self' http://localhost:5984"
+      "connect-src": "'self' http://localhost:5984 https://fivetanley.cloudant.com"
     };
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
