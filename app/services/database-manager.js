@@ -44,19 +44,15 @@ export default Ember.Service.extend({
         });
       }
 
-      return extractDocuments(documents);
+      return {
+        data: documents.rows.map(row => row.doc.data)
+      }
     });
   }
 });
 
 function extractDocuments(docs) {
-  const data = docs.rows.map(row=> {
-    const {doc} = row;
-    return Ember.$.extend({}, doc.data, {
-      _id: doc._id,
-      _rev: doc._rev,
-    });
-  });
+  const data = docs.rows.map(row=> row.doc);
   return {data};
 }
 
