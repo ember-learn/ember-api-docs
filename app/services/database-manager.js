@@ -1,25 +1,13 @@
 import Ember from 'ember';
 import Pouch from 'pouchdb';
-
-const {
-  RSVP,
-  String: {
-    pluralize
-  }
-} = Ember;
+import ENV from 'ember-api-docs/config/environment';
 
 export default Ember.Service.extend({
   init() {
     this._super(...arguments);
 
-    this._local = new Pouch('local_pouch')
-    //this._remote = new Pouch('https://fivetanley.cloudant.com/docs');
-    this._remote = new Pouch('http://localhost:5984/docs');
-
-    //this._remote.replicate.to(this._local, {
-    //  filter: '_view',
-    //  view: 'types/project-versions'
-    //});
+    this._local = new Pouch('local_pouch');
+    this._remote = new Pouch(ENV.COUCH_URL);
   },
 
   get(id) {
