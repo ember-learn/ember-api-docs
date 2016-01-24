@@ -50,7 +50,7 @@ export default Ember.Service.extend({
         const remotePouchOptions = Ember.$.extend({include_docs: true}, pouchOptions);
         return remote.allDocs(Ember.$.extend(remotePouchOptions, pouchOptions)).then((docs) => {
           const extractedDocs = extractDocuments(docs);
-          return local.bulkDocs(extractedDocs, {new_edits: false});
+          return local.bulkDocs(extractedDocs.docs, {new_edits: false});
         }).then(() => {
           return this.allDocs(ids, options);
         });
