@@ -1,6 +1,6 @@
 <aside class="sidebar">
 
-{{#x-select value=model action="updateProject" default=model.id project=model.project class=".spec-versions-box"}}
+{{#x-select value=model action="updateProject" default=model.id project=model.project class="spec-versions-box"}}
   {{#each model.project.projectVersions as |projectVersion|}}
     {{#x-option value=projectVersion}}{{projectVersion.version}}{{/x-option}}
   {{/each}}

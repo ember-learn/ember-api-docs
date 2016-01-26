@@ -10,5 +10,5 @@ moduleForAcceptance('Application Layout', {
 
 test('lists the project versions in a select box', function(assert) {
   const versionsBox = findWithAssert('.spec-versions-box');
-  assert.equal(versionsBox.length);
+  assert.equal(versionsBox.length, 1);
 });

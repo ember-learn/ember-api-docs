@@ -21,5 +21,11 @@ export default Ember.Route.extend({
     }, []);
 
     return Ember.RSVP.all(promises);
+  },
+
+  serialize(model) {
+    return {
+      class: model.get('name')
+    }
   }
 });

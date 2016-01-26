@@ -28,7 +28,7 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy = {
       "connect-src": "'self' http://localhost:5984 https://fivetanley.cloudant.com"
     };
-    ENV.COUCH_URL = 'https://fivetanley.cloudant.com/docs';
+    ENV.COUCH_URL = process.env.COUCH_URL || 'https://fivetanley.cloudant.com/docs';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -40,13 +40,14 @@ module.exports = function(environment) {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
+    ENV.testing = true;
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-    ENV.COUCH_URL = 'https://fivetanley.cloudant.com/docs';
+    ENV.COUCH_URL = 'http://localhost:5984/docs'
   }
 
   if (environment === 'production') {

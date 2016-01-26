@@ -1,13 +1,8 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-import Pouch from 'pouchdb';
-
 function generatePouchID(type, id) {
-  return `${type.modelName}-${id}`
-}
-
-function replicate(local, remote) {
+  return `${type.modelName}-${id}`;
 }
 
 export default DS.JSONAPIAdapter.extend({
