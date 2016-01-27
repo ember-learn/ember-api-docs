@@ -47,11 +47,13 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-    ENV.COUCH_URL = 'http://localhost:5984/docs'
+    ENV.COUCH_URL = process.env.COUCH_URL || 'https://fivetanley.cloudant.com/docs';
   }
 
   if (environment === 'production') {
-
+    ENV.contentSecurityPolicy = {
+      "connect-src": "'self' http://localhost:5984 https://fivetanley.cloudant.com"
+    };
   }
 
   return ENV;
