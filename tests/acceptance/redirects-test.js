@@ -15,3 +15,15 @@ test('visiting /', function(assert) {
     );
   });
 });
+
+test('visiting /:project/:project_version/classes', function(assert) {
+  visit('/ember/1.0.0/classes');
+
+  return andThen(function() {
+    assert.equal(
+      currentURL(),
+      '/ember/1.0.0/classes/Container',
+      'routes to the first class of the project-version'
+    );
+  });
+});
