@@ -26,6 +26,6 @@ export default Ember.Route.extend({
   serialize(model) {
     return {
       class: model.get('name')
-    }
+    };
   }
 });

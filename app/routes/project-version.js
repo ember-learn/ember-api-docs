@@ -14,9 +14,9 @@ export default Ember.Route.extend({
         const klass = classes[0];
         return this.store.find('class', klass).then(klass => {
           this.transitionTo('project-version.class', model, klass);
-        })
+        });
       }
-    })
+    });
   },
 
   serialize(model) {
