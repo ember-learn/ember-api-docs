@@ -1,4 +1,6 @@
 .highlight {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
   border-radius: $base-border-radius;
   font-family: $monospace-font-family;
   font-size: 0.8em;
@@ -100,13 +102,13 @@
 
   &.javascript .ribbon,
   &.js .ribbon {
-    background-image: image-url('ribbon-js.svg');
+    background-image: url('/assets/images/ribbon-js.svg');
   }
   &.html .ribbon {
-    background-image: image-url('ribbon-html.svg');
+    background-image: url('/assets/images/ribbon-html.svg');
   }
   &.handlebars .ribbon {
-    background-image: image-url('ribbon-hbs.svg');
+    background-image: url('/assets/images/ribbon-hbs.svg');
   }
 
   .highlight-line {
