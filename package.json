@@ -26,6 +26,7 @@
     "ember-cli-bourbon": "1.1.0",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.1.0",
+    "ember-cli-fastboot": "0.3.1",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-ic-ajax": "0.2.4",
@@ -38,8 +39,8 @@
     "ember-data": "git+https://github.com/emberjs/data#master",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
-    "ember-lodash": "0.0.5",
-    "ember-pouch": "^3.0.0",
+    "ember-lodash": "0.0.6",
+    "ember-pouch": "fivetanley/ember-pouch#fastboot-support",
     "ember-remarkable": "2.1.0",
     "emberx-select": "2.0.2"
   }
