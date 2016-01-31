@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Pouch from 'pouchdb';
 import ENV from 'ember-api-docs/config/environment';
+import extend from 'lodash/object/extend';
 
 const Promise = Ember.RSVP.Promise;
 
@@ -37,15 +38,15 @@ export default Ember.Service.extend({
     const remote = this._remote;
     const local = this._local;
 
-    const pouchOptions = Ember.$.extend({}, options, {include_docs: true, keys: ids});
+    const pouchOptions = extend({}, options, {include_docs: true, keys: ids});
 
     return new Promise((resolve, reject) => {
       return local.allDocs(pouchOptions).then(documents => {
         const notFound = documents.rows.filter(doc => doc.error === 'not_found');
 
         if (notFound.length > 0) {
-          const remotePouchOptions = Ember.$.extend({include_docs: true}, pouchOptions);
-          return remote.allDocs(Ember.$.extend(remotePouchOptions, pouchOptions)).then((docs) => {
+          const remotePouchOptions = extend({include_docs: true}, pouchOptions);
+          return remote.allDocs(extend(remotePouchOptions, pouchOptions)).then((docs) => {
             const extractedDocs = extractDocuments(docs);
             return local.bulkDocs(extractedDocs.data, {new_edits: false});
           }).then(() => {

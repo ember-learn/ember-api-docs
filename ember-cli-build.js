@@ -13,7 +13,9 @@ module.exports = function(defaults) {
     }
   });
 
-  app.import(app.bowerDirectory + '/pouchdb/dist/pouchdb.memory.js');
+  if (!process.env.EMBER_CLI_FASTBOOT && process.env.EMBER_ENV === 'test') {
+    app.import(app.bowerDirectory + '/pouchdb/dist/pouchdb.memory.js');
+  }
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
