@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
