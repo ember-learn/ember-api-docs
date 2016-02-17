@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$HEROKU_EMBER_CLI_DEPLOY" ]; then
+  echo "Not deploying because we are not on heroku."
+else
+  echo "deploying!"
+  ember deploy production
+  cd tmp/fastboot-dist && npm install
+fi

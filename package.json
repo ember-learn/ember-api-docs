@@ -10,7 +10,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "postinstall": "bower i && ./bin/heroku-deploy"
   },
   "repository": "",
   "engines": {
@@ -18,7 +19,8 @@
   },
   "author": "",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
+    "bower": "^1.0.0",
     "broccoli-asset-rev": "^2.2.0",
     "ember-cli": "^2.3.0-beta.1",
     "ember-cli-app-version": "^1.0.0",
@@ -26,7 +28,8 @@
     "ember-cli-bourbon": "1.1.0",
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-dependency-checker": "^1.1.0",
-    "ember-cli-deploy": "0.5.1",
+    "ember-cli-deploy": "^0.5.1",
+    "ember-cli-deploy-build": "0.1.1",
     "ember-cli-deploy-fastboot-build": "fivetanley/ember-cli-deploy-fastboot-build#master",
     "ember-cli-deploy-s3": "0.2.1",
     "ember-cli-fastboot": "0.3.1",
@@ -49,5 +52,10 @@
     "ember-resolver": "2.0.3",
     "emberx-select": "2.0.2",
     "loader.js": "4.0.0"
-  }
+  },
+  "cacheDirectories": [
+    "bower_components",
+    "node_modules",
+    "tmp/fastboot-dist/node_modules"
+  ]
 }
