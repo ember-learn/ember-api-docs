@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- '0.12'
+- '5.6.0'
 sudo: false
 cache:
   directories:
@@ -11,7 +11,7 @@ before_install:
   - tar -xvf $PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis-phantomjs
   - export PATH=$PWD/travis-phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH
   - npm config set spin false
-  - npm install -g npm@^2
+  - npm install -g npm@^3
 install:
 - npm install -g bower
 - npm install
