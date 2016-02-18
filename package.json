@@ -56,7 +56,6 @@
   },
   "cacheDirectories": [
     "bower_components",
-    "node_modules",
-    "tmp/fastboot-dist/node_modules"
+    "node_modules"
   ]
 }
