@@ -5,8 +5,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
-      prepend: process.env.EMBER_CLI_FASTBOOT ? "https://s3.amazonaws.com/" + process.env.AWS_BUCKET_NAME + "/" : "",
-      generateAsestMap: process.env.EMBER_CLI_FASTBOOT
+      extensions: ['js', 'css', 'png', 'gif', 'map', 'svg'],
+      prepend: "https://s3.amazonaws.com/" + process.env.AWS_BUCKET_NAME + "/",
+      generateAssetMap: true
     },
     sassOptions: {
       includePaths: [

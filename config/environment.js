@@ -22,6 +22,7 @@ module.exports = function(environment) {
     }
   };
 
+  ENV.COUCH_URL = process.env.COUCH_URL || 'https://fivetanley.cloudant.com/docs';
   if (environment === 'development') {
     ENV['ember-cli-mirage'] = {
       enabled: false
@@ -33,7 +34,6 @@ module.exports = function(environment) {
       "img-src": "'self' p.typekit.net",
       "style-src": "'self' 'unsafe-inline' https://use.typekit.net"
     };
-    ENV.COUCH_URL = process.env.COUCH_URL || 'https://fivetanley.cloudant.com/docs';
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;

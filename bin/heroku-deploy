@@ -6,6 +6,9 @@ if [ -z "$HEROKU_EMBER_CLI_DEPLOY" ]; then
   echo "Not deploying because we are not on heroku."
 else
   echo "deploying!"
+  rm -rf tmp/fastboot-dist/assets
+  rm -f tmp/fastboot-dist/index.html
+  rm -rf tmp/deploy-dist
   ember deploy production
   cd tmp/fastboot-dist && npm install
 fi
