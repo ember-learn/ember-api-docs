@@ -56,7 +56,8 @@
     },
     "ansi": {
       "version": "0.3.1",
-      "from": "ansi@>=0.3.0 <0.4.0"
+      "from": "ansi@0.3.1",
+      "resolved": "https://registry.npmjs.org/ansi/-/ansi-0.3.1.tgz"
     },
     "ansi-regex": {
       "version": "2.0.0",
@@ -1545,9 +1546,8 @@
       "resolved": "https://registry.npmjs.org/ember-cli-deploy-build/-/ember-cli-deploy-build-0.1.1.tgz"
     },
     "ember-cli-deploy-fastboot-build": {
-      "version": "0.1.0",
-      "from": "fivetanley/ember-cli-deploy-fastboot-build#master",
-      "resolved": "git://github.com/fivetanley/ember-cli-deploy-fastboot-build.git#9bce9ffbf3baafcb8e23747e99fe6401551b5ce4",
+      "version": "1.0.0",
+      "from": "ember-cli-deploy-fastboot-build@>=1.0.0 <2.0.0",
       "dependencies": {
         "glob": {
           "version": "6.0.4",
@@ -1975,7 +1975,8 @@
       "dependencies": {
         "esprima": {
           "version": "2.7.2",
-          "from": "esprima@>=2.7.1 <3.0.0"
+          "from": "esprima@2.7.2",
+          "resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.2.tgz"
         }
       }
     },
@@ -4257,8 +4258,7 @@
           "dependencies": {
             "ansi": {
               "version": "0.3.1",
-              "from": "ansi@>=0.3.1 <0.4.0",
-              "resolved": "https://registry.npmjs.org/ansi/-/ansi-0.3.1.tgz"
+              "from": "ansi@>=0.3.1 <0.4.0"
             },
             "concat-stream": {
               "version": "1.5.0",
@@ -4306,8 +4306,7 @@
             },
             "npmlog": {
               "version": "2.0.2",
-              "from": "npmlog@latest",
-              "resolved": "https://registry.npmjs.org/npmlog/-/npmlog-2.0.2.tgz"
+              "from": "npmlog@latest"
             }
           }
         },
@@ -4995,7 +4994,8 @@
     },
     "npmlog": {
       "version": "2.0.2",
-      "from": "npmlog@>=2.0.0 <3.0.0"
+      "from": "npmlog@2.0.2",
+      "resolved": "https://registry.npmjs.org/npmlog/-/npmlog-2.0.2.tgz"
     },
     "number-is-nan": {
       "version": "1.0.0",
