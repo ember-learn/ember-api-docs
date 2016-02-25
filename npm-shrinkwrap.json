@@ -1546,8 +1546,8 @@
       "resolved": "https://registry.npmjs.org/ember-cli-deploy-build/-/ember-cli-deploy-build-0.1.1.tgz"
     },
     "ember-cli-deploy-fastboot-build": {
-      "version": "1.0.0",
-      "from": "ember-cli-deploy-fastboot-build@>=1.0.0 <2.0.0",
+      "version": "1.0.1",
+      "from": "ember-cli-deploy-fastboot-build@>=1.0.1 <2.0.0",
       "dependencies": {
         "glob": {
           "version": "6.0.4",
