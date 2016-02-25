@@ -27,7 +27,9 @@ addons:
     - g++-4.8
 deploy:
   provider: heroku
-  on: master
+  app:
+    master: ember-api-docs-staging
+    production: ember-api-docs
   api_key:
     secure: ZkKB+Ld1IokmJooZPGTZMA5L1KHBNg1qbC2KvebT9L2zTq0CEMjjzRfhmkivoG0riodz4M4rBr63UcqcnTLEoER/MU8kUt4f6gAdmi/WYCm/pxTx2vsxxwO26HFP90VDZ2yPlkYN2n+T/AYXittxRIKKBA1gxT8w9Cz4A39ojB+vpDnfhlybkes+0wpErgKgnF46eI7zz2fgbmIMqtUXgAsKey4wT4o6oqssOvEpVrtt9DX9KseDzelR6TsBafUPpYA8IMA5mqouN/HDmrY43S3a9W1SbXhvhFKads3sQO7VXIgdrbiu/clNvEaH7U9sLIW1vHnl17iQbVE2U2WibW3m6w9V/g0S96F1rDM6RZbiqgmhI5UXjVNrbmquAUE1Yxv0tVNzwq8KIZ0+4grzKwHJRDwI1Ri1J8QVBL5fQLVD669l9Hye1m6sli6VFLzGSBVYEC7fNTpk6TErgHjGsx/yThDl4QBzOitsmRzCxq3puloIUhF+aQ09T8G4OySq6wOgDwAbNFlMxDGmnglu3SXsu3xT74wOF8tLpdl4dk/DozYQQRyAFdpQHK+WHb5PswWifjEkypALCTdsZoehrzzxPPletNH9iXXMCW3c7jys5ad9RngJWy/Ka5mhk3bg5UAWvXnM3pWSGrOD2t36gq7k6FQVi7LF8BD9tD4GxxE=
 env:
