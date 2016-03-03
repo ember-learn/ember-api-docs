@@ -32,7 +32,7 @@
     "ember-cli-deploy": "^0.5.1",
     "ember-cli-deploy-build": "0.1.1",
     "ember-cli-deploy-fastboot-build": "^1.0.3",
-    "ember-cli-deploy-gzip": "0.2.1",
+    "ember-cli-deploy-gzip": "^0.2.1",
     "ember-cli-deploy-s3": "0.2.1",
     "ember-cli-fastboot": "^0.4.3",
     "ember-cli-htmlbars": "^1.0.1",
@@ -58,8 +58,5 @@
   "cacheDirectories": [
     "bower_components",
     "node_modules"
-  ],
-  "devDependencies": {
-    "ember-cli-deploy-fastboot-build": "git://github.com/habdelra/ember-cli-deploy-fastboot-build.git#558da77882c8dcfa7326a032a63e8f23654c840b"
-  }
+  ]
 }
