@@ -25,6 +25,8 @@ resource "heroku_app" "staging" {
     AWS_SECRET_ACCESS_KEY = "${aws_iam_access_key.deploy.secret}"
     AWS_BUCKET_NAME = "${aws_s3_bucket.production.bucket}"
     AWS_BUCKET_REGION = "${var.aws_region}"
+    # last known working commit c41ef671cc9c8ff7d5cc7ad412654fbf9cffbce5
+    BUILDPACK_URL="https://github.com/ddollar/heroku-buildpack-multi.git"
 
     HEROKU_EMBER_CLI_DEPLOY = "true"
   }

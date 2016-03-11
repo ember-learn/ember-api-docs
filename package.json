@@ -11,7 +11,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "postinstall": "bower i && ./bin/heroku-deploy"
+    "postinstall": "bower i"
   },
   "repository": "",
   "engines": {
