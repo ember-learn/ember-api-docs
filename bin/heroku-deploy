@@ -8,5 +8,8 @@ else
   echo "deploying!"
   rm -rf tmp
   ember deploy production
+  ember fastboot:build --environment=production --output-path=tmp/fastboot-dist
+  rm -rf tmp/fastboot-dist/index.html
+  cp tmp/deploy-dist/index.html tmp/fastboot-dist/index.html
   cd tmp/fastboot-dist && npm install
 fi
