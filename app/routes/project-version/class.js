@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
-const {get} = Ember;
+const { get, set, inject } = Ember;
 
 export default Ember.Route.extend({
+  headData: inject.service(),
 
   titleToken: function(model) {
     return model.get('name');
@@ -17,6 +18,7 @@ export default Ember.Route.extend({
   },
 
   afterModel(klass) {
+    set(this, 'headData.description', klass.get('ogDescription'));
     const relationships = get(klass.constructor, 'relationshipNames');
 
     const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
