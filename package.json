@@ -32,6 +32,7 @@
     "ember-cli-deploy-build": "0.1.1",
     "ember-cli-deploy-gzip": "^0.2.1",
     "ember-cli-deploy-s3": "0.2.1",
+    "ember-cli-document-title": "^0.3.1",
     "ember-cli-fastboot": "^0.4.3",
     "ember-cli-htmlbars": "^1.0.1",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
@@ -56,5 +57,8 @@
   "cacheDirectories": [
     "bower_components",
     "node_modules"
-  ]
+  ],
+  "devDependencies": {
+    "ember-cli-document-title": "0.3.1"
+  }
 }

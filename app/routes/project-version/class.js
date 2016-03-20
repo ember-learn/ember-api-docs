@@ -4,6 +4,10 @@ const {get} = Ember;
 
 export default Ember.Route.extend({
 
+  titleToken: function(model) {
+    return model.get('name');
+  },
+
   model(params, transition) {
     const projectID = transition.params['project-version'].project;
     const version = transition.params['project-version'].project_version;
