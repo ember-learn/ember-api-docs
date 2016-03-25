@@ -1,1 +1,1 @@
-web: ember fastboot --environment=production --build false --port $PORT --output-path tmp/fastboot-dist --assets-path tmp/deploy-dist
+web: node_modules/.bin/ember-fastboot tmp/deploy-dist/ --port $PORT
