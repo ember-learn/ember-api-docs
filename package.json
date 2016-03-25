@@ -51,7 +51,7 @@
     "ember-lodash": "0.0.6",
     "ember-pouch": "fivetanley/ember-pouch#fastboot-support",
     "ember-resolver": "2.0.3",
-    "emberx-select": "2.0.2",
+    "emberx-select": "thefrontside/emberx-select#master",
     "loader.js": "4.0.0"
   },
   "cacheDirectories": [
