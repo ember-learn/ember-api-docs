@@ -1,7 +1,7 @@
 {
   "name": "ember-api-docs",
   "dependencies": {
-    "ember": "components/ember#2.3.0",
+    "ember": "https://github.com/components/ember/archive/92e092e88b19dbb067865c59af5a9cb95fec4ade.tar.gz",
     "ember-cli-shims": ">= 0.1.0",
     "ember-cli-test-loader": "^0.2.1",
     "ember-qunit": "~0.4.18",
@@ -23,6 +23,6 @@
     "highlightjs": "~9.0.0"
   },
   "resolutions": {
-    "ember": "canary"
+    "ember": "https://github.com/components/ember/archive/92e092e88b19dbb067865c59af5a9cb95fec4ade.tar.gz"
   }
 }
