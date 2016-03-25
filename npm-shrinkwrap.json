@@ -1513,19 +1513,19 @@
       "resolved": "https://registry.npmjs.org/ember-cli-document-title/-/ember-cli-document-title-0.3.1.tgz"
     },
     "ember-cli-fastboot": {
-      "version": "0.4.3",
-      "from": "ember-cli-fastboot@>=0.4.3 <0.5.0",
-      "resolved": "https://registry.npmjs.org/ember-cli-fastboot/-/ember-cli-fastboot-0.4.3.tgz",
+      "version": "0.6.0",
+      "from": "ember-cli-fastboot@0.6.0",
+      "resolved": "https://registry.npmjs.org/ember-cli-fastboot/-/ember-cli-fastboot-0.6.0.tgz",
       "dependencies": {
         "broccoli-funnel": {
           "version": "0.2.8",
           "from": "broccoli-funnel@0.2.8",
           "resolved": "https://registry.npmjs.org/broccoli-funnel/-/broccoli-funnel-0.2.8.tgz"
         },
-        "lodash": {
-          "version": "3.10.1",
-          "from": "lodash@>=3.1.0 <4.0.0",
-          "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
+        "lodash.clonedeep": {
+          "version": "4.3.1",
+          "from": "lodash.clonedeep@>=4.3.1 <5.0.0",
+          "resolved": "https://registry.npmjs.org/lodash.clonedeep/-/lodash.clonedeep-4.3.1.tgz"
         },
         "minimatch": {
           "version": "2.0.10",
@@ -1686,9 +1686,9 @@
       "resolved": "https://registry.npmjs.org/ember-export-application-global/-/ember-export-application-global-1.0.5.tgz"
     },
     "ember-fastboot-server": {
-      "version": "0.4.3",
-      "from": "ember-fastboot-server@0.4.3",
-      "resolved": "https://registry.npmjs.org/ember-fastboot-server/-/ember-fastboot-server-0.4.3.tgz",
+      "version": "0.5.3",
+      "from": "ember-fastboot-server@0.5.3",
+      "resolved": "https://registry.npmjs.org/ember-fastboot-server/-/ember-fastboot-server-0.5.3.tgz",
       "dependencies": {
         "ansi-regex": {
           "version": "0.2.1",
@@ -1704,6 +1704,11 @@
           "version": "0.5.1",
           "from": "chalk@>=0.5.1 <0.6.0",
           "resolved": "https://registry.npmjs.org/chalk/-/chalk-0.5.1.tgz"
+        },
+        "cookie": {
+          "version": "0.2.3",
+          "from": "cookie@>=0.2.3 <0.3.0",
+          "resolved": "https://registry.npmjs.org/cookie/-/cookie-0.2.3.tgz"
         },
         "glob": {
           "version": "4.5.3",
@@ -1724,6 +1729,16 @@
           "version": "1.2.0",
           "from": "minimist@>=1.2.0 <2.0.0",
           "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
+        },
+        "source-map": {
+          "version": "0.1.32",
+          "from": "source-map@0.1.32",
+          "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.1.32.tgz"
+        },
+        "source-map-support": {
+          "version": "0.4.0",
+          "from": "source-map-support@>=0.4.0 <0.5.0",
+          "resolved": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.4.0.tgz"
         },
         "strip-ansi": {
           "version": "0.3.0",
@@ -3052,6 +3067,21 @@
       "from": "lodash._basedifference@>=4.0.0 <5.0.0",
       "resolved": "https://registry.npmjs.org/lodash._basedifference/-/lodash._basedifference-4.4.0.tgz"
     },
+    "lodash._baseeach": {
+      "version": "4.1.1",
+      "from": "lodash._baseeach@>=4.0.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash._baseeach/-/lodash._baseeach-4.1.1.tgz"
+    },
+    "lodash._basefind": {
+      "version": "3.0.0",
+      "from": "lodash._basefind@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/lodash._basefind/-/lodash._basefind-3.0.0.tgz"
+    },
+    "lodash._basefindindex": {
+      "version": "3.6.0",
+      "from": "lodash._basefindindex@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/lodash._basefindindex/-/lodash._basefindindex-3.6.0.tgz"
+    },
     "lodash._baseflatten": {
       "version": "4.1.1",
       "from": "lodash._baseflatten@>=4.0.0 <5.0.0",
@@ -3061,6 +3091,11 @@
       "version": "3.0.3",
       "from": "lodash._basefor@>=3.0.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/lodash._basefor/-/lodash._basefor-3.0.3.tgz"
+    },
+    "lodash._baseiteratee": {
+      "version": "4.5.2",
+      "from": "lodash._baseiteratee@>=4.0.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash._baseiteratee/-/lodash._baseiteratee-4.5.2.tgz"
     },
     "lodash._baseuniq": {
       "version": "4.5.0",
@@ -3107,6 +3142,11 @@
       "from": "lodash.assign@>=3.2.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/lodash.assign/-/lodash.assign-3.2.0.tgz"
     },
+    "lodash.assigninwith": {
+      "version": "4.0.5",
+      "from": "lodash.assigninwith@>=4.0.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.assigninwith/-/lodash.assigninwith-4.0.5.tgz"
+    },
     "lodash.clonedeep": {
       "version": "3.0.2",
       "from": "lodash.clonedeep@>=3.0.0 <4.0.0",
@@ -3123,6 +3163,16 @@
       "version": "3.1.1",
       "from": "lodash.debounce@>=3.1.1 <4.0.0",
       "resolved": "https://registry.npmjs.org/lodash.debounce/-/lodash.debounce-3.1.1.tgz"
+    },
+    "lodash.defaults": {
+      "version": "4.0.1",
+      "from": "lodash.defaults@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.defaults/-/lodash.defaults-4.0.1.tgz"
+    },
+    "lodash.find": {
+      "version": "4.2.0",
+      "from": "lodash.find@>=4.2.0 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash.find/-/lodash.find-4.2.0.tgz"
     },
     "lodash.flatten": {
       "version": "3.0.2",
@@ -3469,9 +3519,9 @@
       "resolved": "https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.4.tgz"
     },
     "najax": {
-      "version": "0.3.2",
-      "from": "najax@>=0.3.2 <0.4.0",
-      "resolved": "https://registry.npmjs.org/najax/-/najax-0.3.2.tgz",
+      "version": "0.4.0",
+      "from": "najax@>=0.4.0 <0.5.0",
+      "resolved": "https://registry.npmjs.org/najax/-/najax-0.4.0.tgz",
       "dependencies": {
         "lodash": {
           "version": "3.10.1",
@@ -5379,9 +5429,9 @@
       "resolved": "https://registry.npmjs.org/silent-error/-/silent-error-1.0.0.tgz"
     },
     "simple-dom": {
-      "version": "0.2.7",
-      "from": "simple-dom@>=0.2.7 <0.3.0",
-      "resolved": "https://registry.npmjs.org/simple-dom/-/simple-dom-0.2.7.tgz"
+      "version": "0.3.0",
+      "from": "simple-dom@>=0.3.0 <0.4.0",
+      "resolved": "https://registry.npmjs.org/simple-dom/-/simple-dom-0.3.0.tgz"
     },
     "simple-fmt": {
       "version": "0.1.0",
