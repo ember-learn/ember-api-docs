@@ -1903,9 +1903,9 @@
       "resolved": "https://registry.npmjs.org/ember-test-helpers/-/ember-test-helpers-0.5.22.tgz"
     },
     "emberx-select": {
-      "version": "2.0.2",
-      "from": "emberx-select@2.0.2",
-      "resolved": "https://registry.npmjs.org/emberx-select/-/emberx-select-2.0.2.tgz"
+      "version": "2.1.0",
+      "from": "thefrontside/emberx-select#3e11153d4ca468d7cb08d2d6bbe32288d5ff4609",
+      "resolved": "git://github.com/thefrontside/emberx-select.git#3e11153d4ca468d7cb08d2d6bbe32288d5ff4609"
     },
     "end-of-stream": {
       "version": "1.1.0",
