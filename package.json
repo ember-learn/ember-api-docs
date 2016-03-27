@@ -10,8 +10,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test",
-    "postinstall": "bower i && ./bin/heroku-deploy"
+    "test": "ember test"
   },
   "repository": "",
   "engines": {
