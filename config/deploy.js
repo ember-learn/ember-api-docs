@@ -2,7 +2,10 @@
 
 module.exports = function(deployTarget) {
   var ENV = {
-    build: {}
+    build: {},
+    gzip: {
+      ignorePattern: '*.json'
+    }
     // include other plugin configuration that applies to all deploy targets here
   };
 
