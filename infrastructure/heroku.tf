@@ -6,6 +6,12 @@ resource "heroku_app" "production" {
   name = "${var.heroku_production_app_name}"
   region = "us"
 
+  organization = {
+    name = "ember-conf"
+    locked = true
+    personal = false
+  }
+
   config_vars {
     AWS_ACCESS_KEY_ID = "${aws_iam_access_key.deploy.id}"
     AWS_SECRET_ACCESS_KEY = "${aws_iam_access_key.deploy.secret}"
@@ -19,6 +25,12 @@ resource "heroku_app" "production" {
 resource "heroku_app" "staging" {
   name = "${var.heroku_staging_app_name}"
   region = "us"
+
+  organization = {
+    name = "ember-conf"
+    locked = true
+    personal = false
+  }
 
   config_vars {
     AWS_ACCESS_KEY_ID = "${aws_iam_access_key.deploy.id}"
