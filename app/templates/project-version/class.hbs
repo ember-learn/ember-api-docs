@@ -5,36 +5,17 @@
   <section>
     <h2>Methods</h2>
 
-    <ul>
+    <ul class="spec-method-list">
       {{#each model.methods as |method|}}
         <li>
-          {{method.name}}
+          {{#link-to 'methods.method' model.project.id model.projectVersion.version model.name method.name}}
+            {{method.name}}
+          {{/link-to}}
         </li>
       {{/each}}
     </ul>
   </section>
 
-  {{#each model.methods as |method|}}
-    <section class="method">
-      <h3>
-        <span class="method-name">{{method.name}}</span>
-        {{#if method.params}}
-          <span class="args">
-            ({{join ", " (map-by "name" method.params)}})
-          </span>
-        {{/if}}
-      </h3>
-      <dl class="parameters">
-        {{#each method.params as |param|}}
-          <div class="parameter">
-            <dt>{{param.name}}</dt>
-            <dd>{{param.type}}</dd>
-            <dd>{{param.description}}</dd>
-          </div>
-        {{/each}}
-      </dl>
-      {{{method.description}}}
-    </section>
-  {{/each}}
+  {{outlet}}
 
 </article>
