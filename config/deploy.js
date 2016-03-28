@@ -5,6 +5,11 @@ module.exports = function(deployTarget) {
     build: {},
     gzip: {
       ignorePattern: '{fastboot/*.js,*.json}'
+    },
+    cloudfront: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      distribution: 'EEVILRV9A3GLB'
     }
     // include other plugin configuration that applies to all deploy targets here
   };
