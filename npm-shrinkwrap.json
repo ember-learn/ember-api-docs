@@ -1545,6 +1545,18 @@
       "from": "ember-cli-deploy-build@0.1.1",
       "resolved": "https://registry.npmjs.org/ember-cli-deploy-build/-/ember-cli-deploy-build-0.1.1.tgz"
     },
+    "ember-cli-deploy-cloudfront": {
+      "version": "0.2.3",
+      "from": "ember-cli-deploy-cloudfront@latest",
+      "resolved": "https://registry.npmjs.org/ember-cli-deploy-cloudfront/-/ember-cli-deploy-cloudfront-0.2.3.tgz",
+      "dependencies": {
+        "core-object": {
+          "version": "1.1.0",
+          "from": "core-object@>=1.1.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/core-object/-/core-object-1.1.0.tgz"
+        }
+      }
+    },
     "ember-cli-deploy-gzip": {
       "version": "0.2.2",
       "from": "ember-cli-deploy-gzip@>=0.2.1 <0.3.0",
