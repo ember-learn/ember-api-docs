@@ -43,6 +43,7 @@
     "ember-cli-sass": "5.2.0",
     "ember-cli-sri": "^1.2.0",
     "ember-cli-uglify": "^1.2.0",
+    "ember-composable-helpers": "^0.20.0",
     "ember-data": "github:emberjs/data#master",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
@@ -61,6 +62,7 @@
   ],
   "devDependencies": {
     "ember-cli-document-title": "0.3.1",
-    "ember-cli-head": "0.0.5"
+    "ember-cli-head": "0.0.5",
+    "ember-composable-helpers": "0.20.0"
   }
 }

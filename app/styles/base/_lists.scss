@@ -61,3 +61,30 @@ dl {
     margin: 0;
   }
 }
+
+.args {
+  color: $light-brown;
+  font-style: italic;
+  font-weight: normal;
+  font-size: $base-font-size;
+}
+
+.parameters {
+  dl {
+    display: inline-block;
+  }
+  dt {
+    display: inline-block;
+  }
+  dd {
+    display: inline-block;
+  }
+}
+
+.method {
+  border-bottom: $base-border;
+
+  .method-name {
+    font-family: $monospace-font-family;
+  }
+}

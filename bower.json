@@ -2,7 +2,7 @@
   "name": "ember-api-docs",
   "dependencies": {
     "ember": "https://github.com/components/ember/archive/92e092e88b19dbb067865c59af5a9cb95fec4ade.tar.gz",
-    "ember-cli-shims": ">= 0.1.0",
+    "ember-cli-shims": "~0.1.1",
     "ember-cli-test-loader": "^0.2.1",
     "ember-qunit": "~0.4.18",
     "ember-qunit-notifications": "0.1.0",
