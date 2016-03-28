@@ -6,7 +6,7 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg'],
-      prepend: "https://s3.amazonaws.com/" + process.env.AWS_BUCKET_NAME + "/",
+      prepend: "https://d1c5tz1ijyzkhf.cloudfront.net/",
       generateAssetMap: true
     },
     sassOptions: {
