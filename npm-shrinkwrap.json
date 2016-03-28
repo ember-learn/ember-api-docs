@@ -1745,6 +1745,11 @@
         }
       }
     },
+    "ember-composable-helpers": {
+      "version": "0.20.0",
+      "from": "ember-composable-helpers@latest",
+      "resolved": "https://registry.npmjs.org/ember-composable-helpers/-/ember-composable-helpers-0.20.0.tgz"
+    },
     "ember-data": {
       "version": "2.6.0-canary",
       "from": "emberjs/data#master",
