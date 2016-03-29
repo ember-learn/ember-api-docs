@@ -7,3 +7,29 @@ body {
   margin: 0;
 }
 
+
+@include media($large-screen-up) {
+  .header {
+    position: fixed;
+    width: 100%
+  }
+
+  .sidebar {
+    margin-top: 77px;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-right: 0;
+    padding-left: 20px;
+    width: 317px;
+  }
+
+  .chapter {
+    margin-top: 77px;
+    height: 100%;
+    margin-left: 317px;
+  }
+
+}
