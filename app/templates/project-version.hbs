@@ -12,14 +12,6 @@
       {{#x-option value=projectVersion}}{{projectVersion.version}}{{/x-option}}
     {{/each}}
   {{/x-select}}
-  <ol class="toc-level-0">
-    <li class="toc-level-0">Classes
-      <ol class="toc-level-1 selected" style="display: block;">
-        {{#each classesIDs as |classID|}}
-          <li class="toc-level-1">{{#link-to 'project-version.class' model.version classID}}{{classID}}{{/link-to}}</li>
-        {{/each}}
-      </ol>
-    </li>
-  </ol>
+  {{table-of-contents version=model.version classesIDs=classesIDs}}
 </aside>
 {{outlet}}
