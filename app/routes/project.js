@@ -6,8 +6,8 @@ export default Ember.Route.extend({
   },
   afterModel(project, transition) {
     return project.get('projectVersions').then(versions => {
-      const first = Ember.A(versions).sortBy('id')[0];
-      this.transitionTo('project-version', first);
+      const last = Ember.A(versions).sortBy('id')[versions.length - 1];
+      this.transitionTo('project-version', last);
     });
   }
 });

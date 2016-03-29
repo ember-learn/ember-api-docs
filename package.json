@@ -59,13 +59,16 @@
     "minimist": "^1.2.0",
     "node-redis": "^0.1.7",
     "redis": "^2.6.0-0",
-    "redisdown": "^0.1.12"
+    "redisdown": "^0.1.12",
+    "loader.js": "4.0.0",
+    "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [
     "bower_components",
     "node_modules"
   ],
   "devDependencies": {
+    "ember-browserify": "1.1.8",
     "ember-cli-deploy-cloudfront": "0.2.3",
     "ember-cli-document-title": "0.3.1",
     "ember-cli-head": "0.0.5",
