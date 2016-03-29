@@ -12,6 +12,7 @@ export default Ember.Service.extend({
     if (ENV.testing) {
       this._local = new Pouch((new Date()).toString(), {adapter: 'memory'});
     } else if (typeof FastBoot !== 'undefined') {
+      /*globals FastBoot*/
       const redisDown = FastBoot.require('redisdown');
       this._local = new Pouch('docsdb', {db: redisDown, url: ENV.redisURL});
     } else {
