@@ -55,7 +55,6 @@
     "express": "^4.13.4",
     "express-cluster": "0.0.4",
     "express-serve-static-gzip": "git+https://github.com/hone/express-serve-static-gzip.git",
-    "loader.js": "4.0.0",
     "minimist": "^1.2.0",
     "node-redis": "^0.1.7",
     "redis": "^2.6.0-0",
