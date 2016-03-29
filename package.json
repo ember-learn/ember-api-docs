@@ -54,13 +54,15 @@
     "ember-pouch": "fivetanley/ember-pouch#fastboot-support",
     "ember-resolver": "2.0.3",
     "emberx-select": "github:thefrontside/emberx-select#3e11153d4ca468d7cb08d2d6bbe32288d5ff4609",
-    "loader.js": "4.0.0"
+    "loader.js": "4.0.0",
+    "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [
     "bower_components",
     "node_modules"
   ],
   "devDependencies": {
+    "ember-browserify": "1.1.8",
     "ember-cli-deploy-cloudfront": "0.2.3",
     "ember-cli-document-title": "0.3.1",
     "ember-cli-head": "0.0.5",
