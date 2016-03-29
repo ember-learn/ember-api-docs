@@ -68,7 +68,6 @@
   ],
   "devDependencies": {
     "ember-browserify": "1.1.8",
-    "ember-cli-deploy-cloudfront": "0.2.3",
     "ember-cli-document-title": "0.3.1",
     "ember-cli-head": "0.0.5",
     "ember-composable-helpers": "0.20.0"
