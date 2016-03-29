@@ -19,7 +19,28 @@ resource "heroku_app" "production" {
     AWS_BUCKET_REGION = "${var.aws_region}"
 
     HEROKU_EMBER_CLI_DEPLOY = "true"
+    WORKER_COUNT=1
   }
+}
+
+resource "heroku_addon" "redis_production" {
+  app = "${heroku_app.production.name}"
+  plan = "heroku-redis:premium-2"
+}
+
+resource "heroku_addon" "redis_staging" {
+  app = "${heroku_app.staging.name}"
+  plan = "heroku-redis:premium-2"
+}
+
+resource "heroku_addon" "fastly_staging" {
+  app = "${heroku_app.staging.name}"
+  plan = "fastly:fast"
+}
+
+resource "heroku_addon" "fastly_production" {
+  app = "${heroku_app.production.name}"
+  plan = "fastly:fast"
 }
 
 resource "heroku_app" "staging" {
@@ -39,5 +60,6 @@ resource "heroku_app" "staging" {
     AWS_BUCKET_REGION = "${var.aws_region}"
 
     HEROKU_EMBER_CLI_DEPLOY = "true"
+    WORKER_COUNT=1
   }
 }

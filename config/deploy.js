@@ -4,21 +4,10 @@ module.exports = function(deployTarget) {
   var ENV = {
     build: {},
     gzip: {
-      ignorePattern: '{fastboot/*.js,*.json}'
-    },
-    cloudfront: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      distribution: 'EEVILRV9A3GLB'
+      ignorePattern: '{fastboot/*.js,*.json}',
+      keep: true
     }
     // include other plugin configuration that applies to all deploy targets here
-  };
-
-  ENV.s3 = {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-    bucket: process.env.AWS_BUCKET_NAME,
-    region: process.env.AWS_BUCKET_REGION,
   };
 
   if (deployTarget === 'development') {

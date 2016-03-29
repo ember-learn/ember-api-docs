@@ -29,9 +29,7 @@
     "ember-cli-content-security-policy": "0.4.0",
     "ember-cli-deploy": "^0.5.1",
     "ember-cli-deploy-build": "0.1.1",
-    "ember-cli-deploy-cloudfront": "^0.2.3",
     "ember-cli-deploy-gzip": "^0.2.1",
-    "ember-cli-deploy-s3": "0.2.1",
     "ember-cli-document-title": "^0.3.1",
     "ember-cli-fastboot": "github:fivetanley/ember-cli-fastboot#require-ember-app",
     "ember-cli-htmlbars": "^1.0.1",
@@ -54,7 +52,14 @@
     "ember-pouch": "fivetanley/ember-pouch#fastboot-support",
     "ember-resolver": "2.0.3",
     "emberx-select": "github:thefrontside/emberx-select#3e11153d4ca468d7cb08d2d6bbe32288d5ff4609",
-    "loader.js": "4.0.0"
+    "express": "^4.13.4",
+    "express-cluster": "0.0.4",
+    "express-serve-static-gzip": "git+https://github.com/hone/express-serve-static-gzip.git",
+    "loader.js": "4.0.0",
+    "minimist": "^1.2.0",
+    "node-redis": "^0.1.7",
+    "redis": "^2.6.0-0",
+    "redisdown": "^0.1.12"
   },
   "cacheDirectories": [
     "bower_components",
@@ -65,5 +70,8 @@
     "ember-cli-document-title": "0.3.1",
     "ember-cli-head": "0.0.5",
     "ember-composable-helpers": "0.20.0"
-  }
+  },
+  "fastbootDependencies": [
+    "redisdown"
+  ]
 }

@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    redisURL: process.env.REDIS_URL || 'redis://localhost:6379',
     modulePrefix: 'ember-api-docs',
     environment: environment,
     baseURL: '/',
