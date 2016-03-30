@@ -70,7 +70,8 @@
     "ember-browserify": "1.1.8",
     "ember-cli-document-title": "0.3.1",
     "ember-cli-head": "0.0.5",
-    "ember-composable-helpers": "0.20.0"
+    "ember-composable-helpers": "0.20.0",
+    "ember-truth-helpers": "1.2.0"
   },
   "fastbootDependencies": [
     "redisdown"

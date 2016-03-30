@@ -22,5 +22,7 @@ export default Ember.Controller.extend({
       const b_ver = b.get('id').split("-")[1];
       return semverCompare(b_ver, a_ver);
     });
-  })
+  }),
+
+  activeProject: Ember.computed.alias('model.project.id')
 });
