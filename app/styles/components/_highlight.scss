@@ -103,13 +103,13 @@
 
   &.javascript .ribbon,
   &.js .ribbon {
-    background-image: url('assets/images/ribbon-js.svg');
+    background-image: url('/assets/images/ribbon-js.svg');
   }
   &.html .ribbon {
-    background-image: url('assets/images/ribbon-html.svg');
+    background-image: url('/assets/images/ribbon-html.svg');
   }
   &.handlebars .ribbon {
-    background-image: url('assets/images/ribbon-hbs.svg');
+    background-image: url('/assets/images/ribbon-hbs.svg');
   }
 
   .highlight-line {
