@@ -22,6 +22,9 @@
   .select2 {
     margin-bottom: 1em;
   }
+  ol{
+    margin-bottom: 1.5em;
+  }
 }
 
 label[for="toc-toggle"] {
@@ -92,6 +95,10 @@ li.toc-level-0 {
 
     &:hover {
       color: $ember-orange;
+    }
+    &.active {
+      color: $ember-orange;
+      font-weight: bold;
     }
   }
 
