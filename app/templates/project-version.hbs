@@ -9,7 +9,7 @@
   </ol>
   {{#x-select value=model action="updateProject" default=model.id project=model.project class="spec-versions-box"}}
     {{#each projectVersions as |projectVersion|}}
-      {{#x-option value=projectVersion}}{{projectVersion.version}}{{/x-option}}
+      {{#x-option value=projectVersion}}{{projectVersion.minorVersion}}{{/x-option}}
     {{/each}}
   {{/x-select}}
   <ol class="toc-level-0">
