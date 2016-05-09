@@ -1,6 +1,8 @@
+{{ember-anchor a="anchor" anchor=anchor}}
+
 {{#each model.methods as |method|}}
   <section class="method">
-    <h3>
+    <h3 data-anchor="{{method.name}}">
       <span class="method-name">{{method.name}}</span>
       {{#if method.params}}
         <span class="args">

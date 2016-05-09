@@ -67,6 +67,7 @@
     "node_modules"
   ],
   "devDependencies": {
+    "ember-anchor": "github:gaurav0/ember-anchor#258f4930885998aa0329cbf9eddac5c1f0e7779c",
     "ember-browserify": "1.1.8",
     "ember-cli-document-title": "0.3.1",
     "ember-cli-head": "0.0.5",
