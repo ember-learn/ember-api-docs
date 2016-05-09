@@ -15,12 +15,4 @@ App = Ember.Application.extend({
 
 loadInitializers(App, config.modulePrefix);
 
-if (!config.EMBER_CLI_FASTBOOT && !Ember.testing) {
-  try {
-    window.Typekit.load({async: true});
-  } catch (e) {
-    console.log('err', e);
-  }
-}
-
 export default App;
