@@ -13,6 +13,12 @@ Router.map(function() {
       this.route('methods', {resetNamespace: true}, function() {
         this.route('method', {path: '/:method'});
       });
+      this.route('properties', {resetNamespace: true}, function() {
+        this.route('property', {path: '/:property'});
+      });
+      this.route('events', {resetNamespace: true}, function() {
+        this.route('event', {path: '/:event'});
+      });
     });
   });
 });

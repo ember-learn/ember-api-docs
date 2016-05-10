@@ -81,10 +81,10 @@ dl {
   }
 }
 
-.method {
+.method, .property, .event {
   border-bottom: $base-border;
 
-  .method-name {
+  .method-name, .property-name, .event-name {
     font-family: $monospace-font-family;
   }
 }

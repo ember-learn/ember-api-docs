@@ -1,0 +1,20 @@
+<section class="{{type}}">
+  <h3 data-anchor="{{field.name}}">
+    <span class="{{field}}-name">{{field.name}}</span>
+    {{#if field.params}}
+      <span class="args">
+        ({{join ", " (map-by "name" field.params)}})
+      </span>
+    {{/if}}
+  </h3>
+  <dl class="parameters">
+    {{#each field.params as |param|}}
+      <div class="parameter">
+        <dt>{{param.name}}</dt>
+        <dd>{{param.type}}</dd>
+        <dd>{{param.description}}</dd>
+      </div>
+    {{/each}}
+  </dl>
+  {{{field.description}}}
+</section>

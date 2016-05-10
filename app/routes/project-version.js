@@ -40,6 +40,9 @@ export default Ember.Route.extend({
         case 'project-version.class':
           endingRoute = `classes/${this.modelFor(routeName).get('name')}`;
           break;
+        case 'project-version.class.index':
+          endingRoute = `classes/${this.modelFor('project-version.class').get('name')}`;
+          break;
         default:
           break;
       }

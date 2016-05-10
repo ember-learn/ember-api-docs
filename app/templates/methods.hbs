@@ -1,24 +1,5 @@
 {{ember-anchor a="anchor" anchor=anchor}}
 
 {{#each model.methods as |method|}}
-  <section class="method">
-    <h3 data-anchor="{{method.name}}">
-      <span class="method-name">{{method.name}}</span>
-      {{#if method.params}}
-        <span class="args">
-          ({{join ", " (map-by "name" method.params)}})
-        </span>
-      {{/if}}
-    </h3>
-    <dl class="parameters">
-      {{#each method.params as |param|}}
-        <div class="parameter">
-          <dt>{{param.name}}</dt>
-          <dd>{{param.type}}</dd>
-          <dd>{{param.description}}</dd>
-        </div>
-      {{/each}}
-    </dl>
-    {{{method.description}}}
-  </section>
+  {{class-field-description type="method" field=method}}
 {{/each}}
