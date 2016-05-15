@@ -16,6 +16,32 @@
     </ul>
   </section>
 
+  <section>
+    <h2>Properties</h2>
+    <ul class="spec-property-list">
+      {{#each model.properties as |property|}}
+        <li>
+          {{#link-to 'properties.property' model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
+            {{property.name}}
+          {{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section>
+    <h2>Events</h2>
+    <ul class="spec-event-list">
+      {{#each model.events as |event|}}
+        <li>
+          {{#link-to 'events.event' model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
+            {{event.name}}
+          {{/link-to}}
+        </li>
+      {{/each}}
+    </ul>
+  </section>
+
   {{outlet}}
 
 </article>

@@ -14,7 +14,9 @@ export default Ember.Route.extend({
     const version = transition.params['project-version'].project_version;
     const klass = params.class;
 
-    return this.store.find('class', `${projectID}-${version}-${klass}`);
+    return this.store.find('class', `${projectID}-${version}-${klass}`).catch((error) => {
+      this.transitionTo('project-version'); // class doesn't exist in new version
+    });
   },
 
   afterModel(klass) {
