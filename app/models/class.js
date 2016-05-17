@@ -4,6 +4,7 @@ import Ember from 'ember';
 const {attr, belongsTo} = DS;
 
 export default DS.Model.extend({
+  access: attr(),
   name: attr(),
   methods: attr(),
   properties: attr(),
