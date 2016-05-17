@@ -1,10 +1,14 @@
 <section class="{{type}}">
   <h3 data-anchor="{{field.name}}">
-    <span class="{{field}}-name">{{field.name}}</span>
+    <span class="{{type}}-name">{{field.name}}</span>
     {{#if field.params}}
       <span class="args">
         ({{join ", " (map-by "name" field.params)}})
       </span>
+    {{/if}}
+    <span class="access">{{field.access}}</span>
+    {{#if field.deprecated}}
+      <span class="access">deprecated</span>
     {{/if}}
   </h3>
   <dl class="parameters">
