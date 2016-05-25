@@ -69,6 +69,14 @@ dl {
   font-size: $base-font-size;
 }
 
+.access {
+  color: white;
+  background-color: gray;
+  padding: 2px 7px;
+  font-size: smaller;
+  border-radius: 3px;
+}
+
 .parameters {
   dl {
     display: inline-block;
