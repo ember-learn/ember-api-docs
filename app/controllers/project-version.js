@@ -37,5 +37,5 @@ export default Ember.Controller.extend({
     });
   }),
 
-  activeProject: Ember.computed.alias('model.project.id')
+  activeProject: Ember.computed.readOnly('model.project.id')
 });
