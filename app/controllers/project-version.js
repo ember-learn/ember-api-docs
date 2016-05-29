@@ -20,12 +20,12 @@ export default Ember.Controller.extend({
   projectVersions: Ember.computed('model', function() {
     const projectVersions = this.get('model.project.projectVersions');
     let versions = projectVersions.toArray().sort(function(a, b) {
-      const a_ver = a.get('id').split("-")[1];
-      const b_ver = b.get('id').split("-")[1];
+      const a_ver = _.last(a.get('id').split("-"));
+      const b_ver = _.last(b.get('id').split("-"));
       return semverCompare(b_ver, a_ver);
     });
     versions.forEach(function(version) {
-      const versionString = version.get('id').split("-")[1];
+      const versionString = _.last(version.get('id').split("-"));
       const minorVersion = getMinorVersion(versionString);
       version.set('minorVersion', minorVersion);
     });
@@ -37,5 +37,5 @@ export default Ember.Controller.extend({
     });
   }),
 
-  activeProject: Ember.computed.alias('model.project.id')
+  activeProject: Ember.computed.readOnly('model.project.id')
 });

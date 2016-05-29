@@ -17,7 +17,7 @@ export default Ember.Route.extend({
         const classes = model.hasMany('classes').ids().sort();
         const klass = classes[0];
         return this.store.find('class', klass).then(klass => {
-          this.transitionTo('project-version.class', model, klass);
+          return this.transitionTo('project-version.class', model, klass);
         });
       }
     });
@@ -31,7 +31,7 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    updateProject(projectVersion, component) {
+    updateProject(projectVersion /*, component */) {
       const projectVersionID = projectVersion.get('version');
       const project = projectVersion.get('project.id');
       let endingRoute, routeName;
@@ -47,7 +47,11 @@ export default Ember.Route.extend({
           break;
       }
 
-      this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
+      if (endingRoute) {
+        this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
+      } else {
+        this.transitionTo(`/${project}/${projectVersionID}`);
+      }
     }
   }
 });
