@@ -7,6 +7,7 @@ export default DS.Model.extend({
   name: attr(),
   methods: attr(),
   properties: attr(),
+  access: attr(),
   events: attr(),
   description: attr(),
   ogDescription: attr(),

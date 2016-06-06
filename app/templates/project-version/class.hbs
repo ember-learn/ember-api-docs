@@ -1,45 +1,57 @@
 <article class="chapter">
-  <h1>{{model.name}}</h1>
+  <h1>{{model.name}} {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}</h1>
 
   <p>{{{model.description}}}</p>
   <section>
     <h2>Methods</h2>
 
-    <ul class="spec-method-list">
-      {{#each model.methods as |method|}}
-        <li>
-          {{#link-to 'methods.method' model.project.id model.projectVersion.version model.name method.name (query-params anchor=method.name)}}
-            {{method.name}}
-          {{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
+    {{#if model.methods}}
+      <ul class="spec-method-list">
+        {{#each model.methods as |method|}}
+          <li>
+            {{#link-to 'methods.method' model.project.id model.projectVersion.version model.name method.name (query-params anchor=method.name)}}
+              {{method.name}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      No documented methods.
+    {{/if}}
   </section>
 
   <section>
     <h2>Properties</h2>
-    <ul class="spec-property-list">
-      {{#each model.properties as |property|}}
-        <li>
-          {{#link-to 'properties.property' model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
-            {{property.name}}
-          {{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
+    {{#if model.properties}}
+      <ul class="spec-property-list">
+        {{#each model.properties as |property|}}
+          <li>
+            {{#link-to 'properties.property' model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
+              {{property.name}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      No documented properties.
+    {{/if}}
   </section>
 
   <section>
     <h2>Events</h2>
-    <ul class="spec-event-list">
-      {{#each model.events as |event|}}
-        <li>
-          {{#link-to 'events.event' model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
-            {{event.name}}
-          {{/link-to}}
-        </li>
-      {{/each}}
-    </ul>
+    {{#if model.events}}
+      <ul class="spec-event-list">
+        {{#each model.events as |event|}}
+          <li>
+            {{#link-to 'events.event' model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
+              {{event.name}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    {{else}}
+      No documented events.
+    {{/if}}
   </section>
 
   {{outlet}}

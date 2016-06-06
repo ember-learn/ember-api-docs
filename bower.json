@@ -1,7 +1,7 @@
 {
   "name": "ember-api-docs",
   "dependencies": {
-    "ember": "https://github.com/components/ember/archive/15eb3927f51a49e152a299d8cbabcbf6f3fcad83.zip",
+    "ember": "https://github.com/components/ember/archive/0af51210605ebd60520b7b9bf7c65b520aa04a68.zip",
     "ember-cli-shims": "~0.1.1",
     "ember-cli-test-loader": "^0.2.1",
     "ember-qunit": "~0.4.18",

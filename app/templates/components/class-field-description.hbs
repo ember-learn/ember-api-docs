@@ -6,7 +6,9 @@
         ({{join ", " (map-by "name" field.params)}})
       </span>
     {{/if}}
-    <span class="access">{{field.access}}</span>
+    {{#if field.access}}
+      <span class="access">{{field.access}}</span>
+    {{/if}}
     {{#if field.deprecated}}
       <span class="access">deprecated</span>
     {{/if}}
