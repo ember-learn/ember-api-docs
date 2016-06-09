@@ -12,7 +12,7 @@ export default DS.Model.extend({
   description: attr(),
   ogDescription: attr(),
   parentClass: belongsTo('class', {async: true, inverse: null}),
-  projectVersion: belongsTo('project-version'),
+  projectVersion: belongsTo('project-version', {inverse: 'classes'}),
   // hack until i add this data to cloudant
   project: Ember.computed('projectVersion.id', function() {
     let id = this.get('projectVersion.id').split('-').slice(0, -1).join('-');

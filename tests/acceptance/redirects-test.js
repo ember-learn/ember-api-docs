@@ -7,7 +7,7 @@ moduleForAcceptance('Acceptance | redirects');
 test('visiting /', function(assert) {
   visit('/');
 
-  const last = "2.4.3"; // need help for how to get this
+  const last = "2.6.0"; // need help for how to get this
 
   return andThen(function() {
     assert.equal(
