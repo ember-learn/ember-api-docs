@@ -1,28 +1,26 @@
 {
   "name": "ember-api-docs",
   "dependencies": {
-    "ember": "https://github.com/components/ember/archive/0af51210605ebd60520b7b9bf7c65b520aa04a68.zip",
+    "ember": "2.5.1",
     "ember-cli-shims": "~0.1.1",
     "ember-cli-test-loader": "^0.2.1",
     "ember-qunit": "~0.4.18",
     "ember-qunit-notifications": "0.1.0",
-    "ember-resolver": "~0.1.20",
     "jquery": "^2.0",
-    "loader.js": "ember-cli/loader.js#3.6.0",
     "qunit": "~1.20.0",
     "bourbon": "4.2.6",
     "bitters": "1.1.0",
     "neat": "1.7.2",
-    "pouchdb": "^5.0.0",
+    "pouchdb": "~5.0.0",
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
     "localforage": "~1.3.1",
-    "relational-pouch": "^1.3.2",
+    "relational-pouch": "~1.3.2",
     "remarkable": "~1.6.1",
     "highlightjs": "~9.0.0"
   },
   "resolutions": {
-    "ember": "https://github.com/components/ember/archive/15eb3927f51a49e152a299d8cbabcbf6f3fcad83.zip"
+    "ember": "2.5.1"
   }
 }
