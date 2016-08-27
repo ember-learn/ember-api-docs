@@ -10,7 +10,7 @@ export default DS.JSONAPIAdapter.extend({
 
   pouch: Ember.inject.service('database-manager'),
 
-  findRecord(store, type, id, snapshot) {
+  findRecord(store, type, id) {
     return this.get('pouch').get(generatePouchID(type, id));
   },
 
