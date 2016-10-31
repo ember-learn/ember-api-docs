@@ -11,7 +11,6 @@ module.exports = function(environment) {
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
-        'ds-references': true
         //'ember-glimmer': true
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
@@ -45,7 +44,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
     ENV.testing = true;
 
