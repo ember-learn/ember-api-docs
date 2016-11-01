@@ -20,9 +20,19 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "redisdown": "^0.1.12",
+    "semver-compare": "^1.0.0"
+  },
+  "cacheDirectories": [
+    "bower_components",
+    "node_modules"
+  ],
+  "devDependencies": {
     "bower": "^1.0.0",
     "broccoli-asset-rev": "^2.4.2",
+    "ember-anchor": "github:gaurav0/ember-anchor#258f4930885998aa0329cbf9eddac5c1f0e7779c",
     "ember-ajax": "^2.0.1",
+    "ember-browserify": "1.1.8",
     "ember-cli": "2.7.0",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.6",
@@ -34,6 +44,7 @@
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-document-title": "^0.3.1",
     "ember-cli-fastboot": "github:fivetanley/ember-cli-fastboot#require-ember-app",
+    "ember-cli-head": "0.0.5",
     "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-htmlbars-inline-precompile": "^0.3.1",
     "ember-cli-ic-ajax": "0.2.4",
@@ -46,7 +57,7 @@
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^0.20.0",
-    "ember-data": "^2.7.0",
+    "ember-data": "2.7.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
     "ember-fastboot-server": "^0.5.3",
@@ -55,6 +66,7 @@
     "ember-lodash": "0.0.6",
     "ember-pouch": "fivetanley/ember-pouch#fastboot-support",
     "ember-resolver": "^2.0.3",
+    "ember-truth-helpers": "1.2.0",
     "emberx-select": "github:thefrontside/emberx-select#3e11153d4ca468d7cb08d2d6bbe32288d5ff4609",
     "express": "^4.13.4",
     "express-cluster": "0.0.4",
@@ -62,22 +74,7 @@
     "minimist": "^1.2.0",
     "node-redis": "^0.1.7",
     "redis": "^2.6.0-0",
-    "redisdown": "^0.1.12",
-    "loader.js": "^4.0.1",
-    "semver-compare": "^1.0.0"
-  },
-  "cacheDirectories": [
-    "bower_components",
-    "node_modules"
-  ],
-  "devDependencies": {
-    "ember-anchor": "github:gaurav0/ember-anchor#258f4930885998aa0329cbf9eddac5c1f0e7779c",
-    "ember-browserify": "1.1.8",
-    "ember-cli": "^2.7.0",
-    "ember-cli-document-title": "0.3.1",
-    "ember-cli-head": "0.0.5",
-    "ember-composable-helpers": "0.20.0",
-    "ember-truth-helpers": "1.2.0"
+    "loader.js": "^4.0.1"
   },
   "fastbootDependencies": [
     "redisdown"
