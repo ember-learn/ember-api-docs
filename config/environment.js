@@ -5,13 +5,12 @@ module.exports = function(environment) {
     redisURL: process.env.REDIS_URL || 'redis://localhost:6379',
     modulePrefix: 'ember-api-docs',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
-        //'ds-references': true,
         //'ember-glimmer': true
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
@@ -45,7 +44,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
     ENV.locationType = 'none';
     ENV.testing = true;
 

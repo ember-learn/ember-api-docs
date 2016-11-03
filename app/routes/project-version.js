@@ -12,7 +12,7 @@ export default Ember.Route.extend({
 
   afterModel(model, transition) {
     let classParams = transition.params['project-version.class'];
-    return model.get('project').then((project) => {
+    return model.get('project').then(() => {
       if (!classParams) {
         const classes = model.hasMany('classes').ids().sort();
         const klass = classes[0];
