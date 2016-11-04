@@ -12,6 +12,12 @@
       {{#x-option value=projectVersion}}{{projectVersion.minorVersion}}{{/x-option}}
     {{/each}}
   {{/x-select}}
-  {{table-of-contents projectId=model.project.id version=model.version classesIDs=shownClassesIDs showPrivateClasses=showPrivateClasses}}
+  {{table-of-contents projectId=model.project.id
+                      version=model.version
+                      classesIDs=shownClassesIDs
+                      showPrivateClasses=showPrivateClasses
+                      moduleIDs=moduleIDs
+                      namespaceIDs=namespaceIDs
+  }}
 </aside>
 {{outlet}}

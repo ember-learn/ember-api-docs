@@ -5,16 +5,26 @@ import getMinorVersion from "../utils/get-minor-version";
 
 export default Ember.Controller.extend({
   classesIDs: Ember.computed('model', function() {
-    const classes = this.get('model').hasMany('classes');
-    const sorted = Ember.A(classes.ids()).sort();
-    return Ember.A(sorted).toArray().map(id => id.split('-').pop());
+    return this.getRelationshipIDs('classes');
   }),
 
   publicClassesIDs: Ember.computed('model', function() {
-    const classes = this.get('model').hasMany('publicClasses');
-    const sorted = Ember.A(classes.ids()).sort();
-    return Ember.A(sorted).toArray().map(id => id.split('-').pop());
+    return this.getRelationshipIDs('publicClasses');
   }),
+
+  namespaceIDs: Ember.computed('model', function() {
+    return this.getRelationshipIDs('namespaces');
+  }),
+
+  moduleIDs: Ember.computed('model', function() {
+    return this.getRelationshipIDs('modules');
+  }),
+
+  getRelationshipIDs(relationship) {
+    const members = this.get('model').hasMany(relationship);
+    const sorted = Ember.A(members.ids()).sort();
+    return Ember.A(sorted).toArray().map(id => id.split('-').pop());
+  },
 
   shownClassesIDs: Ember.computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
     return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
