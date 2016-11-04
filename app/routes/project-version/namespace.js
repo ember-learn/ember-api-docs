@@ -9,7 +9,7 @@ export default ClassRoute.extend({
 
   serialize(model) {
     return {
-      namespace: model.get('project') + '-' + model.get('name')
+      namespace: model.get('name')
     };
   }
 });
