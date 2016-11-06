@@ -12,12 +12,14 @@ export default Ember.Route.extend({
 
   afterModel(model, transition) {
     let classParams = transition.params['project-version.class'];
+    let moduleParams = transition.params['project-version.module'];
+    let namespaceParams = transition.params['project-version.namespace'];
     return model.get('project').then(() => {
-      if (!classParams) {
-        const classes = model.hasMany('classes').ids().sort();
-        const klass = classes[0];
-        return this.store.find('class', klass).then(klass => {
-          return this.transitionTo('project-version.class', model, klass);
+      if (!classParams && !moduleParams && !namespaceParams) {
+        const namespaces = model.hasMany('namespaces').ids().sort();
+        const namespace = namespaces[0];
+        return this.store.find('namespace', namespace).then(namespace => {
+          return this.transitionTo('project-version.namespace', model, namespace);
         });
       }
     });

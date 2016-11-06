@@ -1,4 +1,22 @@
 <ol class="toc-level-0">
+  <label>
+    {{input type="checkbox" checked=showPrivateClasses}}
+    Show Private / Deprecated
+  </label>
+  <li class="toc-level-0"><a {{action 'toggle'}} href="#">Namespaces</a>
+    <ol class="toc-level-1" style="display: block">
+      {{#each namespaceIDs as |namespaceID|}}
+        <li class="toc-level-1">{{#link-to 'project-version.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}</li>
+      {{/each}}
+    </ol>
+  </li>
+  <li class="toc-level-0"><a {{action 'toggle'}} href="#">Modules</a>
+    <ol class="toc-level-1" style="display: block">
+      {{#each moduleIDs as |moduleID|}}
+        <li class="toc-level-1">{{#link-to 'project-version.module' version moduleID}}{{moduleID}}{{/link-to}}</li>
+      {{/each}}
+    </ol>
+  </li>
   <li class="toc-level-0"><a {{action 'toggle'}} href="#">Classes</a>
     <ol class="toc-level-1" style="display: block">
       {{#each classesIDs as |classID|}}
