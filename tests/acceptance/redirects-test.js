@@ -7,9 +7,11 @@ moduleForAcceptance('Acceptance | redirects');
 test('visiting /', function(assert) {
   visit('/');
 
-  const last = "2.6.0"; // need help for how to get this
+  return andThen(() => {
+    const store = this.application.__container__.lookup('service:store');
+    const versions = store.peekAll('project-version').toArray();
+    const last = versions[versions.length - 1].get('id').split('-')[1];
 
-  return andThen(function() {
     assert.equal(
       currentURL(),
       `/ember/${last}/classes/Backburner`,
