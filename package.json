@@ -1,6 +1,6 @@
 {
   "name": "ember-api-docs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Small description for ember-api-docs goes here",
   "private": true,
   "directories": {
@@ -10,7 +10,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test --launch=Firefox"
+    "test": "ember test --launch=Firefox",
+    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../.."
   },
   "repository": "",
   "engines": {
@@ -52,7 +53,6 @@
     "ember-cli-qunit": "^3.0.1",
     "ember-cli-release": "^0.2.9",
     "ember-cli-sass": "5.2.0",
-    "ember-cli-sri": "^2.1.0",
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^0.20.0",
@@ -70,10 +70,10 @@
     "express": "^4.13.4",
     "express-cluster": "0.0.4",
     "express-serve-static-gzip": "git+https://github.com/hone/express-serve-static-gzip.git",
+    "loader.js": "^4.0.10",
     "minimist": "^1.2.0",
     "node-redis": "^0.1.7",
-    "redis": "^2.6.0-0",
-    "loader.js": "^4.0.10"
+    "redis": "^2.6.0-0"
   },
   "fastbootDependencies": [
     "redisdown"

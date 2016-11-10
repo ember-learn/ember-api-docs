@@ -75,4 +75,3 @@ function extractDocuments(docs) {
   const data = docs.rows.map(row=> row.doc);
   return {data};
 }
-
