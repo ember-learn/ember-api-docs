@@ -1,13 +1,13 @@
 <ol class="toc-level-0">
   <li class="toc-level-0"><a {{action 'toggle'}} href="#">Classes</a>
     <ol class="toc-level-1" style="display: block">
-      <label>
-        {{input type="checkbox" checked=showPrivateClasses}}
-        Show Private
-      </label>
       {{#each classesIDs as |classID|}}
         <li class="toc-level-1">{{#link-to 'project-version.class' version classID}}{{classID}}{{/link-to}}</li>
       {{/each}}
     </ol>
   </li>
+  <label>
+    {{input type="checkbox" checked=showPrivateClasses}}
+    Show Private / Deprecated
+  </label>
 </ol>
