@@ -8,6 +8,10 @@ export default Ember.Controller.extend({
     return this.getRelationshipIDs('classes');
   }),
 
+  publicClassesIDs: Ember.computed('model', function() {
+    return this.getRelationshipIDs('public-classes');
+  }),
+
   namespaceIDs: Ember.computed('model', function() {
     return this.getRelationshipIDs('namespaces');
   }),
@@ -21,6 +25,10 @@ export default Ember.Controller.extend({
     const sorted = Ember.A(classes.ids()).sort();
     return Ember.A(sorted).toArray().map(id => id.split('-').pop());
   },
+
+  shownClassesIDs: Ember.computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
+    return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
+  }),
 
   projectVersionIDs: Ember.computed('model', function() {
     const projectID = this.get('model').belongsTo('project').id();

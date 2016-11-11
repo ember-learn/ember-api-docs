@@ -14,9 +14,10 @@
   {{/x-select}}
   {{table-of-contents projectId=model.project.id
                       version=model.version
-                      classesIDs=classesIDs
+                      classesIDs=shownClassesIDs
                       moduleIDs=moduleIDs
                       namespaceIDs=namespaceIDs
+                      showPrivateClasses=showPrivateClasses
   }}
 </aside>
 {{outlet}}

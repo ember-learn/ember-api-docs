@@ -15,9 +15,11 @@ test('it renders', function(assert) {
     'Ember'
   ]);
 
-  this.render(hbs`{{table-of-contents projectId=projectId
+  this.render(hbs`{{table-of-contents showPrivateClasses=true
+                                      projectid=projectId
                                       version=emberVersion
-                                      classesIDs=classesIDs}}`);
+                                      classesIDs=classesIDs
+                  }}`);
 
   assert.equal(this.$('.toc-level-0 > a').last().text().trim(), 'Classes');
   assert.equal(this.$('.toc-level-1 li').length, 2, 'We have two items to display');
