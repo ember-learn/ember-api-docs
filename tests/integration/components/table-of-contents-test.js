@@ -21,8 +21,8 @@ test('it renders', function(assert) {
                                       classesIDs=classesIDs
                   }}`);
 
-  assert.equal(this.$('.toc-level-0 > a').text().trim(), 'Classes');
+  assert.equal(this.$('.toc-level-0 > a').last().text().trim(), 'Classes');
   assert.equal(this.$('.toc-level-1 li').length, 2, 'We have two items to display');
-  assert.equal(this.$('.toc-level-1 li:first').text(), 'Descriptor');
-  assert.equal(this.$('.toc-level-1 li:eq(1)').text(), 'Ember');
+  assert.equal(this.$('.toc-level-1 li').eq(0).text(), 'Descriptor');
+  assert.equal(this.$('.toc-level-1 li').eq(1).text(), 'Ember');
 });

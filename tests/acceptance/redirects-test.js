@@ -14,8 +14,8 @@ test('visiting /', function(assert) {
 
     assert.equal(
       currentURL(),
-      `/ember/${last}/classes/Backburner`,
-      'routes to the last class of the project-version'
+      `/ember/${last}/namespaces/Ember`,
+      'routes to the latest version of the project'
     );
   });
 });
@@ -26,8 +26,8 @@ test('visiting /:project/:project_version/classes', function(assert) {
   return andThen(function() {
     assert.equal(
       currentURL(),
-      '/ember/1.0.0/classes/Container',
-      'routes to the first class of the project-version'
+      '/ember/1.0.0/namespaces/Ember',
+      'routes to the first namespace of the project-version'
     );
   });
 });

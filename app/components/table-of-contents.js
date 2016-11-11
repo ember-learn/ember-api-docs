@@ -2,8 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   actions: {
-    toggle() {
-      this.$('ol.toc-level-1').slideToggle(200);
+    toggle(type) {
+      this.$('ol.toc-level-1.' + type).slideToggle(200);
     }
   }
 });
