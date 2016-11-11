@@ -2,12 +2,34 @@
   <h1>{{model.name}} {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}</h1>
 
   <p>{{{model.description}}}</p>
+
+  <section>
+    Show:
+    <label class="access-checkbox">
+      {{input type="checkbox" checked=showInherited}}
+      Inherited
+    </label>
+    <label class="access-checkbox">
+      {{input type="checkbox" checked=showProtected}}
+      Protected
+    </label>
+    <label class="access-checkbox">
+      {{input type="checkbox" checked=showPrivate}}
+      Private
+    </label>
+    <label class="access-checkbox">
+      {{input type="checkbox" checked=showDeprecated}}
+      Deprecated
+    </label>
+  </section>
+
+
   <section>
     <h2>Methods</h2>
 
     {{#if model.methods}}
       <ul class="spec-method-list">
-        {{#each model.methods as |method|}}
+        {{#each filteredMethods as |method|}}
           <li>
             {{#link-to 'methods.method' model.project.id model.projectVersion.version model.name method.name (query-params anchor=method.name)}}
               {{method.name}}
@@ -24,7 +46,7 @@
     <h2>Properties</h2>
     {{#if model.properties}}
       <ul class="spec-property-list">
-        {{#each model.properties as |property|}}
+        {{#each filteredProperties as |property|}}
           <li>
             {{#link-to 'properties.property' model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
               {{property.name}}
@@ -41,7 +63,7 @@
     <h2>Events</h2>
     {{#if model.events}}
       <ul class="spec-event-list">
-        {{#each model.events as |event|}}
+        {{#each filteredEvents as |event|}}
           <li>
             {{#link-to 'events.event' model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
               {{event.name}}
