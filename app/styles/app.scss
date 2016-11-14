@@ -13,7 +13,8 @@ body {
 @include media($large-screen-up) {
   .header {
     position: fixed;
-    width: 100%
+    width: 100%;
+    z-index: 1;
   }
 
   .sidebar {

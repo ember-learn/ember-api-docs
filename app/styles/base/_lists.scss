@@ -69,6 +69,13 @@ dl {
   font-size: $base-font-size;
 }
 
+.return-type {
+  color: $medium-gray;
+  font-style: italic;
+  font-weight: normal;
+  font-size: $base-font-size;
+}
+
 .access {
   color: white;
   background-color: gray;

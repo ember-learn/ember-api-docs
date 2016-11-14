@@ -4,6 +4,8 @@ table {
   margin: $small-spacing 0;
   table-layout: fixed;
   width: 100%;
+  position: relative;
+  z-index: -1;
 }
 
 thead {

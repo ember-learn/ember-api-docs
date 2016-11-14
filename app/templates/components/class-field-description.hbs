@@ -6,6 +6,9 @@
         ({{join ", " (map-by "name" field.params)}})
       </span>
     {{/if}}
+    {{#if field.return}}
+      <span class="return-type">{{field.return.type}}</span>
+    {{/if}}
     {{#if field.access}}
       <span class="access">{{field.access}}</span>
     {{/if}}
@@ -21,6 +24,13 @@
         <dd>{{param.description}}</dd>
       </div>
     {{/each}}
+    {{#if field.return}}
+      <div class="return">
+        <dt>returns</dt>
+        <dd>{{field.return.type}}</dd>
+        <dd>{{field.return.description}}</dd>
+      </div>
+    {{/if}}
   </dl>
   {{{field.description}}}
 </section>

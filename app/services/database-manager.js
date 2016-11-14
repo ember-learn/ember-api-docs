@@ -25,7 +25,9 @@ export default Ember.Service.extend({
       }
     });
 
-    this._local.replicate.from(this._remote);
+    if (!ENV.testing) {
+      this._local.replicate.from(this._remote);
+    }
   },
 
   get(id) {
