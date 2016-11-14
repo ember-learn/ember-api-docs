@@ -16,8 +16,16 @@ export default Ember.Controller.extend({
     return this.getRelationshipIDs('namespaces');
   }),
 
+  publicNamespaceIDs: Ember.computed('model', function() {
+    return this.getRelationshipIDs('public-namespaces');
+  }),
+
   moduleIDs: Ember.computed('model', function() {
     return this.getRelationshipIDs('modules');
+  }),
+
+  publicModuleIDs: Ember.computed('model', function() {
+    return this.getRelationshipIDs('public-modules');
   }),
 
   getRelationshipIDs(relationship) {
@@ -28,6 +36,14 @@ export default Ember.Controller.extend({
 
   shownClassesIDs: Ember.computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
     return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
+  }),
+
+  shownModuleIDs: Ember.computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs', function() {
+    return this.get('showPrivateClasses') ? this.get('moduleIDs') : this.get('publicModuleIDs');
+  }),
+
+  shownNamespaceIDs: Ember.computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {
+    return this.get('showPrivateClasses') ? this.get('namespaceIDs') : this.get('publicNamespaceIDs');
   }),
 
   projectVersionIDs: Ember.computed('model', function() {
