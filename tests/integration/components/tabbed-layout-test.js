@@ -39,6 +39,7 @@ test('should initially render first tab selected', function (assert) {
     {{/tabbed-layout}}
   `);
   assert.equal(this.$('#tab-item-index').text().trim(), 'index', 'should display index page');
+  assert.ok(this.$('#tab-item-index').is(':visible'), 'should render index page visible');
 });
 
 test('should initially render all tabs', function (assert) {
@@ -47,16 +48,16 @@ test('should initially render all tabs', function (assert) {
     {{#tabbed-layout selectedTab=\"index\" as |select selectedTab|}}
       <ul class=\"menu\">
         <li class=\"menu-item\">
-          <a href=\"#\" {{action \"select\" \"index\"}}>Index</a>
+          <a href=\"#\" {{action select \"index\"}}>Index</a>
         </li>
         <li class=\"menu-item\">
-          <a href=\"#\" {{action \"select\" \"methods\"}}>Methods</a>
+          <a href=\"#\" {{action select \"methods\"}}>Methods</a>
         </li>
         <li class=\"menu-item\">
-          <a href=\"#\" {{action \"select\" \"properties\"}}>Properties</a>
+          <a href=\"#\" {{action select \"properties\"}}>Properties</a>
         </li>
         <li class=\"menu-item\">
-          <a href=\"#\" {{action \"select\" \"events\"}}>Events</a>
+          <a href=\"#\" {{action select \"events\"}}>Events</a>
         </li>
       </ul>
       {{#tab-item name=\"index\" selectedTab=selectedTab}}
@@ -77,20 +78,40 @@ test('should initially render all tabs', function (assert) {
 
 });
 
-// test('it renders', function(assert) {
-//   // Set any properties with this.set('myProperty', 'value');
-//   // Handle any actions with this.on('myAction', function(val) { ... });
+test('should swtich displayed page when tab clicked', function (assert) {
+  this.render(hbs`
+    {{#tabbed-layout selectedTab=\"index\" as |select selectedTab|}}
+      <ul class=\"menu\">
+        <li class=\"menu-item\">
+          <a href=\"#\" {{action select \"index\"}}>Index</a>
+        </li>
+        <li class=\"menu-item\">
+          <a href=\"#\" {{action select \"methods\"}}>Methods</a>
+        </li>
+        <li class=\"menu-item\">
+          <a href=\"#\" {{action select \"properties\"}}>Properties</a>
+        </li>
+        <li class=\"menu-item\">
+          <a href=\"#\" {{action select \"events\"}}>Events</a>
+        </li>
+      </ul>
+      {{#tab-item name=\"index\" selectedTab=selectedTab}}
+        index
+      {{/tab-item}}
+      {{#tab-item name=\"properties\" selectedTab=selectedTab}}
+        properties
+      {{/tab-item}}
+      {{#tab-item name=\"methods\" selectedTab=selectedTab}}
+        methods
+      {{/tab-item}}
+      {{#tab-item name=\"events\" selectedTab=selectedTab}}
+        events
+      {{/tab-item}}
+    {{/tabbed-layout}}
+  `);
+  this.$('.menu>.menu-item>a')[1].click();
+  assert.equal(this.$('#tab-item-methods').text().trim(), 'methods', 'should display methods page');
+  assert.ok(this.$('#tab-item-methods').is(':visible'), 'methods page is visible');
+  assert.ok(!this.$('#tab-item-index').is(':visible'), 'index page is not visible');
 
-//   this.render(hbs`{{tabbed-layout}}`);
-
-//   assert.equal(this.$().text().trim(), '');
-
-//   // Template block usage:
-//   this.render(hbs`
-//     {{#tabbed-layout}}
-//       template block text
-//     {{/tabbed-layout}}
-//   `);
-
-//   assert.equal(this.$().text().trim(), 'template block text');
-// });
+});
