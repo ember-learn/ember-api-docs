@@ -12,17 +12,20 @@ export default Ember.Component.extend({
     return [
       {
         title: 'Methods',
-        items: this.get('methods')
+        items: this.get('methods'),
+        class: 'api-methods'
       },
       {
         title: 'Properties',
-        items: this.get('properties')
+        items: this.get('properties'),
+        class: 'api-properties'
       },
       {
         title: 'Events',
-        items: this.get('events')
+        items: this.get('events'),
+        class: 'api-events'
       }
-    ]
+    ];
   }),
 
   filterCriteria: Ember.computed('showInherited', 'showProtected', 'showPrivate', 'showDeprecated', function () {
@@ -31,7 +34,7 @@ export default Ember.Component.extend({
       isProtected: this.get('showProtected'),
       isPrivate: this.get('showPrivate'),
       isDeprecated: this.get('showDeprecated')
-    }
+    };
   }),
 
   methods: Ember.computed('itemData.methods', 'filterCriteria', function () {

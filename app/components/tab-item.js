@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   selectedTab: '',
 
   id: Ember.computed('name', function () {
-    return `tab-item-${this.get('name')}`
+    return `tab-item-${this.get('name')}`;
   }),
 
   isVisible: Ember.computed('selectedTab', 'name', function () {
