@@ -9,7 +9,6 @@ export default Ember.Component.extend({
   }),
 
   isVisible: Ember.computed('selectedTab', 'name', function () {
-    console.log('isVisible: ' + this.get('selectedTab') === this.get('name'));
     return this.get('selectedTab') === this.get('name');
   })
 });
