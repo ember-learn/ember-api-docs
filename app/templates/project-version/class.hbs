@@ -31,7 +31,7 @@
       <ul class="spec-method-list">
         {{#each filteredMethods as |method|}}
           <li>
-            {{#link-to 'methods.method' model.project.id model.projectVersion.version model.name method.name (query-params anchor=method.name)}}
+            {{#link-to (concat parentName '.methods.method') model.project.id model.projectVersion.version model.name method.name (query-params anchor=method.name)}}
               {{method.name}}
             {{/link-to}}
           </li>
@@ -48,7 +48,7 @@
       <ul class="spec-property-list">
         {{#each filteredProperties as |property|}}
           <li>
-            {{#link-to 'properties.property' model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
+            {{#link-to (concat parentName '.properties.property') model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
               {{property.name}}
             {{/link-to}}
           </li>
@@ -65,7 +65,7 @@
       <ul class="spec-event-list">
         {{#each filteredEvents as |event|}}
           <li>
-            {{#link-to 'events.event' model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
+            {{#link-to (concat parentName '.events.event') model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
               {{event.name}}
             {{/link-to}}
           </li>

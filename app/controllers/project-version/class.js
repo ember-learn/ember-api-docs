@@ -1,10 +1,17 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
 
-const { computed } = Ember;
+const { computed, inject, Controller } = Ember;
 
+export default Controller.extend({
+  router: inject.service('-routing'),
+  routeName: computed.readOnly('router.currentRouteName'),
+  parentName: computed('routeName', function() {
+    const routeName = this.get('routeName');
+    const routes = routeName.split('.');
+    return routes.slice(0, 2).join('.');
+  }),
 
-export default Ember.Controller.extend({
   filteredMethods: computed('model.methods.[]', 'showInherited', 'showProtected', 'showPrivate', 'showDeprecated', function() {
     return this.filterItems('methods');
   }),
