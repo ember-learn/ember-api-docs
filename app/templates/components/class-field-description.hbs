@@ -16,6 +16,14 @@
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
+  <p class="github-link">
+    {{#if field.inherited}}
+      Inherited from
+    {{else}}
+      Defined in
+    {{/if}}
+    <a href={{githubLinkTarget}}>{{field.file}}:{{field.line}}</a>
+  </p>
   <dl class="parameters">
     {{#each field.params as |param|}}
       <div class="parameter">

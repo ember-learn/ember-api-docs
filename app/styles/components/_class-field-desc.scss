@@ -1,0 +1,53 @@
+.chapter li {
+  margin: $small-spacing 0;
+}
+.chapter ul + .highlight {
+  margin-top: $base-spacing;
+}
+
+.args {
+  color: $light-brown;
+  font-style: italic;
+  font-weight: normal;
+  font-size: $base-font-size;
+}
+
+.return-type {
+  color: $medium-gray;
+  font-style: italic;
+  font-weight: normal;
+  font-size: $base-font-size;
+}
+
+.access {
+  color: white;
+  background-color: gray;
+  padding: 2px 7px;
+  font-size: smaller;
+  border-radius: 3px;
+}
+
+.parameters {
+  dl {
+    display: inline-block;
+  }
+  dt {
+    display: inline-block;
+  }
+  dd {
+    display: inline-block;
+  }
+}
+
+.method, .property, .event {
+  border-bottom: $base-border;
+
+  .method-name, .property-name, .event-name {
+    font-family: $monospace-font-family;
+  }
+}
+
+p.github-link {
+  margin: -12px 0 0;
+  font-size: $small-font-size;
+}
