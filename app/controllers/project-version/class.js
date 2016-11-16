@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
+import githubMap from 'ember-api-docs/utils/github-map';
 
 const { computed, inject, Controller } = Ember;
 
@@ -39,5 +40,14 @@ export default Controller.extend({
       items = items.filter(item => item.deprecated !== true);
     }
     return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
-  }
+  },
+
+  githubLinkTarget: computed('model.{file,line}', function() {
+    const file = this.get('model.file');
+    const line = this.get('model.line');
+    const project = this.get('model.project.id');
+    const version = this.get('model.projectVersion.version');
+    const githubDir = githubMap[project];
+    return `https://github.com/${githubDir}/tree/v${version}/${file}#L${line}`;
+  })
 });
