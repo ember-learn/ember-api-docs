@@ -3,9 +3,10 @@ import Pouch from 'pouchdb';
 import ENV from 'ember-api-docs/config/environment';
 import extend from 'lodash/object/extend';
 
-const Promise = Ember.RSVP.Promise;
+const { RSVP: { Promise }, Service } = Ember;
 
-export default Ember.Service.extend({
+export default Service.extend({
+
   init() {
     this._super(...arguments);
 
@@ -25,7 +26,7 @@ export default Ember.Service.extend({
       }
     });
 
-    if (!ENV.testing) {
+    if (!ENV.testing && (typeof FastBoot === undefined)) {
       this._local.replicate.from(this._remote);
     }
   },

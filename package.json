@@ -21,7 +21,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "pouchdb": "^5.4.5",
     "redisdown": "^0.1.12",
+    "relational-pouch": "^1.4.4",
     "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [
@@ -44,7 +46,7 @@
     "ember-cli-deploy-build": "0.1.1",
     "ember-cli-deploy-gzip": "^0.2.1",
     "ember-cli-document-title": "^0.3.1",
-    "ember-cli-fastboot": "1.0.0-beta.13",
+    "ember-cli-fastboot": "github:gaurav0/ember-cli-fastboot#71cd547b91ba239971741d0720ed6e01069bb86d",
     "ember-cli-head": "0.0.5",
     "ember-cli-htmlbars": "^1.0.10",
     "ember-cli-htmlbars-inline-precompile": "^0.3.3",
@@ -62,7 +64,7 @@
     "ember-inflector": "^1.9.4",
     "ember-load-initializers": "^0.5.1",
     "ember-lodash": "0.0.6",
-    "ember-pouch": "github:gaurav0/ember-pouch#8360695d4f421b417e7fb8cbfdce8a82581108a0",
+    "ember-pouch": "github:gaurav0/ember-pouch#c89600c7b8c14c919b9b808a4ea6d9d6666ca047",
     "ember-resolver": "^2.0.3",
     "ember-truth-helpers": "1.2.0",
     "emberx-select": "github:thefrontside/emberx-select#3e11153d4ca468d7cb08d2d6bbe32288d5ff4609",
@@ -73,9 +75,7 @@
     "loader.js": "^4.0.10",
     "minimist": "^1.2.0",
     "node-redis": "^0.1.7",
-    "pouchdb": "^5.4.5",
-    "redis": "^2.6.0-0",
-    "relational-pouch": "^1.4.4"
+    "redis": "^2.6.0-0"
   },
   "fastbootDependencies": [
     "pouchdb",
