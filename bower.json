@@ -9,14 +9,14 @@
     "bourbon": "4.2.6",
     "bitters": "1.1.0",
     "neat": "1.7.2",
-    "pouchdb": "~5.0.0",
+    "pouchdb": "^5.4.5",
     "pretender": "~0.10.1",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
     "localforage": "~1.3.1",
-    "relational-pouch": "~1.3.2",
+    "relational-pouch": "^1.4.4",
     "remarkable": "~1.6.1",
-    "highlightjs": "~9.0.0"
+    "highlightjs": "~9.0.0",
+    "pouchdb-find": "^0.10.2"
   }
-
 }
