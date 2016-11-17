@@ -363,7 +363,7 @@ test('should display inherited method when show inherited toggled on', function 
             <ul class=\"{{section.class}}\">
               {{#each section.items as |item|}}
                 <li>
-                  {{#link-to \"item.route\"
+                  {{#link-to "item.route"
                              sectionData.projectId
                              sectionData.projectVersion
                              sectionData.name

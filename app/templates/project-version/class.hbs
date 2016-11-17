@@ -3,78 +3,90 @@
 
   <p>{{{model.description}}}</p>
 
-  <section>
-    Show:
-    <label class="access-checkbox">
-      {{input type="checkbox" checked=showInherited}}
-      Inherited
-    </label>
-    <label class="access-checkbox">
-      {{input type="checkbox" checked=showProtected}}
-      Protected
-    </label>
-    <label class="access-checkbox">
-      {{input type="checkbox" checked=showPrivate}}
-      Private
-    </label>
-    <label class="access-checkbox">
-      {{input type="checkbox" checked=showDeprecated}}
-      Deprecated
-    </label>
-  </section>
+  {{#tabbed-layout selectedTab="index" as |select selectedTab|}}
+    <ul class="menu">
+      <li class="menu-item" {{action select "index"}}>
+        <p>Index</p>
+      </li>
+      <li class="menu-item" {{action select "methods"}}>
+        <p>Methods</p>
+      </li>
+      <li class="menu-item" {{action select "properties"}}>
+        <p>Properties</p>
+      </li>
+      <li class="menu-item" {{action select "events"}}>
+        <p>Events</p>
+      </li>
+    </ul>
 
-
-  <section>
-    <h2>Methods</h2>
-
-    {{#if model.methods}}
-      <ul class="spec-method-list">
-        {{#each filteredMethods as |method|}}
-          <li>
-            {{#link-to 'methods.method' model.project.id model.projectVersion.version model.name method.name (query-params anchor=method.name)}}
-              {{method.name}}
-            {{/link-to}}
-          </li>
+    {{#api-index-filter itemData=model filterData=filterData as |filteredModel|}}
+      <section>
+        <label class="access-checkbox">
+          <input id="inherited-toggle"
+                 type="checkbox"
+                 checked={{filterData.showInherited}}
+                 onchange={{action "updateFilter" "showInherited"}}>
+          Inherited
+        </label>
+        <label class="access-checkbox">
+          <input id="protected-toggle"
+                 type="checkbox"
+                 checked={{filterData.showProtected}}
+                 onchange={{action "updateFilter" "showProtected"}}>
+          Protected
+        </label>
+        <label class="access-checkbox">
+          <input id="private-toggle"
+                 type="checkbox"
+                 checked={{filterData.showPrivate}}
+                 onchange={{action "updateFilter" "showPrivate"}}>
+          Private
+        </label>
+        <label class="access-checkbox">
+          <input id="deprecated-toggle"
+                 type="checkbox"
+                 checked={{filterData.showDeprecated}}
+                 onchange={{action "updateFilter" "showDeprecated"}}>
+          Deprecated
+        </label>
+      </section>
+    {{#tab-item name="index" selectedTab=selectedTab}}
+      {{#api-index itemData=filteredModel as |sectionData|}}
+        {{#each sectionData.sections as |section|}}
+          <h2 class="api-index-section-title">{{section.title}}</h2>
+          {{#if section.items}}
+            <ul class="{{section.class}}">
+              {{#each section.items as |item|}}
+                <li>
+                  {{#link-to (concat parentName section.routeSuffix)
+                     model.project.id
+                     model.projectVersion.version
+                     model.name
+                     item.name
+                     (query-params anchor=item.name)}}
+                    {{item.name}}
+                  {{/link-to}}
+                </li>
+              {{/each}}
+            </ul>
+        {{else}}
+            No documented items
+          {{/if}}
         {{/each}}
-      </ul>
-    {{else}}
-      No documented methods.
-    {{/if}}
-  </section>
+      {{/api-index}}
 
-  <section>
-    <h2>Properties</h2>
-    {{#if model.properties}}
-      <ul class="spec-property-list">
-        {{#each filteredProperties as |property|}}
-          <li>
-            {{#link-to 'properties.property' model.project.id model.projectVersion.version model.name property.name (query-params anchor=property.name)}}
-              {{property.name}}
-            {{/link-to}}
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      No documented properties.
-    {{/if}}
-  </section>
-
-  <section>
-    <h2>Events</h2>
-    {{#if model.events}}
-      <ul class="spec-event-list">
-        {{#each filteredEvents as |event|}}
-          <li>
-            {{#link-to 'events.event' model.project.id model.projectVersion.version model.name event.name (query-params anchor=event.name)}}
-              {{event.name}}
-            {{/link-to}}
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      No documented events.
-    {{/if}}
-  </section>
+    {{/tab-item}}
+    {{#tab-item name="methods" selectedTab=selectedTab}}
+      <h2>Methods</h2>
+    {{/tab-item}}
+    {{#tab-item name="properties" selectedTab=selectedTab}}
+      <h2>Properties</h2>
+    {{/tab-item}}
+    {{#tab-item name="events" selectedTab=selectedTab}}
+      <h2>Events</h2>
+    {{/tab-item}}
+    {{/api-index-filter}}
+  {{/tabbed-layout}}
 
   {{outlet}}
 

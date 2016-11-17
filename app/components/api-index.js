@@ -7,17 +7,20 @@ export default Ember.Component.extend({
       {
         title: 'Methods',
         items: this.get('itemData.methods'),
-        class: 'api-methods'
+        class: 'spec-method-list',
+        routeSuffix: '.methods.method'
       },
       {
         title: 'Properties',
         items: this.get('itemData.properties'),
-        class: 'api-properties'
+        class: 'spec-property-list',
+        routeSuffix: '.properties.property'
       },
       {
         title: 'Events',
         items: this.get('itemData.events'),
-        class: 'api-events'
+        class: 'spec-event-list',
+        routeSuffix: '.events.event'
       }
     ];
   })
