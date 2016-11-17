@@ -1,6 +1,40 @@
 <article class="chapter">
   <h1>{{model.name}} {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}</h1>
 
+  <p class="attributes">
+    {{#if model.extends}}
+      <div class="attribute">
+        <span class="attribute-label">Extends:</span>
+        <span class="attribute-value">{{#link-to 'project-version.class' model.projectVersion.version model.extends}}{{model.extends}}{{/link-to}}</span>
+      </div>
+    {{/if}}
+    {{#if model.uses}}
+      <div class="attribute">
+        <span class="attribute-label">Uses:</span>
+        <span class="attribute-value">
+          {{#each model.uses as |parentClass idx|}}
+            {{#unless (eq idx 0)}}<span class="comma">,</span>{{/unless}}
+            {{#link-to 'project-version.class' model.projectVersion.version parentClass}}{{parentClass}}{{/link-to}}
+          {{/each}}
+        </span>
+      </div>
+    {{/if}}
+    {{#if model.file}}
+      <div class="attribute">
+        <span class="attribute-label">Defined in:</span>
+        <span class="attribute-value">
+          <a href={{githubLinkTarget}}>{{model.file}}:{{model.line}}</a>
+        </span>
+      </div>
+    {{/if}}
+    {{#if model.module}}
+      <div class="attribute">
+        <span class="attribute-label">Module:</span>
+        <span class="attribute-value">{{#link-to 'project-version.module' model.projectVersion.version model.module}}{{model.module}}{{/link-to}}</span>
+      </div>
+    {{/if}}
+  </p>
+
   <p>{{{model.description}}}</p>
 
   {{#tabbed-layout selectedTab="index" as |select selectedTab|}}

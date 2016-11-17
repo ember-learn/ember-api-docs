@@ -11,6 +11,11 @@ export default DS.Model.extend({
   events: attr(),
   description: attr(),
   ogDescription: attr(),
+  extends: attr(),
+  uses: attr(),
+  file: attr(),
+  line: attr(),
+  module: attr(),
   parentClass: belongsTo('class', {async: true, inverse: null}),
   projectVersion: belongsTo('project-version', {inverse: 'classes'}),
   // hack until i add this data to cloudant

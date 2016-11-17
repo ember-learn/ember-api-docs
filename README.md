@@ -1,7 +1,6 @@
 # Ember-api-docs
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This app is used to produce versioned Ember api docs.  To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
 
 ## Prerequisites
 
