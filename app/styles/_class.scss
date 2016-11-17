@@ -15,3 +15,23 @@ article.chapter ul {
 .access-checkbox {
   display: inline;
 }
+
+.attributes {
+  margin: 10px 0;
+
+  .attribute-label {
+    display: inline-block;
+    width: 120px;
+    color: $black;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .attribute-value {
+
+    .comma {
+      display: inline-block;
+      margin-left: -0.28em;
+    }
+  }
+}
