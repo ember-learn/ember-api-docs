@@ -18,7 +18,16 @@ export default Ember.Service.extend({
     } else {
       this._local = new Pouch('local_pouch');
     }
-    this._remote = new Pouch(ENV.COUCH_URL, {skip_setup: true});
+    this._remote = new Pouch(ENV.COUCH_URL, {
+      auth: {
+        username: ENV.COUCH_USERNAME,
+        password: ENV.COUCH_PASSWORD
+      }
+    });
+
+    if (!ENV.testing) {
+      this._local.replicate.from(this._remote);
+    }
   },
 
   get(id) {
@@ -75,4 +84,3 @@ function extractDocuments(docs) {
   const data = docs.rows.map(row=> row.doc);
   return {data};
 }
-

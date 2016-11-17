@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
-const { inject, computed } = Ember;
+const { computed, inject, Controller } = Ember;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   router: inject.service('-routing'),
   routeName: computed.readOnly('router.currentRouteName'),
   parentName: computed('routeName', function() {

@@ -6,6 +6,9 @@
         ({{join ", " (map-by "name" field.params)}})
       </span>
     {{/if}}
+    {{#if field.return}}
+      <span class="return-type">{{field.return.type}}</span>
+    {{/if}}
     {{#if field.access}}
       <span class="access">{{field.access}}</span>
     {{/if}}
@@ -13,6 +16,14 @@
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
+  <p class="github-link">
+    {{#if field.inherited}}
+      Inherited from
+    {{else}}
+      Defined in
+    {{/if}}
+    <a href={{githubLinkTarget}}>{{field.file}}:{{field.line}}</a>
+  </p>
   <dl class="parameters">
     {{#each field.params as |param|}}
       <div class="parameter">
@@ -21,6 +32,13 @@
         <dd>{{param.description}}</dd>
       </div>
     {{/each}}
+    {{#if field.return}}
+      <div class="return">
+        <dt>returns</dt>
+        <dd>{{field.return.type}}</dd>
+        <dd>{{field.return.description}}</dd>
+      </div>
+    {{/if}}
   </dl>
   {{{field.description}}}
 </section>

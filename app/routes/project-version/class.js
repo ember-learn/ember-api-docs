@@ -10,11 +10,19 @@ export default Ember.Route.extend({
   },
 
   model(params, transition) {
+    return this.getModel('class', params, transition);
+  },
+
+  getModel(typeName, params, transition) {
     const projectID = transition.params['project-version'].project;
     const version = transition.params['project-version'].project_version;
-    const klass = params.class;
+    const klass = params[typeName];
 
-    return this.store.find('class', `${projectID}-${version}-${klass}`).catch(() => {
+    return this.find(typeName, `${projectID}-${version}-${klass}`);
+  },
+
+  find(typeName, param) {
+    return this.store.find(typeName, param).catch(() => {
       this.transitionTo('project-version'); // class doesn't exist in new version
     });
   },
