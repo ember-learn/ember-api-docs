@@ -1,32 +1,10 @@
 import Ember from 'ember';
-import _ from 'lodash/lodash';
+import githubMap from 'ember-api-docs/utils/github-map';
+import ParentNameMixin from 'ember-api-docs/mixins/parent-name';
 
-const { computed, inject, Controller } = Ember;
+const { computed, Controller } = Ember;
 
-export default Controller.extend({
-  router: inject.service('-routing'),
-  routeName: computed.readOnly('router.currentRouteName'),
-  parentName: computed('routeName', function() {
-    const routeName = this.get('routeName');
-    const routes = routeName.split('.');
-    return routes.slice(0, 2).join('.');
-  }),
-
-  init() {
-    this._super(...arguments);
-    this.set('filterData', Ember.Object.create({
-      showInherited: false,
-      showProtected: false,
-      showPrivate: false,
-      showDeprecated: false
-    }));
-  },
-
-  actions: {
-    updateFilter(field) {
-      this.toggleProperty(`filterData.${field}`);
-  },
-
+export default Controller.extend(ParentNameMixin, {
   githubLinkTarget: computed('model.{file,line}', function() {
     const file = this.get('model.file');
     const line = this.get('model.line');

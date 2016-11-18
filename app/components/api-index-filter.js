@@ -1,46 +1,58 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
 
-export default Ember.Component.extend({
+const { computed, Component } = Ember;
 
-  methods: Ember.computed('itemData.methods',
-                          'filterData.showInherited',
-                          'filterData.showPrivate',
-                          'filterData.showProtected',
-                          'filterData.showDeprecated', function () {
-    return this._filterItems(this.get('itemData.methods'), this.get('filterData'));
+export default Component.extend({
+  classNames: ['api-index-filter'],
+
+  filteredMethods: computed('model.methods.[]',
+                            'filterData.showInherited',
+                            'filterData.showProtected',
+                            'filterData.showPrivate',
+                            'filterData.showDeprecated', function() {
+    return this.filterItems('methods');
   }),
 
-  properties: Ember.computed('itemData.properties', function () {
-    return this._filterItems(this.get('itemData.properties'), this.get('filterData'));
+  filteredEvents: computed('model.events.[]',
+                           'filterData.showInherited',
+                           'filterData.showProtected',
+                           'filterData.showPrivate',
+                           'filterData.showDeprecated', function() {
+    return this.filterItems('events');
   }),
 
-  events: Ember.computed('itemData.events', function () {
-    return this._filterItems(this.get('itemData.events'), this.get('filterData'));
+  filteredProperties: computed('model.properties.[]',
+                               'filterData.showInherited',
+                               'filterData.showProtected',
+                               'filterData.showPrivate',
+                               'filterData.showDeprecated', function() {
+    return this.filterItems('properties');
   }),
 
-  filteredItemData: Ember.computed('methods', 'properties', 'events', function () {
-    let filteredItemData = Ember.Object.create(this.get('itemData'));
-    filteredItemData.set('methods', this.get('methods'));
-    filteredItemData.set('properties', this.get('properties'));
-    filteredItemData.set('events', this.get('events'));
-    return filteredItemData;
-  }),
-
-  _filterItems(items, filterData) {
-    if (!filterData.get('showInherited')) {
+  filterItems(itemType) {
+    let items = this.get('model.' + itemType);
+    if (!this.get('filterData.showInherited')) {
       items = items.filter(item => item.inherited !== true);
     }
-    if (!filterData.get('showProtected')) {
+    if (!this.get('filterData.showProtected')) {
       items = items.filter(item => item.access !== 'protected');
     }
-    if (!filterData.get('showPrivate')) {
+    if (!this.get('filterData.showPrivate')) {
       items = items.filter(item => item.access !== 'private');
     }
-    if (!filterData.get('showDeprecated')) {
+    if (!this.get('filterData.showDeprecated')) {
       items = items.filter(item => item.deprecated !== true);
     }
     return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
-  }
+  },
+
+  filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
+    return {
+      methods: this.get('filteredMethods'),
+      properties: this.get('filteredProperties'),
+      events: this.get('filteredEvents')
+    };
+  })
 
 });

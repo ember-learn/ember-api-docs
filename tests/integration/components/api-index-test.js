@@ -66,9 +66,9 @@ test('should display api index', function (assert) {
   assert.equal(this.$('.api-index-section-title:eq(0)').text(), 'Methods', 'should have methods as first section');
   assert.equal(this.$('.api-index-section-title:eq(1)').text(), 'Properties', 'should have properties as second section');
   assert.equal(this.$('.api-index-section-title:eq(2)').text(), 'Events', 'should have events as third section');
-  assert.equal(this.$('.api-methods>li>a').text().trim(), 'doSomething', 'should display 1 method');
-  assert.equal(this.$('.api-properties>li>a').text().trim(), 'isSomething', 'should display 1 property');
-  assert.equal(this.$('.api-events>li>a').text().trim(), 'didSomething', 'should display 1 event');
+  assert.equal(this.$('.spec-method-list>li>a').text().trim(), 'doSomething', 'should display 1 method');
+  assert.equal(this.$('.spec-property-list>li>a').text().trim(), 'isSomething', 'should display 1 property');
+  assert.equal(this.$('.spec-event-list>li>a').text().trim(), 'didSomething', 'should display 1 event');
 });
 
 test('should display text when no methods', function (assert) {
@@ -126,9 +126,9 @@ test('should display text when no methods', function (assert) {
   assert.equal(this.$('.api-index-section-title:eq(0)').text(), 'Methods', 'should have methods as first section');
   assert.equal(this.$('.api-index-section-title:eq(1)').text(), 'Properties', 'should have properties as second section');
   assert.equal(this.$('.api-index-section-title:eq(2)').text(), 'Events', 'should have events as third section');
-  assert.equal(this.$('.api-methods').text().trim(), 'No documented items', 'should display no items text');
-  assert.equal(this.$('.api-properties>li>a').text().trim(), 'isSomething', 'should display 1 property');
-  assert.equal(this.$('.api-events>li>a').text().trim(), 'didSomething', 'should display 1 event');
+  assert.equal(this.$('.spec-method-list').text().trim(), 'No documented items', 'should display no items text');
+  assert.equal(this.$('.spec-property-list').text().trim(), 'isSomething', 'should display 1 property');
+  assert.equal(this.$('.spec-event-list').text().trim(), 'didSomething', 'should display 1 event');
 });
 
 test('should display api index with filter', function (assert) {
@@ -195,7 +195,7 @@ test('should display api index with filter', function (assert) {
 
   // Template block usage:
   this.render(hbs`
-    {{#api-index-filter itemData=myModel filterData=filterData as |filteredModel|}}
+    {{#api-index-filter model=myModel filterData=filterData as |filteredModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -256,9 +256,9 @@ test('should display api index with filter', function (assert) {
   assert.equal(this.$('.api-index-section-title:eq(0)').text(), 'Methods', 'should have methods as first section');
   assert.equal(this.$('.api-index-section-title:eq(1)').text(), 'Properties', 'should have properties as second section');
   assert.equal(this.$('.api-index-section-title:eq(2)').text(), 'Events', 'should have events as third section');
-  assert.equal(this.$('.api-methods>li>a').text().trim(), 'doSomething', 'should display 1 method');
-  assert.equal(this.$('.api-properties>li>a').text().trim(), 'isSomething', 'should display 1 property');
-  assert.equal(this.$('.api-events>li>a').text().trim(), 'didSomething', 'should display 1 event');
+  assert.equal(this.$('.spec-method-list').text().trim(), 'doSomething', 'should display 1 method');
+  assert.equal(this.$('.spec-property-list').text().trim(), 'isSomething', 'should display 1 property');
+  assert.equal(this.$('.spec-event-list').text().trim(), 'didSomething', 'should display 1 event');
 });
 
 
@@ -324,7 +324,7 @@ test('should display inherited method when show inherited toggled on', function 
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=myModel filterData=filterData as |filteredModel|}}
+    {{#api-index-filter model=myModel filterData=filterData as |filteredModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -385,13 +385,13 @@ test('should display inherited method when show inherited toggled on', function 
   assert.equal(this.$('.api-index-section-title:eq(0)').text(), 'Methods', 'should have methods as first section');
   assert.equal(this.$('.api-index-section-title:eq(1)').text(), 'Properties', 'should have properties as second section');
   assert.equal(this.$('.api-index-section-title:eq(2)').text(), 'Events', 'should have events as third section');
-  assert.equal(this.$('.api-methods>li>a').text().trim(), 'doSomething', 'should display 1 method');
-  assert.equal(this.$('.api-properties>li>a').text().trim(), 'isSomething', 'should display 1 property');
-  assert.equal(this.$('.api-events>li>a').text().trim(), 'didSomething', 'should display 1 event');
+  assert.equal(this.$('.spec-method-list>li>a').text().trim(), 'doSomething', 'should display 1 method');
+  assert.equal(this.$('.spec-property-list>li>a').text().trim(), 'isSomething', 'should display 1 property');
+  assert.equal(this.$('.spec-event-list>li>a').text().trim(), 'didSomething', 'should display 1 event');
 
   this.$('#inherited-toggle').click();
 
-  assert.equal(this.$('.api-methods>li>a:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.api-methods>li>a:eq(1)').text().trim(), 'parentDoSomething', 'should display 1 inherited method');
-  assert.equal(this.$('.api-methods>li').length, 2, 'should display 2 methods total');
+  assert.equal(this.$('.spec-method-list>li>a:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
+  assert.equal(this.$('.spec-method-list>li>a:eq(1)').text().trim(), 'parentDoSomething', 'should display 1 inherited method');
+  assert.equal(this.$('.spec-method-list>li>a').length, 2, 'should display 2 methods total');
 });
