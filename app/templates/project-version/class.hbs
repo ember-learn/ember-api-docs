@@ -37,8 +37,8 @@
 
   <p>{{{model.description}}}</p>
 
-  {{#if (and model.methods model.properties model.events)}}
-    {{#tabbed-layout selectedTab="index" onSelection=(action "navigateTab") as |select selectedTab|}}
+  {{#if (or model.methods model.properties model.events)}}
+    {{#tabbed-layout selectedTab=currentTab onSelection=(action "navigateTab") as |select selectedTab|}}
       <ul class="tabbed-layout__menu">
         <li class="tabbed-layout__menu__item {{if (eq selectedTab "index") "tabbed-layout__menu__item_selected"}}" {{action select "index"}}>
           <span>Index</span>

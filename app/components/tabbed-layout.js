@@ -5,7 +5,6 @@ export default Ember.Component.extend({
 
   actions: {
     select(tabName) {
-      this.set('selectedTab', tabName);
       this.onSelection(tabName);
       return false;
     }
