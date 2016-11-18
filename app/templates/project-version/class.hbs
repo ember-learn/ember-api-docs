@@ -37,24 +37,25 @@
 
   <p>{{{model.description}}}</p>
 
-  {{#tabbed-layout selectedTab="index" as |select selectedTab|}}
-    <ul class="menu">
-      <li class="menu-item" {{action select "index"}}>
-        <p>Index</p>
+  {{#tabbed-layout selectedTab="index" onSelection=(action "navigateTab") as |select selectedTab|}}
+    <ul class="tabbed-layout__menu">
+      <li class="tabbed-layout__menu__item {{if (eq selectedTab "index") "tabbed-layout__menu__item_selected"}}" {{action select "index"}}>
+        <span>Index</span>
       </li>
-      <li class="menu-item" {{action select "methods"}}>
-        <p>Methods</p>
+      <li class="tabbed-layout__menu__item {{if (eq selectedTab "methods") "tabbed-layout__menu__item_selected"}}" {{action select "methods"}}>
+        <span>Methods</span>
       </li>
-      <li class="menu-item" {{action select "properties"}}>
-        <p>Properties</p>
+      <li class="tabbed-layout__menu__item {{if (eq selectedTab "properties") "tabbed-layout__menu__item_selected"}}" {{action select "properties"}}>
+        <span>Properties</span>
       </li>
-      <li class="menu-item" {{action select "events"}}>
-        <p>Events</p>
+      <li class="tabbed-layout__menu__item {{if (eq selectedTab "events") "tabbed-layout__menu__item_selected"}}" {{action select "events"}}>
+        <span>Events</span>
       </li>
     </ul>
 
     {{#api-index-filter itemData=model filterData=filterData as |filteredModel|}}
       <section>
+        Show:
         <label class="access-checkbox">
           <input id="inherited-toggle"
                  type="checkbox"
@@ -84,14 +85,15 @@
           Deprecated
         </label>
       </section>
-    {{#tab-item name="index" selectedTab=selectedTab}}
+      <hr>
+      {{#tab-item name="index" selectedTab=selectedTab}}
       {{#api-index itemData=filteredModel as |sectionData|}}
         {{#each sectionData.sections as |section|}}
-          <h2 class="api-index-section-title">{{section.title}}</h2>
+          <h3 class="api-index-section-title">{{section.title}}</h3>
           {{#if section.items}}
             <ul class="{{section.class}}">
               {{#each section.items as |item|}}
-                <li>
+                <li {{action select section.tab}}>
                   {{#link-to (concat parentName section.routeSuffix)
                      model.project.id
                      model.projectVersion.version
@@ -111,17 +113,17 @@
 
     {{/tab-item}}
     {{#tab-item name="methods" selectedTab=selectedTab}}
-      <h2>Methods</h2>
+      {{outlet}}
     {{/tab-item}}
     {{#tab-item name="properties" selectedTab=selectedTab}}
-      <h2>Properties</h2>
+      {{outlet}}
     {{/tab-item}}
     {{#tab-item name="events" selectedTab=selectedTab}}
-      <h2>Events</h2>
+      {{outlet}}
     {{/tab-item}}
     {{/api-index-filter}}
   {{/tabbed-layout}}
 
-  {{outlet}}
+
 
 </article>

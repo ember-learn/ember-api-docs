@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import _ from 'lodash/lodash';
+import githubMap from 'ember-api-docs/utils/github-map';
 
 const { computed, inject, Controller } = Ember;
 
@@ -25,6 +25,11 @@ export default Controller.extend({
   actions: {
     updateFilter(field) {
       this.toggleProperty(`filterData.${field}`);
+    },
+
+    navigateTab(tabName) {
+      this.transitionToRoute(`${this.get('parentName')}.${tabName}`);
+    }
   },
 
   githubLinkTarget: computed('model.{file,line}', function() {
