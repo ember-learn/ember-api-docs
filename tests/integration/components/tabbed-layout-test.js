@@ -78,8 +78,13 @@ test('should initially render all tabs', function (assert) {
 });
 
 test('should swtich displayed page when tab clicked', function (assert) {
+  this.on('didSelect', function (tabName) {
+    assert.ok(true);
+    this.set('selectedTab', tabName);
+  });
+  this.set('selectedTab', "index");
   this.render(hbs`
-    {{#tabbed-layout selectedTab=\"index\" as |select selectedTab|}}
+    {{#tabbed-layout selectedTab=selectedTab onSelection=(action "didSelect") as |select selectedTab|}}
       <ul class=\"menu\">
         <li class=\"menu-item\">
           <a href=\"#\" {{action select \"index\"}}>Index</a>
@@ -97,17 +102,18 @@ test('should swtich displayed page when tab clicked', function (assert) {
       {{#tab-item name=\"index\" selectedTab=selectedTab}}
         index
       {{/tab-item}}
-      {{#tab-item name=\"properties\" selectedTab=selectedTab}}
-        properties
-      {{/tab-item}}
       {{#tab-item name=\"methods\" selectedTab=selectedTab}}
         methods
+      {{/tab-item}}
+      {{#tab-item name=\"properties\" selectedTab=selectedTab}}
+        properties
       {{/tab-item}}
       {{#tab-item name=\"events\" selectedTab=selectedTab}}
         events
       {{/tab-item}}
     {{/tabbed-layout}}
   `);
+
   this.$('.menu>.menu-item>a')[1].click();
   assert.equal(this.$('#tab-item-methods').text().trim(), 'methods', 'should display methods page');
   assert.ok(this.$('#tab-item-methods').is(':visible'), 'methods page is visible');
