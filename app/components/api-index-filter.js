@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   }),
 
   filteredItemData: Ember.computed('methods', 'properties', 'events', function () {
-    let filteredItemData = Ember.Object.create(this.get('itemData'));
+    let filteredItemData = Ember.Object.create();
     filteredItemData.set('methods', this.get('methods'));
     filteredItemData.set('properties', this.get('properties'));
     filteredItemData.set('events', this.get('events'));
