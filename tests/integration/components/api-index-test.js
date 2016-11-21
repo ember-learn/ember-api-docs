@@ -195,7 +195,7 @@ test('should display api index with filter', function (assert) {
 
   // Template block usage:
   this.render(hbs`
-    {{#api-index-filter itemData=myModel filterData=filterData as |filteredModel|}}
+    {{#api-index-filter model=myModel filterData=filterData as |filteredModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -324,7 +324,7 @@ test('should display inherited method when show inherited toggled on', function 
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=myModel filterData=filterData as |filteredModel|}}
+    {{#api-index-filter model=myModel filterData=filterData as |filteredModel|}}
         <section>
           Show:
           <label class="access-checkbox">

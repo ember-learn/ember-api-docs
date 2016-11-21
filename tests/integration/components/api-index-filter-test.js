@@ -63,14 +63,14 @@ test('clicking inherited shows inherited methods', function(assert) {
     isDeprecated: false
   });
 
-  this.set('itemData', model);
+  this.set('model', model);
   this.set('filterData', filterData);
   this.on('updateFilter', function (field) {
     filterData.set(field, !filterData.get(field));
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=itemData filterData=filterData as |myModel|}}
+    {{#api-index-filter model=model filterData=filterData as |myModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -122,14 +122,14 @@ test('clicking private shows private methods', function(assert) {
     showDeprecated: false
   });
 
-  this.set('itemData', model);
+  this.set('model', model);
   this.set('filterData', filterData);
   this.on('updateFilter', function (field) {
     filterData.set(field, !filterData.get(field));
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=itemData filterData=filterData updateFilter=(action "updateFilter") as |myModel|}}
+    {{#api-index-filter model=model filterData=filterData updateFilter=(action "updateFilter") as |myModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -181,14 +181,14 @@ test('clicking private and inherited shows both methods', function(assert) {
     showDeprecated: false
   });
 
-  this.set('itemData', model);
+  this.set('model', model);
   this.set('filterData', filterData);
   this.on('updateFilter', function (field, value) {
     filterData.set(field, value);
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=itemData filterData=filterData as |myModel|}}
+    {{#api-index-filter model=model filterData=filterData as |myModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -243,14 +243,14 @@ test('clicking all toggles shows all methods', function(assert) {
     showDeprecated: false
   });
 
-  this.set('itemData', model);
+  this.set('model', model);
   this.set('filterData', filterData);
   this.on('updateFilter', function (field) {
     filterData.set(field, !filterData.get(field));
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=itemData filterData=filterData as |myModel|}}
+    {{#api-index-filter model=model filterData=filterData as |myModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -309,14 +309,14 @@ test('clicking all toggles off should only show public', function(assert) {
     showDeprecated: true
   });
 
-  this.set('itemData', model);
+  this.set('model', model);
   this.set('filterData', filterData);
   this.on('updateFilter', function (field) {
     filterData.set(field, !filterData.get(field));
   });
 
   this.render(hbs`
-    {{#api-index-filter itemData=itemData filterData=filterData as |myModel|}}
+    {{#api-index-filter model=model filterData=filterData as |myModel|}}
         <section>
           Show:
           <label class="access-checkbox">

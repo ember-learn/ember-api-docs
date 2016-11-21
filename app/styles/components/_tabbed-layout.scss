@@ -4,6 +4,10 @@
   border-radius: 5px;
   overflow: hidden;
 
+  .api-index-filter {
+    padding: 0 1em;
+  }
+
   .tabbed-layout__menu {
     display: flex;
     list-style-type: none;

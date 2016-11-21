@@ -38,29 +38,62 @@
   <p>{{{model.description}}}</p>
 
   {{#if (or model.methods model.properties model.events)}}
-    {{#tabbed-layout selectedTab=currentTab onSelection=(action "navigateTab") as |select selectedTab|}}
+    <div class="tabbed-layout">
       <ul class="tabbed-layout__menu">
-        <li class="tabbed-layout__menu__item {{if (eq selectedTab "index") "tabbed-layout__menu__item_selected"}}" {{action select "index"}}>
+        {{#link-to (concat parentName ".index")
+                   model.project.id
+                   model.projectVersion.version
+                   model.name
+                   (query-params anchor="")
+                   tagName="li"
+                   class="tabbed-layout__menu__item"
+                   activeClass="tabbed-layout__menu__item_selected"
+                   current-when=(concat parentName ".index")
+        }}
           <span>Index</span>
-        </li>
+        {{/link-to}}
         {{#if model.methods}}
-          <li class="tabbed-layout__menu__item {{if (eq selectedTab "methods") "tabbed-layout__menu__item_selected"}}" {{action select "methods"}}>
+          {{#link-to (concat parentName ".methods")
+                     model.project.id
+                     model.projectVersion.version
+                     model.name
+                     (query-params anchor="")
+                     tagName="li"
+                     class="tabbed-layout__menu__item"
+                     activeClass="tabbed-layout__menu__item_selected"
+          }}
             <span>Methods</span>
-          </li>
+          {{/link-to}}
         {{/if}}
         {{#if model.properties}}
-          <li class="tabbed-layout__menu__item {{if (eq selectedTab "properties") "tabbed-layout__menu__item_selected"}}" {{action select "properties"}}>
+          {{#link-to (concat parentName ".properties")
+                     model.project.id
+                     model.projectVersion.version
+                     model.name
+                     (query-params anchor="")
+                     tagName="li"
+                     class="tabbed-layout__menu__item"
+                     activeClass="tabbed-layout__menu__item_selected"
+          }}
             <span>Properties</span>
-          </li>
+          {{/link-to}}
         {{/if}}
         {{#if model.events}}
-          <li class="tabbed-layout__menu__item {{if (eq selectedTab "events") "tabbed-layout__menu__item_selected"}}" {{action select "events"}}>
+          {{#link-to (concat parentName ".events")
+                     model.project.id
+                     model.projectVersion.version
+                     model.name
+                     (query-params anchor="")
+                     tagName="li"
+                     class="tabbed-layout__menu__item"
+                     activeClass="tabbed-layout__menu__item_selected"
+          }}
             <span>Events</span>
-          </li>
+          {{/link-to}}
         {{/if}}
       </ul>
 
-      {{#api-index-filter itemData=model filterData=filterData as |filteredModel|}}
+      {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
         <section>
           Show:
           <label class="access-checkbox">
@@ -93,43 +126,32 @@
           </label>
         </section>
         <hr>
-        {{#tab-item name="index" selectedTab=selectedTab}}
-          {{#api-index itemData=filteredModel as |sectionData|}}
-            {{#each sectionData.sections as |section|}}
-              <h3 class="api-index-section-title">{{section.title}}</h3>
-              {{#if section.items}}
-                <ul class="{{section.class}}">
-                  {{#each section.items as |item|}}
-                    <li {{action select section.tab}}>
-                      {{#link-to (concat parentName section.routeSuffix)
-                         model.project.id
-                         model.projectVersion.version
-                         model.name
-                         item.name
-                         (query-params anchor=item.name)}}
-                        {{item.name}}
-                      {{/link-to}}
-                    </li>
-                  {{/each}}
-                </ul>
-            {{else}}
-                No documented items
-              {{/if}}
-            {{/each}}
-          {{/api-index}}
-
-        {{/tab-item}}
-        {{#tab-item name="methods" selectedTab=selectedTab}}
-          {{outlet}}
-        {{/tab-item}}
-        {{#tab-item name="properties" selectedTab=selectedTab}}
-          {{outlet}}
-        {{/tab-item}}
-        {{#tab-item name="events" selectedTab=selectedTab}}
-          {{outlet}}
-        {{/tab-item}}
+        {{#api-index itemData=filteredModel as |sectionData|}}
+          {{#each sectionData.sections as |section|}}
+            <h3 class="api-index-section-title">{{section.title}}</h3>
+            {{#if section.items}}
+              <ul class="{{section.class}}">
+                {{#each section.items as |item|}}
+                  <li>
+                    {{#link-to (concat parentName section.routeSuffix)
+                       model.project.id
+                       model.projectVersion.version
+                       model.name
+                       item.name
+                       (query-params anchor=item.name)}}
+                      {{item.name}}
+                    {{/link-to}}
+                  </li>
+                {{/each}}
+              </ul>
+          {{else}}
+              No documented items
+            {{/if}}
+          {{/each}}
+        {{/api-index}}
+        {{outlet}}
       {{/api-index-filter}}
-    {{/tabbed-layout}}
+    </div>
   {{/if}}
 
 </article>
