@@ -17,7 +17,6 @@ export default Ember.Route.extend({
     const projectID = transition.params['project-version'].project;
     const version = transition.params['project-version'].project_version;
     const klass = params[typeName];
-
     return this.find(typeName, `${projectID}-${version}-${klass}`);
   },
 

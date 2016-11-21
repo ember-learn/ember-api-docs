@@ -1,0 +1,57 @@
+{{#api-index-filter model=model filterData=filterData as |filteredModel|}}
+  <section>
+    Show:
+    <label class="access-checkbox">
+      <input id="inherited-toggle"
+             type="checkbox"
+             checked={{filterData.showInherited}}
+             onchange={{action "updateFilter" "showInherited"}}>
+      Inherited
+    </label>
+    <label class="access-checkbox">
+      <input id="protected-toggle"
+             type="checkbox"
+             checked={{filterData.showProtected}}
+             onchange={{action "updateFilter" "showProtected"}}>
+      Protected
+    </label>
+    <label class="access-checkbox">
+      <input id="private-toggle"
+             type="checkbox"
+             checked={{filterData.showPrivate}}
+             onchange={{action "updateFilter" "showPrivate"}}>
+      Private
+    </label>
+    <label class="access-checkbox">
+      <input id="deprecated-toggle"
+             type="checkbox"
+             checked={{filterData.showDeprecated}}
+             onchange={{action "updateFilter" "showDeprecated"}}>
+      Deprecated
+    </label>
+  </section>
+  <hr>
+  {{#api-index itemData=filteredModel as |sectionData|}}
+    {{#each sectionData.sections as |section|}}
+      <h3 class="api-index-section-title">{{section.title}}</h3>
+      {{#if section.items}}
+        <ul class="{{section.class}}">
+          {{#each section.items as |item|}}
+            <li>
+              {{#link-to (concat parentName section.routeSuffix)
+                 model.project.id
+                 model.projectVersion.version
+                 model.name
+                 item.name
+                 (query-params anchor=item.name)}}
+                {{item.name}}
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+    {{else}}
+        No documented items
+      {{/if}}
+    {{/each}}
+  {{/api-index}}
+{{/api-index-filter}}
