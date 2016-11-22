@@ -92,6 +92,38 @@
           {{/link-to}}
         {{/if}}
       </ul>
+      <section>
+        Show:
+        <label class="access-checkbox">
+          <input id="inherited-toggle"
+                 type="checkbox"
+                 checked={{filterData.showInherited}}
+                 onchange={{action "updateFilter" "showInherited"}}>
+          Inherited
+        </label>
+        <label class="access-checkbox">
+          <input id="protected-toggle"
+                 type="checkbox"
+                 checked={{filterData.showProtected}}
+                 onchange={{action "updateFilter" "showProtected"}}>
+          Protected
+        </label>
+        <label class="access-checkbox">
+          <input id="private-toggle"
+                 type="checkbox"
+                 checked={{filterData.showPrivate}}
+                 onchange={{action "updateFilter" "showPrivate"}}>
+          Private
+        </label>
+        <label class="access-checkbox">
+          <input id="deprecated-toggle"
+                 type="checkbox"
+                 checked={{filterData.showDeprecated}}
+                 onchange={{action "updateFilter" "showDeprecated"}}>
+          Deprecated
+        </label>
+      </section>
+      <hr>
       {{outlet}}
     </div>
   {{/if}}
