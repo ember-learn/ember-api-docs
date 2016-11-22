@@ -150,21 +150,21 @@
       border-right-color: darken($highlight-red, 20%);
     }
   }
-}
 
-code {
-  background-color: $base-border-color;
-  border-radius: $base-border-radius;
-  font-family: $monospace-font-family;
-  font-size: 0.9em;
-  padding: 0.2em 0.5em;
-  margin: 0 0.1em;
-}
+  code {
+    background-color: $base-border-color;
+    border-radius: $base-border-radius;
+    font-family: $monospace-font-family;
+    font-size: 0.9em;
+    padding: 0.2em 0.5em;
+    margin: 0 0.1em;
+  }
 
-a code {
-  color: $ember-orange;
-}
+  a code {
+    color: $ember-orange;
+  }
 
-.CodeRay thead {
-  background-color: #292929;
+  .CodeRay thead {
+    background-color: #292929;
+  }
 }
