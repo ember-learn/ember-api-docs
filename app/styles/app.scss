@@ -7,23 +7,24 @@
 
 body {
   margin: 0;
+  position: relative;
 }
 
 
 @include media($large-screen-up) {
   .header {
-    position: fixed;
+    position: absolute;
     width: 100%;
     z-index: 1;
   }
 
   .sidebar {
     margin-top: 77px;
-    height: 100%;
     overflow: auto;
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
+    bottom: 0;
     padding-right: 0;
     padding-left: 20px;
     width: 317px;
