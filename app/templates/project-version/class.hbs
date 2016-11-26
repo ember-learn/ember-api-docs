@@ -41,52 +41,55 @@
     <div class="tabbed-layout">
       <ul class="tabbed-layout__menu">
         {{#link-to (concat parentName ".index")
-                   model.project.id
-                   model.projectVersion.version
-                   model.name
-                   (query-params anchor="")
-                   tagName="li"
-                   class="tabbed-layout__menu__item"
-                   activeClass="tabbed-layout__menu__item_selected"
-                   current-when=(concat parentName ".index")
+           model.project.id
+           model.projectVersion.version
+           model.name
+           (query-params anchor="")
+           tagName="li"
+           class="tabbed-layout__menu__item"
+           activeClass="tabbed-layout__menu__item_selected"
+           current-when=(concat parentName ".index")
         }}
           <span>Index</span>
         {{/link-to}}
         {{#if model.methods}}
           {{#link-to (concat parentName ".methods")
-                     model.project.id
-                     model.projectVersion.version
-                     model.name
-                     (query-params anchor="")
-                     tagName="li"
-                     class="tabbed-layout__menu__item"
-                     activeClass="tabbed-layout__menu__item_selected"
+             model.project.id
+             model.projectVersion.version
+             model.name
+             (query-params anchor="")
+             tagName="li"
+             class="tabbed-layout__menu__item"
+             activeClass="tabbed-layout__menu__item_selected"
+             current-when=(concat parentName ".methods")
           }}
             <span>Methods</span>
           {{/link-to}}
         {{/if}}
         {{#if model.properties}}
           {{#link-to (concat parentName ".properties")
-                     model.project.id
-                     model.projectVersion.version
-                     model.name
-                     (query-params anchor="")
-                     tagName="li"
-                     class="tabbed-layout__menu__item"
-                     activeClass="tabbed-layout__menu__item_selected"
+             model.project.id
+             model.projectVersion.version
+             model.name
+             (query-params anchor="")
+             tagName="li"
+             class="tabbed-layout__menu__item"
+             activeClass="tabbed-layout__menu__item_selected"
+             current-when=(concat parentName ".properties")
           }}
             <span>Properties</span>
           {{/link-to}}
         {{/if}}
         {{#if model.events}}
           {{#link-to (concat parentName ".events")
-                     model.project.id
-                     model.projectVersion.version
-                     model.name
-                     (query-params anchor="")
-                     tagName="li"
-                     class="tabbed-layout__menu__item"
-                     activeClass="tabbed-layout__menu__item_selected"
+             model.project.id
+             model.projectVersion.version
+             model.name
+             (query-params anchor="")
+             tagName="li"
+             class="tabbed-layout__menu__item"
+             activeClass="tabbed-layout__menu__item_selected"
+             current-when=(concat parentName ".events")
           }}
             <span>Events</span>
           {{/link-to}}
