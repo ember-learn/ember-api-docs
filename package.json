@@ -31,7 +31,7 @@
   "devDependencies": {
     "bower": "^1.0.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-anchor": "github:gaurav0/ember-anchor#258f4930885998aa0329cbf9eddac5c1f0e7779c",
+    "ember-anchor": "~0.1.8",
     "ember-ajax": "^2.4.1",
     "ember-browserify": "1.1.8",
     "ember-cli": "2.9.1",

@@ -1,9 +1,5 @@
 article {
-  padding: $large-spacing 0;
-
-  @include media($large-screen) {
-    @include span-columns(8.5);
-  }
+  padding: $large-spacing;
 
   .edit-page {
     @include size(24px 18px);
