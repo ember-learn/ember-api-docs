@@ -11,5 +11,12 @@ export default Component.extend({
     const version = this.get('field.version');
     const githubDir = githubMap[project];
     return `https://github.com/${githubDir}/tree/v${version}/${file}#L${line}`;
-  })
+  }),
+
+  didRender() {
+    this._super(...arguments);
+    this.$('section pre code').each((i, block) => {
+      window.hljs.lineNumbersBlock(block);
+    });
+  }
 });

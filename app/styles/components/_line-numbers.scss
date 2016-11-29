@@ -1,0 +1,30 @@
+.hljs-line-numbers {
+    text-align: right;
+    border: none;
+    border-right: 1px solid #ccc;
+    color: #999;
+    margin-right: 0.25em;
+    position: relative;
+    top: -7px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+section pre {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+section pre code:not(.hljs-line-numbers) {
+  padding-left: 0.5em;
+}
+
+.hljs {
+  background-color: #fff;
+}
