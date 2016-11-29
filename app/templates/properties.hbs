@@ -1,5 +1,6 @@
 {{ember-anchor a="anchor" anchor=anchor}}
-
-{{#each model.properties as |property|}}
-  {{class-field-description type="property" field=property}}
-{{/each}}
+{{#api-index-filter model=model filterData=filterData as |filteredModel|}}
+  {{#each filteredModel.properties as |property|}}
+    {{class-field-description type="property" field=property}}
+  {{/each}}
+{{/api-index-filter}}
