@@ -10,9 +10,10 @@ export default AnchorComponent.extend({
     let qp = this.get('anchorQueryParam');
     let qpVal = this.get(!!get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
     let elem = $(`[data-${qp}="${qpVal}"]`);
-    let offset = (elem && elem.position && elem.position()) ? elem.position().top : null;
+    let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
     if (offset) {
-      this.$().scrollParent().scrollTop(offset);
+      let scrollOffset = this.$().scrollParent().offset().top - this.$().scrollParent().scrollTop();
+      this.$().scrollParent().scrollTop(offset - scrollOffset);
     }
   }
 });

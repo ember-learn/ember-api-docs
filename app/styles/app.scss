@@ -31,13 +31,12 @@ body {
   }
 
   main.container {
-    margin-top: 77px;
-    height: 100%;
     overflow: auto;
     position: fixed;
     left: 317px;
-    top: 0;
+    top: 77px;
     right: 0;
+    bottom: 0;
     max-width: inherit;
 
     > article {
