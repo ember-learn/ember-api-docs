@@ -1,5 +1,6 @@
 {{ember-anchor a=anchor}}
-
-{{#each model.methods as |method|}}
-  {{class-field-description type="method" field=method model=model}}
-{{/each}}
+{{#api-index-filter model=model filterData=filterData as |filteredModel|}}
+  {{#each filteredModel.methods as |method|}}
+    {{class-field-description type="method" field=method model=filteredModel}}
+  {{/each}}
+{{/api-index-filter}}
