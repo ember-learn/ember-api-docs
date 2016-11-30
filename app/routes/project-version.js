@@ -40,7 +40,7 @@ export default Ember.Route.extend({
       const project = projectVersion.get('project.id');
       let endingRoute, routeName;
 
-      switch(routeName = this.router.currentRouteName) {
+      switch (routeName = this.router.currentRouteName) {
         case 'project-version.class':
           endingRoute = `classes/${this.modelFor(routeName).get('name')}`;
           break;
