@@ -17,6 +17,7 @@
     "relational-pouch": "~1.3.2",
     "remarkable": "~1.6.1",
     "highlightjs": "~9.0.0",
-    "jquery-scrollparent": "~0.1.2"
+    "jquery-scrollparent": "~0.1.2",
+    "font-awesome": "~4.5.0"
   }
 }
