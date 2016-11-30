@@ -23,6 +23,10 @@ module.exports = function(defaults) {
     }
   });
 
+  if (!process.env.EMBER_CLI_FASTBOOT) {
+    app.import(app.bowerDirectory + '/jquery-scrollparent/jquery.scrollparent.js');
+  }
+
   if (!process.env.EMBER_CLI_FASTBOOT && process.env.EMBER_ENV === 'test') {
     app.import(app.bowerDirectory + '/pouchdb/dist/pouchdb.memory.js');
   }
