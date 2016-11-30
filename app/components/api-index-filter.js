@@ -10,25 +10,28 @@ export default Component.extend({
                             'filterData.showInherited',
                             'filterData.showProtected',
                             'filterData.showPrivate',
-                            'filterData.showDeprecated', function() {
-    return this.filterItems('methods');
-  }),
+                            'filterData.showDeprecated',
+                            function() {
+                              return this.filterItems('methods');
+                            }),
 
   filteredEvents: computed('model.events.[]',
                            'filterData.showInherited',
                            'filterData.showProtected',
                            'filterData.showPrivate',
-                           'filterData.showDeprecated', function() {
-    return this.filterItems('events');
-  }),
+                           'filterData.showDeprecated',
+                           function() {
+                             return this.filterItems('events');
+                           }),
 
   filteredProperties: computed('model.properties.[]',
                                'filterData.showInherited',
                                'filterData.showProtected',
                                'filterData.showPrivate',
-                               'filterData.showDeprecated', function() {
-    return this.filterItems('properties');
-  }),
+                               'filterData.showDeprecated',
+                               function() {
+                                 return this.filterItems('properties');
+                               }),
 
   filterItems(itemType) {
     let items = this.get('model.' + itemType);
