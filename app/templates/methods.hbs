@@ -1,4 +1,4 @@
-{{ember-anchor a="anchor" anchor=anchor}}
+{{ember-anchor a=anchor}}
 {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
   {{#each filteredModel.methods as |method|}}
     {{class-field-description type="method" field=method model=filteredModel}}

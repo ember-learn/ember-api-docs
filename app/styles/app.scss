@@ -7,6 +7,7 @@
 
 body {
   margin: 0;
+  width: 100%;
 }
 
 
@@ -29,10 +30,20 @@ body {
     width: 317px;
   }
 
-  .chapter {
-    margin-top: 77px;
-    height: 100%;
-    margin-left: 317px;
+  main.container {
+    overflow: auto;
+    position: fixed;
+    left: 317px;
+    top: 77px;
+    right: 0;
+    bottom: 0;
+    max-width: inherit;
+
+    > article {
+      max-width: 68em;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
 }
