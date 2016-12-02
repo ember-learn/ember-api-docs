@@ -1,4 +1,6 @@
 import Ember from 'ember';
+import semverCompare from 'npm:semver-compare';
+import _ from 'lodash/lodash';
 
 export default Ember.Route.extend({
   model(params) {
@@ -6,7 +8,11 @@ export default Ember.Route.extend({
   },
   afterModel(project /*, transition */) {
     return project.get('projectVersions').then(versions => {
-      const last = Ember.A(versions).sortBy('id')[versions.length - 1];
+      const last = versions.toArray().sort((a, b) => {
+        const a_ver = _.last(a.get('id').split("-"));
+        const b_ver = _.last(b.get('id').split("-"));
+        return semverCompare(a_ver, b_ver);
+      })[versions.length - 1];
       return this.transitionTo('project-version', last);
     });
   }
