@@ -7,9 +7,9 @@
       </ol>
     </li>
   </ol>
-  {{#x-select value=(readonly model) action="updateProject" default=model.id project=model.project class="spec-versions-box"}}
+  {{#x-select value=(readonly model) on-change=(route-action "updateProject") default=model.id project=model.project class="spec-versions-box" as |xs|}}
     {{#each projectVersions as |projectVersion|}}
-      {{#x-option value=projectVersion}}{{projectVersion.minorVersion}}{{/x-option}}
+      {{#xs.option value=projectVersion}}{{projectVersion.minorVersion}}{{/xs.option}}
     {{/each}}
   {{/x-select}}
   {{table-of-contents projectId=model.project.id

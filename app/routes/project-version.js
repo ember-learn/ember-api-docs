@@ -36,8 +36,9 @@ export default Ember.Route.extend({
 
   actions: {
     updateProject(projectVersion /*, component */) {
-      const projectVersionID = projectVersion.get('version');
-      const project = projectVersion.get('project.id');
+      const ids = projectVersion.get('id').split('-');
+      const projectVersionID = projectVersion.get('version') || ids[ids.length - 1];
+      const project = projectVersion.get('project.id') || ids.slice(0, -1).join('-');
       let endingRoute, routeName;
 
       switch (routeName = this.router.currentRouteName) {
