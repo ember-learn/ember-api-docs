@@ -12,37 +12,35 @@ body {
 
 
 @include media($large-screen-up) {
+
   .header {
     position: fixed;
     width: 100%;
-    z-index: 1;
-  }
-
-  .sidebar {
-    margin-top: 77px;
-    height: 100%;
-    overflow: auto;
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding-right: 0;
-    padding-left: 20px;
-    width: 317px;
   }
 
   main.container {
-    overflow: auto;
-    position: fixed;
-    left: 317px;
-    top: 77px;
-    right: 0;
-    bottom: 0;
-    max-width: inherit;
+    width: 100%;
 
-    > article {
-      max-width: 68em;
-      margin-left: auto;
-      margin-right: auto;
+    > * {
+      padding: 15px;
+    }
+
+    .sidebar {
+      position: fixed;
+      bottom: 0;
+      top: 80px;
+      left: 0;
+      overflow:auto;
+      width: 400px;
+    }
+
+    article.chapter {
+      position:fixed;
+      left: 400px;
+      right: 0;
+      top: 80px;
+      bottom: 0;
+      overflow:auto;
     }
   }
 
