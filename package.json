@@ -13,12 +13,15 @@
     "test": "ember test --launch=Firefox",
     "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../.."
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ember-learn/ember-api-docs.git"
+  },
   "engines": {
-    "node": "^5.6.0",
+    "node": "^6.9.1",
     "npm": "^3.0.0"
   },
-  "author": "",
+  "author": "Ember Learning Team and contributors",
   "license": "MIT",
   "dependencies": {
     "redisdown": "^0.1.12",
@@ -34,7 +37,7 @@
     "ember-ajax": "^2.4.1",
     "ember-anchor": "~0.1.8",
     "ember-browserify": "1.1.8",
-    "ember-cli": "2.9.1",
+    "ember-cli": "2.10.0",
     "ember-cli-app-version": "^2.0.0",
     "ember-cli-babel": "^5.1.7",
     "ember-cli-bourbon": "1.1.0",
@@ -56,7 +59,7 @@
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^0.20.0",
-    "ember-data": "2.9.0",
+    "ember-data": "~2.10.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
     "ember-fastboot-server": "^0.5.3",
