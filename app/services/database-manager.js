@@ -25,9 +25,11 @@ export default Ember.Service.extend({
       }
     });
 
-    if (!ENV.testing) {
-      this._local.replicate.from(this._remote);
-    }
+    // Temporarily disabled until we can do this sanely
+    // See https://github.com/ember-learn/ember-api-docs/issues/100
+    // if (!ENV.testing) {
+    //   this._local.replicate.from(this._remote);
+    // }
   },
 
   get(id) {
