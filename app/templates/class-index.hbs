@@ -1,5 +1,5 @@
 {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
-  {{#api-index itemData=filteredModel as |sectionData|}}
+  {{#api-index itemData=filteredModel classNames="api__index__content" as |sectionData|}}
     {{#each sectionData.sections as |section|}}
       <h3 class="api-index-section-title">{{section.title}}</h3>
       {{#if section.items}}

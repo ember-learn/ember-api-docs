@@ -3,17 +3,19 @@ article.chapter {
     float:right;
   }
 
-  ul {
-    list-style-type: none;
-    -webkit-column-count: 2;
-    column-count: 2;
-    -webkit-column-gap: 1em;
-    column-count: 1em;
-    vertical-align: baseline;
+  .api__index__content {
+    ul {
+      list-style-type: none;
+      -webkit-column-count: 2;
+      column-count: 2;
+      -webkit-column-gap: 1em;
+      column-count: 1em;
+      vertical-align: baseline;
 
-    li {
-      margin-top: 0;
-      margin-bottom: 0;
+      li {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
     }
   }
 }
