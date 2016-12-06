@@ -34,13 +34,18 @@ body {
       width: 400px;
     }
 
-    article.chapter {
+    .content {
       position:fixed;
       left: 400px;
       right: 0;
       top: 80px;
       bottom: 0;
       overflow:auto;
+
+      .chapter {
+        max-width: 800px;
+        margin: 0 auto;
+      }
     }
   }
 
