@@ -51,7 +51,7 @@
     "ember-cli-document-title": "^0.3.1",
     "ember-cli-eslint": "3.0.0",
     "ember-cli-fastboot": "github:gaurav0/ember-cli-fastboot#71cd547b91ba239971741d0720ed6e01069bb86d",
-    "ember-cli-head": "0.0.5",
+    "ember-cli-head": "0.1.3",
     "ember-cli-htmlbars": "^1.0.10",
     "ember-cli-htmlbars-inline-precompile": "^0.3.3",
     "ember-cli-inject-live-reload": "^1.4.1",
