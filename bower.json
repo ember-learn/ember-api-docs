@@ -9,7 +9,7 @@
     "bourbon": "4.2.6",
     "bitters": "1.1.0",
     "neat": "1.7.2",
-    "pouchdb": "^5.0.0",
+    "pouchdb": "^5.4.5",
     "pretender": "^1.4.2",
     "lodash": "~3.7.0",
     "Faker": "^3.1.0",
@@ -18,7 +18,8 @@
     "remarkable": "^1.7.1",
     "highlightjs": "^9.8.0",
     "jquery-scrollparent": "~0.1.2",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "pouchdb-find": "^0.10.2"
   },
   "resolutions": {
     "FakeXMLHttpRequest": "^1.4.0",

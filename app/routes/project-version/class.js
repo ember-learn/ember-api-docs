@@ -24,7 +24,7 @@ export default Ember.Route.extend(ResetScrollPositionMixin, {
 
   find(typeName, param) {
     return this.store.find(typeName, param).catch(() => {
-      this.transitionTo('project-version'); // class doesn't exist in new version
+      return this.transitionTo('project-version'); // class doesn't exist in new version
     });
   },
 
