@@ -1,8 +1,10 @@
 import Ember from 'ember';
+import ResetScrollPositionMixin from 'ember-api-docs/mixins/reset-scroll-position';
+
 
 const { get, set, inject } = Ember;
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(ResetScrollPositionMixin, {
   headData: inject.service(),
 
   titleToken: function(model) {
