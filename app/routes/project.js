@@ -1,8 +1,10 @@
 import Ember from 'ember';
 import semverCompare from 'npm:semver-compare';
 import _ from 'lodash/lodash';
+import ResetScrollPositionMixin from 'ember-api-docs/mixins/reset-scroll-position';
 
-export default Ember.Route.extend({
+
+export default Ember.Route.extend(ResetScrollPositionMixin, {
   model(params) {
     return this.store.find('project', params.project);
   },
