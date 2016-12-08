@@ -1,15 +1,22 @@
 import Ember from 'ember';
 
-const {$, isPresent} = Ember;
+const {$} = Ember;
 
 export default Ember.Mixin.create({
+
+  _hasSameThirdParam(transition) {
+    const currentRouteParams = transition.router.state.params;
+    const newParams = transition.state.params;
+
+    const currentThirdParamName = Object.keys(currentRouteParams)[2];
+    const newThirdParamName = Object.keys(newParams)[2];
+
+    return currentRouteParams[currentThirdParamName] === newParams[newThirdParamName];
+  },
+
   actions: {
-
-    willTransition(transition){
-      const currentRouteParts = this.get('routeName').split('.');
-      const targetRouteParts = transition.targetName.split('.');
-
-      if(currentRouteParts[0] !== targetRouteParts[0] || currentRouteParts[1] !== targetRouteParts[1]){
+    willTransition(transition) {
+      if (!this._hasSameThirdParam(transition)) {
         $('main > article').scrollTop(0);
       }
     }
