@@ -3,57 +3,50 @@
 
   <p>{{{model.description}}}</p>
 
-  <section>
-    <h2>Submodules</h2>
+  {{#if submodules}}
+    <section>
+      <h2>Submodules</h2>
+        <ul class="spec-method-list">
+          {{#each submodules as |module|}}
+            <li>
+              {{#link-to 'project-version.module' module}}
+                {{module}}
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+    </section>
+  {{/if}}
 
-    {{#if model.submodules}}
-      <ul class="spec-method-list">
-        {{#each submodules as |module|}}
-          <li>
-            {{#link-to 'project-version.module' module}}
-              {{module}}
-            {{/link-to}}
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      No submodules.
-    {{/if}}
-  </section>
+  {{#if namespaces}}
+    <section>
+      <h2>Namespaces</h2>
+        <ul class="spec-property-list">
+          {{#each namespaces as |namespace|}}
+            <li>
+              {{#link-to 'project-version.namespace' namespace}}
+                {{namespace}}
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+    </section>
+  {{/if}}
 
-  <section>
-    <h2>Namespaces</h2>
-    {{#if model.namespaces}}
-      <ul class="spec-property-list">
-        {{#each namespaces as |namespace|}}
-          <li>
-            {{#link-to 'project-version.namespace' namespace}}
-              {{namespace}}
-            {{/link-to}}
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      No namespaces.
-    {{/if}}
-  </section>
-
-  <section>
-    <h2>Classes</h2>
-    {{#if model.classes}}
-      <ul class="spec-event-list">
-        {{#each classes as |klass|}}
-          <li>
-            {{#link-to 'project-version.class' klass}}
-              {{klass}}
-            {{/link-to}}
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      No classes.
-    {{/if}}
-  </section>
+  {{#if classes}}
+    <section>
+      <h2>Classes</h2>
+        <ul class="spec-event-list">
+          {{#each classes as |klass|}}
+            <li>
+              {{#link-to 'project-version.class' klass}}
+                {{klass}}
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ul>
+    </section>
+  {{/if}}
 
   {{outlet}}
 
