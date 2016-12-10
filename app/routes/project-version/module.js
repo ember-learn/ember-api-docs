@@ -1,6 +1,8 @@
 import ClassRoute from './class';
+import ResetScrollPositionMixin from 'ember-api-docs/mixins/reset-scroll-position';
 
-export default ClassRoute.extend({
+
+export default ClassRoute.extend(ResetScrollPositionMixin, {
 
   model(params, transition) {
     return this.getModel('module', params, transition);

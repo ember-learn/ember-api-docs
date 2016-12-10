@@ -1,10 +1,12 @@
 import Ember from 'ember';
 
-const {$} = Ember;
+const {$, inject} = Ember;
 
 export default Ember.Mixin.create({
 
-  _hasSameThirdParam(transition) {
+  routingService: inject.service('-routing'),
+
+  _isChangingTab(transition) {
     const currentRouteParams = transition.router.state.params;
     const newParams = transition.state.params;
 
@@ -16,8 +18,14 @@ export default Ember.Mixin.create({
 
   actions: {
     willTransition(transition) {
-      if (!this._hasSameThirdParam(transition)) {
-        $('main > article').scrollTop(0);
+      if (!this._isChangingTab(transition)) {
+        this.set('routingService._shouldResetScroll', true);
+      }
+    },
+    didTransition() {
+      if (this.get('routingService._shouldResetScroll')) {
+        $('section.content').scrollTop(0);
+        this.set('routingService._shouldResetScroll', false);
       }
     }
   }
