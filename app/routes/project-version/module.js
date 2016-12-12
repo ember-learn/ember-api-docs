@@ -1,8 +1,11 @@
+import Ember from 'ember';
 import ClassRoute from './class';
-import ResetScrollPositionMixin from 'ember-api-docs/mixins/reset-scroll-position';
 
+const { inject } = Ember;
 
-export default ClassRoute.extend(ResetScrollPositionMixin, {
+export default ClassRoute.extend({
+
+  scrollPositionReset: inject.service(),
 
   model(params, transition) {
     return this.getModel('module', params, transition);
@@ -23,5 +26,16 @@ export default ClassRoute.extend(ResetScrollPositionMixin, {
     return {
       module: model.get('name')
     };
+  },
+
+  actions: {
+
+    willTransition(transition) {
+      this.get('scrollPositionReset').scheduleReset(transition);
+    },
+
+    didTransition() {
+      this.get('scrollPositionReset').doReset();
+    }
   }
 });
