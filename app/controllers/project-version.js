@@ -21,12 +21,21 @@ export default Ember.Controller.extend({
   }),
 
   moduleIDs: Ember.computed('model', function() {
-    return this.getRelationshipIDs('modules');
+    return this.getModuleRelationships(this.get('model.id'), 'modules');
   }),
 
   publicModuleIDs: Ember.computed('model', function() {
-    return this.getRelationshipIDs('public-modules');
+    return this.getModuleRelationships(this.get('model.id'), 'public-modules');
   }),
+
+  getModuleRelationships(versionId, moduleType) {
+    let relations = this.getRelations('public-modules');
+    return relations.map(id => id.substring(versionId.length + 1))
+  },
+
+  getRelations(relationship) {
+    return this.get('model').hasMany(relationship).ids().sort();
+  },
 
   getRelationshipIDs(relationship) {
     const classes = this.get('model').hasMany(relationship);

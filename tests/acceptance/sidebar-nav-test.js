@@ -15,10 +15,10 @@ test('can navigate to namespace from sidebar', function(assert) {
 
 test('can navigate to module from sidebar', function(assert) {
   visit('/ember/1.0.0');
-  click('.toc-level-1.modules a:contains(application)');
+  click('.toc-level-1.modules a:contains(ember-application)');
 
   andThen(() => {
-    assert.equal(currentURL(), '/ember/1.0.0/modules/application', 'navigated to module');
+    assert.equal(currentURL(), '/ember/1.0.0/modules/ember-application', 'navigated to module');
   });
 });
 
