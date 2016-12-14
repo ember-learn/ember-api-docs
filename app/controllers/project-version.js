@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
   }),
 
   getModuleRelationships(versionId, moduleType) {
-    let relations = this.getRelations('public-modules');
+    let relations = this.getRelations(moduleType);
     return relations.map(id => id.substring(versionId.length + 1))
   },
 
