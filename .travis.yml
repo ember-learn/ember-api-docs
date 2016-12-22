@@ -1,11 +1,11 @@
 language: node_js
 node_js:
-- "6"
+- '6'
 sudo: false
 cache:
   directories:
-    - $HOME/.npm
-    - $HOME/.cache # includes bower cache
+  - "$HOME/.npm"
+  - "$HOME/.cache" # includes bower cache
 
 before_install:
 - node --version
@@ -22,15 +22,15 @@ install:
 - bower install
 
 before_script:
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 - sleep 3 # give xvfb some time to start
 
 script:
 - npm test
 
 addons:
-  firefox: "latest"
+  firefox: latest
   apt:
     sources:
     - ubuntu-toolchain-r-test
@@ -40,12 +40,12 @@ addons:
 deploy:
   provider: heroku
   app:
-    master: ember-api-docs-staging
+    master: ember-v-api-docs-staging
     production: ember-api-docs
   api_key:
-    secure: ZkKB+Ld1IokmJooZPGTZMA5L1KHBNg1qbC2KvebT9L2zTq0CEMjjzRfhmkivoG0riodz4M4rBr63UcqcnTLEoER/MU8kUt4f6gAdmi/WYCm/pxTx2vsxxwO26HFP90VDZ2yPlkYN2n+T/AYXittxRIKKBA1gxT8w9Cz4A39ojB+vpDnfhlybkes+0wpErgKgnF46eI7zz2fgbmIMqtUXgAsKey4wT4o6oqssOvEpVrtt9DX9KseDzelR6TsBafUPpYA8IMA5mqouN/HDmrY43S3a9W1SbXhvhFKads3sQO7VXIgdrbiu/clNvEaH7U9sLIW1vHnl17iQbVE2U2WibW3m6w9V/g0S96F1rDM6RZbiqgmhI5UXjVNrbmquAUE1Yxv0tVNzwq8KIZ0+4grzKwHJRDwI1Ri1J8QVBL5fQLVD669l9Hye1m6sli6VFLzGSBVYEC7fNTpk6TErgHjGsx/yThDl4QBzOitsmRzCxq3puloIUhF+aQ09T8G4OySq6wOgDwAbNFlMxDGmnglu3SXsu3xT74wOF8tLpdl4dk/DozYQQRyAFdpQHK+WHb5PswWifjEkypALCTdsZoehrzzxPPletNH9iXXMCW3c7jys5ad9RngJWy/Ka5mhk3bg5UAWvXnM3pWSGrOD2t36gq7k6FQVi7LF8BD9tD4GxxE=
+    secure: IJlh2J/Q13CtUGhUAcGTbz2pVfTa2Dm8uuSKqgB+q1CUNv5GoshUHmU9VInVr40XpqAUcBoUpQw18AA5FD9bT1PN8V5xYQZgLaPtDs126mg9agyzijJgfHolNOEjaZveQy7PmcCY73CoLqf/3gNwn6MIL4ZotY39t3zpAy3LwdWojJeOH+D8s6EklA7tE2VzUKjCtTtl9YT4GJqIh66pedAORCZFfZtC1Qgg7E++0zye+w28GTH/5XqlzIDUjfdG3TH2VdkBNCLoag9CknQcbV8Iq0Eno/Ihdrp8fZcG2o1PRZRMIhlGfQJA8F+8CHrqjl1RyinYYcbImGpgVTP/b8kRLJXRhhLU3PnGSEdDen9W5YTB5ljsxhQ+iS/xch7Llj2ZXKEPUaC9P3E6Ds9ExFh29YAzes4xJGsmSS0z5iJNXsGfazrLkCe/Lg5/7Ys/mA7sZI7rJ7yvFPRUPKn5bmfNqpgN/I1/avqkK34KgKioiAnRvtPDkX2ccADHDSgDc1lrDgQfJt2Tiz2g/93CFpaRWRhp7ptvD193gONBUa4D3NMpawchGHDzqUGt5oKEV/ggEtoRo1HJzmX3UwHU3QjARcMTZYsS3zlc1czmLCyNK8Ye6sGdtV7no07ePOnvsUE95ePGbsy9J/GVqksvyuhM+ApwQuHYgX3t7i+EeoQ=
   run:
-    - "npm run heroku-flush-redis"
+  - npm run heroku-flush-redis
 
 env:
   global:
