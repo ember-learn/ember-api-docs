@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import _ from 'lodash/lodash';
 
 export default Ember.Route.extend({
   titleToken: function(model) {
@@ -8,23 +9,20 @@ export default Ember.Route.extend({
   model(params) {
     const id = `${params.project}-${params.project_version}`;
     return this.store.find('project', params.project).then(() => {
-      return this.store.find('project-version', id);
+      return this.store.findRecord('project-version', id, { includes: 'project' });
     });
   },
 
-  afterModel(model, transition) {
+  // Using redirect instead of afterModel so transition succeeds and returns 30
+  redirect(model, transition) {
     let classParams = transition.params['project-version.class'];
     let moduleParams = transition.params['project-version.module'];
     let namespaceParams = transition.params['project-version.namespace'];
-    return model.get('project').then(() => {
-      if (!classParams && !moduleParams && !namespaceParams) {
-        const namespaces = model.hasMany('namespaces').ids().sort();
-        const namespace = namespaces[0];
-        return this.store.find('namespace', namespace).then(namespace => {
-          return this.transitionTo('project-version.namespace', model, namespace);
-        });
-      }
-    });
+    if (!classParams && !moduleParams && !namespaceParams) {
+      const namespaces = model.hasMany('namespaces').ids().sort();
+      const namespace = _.last(namespaces[0].split("-"));
+      return this.transitionTo('project-version.namespace', model.get('project.id'), model.get('version'), namespace);
+    }
   },
 
   serialize(model) {
