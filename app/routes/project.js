@@ -10,18 +10,22 @@ export default Ember.Route.extend({
   scrollPositionReset: inject.service(),
 
   model(params) {
-    return this.store.find('project', params.project);
+    return this.store.findRecord('project', params.project, { includes: 'project-version' });
   },
 
-  afterModel(project /*, transition */) {
-    return project.get('projectVersions').then(versions => {
-      const last = versions.toArray().sort((a, b) => {
-        const a_ver = _.last(a.get('id').split("-"));
-        const b_ver = _.last(b.get('id').split("-"));
-        return semverCompare(a_ver, b_ver);
-      })[versions.length - 1];
-      return this.transitionTo('project-version', last);
-    });
+  // Using redirect instead of afterModel so transition succeeds and returns 307 in fastboot
+  redirect(project /*, transition */) {
+    const versions = project.get('projectVersions').toArray();
+    const last = versions.sort((a, b) => {
+      const a_ver = this.getVersionString(a);
+      const b_ver = this.getVersionString(b);
+      return semverCompare(a_ver, b_ver);
+    })[versions.length - 1];
+    return this.transitionTo('project-version', project.get('id'), this.getVersionString(last));
+  },
+
+  getVersionString(version) {
+    return _.last(version.get('id').split("-"));
   },
 
   actions: {
