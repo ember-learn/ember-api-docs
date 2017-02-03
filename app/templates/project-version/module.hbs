@@ -18,33 +18,18 @@
     </section>
   {{/if}}
 
-  {{#if namespaces}}
+  {{#if classesAndNamespaces}}
     <section>
-      <h2>Namespaces</h2>
-        <ul class="spec-property-list">
-          {{#each namespaces as |namespace|}}
-            <li>
-              {{#link-to 'project-version.namespace' namespace}}
-                {{namespace}}
-              {{/link-to}}
-            </li>
-          {{/each}}
-        </ul>
-    </section>
-  {{/if}}
-
-  {{#if classes}}
-    <section>
-      <h2>Classes</h2>
-        <ul class="spec-event-list">
-          {{#each classes as |klass|}}
-            <li>
-              {{#link-to 'project-version.class' klass}}
-                {{klass}}
-              {{/link-to}}
-            </li>
-          {{/each}}
-        </ul>
+      <h2>Classes and Namespaces</h2>
+      <ul class="spec-property-list">
+        {{#each classesAndNamespaces as |klass|}}
+          <li>
+            {{#link-to 'project-version.class' klass}}
+              {{klass}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
     </section>
   {{/if}}
 
