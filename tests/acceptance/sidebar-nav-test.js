@@ -9,7 +9,7 @@ test('can navigate to namespace from sidebar', function(assert) {
   click('.toc-level-1.namespaces a:contains(Ember.String)');
 
   andThen(() => {
-    assert.equal(currentURL(), '/ember/1.0.0/namespaces/Ember.String', 'navigated to namespace');
+    assert.equal(currentURL(), '/ember/1.0.0/classes/Ember.String', 'navigated to namespace');
   });
 });
 

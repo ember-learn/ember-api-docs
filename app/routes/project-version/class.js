@@ -25,14 +25,15 @@ export default Ember.Route.extend({
 
   find(typeName, param) {
     return this.store.find(typeName, param).catch(() => {
-      return this.transitionTo('project-version'); // class doesn't exist in new version
+      return this.store.find('namespace', param).catch(() => {
+        return this.transitionTo('project-version'); // class doesn't exist in new version
+      });
     });
   },
 
   afterModel(klass) {
     set(this, 'headData.description', klass.get('ogDescription'));
     const relationships = get(klass.constructor, 'relationshipNames');
-
     const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
       const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
       return memo.concat(relationshipPromises);

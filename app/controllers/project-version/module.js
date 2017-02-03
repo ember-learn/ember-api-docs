@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ClassController from './class';
+import _ from 'lodash/lodash';
 
 const { computed } = Ember;
 
@@ -14,5 +15,10 @@ export default ClassController.extend({
 
   classes: computed('model', function() {
     return Object.keys(this.get('model.classes'));
+  }),
+
+  classesAndNamespaces: computed('classes', 'namespaces', function () {
+    return _.uniq(_.union(this.get('namespaces'), this.get('classes')).sort(), true);
   })
+
 });
