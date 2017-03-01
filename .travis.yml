@@ -12,9 +12,8 @@ before_install:
 - npm config set spin false
 - npm install -g npm@^3
 - npm --version
-- npm install -g bower
+- npm install -g bower phantomjs-prebuilt
 - bower --version
-- npm install -g phantomjs-prebuilt
 - phantomjs --version
 
 install:
