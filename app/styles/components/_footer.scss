@@ -47,7 +47,7 @@
     }
 
     a {
-      @include transition(opacity $duration, color $duration);
+      transition: opacity $duration, color $duration;
       color: $medium-gray;
       font-size: $large-font-size;
       margin-left: 0.5em;

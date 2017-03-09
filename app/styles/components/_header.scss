@@ -30,7 +30,7 @@
     text-align: center;
 
     @include media($large-screen) {
-      @include flex(1 0 0);
+      flex: 1 0 0;
       display: inline-block;
     }
   }
@@ -45,13 +45,13 @@
 
   .header-logo {
     @include media($large-screen) {
-      @include flex(1.5 0 0);
+      flex: 1.5 0 0;
     }
   }
 
   .header-search {
     @include media($large-screen) {
-      @include flex(2 0 0);
+      flex: 2 0 0;
     }
   }
 }
@@ -82,7 +82,7 @@
     padding-left: 2.5em;
     width: 100%;
 
-    @include placeholder {
+    &::placeholder {
       color: $white;
     }
   }
