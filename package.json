@@ -42,6 +42,7 @@
     "ember-browserify": "~1.1.13",
     "ember-cli": "2.11.1",
     "ember-cli-app-version": "^2.0.0",
+    "ember-cli-autoprefixer": "0.6.0",
     "ember-cli-babel": "^5.1.7",
     "ember-cli-bourbon": "^1.2.2",
     "ember-cli-content-security-policy": "0.4.0",
