@@ -26,7 +26,8 @@ module.exports = function(environment) {
       hostWhitelist: [/^[\w\-]+\.herokuapp\.com$/, /^localhost:\d+$/]
     }
   };
-
+  ENV.ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
+  ENV.ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
   ENV.COUCH_URL = process.env.COUCH_URL || 'https://gaurav0.cloudant.com/docs';
   ENV.COUCH_USERNAME = process.env.COUCH_USERNAME || 'etyrisedingenstereachent';
   ENV.COUCH_PASSWORD = process.env.COUCH_PASSWORD || '827b95c5ecdc1beb5f96c2778f0068e35bc47b33';

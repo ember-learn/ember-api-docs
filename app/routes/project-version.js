@@ -2,12 +2,15 @@ import Ember from 'ember';
 import _ from 'lodash/lodash';
 
 export default Ember.Route.extend({
+  projectService: Ember.inject.service('project'),
+
   titleToken: function(model) {
     return model.get('version');
   },
 
   model(params) {
     const id = `${params.project}-${params.project_version}`;
+    this.get('projectService').setVersion(params.project_version);
     return this.store.find('project', params.project).then(() => {
       return this.store.findRecord('project-version', id, { includes: 'project' });
     });
