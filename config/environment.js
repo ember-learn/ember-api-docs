@@ -36,7 +36,7 @@ module.exports = function(environment) {
       enabled: false
     };
     ENV.contentSecurityPolicy = {
-      "connect-src": "'self' http://localhost:5984 https://*.cloudant.com",
+      "connect-src": "'self' http://localhost:5984 https://*.cloudant.com *.algolia.net",
       "script-src": "'self' unsafe-inline use.typekit.net",
       "font-src": "'self' data://* use.typekit.net",
       "img-src": "'self' p.typekit.net",
