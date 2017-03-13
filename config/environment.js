@@ -67,6 +67,14 @@ module.exports = function(environment) {
     ENV.routerRootURL = '/api-new/';
 
   }
+  ENV.manifest = {
+    enabled: true,
+    appcacheFile: "/manifest.appcache",
+    excludePaths: ['index.html'],
+    includePaths: ['/'],
+    //network: ['api/'],
+    showCreateDate: true
+  }
 
   return ENV;
 };
