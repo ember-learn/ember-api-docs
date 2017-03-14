@@ -3,28 +3,34 @@ import _ from 'lodash/lodash';
 import semverCompare from 'npm:semver-compare';
 import getMinorVersion from "../utils/get-minor-version";
 
-export default Ember.Controller.extend({
-  classesIDs: Ember.computed('model', function() {
+const { Controller, computed, A, inject } = Ember;
+
+export default Controller.extend({
+
+  filterData: inject.service(),
+  showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
+
+  classesIDs: computed('model', function() {
     return this.getRelationshipIDs('classes');
   }),
 
-  publicClassesIDs: Ember.computed('model', function() {
+  publicClassesIDs: computed('model', function() {
     return this.getRelationshipIDs('public-classes');
   }),
 
-  namespaceIDs: Ember.computed('model', function() {
+  namespaceIDs: computed('model', function() {
     return this.getRelationshipIDs('namespaces');
   }),
 
-  publicNamespaceIDs: Ember.computed('model', function() {
+  publicNamespaceIDs: computed('model', function() {
     return this.getRelationshipIDs('public-namespaces');
   }),
 
-  moduleIDs: Ember.computed('model', function() {
+  moduleIDs: computed('model', function() {
     return this.getModuleRelationships(this.get('model.id'), 'modules');
   }),
 
-  publicModuleIDs: Ember.computed('model', function() {
+  publicModuleIDs: computed('model', function() {
     return this.getModuleRelationships(this.get('model.id'), 'public-modules');
   }),
 
@@ -39,30 +45,30 @@ export default Ember.Controller.extend({
 
   getRelationshipIDs(relationship) {
     const classes = this.get('model').hasMany(relationship);
-    const sorted = Ember.A(classes.ids()).sort();
-    return Ember.A(sorted).toArray().map(id => id.split('-').pop());
+    const sorted = A(classes.ids()).sort();
+    return A(sorted).toArray().map(id => id.split('-').pop());
   },
 
-  shownClassesIDs: Ember.computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
+  shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
     return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
   }),
 
-  shownModuleIDs: Ember.computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs', function() {
+  shownModuleIDs: computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs', function() {
     return this.get('showPrivateClasses') ? this.get('moduleIDs') : this.get('publicModuleIDs');
   }),
 
-  shownNamespaceIDs: Ember.computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {
+  shownNamespaceIDs: computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {
     return this.get('showPrivateClasses') ? this.get('namespaceIDs') : this.get('publicNamespaceIDs');
   }),
 
-  projectVersionIDs: Ember.computed('model', function() {
+  projectVersionIDs: computed('model', function() {
     const projectID = this.get('model').belongsTo('project').id();
     const project = this.store.peekRecord('project', projectID);
 
     return project.hasMany('projectVersions').ids();
   }),
 
-  projectVersions: Ember.computed('model', function() {
+  projectVersions: computed('model', function() {
     const projectVersions = this.get('model.project.projectVersions');
     let versions = projectVersions.toArray().sort(function(a, b) {
       const a_ver = _.last(a.get('id').split("-"));
@@ -82,5 +88,5 @@ export default Ember.Controller.extend({
     });
   }),
 
-  activeProject: Ember.computed.readOnly('model.project.id')
+  activeProject: computed.readOnly('model.project.id')
 });

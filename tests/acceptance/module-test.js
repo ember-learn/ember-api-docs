@@ -3,18 +3,24 @@ import { test } from 'qunit';
 
 moduleForAcceptance('Acceptance | Module');
 
-test('lists all classes and namespaces on the module page', function(assert) {
+test('lists all public/private classes and namespaces on the module page', function(assert) {
 
-  visit('ember/1.0.0/modules/ember-application');
+  visit('ember/1.0.0/modules/ember-handlebars');
 
   andThen(() => {
     const store = this.application.__container__.lookup('service:store');
-    const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
+    const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
 
     let numberNameSpaces = Object.keys(container.get('namespaces')).length;
-    let numberClasses = Object.keys(container.get('classes')).length;
+    let numberPublicClasses = Object.keys(container.get('publicclasses')).length;
+    let numberPrivateClasses = Object.keys(container.get('privateclasses')).length;
 
-    assert.equal(find('.spec-property-list li').length, numberClasses + numberNameSpaces);
+    assert.equal(find('.spec-property-list li').length, numberPublicClasses + numberNameSpaces);
+
+    click('.sidebar .private-deprecated-toggle');
+    andThen(() => {
+      assert.equal(find('.spec-property-list li').length, numberPublicClasses + numberNameSpaces + numberPrivateClasses);
+    });
   });
 
 });
