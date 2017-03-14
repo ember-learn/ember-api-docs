@@ -1,11 +1,18 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import fetch from 'ember-network/fetch';
 
-const { Inflector: { inflector } } = Ember;
+const {
+  Inflector: { inflector },
+  inject: { service },
+} = Ember;
 
 const { JSONAPIAdapter } = DS;
 
+
 export default JSONAPIAdapter.extend({
+
+  fastboot: service(),
 
   currentProject: '',
 
@@ -29,6 +36,13 @@ export default JSONAPIAdapter.extend({
     }
 
     url = `/json-docs/${url}.json`;
+
+    let fastboot = this.get('fastboot');
+    if (fastboot.get('isFastBoot')) {
+      let { protocol, host } = fastboot.get('request').getProperties(['protocol', 'host']);
+      url = `${protocol}://${host}${url}`;
+    }
+
     return fetch(url).then(response => response.json());
   }
 
