@@ -25,9 +25,7 @@
   "author": "Ember Learning Team and contributors",
   "license": "MIT",
   "dependencies": {
-    "pouchdb": "^5.4.5",
     "redisdown": "^0.1.12",
-    "relational-pouch": "^1.4.4",
     "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [
@@ -71,7 +69,6 @@
     "ember-load-initializers": "^0.6.0",
     "ember-lodash": "0.0.11",
     "ember-network": "0.3.1",
-    "ember-pouch": "github:gaurav0/ember-pouch#c89600c7b8c14c919b9b808a4ea6d9d6666ca047",
     "ember-resolver": "^2.0.3",
     "ember-route-action-helper": "2.0.0",
     "ember-source": "~2.11.2",
@@ -85,8 +82,6 @@
     "redis": "^2.6.0-0"
   },
   "fastbootDependencies": [
-    "pouchdb",
-    "relational-pouch",
     "redisdown"
   ]
 }
