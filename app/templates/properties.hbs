@@ -1,6 +1,6 @@
 {{ember-anchor a=anchor}}
 {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
   {{#each filteredModel.properties as |property|}}
-    {{class-field-description type="property" field=property}}
+    {{class-field-description type="property" field=method model=model}}
   {{/each}}
 {{/api-index-filter}}
