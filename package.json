@@ -37,7 +37,6 @@
   "devDependencies": {
     "bower": "^1.0.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^2.4.1",
     "ember-anchor": "~0.1.8",
     "ember-browserify": "~1.1.13",
     "ember-cli": "2.11.1",
@@ -71,6 +70,7 @@
     "ember-inflector": "^1.9.4",
     "ember-load-initializers": "^0.6.0",
     "ember-lodash": "0.0.11",
+    "ember-network": "0.3.1",
     "ember-pouch": "github:gaurav0/ember-pouch#c89600c7b8c14c919b9b808a4ea6d9d6666ca047",
     "ember-resolver": "^2.0.3",
     "ember-route-action-helper": "2.0.0",
