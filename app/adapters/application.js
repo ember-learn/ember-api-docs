@@ -1,23 +1,35 @@
-import Ember from 'ember';
 import DS from 'ember-data';
+import Ember from 'ember';
 
-function generatePouchID(type, id) {
-  return `${type.modelName}-${id}`;
-}
+const { Inflector: { inflector } } = Ember;
 
-export default DS.JSONAPIAdapter.extend({
-  coalesceFindRequests: true,
+const { JSONAPIAdapter } = DS;
 
-  pouch: Ember.inject.service('database-manager'),
+export default JSONAPIAdapter.extend({
 
-  findRecord(store, type, id) {
-    return this.get('pouch').get(generatePouchID(type, id));
-  },
+  currentProject: '',
 
-  findMany(store, type, ids) {
-    const remappedIDs = ids.map(id => generatePouchID(type, id));
+  findRecord(store, {modelName}, id) {
+    let url;
+    let projectName = this.get('currentProject');
 
-    return this.get('pouch').allDocs(remappedIDs);
+    if (['namespace', 'class', 'module'].includes(modelName)) {
+      let [version] = id.replace(`${projectName}-`, '').split('-');
+      url = `${projectName}/${version}/${inflector.pluralize(modelName)}/${id}`;
+    } else if (modelName === 'missing') {
+      url = `${projectName}/missings/${id}`
+    } else if (modelName === 'project') {
+      this.set('currentProject', id);
+      url = `${id}/${inflector.pluralize(modelName)}/${id}`;
+    } else if (modelName === 'project-version') {
+      let version = id.replace(`${projectName}-`, '');
+      url = `${projectName}/${version}/${inflector.pluralize(modelName)}/${id}`;
+    } else {
+      throw new Error('Unexpected model lookup');
+    }
+
+    url = `/json-docs/${url}.json`;
+    return fetch(url).then(response => response.json());
   }
 
 });
