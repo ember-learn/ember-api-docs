@@ -21,3 +21,5 @@ terraform.tfstate.backup
 /libpeerconnection.log
 npm-debug.log*
 testem.log
+
+public/json-docs/
