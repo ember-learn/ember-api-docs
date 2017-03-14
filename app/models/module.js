@@ -5,7 +5,8 @@ const { attr } = DS;
 
 export default ClassModel.extend({
   submodules: attr(),
-  classes: attr(),
+  publicclasses: attr(),
+  privateclasses: attr(),
   namespaces: attr(),
   parent: attr()
 });
