@@ -11,7 +11,8 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test --launch=Firefox",
-    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../.."
+    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../..",
+    "sync-docs": "s3-cli sync s3://sk-ed/json-docs public/json-docs"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "author": "Ember Learning Team and contributors",
   "license": "MIT",
   "dependencies": {
+    "s3-cli": "^0.13.0",
     "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [

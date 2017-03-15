@@ -2,50 +2,10 @@
 
 This app is used to produce versioned Ember api docs.  To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
 
-## Prerequisites
+## Development setup 
 
-You will need the following things properly installed on your computer.
-
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM)
-* [Bower](https://bower.io/)
-* [Ember CLI](https://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
-
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd my-app`
-* `npm install`
-* `bower install`
-
-## Running / Development
-
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+- Setup any valid AWS key values in your environment
+  - `export AWS_ACCESS_KEY=xxxx`
+  - `export AWS_SECRET_KEY=yyyy`
+- Run `npm run sync-docs` to download the json docs. This will download about **500MB+** docs to your local. 
+  - If you wanna go green with lesser docs, generate fewer docs on your local following [these instructions](https://github.com/ember-learn/ember-jsonapi-docs#to-generate-docs-for-a-specific-project-andor-version-for-development) & then move the `tmp/json-docs` from that project into this project's `public/json-docs` folder

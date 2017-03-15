@@ -16,6 +16,8 @@ export default JSONAPIAdapter.extend({
 
   currentProject: '',
 
+  currentProjectVersion: '',
+
   findRecord(store, {modelName}, id) {
     let url;
     let projectName = this.get('currentProject');
@@ -24,7 +26,8 @@ export default JSONAPIAdapter.extend({
       let [version] = id.replace(`${projectName}-`, '').split('-');
       url = `${projectName}/${version}/${inflector.pluralize(modelName)}/${id}`;
     } else if (modelName === 'missing') {
-      url = `${projectName}/missings/${id}`
+      let version = Ember.getOwner(this).lookup('controller:project-version').get('model.version');
+      url = `${projectName}/${version}/missings/${id}`
     } else if (modelName === 'project') {
       this.set('currentProject', id);
       url = `${id}/${inflector.pluralize(modelName)}/${id}`;
