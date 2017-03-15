@@ -10,7 +10,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test --launch=Firefox",
+    "test": "ember test",
     "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../..",
     "sync-docs": "s3-cli sync s3://sk-ed/json-docs public/json-docs"
   },
