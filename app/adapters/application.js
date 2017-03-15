@@ -4,7 +4,7 @@ import fetch from 'ember-network/fetch';
 
 const {
   Inflector: { inflector },
-  inject: { service },
+  inject: { service }
 } = Ember;
 
 const { JSONAPIAdapter } = DS;

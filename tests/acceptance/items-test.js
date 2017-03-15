@@ -1,7 +1,7 @@
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import {test} from 'qunit';
 
-moduleForAcceptance('ItemRoutes');
+moduleForAcceptance('Acceptance | ItemRoutes');
 
 test('Can navigate to method from class', function(assert) {
   visit('/ember/1.0.0/classes/Container');

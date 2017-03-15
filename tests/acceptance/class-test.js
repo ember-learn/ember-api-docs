@@ -2,7 +2,7 @@ import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-accepta
 import {test} from 'qunit';
 import $ from 'jquery';
 
-moduleForAcceptance('Class', {
+moduleForAcceptance('Acceptance | Class', {
   beforeEach() {
     return visit('/ember/1.0.0/classes/Container').then(() => {
       click('.access-checkbox:contains(Inherited)');
