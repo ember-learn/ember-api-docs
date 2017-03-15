@@ -58,6 +58,7 @@
     "ember-cli-release": "^0.2.9",
     "ember-cli-sass": "^5.6.0",
     "ember-cli-shims": "^1.0.2",
+    "ember-cli-template-lint": "0.5.2",
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^0.20.0",
