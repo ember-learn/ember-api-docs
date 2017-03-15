@@ -38,7 +38,7 @@
     {{/if}}
   </p>
 
-  <p>{{{model.description}}}</p>
+  <p>{{html-safe model.description}}</p>
 
   {{#if (or model.methods model.properties model.events)}}
     <div class="tabbed-layout">

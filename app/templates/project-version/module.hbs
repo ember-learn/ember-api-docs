@@ -10,7 +10,7 @@
     {{/if}}
   </p>
 
-  <p>{{{model.description}}}</p>
+  <p>{{html-safe model.description}}</p>
 
   {{#if submodules}}
     <section>
