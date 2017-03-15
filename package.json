@@ -11,8 +11,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test --launch=Firefox",
-    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../..",
-    "heroku-flush-redis": "node flush-redis.js"
+    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../.."
   },
   "repository": {
     "type": "git",
@@ -25,7 +24,6 @@
   "author": "Ember Learning Team and contributors",
   "license": "MIT",
   "dependencies": {
-    "redisdown": "^0.1.12",
     "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [
@@ -76,13 +74,7 @@
     "ember-truth-helpers": "1.2.0",
     "emberx-select": "github:thefrontside/emberx-select#05f0c947d321ca59e58cf1213a9552b888ca0201",
     "fastboot-app-server": "1.0.0-rc.5",
-    "fastboot-redis-cache": "github:gaurav0/fastboot-redis-cache#16fa186392b66b1697608e582dd350483f1df722",
     "loader.js": "^4.0.10",
-    "minimist": "^1.2.0",
-    "node-redis": "^0.1.7",
-    "redis": "^2.7.0"
-  },
-  "fastbootDependencies": [
-    "redisdown"
-  ]
+    "minimist": "^1.2.0"
+  }
 }
