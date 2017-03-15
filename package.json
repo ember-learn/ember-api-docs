@@ -10,9 +10,9 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test --launch=Firefox",
+    "test": "ember test",
     "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install && cd ../..",
-    "heroku-flush-redis": "node flush-redis.js"
+    "sync-docs": "s3-cli sync s3://sk-ed/json-docs public/json-docs"
   },
   "repository": {
     "type": "git",
@@ -25,9 +25,7 @@
   "author": "Ember Learning Team and contributors",
   "license": "MIT",
   "dependencies": {
-    "pouchdb": "^5.4.5",
-    "redisdown": "^0.1.12",
-    "relational-pouch": "^1.4.4",
+    "s3-cli": "^0.13.0",
     "semver-compare": "^1.0.0"
   },
   "cacheDirectories": [
@@ -37,7 +35,6 @@
   "devDependencies": {
     "bower": "^1.0.0",
     "broccoli-asset-rev": "^2.4.5",
-    "ember-ajax": "^2.4.1",
     "ember-anchor": "~0.1.8",
     "ember-browserify": "~1.1.13",
     "ember-cli": "2.11.1",
@@ -52,7 +49,7 @@
     "ember-cli-deploy-gzip": "^0.2.1",
     "ember-cli-document-title": "^0.3.1",
     "ember-cli-eslint": "3.0.0",
-    "ember-cli-fastboot": "github:gaurav0/ember-cli-fastboot#71cd547b91ba239971741d0720ed6e01069bb86d",
+    "ember-cli-fastboot": "1.0.0-beta.15",
     "ember-cli-head": "0.1.4",
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-htmlbars-inline-precompile": "^0.3.6",
@@ -61,6 +58,7 @@
     "ember-cli-release": "^0.2.9",
     "ember-cli-sass": "^5.6.0",
     "ember-cli-shims": "^1.0.2",
+    "ember-cli-template-lint": "0.5.2",
     "ember-cli-test-loader": "^1.1.0",
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^0.20.0",
@@ -71,22 +69,14 @@
     "ember-inflector": "^1.9.4",
     "ember-load-initializers": "^0.6.0",
     "ember-lodash": "0.0.11",
-    "ember-pouch": "github:gaurav0/ember-pouch#c89600c7b8c14c919b9b808a4ea6d9d6666ca047",
+    "ember-network": "0.3.1",
     "ember-resolver": "^2.0.3",
-    "ember-route-action-helper": "2.0.0",
+    "ember-route-action-helper": "^2.0.2",
     "ember-source": "~2.11.2",
     "ember-truth-helpers": "1.2.0",
     "emberx-select": "github:thefrontside/emberx-select#05f0c947d321ca59e58cf1213a9552b888ca0201",
-    "fastboot-app-server": "1.0.0-rc.4",
-    "fastboot-redis-cache": "github:gaurav0/fastboot-redis-cache#16fa186392b66b1697608e582dd350483f1df722",
+    "fastboot-app-server": "1.0.0-rc.5",
     "loader.js": "^4.0.10",
-    "minimist": "^1.2.0",
-    "node-redis": "^0.1.7",
-    "redis": "^2.6.0-0"
-  },
-  "fastbootDependencies": [
-    "pouchdb",
-    "relational-pouch",
-    "redisdown"
-  ]
+    "minimist": "^1.2.0"
+  }
 }

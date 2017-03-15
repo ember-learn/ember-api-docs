@@ -5,7 +5,6 @@
 process.title = 'ember-fastboot-server';
 
 const FastBootAppServer = require('fastboot-app-server');
-const RedisCache = require('fastboot-redis-cache');
 const parseArgs = require('minimist');
 const url = require('url');
 
@@ -23,16 +22,8 @@ if (!distPath) {
   process.exit(1);
 }
 
-let redisUrl = url.parse(process.env.REDIS_URL || 'redis://localhost:6379');
-
-let cache = new RedisCache({
-  host: redisUrl.hostname,
-  port: redisUrl.port
-});
-
 let server = new FastBootAppServer({
   distPath: distPath,
-  cache: cache,
   gzip: true
 });
 

@@ -1,23 +1,52 @@
-import Ember from 'ember';
 import DS from 'ember-data';
+import Ember from 'ember';
+import fetch from 'ember-network/fetch';
 
-function generatePouchID(type, id) {
-  return `${type.modelName}-${id}`;
-}
+const {
+  Inflector: { inflector },
+  inject: { service }
+} = Ember;
 
-export default DS.JSONAPIAdapter.extend({
-  coalesceFindRequests: true,
+const { JSONAPIAdapter } = DS;
 
-  pouch: Ember.inject.service('database-manager'),
 
-  findRecord(store, type, id) {
-    return this.get('pouch').get(generatePouchID(type, id));
-  },
+export default JSONAPIAdapter.extend({
 
-  findMany(store, type, ids) {
-    const remappedIDs = ids.map(id => generatePouchID(type, id));
+  fastboot: service(),
 
-    return this.get('pouch').allDocs(remappedIDs);
+  currentProject: '',
+
+  currentProjectVersion: '',
+
+  findRecord(store, {modelName}, id) {
+    let url;
+    let projectName = this.get('currentProject');
+
+    if (['namespace', 'class', 'module'].includes(modelName)) {
+      let [version] = id.replace(`${projectName}-`, '').split('-');
+      url = `${projectName}/${version}/${inflector.pluralize(modelName)}/${id}`;
+    } else if (modelName === 'missing') {
+      let version = Ember.getOwner(this).lookup('controller:project-version').get('model.version');
+      url = `${projectName}/${version}/missings/${id}`
+    } else if (modelName === 'project') {
+      this.set('currentProject', id);
+      url = `${id}/${inflector.pluralize(modelName)}/${id}`;
+    } else if (modelName === 'project-version') {
+      let version = id.replace(`${projectName}-`, '');
+      url = `${projectName}/${version}/${inflector.pluralize(modelName)}/${id}`;
+    } else {
+      throw new Error('Unexpected model lookup');
+    }
+
+    url = `/json-docs/${url}.json`;
+
+    let fastboot = this.get('fastboot');
+    if (fastboot.get('isFastBoot')) {
+      let { protocol, host } = fastboot.get('request').getProperties(['protocol', 'host']);
+      url = `${protocol}://${host}${url}`;
+    }
+
+    return fetch(url).then(response => response.json());
   }
 
 });

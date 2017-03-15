@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint-env node: true */
 
 module.exports = function(deployTarget) {
   var ENV = {
