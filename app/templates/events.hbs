@@ -1,6 +1,6 @@
 {{ember-anchor a=anchor}}
 {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
   {{#each filteredModel.events as |event|}}
-    {{class-field-description type="event" field=method model=model}}
+    {{class-field-description type="event" field=event model=model}}
   {{/each}}
 {{/api-index-filter}}
