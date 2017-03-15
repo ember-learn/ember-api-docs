@@ -19,12 +19,12 @@
   <p class="github-link">
     {{#if field.inherited}}
       Inherited from
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
         {{field.inheritedFrom}} {{field.file}}:{{field.line}}
       </a>
     {{else}}
       Defined in
-      <a href="{{github-link model.project.id model.projectVersion.version model.file field.line}}" target="_blank">
+      <a href="{{github-link model.project.id model.projectVersion.version model.file field.line}}" target="_blank" rel="noopener">
         {{field.file}}:{{field.line}}
       </a>
     {{/if}}

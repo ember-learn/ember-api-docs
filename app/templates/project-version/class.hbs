@@ -1,5 +1,5 @@
 <article class="chapter">
-  <a class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank">{{fa-icon "pencil"}}</a>
+  <a class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{fa-icon "pencil"}}</a>
   <h1>
     {{model.name}} {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
   </h1>
@@ -26,7 +26,7 @@
       <div class="attribute">
         <span class="attribute-label">Defined in:</span>
         <span class="attribute-value">
-          <a href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank">{{model.file}}:{{model.line}}</a>
+          <a href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{model.file}}:{{model.line}}</a>
         </span>
       </div>
     {{/if}}
