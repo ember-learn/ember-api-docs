@@ -7,8 +7,7 @@
     "lodash": "~3.7.0",
     "remarkable": "^1.7.1",
     "highlightjs": "^9.8.0",
-    "jquery-scrollparent": "~0.1.2",
-    "font-awesome": "^4.7.0"
+    "jquery-scrollparent": "~0.1.2"
   },
   "resolutions": {
     "FakeXMLHttpRequest": "^1.4.0",

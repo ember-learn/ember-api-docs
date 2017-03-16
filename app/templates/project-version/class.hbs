@@ -1,5 +1,5 @@
 <article class="chapter">
-  <a class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{fa-icon "pencil"}}</a>
+  <a class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{partial "svg/fa-pencil"}}</a>
   <h1>
     {{model.name}} {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
   </h1>
