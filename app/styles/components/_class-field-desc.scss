@@ -1,5 +1,9 @@
 .chapter li {
   margin: $small-spacing 0;
+
+  @media (max-width: $mobile-portrait-screen){
+    margin: 0;
+  }
 }
 .chapter ul + .highlight {
   margin-top: $base-spacing;

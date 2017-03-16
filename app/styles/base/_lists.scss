@@ -8,6 +8,10 @@ ol {
     list-style-type: disc;
     margin-bottom: $small-spacing;
     padding-left: $base-spacing;
+
+    @media (max-width: $mobile-portrait-screen){
+      padding-left: 0;
+    }
   }
 
   &%default-ol {
