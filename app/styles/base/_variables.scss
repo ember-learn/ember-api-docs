@@ -14,9 +14,10 @@ $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
 // Spacing
-$base-spacing: $base-line-height * 1em;
-$small-spacing: $base-spacing / 2;
-$large-spacing: $base-spacing * 2;
+$base-spacing: $base-line-height * 1em; // 24px
+$small-spacing: $base-spacing / 2; // 12px
+$large-spacing: $base-spacing * 2; // 48px
+$top-spacing: $base-spacing * 3.333; // 80px
 
 // Colors
 $ember-orange: #dd6a58;

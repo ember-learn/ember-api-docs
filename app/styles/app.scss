@@ -25,20 +25,11 @@ body {
       padding: 15px;
     }
 
-    .sidebar {
-      position: fixed;
-      bottom: 0;
-      top: 80px;
-      left: 0;
-      overflow:auto;
-      width: 400px;
-    }
-
     .content {
       position:fixed;
       left: 400px;
       right: 0;
-      top: 80px;
+      top: $top-spacing;
       bottom: 0;
       overflow:auto;
 
@@ -46,7 +37,10 @@ body {
         max-width: 800px;
         margin: 0 auto;
       }
+
+        @media (min-width:$large-screen) and (max-width: 1200px){
+          left: 300px;
+        }
     }
   }
-
 }

@@ -1,5 +1,9 @@
 article {
-  padding: $large-spacing;
+  padding: $large-spacing $small-spacing;
+
+  @media (min-width: $large-screen){
+    padding: 0 $small-spacing;
+  }
 
   .edit-page {
     @include size(24px 18px);

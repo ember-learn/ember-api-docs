@@ -3,6 +3,7 @@
   border-bottom: $base-border;
   position: relative;
   z-index: 1;
+  padding: $small-spacing 0;
 
   @include media($large-screen) {
     @include span-columns(3.5);
@@ -17,6 +18,19 @@
       background-color: $sidebar-background-color;
       z-index: -1;
     }
+  }
+
+  @include media($large-screen-up) {
+    position: fixed;
+    bottom: 0;
+    top: $top-spacing;
+    left: 0;
+    overflow:auto;
+    width: 400px;
+  }
+
+  @media (min-width:$large-screen) and (max-width: 1200px){
+    width: 300px;
   }
 
   .select2 {
