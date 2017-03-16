@@ -5,6 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'ember-api-docs',
     environment: environment,
     rootURL: '/',
+    routerRootURL: '/',
     locationType: 'auto',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
@@ -57,6 +58,14 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy = {
       "connect-src": "'self' http://localhost:5984 https://*.cloudant.com"
     };
+
+    /**
+     * Ideally we want this to be only for fast boot. But we have to wait for
+     * https://github.com/ember-fastboot/ember-cli-fastboot/issues/254 to be
+     * solved for that
+     */
+    ENV.routerRootURL = '/api-new/';
+
   }
 
   return ENV;
