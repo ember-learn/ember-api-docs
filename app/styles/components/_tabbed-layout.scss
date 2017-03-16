@@ -21,15 +21,12 @@
     display: flex;
     list-style-type: none;
     overflow: hidden;
-    border-bottom: solid 1px e6e4e3;
     margin: 0 0;
     padding: 0 0;
 
     &__item {
       cursor: pointer;
       flex-grow: 1;
-      text-align: center;
-      padding: 0 0;
       margin: 0 0 1em 0;
       border-top: solid 1px #fafafa;
       border-right: solid 1px #e6e4e3;
@@ -40,8 +37,6 @@
       text-align: center;
       font-weight: normal;
       color: #443331;
-      font-family: 'Helvetica Neue';
-      width: 100%;
 
       &:hover {
         background-color: #ebebeb;
@@ -69,11 +64,17 @@
       }
     }
 
-    &__item, &__item_selected {
-      &, &:first-of-type {
-        @media (max-width: $mobile-portrait-screen){
+    @media (max-width: $mobile-portrait-screen){
+      &__item, &__item_selected {
+        &, &:first-of-type {
           border: 0;
           border-radius: 0;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        &:not(:last-of-type){
+          border-right: solid 1px #e6e4e3;
         }
       }
     }

@@ -5,6 +5,10 @@ article {
     padding: 0 $small-spacing;
   }
 
+  @media (max-width: $mobile-portrait-screen){
+    padding: $large-spacing 0;
+  }
+
   .edit-page {
     @include size(24px 18px);
     color: $brown;
