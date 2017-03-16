@@ -2,10 +2,11 @@ import Ember from 'ember';
 import _ from 'lodash/lodash';
 import semverCompare from 'npm:semver-compare';
 import getMinorVersion from "../utils/get-minor-version";
+import FilterParams from '../mixins/filter-params';
 
 const { Controller, computed, A, inject } = Ember;
 
-export default Controller.extend({
+export default Controller.extend(FilterParams, {
 
   filterData: inject.service(),
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
