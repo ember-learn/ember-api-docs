@@ -4,7 +4,7 @@
     {{model.name}} {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
   </h1>
 
-  <p class="attributes">
+  <div class="attributes">
     {{#if model.extends}}
       <div class="attribute">
         <span class="attribute-label">Extends:</span>
@@ -36,7 +36,7 @@
         <span class="attribute-value">{{#link-to 'project-version.module' model.projectVersion.version model.module}}{{model.module}}{{/link-to}}</span>
       </div>
     {{/if}}
-  </p>
+  </div>
 
   <p>{{html-safe model.description}}</p>
 
