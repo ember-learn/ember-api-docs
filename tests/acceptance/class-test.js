@@ -37,3 +37,11 @@ test('lists all the events on the class page', function (assert) {
   const container = store.peekRecord('class', 'ember-1.0.0-Container');
   assert.equal($(find('.spec-event-list li')).length, container.get('events.length'));
 });
+
+test('has query params for access visibilities', function (assert) {
+  let params = (currentURL().match(/show=([\w\d%]*)/)[1] || '').split('%2C');
+  assert.ok(params.includes('inherited'), 'show param includes inherited');
+  assert.ok(params.includes('protected'), 'show param includes protected');
+  assert.ok(params.includes('private'), 'show param includes private');
+  assert.ok(params.includes('deprecated'), 'show param includes deprecated');
+});
