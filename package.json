@@ -63,6 +63,7 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-composable-helpers": "^0.20.0",
     "ember-data": "^2.11.0",
+    "ember-data-fastboot": "github:martinmalinda/ember-data-fastboot#371e184b7c1475bed5db5d950b6dd24208b95628",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.5",
     "ember-inflector": "^1.9.4",
