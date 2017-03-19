@@ -36,6 +36,7 @@
     "bower": "^1.0.0",
     "broccoli-asset-rev": "^2.4.5",
     "broccoli-manifest": "0.0.7",
+    "ember-a11y-testing": "^0.3.0",
     "ember-anchor": "~0.1.8",
     "ember-browserify": "~1.1.13",
     "ember-cli": "^2.12.0",
