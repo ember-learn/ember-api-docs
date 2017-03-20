@@ -31,9 +31,9 @@ module.exports = function(environment) {
     ENV.contentSecurityPolicy = {
       "connect-src": "'self' http://localhost:5984 https://*.cloudant.com",
       "script-src": "'self' unsafe-inline use.typekit.net",
-      "font-src": "'self' data://* use.typekit.net",
-      "img-src": "'self' p.typekit.net",
-      "style-src": "'self' 'unsafe-inline' https://use.typekit.net"
+      "font-src": "'self' data://* https://fonts.gstatic.com",
+      "img-src": "'self'",
+      "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com"
     };
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
