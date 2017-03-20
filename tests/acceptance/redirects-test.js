@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import _ from 'lodash/lodash';
+import _ from 'lodash';
 import semverCompare from 'npm:semver-compare';
 
 moduleForAcceptance('Acceptance | redirects');
