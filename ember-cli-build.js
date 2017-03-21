@@ -22,6 +22,9 @@ module.exports = function(defaults) {
     },
     autoprefixer: {
       browsers: ['last 2 versions']
+    },
+    'ember-composable-helpers': {
+      only: ['join', 'map-by']
     }
   });
 
