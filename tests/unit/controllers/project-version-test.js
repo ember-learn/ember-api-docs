@@ -28,7 +28,9 @@ const expectedModuleNames = [
   "ember-views"
 ];
 
-moduleFor('controller:project-version', 'Unit | Controller | project version');
+moduleFor('controller:project-version', 'Unit | Controller | project version', {
+  needs: ['service:filterData']
+});
 
 test('should render module names', function(assert) {
   let controller = this.subject({
