@@ -8,6 +8,7 @@ module.exports = function(defaults) {
   }
 
   var app = new EmberApp(defaults, {
+
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg'],
       prepend: prepend,
