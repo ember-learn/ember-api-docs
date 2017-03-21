@@ -5,11 +5,19 @@
   z-index: 1;
   padding: $small-spacing 0;
 
-  @include media($large-screen) {
+  @include media($medium-large-screen-up) {
+    // fixed sidebar, full height
     @include span-columns(3.5);
+    margin-right: 0;
+    position: fixed;
+    bottom: 0;
+    top: $top-spacing;
+    left: 0;
+    width: 19em;
+    overflow: auto;
     border-bottom: 0;
     border-right: $base-border;
-    padding: $large-spacing $gutter $large-spacing 0;
+    padding: $small-spacing $base-spacing;
 
     &::before {
       @include position(absolute, 0 0 0 -100vw);
@@ -20,27 +28,12 @@
     }
   }
 
-  @include media($large-screen-up) {
-    position: fixed;
-    bottom: 0;
-    top: $top-spacing;
-    left: 0;
-    overflow:auto;
-    width: 400px;
-  }
-
-  @media (min-width:$large-screen) and (max-width: 1200px){
-    width: 300px;
+  @media (min-width: 1200px) {
+    width: 22em;
   }
 
   .select2 {
     margin-bottom: 1em;
-  }
-  ol {
-    margin-bottom: 1.5em;
-  }
-  div {
-    padding-bottom: 3em;
   }
 }
 
@@ -108,7 +101,8 @@ li.toc-level-0 {
     color: $brown;
     display: block;
     line-height: 1.25;
-    padding: 0.33em 0;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 
     &:hover {
       color: $ember-orange;
@@ -121,7 +115,6 @@ li.toc-level-0 {
 
   > a {
     font-weight: bold;
-    margin: 0.33em 0;
   }
 }
 
@@ -149,6 +142,6 @@ ol.toc-level-1 {
   }
 
   a {
-    padding-left: $gutter;
+    padding-left: $small-spacing;
   }
 }
