@@ -2,7 +2,6 @@
 @import "./base/base";
 @import "neat";
 @import "./components/all";
-
 @import "class";
 
 body {
@@ -10,9 +9,7 @@ body {
   width: 100%;
 }
 
-
-@include media($large-screen-up) {
-
+@include media($medium-large-screen-up) {
   .header {
     position: fixed;
     width: 100%;
@@ -20,27 +17,25 @@ body {
 
   main.container {
     width: 100%;
+  }
 
-    > * {
-      padding: 15px;
-    }
+  main.container .content {
+    position: fixed;
+    left: 400px;
+    right: 0;
+    top: $top-spacing;
+    bottom: 0;
+    overflow:auto;
+    padding: $base-spacing;
 
-    .content {
-      position:fixed;
-      left: 400px;
-      right: 0;
-      top: $top-spacing;
-      bottom: 0;
-      overflow:auto;
-
-      .chapter {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-        @media (min-width:$large-screen) and (max-width: 1200px){
-          left: 300px;
-        }
+    @media (min-width: $medium-screen) and (max-width: 1200px) {
+      left: 300px;
     }
   }
+
+  main.container .content .chapter {
+    max-width: 800px;
+    margin: 0 auto;
+  }
 }
+

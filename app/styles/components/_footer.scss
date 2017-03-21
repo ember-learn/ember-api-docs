@@ -2,7 +2,6 @@
   background-color: shade($creme, 3%);
   border-top: 1px solid $linen;
   text-align: center;
-  font-family: $footer-font-family;
 
   .container {
     @include padding(2em 1em);

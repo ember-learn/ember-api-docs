@@ -1,12 +1,8 @@
 article {
   padding: $large-spacing $small-spacing;
 
-  @media (min-width: $large-screen){
-    padding: 0 $small-spacing;
-  }
-
-  @media (max-width: $mobile-portrait-screen){
-    padding: $large-spacing 0;
+  @media (min-width: $medium-screen){
+    padding: $small-spacing;
   }
 
   .edit-page {
