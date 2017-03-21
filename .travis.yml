@@ -27,7 +27,7 @@ script:
 deploy:
   provider: heroku
   app:
-    master: ember-v-api-docs-staging
+    master: ember-api-docs-staging
     production: ember-api-docs
   api_key:
     secure: IJlh2J/Q13CtUGhUAcGTbz2pVfTa2Dm8uuSKqgB+q1CUNv5GoshUHmU9VInVr40XpqAUcBoUpQw18AA5FD9bT1PN8V5xYQZgLaPtDs126mg9agyzijJgfHolNOEjaZveQy7PmcCY73CoLqf/3gNwn6MIL4ZotY39t3zpAy3LwdWojJeOH+D8s6EklA7tE2VzUKjCtTtl9YT4GJqIh66pedAORCZFfZtC1Qgg7E++0zye+w28GTH/5XqlzIDUjfdG3TH2VdkBNCLoag9CknQcbV8Iq0Eno/Ihdrp8fZcG2o1PRZRMIhlGfQJA8F+8CHrqjl1RyinYYcbImGpgVTP/b8kRLJXRhhLU3PnGSEdDen9W5YTB5ljsxhQ+iS/xch7Llj2ZXKEPUaC9P3E6Ds9ExFh29YAzes4xJGsmSS0z5iJNXsGfazrLkCe/Lg5/7Ys/mA7sZI7rJ7yvFPRUPKn5bmfNqpgN/I1/avqkK34KgKioiAnRvtPDkX2ccADHDSgDc1lrDgQfJt2Tiz2g/93CFpaRWRhp7ptvD193gONBUa4D3NMpawchGHDzqUGt5oKEV/ggEtoRo1HJzmX3UwHU3QjARcMTZYsS3zlc1czmLCyNK8Ye6sGdtV7no07ePOnvsUE95ePGbsy9J/GVqksvyuhM+ApwQuHYgX3t7i+EeoQ=
