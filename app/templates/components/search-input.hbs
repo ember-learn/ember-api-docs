@@ -1,4 +1,5 @@
 <input
+  id='search-input'
   type='search'
   value={{value}}
   oninput={{action 'search' value='target.value'}}
@@ -6,3 +7,50 @@
   placeholder="Search the guides"
   />
 
+{{!-- Search results dropdown --}}
+  {{#ember-tether
+    target='#search-input'
+    targetAttachment='bottom left'
+    attachment='top left'
+    constraints=_resultTetherConstraints
+    class='ds-dropdown-results'
+  }}
+  {{#if _results}}
+  <span class="ds-dropdown-menu ds-with-1" role="listbox">
+    <span class="ds-suggestions">
+      {{#each-in _groupedResults as |section results|}}
+        <div class="algolia-docsearch-suggestion
+        algolia-docsearch-suggestion__main">
+          {{!-- Header of each section --}}
+          <div class="algolia-docsearch-suggestion--category-header">
+            <span class="algolia-docsearch-suggestion--category-header-lvl0">{{results.0.hierarchy.lvl0}}</span>
+          </div>
+          {{!-- Results of each section --}}
+          <div class="algolia-docsearch-suggestion--wrapper">
+            {{#each results as |result|}}
+              <div class="algolia-docsearch-suggestion--content" {{action 'clickResult' result}} >
+                <a href={{result.url}}>
+                  {{!-- First "bold" level --}}
+                  <div class="algolia-docsearch-suggestion--subcategory-inline">
+                    {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
+                    {{#if result._highlightResult.hierarchy.lvl1}}
+                      {{{result._highlightResult.hierarchy.lvl1.value}}}
+                    {{else}}
+                      {{{result._highlightResult.hierarchy.lvl0.value}}}
+                    {{/if}}
+                  </div>
+
+                  {{!-- Rest of the hierarchy --}}
+                  <div class="algolia-docsearch-suggestion--title">
+                    {{{result._highlightResult.hierarchy.lvl2.value}}}
+                  </div>
+                </a>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{/each-in}}
+    </span>
+  </span>
+  {{/if}}
+  {{/ember-tether}}

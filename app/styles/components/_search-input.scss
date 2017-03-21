@@ -21,6 +21,9 @@ $dropdown-min-width-large: 600px;
 // - Same list, but with text snippetting added if size is large enough
 // - Adding a second colum to let the content breath if enough room available
 
+.ds-dropdown-results {
+  z-index: 10;
+}
 // Main autocomplete wrapper
 .ds-dropdown-menu {
   background-color: #FFF;
@@ -28,6 +31,7 @@ $dropdown-min-width-large: 600px;
   margin: 6px 0 0;
   text-align: left;
   box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  display: block;
 }
 
 // Each suggestion
