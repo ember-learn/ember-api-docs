@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 import fetch from 'ember-network/fetch';
+import ENV from 'ember-api-docs/config/environment';
 
 const {
   Inflector: { inflector },
@@ -14,12 +15,15 @@ export default JSONAPIAdapter.extend({
 
   fastboot: service(),
 
+  host: ENV.API_HOST,
+
   currentProject: '',
 
   currentProjectVersion: '',
 
   findRecord(store, {modelName}, id) {
     let url;
+    let host = this.get('host');
     let projectName = this.get('currentProject');
 
     if (['namespace', 'class', 'module'].includes(modelName)) {
@@ -38,7 +42,7 @@ export default JSONAPIAdapter.extend({
       throw new Error('Unexpected model lookup');
     }
 
-    url = `/json-docs/${url}.json`;
+    url = `${host}/json-docs/${url}.json`;
 
     let fastboot = this.get('fastboot');
     if (fastboot.get('isFastBoot')) {
