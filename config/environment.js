@@ -7,6 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
+    API_HOST: 'https://s3.amazonaws.com/api-docs.emberjs.com',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
@@ -29,7 +30,7 @@ module.exports = function(environment) {
 
   if (environment === 'development') {
     ENV.contentSecurityPolicy = {
-      "connect-src": "'self' http://localhost:5984 https://*.cloudant.com",
+      "connect-src": "'self' http://localhost:5984 https://s3.amazonaws.com",
       "script-src": "'self' unsafe-inline use.typekit.net",
       "font-src": "'self' data://* https://fonts.gstatic.com",
       "img-src": "'self'",
