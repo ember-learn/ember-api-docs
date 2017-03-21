@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import semverCompare from 'npm:semver-compare';
-import _ from 'lodash/lodash';
+import _ from 'lodash';
 
 const { Route, inject: {service} } = Ember;
 

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import ClassController from './class';
-import _ from 'lodash/lodash';
+import _ from 'lodash';
 
 const { computed, inject } = Ember;
 
