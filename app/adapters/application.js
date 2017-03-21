@@ -4,16 +4,12 @@ import fetch from 'ember-network/fetch';
 import ENV from 'ember-api-docs/config/environment';
 
 const {
-  Inflector: { inflector },
-  inject: { service }
+  Inflector: { inflector }
 } = Ember;
 
 const { JSONAPIAdapter } = DS;
 
-
 export default JSONAPIAdapter.extend({
-
-  fastboot: service(),
 
   host: ENV.API_HOST,
 
@@ -43,12 +39,6 @@ export default JSONAPIAdapter.extend({
     }
 
     url = `${host}/json-docs/${url}.json`;
-
-    let fastboot = this.get('fastboot');
-    if (fastboot.get('isFastBoot')) {
-      let { protocol, host } = fastboot.get('request').getProperties(['protocol', 'host']);
-      url = `${protocol}://${host}${url}`;
-    }
 
     return fetch(url).then(response => response.json());
   }
