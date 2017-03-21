@@ -7,7 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: 'https://s3.amazonaws.com/api-docs.emberjs.com',
+    API_HOST: 'https://s3.amazonaws.com/api-docs.emberjs.com/json-docs',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
