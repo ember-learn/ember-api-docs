@@ -69,7 +69,7 @@ export default Controller.extend(FilterParams, {
     return project.hasMany('projectVersions').ids();
   }),
 
-  projectVersions: computed('model', function() {
+  projectVersions: computed('model.project.projectVersions.[]', function() {
     const projectVersions = this.get('model.project.projectVersions');
     let versions = projectVersions.toArray().sort(function(a, b) {
       const a_ver = _.last(a.get('id').split("-"));
