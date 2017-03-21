@@ -40,6 +40,11 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['ember-a11y-testing'] = {
+      componentOptions: {
+        turnAuditOff: process.env.test_a11y !== 'yes'
+      }
+    };
   }
 
   if (environment === 'test') {
@@ -66,6 +71,14 @@ module.exports = function(environment) {
      */
     ENV.routerRootURL = '/api-new/';
 
+  }
+  ENV.manifest = {
+    enabled: true,
+    appcacheFile: "/manifest.appcache",
+    excludePaths: ['index.html'],
+    includePaths: ['/'],
+    //network: ['api/'],
+    showCreateDate: true
   }
 
   return ENV;

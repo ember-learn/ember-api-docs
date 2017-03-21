@@ -8,6 +8,7 @@ module.exports = function(defaults) {
   }
 
   var app = new EmberApp(defaults, {
+
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg'],
       prepend: prepend,
@@ -25,6 +26,11 @@ module.exports = function(defaults) {
     },
     'ember-composable-helpers': {
       only: ['join', 'map-by']
+    },
+    'esw-cache-fallback': {
+      patterns: [
+        '/json-docs/(.+)'
+      ]
     }
   });
 
