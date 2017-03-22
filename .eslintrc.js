@@ -9,9 +9,7 @@ module.exports = {
     'browser': true
   },
   globals: {
-    'heimdall': true,
-    selectChoose: true,
-    selectSearch: true
+    'heimdall': true
   },
   rules: {
     'no-unused-vars': ['error', {
