@@ -11,7 +11,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember test",
-    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install --production && cd ../.."
+    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && yarn install --production && cd ../.."
   },
   "repository": {
     "type": "git",
