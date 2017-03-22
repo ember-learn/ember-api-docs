@@ -21,6 +21,9 @@ select {
   display: block;
   font-family: $base-font-family;
   font-size: $base-font-size;
+  background-color: $base-background-color;
+  transition: border-color;
+  appearance: none;
 }
 
 label {
@@ -36,8 +39,7 @@ label {
   }
 }
 
-#{$all-text-inputs},
-select[multiple=multiple],
+
 textarea {
   background-color: $base-background-color;
   border: $base-border;
@@ -66,9 +68,6 @@ textarea {
   resize: vertical;
 }
 
-input[type="search"] {
-  appearance: none;;
-}
 
 input[type="checkbox"],
 input[type="radio"] {
