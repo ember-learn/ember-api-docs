@@ -14,7 +14,6 @@ let argOptions = {
 
 let options = parseArgs(process.argv.slice(2), argOptions);
 let distPath = options._[0];
-let assetPath = options['serve-assets-from'];
 
 if (!distPath) {
   console.error("You must call ember-fastboot with the path of a fastboot-dist directory:\n\n" +

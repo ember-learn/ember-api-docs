@@ -38,7 +38,7 @@ export default JSONAPIAdapter.extend({
       throw new Error('Unexpected model lookup');
     }
 
-    url = `${host}/${url}.json`;
+    url = `${host}/json-docs/${url}.json`;
 
     return fetch(url).then(response => response.json());
   }
