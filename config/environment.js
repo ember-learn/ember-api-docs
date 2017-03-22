@@ -7,7 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: 'https://s3.amazonaws.com/api-docs.emberjs.com/json-docs',
+    API_HOST: 'https://s3.amazonaws.com/api-docs.emberjs.com',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
@@ -29,13 +29,6 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    ENV.contentSecurityPolicy = {
-      "connect-src": "'self' http://localhost:5984 https://s3.amazonaws.com",
-      "script-src": "'self' unsafe-inline use.typekit.net",
-      "font-src": "'self' data://* https://fonts.gstatic.com",
-      "img-src": "'self'",
-      "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com"
-    };
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
@@ -60,10 +53,16 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
+  ENV.contentSecurityPolicy = {
+    "default-src": "'self'",
+    "connect-src": "'self' https://s3.amazonaws.com",
+    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-36n/xkZHEzq3lo4O+0jXMYbl+dWu3C8orOFHtcAH6HU='",
+    "font-src": "'self' data://* https://fonts.gstatic.com",
+    "img-src": "'self'",
+    "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com"
+  };
+
   if (environment === 'production') {
-    ENV.contentSecurityPolicy = {
-      "connect-src": "'self' http://localhost:5984 https://*.cloudant.com"
-    };
 
     /**
      * Ideally we want this to be only for fast boot. But we have to wait for

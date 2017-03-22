@@ -26,11 +26,6 @@ module.exports = function(defaults) {
     },
     'ember-composable-helpers': {
       only: ['join', 'map-by']
-    },
-    'esw-cache-fallback': {
-      patterns: [
-        '/json-docs/(.+)'
-      ]
     }
   });
 
