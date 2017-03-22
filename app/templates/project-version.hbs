@@ -8,11 +8,20 @@
       </ol>
     </li>
   </ol>
-  {{#x-select value=(readonly model) on-change=(route-action "updateProject") default=model.id project=model.project class="spec-versions-box" as |xs|}}
-    {{#each projectVersions as |projectVersion|}}
-      {{#xs.option value=projectVersion}}{{projectVersion.minorVersion}}{{/xs.option}}
-    {{/each}}
-  {{/x-select}}
+
+  <div class="select-container">
+    {{#power-select
+      onchange=(route-action "updateProject")
+      options= projectVersions
+      selected=model
+      ariaLabel="Select a version"
+      required=true
+      as |ver|
+    }}
+      {{ver.minorVersion}}
+    {{/power-select}}
+  </div>
+
   {{table-of-contents projectId=model.project.id
                       version=model.version
                       classesIDs=shownClassesIDs
