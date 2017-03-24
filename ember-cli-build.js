@@ -29,6 +29,12 @@ module.exports = function(defaults) {
     }
   });
 
+  if (app.env === 'production') {
+    app.options['ember-cli-service-worker'] = {
+      rootUrl: '/api-new/'
+    }
+  }
+
   if (!process.env.EMBER_CLI_FASTBOOT) {
     app.import(app.bowerDirectory + '/jquery-scrollparent/jquery.scrollparent.js');
   }
