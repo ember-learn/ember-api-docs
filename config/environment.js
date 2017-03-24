@@ -5,7 +5,6 @@ module.exports = function(environment) {
     modulePrefix: 'ember-api-docs',
     environment: environment,
     rootURL: '/',
-    routerRootURL: '/',
     locationType: 'auto',
     API_HOST: 'https://s3.amazonaws.com/sk-ed',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
@@ -63,14 +62,6 @@ module.exports = function(environment) {
   };
 
   if (environment === 'production') {
-
-    /**
-     * Ideally we want this to be only for fast boot. But we have to wait for
-     * https://github.com/ember-fastboot/ember-cli-fastboot/issues/254 to be
-     * solved for that
-     */
-    ENV.routerRootURL = '/api-new/';
-
   }
 
   if ('FASTLY_CDN_URL' in process.env) {
