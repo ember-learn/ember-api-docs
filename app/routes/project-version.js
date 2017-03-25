@@ -40,18 +40,26 @@ export default Ember.Route.extend({
       let endingRoute, routeName;
 
       switch (routeName = this.router.currentRouteName) {
-        case 'project-version.class':
-          endingRoute = `classes/${this.modelFor(routeName).get('name')}`;
+        case 'project-version.class': {
+          const className = this.modelFor(routeName).get('name');
+          endingRoute = `classes/${className}`;
           break;
-        case 'project-version.class.index':
-          endingRoute = `classes/${this.modelFor('project-version.class').get('name')}`;
+        }
+        case 'project-version.class.index': {
+          const className = this.modelFor('project-version.class').get('name');
+          endingRoute = `classes/${className}`;
           break;
-        case 'project-version.module.index':
+        }
+        case 'project-version.module.index': {
           const moduleName = this.paramsFor('project-version.module').module;
           endingRoute = `modules/${moduleName}`;
-        case 'project-version.namespace.index':
+          break;
+        }
+        case 'project-version.namespace.index': {
           const namespaceName = this.paramsFor('project-version.namespace').namespace;
           endingRoute = `namespaces/${namespaceName}`;
+          break;
+        }
         default:
           break;
       }
