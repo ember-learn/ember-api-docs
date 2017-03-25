@@ -58,7 +58,7 @@ module.exports = function(environment) {
     "connect-src": "'self' https://s3.amazonaws.com",
     "script-src": "'self' unsafe-inline use.typekit.net 'sha256-36n/xkZHEzq3lo4O+0jXMYbl+dWu3C8orOFHtcAH6HU='",
     "font-src": "'self' data://* https://fonts.gstatic.com",
-    "img-src": "'self'",
+    "img-src": "'self' data:",
     "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com"
   };
 
@@ -73,24 +73,8 @@ module.exports = function(environment) {
 
   }
 
-  let prepend = '';
   if ('FASTLY_CDN_URL' in process.env) {
-    prepend = `https://${process.env.FASTLY_CDN_URL}/`;
     ENV.CDN_URL = process.env.FASTLY_CDN_URL;
-  }
-
-
-  ENV.manifest = {
-    enabled: true,
-    appcacheFile: "/manifest.appcache",
-    excludePaths: ['index.html'],
-    includePaths: [
-      `assets/`,
-      `favicon.ico`
-    ],
-    pathPrefix: prepend,
-    //network: ['api/'],
-    showCreateDate: true
   }
 
   return ENV;
