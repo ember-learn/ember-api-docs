@@ -23,6 +23,7 @@ if (!distPath) {
 
 let serverConfig = {
   distPath: distPath,
+  assetsCacheControl: 'max-age=365000000, immutable',
   gzip: false // Let fastly take care of compression, reducing load on the fastboot
 };
 
