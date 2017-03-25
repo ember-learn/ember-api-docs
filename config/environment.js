@@ -73,18 +73,24 @@ module.exports = function(environment) {
 
   }
 
+  let prepend = '';
+  if ('FASTLY_CDN_URL' in process.env) {
+    prepend = `https://${process.env.FASTLY_CDN_URL}/`;
+  }
+
+
   ENV.manifest = {
     enabled: true,
     appcacheFile: "/manifest.appcache",
     excludePaths: ['index.html'],
     includePaths: [
-      'assets/vendor.js',
-      'assets/vendor.css',
-      'assets/ember-api-docs.js',
-      'assets/ember-api-docs.css',
-      'assets/images/header.svg',
-      'assets/images/ember-logo.svg',
-      'favicon.ico'],
+      `${prepend}assets/vendor.js`,
+      `${prepend}assets/vendor.css`,
+      `${prepend}assets/ember-api-docs.js`,
+      `${prepend}assets/ember-api-docs.css`,
+      `${prepend}assets/images/header.svg`,
+      `${prepend}assets/images/ember-logo.svg`,
+      `${prepend}favicon.ico`],
     //network: ['api/'],
     showCreateDate: true
   }

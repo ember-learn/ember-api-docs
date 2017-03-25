@@ -35,7 +35,7 @@
   "devDependencies": {
     "bower": "^1.8.0",
     "broccoli-asset-rev": "^2.5.0",
-    "broccoli-manifest": "0.0.7",
+    "broccoli-manifest": "github:racido/broccoli-manifest#pathprefix",
     "ember-a11y-testing": "^0.3.0",
     "ember-anchor": "~0.1.8",
     "ember-browserify": "~1.1.13",
