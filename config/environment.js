@@ -76,6 +76,7 @@ module.exports = function(environment) {
   let prepend = '';
   if ('FASTLY_CDN_URL' in process.env) {
     prepend = `https://${process.env.FASTLY_CDN_URL}/`;
+    ENV.CDN_URL = process.env.FASTLY_CDN_URL;
   }
 
 
