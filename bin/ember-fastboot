@@ -21,9 +21,11 @@ if (!distPath) {
   process.exit(1);
 }
 
-let server = new FastBootAppServer({
+let serverConfig = {
   distPath: distPath,
-  gzip: true
-});
+  gzip: false // Let fastly take care of compression, reducing load on the fastboot
+};
+
+let server = new FastBootAppServer(serverConfig);
 
 server.start();
