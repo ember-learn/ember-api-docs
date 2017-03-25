@@ -9,19 +9,15 @@ addons:
     - google-chrome
     packages:
     - google-chrome-stable
-cache:
-  yarn: true
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - npm config set spin false
-- curl -o- -L https://yarnpkg.com/install.sh | bash
-- export PATH=$HOME/.yarn/bin:$PATH
 install:
-- yarn install
+- npm install
 - bower install
 script:
-- yarn test
+- npm test
 deploy:
   provider: heroku
   buildpack: https://codon-buildpacks.s3.amazonaws.com/buildpacks/hone/emberjs.tgz
