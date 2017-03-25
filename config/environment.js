@@ -84,13 +84,14 @@ module.exports = function(environment) {
     appcacheFile: "/manifest.appcache",
     excludePaths: ['index.html'],
     includePaths: [
-      `${prepend}assets/vendor.js`,
-      `${prepend}assets/vendor.css`,
-      `${prepend}assets/ember-api-docs.js`,
-      `${prepend}assets/ember-api-docs.css`,
-      `${prepend}assets/images/header.svg`,
-      `${prepend}assets/images/ember-logo.svg`,
-      `${prepend}favicon.ico`],
+      `assets/vendor.js`,
+      `assets/vendor.css`,
+      `assets/ember-api-docs.js`,
+      `assets/ember-api-docs.css`,
+      `assets/images/header.svg`,
+      `assets/images/ember-logo.svg`,
+      `favicon.ico`],
+    pathPrefix: prepend,
     //network: ['api/'],
     showCreateDate: true
   }
