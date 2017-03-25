@@ -76,7 +76,7 @@
     "ember-route-action-helper": "^2.0.2",
     "ember-source": "~2.12.0",
     "ember-truth-helpers": "^1.3.0",
-    "fastboot-app-server": "github:sivakumar-kailasam/fastboot-app-server#configurable-cache-control",
+    "fastboot-app-server": "1.0.0-rc.5",
     "loader.js": "^4.2.3",
     "minimist": "^1.2.0"
   }
