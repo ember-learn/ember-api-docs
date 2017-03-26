@@ -8,7 +8,7 @@ export default Ember.Route.extend({
 
   model(params) {
     const id = `${params.project}-${params.project_version}`;
-    return this.store.find('project', params.project).then(() => {
+    return this.store.findRecord('project', params.project).then(() => {
       return this.store.findRecord('project-version', id, { includes: 'project' });
     });
   },
@@ -33,10 +33,8 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    updateProject(projectVersion /*, component */) {
-      const ids = projectVersion.get('id').split('-');
-      const projectVersionID = projectVersion.get('version') || ids[ids.length - 1];
-      const project = projectVersion.get('project.id') || ids.slice(0, -1).join('-');
+    updateProject(project, ver /*, component */) {
+      const projectVersionID = ver.id;
       let endingRoute, routeName;
 
       switch (routeName = this.router.currentRouteName) {

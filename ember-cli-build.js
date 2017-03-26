@@ -25,7 +25,7 @@ module.exports = function(defaults) {
       browsers: ['last 2 versions']
     },
     'ember-composable-helpers': {
-      only: ['join', 'map-by']
+      only: ['join', 'map-by', 'filter-by', 'object-at']
     }
   });
 

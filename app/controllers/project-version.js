@@ -4,11 +4,14 @@ import semverCompare from 'npm:semver-compare';
 import getMinorVersion from "../utils/get-minor-version";
 import FilterParams from '../mixins/filter-params';
 
-const { Controller, computed, A, inject } = Ember;
+const { Controller, computed, A, inject: {service} } = Ember;
 
 export default Controller.extend(FilterParams, {
 
-  filterData: inject.service(),
+  filterData: service(),
+
+  session: service(),
+
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
   classesIDs: computed('model', function() {
@@ -62,31 +65,17 @@ export default Controller.extend(FilterParams, {
     return this.get('showPrivateClasses') ? this.get('namespaceIDs') : this.get('publicNamespaceIDs');
   }),
 
-  projectVersionIDs: computed('model', function() {
-    const projectID = this.get('model').belongsTo('project').id();
-    const project = this.store.peekRecord('project', projectID);
+  projectVersions: computed('session.availableProjectVersions', function() {
+    const projectVersions = this.get('session.availableProjectVersions');
+    let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
-    return project.hasMany('projectVersions').ids();
-  }),
+    versions = versions.map((version) => {
+      const minorVersion = getMinorVersion(version);
+      return { id: version, minorVersion };
+    });
+    let groupedVersions = _.groupBy(versions, version => version.minorVersion);
 
-  projectVersions: computed('model.project.projectVersions.[]', function() {
-    const projectVersions = this.get('model.project.projectVersions');
-    let versions = projectVersions.toArray().sort(function(a, b) {
-      const a_ver = _.last(a.get('id').split("-"));
-      const b_ver = _.last(b.get('id').split("-"));
-      return semverCompare(b_ver, a_ver);
-    });
-    versions.forEach(function(version) {
-      const versionString = _.last(version.get('id').split("-"));
-      const minorVersion = getMinorVersion(versionString);
-      version.set('minorVersion', minorVersion);
-    });
-    let groupedVersions = _.groupBy(versions, function(version) {
-      return version.get('minorVersion');
-    });
-    return _.values(groupedVersions).map(function(groupedVersion) {
-      return groupedVersion[0];
-    });
+    return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
 
   activeProject: computed.readOnly('model.project.id')

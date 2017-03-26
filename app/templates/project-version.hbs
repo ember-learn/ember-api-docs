@@ -11,11 +11,12 @@
 
   <div class="select-container">
     {{#power-select
-      onchange=(route-action "updateProject")
-      options= projectVersions
-      selected=model
+      onchange=(route-action "updateProject" activeProject)
+      options=projectVersions
+      selected=(object-at 0 (filter-by 'id' model.version projectVersions))
       ariaLabel="Select a version"
       required=true
+      searchField="minorVersion"
       as |ver|
     }}
       {{ver.minorVersion}}
