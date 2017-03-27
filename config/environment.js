@@ -7,7 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: 'http://ember-api-cdn.perf.site.global.prod.fastly.net',
+    API_HOST: 'https://ead-sk.global.ssl.fastly.net',
     IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
