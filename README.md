@@ -2,6 +2,8 @@
 
 This app is used to produce versioned Ember api docs.  To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
 
+## Want to help out?
+We'd love to get help working on the [next set of issues we're seeing](https://github.com/ember-learn/ember-api-docs/projects/2)
 
 ## a11y testing
 
