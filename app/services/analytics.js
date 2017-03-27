@@ -15,6 +15,9 @@ export default Ember.Service.extend({
   }),
 
   trackPage(page, title) {
+    if (config.environment !== 'production') {
+      return;
+    }
     return this.get('googleAnalytics').then(() => {
       return requestIdlePromise({timeout: 1000});
     }).then(() => {
