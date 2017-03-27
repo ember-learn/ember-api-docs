@@ -20,8 +20,7 @@ export default DS.Model.extend({
   parentClass: belongsTo('class', {async: true, inverse: null}),
   projectVersion: belongsTo('project-version', {inverse: 'classes'}),
   project: computed('projectVersion.id', function() {
-    let id = this.get('projectVersion.id').split('-').slice(0, -1).join('-');
-    return this.store.peekRecord('project', id);
+    return this.get('projectVersion').get('project');
   })
 
 });
