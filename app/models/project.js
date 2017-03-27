@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 
 const {Model, attr, hasMany} = DS;
-const {computed} = Ember;
+const {computed,A} = Ember;
 
 export default Model.extend({
   name: attr(),
@@ -22,10 +22,14 @@ export default Model.extend({
       const minorVersion = getMinorVersion(version);
       return { id: version, minorVersion };
     });
-    
+
     let groupedVersions = _.groupBy(sortedVersions, version => version.minorVersion);
 
-    return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
+    return A(_.values(groupedVersions).map(groupedVersion => groupedVersion[0]));
   }),
+
+  getProjectVersion(version){
+    return version === 'current' ? this.get('latestProjectVersion.id') : version;
+  }
 
 });
