@@ -16,7 +16,14 @@
         </div>
         <div class="algolia-docsearch-suggestion--title">
           {{{result._highlightResult.hierarchy.lvl2.value}}}
-          {{!-- <span class="algolia-docsearch-suggestion--highlight">Em</span>ber Namespace --}}
+          {{#if result._highlightResult.hierarchy.lvl3}}
+            <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+            {{{result._highlightResult.hierarchy.lvl3.value}}}
+          {{/if}}
+          {{#if result._highlightResult.hierarchy.lvl4}}
+            <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+            {{{result._highlightResult.hierarchy.lvl4.value}}}
+          {{/if}}
         </div>
       </a>
     </div>
