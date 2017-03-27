@@ -6,14 +6,13 @@ export default Ember.Component.extend({
   // Public API
   role: 'listbox',
   results: A(),
+  isVisible: false,
 
   // Private API
   tagName: 'span',
   classNames: ['ds-dropdown-menu','ds-with-1'],
   attributeBindings: ['role'],
 
-  // Hide the dropdown if there's no results
-  isVisible: Ember.computed.gt('results.length', 0),
 
   // Massage data to make it easier for displaying on the template
   // Returned object:

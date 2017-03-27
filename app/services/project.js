@@ -7,7 +7,7 @@ export default Ember.Service.extend({
   standardisedVersion: Ember.computed('version', function () {
     const version = String(get(this, 'version'));
     const versionFragments = version.split('.');
-    return `${versionFragments[0]}.${versionFragments[1]}`;
+    return `v${versionFragments[0]}.${versionFragments[1]}.0`;
   }),
 
   setVersion(version) {

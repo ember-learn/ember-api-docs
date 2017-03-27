@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import algoliasearch from 'npm:algoliasearch';
 import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 import config from 'ember-api-docs/config/environment';
 
 export default Ember.Component.extend({
@@ -13,6 +14,7 @@ export default Ember.Component.extend({
   _projectService: Ember.inject.service('project'),
   _projectVersion: Ember.computed.alias('_projectService.standardisedVersion'),
   _results: Ember.A(),
+  _focused: false,
   _resultTetherConstraints: [
     {
       to: 'window',
@@ -44,10 +46,13 @@ export default Ember.Component.extend({
             .addObjects(results);
         });
     },
-    clearResults() {
-      // Ember.run.later(this, function () {
-      //   get(this, '_results').clear();
-      // }, 200);
+    onfocus() {
+      set(this, '_focused', true);
+    },
+    onblur() {
+      Ember.run.later(this, function () {
+        set(this, '_focused', false);
+      }, 200);
     }
   }
 });
