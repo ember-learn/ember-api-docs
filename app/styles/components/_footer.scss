@@ -2,7 +2,6 @@
   background-color: shade($creme, 3%);
   border-top: 1px solid $linen;
   text-align: center;
-  font-family: $footer-font-family;
 
   .container {
     @include padding(2em 1em);
@@ -47,7 +46,7 @@
     }
 
     a {
-      @include transition(opacity $duration, color $duration);
+      transition: opacity $duration, color $duration;
       color: $medium-gray;
       font-size: $large-font-size;
       margin-left: 0.5em;

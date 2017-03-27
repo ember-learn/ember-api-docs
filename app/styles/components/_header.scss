@@ -5,13 +5,13 @@
   padding: 1em 0;
 
   .container {
-    @include media($large-screen) {
+    @include media($medium-large-screen-up) {
       display: flex;
     }
   }
 
   .header-nav {
-    @include media($large-screen) {
+    @include media($medium-large-screen-up) {
       align-items: center;
       display: flex;
       height: 2.8em;
@@ -29,8 +29,8 @@
     @include margin(10px null);
     text-align: center;
 
-    @include media($large-screen) {
-      @include flex(1 0 0);
+    @include media($medium-large-screen-up) {
+      flex: 1 0 0;
       display: inline-block;
     }
   }
@@ -45,23 +45,25 @@
 
   .header-logo {
     @include media($large-screen) {
-      @include flex(1.5 0 0);
+      flex: 1.5 0 0;
     }
   }
 
   .header-search {
     @include media($large-screen) {
-      @include flex(2 0 0);
+      flex: 2 0 0;
     }
   }
 }
 
-.header-logo {
-  a {
-    @include size(100px 40px);
-    background: url("/assets/images/ember-logo.svg") no-repeat;
-    display: block;
-    margin: -15px auto 0 0;
+.header-logo a {
+  @include size(100px 40px);
+  background: url("/assets/images/ember-logo.svg") no-repeat;
+  display: block;
+  margin: -10px auto 0; // optical center
+
+  @include media($large-screen) {
+    margin-top: -6px;
   }
 }
 
@@ -82,7 +84,7 @@
     padding-left: 2.5em;
     width: 100%;
 
-    @include placeholder {
+    &::placeholder {
       color: $white;
     }
   }

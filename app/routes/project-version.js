@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import _ from 'lodash/lodash';
+import _ from 'lodash';
 
 export default Ember.Route.extend({
   projectService: Ember.inject.service('project'),
@@ -11,7 +11,7 @@ export default Ember.Route.extend({
   model(params) {
     const id = `${params.project}-${params.project_version}`;
     this.get('projectService').setVersion(params.project_version);
-    return this.store.find('project', params.project).then(() => {
+    return this.store.findRecord('project', params.project).then(() => {
       return this.store.findRecord('project-version', id, { includes: 'project' });
     });
   },
@@ -36,19 +36,31 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    updateProject(projectVersion /*, component */) {
-      const ids = projectVersion.get('id').split('-');
-      const projectVersionID = projectVersion.get('version') || ids[ids.length - 1];
-      const project = projectVersion.get('project.id') || ids.slice(0, -1).join('-');
+    updateProject(project, ver /*, component */) {
+      const projectVersionID = ver.id;
       let endingRoute, routeName;
 
       switch (routeName = this.router.currentRouteName) {
-        case 'project-version.class':
-          endingRoute = `classes/${this.modelFor(routeName).get('name')}`;
+        case 'project-version.class': {
+          const className = this.modelFor(routeName).get('name');
+          endingRoute = `classes/${className}`;
           break;
-        case 'project-version.class.index':
-          endingRoute = `classes/${this.modelFor('project-version.class').get('name')}`;
+        }
+        case 'project-version.class.index': {
+          const className = this.modelFor('project-version.class').get('name');
+          endingRoute = `classes/${className}`;
           break;
+        }
+        case 'project-version.module.index': {
+          const moduleName = this.paramsFor('project-version.module').module;
+          endingRoute = `modules/${moduleName}`;
+          break;
+        }
+        case 'project-version.namespace.index': {
+          const namespaceName = this.paramsFor('project-version.namespace').namespace;
+          endingRoute = `namespaces/${namespaceName}`;
+          break;
+        }
         default:
           break;
       }

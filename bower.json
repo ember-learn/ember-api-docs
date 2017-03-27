@@ -4,17 +4,10 @@
     "bourbon": "^4.2.7",
     "bitters": "^1.5.0",
     "neat": "^1.8.0",
-    "pouchdb": "^5.4.5",
-    "pretender": "^1.4.2",
     "lodash": "~3.7.0",
-    "Faker": "^3.1.0",
-    "localforage": "^1.4.3",
-    "relational-pouch": "^1.4.5",
     "remarkable": "^1.7.1",
     "highlightjs": "^9.8.0",
-    "jquery-scrollparent": "~0.1.2",
-    "font-awesome": "^4.7.0",
-    "pouchdb-find": "^0.10.2"
+    "jquery-scrollparent": "~0.1.2"
   },
   "resolutions": {
     "FakeXMLHttpRequest": "^1.4.0",

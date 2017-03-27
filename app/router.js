@@ -1,9 +1,20 @@
 import Ember from 'ember';
 import config from './config/environment';
 
+const { on } = Ember;
+
 const Router = Ember.Router.extend({
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.routerRootURL,
+
+  sendPageViewToGA: on('didTransition', function(page, title) {
+    if (typeof FastBoot === 'undefined') {
+      page = page ? page : this.get('url');
+      title = title ? title : this.get('url');
+      const analyticsService = Ember.getOwner(this).lookup('service:analytics');
+      analyticsService.trackPage(page, title);
+    }
+  })
 });
 
 Router.map(function() {

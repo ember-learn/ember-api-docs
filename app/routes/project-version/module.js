@@ -18,7 +18,6 @@ export default ClassRoute.extend({
     if (!~klass.indexOf(projectID)) {
       klass = `${projectID}-${klass}`;
     }
-
     return this.find(typeName, `${projectID}-${version}-${klass}`);
   },
 

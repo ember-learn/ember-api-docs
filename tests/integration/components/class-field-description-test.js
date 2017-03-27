@@ -12,7 +12,8 @@ test('it renders', function(assert) {
     access: "public",
     deprecated: true,
     name: "concat",
-    description: "concatenates"
+    description: "concatenates",
+    params: [{name: 'param1'}, {name: 'param2'}, {name: 'param3'}]
   }));
 
   this.render(hbs`{{class-field-description type=type field=field}}`);
@@ -20,4 +21,5 @@ test('it renders', function(assert) {
   assert.equal(this.$().find('.method-name').text().trim(), 'concat');
   assert.equal(this.$().find('.access').eq(0).text().trim(), 'public');
   assert.equal(this.$().find('.access').eq(1).text().trim(), 'deprecated');
+  assert.equal(this.$().find('.args').eq(0).text().trim(), '(param1, param2, param3)');
 });

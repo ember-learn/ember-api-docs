@@ -1,53 +1,28 @@
 language: node_js
 node_js:
 - '6'
-sudo: false
-cache:
-  directories:
-  - "$HOME/.npm"
-  - "$HOME/.cache" # includes bower cache
-
+dist: trusty
+sudo: required
+addons:
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
 before_install:
-- node --version
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 - npm config set spin false
-- npm install -g npm@^3
-- npm --version
-- npm install -g bower phantomjs-prebuilt
-- bower --version
-- phantomjs --version
-
 install:
 - npm install
 - bower install
-
-before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- sleep 3 # give xvfb some time to start
-
 script:
 - npm test
-
-addons:
-  firefox: latest
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-4.8
-
 deploy:
   provider: heroku
+  buildpack: https://codon-buildpacks.s3.amazonaws.com/buildpacks/hone/emberjs.tgz
   app:
-    master: ember-v-api-docs-staging
+    master: ember-api-docs-staging
     production: ember-api-docs
   api_key:
-    secure: IJlh2J/Q13CtUGhUAcGTbz2pVfTa2Dm8uuSKqgB+q1CUNv5GoshUHmU9VInVr40XpqAUcBoUpQw18AA5FD9bT1PN8V5xYQZgLaPtDs126mg9agyzijJgfHolNOEjaZveQy7PmcCY73CoLqf/3gNwn6MIL4ZotY39t3zpAy3LwdWojJeOH+D8s6EklA7tE2VzUKjCtTtl9YT4GJqIh66pedAORCZFfZtC1Qgg7E++0zye+w28GTH/5XqlzIDUjfdG3TH2VdkBNCLoag9CknQcbV8Iq0Eno/Ihdrp8fZcG2o1PRZRMIhlGfQJA8F+8CHrqjl1RyinYYcbImGpgVTP/b8kRLJXRhhLU3PnGSEdDen9W5YTB5ljsxhQ+iS/xch7Llj2ZXKEPUaC9P3E6Ds9ExFh29YAzes4xJGsmSS0z5iJNXsGfazrLkCe/Lg5/7Ys/mA7sZI7rJ7yvFPRUPKn5bmfNqpgN/I1/avqkK34KgKioiAnRvtPDkX2ccADHDSgDc1lrDgQfJt2Tiz2g/93CFpaRWRhp7ptvD193gONBUa4D3NMpawchGHDzqUGt5oKEV/ggEtoRo1HJzmX3UwHU3QjARcMTZYsS3zlc1czmLCyNK8Ye6sGdtV7no07ePOnvsUE95ePGbsy9J/GVqksvyuhM+ApwQuHYgX3t7i+EeoQ=
-  run:
-  - npm run heroku-flush-redis
-
-env:
-  global:
-  - CXX=g++-4.8
-  - secure: evhSAaz1oeXLAUSQtiYST86SCjyffOOF6GYbv7qRFl2LbGdQH4ViI3K+t/WkDwjY/i6AAKJ2OsF04UMT3O3bMgOVbKOOfP+KQtKa4SWn8obllMREij9cSbCxkz/pmuWUQLoVMtkT00jKRf7JJkC/x60Bn3d3g3ChAQUtOSHyKHfYjxFn1JqZygy1sSKycYMQrQ1q/tk8bCwnzh0+MFuJT62QvYd9iJ4eYfy4H8evfwsaHvOOp3fgWBF4KWRN3Wn0oeIXBWvkALRlUAJWjZKItf9zt6ReMhiEZ2gr1J5aAGp/lWk7rKnTXR31pP2AVyv2JE4olLlA6B4IXfJXR7su8nSDrznlcX+Hjf6NhAUPeNkzAf2bnsxxhlGtVuTtPZ/MUAxsa6xYtnvOooOPHSgtDJ8kPUTQ4jj9IJGg7iZhb1QpkF+YixeigITE7D9NwX5brHkdo9Eb2jUQTmo5voRswx2H4S+ZQazcQ27LNCJfKGNw6j6DA12DJTnwSzihS+4dtko3TFzEcxu9HbFU8pTfFVzhFYKWbZvNnrhkiQf/IrwMgaOgXo30tiNnPn9sTxySg+ZLvDnqNBZczeItSc0VZmFVqxJYxMKri7DUx4PmEK+P4dIeT+YJ9p5uy2VrDaSH+sXrrILt0TjotR1m6i2+sBfVITLp9ffFNzY3qA5kO3k=
-  - secure: EhvzPGGvS2izYWcIwmQ7GGyc9uc7j8UQpD0/u+FqPjRBDnQ+/kg+c7w+o5l5zC6hbWXkmnPhlpGP5N+ADZ7CCmgilflZH/Or+/XAoKogkCTtQLA5o/CJ0wA6o0+jUANUDsK/zUgDbWQDSV4gyVsmxp8sPPCQtN4IsuM13cLnLaIUbQJes4XbyB5gfG0ccnftEIYmk3frFz1q8d8O0LjEU1F3tjhumSzAYxWHZwOkuSOlHkjOCYakoaZYukuXqbbREEr0UYrCkTo2Saq1O6bpfaqggTaWls5lcGc0MqG725aGTOVtFrzZPGzrfPHwQBWXb0L20gnP0k/uM1RsJsleiAU/7Fp3YaaUzjWhdB1+PhavD2jNOAA3mlxGk7r23Dhc3bkAvvsG0Odfv47h+IhuHL1OUvCMtUPtcfdizcbKTOkRh7Ow+RBmQrC7cDvOqsCuQE4ddzk3os5EypiWA1d9sDjLvjHQm34Bx7DTjUTR4F6vJP2WeYT0qsP0M6pZ7mR+EidwIC2mNH4rL1X9Fjgjgb2ltCw4MyFbcn2kQ7RZTjZK2CmwP9jydgTBjH8SEctITqwEctZcnvRp5r+DFcgykLUhHaE764xHmtnAs3RnIwuQ6rFcEvFYJpjeBBuDzEqyq66udawQ5DovJw30QTlhy4J9CtO+85V0Q5fmndCRJf4=
+    secure: Gkx9aZ9FrLnuWuaedWCND8Wg7PoYeFO4kIzuIjXp8b3MJTGpUszSGqC6nMBNqpzsACKdDXERPwsRoXTDLgKPCjngpnc67BedJfZJ2X7ruu1SsjNjs0GuWZ3EX0ppw6vgCWvcL2dkn6cs7w9AzYdUsi4l4zMoSTHYXG1VxFXR7TqVJ3Aw/Cx7UoOrrB0eZw1DhoPqfnLjwZ6sl6K7ol4a5413MYcMTIZq3ZzwdnfQF8iBC1uQT6TkDP640pZdLvt3fKTmoG/3WgFuw9Ijy+IjDzJbiVIaOcYrhc2Sev1PDy1EKybZ/xYbqFkSUk7ehCzPCLJwKVrpW+8b3bqNZXXq7XhbLGrK7yQnTEu49KepkAxOMUPOdnEd0Iy4nbDtCkBI19BfJKcP5rqYL/p//Qv/iXO1zzuBWevRZFF7thk+vgXljpSmPEBlKFjsMiUV3E6HIqZIw4n5GNkq8BuRHq2EjLp+IVHl5KFDvnwL+D9zv0Aigq5bYmGH7tyLQ4bTIa1EfZSSWHCu+g6+X/7tCaeoncjTT0gJgYGJgYhQ/LD5GmVCLvSwCXcY5q7rS5lHRDP6FuKzvyScGCjJixo6PA1NN32xIfUVA8cj6VdIHatqSZ0dpfm9sHHnE3gwJ2F3yw3Bdl5ZtV0uNDubrA0Q+RiqzMxHyW9kUl3BWBhmCXlKg1M=

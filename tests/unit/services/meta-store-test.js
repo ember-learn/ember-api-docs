@@ -1,9 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:database-manager', 'Unit | Service | database manager', {
-  // Specify the other units that are required for this test.
-  // needs: ['service:foo']
-});
+moduleFor('service:meta-store', 'Unit | Service | meta-store');
 
 // Replace this with your real tests.
 test('it exists', function(assert) {

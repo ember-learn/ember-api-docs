@@ -1,51 +1,12 @@
-# Ember-api-docs
+# [Ember-api-docs](https://emberjs.com/api-new/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
 
 This app is used to produce versioned Ember api docs.  To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
 
-## Prerequisites
 
-You will need the following things properly installed on your computer.
+## a11y testing
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with NPM)
-* [Bower](https://bower.io/)
-* [Ember CLI](https://www.ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+To run a11y tests, run `test_a11y=yes ember serve`
 
-## Installation
 
-* `git clone <repository-url>` this repository
-* `cd my-app`
-* `npm install`
-* `bower install`
-
-## Running / Development
-
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
-
-* `ember test`
-* `ember test --server`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+## Staging Environment
+Latest changes from master can be seen on https://ember-api-docs-staging.herokuapp.com/

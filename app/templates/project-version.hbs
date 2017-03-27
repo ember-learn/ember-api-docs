@@ -1,17 +1,28 @@
 <aside class="sidebar">
   <ol class="toc-level-0">
-    <li class="toc-level-0">Projects
+    <li class="toc-level-0">
+      Projects
       <ol class="toc-level-1 selected" style="display: block;">
         <li class="toc-level-1">{{#link-to 'project' 'ember' active=(eq activeProject 'ember') class="spec-ember"}}Ember{{/link-to}}</li>
         <li class="toc-level-1">{{#link-to 'project' 'ember-data' active=(eq activeProject 'ember-data') class="spec-ember-data"}}Ember Data{{/link-to}}</li>
       </ol>
     </li>
   </ol>
-  {{#x-select value=(readonly model) on-change=(route-action "updateProject") default=model.id project=model.project class="spec-versions-box" as |xs|}}
-    {{#each projectVersions as |projectVersion|}}
-      {{#xs.option value=projectVersion}}{{projectVersion.minorVersion}}{{/xs.option}}
-    {{/each}}
-  {{/x-select}}
+
+  <div class="select-container">
+    {{#power-select
+      onchange=(route-action "updateProject" activeProject)
+      options=projectVersions
+      selected=selectedProjectVersion
+      ariaLabel="Select a version"
+      required=true
+      searchField="minorVersion"
+      as |ver|
+    }}
+      {{ver.minorVersion}}
+    {{/power-select}}
+  </div>
+
   {{table-of-contents projectId=model.project.id
                       version=model.version
                       classesIDs=shownClassesIDs

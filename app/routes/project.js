@@ -1,16 +1,15 @@
 import Ember from 'ember';
 import semverCompare from 'npm:semver-compare';
-import _ from 'lodash/lodash';
+import _ from 'lodash';
 
+const { Route, inject: {service} } = Ember;
 
-const { inject } = Ember;
+export default Route.extend({
 
-export default Ember.Route.extend({
+  scrollPositionReset: service(),
 
-  scrollPositionReset: inject.service(),
-
-  model(params) {
-    return this.store.findRecord('project', params.project, { includes: 'project-version' });
+  model({project: projectName}) {
+    return this.store.findRecord('project', projectName, { includes: 'project-version' });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 307 in fastboot

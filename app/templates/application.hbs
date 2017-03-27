@@ -1,40 +1,41 @@
 <header class="header">
   <nav role="navigation" aria-label="main">
-  <ul class="header-nav container">
-    {{#link-to 'index' class='header-logo' tagName='li'}}
-      {{#link-to 'index' class='header-logo'}}
+    <ul class="header-nav container">
+      {{#link-to 'index' class='header-logo' tagName='li'}}
+        {{#link-to 'index' class='header-logo'}}
+          <span class="visually-hidden">Ember homepage</span>
+        {{/link-to}}
       {{/link-to}}
-    {{/link-to}}
-    <li>
-      <a href="http://emberjs.com">About</a>
-    </li>
-    <li>
-      <a href="http://emberjs.com/guides">Guides</a>
-    </li>
-    <li>
-      {{link-to 'API' 'index'}}
-    </li>
-    <li>
-      <a href="http://emberjs.com/community">Community</a>
-    </li>
-    <li>
-      <a href="http://emberjs.com/blog">Blog</a>
-    </li>
-    <li>
-      <a href="http://emberjs.com/builds">Builds</a>
-    </li>
-    <li>
-      {{search-input}}
-    </li>
-{{!--     <li class="header-search"> --}}
-      {{!-- <form> --}}
-        {{!-- <input type="text" class="st-search-input" name="search" id="st-search-input" autocapitalize="off" placeholder="Search the API Docs"/> --}}
-      {{!-- </form> --}}
-    {{!-- </li> --}}
-  </ul>
+      <li>
+        <a href="http://emberjs.com">About</a>
+      </li>
+      <li>
+        <a href="http://emberjs.com/guides">Guides</a>
+      </li>
+      <li>
+        {{link-to 'API' 'index'}}
+      </li>
+      <li>
+        <a href="http://emberjs.com/community">Community</a>
+      </li>
+      <li>
+        <a href="http://emberjs.com/blog">Blog</a>
+      </li>
+      <li>
+        <a href="http://emberjs.com/builds">Builds</a>
+      </li>
+      <li class="header-search">
+        {{search-input}}
+      </li>
+      {{!--<li class="header-search">
+        <form>
+           <input type="text" class="st-search-input" name="search" id="st-search-input" autocapitalize="off" placeholder="Search the API Docs"/>
+         </form>
+      </li> --}}
+    </ul>
   </nav>
 </header>
 
 <main class="container">
-{{outlet}}
+  {{outlet}}
 </main>

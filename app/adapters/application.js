@@ -1,23 +1,50 @@
-import Ember from 'ember';
 import DS from 'ember-data';
+import Ember from 'ember';
+import fetch from 'ember-network/fetch';
+import ENV from 'ember-api-docs/config/environment';
 
-function generatePouchID(type, id) {
-  return `${type.modelName}-${id}`;
-}
+const {
+  Inflector: { inflector },
+  inject: { service }
+} = Ember;
 
-export default DS.JSONAPIAdapter.extend({
-  coalesceFindRequests: true,
+const { JSONAPIAdapter } = DS;
 
-  pouch: Ember.inject.service('database-manager'),
+export default JSONAPIAdapter.extend({
 
-  findRecord(store, type, id) {
-    return this.get('pouch').get(generatePouchID(type, id));
-  },
+  host: ENV.API_HOST,
 
-  findMany(store, type, ids) {
-    const remappedIDs = ids.map(id => generatePouchID(type, id));
+  currentProject: '',
 
-    return this.get('pouch').allDocs(remappedIDs);
+  currentProjectVersion: '',
+
+  metaStore: service(),
+
+  findRecord(store, {modelName}, id) {
+    let url;
+    let host = this.get('host');
+    let projectName = this.get('currentProject');
+
+    if (['namespace', 'class', 'module'].includes(modelName)) {
+      let [version] = id.replace(`${projectName}-`, '').split('-');
+      let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
+      url = `json-docs-1/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
+    } else if (modelName === 'missing') {
+      let version = Ember.getOwner(this).lookup('controller:project-version').get('model.version');
+      let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
+      url = `json-docs-1/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
+    } else if (modelName === 'project') {
+      this.set('currentProject', id);
+      url = `rev-index/${id}`;
+    } else if (modelName === 'project-version') {
+      url = `rev-index/${id}`;
+    } else {
+      throw new Error('Unexpected model lookup');
+    }
+
+    url = `${host}/${url}.json`;
+
+    return fetch(url).then(response => response.json());
   }
 
 });

@@ -1,8 +1,7 @@
 // Typography
-$base-font-family: $helvetica;
+$base-font-family: 'Source Sans Pro', sans-serif;
 $heading-font-family: $base-font-family;
 $monospace-font-family: Menlo, Courier, monospace;
-$footer-font-family: proxima-nova, sans-serif;
 
 // Font Sizes
 $base-font-size: 1rem;
@@ -14,9 +13,10 @@ $base-line-height: 1.5;
 $heading-line-height: 1.2;
 
 // Spacing
-$base-spacing: $base-line-height * 1em;
-$small-spacing: $base-spacing / 2;
-$large-spacing: $base-spacing * 2;
+$base-spacing: $base-line-height * 1em; // 24px
+$small-spacing: $base-spacing / 2; // 12px
+$large-spacing: $base-spacing * 2; // 48px
+$top-spacing: $base-spacing * 3.333; // 80px
 
 // Colors
 $ember-orange: #dd6a58;
@@ -28,7 +28,7 @@ $dark-gray: #444545;
 $tan: #fffdf9;
 $white: #fff;
 $black: #000;
-$creme: #FFFBF5;
+$creme: #FDFDFD;
 $linen: #f9e7e4;
 
 $base-background-color: $creme;

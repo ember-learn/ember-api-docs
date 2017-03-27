@@ -5,7 +5,6 @@
 process.title = 'ember-fastboot-server';
 
 const FastBootAppServer = require('fastboot-app-server');
-const RedisCache = require('fastboot-redis-cache');
 const parseArgs = require('minimist');
 const url = require('url');
 
@@ -15,7 +14,6 @@ let argOptions = {
 
 let options = parseArgs(process.argv.slice(2), argOptions);
 let distPath = options._[0];
-let assetPath = options['serve-assets-from'];
 
 if (!distPath) {
   console.error("You must call ember-fastboot with the path of a fastboot-dist directory:\n\n" +
@@ -23,17 +21,12 @@ if (!distPath) {
   process.exit(1);
 }
 
-let redisUrl = url.parse(process.env.REDIS_URL || 'redis://localhost:6379');
-
-let cache = new RedisCache({
-  host: redisUrl.hostname,
-  port: redisUrl.port
-});
-
-let server = new FastBootAppServer({
+let serverConfig = {
   distPath: distPath,
-  cache: cache,
-  gzip: true
-});
+  assetsCacheControl: 'max-age=365000000, immutable',
+  gzip: false // Let fastly take care of compression, reducing load on the fastboot
+};
+
+let server = new FastBootAppServer(serverConfig);
 
 server.start();

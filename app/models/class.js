@@ -1,6 +1,7 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
+const {computed} = Ember;
 const {attr, belongsTo} = DS;
 
 export default DS.Model.extend({
@@ -18,9 +19,8 @@ export default DS.Model.extend({
   module: attr(),
   parentClass: belongsTo('class', {async: true, inverse: null}),
   projectVersion: belongsTo('project-version', {inverse: 'classes'}),
-  // hack until i add this data to cloudant
-  project: Ember.computed('projectVersion.id', function() {
-    let id = this.get('projectVersion.id').split('-').slice(0, -1).join('-');
-    return this.store.peekRecord('project', id);
+  project: computed('projectVersion.id', function() {
+    return this.get('projectVersion').get('project');
   })
+
 });

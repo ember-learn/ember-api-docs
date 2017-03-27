@@ -10,20 +10,20 @@
     {{/if}}
   </p>
 
-  <p>{{{model.description}}}</p>
+  <p>{{html-safe model.description}}</p>
 
   {{#if submodules}}
     <section>
       <h2>Submodules</h2>
-        <ul class="spec-method-list">
-          {{#each submodules as |module|}}
-            <li>
-              {{#link-to 'project-version.module' module}}
-                {{module}}
-              {{/link-to}}
-            </li>
-          {{/each}}
-        </ul>
+      <ul class="spec-method-list">
+        {{#each submodules as |module|}}
+          <li>
+            {{#link-to 'project-version.module' module}}
+              {{module}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
     </section>
   {{/if}}
 
