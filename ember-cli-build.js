@@ -28,7 +28,7 @@ module.exports = function(defaults) {
       only: ['join', 'map-by']
     },
     'asset-cache': {
-      version: '1', //Might have to change this with the app build,
+      version: '3', //Might have to change this with the app build,
       prepend
     }
   });
