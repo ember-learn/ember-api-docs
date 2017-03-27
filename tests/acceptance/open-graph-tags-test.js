@@ -21,7 +21,7 @@ test('assigns title property', function (assert) {
 
 test('assigns image property and width/height', function (assert) {
   const image = findOpenGraphContent('image');
-  assert.equal(image, 'assets/images/ember-logo.jpg');
+  assert.equal(image, 'assets/images/ember-logo.png');
 
   const imageWidth = findOpenGraphContent('image:width');
   assert.equal(imageWidth, '1200');
