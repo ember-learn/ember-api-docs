@@ -15,7 +15,7 @@ export default Ember.Service.extend({
   }),
 
   trackPage(page, title) {
-    if (config.environment !== 'production') {
+    if (config.environment === 'development') {
       return;
     }
     return this.get('googleAnalytics').then(() => {
