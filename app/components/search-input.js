@@ -26,12 +26,17 @@ export default Ember.Component.extend({
       const client = get(this, '_searchClient');
       const projectVersion = get(this, '_projectVersion');
 
+      // Hide and don't run query if there's no search query
+      // if (!query) {
+      //   return set(this, '_focused', false);
+      // }
+
       const queries = [
         {
           indexName: 'emberjs_versions',
           query,
           params: {
-            restrictSearchableAttributes: ['hierarchy.lvl0', 'hierarchy.lvl1','hierarchy.lvl2'],
+            restrictSearchableAttributes: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3', 'hierarchy.lvl4'],
             facetFilters: [[`version:${projectVersion}`,'tags:api']]
           }
         }
