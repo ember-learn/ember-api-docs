@@ -13,23 +13,10 @@ export default Ember.Component.extend({
   _projectService: Ember.inject.service('project'),
   _projectVersion: Ember.computed.alias('_projectService.standardisedVersion'),
   _results: Ember.A(),
-  _groupedResults: Ember.computed('_results.[]', function () {
-    return get(this, '_results').reduce((previous, current) => {
-      // Remap all lowercase usages of 'guides' to 'Guides'
-      let lvl0 = Ember.String.capitalize(get(current, 'hierarchy.lvl0'));
-      // If lvl0 doesn't exist in the resulting object, create the array
-      if (!previous[lvl0]) {
-        previous[lvl0] = Ember.A();
-      }
-      // Insert the current item into the resulting object.
-      previous[lvl0].addObject(current);
-      return previous;
-    }, {});
-  }),
   _resultTetherConstraints: [
     {
       to: 'window',
-      attachement: 'together'
+      pin: ['left','right']
     }
   ],
   actions: {
@@ -52,9 +39,6 @@ export default Ember.Component.extend({
         .search(queries)
         .then(res => {
           const results = get(res, 'results.0.hits');
-
-          results.forEach(result => console.log(result))
-
           return get(this, '_results')
             .clear()
             .addObjects(results);

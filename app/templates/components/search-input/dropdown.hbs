@@ -1,0 +1,25 @@
+<span class="ds-suggestions">
+  {{!-- Level 0 hierarchy --}}
+  {{#each-in _groupedResults as |lvl0section _lvl0results|}}
+    {{!-- Dropdown header --}}
+
+    {{#search-input/dropdown-header}}
+      {{lvl0section}}
+    {{/search-input/dropdown-header}}
+
+    {{!-- Level 1 hierarchy --}}
+    {{#each-in _lvl0results as |lvl1section _lvl1results|}}
+      {{!-- Each result will be shown here --}}
+      {{#each _lvl1results as |result index|}}
+        {{search-input/dropdown-result
+          result=result
+          groupName=lvl1section
+          groupPosition=index
+        }}
+      {{/each}}
+
+    {{/each-in}}
+   {{/each-in}}
+</span>
+
+{{yield}}

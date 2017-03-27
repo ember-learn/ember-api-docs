@@ -14,24 +14,52 @@ $breakpoint-large: $large-screen;
 
 $dropdown-min-width-medium: 100%;
 $dropdown-min-width-large: 600px;
-// @import "docsearch-variables";
 
 // The dropdown adapts to screen size, to provide three different displays.
 // - A simple list of matching results
 // - Same list, but with text snippetting added if size is large enough
 // - Adding a second colum to let the content breath if enough room available
 
+.search-input {
+  input {
+    width: 100%;
+    height: 35px;
+    margin-bottom: 0;
+    padding-left: 2.5em;
+    border: none;
+    border-radius: 35px;
+    outline: none;
+    appearance: none;
+    background: url(../images/search-icon.svg) rgba(255,255,255,0.1) 10px 10px no-repeat;
+    box-shadow: none;
+    line-height: 35px;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+  input,
+  input::placeholder {
+    font-size: 0.9rem;
+    color: #fff;
+  }
+}
+
 .ds-dropdown-results {
   z-index: 10;
+
+  a {
+    color: #000000;
+  }
 }
 // Main autocomplete wrapper
 .ds-dropdown-menu {
-  background-color: #FFF;
+  background-color: #ffffff;
   border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  color: black;
+  display: block;
+  font-size: 12.8px;
   margin: 6px 0 0;
   text-align: left;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  display: block;
 }
 
 // Each suggestion
@@ -194,3 +222,4 @@ $dropdown-min-width-large: 600px;
     padding: 2px;
   }
 }
+
