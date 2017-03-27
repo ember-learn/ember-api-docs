@@ -10,7 +10,7 @@ export default Controller.extend(FilterParams, {
 
   filterData: service(),
 
-  session: service(),
+  metaStore: service(),
 
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
@@ -65,8 +65,8 @@ export default Controller.extend(FilterParams, {
     return this.get('showPrivateClasses') ? this.get('namespaceIDs') : this.get('publicNamespaceIDs');
   }),
 
-  projectVersions: computed('session.availableProjectVersions', function() {
-    const projectVersions = this.get('session.availableProjectVersions');
+  projectVersions: computed('metaStore.availableProjectVersions', 'model.project.id', function() {
+    const projectVersions = this.get('metaStore.availableProjectVersions')[this.get('model.project.id')];
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
@@ -76,6 +76,10 @@ export default Controller.extend(FilterParams, {
     let groupedVersions = _.groupBy(versions, version => version.minorVersion);
 
     return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
+  }),
+
+  selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {
+    return this.get('projectVersions').filter(pV => pV.id === this.get('model.version'))[0];
   }),
 
   activeProject: computed.readOnly('model.project.id')

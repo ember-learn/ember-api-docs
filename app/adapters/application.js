@@ -18,7 +18,7 @@ export default JSONAPIAdapter.extend({
 
   currentProjectVersion: '',
 
-  session: service(),
+  metaStore: service(),
 
   findRecord(store, {modelName}, id) {
     let url;
@@ -27,11 +27,11 @@ export default JSONAPIAdapter.extend({
 
     if (['namespace', 'class', 'module'].includes(modelName)) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
-      let revId = this.get('session').getRevId(projectName, version, modelName, id);
+      let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
       url = `json-docs-1/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
     } else if (modelName === 'missing') {
       let version = Ember.getOwner(this).lookup('controller:project-version').get('model.version');
-      let revId = this.get('session').getRevId(projectName, version, modelName, id);
+      let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
       url = `json-docs-1/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
       this.set('currentProject', id);

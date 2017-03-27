@@ -13,7 +13,7 @@
     {{#power-select
       onchange=(route-action "updateProject" activeProject)
       options=projectVersions
-      selected=(object-at 0 (filter-by 'id' model.version projectVersions))
+      selected=selectedProjectVersion
       ariaLabel="Select a version"
       required=true
       searchField="minorVersion"

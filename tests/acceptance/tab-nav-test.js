@@ -8,6 +8,7 @@ function currentURLNoParams() {
 
 moduleForAcceptance('Acceptance | tab navigation');
 
+
 test('switching tabs', function(assert) {
   visit('/ember/1.0.0/classes/Ember.Component');
   click('.access-checkbox:contains(Inherited)');
