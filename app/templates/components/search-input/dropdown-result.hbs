@@ -9,20 +9,20 @@
         <div class="algolia-docsearch-suggestion--subcategory-inline">
           {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
           {{#if result._highlightResult.hierarchy.lvl1}}
-            {{{result._highlightResult.hierarchy.lvl1.value}}}
+            {{html-safe result._highlightResult.hierarchy.lvl1.value}}
           {{else}}
-            {{{result._highlightResult.hierarchy.lvl0.value}}}
+            {{html-safe result._highlightResult.hierarchy.lvl0.value}}
           {{/if}}
         </div>
         <div class="algolia-docsearch-suggestion--title">
-          {{{result._highlightResult.hierarchy.lvl2.value}}}
+          {{html-safe result._highlightResult.hierarchy.lvl2.value}}
           {{#if result._highlightResult.hierarchy.lvl3}}
             <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-            {{{result._highlightResult.hierarchy.lvl3.value}}}
+            {{html-safe result._highlightResult.hierarchy.lvl3.value}}
           {{/if}}
           {{#if result._highlightResult.hierarchy.lvl4}}
             <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-            {{{result._highlightResult.hierarchy.lvl4.value}}}
+            {{html-safe result._highlightResult.hierarchy.lvl4.value}}
           {{/if}}
         </div>
       </a>
