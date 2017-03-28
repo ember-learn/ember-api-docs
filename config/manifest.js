@@ -7,12 +7,13 @@ module.exports = function(environment /*, appConfig */) {
 
   return {
     name: 'Ember API Docs',
-    short_name: 'ember-api-docs',
+    short_name: 'Ember API',
     description: 'Ember & Ember Data API Documentation',
     start_url: environment === 'production' ? '/api-new/' : '/',
     display: 'standalone',
     background_color: '#FDFDFD',
     theme_color: '#f67862',
+    prepend: environment === 'production' && 'FASTLY_CDN_URL' in process.env ? FASTLY_CDN_URL.env : '',
     scope: environment === 'production' ? '/api-new/' : '/',
     icons: [
       {

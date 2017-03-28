@@ -28,7 +28,7 @@ module.exports = function(defaults) {
       only: ['join', 'map-by']
     },
     'asset-cache': {
-      version: '3', //Might have to change this with the app build,
+      version: '4', //Might have to change this with the app build,
       prepend
     }
   });
@@ -40,9 +40,9 @@ module.exports = function(defaults) {
     ]
   };
 
-  if (app.env === 'production') {
+  if (app.env === 'production' && prepend !== '') {
     app.options['ember-service-worker'] = {
-      rootUrl: '/api-new/'
+      rootUrl: `${prepend}/`
     }
   }
 
