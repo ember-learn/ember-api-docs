@@ -1,0 +1,33 @@
+<div class="algolia-docsearch-suggestion
+  {{if isSecondary 'algolia-docsearch-suggestion__secondary'}}">
+  <div class="algolia-docsearch-suggestion--wrapper">
+    <div class="algolia-docsearch-suggestion--subcategory-column">
+      <span class="algolia-docsearch-suggestion--subcategory-column-text">{{_primaryColumn}}</span>
+    </div>
+    <div class="algolia-docsearch-suggestion--content">
+      <a href={{result.url}}>
+        <div class="algolia-docsearch-suggestion--subcategory-inline">
+          {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
+          {{#if result._highlightResult.hierarchy.lvl1}}
+            {{html-safe result._highlightResult.hierarchy.lvl1.value}}
+          {{else}}
+            {{html-safe result._highlightResult.hierarchy.lvl0.value}}
+          {{/if}}
+        </div>
+        <div class="algolia-docsearch-suggestion--title">
+          {{html-safe result._highlightResult.hierarchy.lvl2.value}}
+          {{#if result._highlightResult.hierarchy.lvl3}}
+            <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+            {{html-safe result._highlightResult.hierarchy.lvl3.value}}
+          {{/if}}
+          {{#if result._highlightResult.hierarchy.lvl4}}
+            <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+            {{html-safe result._highlightResult.hierarchy.lvl4.value}}
+          {{/if}}
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+{{yield}}
