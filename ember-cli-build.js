@@ -37,11 +37,11 @@ module.exports = function(defaults) {
     patterns: [
       `${app.env.API_HOST}/json-docs-1/(.+)`,
       `${app.env.API_HOST}/rev-index/(.+)`
-    ],
+    ]
   };
 
   if (app.env === 'production') {
-    app.options['ember-cli-service-worker'] = {
+    app.options['ember-service-worker'] = {
       rootUrl: '/api-new/'
     }
   }
