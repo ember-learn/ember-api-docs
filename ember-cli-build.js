@@ -40,11 +40,6 @@ module.exports = function(defaults) {
     ]
   };
 
-  if (app.env === 'production' && prepend !== '') {
-    app.options['ember-service-worker'] = {
-      rootUrl: `${prepend}/`
-    }
-  }
 
   if (!process.env.EMBER_CLI_FASTBOOT) {
     app.import(app.bowerDirectory + '/jquery-scrollparent/jquery.scrollparent.js');
