@@ -30,13 +30,19 @@ module.exports = function(defaults) {
     'asset-cache': {
       version: '4', //Might have to change this with the app build,
       prepend
-    }
+    },
   });
+
+  //TODO move the proxying main site to a variable for testing & dev
+  app.options['ember-service-worker'] = {
+    rootUrl: app.ENV.environment === 'production' ? 'https://emberjs.com/api-new/': '/'
+  };
+
 
   app.options['esw-cache-first'] = {
     patterns: [
-      `${app.env.API_HOST}/json-docs-1/(.+)`,
-      `${app.env.API_HOST}/rev-index/(.+)`
+      `${app.ENV.API_HOST}/json-docs-1/(.+)`,
+      `${app.ENV.API_HOST}/rev-index/(.+)`
     ]
   };
 
