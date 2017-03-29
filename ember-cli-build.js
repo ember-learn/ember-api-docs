@@ -33,9 +33,11 @@ module.exports = function(defaults) {
     },
   });
 
+  var docsSlug = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
+
   //TODO move the proxying main site to a variable for testing & dev
   app.options['ember-service-worker'] = {
-    rootUrl: app.env.environment === 'production' ? 'https://emberjs.com/api-new/': '/'
+    rootUrl: app.env.environment === 'production' ? 'https://emberjs.com' + docsSlug : '/'
   };
 
 
