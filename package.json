@@ -81,7 +81,7 @@
     "ember-source": "~2.12.0",
     "ember-tether": "0.4.1",
     "ember-truth-helpers": "^1.3.0",
-    "ember-web-app": "github:sivakumar-kailasam/ember-web-app#784cd5b3593b736c032537078b54a5a071671b0d",
+    "ember-web-app": "1.2.0",
     "ember-web-app-rename": "1.0.0",
     "fastboot-app-server": "1.0.0-rc.5",
     "loader.js": "^4.2.3",
