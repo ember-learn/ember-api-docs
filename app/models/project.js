@@ -29,7 +29,7 @@ export default Model.extend({
   }),
 
   getProjectVersion(version){
-    return version === 'current' ? this.get('latestProjectVersion.id') : version;
+    return version === 'release' ? this.get('latestProjectVersion.id') : version;
   }
 
 });
