@@ -16,9 +16,10 @@ export default Model.extend({
 
   latestProjectVersion: computed.alias('sortedProjectVersions.firstObject'),
   sortedProjectVersions: computed(function() {
-    let projectVersions =  this.hasMany('projectVersions').ids().map(id => id.split('-')[1]);
+    let projectVersions =  this.hasMany('projectVersions').ids().map(id => {
+      return id.replace(this.id, '').split('-')[1];
+    });
     let sortedVersions = projectVersions.sort((a, b) => semverCompare(b, a));
-
     sortedVersions = sortedVersions.map((version) => {
       const minorVersion = getMinorVersion(version);
       return { id: version, minorVersion };
@@ -29,15 +30,13 @@ export default Model.extend({
     return A(_.values(groupedVersions).map(groupedVersion => groupedVersion[0]));
   }),
 
-  getProjectVersion(version){
+  getProjectVersion(version) {
     if (version === 'release') {
       return this.get('latestProjectVersion.id');
     }
-
-    if(version === 'lts') {
+    if (version === 'lts') {
       return config.ltsVersion;
     }
-    
     return version;
   }
 
