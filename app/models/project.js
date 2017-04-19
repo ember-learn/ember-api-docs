@@ -3,6 +3,7 @@ import Ember from 'ember';
 import semverCompare from 'npm:semver-compare';
 import getMinorVersion from "../utils/get-minor-version";
 import _ from 'lodash';
+import config from 'ember-api-docs/config/environment';
 
 
 const {Model, attr, hasMany} = DS;
@@ -29,7 +30,15 @@ export default Model.extend({
   }),
 
   getProjectVersion(version){
-    return version === 'release' ? this.get('latestProjectVersion.id') : version;
+    if (version === 'release') {
+      return this.get('latestProjectVersion.id');
+    }
+
+    if(version === 'lts') {
+      return config.ltsVersion;
+    }
+    
+    return version;
   }
 
 });
