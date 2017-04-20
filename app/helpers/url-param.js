@@ -4,9 +4,9 @@ const { inject } = Ember;
 
 export default Ember.Helper.extend({
 
-  '-routing': inject.service(),
+  router: inject.service(),
 
   compute([modelName, paramName]) {
-    return this.get(`-routing.router.currentState.routerJsState.params.${modelName}.${paramName}`);
+    return this.get(`router.router.state.params.${modelName}.${paramName}`);
   }
 });
