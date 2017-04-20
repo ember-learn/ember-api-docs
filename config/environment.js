@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    ltsVersion: '2.8.3',
+    ltsVersion: process.env.LTS_VERSION || '2.8.3',
     modulePrefix: 'ember-api-docs',
     environment: environment,
     rootURL: '/',
