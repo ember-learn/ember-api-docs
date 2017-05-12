@@ -37,6 +37,7 @@ Router.map(function() {
       });
     }
   });
+  this.route('class', {path: '/class/:class'});
 });
 
 export default Router;
