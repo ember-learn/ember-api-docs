@@ -9,9 +9,11 @@ export default Ember.Route.extend({
   },
 
   model(params) {
-    const id = `${params.project}-${params.project_version}`;
-    this.get('projectService').setVersion(params.project_version);
-    return this.store.findRecord('project', params.project).then(() => {
+
+    return this.store.findRecord('project', params.project).then(project => {
+      this.get('projectService').setVersion(params.project_version);
+      const version = project.getProjectVersion(params.project_version);
+      const id = `${params.project}-${version}`;
       return this.store.findRecord('project-version', id, { includes: 'project' });
     });
   },
