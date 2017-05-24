@@ -1,4 +1,7 @@
 import Ember from 'ember';
+import _ from 'lodash';
+import semverCompare from 'npm:semver-compare';
+import getMinorVersion from "../utils/get-minor-version";
 import FilterParams from '../mixins/filter-params';
 
 const { Controller, computed, A, inject: {service} } = Ember;
@@ -50,8 +53,6 @@ export default Controller.extend(FilterParams, {
     return A(sorted).toArray().map(id => id.split('-').pop());
   },
 
-  projectVersions: computed.alias('model.project.sortedProjectVersions'),
-
   shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
     return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
   }),
@@ -62,6 +63,19 @@ export default Controller.extend(FilterParams, {
 
   shownNamespaceIDs: computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {
     return this.get('showPrivateClasses') ? this.get('namespaceIDs') : this.get('publicNamespaceIDs');
+  }),
+
+  projectVersions: computed('metaStore.availableProjectVersions', 'model.project.id', function() {
+    const projectVersions = this.get('metaStore.availableProjectVersions')[this.get('model.project.id')];
+    let versions = projectVersions.sort((a, b) => semverCompare(b, a));
+
+    versions = versions.map((version) => {
+      const minorVersion = getMinorVersion(version);
+      return { id: version, minorVersion };
+    });
+    let groupedVersions = _.groupBy(versions, version => version.minorVersion);
+
+    return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
 
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {

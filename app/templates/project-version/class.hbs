@@ -8,7 +8,7 @@
     {{#if model.extends}}
       <div class="attribute">
         <span class="attribute-label">Extends:</span>
-        <span class="attribute-value">{{#link-to 'project-version.class' (url-param "project-version" "project_version") model.extends}}{{model.extends}}{{/link-to}}</span>
+        <span class="attribute-value">{{#link-to 'project-version.class' model.projectVersion.version model.extends}}{{model.extends}}{{/link-to}}</span>
       </div>
     {{/if}}
     {{#if model.uses}}
@@ -17,7 +17,7 @@
         <span class="attribute-value">
           {{#each model.uses as |parentClass idx|}}
             {{#unless (eq idx 0)}}<span class="comma">,</span>{{/unless}}
-            {{#link-to 'project-version.class' (url-param "project-version" "project_version") parentClass}}{{parentClass}}{{/link-to}}
+            {{#link-to 'project-version.class' model.projectVersion.version parentClass}}{{parentClass}}{{/link-to}}
           {{/each}}
         </span>
       </div>
@@ -26,14 +26,14 @@
       <div class="attribute">
         <span class="attribute-label">Defined in:</span>
         <span class="attribute-value">
-          <a href="{{github-link model.project.id (url-param "project-version" "project_version") model.file model.line}}" target="_blank" rel="noopener">{{model.file}}:{{model.line}}</a>
+          <a href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{model.file}}:{{model.line}}</a>
         </span>
       </div>
     {{/if}}
     {{#if model.module}}
       <div class="attribute">
         <span class="attribute-label">Module:</span>
-        <span class="attribute-value">{{#link-to 'project-version.module' (url-param "project-version" "project_version") model.module}}{{model.module}}{{/link-to}}</span>
+        <span class="attribute-value">{{#link-to 'project-version.module' model.projectVersion.version model.module}}{{model.module}}{{/link-to}}</span>
       </div>
     {{/if}}
   </div>
@@ -45,7 +45,7 @@
       <ul class="tabbed-layout__menu">
         {{#link-to (concat parentName ".index")
            model.project.id
-           (url-param "project-version" "project_version")
+           model.projectVersion.version
            model.name
            (query-params anchor="")
            tagName="li"
@@ -58,7 +58,7 @@
         {{#if model.methods}}
           {{#link-to (concat parentName ".methods")
              model.project.id
-             (url-param "project-version" "project_version")
+             model.projectVersion.version
              model.name
              (query-params anchor="")
              tagName="li"
@@ -72,7 +72,7 @@
         {{#if model.properties}}
           {{#link-to (concat parentName ".properties")
              model.project.id
-             (url-param "project-version" "project_version")
+             model.projectVersion.version
              model.name
              (query-params anchor="")
              tagName="li"
@@ -86,7 +86,7 @@
         {{#if model.events}}
           {{#link-to (concat parentName ".events")
              model.project.id
-             (url-param "project-version" "project_version")
+             model.projectVersion.version
              model.name
              (query-params anchor="")
              tagName="li"

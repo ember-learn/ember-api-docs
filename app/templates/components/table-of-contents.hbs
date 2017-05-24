@@ -3,7 +3,7 @@
     <a {{action 'toggle' 'modules'}} href="#">Modules</a>
     <ol class="toc-level-1 modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
-        <li class="toc-level-1">{{#link-to 'project-version.module' (url-param "project-version" "project_version") moduleID}}{{moduleID}}{{/link-to}}</li>
+        <li class="toc-level-1">{{#link-to 'project-version.module' version moduleID}}{{moduleID}}{{/link-to}}</li>
       {{/each}}
     </ol>
   </li>
@@ -11,7 +11,7 @@
     <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
     <ol class="toc-level-1 namespaces" style="display: block">
       {{#each namespaceIDs as |namespaceID|}}
-        <li class="toc-level-1">{{#link-to 'project-version.namespace' (url-param "project-version" "project_version") namespaceID}}{{namespaceID}}{{/link-to}}</li>
+        <li class="toc-level-1">{{#link-to 'project-version.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}</li>
       {{/each}}
     </ol>
   </li>
@@ -19,7 +19,7 @@
     <a {{action 'toggle' 'classes'}} href="#">Classes</a>
     <ol class="toc-level-1 classes" style="display: block">
       {{#each classesIDs as |classID|}}
-        <li class="toc-level-1">{{#link-to 'project-version.class' (url-param "project-version" "project_version") classID}}{{classID}}{{/link-to}}</li>
+        <li class="toc-level-1">{{#link-to 'project-version.class' version classID}}{{classID}}{{/link-to}}</li>
       {{/each}}
     </ol>
   </li>

@@ -12,9 +12,8 @@ export default ClassRoute.extend({
   },
 
   getModel(typeName, params, transition) {
-    const projectModel = this.modelFor('project-version').get('project.content');
     const projectID = transition.params['project-version'].project;
-    const version = projectModel.getProjectVersion(transition.params['project-version'].project_version);
+    const version = transition.params['project-version'].project_version;
     let klass = params[typeName];
     if (!~klass.indexOf(projectID)) {
       klass = `${projectID}-${klass}`;

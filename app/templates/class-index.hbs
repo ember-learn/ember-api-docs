@@ -1,4 +1,3 @@
-
 {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
   {{#api-index itemData=filteredModel classNames="api__index__content" as |sectionData|}}
     {{#each sectionData.sections as |section|}}
@@ -9,7 +8,7 @@
             <li>
               {{#link-to (concat parentName section.routeSuffix)
                  model.project.id
-                 (url-param "project-version" "project_version")
+                 model.projectVersion.version
                  model.name
                  item.name
                  (query-params anchor=item.name)}}
