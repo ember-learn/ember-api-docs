@@ -6,6 +6,9 @@ terraform.tfstate.backup
 .env
 .envrc
 
+# Editors
+.idea
+
 # compiled output
 /dist
 /tmp
