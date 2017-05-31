@@ -50,7 +50,7 @@
     "ember-cli-deploy-gzip": "^0.2.4",
     "ember-cli-document-title": "^0.3.3",
     "ember-cli-eslint": "^3.0.2",
-    "ember-cli-fastboot": "1.0.0-beta.16",
+    "ember-cli-fastboot": "1.0.0-beta.19",
     "ember-cli-head": "^0.1.4",
     "ember-cli-htmlbars": "^1.2.0",
     "ember-cli-htmlbars-inline-precompile": "^0.3.6",
