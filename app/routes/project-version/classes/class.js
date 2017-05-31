@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import getLastVersion from '../utils/get-last-version';
+import getLastVersion from '../../../utils/get-last-version';
 
 export default Ember.Route.extend({
 
@@ -8,8 +8,9 @@ export default Ember.Route.extend({
       .then((project) => {
         let versions = project.get('projectVersions').toArray();
         let lastVersion = getLastVersion(versions);
-        //peel off the .html
         let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
+        //peel off the .html
+        console.log('params', params, className);
         let id = `ember-${lastVersion}-${className}`;
         return Ember.RSVP.hash({
           project: Ember.RSVP.resolve(project),
@@ -22,12 +23,12 @@ export default Ember.Route.extend({
               };
             })
             .catch(() => {
-              return this.store.find('namespace', id).then((classData) => {
-                return {
-                  type: 'namespace',
-                  data: classData
-                };
-              });
+              // return this.store.find('namespace', id).then((classData) => {
+              //   return {
+              //     type: 'namespace',
+              //     data: classData
+              //   };
+              // });
             })
             .catch((e) => {
               return this.transitionTo('project-version');
