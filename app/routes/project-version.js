@@ -19,11 +19,11 @@ export default Ember.Route.extend({
   redirect(model, transition) {
     let classParams = transition.params['project-version.class'];
     let moduleParams = transition.params['project-version.modules.module'];
-    let namespaceParams = transition.params['project-version.namespace'];
+    let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
       const namespaces = model.hasMany('namespaces').ids().sort();
       const namespace = _.last(namespaces[0].split("-"));
-      return this.transitionTo('project-version.namespace', model.get('project.id'), model.get('version'), namespace);
+      return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('version'), namespace);
     }
   },
 
@@ -51,12 +51,12 @@ export default Ember.Route.extend({
           break;
         }
         case 'project-version.module.index': {
-          const moduleName = this.paramsFor('project-version.modules.module').module;
+          const moduleName = this.pasramsFor('project-version.modules.module').module;
           endingRoute = `modules/${moduleName}`;
           break;
         }
-        case 'project-version.namespace.index': {
-          const namespaceName = this.paramsFor('project-version.namespace').namespace;
+        case 'project-version.namespaces.index': {
+          const namespaceName = this.paramsFor('project-version.namespaces.namespace').namespace;
           endingRoute = `namespaces/${namespaceName}`;
           break;
         }

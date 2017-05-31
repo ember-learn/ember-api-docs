@@ -35,9 +35,9 @@ Router.map(function() {
     // project-version.namespace => project-version.namespaces.namespace
     //    routes/project-version/namespace   =>  routes/project-version/namespaces/namespace
     this.route('namespaces', function() {
-      // this.route('namespace', {path: '/:namespace'}, itemRoutes)
+      this.route('namespace', {path: '/:namespace'}, itemRoutes)
     });
-    this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
+    // this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
 
     // Module routes
     // project-version.module => project-version.modules.module
