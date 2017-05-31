@@ -1,3 +1,3 @@
-import ClassController from '../class';
+import ClassController from '../classes/class';
 
 export default ClassController.extend();

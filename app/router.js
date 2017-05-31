@@ -22,14 +22,14 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('project', {path: '/:project'});
   this.route('project-version', {path: '/:project/:project_version'}, function() {
-    this.route('classes-redirect', {path: '/classes'});
+    // this.route('classes-redirect', {path: '/classes'});
 
     // project-version.classes-redirect => project-version.classes.index
     // project-version.class => project-version.classes.class
     this.route('classes', function() {
-      // this.route('class', { path: '/:class' }, itemRoutes);
+      this.route('class', { path: '/:class' }, itemRoutes);
     });
-    this.route('class', {path: '/classes/:class'}, itemRoutes);
+    // this.route('class', {path: '/classes/:class'}, itemRoutes);
 
     // Namespace routes
     // project-version.namespace => project-version.namespaces.namespace

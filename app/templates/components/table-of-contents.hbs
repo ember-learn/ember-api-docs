@@ -13,13 +13,9 @@
     <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
     <ol class="toc-level-1 namespaces" style="display: block">
       {{#each namespaceIDs as |namespaceID|}}
-<<<<<<< HEAD
         <li class="toc-level-1" data-test-namespace={{namespaceID}}>
-          {{#link-to 'project-version.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
+          {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
         </li>
-=======
-        <li class="toc-level-1">{{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}</li>
->>>>>>> feat(namespace): Move namespace routes
       {{/each}}
     </ol>
   </li>
@@ -28,7 +24,7 @@
     <ol class="toc-level-1 classes" style="display: block">
       {{#each classesIDs as |classID|}}
         <li class="toc-level-1" data-test-class={{classID}}>
-          {{#link-to 'project-version.class' version classID}}{{classID}}{{/link-to}}
+          {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
         </li>
       {{/each}}
     </ol>

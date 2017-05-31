@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ClassController from '../class';
+import ClassController from '../classes/class';
 import _ from 'lodash';
 
 const { computed, inject } = Ember;
@@ -11,7 +11,7 @@ export default ClassController.extend({
   submodules: computed('model', function() {
     return Object.keys(this.get('model.submodules'));
   }),
-  
+
   namespaces: computed('model', function() {
     return Object.keys(this.get('model.namespaces'));
   }),
