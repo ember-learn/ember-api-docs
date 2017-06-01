@@ -1,0 +1,35 @@
+{
+  "name": "ember-api-docs",
+  "scripts": {
+  },
+  "env": {
+    "DOCS_SLUG": {
+      "required": true
+    },
+    "FASTLY_API_KEY": {
+      "required": true
+    },
+    "FASTLY_CDN_URL": {
+      "required": true
+    },
+    "FASTLY_SERVICE_ID": {
+      "required": true
+    },
+    "HEROKU_EMBER_CLI_DEPLOY": {
+      "required": true
+    },
+    "WORKER_COUNT": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "fastly"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
+    }
+  ]
+}
