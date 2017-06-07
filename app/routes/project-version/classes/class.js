@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import getLastVersion from '../../../utils/get-last-version';
 
+const { Inflector: { inflector }} = Ember;
+
 export default Ember.Route.extend({
 
   model(params) {
@@ -10,8 +12,8 @@ export default Ember.Route.extend({
         let lastVersion = getLastVersion(versions);
         let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
         //peel off the .html
-        console.log('params', params, className);
         let id = `ember-${lastVersion}-${className}`;
+
         return Ember.RSVP.hash({
           project: Ember.RSVP.resolve(project),
           version: Ember.RSVP.resolve(lastVersion),
@@ -23,12 +25,12 @@ export default Ember.Route.extend({
               };
             })
             .catch(() => {
-              // return this.store.find('namespace', id).then((classData) => {
-              //   return {
-              //     type: 'namespace',
-              //     data: classData
-              //   };
-              // });
+              return this.store.find('namespace', id).then((classData) => {
+                return {
+                  type: 'namespace',
+                  data: classData
+                };
+              });
             })
             .catch((e) => {
               return this.transitionTo('project-version');
@@ -41,7 +43,7 @@ export default Ember.Route.extend({
   },
 
   redirect(model) {
-    return this.transitionTo(`project-version.${model.classData.type}`, model.project.id, model.version, model.classData.data.get('name'));
+    return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`, model.project.id, model.version, model.classData.data.get('name'));
   },
 
   serialize(model) {
