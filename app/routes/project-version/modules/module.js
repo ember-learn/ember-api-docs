@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import ClassRoute from '../class';
+import ClassRoute from '../classes/class';
 
 const { inject } = Ember;
 

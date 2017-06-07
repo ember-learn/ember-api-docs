@@ -1,4 +1,4 @@
-import ClassRoute from '../class';
+import ClassRoute from '../classes/class';
 
 export default ClassRoute.extend({
   templateName: 'project-version/class',
