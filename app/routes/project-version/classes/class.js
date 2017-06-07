@@ -1,55 +1,61 @@
 import Ember from 'ember';
-import getLastVersion from '../../../utils/get-last-version';
 
-const { Inflector: { inflector }} = Ember;
+
+const { get, set, inject } = Ember;
 
 export default Ember.Route.extend({
+  headData: inject.service(),
+  scrollPositionReset: inject.service(),
 
-  model(params) {
-    return this.get('store').findRecord('project', 'ember', { includes: 'project-version' })
-      .then((project) => {
-        let versions = project.get('projectVersions').toArray();
-        let lastVersion = getLastVersion(versions);
-        let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
-        //peel off the .html
-        let id = `ember-${lastVersion}-${className}`;
 
-        return Ember.RSVP.hash({
-          project: Ember.RSVP.resolve(project),
-          version: Ember.RSVP.resolve(lastVersion),
-          classData: this.store.find('class', id)
-            .then((classData) => {
-              return {
-                type: 'class',
-                data: classData
-              };
-            })
-            .catch(() => {
-              return this.store.find('namespace', id).then((classData) => {
-                return {
-                  type: 'namespace',
-                  data: classData
-                };
-              });
-            })
-            .catch((e) => {
-              return this.transitionTo('project-version');
-            })
-        })
-      })
-      .catch((e) => {
-        return this.transitionTo('project-version');
-      });
+  titleToken: function(model) {
+    return model.get('name');
   },
 
-  redirect(model) {
-    return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`, model.project.id, model.version, model.classData.data.get('name'));
+  model(params, transition) {
+    return this.getModel('class', params, transition);
+  },
+
+  getModel(typeName, params, transition) {
+    const projectID = transition.params['project-version'].project;
+    const version = transition.params['project-version'].project_version;
+    const klass = params[typeName];
+    return this.find(typeName, `${projectID}-${version}-${klass}`);
+  },
+
+  find(typeName, param) {
+    return this.store.find(typeName, param).catch(() => {
+      return this.store.find('namespace', param).catch(() => {
+        return this.transitionTo('project-version'); // class doesn't exist in new version
+      });
+    });
+  },
+
+  afterModel(klass) {
+    set(this, 'headData.description', klass.get('ogDescription'));
+    const relationships = get(klass.constructor, 'relationshipNames');
+    const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
+      const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
+      return memo.concat(relationshipPromises);
+    }, []);
+
+    return Ember.RSVP.all(promises);
   },
 
   serialize(model) {
     return {
-      namespace: model.classData.get('name')
+      class: model.get('name')
+    };
+  },
+
+  actions: {
+
+    willTransition(transition) {
+      this.get('scrollPositionReset').scheduleReset(transition);
+    },
+
+    didTransition() {
+      this.get('scrollPositionReset').doReset();
     }
   }
-
 });
