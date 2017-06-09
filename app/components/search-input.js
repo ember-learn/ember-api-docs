@@ -22,7 +22,7 @@ export default Ember.Component.extend({
     }
   ],
   actions: {
-    search(query) {
+    async search(query) {
       const client = get(this, '_searchClient');
       const projectVersion = get(this, '_projectVersion');
 
@@ -43,14 +43,12 @@ export default Ember.Component.extend({
         }
       ];
 
-      return client
-        .search(queries)
-        .then(res => {
-          const results = get(res, 'results.0.hits');
-          return get(this, '_results')
-            .clear()
-            .addObjects(results);
-        });
+      let res = await client.search(queries);
+
+      const results = get(res, 'results.0.hits');
+      return get(this, '_results')
+        .clear()
+        .addObjects(results);
     },
     onfocus() {
       set(this, '_focused', true);
