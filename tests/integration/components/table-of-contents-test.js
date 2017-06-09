@@ -24,6 +24,6 @@ test('it renders', function(assert) {
 
   assert.equal(findAll('.toc-level-0 > a')[2].textContent.trim(), 'Classes');
   assert.equal(findAll('.toc-level-1 li').length, 2, 'We have two items to display');
-  assert.equal(findAll('.toc-level-1 li')[0].textContent, 'Descriptor');
-  assert.equal(findAll('.toc-level-1 li')[1].textContent, 'Ember');
+  assert.equal(findAll('.toc-level-1 li')[0].textContent.trim(), 'Descriptor');
+  assert.equal(findAll('.toc-level-1 li')[1].textContent.trim(), 'Ember');
 });

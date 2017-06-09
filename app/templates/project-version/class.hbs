@@ -52,6 +52,7 @@
            class="tabbed-layout__menu__item"
            activeClass="tabbed-layout__menu__item_selected"
            current-when=(concat parentName ".index")
+           data-test-tab="index"
         }}
           <span>Index</span>
         {{/link-to}}
@@ -65,6 +66,7 @@
              class="tabbed-layout__menu__item"
              activeClass="tabbed-layout__menu__item_selected"
              current-when=(concat parentName ".methods")
+             data-test-tab="methods"
           }}
             <span>Methods</span>
           {{/link-to}}
@@ -79,6 +81,7 @@
              class="tabbed-layout__menu__item"
              activeClass="tabbed-layout__menu__item_selected"
              current-when=(concat parentName ".properties")
+             data-test-tab="properties"
           }}
             <span>Properties</span>
           {{/link-to}}
@@ -93,6 +96,7 @@
              class="tabbed-layout__menu__item"
              activeClass="tabbed-layout__menu__item_selected"
              current-when=(concat parentName ".events")
+             data-test-tab="events"
           }}
             <span>Events</span>
           {{/link-to}}
@@ -102,6 +106,7 @@
         Show:
         <label class="access-checkbox">
           <input id="inherited-toggle"
+                 data-test-checkbox="inherited"
                  type="checkbox"
                  checked={{filterData.showInherited}}
                  onchange={{action "updateFilter" "showInherited"}}>
@@ -109,6 +114,7 @@
         </label>
         <label class="access-checkbox">
           <input id="protected-toggle"
+                 data-test-checkbox="protected"
                  type="checkbox"
                  checked={{filterData.showProtected}}
                  onchange={{action "updateFilter" "showProtected"}}>
@@ -116,6 +122,7 @@
         </label>
         <label class="access-checkbox">
           <input id="private-toggle"
+                 data-test-checkbox="private"
                  type="checkbox"
                  checked={{filterData.showPrivate}}
                  onchange={{action "updateFilter" "showPrivate"}}>
@@ -123,6 +130,7 @@
         </label>
         <label class="access-checkbox">
           <input id="deprecated-toggle"
+                 data-test-checkbox="deprecated"
                  type="checkbox"
                  checked={{filterData.showDeprecated}}
                  onchange={{action "updateFilter" "showDeprecated"}}>

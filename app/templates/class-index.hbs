@@ -5,7 +5,7 @@
       {{#if section.items}}
         <ul class="{{section.class}}">
           {{#each section.items as |item|}}
-            <li>
+            <li data-test-item={{item.name}}>
               {{#link-to (concat parentName section.routeSuffix)
                  model.project.id
                  model.projectVersion.version
