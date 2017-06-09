@@ -10,9 +10,7 @@
     "build": "ember build",
     "start": "ember server",
     "test": "ember exam",
-    "postinstall": "npm rebuild node-sass",
-    "heroku-prebuild": "npm i -g bower",
-    "heroku-postbuild": "bower install && rm -rf tmp/deploy-dist && ember deploy production && cd tmp/deploy-dist && npm install --production && cd ../.."
+    "postinstall": "npm rebuild node-sass"
   },
   "repository": {
     "type": "git",
