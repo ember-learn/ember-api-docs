@@ -1,4 +1,5 @@
 import { test } from 'qunit';
+import { visit } from 'ember-native-dom-helpers';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import Ember from 'ember';
 import { requestIdlePromise } from 'ember-api-docs/utils/request-idle-callback';
