@@ -4,28 +4,28 @@
   },
   "env": {
     "DOCS_SLUG": {
-      "required": true
+      "required": false,
+      "value": "/api-beta/"
     },
     "FASTLY_API_KEY": {
-      "required": true
+      "required": false
     },
     "FASTLY_CDN_URL": {
-      "required": true
+      "required": false
     },
     "FASTLY_SERVICE_ID": {
-      "required": true
+      "required": false
     },
     "HEROKU_EMBER_CLI_DEPLOY": {
       "required": true
     },
     "WORKER_COUNT": {
-      "required": true
+      "required": false
     }
   },
   "formation": {
   },
   "addons": [
-    "fastly"
   ],
   "buildpacks": [
     {
