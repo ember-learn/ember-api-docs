@@ -2867,7 +2867,7 @@ ember-cli-document-title@^0.3.3:
   dependencies:
     ember-cli-babel "^5.1.6"
 
-ember-cli-eslint@^3.0.2:
+ember-cli-eslint@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-eslint/-/ember-cli-eslint-3.1.0.tgz#8d9e2a867654835ac1b24858d9117e143fa54bd4"
   dependencies:
