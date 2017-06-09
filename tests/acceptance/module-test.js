@@ -3,51 +3,38 @@ import { test } from 'qunit';
 
 moduleForAcceptance('Acceptance | Module');
 
-test('lists all public/private classes and namespaces on the module page', function(assert) {
+test('lists all public/private classes and namespaces on the module page', async function(assert) {
+  await visit('ember/1.0.0/modules/ember-handlebars');
 
-  visit('ember/1.0.0/modules/ember-handlebars');
+  const store = this.application.__container__.lookup('service:store');
+  const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
 
-  andThen(() => {
-    const store = this.application.__container__.lookup('service:store');
-    const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
+  let numberNameSpaces = Object.keys(container.get('namespaces')).length;
+  let numberPublicClasses = Object.keys(container.get('publicclasses')).length;
+  let numberPrivateClasses = Object.keys(container.get('privateclasses')).length;
 
-    let numberNameSpaces = Object.keys(container.get('namespaces')).length;
-    let numberPublicClasses = Object.keys(container.get('publicclasses')).length;
-    let numberPrivateClasses = Object.keys(container.get('privateclasses')).length;
+  assert.equal(find('.spec-property-list li').length, numberPublicClasses + numberNameSpaces);
 
-    assert.equal(find('.spec-property-list li').length, numberPublicClasses + numberNameSpaces);
-
-    click('.sidebar .private-deprecated-toggle');
-    andThen(() => {
-      assert.equal(find('.spec-property-list li').length, numberPublicClasses + numberNameSpaces + numberPrivateClasses);
-    });
-  });
-
+  await click('.sidebar .private-deprecated-toggle');
+  assert.equal(find('.spec-property-list li').length, numberPublicClasses + numberNameSpaces + numberPrivateClasses);
 });
 
-test('lists all submodules on the module page', function(assert) {
+test('lists all submodules on the module page', async function(assert) {
+  await visit('ember/1.0.0/modules/ember');
 
-  visit('ember/1.0.0/modules/ember');
+  const store = this.application.__container__.lookup('service:store');
+  const container = store.peekRecord('module', 'ember-1.0.0-ember');
 
-  andThen(() => {
-    const store = this.application.__container__.lookup('service:store');
-    const container = store.peekRecord('module', 'ember-1.0.0-ember');
+  let numberSubModules = Object.keys(container.get('submodules')).length;
 
-    let numberSubModules = Object.keys(container.get('submodules')).length;
-
-    assert.equal(find('.spec-method-list li').length, numberSubModules);
-  });
-
+  assert.equal(find('.spec-method-list li').length, numberSubModules);
 });
 
-test('display submodule parent', function(assert) {
+test('display submodule parent', async function(assert) {
+  await visit('ember/1.0.0/modules/ember-application');
 
-  visit('ember/1.0.0/modules/ember-application');
+  const store = this.application.__container__.lookup('service:store');
+  const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
 
-  andThen(() => {
-    const store = this.application.__container__.lookup('service:store');
-    const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
-
-    assert.ok(find(`.attribute-value:contains(${container.get('parent')})`).length);
-  });
+  assert.ok(find(`.attribute-value:contains(${container.get('parent')})`).length);
 });
