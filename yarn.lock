@@ -3348,7 +3348,7 @@ ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
     ember-cli-babel "^6.0.0-beta.4"
     regenerator-runtime "^0.9.5"
 
-ember-native-dom-helpers@^0.4.0:
+ember-native-dom-helpers@^0.4.0, ember-native-dom-helpers@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.4.1.tgz#c4db7afa25dbe3efd84f36376f1ede2678cd7bb0"
   dependencies:
