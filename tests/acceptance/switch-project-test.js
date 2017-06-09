@@ -3,41 +3,25 @@ import {test} from 'qunit';
 
 moduleForAcceptance('Acceptance | Switch Project');
 
+test('Can switch projects back and forth', async function(assert) {
+  async function ensureVersionsExist() {
+    await selectSearch('.select-container', '2');
 
-test('Can switch projects back and forth', function(assert) {
+    assert.equal(find('.ember-power-select-options').length, 1);
+    assert.ok(find('.ember-power-select-options')[0].children.length > 1);
+  }
 
-  let ensureVersionsExist = () => {
-    andThen(() => {
-      selectSearch('.select-container', '2');
-    });
+  await visit('/');
 
-    andThen(() => {
-      assert.equal(find('.ember-power-select-options').length, 1);
-      assert.ok(find('.ember-power-select-options')[0].children.length > 1);
-    });
-  };
+  await click('.spec-ember-data');
+  await ensureVersionsExist();
+  assert.ok(findWithAssert('.spec-ember-data').hasClass('active'));
 
+  await click('.spec-ember');
+  await ensureVersionsExist();
+  assert.ok(findWithAssert('.spec-ember').hasClass('active'));
 
-  visit('/');
-
-  click('.spec-ember-data');
-
-  andThen(() => {
-    ensureVersionsExist();
-    assert.ok(findWithAssert('.spec-ember-data').hasClass('active'));
-  });
-
-  click('.spec-ember');
-
-  andThen(() => {
-    ensureVersionsExist();
-    assert.ok(findWithAssert('.spec-ember').hasClass('active'));
-  });
-
-  click('.spec-ember-data');
-
-  andThen(() => {
-    ensureVersionsExist();
-    assert.ok(findWithAssert('.spec-ember-data').hasClass('active'));
-  });
+  await click('.spec-ember-data');
+  await ensureVersionsExist();
+  assert.ok(findWithAssert('.spec-ember-data').hasClass('active'));
 });

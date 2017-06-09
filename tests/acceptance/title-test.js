@@ -4,9 +4,8 @@ import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-accepta
 
 moduleForAcceptance('Acceptance | document title');
 
-test('is of format className - version - Ember API Docs', function (assert) {
-  return visit('/ember/1.0.0/classes/Container').then(() => {
-    assert.equal(document.title, 'Container - 1.0.0 - Ember API Documentation');
-  });
+test('is of format className - version - Ember API Docs', async function(assert) {
+  await visit('/ember/1.0.0/classes/Container');
+  assert.equal(document.title, 'Container - 1.0.0 - Ember API Documentation');
 });
 

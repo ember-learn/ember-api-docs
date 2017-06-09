@@ -3,27 +3,24 @@ import {test} from 'qunit';
 import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | Class', {
-  beforeEach() {
-    return visit('/ember/1.0.0/classes/Container').then(() => {
-      click('.access-checkbox:contains(Inherited)');
-      click('.access-checkbox:contains(Protected)');
-      click('.access-checkbox:contains(Private)');
-      click('.access-checkbox:contains(Deprecated)');
-    });
+  async beforeEach() {
+    await visit('/ember/1.0.0/classes/Container');
+    await click('.access-checkbox:contains(Inherited)');
+    await click('.access-checkbox:contains(Protected)');
+    await click('.access-checkbox:contains(Private)');
+    await click('.access-checkbox:contains(Deprecated)');
   }
 });
 
-test('lists all the methods on the class page', function (assert) {
+test('lists all the methods on the class page', async function (assert) {
   const store = this.application.__container__.lookup('service:store');
   const container = store.peekRecord('class', 'ember-1.0.0-Container');
   assert.equal($(findWithAssert('.spec-method-list li')).length, container.get('methods.length'));
 
-  click('.access-checkbox:contains(Private)'); // turn private back off
+  await click('.access-checkbox:contains(Private)'); // turn private back off
 
-  andThen(() => {
-    assert.equal($(findWithAssert('.spec-method-list li')).length,
-      container.get('methods').filter(method => method.access !== 'private').length);
-  });
+  assert.equal($(findWithAssert('.spec-method-list li')).length,
+    container.get('methods').filter(method => method.access !== 'private').length);
 });
 
 test('lists all the properties on the class page', function (assert) {

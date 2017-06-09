@@ -5,7 +5,7 @@ import { requestIdlePromise } from 'ember-api-docs/utils/request-idle-callback';
 
 moduleForAcceptance('Acceptance | analytics page tracking');
 
-test('checking that trackPage gets called on transitions', function(assert) {
+test('checking that trackPage gets called on transitions', async function(assert) {
 
   const pages = ['/ember/2.11.3/namespaces/Ember', '/ember/2.11.3/modules/ember-metal', '/ember/2.11.3/classes/Ember.Application'];
   const pagesClone = pages.slice(0);
@@ -20,18 +20,10 @@ test('checking that trackPage gets called on transitions', function(assert) {
     });
   };
 
-  visit(pages[0]);
+  await visit(pages[0]);
+  await visit(pages[1]);
+  await visit(pages[2]);
 
-  andThen(function() {
-    visit(pages[1]);
-  });
-
-  andThen(function() {
-    visit(pages[2]);
-  });
-
-  andThen(function() {
-    // make sure the test runner waits for last idle callback
-    return requestIdlePromise(2000);
-  });
+  // make sure the test runner waits for last idle callback
+  return requestIdlePromise(2000);
 });
