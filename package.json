@@ -71,7 +71,7 @@
     "ember-lodash": "^4.17.1",
     "ember-network": "^0.3.1",
     "ember-power-select": "^1.6.1",
-    "ember-resolver": "^3.0.0",
+    "ember-resolver": "^4.1.0",
     "ember-route-action-helper": "^2.0.2",
     "ember-service-worker": "0.6.2",
     "ember-service-worker-asset-cache": "0.6.0",
