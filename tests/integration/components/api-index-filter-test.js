@@ -1,6 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
+import { click, findAll } from 'ember-native-dom-helpers';
 
 moduleForComponent('api-index-filter', 'Integration | Component | api index filter', {
   integration: true
@@ -55,7 +56,7 @@ const model = Ember.Object.create({
 });
 
 
-test('clicking inherited shows inherited methods', function(assert) {
+test('clicking inherited shows inherited methods', async function(assert) {
   let filterData = Ember.Object.create({
     showInherited: false,
     showProtected: false,
@@ -108,13 +109,13 @@ test('clicking inherited shows inherited methods', function(assert) {
     {{/api-index-filter}}
   `);
 
-  this.$('#inherited-toggle').click();
-  assert.equal(this.$('.method-name:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.method-name:eq(1)').text().trim(), 'parentDoSomething', 'should display 1 inherited method');
-  assert.equal(this.$('.method-name').length, 2, 'should display 2 methods total');
+  await click('#inherited-toggle');
+  assert.equal(findAll('.method-name').length, 2, 'should display 2 methods total');
+  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
+  assert.equal(findAll('.method-name')[1].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
 });
 
-test('clicking private shows private methods', function(assert) {
+test('clicking private shows private methods', async function(assert) {
   let filterData = Ember.Object.create({
     showInherited: false,
     showProtected: false,
@@ -167,13 +168,13 @@ test('clicking private shows private methods', function(assert) {
     {{/api-index-filter}}
   `);
 
-  this.$('#private-toggle').click();
-  assert.equal(this.$('.method-name:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.method-name:eq(1)').text().trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(this.$('.method-name').length, 2, 'should display 2 methods total');
+  await click('#private-toggle');
+  assert.equal(findAll('.method-name').length, 2, 'should display 2 methods total');
+  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
+  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
 });
 
-test('clicking private and inherited shows both methods', function(assert) {
+test('clicking private and inherited shows both methods', async function(assert) {
   let filterData = Ember.Object.create({
     showInherited: false,
     showProtected: false,
@@ -226,16 +227,16 @@ test('clicking private and inherited shows both methods', function(assert) {
     {{/api-index-filter}}
   `);
 
-  this.$('#private-toggle').click();
-  this.$('#inherited-toggle').click();
-  assert.equal(this.$('.method-name:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.method-name:eq(1)').text().trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(this.$('.method-name:eq(2)').text().trim(), 'parentDoSomething', 'should display 1 inherited method');
-  assert.equal(this.$('.method-name').length, 3, 'should display 3 methods total');
+  await click('#private-toggle');
+  await click('#inherited-toggle');
+  assert.equal(findAll('.method-name').length, 3, 'should display 3 methods total');
+  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
+  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
+  assert.equal(findAll('.method-name')[2].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
 });
 
 
-test('clicking all toggles shows all methods', function(assert) {
+test('clicking all toggles shows all methods', async function(assert) {
   let filterData = Ember.Object.create({
     showInherited: false,
     showProtected: false,
@@ -288,20 +289,20 @@ test('clicking all toggles shows all methods', function(assert) {
     {{/api-index-filter}}
   `);
 
-  this.$('#private-toggle').click();
-  this.$('#inherited-toggle').click();
-  this.$('#protected-toggle').click();
-  this.$('#deprecated-toggle').click();
-  assert.equal(this.$('.method-name:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.method-name:eq(1)').text().trim(), 'doSomethingDeprecated', 'should display 1 deprecated method');
-  assert.equal(this.$('.method-name:eq(2)').text().trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(this.$('.method-name:eq(3)').text().trim(), 'doSomethingProtected', 'should display 1 protected method');
-  assert.equal(this.$('.method-name:eq(4)').text().trim(), 'parentDoSomething', 'should display 1 inherited method');
-  assert.equal(this.$('.method-name').length, 5, 'should display all methods');
+  await click('#private-toggle');
+  await click('#inherited-toggle');
+  await click('#protected-toggle');
+  await click('#deprecated-toggle');
+  assert.equal(findAll('.method-name').length, 5, 'should display all methods');
+  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
+  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingDeprecated', 'should display 1 deprecated method');
+  assert.equal(findAll('.method-name')[2].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
+  assert.equal(findAll('.method-name')[3].textContent.trim(), 'doSomethingProtected', 'should display 1 protected method');
+  assert.equal(findAll('.method-name')[4].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
 });
 
 
-test('clicking all toggles off should only show public', function(assert) {
+test('clicking all toggles off should only show public', async function(assert) {
   let filterData = Ember.Object.create({
     showInherited: true,
     showProtected: true,
@@ -354,19 +355,19 @@ test('clicking all toggles off should only show public', function(assert) {
     {{/api-index-filter}}
   `);
 
-  assert.equal(this.$('.method-name:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.method-name:eq(1)').text().trim(), 'doSomethingDeprecated', 'should display 1 deprecated method');
-  assert.equal(this.$('.method-name:eq(2)').text().trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(this.$('.method-name:eq(3)').text().trim(), 'doSomethingProtected', 'should display 1 protected method');
-  assert.equal(this.$('.method-name:eq(4)').text().trim(), 'parentDoSomething', 'should display 1 inherited method');
-  assert.equal(this.$('.method-name').length, 5, 'should display all methods');
+  assert.equal(findAll('.method-name').length, 5, 'should display all methods');
+  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
+  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingDeprecated', 'should display 1 deprecated method');
+  assert.equal(findAll('.method-name')[2].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
+  assert.equal(findAll('.method-name')[3].textContent.trim(), 'doSomethingProtected', 'should display 1 protected method');
+  assert.equal(findAll('.method-name')[4].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
 
-  this.$('#private-toggle').click();
-  this.$('#inherited-toggle').click();
-  this.$('#protected-toggle').click();
-  this.$('#deprecated-toggle').click();
+  await click('#private-toggle');
+  await click('#inherited-toggle');
+  await click('#protected-toggle');
+  await click('#deprecated-toggle');
 
-  assert.equal(this.$('.method-name:eq(0)').text().trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(this.$('.method-name').length, 1, 'should display all methods');
+  assert.equal(findAll('.method-name').length, 1, 'should display all methods');
+  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
 
 });
