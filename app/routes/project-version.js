@@ -8,12 +8,11 @@ export default Ember.Route.extend({
     return model.get('version');
   },
 
-  model(params) {
+  async model(params) {
     const id = `${params.project}-${params.project_version}`;
     this.get('projectService').setVersion(params.project_version);
-    return this.store.findRecord('project', params.project).then(() => {
-      return this.store.findRecord('project-version', id, { includes: 'project' });
-    });
+    await this.store.findRecord('project', params.project);
+    return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30

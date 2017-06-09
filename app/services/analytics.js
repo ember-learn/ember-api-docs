@@ -6,26 +6,24 @@ const { computed, $ } = Ember;
 
 export default Ember.Service.extend({
 
-  googleAnalytics: computed(function() {
-    return requestIdlePromise({timeout: 1000}).then(() => {
-      return $.getScript('https://www.google-analytics.com/analytics.js');
-    }).then(() => {
-      window.ga('create', config.gaTrackingId, 'auto');
-    });
+  googleAnalytics: computed(async function() {
+    await requestIdlePromise({timeout: 1000});
+    await $.getScript('https://www.google-analytics.com/analytics.js');
+    window.ga('create', config.gaTrackingId, 'auto');
   }),
 
-  trackPage(page, title) {
+  async trackPage(page, title) {
     if (config.environment === 'development') {
       return;
     }
-    return this.get('googleAnalytics').then(() => {
-      return requestIdlePromise({timeout: 1000});
-    }).then(() => {
-      window.ga('send', {
-        hitType: 'pageview',
-        page,
-        title
-      });
+
+    await this.get('googleAnalytics');
+    await requestIdlePromise({timeout: 1000});
+
+    window.ga('send', {
+      hitType: 'pageview',
+      page,
+      title
     });
   }
 });
