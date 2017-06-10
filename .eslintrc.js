@@ -9,7 +9,8 @@ module.exports = {
     'browser': true
   },
   globals: {
-    'heimdall': true
+    'heimdall': true,
+    'FastBoot': true
   },
   rules: {
     'no-unused-vars': ['error', {

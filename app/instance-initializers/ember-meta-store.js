@@ -8,7 +8,9 @@ export function initialize(appInstance) {
 
   const shoebox = fastBootService.get('shoebox');
 
-  if (isPresent(shoebox.retrieve('meta-store'))) {
+  if (typeof FastBoot !== 'undefined') {
+    shoebox.put('meta-store', metaStore.getProperties('availableProjectVersions', 'projectRevMap'));
+  } else if (isPresent(shoebox.retrieve('meta-store'))) {
     const {availableProjectVersions, projectRevMap} = shoebox.retrieve('meta-store');
     metaStore.initializeStore(availableProjectVersions, projectRevMap);
   }
