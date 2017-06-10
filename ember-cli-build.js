@@ -43,7 +43,7 @@ module.exports = function(defaults) {
 
   app.options['esw-cache-first'] = {
     patterns: [
-      `${app.env.API_HOST}/json-docs-1/(.+)`,
+      `${app.env.API_HOST}/json-docs/(.+)`,
       `${app.env.API_HOST}/rev-index/(.+)`
     ]
   };
