@@ -73,7 +73,7 @@ module.exports = function(environment) {
      * https://github.com/ember-fastboot/ember-cli-fastboot/issues/254 to be
      * solved for that
      */
-    ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
+    ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-beta/';
     ENV.gaTrackingId = 'UA-27675533-1';
 
   }

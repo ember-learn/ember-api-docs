@@ -6,8 +6,7 @@
     "neat": "^1.8.0",
     "lodash": "~3.7.0",
     "remarkable": "^1.7.1",
-    "highlightjs": "^9.8.0",
-    "jquery-scrollparent": "~0.1.2"
+    "highlightjs": "^9.8.0"
   },
   "resolutions": {
     "FakeXMLHttpRequest": "^1.4.0",

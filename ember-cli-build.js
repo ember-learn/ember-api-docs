@@ -48,10 +48,5 @@ module.exports = function(defaults) {
     ]
   };
 
-
-  if (!process.env.EMBER_CLI_FASTBOOT) {
-    app.import(app.bowerDirectory + '/jquery-scrollparent/jquery.scrollparent.js');
-  }
-
   return app.toTree();
 };

@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-import fetch from 'ember-network/fetch';
+import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 
 const {
