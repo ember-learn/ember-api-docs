@@ -1,8 +1,6 @@
 module.exports = {
-  env: {
-    'embertest': true
-  },
   globals: {
+    'currentURL': true,
     'selectSearch': true,
     'selectChoose': true
   }

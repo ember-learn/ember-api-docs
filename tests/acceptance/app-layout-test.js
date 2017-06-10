@@ -1,5 +1,6 @@
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import {test} from 'qunit';
+import { visit } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | Application Layout');
 

@@ -1,5 +1,6 @@
 import { test } from 'qunit';
 import $ from 'jquery';
+import { visit } from 'ember-native-dom-helpers';
 
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 

@@ -69,6 +69,7 @@
     "ember-load-initializers": "^1.0.0",
     "ember-lodash": "^4.17.1",
     "ember-maybe-import-regenerator": "^0.1.6",
+    "ember-native-dom-helpers": "^0.4.1",
     "ember-network": "^0.3.1",
     "ember-power-select": "^1.6.1",
     "ember-resolver": "^4.1.0",
