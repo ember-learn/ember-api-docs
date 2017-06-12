@@ -1,6 +1,9 @@
 /* eslint-env node: true */
 
 module.exports = function(environment) {
+  var ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
+  var ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
+
   var ENV = {
     modulePrefix: 'ember-api-docs',
     environment: environment,
@@ -8,7 +11,6 @@ module.exports = function(environment) {
     routerRootURL: '/',
     locationType: 'auto',
     API_HOST: 'https://ead-sk.global.ssl.fastly.net',
-    IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
     gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
@@ -26,11 +28,12 @@ module.exports = function(environment) {
 
     fastboot: {
       hostWhitelist: [/^[\w\-]+\.herokuapp\.com$/, /^localhost:\d+$/]
+    },
+    'ember-algolia': {
+      algoliaId: ALGOLIA_APP_ID,
+      algoliaKey: ALGOLIA_API_KEY
     }
   };
-
-  ENV.ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
-  ENV.ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
