@@ -10,7 +10,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: 'https://ead-sk.global.ssl.fastly.net',
+    API_HOST: 'https://ember-api-docs.global.ssl.fastly.net',
     gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
@@ -62,7 +62,7 @@ module.exports = function(environment) {
 
   ENV.contentSecurityPolicy = {
     "default-src": "'self' *.fastly.net",
-    "connect-src": "'self' https://s3.amazonaws.com *.algolia.net *.algolianet.com *.fastly.net",
+    "connect-src": "'self' *.algolia.net *.algolianet.com *.fastly.net",
     "script-src": "'self' unsafe-inline use.typekit.net 'sha256-36n/xkZHEzq3lo4O+0jXMYbl+dWu3C8orOFHtcAH6HU=' *.fastly.net https://www.google-analytics.com",
     "font-src": "'self' data://* https://fonts.gstatic.com  *.fastly.net",
     "img-src": "'self' data://*  *.fastly.net https://www.google-analytics.com",
