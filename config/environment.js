@@ -81,9 +81,5 @@ module.exports = function(environment) {
 
   }
 
-  if ('FASTLY_CDN_URL' in process.env) {
-    ENV.CDN_URL = process.env.FASTLY_CDN_URL;
-  }
-
   return ENV;
 };
