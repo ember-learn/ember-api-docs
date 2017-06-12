@@ -47,14 +47,8 @@ export default Ember.Component.extend({
       query
     };
 
-    let res = yield new Ember.RSVP.Promise((resolve, reject) => {
-      client.search(searchObj, params, function(err, content) {
-        if (err) {
-          reject(err);
-        }
-        resolve(content);
-      })
-    });
+    let searchFn = Ember.RSVP.denodeify(client.search.bind(client));
+    let res = yield searchFn(searchObj, params);
 
     const results = get(res, 'hits');
     return get(this, '_results')
