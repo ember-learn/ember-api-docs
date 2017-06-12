@@ -14,7 +14,7 @@ module.exports = function(environment /*, appConfig */) {
     display: 'standalone',
     background_color: '#FDFDFD',
     theme_color: '#f67862',
-    prepend: environment === 'production' && 'FASTLY_CDN_URL' in process.env ? FASTLY_CDN_URL.env : '',
+    // prepend: environment === 'production' && 'FASTLY_CDN_URL' in process.env ? FASTLY_CDN_URL.env : '',
     scope: environment === 'production' ? docsSlug : '/',
     icons: [
       {

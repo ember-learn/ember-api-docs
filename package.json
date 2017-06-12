@@ -17,7 +17,7 @@
     "url": "https://github.com/ember-learn/ember-api-docs.git"
   },
   "engines": {
-    "node": "^6.9.1",
+    "node": "^7.10.0",
     "npm": "^3.0.0"
   },
   "author": "Ember Learning Team and contributors",
