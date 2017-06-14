@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-const { on } = Ember;
+const { on, inject } = Ember;
 
 const Router = Ember.Router.extend({
+
+  analytics: inject.service(),
+
   location: config.locationType,
   rootURL: config.routerRootURL,
 
@@ -11,8 +14,7 @@ const Router = Ember.Router.extend({
     if (typeof FastBoot === 'undefined') {
       page = page ? page : this.get('url');
       title = title ? title : this.get('url');
-      const analyticsService = Ember.getOwner(this).lookup('service:analytics');
-      analyticsService.trackPage(page, title);
+      this.get('analytics').trackPage(page, title);
     }
   })
 });
