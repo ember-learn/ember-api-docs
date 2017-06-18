@@ -45,17 +45,17 @@ export default Ember.Route.extend({
           endingRoute = `classes/${className}`;
           break;
         }
-        case 'project-version.classes.index': {
+        case 'project-version.classes.class.index': {
           const className = this.modelFor('project-version.classes.class').get('name');
           endingRoute = `classes/${className}`;
           break;
         }
-        case 'project-version.modules.index': {
-          const moduleName = this.pasramsFor('project-version.modules.module').module;
+        case 'project-version.modules.module.index': {
+          const moduleName = this.paramsFor('project-version.modules.module').module;
           endingRoute = `modules/${moduleName}`;
           break;
         }
-        case 'project-version.namespaces.index': {
+        case 'project-version.namespaces.namespace.index': {
           const namespaceName = this.paramsFor('project-version.namespaces.namespace').namespace;
           endingRoute = `namespaces/${namespaceName}`;
           break;
