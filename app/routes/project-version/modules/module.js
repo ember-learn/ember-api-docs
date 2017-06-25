@@ -1,11 +1,7 @@
-import Ember from 'ember';
 import ClassRoute from '../classes/class';
+import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 
-const { inject } = Ember;
-
-export default ClassRoute.extend({
-
-  scrollPositionReset: inject.service(),
+export default ClassRoute.extend(ScrollTracker, {
 
   model(params, transition) {
     return this.getModel('module', params, transition);
@@ -25,16 +21,6 @@ export default ClassRoute.extend({
     return {
       module: model.get('name')
     };
-  },
-
-  actions: {
-
-    willTransition(transition) {
-      this.get('scrollPositionReset').scheduleReset(transition);
-    },
-
-    didTransition() {
-      this.get('scrollPositionReset').doReset();
-    }
   }
+
 });

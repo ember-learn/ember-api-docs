@@ -1,11 +1,10 @@
 import Ember from 'ember';
 import getLastVersion from '../utils/get-last-version';
+import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 
-const { Route, inject: {service} } = Ember;
+const { Route } = Ember;
 
-export default Route.extend({
-
-  scrollPositionReset: service(),
+export default Route.extend(ScrollTracker, {
 
   model({project: projectName}) {
     return this.store.findRecord('project', projectName, { includes: 'project-version' });
@@ -16,16 +15,6 @@ export default Route.extend({
     const versions = project.get('projectVersions').toArray();
     let last = getLastVersion(versions);
     return this.transitionTo('project-version', project.get('id'), last);
-  },
-
-  actions: {
-
-    willTransition(transition) {
-      this.get('scrollPositionReset').scheduleReset(transition);
-    },
-
-    didTransition() {
-      this.get('scrollPositionReset').doReset();
-    }
   }
+
 });
