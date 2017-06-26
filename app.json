@@ -36,7 +36,8 @@
     "test": {
       "buildpacks": [
         { "url": "heroku/nodejs" },
-        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" }
+        { "url": "https://github.com/heroku/heroku-buildpack-google-chrome" },
+        { "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz" }
       ]
     }
   }
