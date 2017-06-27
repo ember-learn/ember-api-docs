@@ -5,7 +5,7 @@
     {{#if model.parent}}
       <div class="attribute">
         <span class="attribute-label">Parent:</span>
-        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.parent}}{{model.parent}}{{/link-to}}</span>
+        <span class="attribute-value">{{#link-to 'project-version.modules.module' (url-param "project-version" "project_version") model.parent}}{{model.parent}}{{/link-to}}</span>
       </div>
     {{/if}}
   </p>

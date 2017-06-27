@@ -4,6 +4,7 @@ module.exports = function(environment) {
   let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
 
   let ENV = {
+    ltsVersion: process.env.LTS_VERSION || '2.8.3',
     modulePrefix: 'ember-api-docs',
     environment,
     rootURL: '/',

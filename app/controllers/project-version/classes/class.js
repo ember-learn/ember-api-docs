@@ -5,7 +5,6 @@ const { Controller } = Ember;
 
 export default Controller.extend(ParentNameMixin, {
   filterData: Ember.inject.service(),
-
   actions: {
     updateFilter(filter) {
       this.toggleProperty(`filterData.${filter}`);

@@ -66,6 +66,7 @@
     "ember-power-select": "^1.8.5",
     "ember-resolver": "^4.2.1",
     "ember-route-action-helper": "^2.0.3",
+    "ember-router-service": "^1.0.2",
     "ember-service-worker": "0.6.7",
     "ember-service-worker-asset-cache": "0.6.1",
     "ember-service-worker-cache-fallback": "0.6.1",
