@@ -7,8 +7,8 @@ const {$} = Ember;
 
 moduleForAcceptance('Acceptance | release lts project versions');
 
-test('release url param', function(assert) {
-  visit('/ember/release/namespaces/Ember');
+test('release url param', async function(assert) {
+  await visit('/ember/release/namespaces/Ember');
 
   let checkLinks = (label, selector, versionString) => {
     return $('.attributes a').toArray().forEach(el => {
@@ -38,41 +38,30 @@ test('release url param', function(assert) {
     return assert.ok($('.tabbed-layout__menu li:first-child').hasClass('tabbed-layout__menu__item_selected'), `active class works with ${versionString}`)
   };
 
-  andThen(function() {
-    assert.equal(currentURL(), '/ember/release/namespaces/Ember');
+  assert.equal(currentURL(), '/ember/release/namespaces/Ember');
 
-    checkSidebarLinks('release');
-    checkActiveClass('release');
-    checkIndexListLinks('release');
-    checkAttributeLinks('release');
+  checkSidebarLinks('release');
+  checkActiveClass('release');
+  checkIndexListLinks('release');
+  checkAttributeLinks('release');
 
-    return click('.tabbed-layout__menu__item:nth-child(2)'); //clicking methods
-  });
+  await click('.tabbed-layout__menu__item:nth-child(2)'); //clicking methods
+  assert.equal(currentURL(), '/ember/release/namespaces/Ember/methods?anchor=');
+  await visit('/ember-data/release/namespaces/DS');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/ember/release/namespaces/Ember/methods?anchor=');
-    return visit('/ember-data/release/namespaces/DS');
-  });
+  assert.equal(currentURL(), '/ember-data/release/namespaces/DS');
 
-  andThen(() => {
-    assert.equal(currentURL(), '/ember-data/release/namespaces/DS');
+  checkSidebarLinks('release');
+  checkActiveClass('release');
+  checkIndexListLinks('release');
+  checkAttributeLinks('release');
 
-    checkSidebarLinks('release');
-    checkActiveClass('release');
-    checkIndexListLinks('release');
-    checkAttributeLinks('release');
+  await visit('/ember/lts/namespaces/Ember');
 
-    return visit('/ember/lts/namespaces/Ember');
-  });
+  assert.equal(currentURL(), '/ember/lts/namespaces/Ember');
+  checkSidebarLinks('lts');
+  checkActiveClass('lts');
+  checkIndexListLinks('lts');
+  checkAttributeLinks('lts');
 
-  return andThen(() => {
-    assert.equal(currentURL(), '/ember/lts/namespaces/Ember');
-
-    checkSidebarLinks('lts');
-    checkActiveClass('lts');
-    checkIndexListLinks('lts');
-    checkAttributeLinks('lts');
-
-    return this;
-  });
 });
