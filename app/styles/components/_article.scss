@@ -83,4 +83,23 @@ article {
       }
     }
   }
+
+  table {
+    td,th {
+      word-break: break-word;
+    }
+  }
+
+  @media (max-width: $medium-screen) {
+    table {
+      td,th {
+        display: block;
+        border: 0;
+      }
+
+      tr {
+        border-bottom: 1px solid darken($base-border-color, 15%);
+      }
+    }
+  }
 }
