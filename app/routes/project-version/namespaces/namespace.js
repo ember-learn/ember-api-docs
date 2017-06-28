@@ -1,7 +1,7 @@
 import ClassRoute from '../classes/class';
 
 export default ClassRoute.extend({
-  templateName: 'project-version/class',
+  templateName: 'project-version/classes/class',
 
   model(params, transition) {
     return this.getModel('namespace', params, transition);
