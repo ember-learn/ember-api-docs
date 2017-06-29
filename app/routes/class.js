@@ -43,7 +43,10 @@ export default Ember.Route.extend({
   },
 
   redirect(model) {
-    return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`, model.project.id, model.version, model.classData.data.get('name'));
+    return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`,
+                             model.project.id,
+                             model.version,
+                             model.classData.data.get('name'));
   },
 
   serialize(model) {
