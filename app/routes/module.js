@@ -6,7 +6,6 @@ const { Inflector: { inflector }} = Ember;
 export default Ember.Route.extend({
 
   model(params) {
-    console.log('model!!!');
     return this.get('store').findRecord('project', 'ember', { includes: 'project-version' })
       .then(project => {
         let versions = project.get('projectVersions').toArray();
@@ -28,7 +27,6 @@ export default Ember.Route.extend({
   },
 
   redirect(model) {
-    console.log('redirect', model);
     return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`,
                              model.project.id,
                              model.version,
