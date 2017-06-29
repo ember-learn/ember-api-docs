@@ -34,7 +34,7 @@ export default Component.extend({
                                }),
 
   filterItems(itemType) {
-    let items = this.get('model.' + itemType) || [];
+    let items = this.getWithDefault(`model.${itemType}`, []);
     if (!this.get('filterData.showInherited')) {
       items = items.filter(item => item.inherited !== true);
     }
