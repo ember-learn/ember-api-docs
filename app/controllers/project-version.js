@@ -39,7 +39,7 @@ export default Controller.extend(FilterParams, {
     let relations = this.getRelations(moduleType);
     return relations.map(id => id.substring(versionId.length + 1))
   },
-  
+
   getRelations(relationship) {
     return this.get('model').hasMany(relationship).ids().sort();
   },

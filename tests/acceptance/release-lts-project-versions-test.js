@@ -2,6 +2,8 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import { click } from 'ember-native-dom-helpers';
 import Ember from 'ember';
+import { visit } from 'ember-native-dom-helpers';
+
 
 const {$} = Ember;
 
