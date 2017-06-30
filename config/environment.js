@@ -1,5 +1,4 @@
-/* eslint-env node: true */
-
+/* eslint-env node */
 module.exports = function(environment) {
   var ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
   var ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';

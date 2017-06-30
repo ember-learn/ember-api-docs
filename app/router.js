@@ -61,7 +61,8 @@ Router.map(function() {
       });
     }
   });
-  this.route('class', {path: '/classes/:class'})
+  this.route('class', {path: '/classes/:class'});
+  this.route('module', {path: '/modules/:module'});
 });
 
 export default Router;
