@@ -1,6 +1,8 @@
 import Ember from 'ember';
+import semverCompare from 'npm:semver-compare';
+import getMinorVersion from "../utils/get-minor-version";
 
-const { Service, isPresent, A } = Ember;
+const { Service, isPresent, A, computed } = Ember;
 
 export default Service.extend({
 
@@ -23,7 +25,25 @@ export default Service.extend({
     return this.get('projectRevMap')[`${project}-${version}`][type][id];
   },
 
-  initializeStore(availableProjectVersions, projectRevMap) {
+  sortVersionsBySemVer(projectVersions) {
+    let sortedVersions = projectVersions.sort((a, b) => semverCompare(b, a));
+    sortedVersions = sortedVersions.map((version) => {
+      const minorVersion = getMinorVersion(version);
+      return { id: version, minorVersion };
+    });
+
+    return sortedVersions;
+  },
+
+  semVerSortedProjectVersions: computed('availableProjectVersions.ember.[]', 'availableProjectVersions.ember-data.[]', function() {
+    return {
+      'ember': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember')),
+      'ember-data': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember-data')),
+    }
+  }),
+
+  initializeStoreFromShoebox(availableProjectVersions, projectRevMap) {
+
     this.setProperties({
       availableProjectVersions: {
         'ember': A(availableProjectVersions['ember']),

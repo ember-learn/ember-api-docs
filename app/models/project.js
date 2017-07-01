@@ -1,6 +1,5 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-import semverCompare from 'npm:semver-compare';
 import _ from 'lodash';
 import config from 'ember-api-docs/config/environment';
 
@@ -18,13 +17,8 @@ export default Model.extend({
 
   latestProjectVersion: computed.alias('sortedProjectVersions.firstObject'),
   sortedProjectVersions: computed('metaStore.availableProjectVersions.[]', function() {
-    const projectVersions = this.get('metaStore.availableProjectVersions')[this.get('id')];
-    let sortedVersions = projectVersions.sort((a, b) => semverCompare(b, a));
-    sortedVersions = sortedVersions.map((version) => {
-      const minorVersion = getMinorVersion(version);
-      return { id: version, minorVersion };
-    });
-
+    
+    const sortedVersions = this.get('metaStore.semVerSortedProjectVersions')[this.get('id')];
     let groupedVersions = _.groupBy(sortedVersions, version => version.minorVersion);
 
     return A(_.values(groupedVersions).map(groupedVersion => groupedVersion[0]));
