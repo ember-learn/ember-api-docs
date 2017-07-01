@@ -6,18 +6,19 @@ import config from 'ember-api-docs/config/environment';
 
 
 const {Model, attr, hasMany} = DS;
-const {computed,A} = Ember;
+const {computed,A,inject} = Ember;
 
 export default Model.extend({
+
+  metaStore: inject.service(),
+
   name: attr(),
   githubUrl: attr(),
   projectVersions: hasMany('project-version', {async: true}),
 
   latestProjectVersion: computed.alias('sortedProjectVersions.firstObject'),
-  sortedProjectVersions: computed(function() {
-    let projectVersions =  this.hasMany('projectVersions').ids().map(id => {
-      return id.replace(this.id, '').split('-')[1];
-    });
+  sortedProjectVersions: computed('metaStore.availableProjectVersions.[]', function() {
+    const projectVersions = this.get('metaStore.availableProjectVersions')[this.get('id')];
     let sortedVersions = projectVersions.sort((a, b) => semverCompare(b, a));
     sortedVersions = sortedVersions.map((version) => {
       const minorVersion = getMinorVersion(version);
