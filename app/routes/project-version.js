@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
-const { inject, run } = Ember;
+const { inject } = Ember;
 
 export default Ember.Route.extend({
 
@@ -21,6 +21,7 @@ export default Ember.Route.extend({
     const id = `${project}-${projectVersion}`;
     this.get('projectService').setVersion(projectVersion);
     this.setCanonicalURL(params, projectVersion);
+    this.injectDataIntoHeadModel(params, projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
@@ -47,6 +48,13 @@ export default Ember.Route.extend({
     } else {
       this.set('headData.canonicalURL', null);
     }
+  },
+
+  injectDataIntoHeadModel({project_version}, projectVersionModel) {
+    this.get('headData').setProperties({
+      projectVersionModel,
+      projectVersionParam: project_version
+    });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
