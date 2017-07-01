@@ -1,11 +1,15 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
+const { inject } = Ember;
+
 export default Ember.Route.extend({
 
   metaStore: Ember.inject.service(),
 
   projectService: Ember.inject.service('project'),
+  headData: inject.service(),
+  router: inject.service(),
 
   titleToken: function(model) {
     return model.get('version');
@@ -16,7 +20,28 @@ export default Ember.Route.extend({
     const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
     const id = `${project}-${projectVersion}`;
     this.get('projectService').setVersion(projectVersion);
+    this.setCanonicalURL(params, projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
+  },
+
+  setCanonicalURL({project_version}, versionModel) {
+    if(project_version !== 'lts' && project_version !== 'release') {
+
+      // with fastboot disabled, this works in client side, with FB enabled, it only works in FB
+      const currentURL = this.get('router.currentURL') || "";
+
+      if(versionModel.get('isRelease')) {
+        this.set('headData.canonicalURL', currentURL.replace(project_version, 'release'));
+      } else if(versionModel.get('isLTS')) {
+        this.set('headData.canonicalURL', currentURL.replace(project_version, 'lts'));
+      } else {
+        this.set('headData.canonicalURL', null);
+      }
+     
+    } else {
+      this.set('headData.canonicalURL', null);
+    }
+>>>>>>> create canonical URL if needed
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30

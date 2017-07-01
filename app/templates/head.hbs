@@ -10,3 +10,7 @@
 {{#if model.description}}
   <meta property="og:description" content={{model.description}} >
 {{/if}}
+
+{{#if model.canonicalURL}}
+  <link rel="canonical" href={{model.canonicalURL}}>
+{{/if}}
