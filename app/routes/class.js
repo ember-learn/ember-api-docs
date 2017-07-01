@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 const { Inflector: { inflector }} = Ember;
 
@@ -8,8 +7,7 @@ export default Ember.Route.extend({
   model(params) {
     return this.get('store').findRecord('project', 'ember', { includes: 'project-version' })
       .then((project) => {
-        let versions = project.get('projectVersions').toArray();
-        let lastVersion = getLastVersion(versions);
+        let lastVersion = project.get('latestProjectVersion.id');
         //peel off the .html
         let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
         let id = `ember-${lastVersion}-${className}`;
