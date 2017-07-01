@@ -32,13 +32,13 @@ export default Service.extend({
       return { id: version, minorVersion };
     });
 
-    return sortedVersions;
+    return A(sortedVersions);
   },
 
   semVerSortedProjectVersions: computed('availableProjectVersions.ember.[]', 'availableProjectVersions.ember-data.[]', function() {
     return {
       'ember': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember')),
-      'ember-data': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember-data')),
+      'ember-data': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember-data'))
     }
   }),
 

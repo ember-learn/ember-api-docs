@@ -25,19 +25,19 @@ export default Ember.Route.extend({
   },
 
   setCanonicalURL({project_version}, versionModel) {
-    if(project_version !== 'lts' && project_version !== 'release') {
+    if (project_version !== 'lts' && project_version !== 'release') {
 
       // with fastboot disabled, this works in client side, with FB enabled, it only works in FB
       const currentURL = this.get('router.currentURL') || "";
 
-      if(versionModel.get('isRelease')) {
+      if (versionModel.get('isRelease')) {
         this.set('headData.canonicalURL', currentURL.replace(project_version, 'release'));
-      } else if(versionModel.get('isLTS')) {
+      } else if (versionModel.get('isLTS')) {
         this.set('headData.canonicalURL', currentURL.replace(project_version, 'lts'));
       } else {
         this.set('headData.canonicalURL', null);
       }
-     
+
     } else {
       this.set('headData.canonicalURL', null);
     }

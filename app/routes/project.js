@@ -1,10 +1,10 @@
 import Ember from 'ember';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 
-const { Route, inject } = Ember;
+const { Route } = Ember;
 
 export default Route.extend(ScrollTracker, {
-  
+
   model({project: projectName}) {
     return this.store.findRecord('project', projectName, { includes: 'project-version' });
   },

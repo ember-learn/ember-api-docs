@@ -16,8 +16,7 @@ export default Model.extend({
   projectVersions: hasMany('project-version', {async: true}),
 
   latestProjectVersion: computed.alias('sortedProjectVersions.firstObject'),
-  sortedProjectVersions: computed('metaStore.availableProjectVersions.[]', function() {
-    
+  sortedProjectVersions: computed('metaStore.semVerSortedProjectVersions.[]', function() {
     const sortedVersions = this.get('metaStore.semVerSortedProjectVersions')[this.get('id')];
     let groupedVersions = _.groupBy(sortedVersions, version => version.minorVersion);
 

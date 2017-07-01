@@ -13,7 +13,7 @@ export default DS.JSONAPISerializer.extend({
     // We do this because ember data doesn't handle meta data in accordance to json-api spec yet
     if (primaryModelClass.modelName === 'project') {
       const versionsKey = `metaStore.availableProjectVersions.${id}`;
-      if(!this.get(`${versionsKey}.length`)){
+      if (!this.get(`${versionsKey}.length`)) {
         this.set(versionsKey, normalizedDocument.meta.availableVersions);
       }
     } else if (primaryModelClass.modelName === 'project-version') {
