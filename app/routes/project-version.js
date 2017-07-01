@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
-const { inject } = Ember;
+const { inject, run } = Ember;
 
 export default Ember.Route.extend({
 
@@ -27,21 +27,26 @@ export default Ember.Route.extend({
   setCanonicalURL({project_version}, versionModel) {
     if (project_version !== 'lts' && project_version !== 'release') {
 
-      // with fastboot disabled, this works in client side, with FB enabled, it only works in FB
-      const currentURL = this.get('router.currentURL') || "";
 
-      if (versionModel.get('isRelease')) {
-        this.set('headData.canonicalURL', currentURL.replace(project_version, 'release'));
-      } else if (versionModel.get('isLTS')) {
-        this.set('headData.canonicalURL', currentURL.replace(project_version, 'lts'));
-      } else {
-        this.set('headData.canonicalURL', null);
-      }
+      // run next is required so router.currentURL is present
+      // but it can be performance issue
+      // constructing the URL via href-to helper could be a good alternative
+      run.next(() => {
+        const currentURL = this.get('router.currentURL') || "";
+
+        if (versionModel.get('isRelease')) {
+          this.set('headData.canonicalURL', currentURL.replace(project_version, 'release'));
+        } else if (versionModel.get('isLTS')) {
+          this.set('headData.canonicalURL', currentURL.replace(project_version, 'lts'));
+        } else {
+          this.set('headData.canonicalURL', null);
+        }
+
+      });
 
     } else {
       this.set('headData.canonicalURL', null);
     }
->>>>>>> create canonical URL if needed
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
