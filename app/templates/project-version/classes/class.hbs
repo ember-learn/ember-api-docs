@@ -8,7 +8,7 @@
     {{#if model.extends}}
       <div class="attribute">
         <span class="attribute-label">Extends:</span>
-        <span class="attribute-value">{{#link-to 'project-version.classes.class' model.projectVersion.version model.extends}}{{model.extends}}{{/link-to}}</span>
+        <span class="attribute-value">{{#link-to 'project-version.classes.class' model.extendedClassProjectName model.extendedClassVersion model.extends}}{{model.extends}}{{/link-to}}</span>
       </div>
     {{/if}}
     {{#if model.uses}}
@@ -17,7 +17,7 @@
         <span class="attribute-value">
           {{#each model.uses as |parentClass idx|}}
             {{#unless (eq idx 0)}}<span class="comma">,</span>{{/unless}}
-            {{#link-to 'project-version.classes.class' model.projectVersion.version parentClass}}{{parentClass}}{{/link-to}}
+            {{#link-to 'project-version.classes.class' model.usedClassProjectName model.usedClassVersion parentClass}}{{parentClass}}{{/link-to}}
           {{/each}}
         </span>
       </div>
