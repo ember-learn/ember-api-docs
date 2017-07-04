@@ -4,7 +4,7 @@ const {$} = Ember;
 
 export default Ember.Service.extend({
 
-  _isChangingTab(transition) {
+  trackDynamicParams(transition) {
     const currentRouteParams = transition.router.state.params;
     const newParams = transition.state.params;
 
@@ -13,11 +13,16 @@ export default Ember.Service.extend({
     const currentThirdParamName = Object.keys(currentRouteParams)[dynamicSlugLocation];
     const newThirdParamName = Object.keys(newParams)[dynamicSlugLocation];
 
-    return currentRouteParams[currentThirdParamName] === newParams[newThirdParamName];
+    this.set('currentThirdParam', currentRouteParams[currentThirdParamName]);
+    this.set('newThirdParam', newParams[newThirdParamName]);
   },
 
-  scheduleReset(transition) {
-    if (!this._isChangingTab(transition)) {
+  _isChangingTab(transition) {
+    return this.get('currentThirdParam')  === this.get('newThirdParam');
+  },
+
+  scheduleScrollReset(transition) {
+    if (!this._isChangingTab()) {
       this.set('_shouldResetScroll', true);
     }
   },

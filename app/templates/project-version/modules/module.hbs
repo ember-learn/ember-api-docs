@@ -5,7 +5,11 @@
     {{#if model.parent}}
       <div class="attribute">
         <span class="attribute-label">Parent:</span>
-        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.version model.parent}}{{model.parent}}{{/link-to}}</span>
+        <span class="attribute-value">
+          <a href={{href-to "project-version.modules.module" model.projectVersion.version model.parent}}>
+            {{model.parent}}
+          </a>
+        </span>
       </div>
     {{/if}}
   </p>
@@ -18,9 +22,7 @@
       <ul class="spec-method-list">
         {{#each submodules as |module|}}
           <li>
-            {{#link-to 'project-version.modules.module' module}}
-              {{module}}
-            {{/link-to}}
+            <a href={{href-to "project-version.modules.module" module}}>{{module}}</a>
           </li>
         {{/each}}
       </ul>
@@ -33,9 +35,7 @@
       <ul class="spec-property-list">
         {{#each classesAndNamespaces as |klass|}}
           <li>
-            {{#link-to 'project-version.classes.class' klass}}
-              {{klass}}
-            {{/link-to}}
+            <a href={{href-to "project-version.classes.class" klass}}>{{klass}}</a>
           </li>
         {{/each}}
       </ul>

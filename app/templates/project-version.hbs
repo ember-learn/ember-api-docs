@@ -3,8 +3,12 @@
     <li class="toc-level-0">
       Projects
       <ol class="toc-level-1 selected" style="display: block;">
-        <li class="toc-level-1">{{#link-to 'project' 'ember' active=(eq activeProject 'ember') class="spec-ember"}}Ember{{/link-to}}</li>
-        <li class="toc-level-1">{{#link-to 'project' 'ember-data' active=(eq activeProject 'ember-data') class="spec-ember-data"}}Ember Data{{/link-to}}</li>
+        <li class="toc-level-1">
+          <a class="spec-ember {{if (eq activeProject "ember") "active"}}" href={{href-to "project" "ember"}}>Ember</a>
+        </li>
+        <li class="toc-level-1">
+          <a class="spec-ember {{if (eq activeProject "ember-data") "active"}}" href={{href-to "project" "ember-data"}}>Ember Data</a>
+        </li>
       </ol>
     </li>
   </ol>

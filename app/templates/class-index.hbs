@@ -6,14 +6,14 @@
         <ul class="{{section.class}}">
           {{#each section.items as |item|}}
             <li data-test-item={{item.name}}>
-              {{#link-to (concat parentName section.routeSuffix)
+              <a href={{href-to (concat parentName section.routeSuffix)
                  model.project.id
                  model.projectVersion.version
                  model.name
                  item.name
-                 (query-params anchor=item.name)}}
+                 (query-params anchor=item.name)}}>
                 {{item.name}}
-              {{/link-to}}
+              </a>
             </li>
           {{/each}}
         </ul>

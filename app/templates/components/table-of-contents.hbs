@@ -4,7 +4,11 @@
     <ol class="toc-level-1 modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
         <li class="toc-level-1" data-test-module={{moduleID}}>
-          {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
+          <a
+            class={{if (eq currentModuleID moduleID) "active"}}
+            href={{href-to "project-version.modules.module" version moduleID}}>
+            {{moduleID}}
+          </a>
         </li>
       {{/each}}
     </ol>
@@ -14,7 +18,11 @@
     <ol class="toc-level-1 namespaces" style="display: block">
       {{#each namespaceIDs as |namespaceID|}}
         <li class="toc-level-1" data-test-namespace={{namespaceID}}>
-          {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
+          <a 
+          class={{if (eq currentNamespaceID namespaceID) "active"}}
+          href={{href-to "project-version.namespaces.namespace" version namespaceID}}>
+            {{namespaceID}}
+          </a>
         </li>
       {{/each}}
     </ol>
@@ -24,7 +32,11 @@
     <ol class="toc-level-1 classes" style="display: block">
       {{#each classesIDs as |classID|}}
         <li class="toc-level-1" data-test-class={{classID}}>
-          {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
+          <a
+          class={{if (eq currentClassID classID) "active"}}
+          href={{href-to "project-version.classes.class" version classID}}>
+            {{classID}}
+          </a>
         </li>
       {{/each}}
     </ol>

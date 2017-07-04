@@ -4,15 +4,16 @@ const { inject, Mixin } = Ember;
 
 export default Mixin.create({
 
-  scrollPositionReset: inject.service(),
+  transitionService: inject.service('transition'),
 
   actions: {
     willTransition(transition) {
-      this.get('scrollPositionReset').scheduleReset(transition);
+      this.get('transitionService').trackDynamicParams(transition);
+      this.get('transitionService').scheduleScrollReset(transition);
     },
 
     didTransition() {
-      this.get('scrollPositionReset').doReset();
+      this.get('transitionService').doReset();
     }
   }
 });
