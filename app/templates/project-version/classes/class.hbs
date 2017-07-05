@@ -42,13 +42,12 @@
 
   {{#if (or model.methods model.properties model.events)}}
     <div class="tabbed-layout">
-      <ul class="tabbed-layout__menu">
+      <nav class="tabbed-layout__menu">
         {{#link-to (concat parentName ".index")
            model.project.id
            model.projectVersion.version
            model.name
            (query-params anchor="")
-           tagName="li"
            class="tabbed-layout__menu__item"
            activeClass="tabbed-layout__menu__item_selected"
            current-when=(concat parentName ".index")
@@ -62,7 +61,6 @@
              model.projectVersion.version
              model.name
              (query-params anchor="")
-             tagName="li"
              class="tabbed-layout__menu__item"
              activeClass="tabbed-layout__menu__item_selected"
              current-when=(concat parentName ".methods")
@@ -77,7 +75,6 @@
              model.projectVersion.version
              model.name
              (query-params anchor="")
-             tagName="li"
              class="tabbed-layout__menu__item"
              activeClass="tabbed-layout__menu__item_selected"
              current-when=(concat parentName ".properties")
@@ -92,7 +89,6 @@
              model.projectVersion.version
              model.name
              (query-params anchor="")
-             tagName="li"
              class="tabbed-layout__menu__item"
              activeClass="tabbed-layout__menu__item_selected"
              current-when=(concat parentName ".events")
@@ -101,7 +97,7 @@
             <span>Events</span>
           {{/link-to}}
         {{/if}}
-      </ul>
+      </nav>
       <section>
         Show:
         <label class="access-checkbox">
