@@ -24,7 +24,14 @@ if (!distPath) {
 let serverConfig = {
   distPath: distPath,
   assetsCacheControl: 'max-age=365000000, immutable',
-  gzip: false // Let fastly take care of compression, reducing load on the fastboot
+  gzip: false, // Let fastly take care of compression, reducing load on the fastboot
+  beforeMiddleware(app) {
+    app.use((request, response, next) => {
+      const inspect = require('util').inspect;
+      console.log(request.secure, request.hostname, request.url, request.path, inspect(request.headers, { depth: null }) );
+      next()
+    })
+  }
 };
 
 let server = new FastBootAppServer(serverConfig);
