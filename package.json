@@ -92,5 +92,10 @@
     "fastboot-app-server": "1.0.0-rc.5",
     "loader.js": "^4.4.1",
     "minimist": "^1.2.0"
+  },
+  "ember-addon": {
+    "paths": [
+      "lib/hash-to-query"
+    ]
   }
 }

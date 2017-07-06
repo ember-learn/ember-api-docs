@@ -1,7 +1,5 @@
 import Ember from 'ember';
-import HashRedirectMixin from 'ember-api-docs/mixins/hash-redirect';
 
-export default Ember.Route.extend(HashRedirectMixin, {
+export default Ember.Route.extend({
   templateName: 'class-index'
-
 });
