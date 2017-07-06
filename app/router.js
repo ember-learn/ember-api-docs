@@ -63,6 +63,8 @@ Router.map(function() {
   });
   this.route('class', {path: '/classes/:class'});
   this.route('module', {path: '/modules/:module'});
+  this.route('data-class', {path: '/data/classes/:class'});
+  this.route('data-module', {path: '/data/modules/:module'});
 });
 
 export default Router;

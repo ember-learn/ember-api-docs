@@ -10,10 +10,9 @@ export default Ember.Route.extend({
     .then((project) => {
       let versions = project.get('projectVersions').toArray();
       let lastVersion = getLastVersion(versions);
-      let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
       //peel off the .html
+      let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
       let id = `ember-${lastVersion}-${className}`;
-
       return Ember.RSVP.hash({
         project: Ember.RSVP.resolve(project),
         version: Ember.RSVP.resolve(lastVersion),
