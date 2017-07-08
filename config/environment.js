@@ -1,11 +1,11 @@
 /* eslint-env node */
 module.exports = function(environment) {
-  var ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
-  var ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
+  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
+  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
 
-  var ENV = {
+  let ENV = {
     modulePrefix: 'ember-api-docs',
-    environment: environment,
+    environment,
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
@@ -62,7 +62,7 @@ module.exports = function(environment) {
   ENV.contentSecurityPolicy = {
     "default-src": "'self' *.fastly.net",
     "connect-src": "'self' *.algolia.net *.algolianet.com *.fastly.net",
-    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-36n/xkZHEzq3lo4O+0jXMYbl+dWu3C8orOFHtcAH6HU=' *.fastly.net https://www.google-analytics.com",
+    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-MNuF6TzV3gmv/+u8a3VX42UzW4hLNNj8hfFTcdh9jDM=' *.fastly.net https://www.google-analytics.com",
     "font-src": "'self' data://* https://fonts.gstatic.com  *.fastly.net",
     "img-src": "'self' data://*  *.fastly.net https://www.google-analytics.com",
     "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com  *.fastly.net"

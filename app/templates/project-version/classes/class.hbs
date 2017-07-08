@@ -16,7 +16,7 @@
         <span class="attribute-label">Uses:</span>
         <span class="attribute-value">
           {{#each model.uses as |parentClass idx|}}
-            {{#unless (eq idx 0)}}<span class="comma">,</span>{{/unless}}
+            {{#if (not-eq idx 0)}}<span class="comma">,</span>{{/if}}
             {{#link-to 'project-version.classes.class' model.usedClassProjectName model.usedClassVersion parentClass}}{{parentClass}}{{/link-to}}
           {{/each}}
         </span>

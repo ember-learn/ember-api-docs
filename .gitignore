@@ -20,6 +20,7 @@ terraform.tfstate.backup
 /coverage/*
 /libpeerconnection.log
 npm-debug.log*
+yarn-error.log
 testem.log
 
 public/json-docs/
