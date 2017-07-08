@@ -1,4 +1,4 @@
-import { test, skip } from 'qunit';
+import { test } from 'qunit';
 import { visit, click } from 'ember-native-dom-helpers';
 import testSelector from 'ember-test-selectors';
 
@@ -20,7 +20,7 @@ test('can navigate to module from sidebar', async function(assert) {
   assert.equal(currentURL(), '/ember/1.0.0/modules/ember-application', 'navigated to module');
 });
 
-skip('can navigate to class from sidebar', async function(assert) {
+test('can navigate to class from sidebar', async function(assert) {
   await visit('/ember/1.0.0');
   await click(`${testSelector('class', 'Ember.Component')} a`);
 
