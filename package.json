@@ -17,8 +17,8 @@
     "url": "https://github.com/ember-learn/ember-api-docs.git"
   },
   "engines": {
-    "node": "6.11.0",
-    "npm": "3.10.10"
+    "node": "8",
+    "npm": "5"
   },
   "author": "Ember Learning Team and contributors",
   "license": "MIT",
@@ -31,7 +31,8 @@
     "node_modules"
   ],
   "fastbootDependencies": [
-    "algoliasearch"
+    "algoliasearch",
+    "hide-powered-by"
   ],
   "devDependencies": {
     "bower": "^1.8.0",
