@@ -20,7 +20,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('404');
   this.route('project', {path: '/:project'});
+
   this.route('project-version', {path: '/:project/:project_version'}, function() {
     // this.route('classes-redirect', {path: '/classes'});
 

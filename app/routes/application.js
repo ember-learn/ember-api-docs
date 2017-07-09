@@ -5,6 +5,7 @@ const { set, inject } = Ember;
 
 export default Ember.Route.extend({
   headData: inject.service(),
+
   title(tokens) {
     const reversed = Ember.makeArray(tokens).reverse();
     const title = `${reversed.join(' - ')} - Ember API Documentation`;
@@ -12,4 +13,5 @@ export default Ember.Route.extend({
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     return title;
   }
+
 });
