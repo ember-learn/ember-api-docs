@@ -8,10 +8,10 @@ export default Ember.Route.extend({
     return model.get('version');
   },
 
-  async model(params) {
-    const id = `${params.project}-${params.project_version}`;
-    this.get('projectService').setVersion(params.project_version);
-    await this.store.findRecord('project', params.project);
+  async model({project, project_version}) {
+    const id = `${project}-${project_version}`;
+    this.get('projectService').setVersion(project_version);
+    await this.store.findRecord('project', project);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
