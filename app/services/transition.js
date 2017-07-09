@@ -23,12 +23,12 @@ export default Ember.Service.extend({
 
   _setDynamicParams(newParams, currentRouteParams) {
 
-    if(newParams) {
+    if (newParams) {
       const newThirdParamName = Object.keys(newParams)[DYNAMIC_SLUG_LOCATION];
       this.set('newThirdParam', newParams[newThirdParamName]);
     }
 
-    if(currentRouteParams) {
+    if (currentRouteParams) {
       const currentThirdParamName = Object.keys(currentRouteParams)[DYNAMIC_SLUG_LOCATION];
       this.set('currentThirdParam', currentRouteParams[currentThirdParamName]);
     }
