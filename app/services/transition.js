@@ -1,20 +1,38 @@
 import Ember from 'ember';
 
-const {$} = Ember;
+const {$, inject} = Ember;
+
+const DYNAMIC_SLUG_LOCATION = 3;
 
 export default Ember.Service.extend({
 
+  router: inject.service(),
+
+  init() {
+    this._super(...arguments);
+    const newParams = this.get('router._router.targetState.routerJsState.params');
+    this._setDynamicParams(newParams);
+  },
+
   trackDynamicParams(transition) {
-    const currentRouteParams = transition.router.state.params;
     const newParams = transition.state.params;
+    const currentRouteParams = transition.router.state.params;
 
-    const dynamicSlugLocation = 3;
+    this._setDynamicParams(newParams, currentRouteParams);
+  },
 
-    const currentThirdParamName = Object.keys(currentRouteParams)[dynamicSlugLocation];
-    const newThirdParamName = Object.keys(newParams)[dynamicSlugLocation];
+  _setDynamicParams(newParams, currentRouteParams) {
 
-    this.set('currentThirdParam', currentRouteParams[currentThirdParamName]);
-    this.set('newThirdParam', newParams[newThirdParamName]);
+    if(newParams) {
+      const newThirdParamName = Object.keys(newParams)[DYNAMIC_SLUG_LOCATION];
+      this.set('newThirdParam', newParams[newThirdParamName]);
+    }
+
+    if(currentRouteParams) {
+      const currentThirdParamName = Object.keys(currentRouteParams)[DYNAMIC_SLUG_LOCATION];
+      this.set('currentThirdParam', currentRouteParams[currentThirdParamName]);
+    }
+
   },
 
   _isChangingTab(transition) {
