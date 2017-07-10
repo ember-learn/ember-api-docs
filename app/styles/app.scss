@@ -1,3 +1,6 @@
+@charset "utf-8";
+
+@import "normalize";
 @import "bourbon";
 @import "./base/base";
 @import "neat";
@@ -9,10 +12,13 @@ body {
   width: 100%;
 }
 
+.header {
+  z-index: 2;
+}
 @include media($medium-large-screen-up) {
   .header {
-    position: fixed;
     width: 100%;
+    position: fixed;
   }
 
   main.container {
@@ -20,16 +26,20 @@ body {
   }
 
   main.container .content {
-    position: fixed;
-    left: 400px;
-    right: 0;
-    top: $top-spacing;
-    bottom: 0;
+    position: relative;
+    margin-right: 0;
+    margin-top: $top-spacing;
+    margin-bottom: 0;
     overflow:auto;
     padding: $base-spacing;
 
+    &::after {
+      clear: both;
+      display: table;
+    }
+
     @media (min-width: $medium-screen) and (max-width: 1200px) {
-      left: 300px;
+      margin-left: 300px;
     }
   }
 
