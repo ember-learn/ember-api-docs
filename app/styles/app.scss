@@ -6,6 +6,7 @@
 @import "neat";
 @import "./components/all";
 @import "class";
+@import "./vendor/fontello";
 
 body {
   margin: 0;
@@ -38,9 +39,6 @@ body {
       display: table;
     }
 
-    @media (min-width: $medium-screen) and (max-width: 1200px) {
-      margin-left: 300px;
-    }
   }
 
   main.container .content .chapter {
