@@ -1,16 +1,9 @@
 import semverCompare from 'npm:semver-compare';
-import _ from 'lodash';
 
-function _getVersionString(version) {
-  return _.last(version.get('id').split('-'));
-}
-
-export default function getLastVersion(versions) {
-  let lastVersion = versions.sort((a, b) => {
-    let versionA = _getVersionString(a);
-    let versionB = _getVersionString(b);
-    return semverCompare(versionA, versionB);
-  })[versions.length - 1];
-  return _getVersionString(lastVersion);
+export default function getLastVersion(projectVersions) {
+  const sortedVersions = projectVersions.getEach('id').map(v => v.split('-')[1]).sort((v1, v2) => {
+    return semverCompare(v1, v2);
+  });
+  return sortedVersions[sortedVersions.length - 1];
 }
 
