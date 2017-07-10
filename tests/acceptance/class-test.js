@@ -15,7 +15,7 @@ moduleForAcceptance('Acceptance | Class', {
 
 test('lists all the methods on the class page', async function (assert) {
   const store = this.application.__container__.lookup('service:store');
-  const container = store.peekRecord('class', 'ember-1.0-Container');
+  const container = store.peekRecord('class', 'ember-1.0.0-Container');
   assert.equal(findAll('.spec-method-list li').length, container.get('methods.length'));
 
   await click(testSelector('checkbox', 'private')); // turn private back off
@@ -26,13 +26,13 @@ test('lists all the methods on the class page', async function (assert) {
 
 test('lists all the properties on the class page', function (assert) {
   const store = this.application.__container__.lookup('service:store');
-  const container = store.peekRecord('class', 'ember-1.0-Container');
+  const container = store.peekRecord('class', 'ember-1.0.0-Container');
   assert.equal(findAll('.spec-property-list li').length, container.get('properties.length'));
 });
 
 test('lists all the events on the class page', function (assert) {
   const store = this.application.__container__.lookup('service:store');
-  const container = store.peekRecord('class', 'ember-1.0-Container');
+  const container = store.peekRecord('class', 'ember-1.0.0-Container');
   assert.equal(findAll('.spec-event-list li').length, container.get('events.length'));
 });
 
