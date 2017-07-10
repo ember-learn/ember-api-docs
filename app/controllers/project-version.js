@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import _ from 'lodash';
 import semverCompare from 'npm:semver-compare';
-import getMinorVersion from "../utils/get-minor-version";
 import FilterParams from '../mixins/filter-params';
 
 const { Controller, computed, A, inject: {service} } = Ember;
@@ -70,10 +69,10 @@ export default Controller.extend(FilterParams, {
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
-      const minorVersion = getMinorVersion(version);
-      return { id: version, minorVersion };
+      const compactVersion = version.split('.').slice(0, 2).join('.');
+      return { id: version, compactVersion };
     });
-    let groupedVersions = _.groupBy(versions, version => version.minorVersion);
+    let groupedVersions = _.groupBy(versions, version => version.compactVersion);
 
     return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),

@@ -8,14 +8,14 @@ moduleForAcceptance('Acceptance | version navigation');
 test('switching versions', async function(assert) {
   // Classes
 
-  await visit('/ember/1.0.0/classes/Ember.Component');
-  assert.equal(currentURL(), '/ember/1.0.0/classes/Ember.Component', 'navigated to v1.0.0 class');
+  await visit('/ember/1.0/classes/Ember.Component');
+  assert.equal(currentURL(), '/ember/1.0/classes/Ember.Component', 'navigated to v1.0 class');
 
   await selectChoose('.select-container', '1.4');
   assert.equal(currentURL(), '/ember/1.4.0/classes/Ember.Component', 'navigated to v1.4.0 class');
 
   await selectChoose('.select-container', '1.0');
-  assert.equal(currentURL(), '/ember/1.0.0/classes/Ember.Component', 'navigated to v1.0.0 class');
+  assert.equal(currentURL(), '/ember/1.0/classes/Ember.Component', 'navigated to v1.0 class');
 
   // Namespaces
 

@@ -7,6 +7,8 @@ export default Ember.Route.extend(ScrollTracker, {
 
   headData: inject.service(),
 
+  metaStore: inject.service(),
+
   titleToken: function(model) {
     return model.get('name');
   },
@@ -17,9 +19,11 @@ export default Ember.Route.extend(ScrollTracker, {
 
   getModel(typeName, params, transition) {
     const projectID = transition.params['project-version'].project;
-    const version = transition.params['project-version'].project_version;
+    let compactVersion = transition.params['project-version'].project_version;
+    const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
+
     const klass = params[typeName];
-    return this.find(typeName, `${projectID}-${version}-${klass}`);
+    return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);
   },
 
   find(typeName, param) {

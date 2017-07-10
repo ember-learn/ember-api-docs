@@ -5,10 +5,10 @@ import { visit, click } from 'ember-native-dom-helpers';
 moduleForAcceptance('Acceptance | Module');
 
 test('lists all public/private classes and namespaces on the module page', async function(assert) {
-  await visit('ember/1.0.0/modules/ember-handlebars');
+  await visit('ember/1.0/modules/ember-handlebars');
 
   const store = this.application.__container__.lookup('service:store');
-  const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
+  const container = store.peekRecord('module', 'ember-1.0-ember-handlebars');
 
   let numberNameSpaces = Object.keys(container.get('namespaces')).length;
   let numberPublicClasses = Object.keys(container.get('publicclasses')).length;
@@ -21,10 +21,10 @@ test('lists all public/private classes and namespaces on the module page', async
 });
 
 test('lists all submodules on the module page', async function(assert) {
-  await visit('ember/1.0.0/modules/ember');
+  await visit('ember/1.0/modules/ember');
 
   const store = this.application.__container__.lookup('service:store');
-  const container = store.peekRecord('module', 'ember-1.0.0-ember');
+  const container = store.peekRecord('module', 'ember-1.0-ember');
 
   let numberSubModules = Object.keys(container.get('submodules')).length;
 
@@ -32,10 +32,10 @@ test('lists all submodules on the module page', async function(assert) {
 });
 
 test('display submodule parent', async function(assert) {
-  await visit('ember/1.0.0/modules/ember-application');
+  await visit('ember/1.0/modules/ember-application');
 
   const store = this.application.__container__.lookup('service:store');
-  const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
+  const container = store.peekRecord('module', 'ember-1.0-ember-application');
 
   assert.ok(find(`.attribute-value:contains(${container.get('parent')})`).length);
 });

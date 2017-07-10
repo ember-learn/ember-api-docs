@@ -26,11 +26,11 @@ test('visiting /', async function(assert) {
 });
 
 test('visiting /:project/:project_version/classes', async function(assert) {
-  await visit('/ember/1.0.0/classes');
+  await visit('/ember/1.0/classes');
 
   assert.equal(
     currentURL(),
-    '/ember/1.0.0/namespaces/Ember',
+    '/ember/1.0/namespaces/Ember',
     'routes to the first namespace of the project-version'
   );
 });

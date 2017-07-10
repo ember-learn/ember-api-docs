@@ -16,15 +16,15 @@
       selected=selectedProjectVersion
       ariaLabel="Select a version"
       required=true
-      searchField="minorVersion"
+      searchField="compactVersion"
       as |ver|
     }}
-      {{ver.minorVersion}}
+      {{ver.compactVersion}}
     {{/power-select}}
   </div>
 
   {{table-of-contents projectId=model.project.id
-                      version=model.version
+                      version=model.compactVersion
                       classesIDs=shownClassesIDs
                       moduleIDs=shownModuleIDs
                       namespaceIDs=shownNamespaceIDs
