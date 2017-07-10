@@ -76,6 +76,7 @@
     "ember-lodash": "^4.17.5",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-helpers": "^0.5.2",
+    "ember-normalize": "^1.0.0",
     "ember-power-select": "^1.8.5",
     "ember-resolver": "^4.2.1",
     "ember-route-action-helper": "^2.0.3",
@@ -91,7 +92,8 @@
     "ember-web-app-rename": "1.0.0",
     "fastboot-app-server": "1.0.0-rc.5",
     "loader.js": "^4.4.1",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "normalize.css": "^7.0.0"
   },
   "ember-addon": {
     "paths": [

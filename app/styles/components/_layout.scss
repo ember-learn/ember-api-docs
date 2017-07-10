@@ -12,4 +12,9 @@ main {
 .container {
   @include outer-container;
   padding: 0 1em;
+  &::after {
+  	clear: both;
+  	content: '';
+  	display: table;
+  }
 }

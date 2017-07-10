@@ -1,13 +1,14 @@
 @import "mixins/hidpi";
+@import "mixins/text-adjust";
 
 body {
+  font-feature-settings: "kern", "liga", "pnum";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: $base-font-color;
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
-  font-feature-settings: "kern", "liga", "pnum";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -37,6 +38,10 @@ h1 {
   color: $ember-orange;
 }
 
+h2 {
+  color: $brown;
+}
+
 p {
   margin: 1.5em 0 $small-spacing;
   line-height: 1.5em;
@@ -53,8 +58,7 @@ a {
     color: darken($action-color, 15%);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     outline: none;
   }
 }

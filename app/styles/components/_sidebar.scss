@@ -9,12 +9,10 @@
     // fixed sidebar, full height
     @include span-columns(3.5);
     margin-right: 0;
-    position: fixed;
     bottom: 0;
     top: $top-spacing;
     left: 0;
     width: 19em;
-    overflow: auto;
     border-bottom: 0;
     border-right: $base-border;
     padding: $small-spacing $base-spacing;
@@ -25,6 +23,10 @@
       display: block;
       background-color: $sidebar-background-color;
       z-index: -1;
+    }
+    &::after {
+      clear: both;
+      display: block;
     }
   }
 
