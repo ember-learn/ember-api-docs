@@ -2,38 +2,25 @@
   "name": "ember-api-docs",
   "version": "0.1.0",
   "description": "Small description for ember-api-docs goes here",
-  "private": true,
+  "license": "MIT",
+  "author": "Ember Learning Team and contributors",
   "directories": {
     "test": "tests"
-  },
-  "scripts": {
-    "build": "ember build",
-    "start": "ember server",
-    "test": "ember exam",
-    "postinstall": "npm rebuild node-sass"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ember-learn/ember-api-docs.git"
   },
-  "engines": {
-    "node": "8",
-    "npm": "5"
+  "scripts": {
+    "build": "ember build",
+    "postinstall": "npm rebuild node-sass",
+    "start": "ember server",
+    "test": "ember exam"
   },
-  "author": "Ember Learning Team and contributors",
-  "license": "MIT",
   "dependencies": {
     "algoliasearch": "^3.23.0",
     "semver-compare": "^1.0.0"
   },
-  "cacheDirectories": [
-    "bower_components",
-    "node_modules"
-  ],
-  "fastbootDependencies": [
-    "algoliasearch",
-    "hide-powered-by"
-  ],
   "devDependencies": {
     "broccoli-asset-rev": "^2.5.0",
     "ember-a11y-testing": "^0.4.2",
@@ -94,9 +81,22 @@
     "minimist": "^1.2.0",
     "normalize.css": "^7.0.0"
   },
+  "engines": {
+    "node": "8",
+    "npm": "5"
+  },
+  "private": true,
+  "cacheDirectories": [
+    "bower_components",
+    "node_modules"
+  ],
   "ember-addon": {
     "paths": [
       "lib/hash-to-query"
     ]
-  }
+  },
+  "fastbootDependencies": [
+    "algoliasearch",
+    "hide-powered-by"
+  ]
 }
