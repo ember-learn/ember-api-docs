@@ -13,6 +13,7 @@
     border-bottom: 0;
     border-right: $base-border;
     padding: $small-spacing $base-spacing $base-spacing * 1.5;
+    margin-top: 5em;
 
     &::before {
       @include position(absolute, 0 0 0 -100vw);
