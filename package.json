@@ -35,7 +35,6 @@
     "hide-powered-by"
   ],
   "devDependencies": {
-    "bower": "^1.8.0",
     "broccoli-asset-rev": "^2.5.0",
     "ember-a11y-testing": "^0.4.2",
     "ember-algolia": "^0.0.6",
