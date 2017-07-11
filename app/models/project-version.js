@@ -1,11 +1,8 @@
 import DS from 'ember-data';
 import Ember from 'ember';
-<<<<<<< HEAD
-=======
 import config from 'ember-api-docs/config/environment';
 
 const { computed } = Ember;
->>>>>>> create canonical URL if needed
 
 export default DS.Model.extend({
   version: DS.attr(),
@@ -19,10 +16,10 @@ export default DS.Model.extend({
   'public-namespaces': DS.hasMany('namespace', {async: true}),
   'private-namespaces': DS.hasMany('namespace', {async: true}),
   project: DS.belongsTo('project'),
-  
+
   compactVersion: Ember.computed('version', function() {
     return this.get('version').split('.').slice(0, 2).join('.');
-  })
+  }),
 
   isRelease: computed('project.latestProjectVersion.id', 'version', function() {
     return this.get('project.latestProjectVersion.id') === this.get('version');

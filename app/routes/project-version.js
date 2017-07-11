@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
-const { inject } = Ember;
+const { inject, run } = Ember;
 
 export default Ember.Route.extend({
 
@@ -15,14 +15,17 @@ export default Ember.Route.extend({
     return model.get('version');
   },
 
-  async model({project, project_version}) {
-    await this.store.findRecord('project', project);
-    const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
+  async model(params) {
+    const {project, project_version} = params;
+    const projectModel = await this.store.findRecord('project', project);
+    const projectVersion = projectModel.getFullVersion(project_version);
     const id = `${project}-${projectVersion}`;
     this.get('projectService').setVersion(projectVersion);
-    this.setCanonicalURL(params, projectVersion);
-    this.injectDataIntoHeadModel(params, projectVersion);
-    return this.store.findRecord('project-version', id, { includes: 'project' });
+    const versionModel = await this.store.findRecord('project-version', id, { includes: 'project' });
+    this.injectDataIntoHeadModel(params, versionModel);
+    this.setCanonicalURL(params, versionModel);
+
+    return versionModel;
   },
 
   setCanonicalURL({project_version}, versionModel) {

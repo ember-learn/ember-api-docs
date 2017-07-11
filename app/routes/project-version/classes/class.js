@@ -20,7 +20,8 @@ export default Ember.Route.extend(ScrollTracker, {
   getModel(typeName, params, transition) {
     const projectID = transition.params['project-version'].project;
     let compactVersion = transition.params['project-version'].project_version;
-    const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
+    const projectModel = this.modelFor('project-version').get('project.content');
+    const projectVersion = projectModel.getFullVersion(compactVersion);
     const klass = params[typeName];
     return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);
   },

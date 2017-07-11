@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import semverCompare from 'npm:semver-compare';
-import getMinorVersion from "../utils/get-minor-version";
 
 const { Service, isPresent, A, computed } = Ember;
 
@@ -28,8 +27,8 @@ export default Service.extend({
   sortVersionsBySemVer(projectVersions) {
     let sortedVersions = projectVersions.sort((a, b) => semverCompare(b, a));
     sortedVersions = sortedVersions.map((version) => {
-      const minorVersion = getMinorVersion(version);
-      return { id: version, minorVersion };
+      const compactVersion = version.split('.').slice(0, 2).join('.');
+      return { id: version, compactVersion };
     });
 
     return A(sortedVersions);
@@ -51,11 +50,6 @@ export default Service.extend({
       },
       projectRevMap: projectRevMap
     })
-  },
-
-  getFullVersion(projectName, compactProjVersion) {
-    const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
-    return availProjVersions.filter(v => v.includes(compactProjVersion))[0];
   }
 
 });

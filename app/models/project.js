@@ -18,12 +18,12 @@ export default Model.extend({
   latestProjectVersion: computed.alias('sortedProjectVersions.firstObject'),
   sortedProjectVersions: computed('metaStore.semVerSortedProjectVersions.[]', function() {
     const sortedVersions = this.get('metaStore.semVerSortedProjectVersions')[this.get('id')];
-    let groupedVersions = _.groupBy(sortedVersions, version => version.minorVersion);
+    let groupedVersions = _.groupBy(sortedVersions, version => version.compactVersion);
 
     return A(_.values(groupedVersions).map(groupedVersion => groupedVersion[0]));
   }),
 
-  getProjectVersion(version) {
+  _getProjectVersion(version) {
     if (version === 'release') {
       return this.get('latestProjectVersion.id');
     }
@@ -31,6 +31,11 @@ export default Model.extend({
       return config.ltsVersion;
     }
     return version;
+  },
+
+  getFullVersion(compactVersion) {
+    const numericalVersion = this._getProjectVersion(compactVersion);
+    return this.get('sortedProjectVersions').findBy('compactVersion', numericalVersion) || numericalVersion;
   }
 
 });
