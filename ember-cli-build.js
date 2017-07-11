@@ -33,6 +33,9 @@ module.exports = function(defaults) {
       version: '4', //Might have to change this with the app build,
       prepend
     },
+    svgJar: {
+      sourceDirs: ['public/assets/images'],
+    },
   });
 
   var docsSlug = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
