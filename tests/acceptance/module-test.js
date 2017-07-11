@@ -5,7 +5,7 @@ import { visit, click } from 'ember-native-dom-helpers';
 moduleForAcceptance('Acceptance | Module');
 
 test('lists all public/private classes and namespaces on the module page', async function(assert) {
-  await visit('ember/1.0.0/modules/ember-handlebars');
+  await visit('ember/1.0/modules/ember-handlebars');
 
   const store = this.application.__container__.lookup('service:store');
   const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
@@ -21,7 +21,7 @@ test('lists all public/private classes and namespaces on the module page', async
 });
 
 test('lists all submodules on the module page', async function(assert) {
-  await visit('ember/1.0.0/modules/ember');
+  await visit('ember/1.0/modules/ember');
 
   const store = this.application.__container__.lookup('service:store');
   const container = store.peekRecord('module', 'ember-1.0.0-ember');
@@ -32,7 +32,7 @@ test('lists all submodules on the module page', async function(assert) {
 });
 
 test('display submodule parent', async function(assert) {
-  await visit('ember/1.0.0/modules/ember-application');
+  await visit('ember/1.0/modules/ember-application');
 
   const store = this.application.__container__.lookup('service:store');
   const container = store.peekRecord('module', 'ember-1.0.0-ember-application');

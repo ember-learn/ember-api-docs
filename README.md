@@ -9,6 +9,5 @@ We'd love to get help working on the [next set of issues we're seeing](https://g
 
 To run a11y tests, run `test_a11y=yes ember serve`
 
-
 ## Staging Environment
 Latest changes from master can be seen on https://ember-api-docs-staging-herokuapp-com.global.ssl.fastly.net

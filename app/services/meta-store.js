@@ -24,7 +24,6 @@ export default Service.extend({
   },
 
   initializeStore(availableProjectVersions, projectRevMap) {
-
     this.setProperties({
       availableProjectVersions: {
         'ember': A(availableProjectVersions['ember']),
@@ -32,6 +31,11 @@ export default Service.extend({
       },
       projectRevMap: projectRevMap
     })
+  },
+
+  getFullVersion(projectName, compactProjVersion) {
+    const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
+    return availProjVersions.filter(v => v.includes(compactProjVersion))[0];
   }
 
 });

@@ -8,7 +8,7 @@ moduleForAcceptance('Acceptance | analytics page tracking');
 
 test('checking that trackPage gets called on transitions', async function(assert) {
 
-  const pages = ['/ember/2.11.3/namespaces/Ember', '/ember/2.11.3/modules/ember-metal', '/ember/2.11.3/classes/Ember.Application'];
+  const pages = ['/ember/2.11/namespaces/Ember', '/ember/2.11/modules/ember-metal', '/ember/2.11/classes/Ember.Application'];
   const pagesClone = pages.slice(0);
   const analyticsService = this.application.__container__.lookup('service:analytics');
   assert.expect(pages.length);

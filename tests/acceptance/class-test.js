@@ -5,7 +5,7 @@ import testSelector from 'ember-test-selectors';
 
 moduleForAcceptance('Acceptance | Class', {
   async beforeEach() {
-    await visit('/ember/1.0.0/classes/Container');
+    await visit('/ember/1.0/classes/Container');
     await click(testSelector('checkbox', 'inherited'));
     await click(testSelector('checkbox', 'protected'));
     await click(testSelector('checkbox', 'private'));

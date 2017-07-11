@@ -2,6 +2,9 @@ import Ember from 'ember';
 import _ from 'lodash';
 
 export default Ember.Route.extend({
+
+  metaStore: Ember.inject.service(),
+
   projectService: Ember.inject.service('project'),
 
   titleToken: function(model) {
@@ -9,9 +12,10 @@ export default Ember.Route.extend({
   },
 
   async model({project, project_version}) {
-    const id = `${project}-${project_version}`;
-    this.get('projectService').setVersion(project_version);
     await this.store.findRecord('project', project);
+    const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
+    const id = `${project}-${projectVersion}`;
+    this.get('projectService').setVersion(projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
@@ -23,20 +27,20 @@ export default Ember.Route.extend({
     if (!classParams && !moduleParams && !namespaceParams) {
       const namespaces = model.hasMany('namespaces').ids().sort();
       const namespace = _.last(namespaces[0].split("-"));
-      return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('version'), namespace);
+      return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('compactVersion'), namespace);
     }
   },
 
   serialize(model) {
     return {
       project: model.get('project.id'),
-      project_version: model.get('version')
+      project_version: model.get('compactVersion')
     };
   },
 
   actions: {
     updateProject(project, ver /*, component */) {
-      const projectVersionID = ver.id;
+      const projectVersionID = ver.compactVersion;
       let endingRoute, routeName;
 
       switch (routeName = this.router.currentRouteName) {

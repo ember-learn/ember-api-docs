@@ -8,7 +8,7 @@
             <li data-test-item={{item.name}}>
               {{#link-to (concat parentName section.routeSuffix)
                  model.project.id
-                 model.projectVersion.version
+                 model.projectVersion.compactVersion
                  model.name
                  item.name
                  (query-params anchor=item.name)}}
