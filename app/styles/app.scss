@@ -18,6 +18,7 @@ body {
 }
 @include media($medium-large-screen-up) {
   .header {
+    top: 0;
     width: 100%;
     position: fixed;
   }
