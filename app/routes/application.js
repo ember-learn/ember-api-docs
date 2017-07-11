@@ -5,6 +5,7 @@ const { set, inject } = Ember;
 
 export default Ember.Route.extend({
   headData: inject.service(),
+
   title(tokens) {
     const [version, entity] = tokens;
     const compactVersion = version.split('.').slice(0, 2).join('.');
@@ -15,4 +16,5 @@ export default Ember.Route.extend({
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     return title;
   }
+
 });
