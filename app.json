@@ -5,7 +5,7 @@
   "env": {
     "DOCS_SLUG": {
       "required": false,
-      "value": "/api-beta/"
+      "value": "/api/"
     },
     "FASTLY_API_KEY": {
       "required": false
