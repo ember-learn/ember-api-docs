@@ -21,6 +21,7 @@
       background-color: $sidebar-background-color;
       z-index: -1;
     }
+
     &::after {
       clear: both;
       display: block;
