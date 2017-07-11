@@ -11,7 +11,7 @@ test('it exists', function(assert) {
 
   assert.equal(service.get('semVerSortedProjectVersions.ember.length'), versions.length);
   assert.equal(service.get('semVerSortedProjectVersions.ember.firstObject.id'), '2.13.3');
-  assert.equal(service.get('semVerSortedProjectVersions.ember.firstObject.minorVersion'), '2.13');
+  assert.equal(service.get('semVerSortedProjectVersions.ember.firstObject.compactVersion'), '2.13');
   assert.equal(service.get('semVerSortedProjectVersions.ember.lastObject.id'), '1.0.0');
-  assert.equal(service.get('semVerSortedProjectVersions.ember.lastObject.minorVersion'), '1.0');
+  assert.equal(service.get('semVerSortedProjectVersions.ember.lastObject.compactVersion'), '1.0');
 });

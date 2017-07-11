@@ -35,7 +35,7 @@ test('release url param', async function(assert) {
   };
 
   let checkActiveClass = versionString => {
-    return assert.ok($('.tabbed-layout__menu li:first-child').hasClass('tabbed-layout__menu__item_selected'), `active class works with ${versionString}`)
+    return assert.ok($('.tabbed-layout__menu a:first-child').hasClass('tabbed-layout__menu__item_selected'), `active class works with ${versionString}`)
   };
 
   assert.equal(currentURL(), '/ember/release/namespaces/Ember');

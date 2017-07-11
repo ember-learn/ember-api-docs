@@ -35,7 +35,12 @@ export default Model.extend({
 
   getFullVersion(compactVersion) {
     const numericalVersion = this._getProjectVersion(compactVersion);
-    return this.get('sortedProjectVersions').findBy('compactVersion', numericalVersion) || numericalVersion;
+    const fullVersion = this.get('sortedProjectVersions').findBy('compactVersion', numericalVersion);
+    if (fullVersion) {
+      return fullVersion.id;
+    }
+
+    return numericalVersion;
   }
 
 });
