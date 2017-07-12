@@ -3,16 +3,16 @@ import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-accepta
 import { click, visit } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 
-const {$} = Ember;
+const { $ } = Ember;
 
 moduleForAcceptance('Acceptance | release lts project versions');
 
 test('release url param', async function(assert) {
   await visit('/ember/release/namespaces/Ember');
 
-  let checkLinks = (label, selector, versionString) => {
-    return $('.attributes a').toArray().forEach(el => {
-      let href = el.attributes.href.value;
+  const checkLinks = (label, selector, versionString) => {
+    return $(selector).toArray().forEach(el => {
+      const href = el.attributes.href.value;
       if (href[0] === '/') {
 
         assert.ok(href.indexOf(versionString) > -1, `${label} link contains ${versionString} - ${href}`);
@@ -20,23 +20,15 @@ test('release url param', async function(assert) {
     });
   };
 
-  let checkSidebarLinks = versionString => {
+  const checkSidebarLinks = versionString => {
     return checkLinks('side',
       '.toc-level-1.modules li:first-child a, .toc-level-1.namespaces li:first-child a, .toc-level-1.classes li:first-child a',
       versionString);
   };
 
-  let checkAttributeLinks = versionString => {
-    return checkLinks('attributes', '.attributes a', versionString);
-  };
-
-  let checkIndexListLinks = versionString => {
-    return checkLinks('index-list', '.api-index-filter a', versionString);
-  };
-
-  let checkActiveClass = versionString => {
-    return assert.ok($('.tabbed-layout__menu a:first-child').hasClass('tabbed-layout__menu__item_selected'), `active class works with ${versionString}`)
-  };
+  const checkAttributeLinks = version => checkLinks('attributes', '.attributes a', version);
+  const checkIndexListLinks = version => checkLinks('index-list', '.api-index-filter a', version);
+  const checkActiveClass = version => assert.ok($('.tabbed-layout__menu a:first-child').hasClass('tabbed-layout__menu__item_selected'), `active class works with ${version}`);
 
   assert.equal(currentURL(), '/ember/release/namespaces/Ember');
 

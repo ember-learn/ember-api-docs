@@ -25,7 +25,7 @@ export default DS.Model.extend({
     return this.get('project.latestProjectVersion.id') === this.get('version');
   }),
 
-  isLTS: computed(function() {
+  isLTS: computed('version', function() {
     return this.get('version') === config.ltsVersion;
   })
 });
