@@ -20,10 +20,10 @@ module.exports = function(defaults) {
       includePaths: [
         'src/ui/styles',
         'bower_components/neat/app/assets/stylesheets',
-        'bower_components/bitters/core'
-
-        // 'bower_components/bourbon/app/assets/stylesheets/',
-        // 'node_modules/ember-power-select/app/styles/'
+        'bower_components/bitters/core',
+        'bower_components/bourbon/app/assets/stylesheets/',
+        'node_modules/ember-power-select/app/styles/',
+        'node_modules/ember-basic-dropdown/app/styles'
       ]
     },
     autoprefixer: {
