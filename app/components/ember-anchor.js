@@ -1,5 +1,6 @@
 import AnchorComponent from 'ember-anchor/components/ember-anchor';
 import Ember from 'ember';
+import config from 'ember-api-docs/config/environment';
 
 const { $, get } = Ember;
 
@@ -12,8 +13,8 @@ export default AnchorComponent.extend({
     let elem = $(`[data-${qp}="${qpVal}"]`);
     let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
     if (offset) {
-      let scrollOffset = this.$().scrollParent().offset().top - this.$().scrollParent().scrollTop();
-      this.$().scrollParent().scrollTop(offset - scrollOffset);
+      const navMenuHeight = $('header').outerHeight();
+      $(config.APP.scrollContainerElement).scrollTop(offset - navMenuHeight - 10);
     }
   }
 });
