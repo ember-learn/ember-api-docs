@@ -3,9 +3,6 @@ import config from 'ember-api-docs/config/environment';
 
 const { scrollContainerElement } = config.APP;
 
-
-const {$} = Ember;
-
 export default Ember.Service.extend({
 
   _isChangingTab(transition) {
@@ -28,7 +25,7 @@ export default Ember.Service.extend({
 
   doReset() {
     if (this.get('_shouldResetScroll')) {
-      $(scrollContainerElement).scrollTop(0);
+      Ember.$(scrollContainerElement).scrollTop(0);
       this.set('_shouldResetScroll', false);
     }
   }

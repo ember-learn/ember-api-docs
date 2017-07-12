@@ -1,11 +1,9 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-const {computed} = Ember;
-const {attr, belongsTo} = DS;
 
 const projectNameFromClassName = key => {
-  return computed(key, function() {
+  return Ember.computed(key, function() {
     const value = this.get(key) || "";
     if (value.indexOf('Ember.') > -1) {
       return 'ember';
@@ -21,7 +19,7 @@ const projectNameFromClassName = key => {
 
 // ideally this computed property would not be needed and we'd have extendsVersion, extendsProject attrs from json-api-docs
 const guessVersionFor = key => {
-  return computed(key, 'project.id', function() {
+  return Ember.computed(key, 'project.id', function() {
 
     if (this.get('extendedClassProjectName') === this.get('project.id')) {
       return this.get('projectVersion.version');
@@ -33,21 +31,21 @@ const guessVersionFor = key => {
 };
 
 export default DS.Model.extend({
-  name: attr(),
-  methods: attr(),
-  properties: attr(),
-  access: attr(),
-  events: attr(),
-  description: attr(),
-  ogDescription: attr(),
-  extends: attr(),
-  uses: attr(),
-  file: attr(),
-  line: attr(),
-  module: attr(),
-  parentClass: belongsTo('class', {async: true, inverse: null}),
-  projectVersion: belongsTo('project-version', {inverse: 'classes'}),
-  project: computed('projectVersion.id', function() {
+  name: DS.attr(),
+  methods: DS.attr(),
+  properties: DS.attr(),
+  access: DS.attr(),
+  events: DS.attr(),
+  description: DS.attr(),
+  ogDescription: DS.attr(),
+  extends: DS.attr(),
+  uses: DS.attr(),
+  file: DS.attr(),
+  line: DS.attr(),
+  module: DS.attr(),
+  parentClass: DS.belongsTo('class', {async: true, inverse: null}),
+  projectVersion: DS.belongsTo('project-version', {inverse: 'classes'}),
+  project: Ember.computed('projectVersion.id', function() {
     return this.get('projectVersion').get('project');
   }),
 

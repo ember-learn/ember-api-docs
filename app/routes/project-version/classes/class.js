@@ -1,13 +1,12 @@
 import Ember from 'ember';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 
-const { get, set, inject } = Ember;
 
 export default Ember.Route.extend(ScrollTracker, {
 
-  headData: inject.service(),
+  headData: Ember.inject.service(),
 
-  metaStore: inject.service(),
+  metaStore: Ember.inject.service(),
 
   titleToken: function(model) {
     return model.get('name');
@@ -42,8 +41,8 @@ export default Ember.Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      set(this, 'headData.description', klass.get('ogDescription'));
-      const relationships = get(klass.constructor, 'relationshipNames');
+      Ember.set(this, 'headData.description', klass.get('ogDescription'));
+      const relationships = Ember.get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
         return memo.concat(relationshipPromises);

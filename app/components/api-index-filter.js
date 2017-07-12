@@ -1,12 +1,11 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
-const { computed, Component } = Ember;
 
-export default Component.extend({
+export default Ember.Component.extend({
   classNames: ['api-index-filter'],
 
-  filteredMethods: computed('model.methods.[]',
+  filteredMethods: Ember.computed('model.methods.[]',
     'filterData.showInherited',
     'filterData.showProtected',
     'filterData.showPrivate',
@@ -15,7 +14,7 @@ export default Component.extend({
       return this.filterItems('methods');
     }),
 
-  filteredEvents: computed('model.events.[]',
+  filteredEvents: Ember.computed('model.events.[]',
     'filterData.showInherited',
     'filterData.showProtected',
     'filterData.showPrivate',
@@ -24,7 +23,7 @@ export default Component.extend({
       return this.filterItems('events');
     }),
 
-  filteredProperties: computed('model.properties.[]',
+  filteredProperties: Ember.computed('model.properties.[]',
     'filterData.showInherited',
     'filterData.showProtected',
     'filterData.showPrivate',
@@ -50,7 +49,7 @@ export default Component.extend({
     return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
   },
 
-  filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
+  filteredData: Ember.computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
     return {
       methods: this.get('filteredMethods'),
       properties: this.get('filteredProperties'),

@@ -3,14 +3,8 @@ import Ember from 'ember';
 import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 
-const {
-  Inflector: { inflector },
-  inject: { service }
-} = Ember;
 
-const { JSONAPIAdapter } = DS;
-
-export default JSONAPIAdapter.extend({
+export default DS.JSONAPIAdapter.extend({
 
   host: ENV.API_HOST,
 
@@ -18,8 +12,8 @@ export default JSONAPIAdapter.extend({
 
   currentProjectVersion: '',
 
-  metaStore: service(),
-  projectService: service('project'),
+  metaStore: Ember.inject.service(),
+  projectService: Ember.inject.service('project'),
 
   async findRecord(store, {modelName}, id) {
     let url;
@@ -29,11 +23,11 @@ export default JSONAPIAdapter.extend({
     if (['namespace', 'class', 'module'].includes(modelName)) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
-      url = `json-docs/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
+      url = `json-docs/${projectName}/${version}/${Ember.Inflector.inflector.pluralize(modelName)}/${revId}`;
     } else if (modelName === 'missing') {
       let version = this.get('projectService.version');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
-      url = `json-docs/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
+      url = `json-docs/${projectName}/${version}/${Ember.Inflector.inflector.pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
       this.set('currentProject', id);
       url = `rev-index/${id}`;

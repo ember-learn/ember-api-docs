@@ -1,11 +1,10 @@
 import DS from 'ember-data';
 import Ember from 'ember';
 
-const { inject: {service} } = Ember;
 
 export default DS.JSONAPISerializer.extend({
 
-  metaStore: service(),
+  metaStore: Ember.inject.service(),
 
   normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
     let normalizedDocument = this._super(...arguments);

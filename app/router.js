@@ -1,16 +1,15 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-const { on, inject } = Ember;
 
 const Router = Ember.Router.extend({
 
-  analytics: inject.service(),
+  analytics: Ember.inject.service(),
 
   location: config.locationType,
   rootURL: config.routerRootURL,
 
-  sendPageViewToGA: on('didTransition', function(page, title) {
+  sendPageViewToGA: Ember.on('didTransition', function(page, title) {
     if (typeof FastBoot === 'undefined') {
       page = page ? page : this.get('url');
       title = title ? title : this.get('url');

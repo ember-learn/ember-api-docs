@@ -1,11 +1,10 @@
 import Ember from 'ember';
 
-const { get, A } = Ember;
 
 export default Ember.Component.extend({
   // Public API
   role: 'listbox',
-  results: A(),
+  results: Ember.A(),
   isVisible: false,
 
   // Private API
@@ -24,13 +23,13 @@ export default Ember.Component.extend({
    *  }
    */
   _groupedResults: Ember.computed('results.[]', function () {
-    if (!get(this, 'results.length')) {
+    if (!Ember.get(this, 'results.length')) {
       return {};
     }
 
-    const lvl0Group = get(this, 'results').reduce((previous, current) => {
+    const lvl0Group = Ember.get(this, 'results').reduce((previous, current) => {
       // Remap all lowercase usages of 'guides' to 'Guides'
-      let lvl0 = Ember.String.capitalize(get(current, 'hierarchy.lvl0'));
+      let lvl0 = Ember.String.capitalize(Ember.get(current, 'hierarchy.lvl0'));
       // If lvl0 doesn't exist in the resulting object, create the array
       if (!previous[lvl0]) {
         previous[lvl0] = Ember.A();
@@ -51,7 +50,7 @@ export default Ember.Component.extend({
       // Inject lvl1 grouped results into lvl0
       lvl0Result[lvl0Key] = lvl0Group[lvl0Key].reduce((lvl1Result, lvl1Item) => {
         // lvl1 is sometimes null. Normalise to a string.
-        const lvl1Value = get(lvl1Item, 'hierarchy.lvl1');
+        const lvl1Value = Ember.get(lvl1Item, 'hierarchy.lvl1');
         const lvl1Key = lvl1Value? lvl1Value : lvl0Key;
 
         if (!lvl1Result[lvl1Key]) {

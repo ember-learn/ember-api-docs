@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
-const { Inflector: { inflector }} = Ember;
 
 export default Ember.Route.extend({
 
@@ -30,7 +29,7 @@ export default Ember.Route.extend({
   },
 
   redirect(model) {
-    return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`,
+    return this.transitionTo(`project-version.${Ember.Inflector.inflector.pluralize(model.classData.type)}.${model.classData.type}`,
       model.project.id,
       model.version,
       model.classData.data.get('name'));

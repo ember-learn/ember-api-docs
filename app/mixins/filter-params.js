@@ -1,33 +1,28 @@
 import Ember from 'ember';
 
-const {
-  Mixin, get, set, computed, A,
-  String: { capitalize, w },
-  inject: { service }
-} = Ember;
 
-export default Mixin.create({
-  filterData: service(),
+export default Ember.Mixin.create({
+  filterData: Ember.inject.service(),
 
   queryParams: [{visibilityFilter: 'show'}],
 
-  visibilityFilter: computed(
+  visibilityFilter: Ember.computed(
     'filterData.{showInherited,showProtected,showPrivate,showDeprecated}',
     {
       get() {
-        return A([
-          get(this, 'filterData.showInherited') ? 'inherited' : null,
-          get(this, 'filterData.showProtected') ? 'protected' : null,
-          get(this, 'filterData.showPrivate') ? 'private' : null,
-          get(this, 'filterData.showDeprecated') ? 'deprecated' : null
+        return Ember.A([
+          Ember.get(this, 'filterData.showInherited') ? 'inherited' : null,
+          Ember.get(this, 'filterData.showProtected') ? 'protected' : null,
+          Ember.get(this, 'filterData.showPrivate') ? 'private' : null,
+          Ember.get(this, 'filterData.showDeprecated') ? 'deprecated' : null
         ]).compact().join(',');
       },
       set(key, value = '') {
-        let filters = A(value.split(','));
-        w('inherited protected private deprecated')
+        let filters = Ember.A(value.split(','));
+        Ember.String.w('inherited protected private deprecated')
           .forEach(filter => {
             let enabled = filters.includes(filter);
-            set(this, `filterData.show${capitalize(filter)}`, enabled);
+            Ember.set(this, `filterData.show${Ember.String.capitalize(filter)}`, enabled);
           });
         return value;
       }

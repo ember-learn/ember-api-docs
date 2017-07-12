@@ -2,28 +2,27 @@ import Ember from 'ember';
 import ClassController from '../classes/class';
 import _ from 'lodash';
 
-const { computed, inject } = Ember;
 
 export default ClassController.extend({
-  filterData: inject.service(),
-  showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
+  filterData: Ember.inject.service(),
+  showPrivateClasses: Ember.computed.alias('filterData.sideNav.showPrivate'),
 
-  submodules: computed('model', function() {
+  submodules: Ember.computed('model', function() {
     return Object.keys(this.get('model.submodules'));
   }),
 
-  namespaces: computed('model', function() {
+  namespaces: Ember.computed('model', function() {
     return Object.keys(this.get('model.namespaces'));
   }),
 
-  classes: computed('model', 'showPrivateClasses', function() {
+  classes: Ember.computed('model', 'showPrivateClasses', function() {
     if (this.get('showPrivateClasses')) {
       return this.get('model.publicclasses').concat(this.get('model.privateclasses'));
     }
     return this.get('model.publicclasses');
   }),
 
-  classesAndNamespaces: computed('classes', 'namespaces', function () {
+  classesAndNamespaces: Ember.computed('classes', 'namespaces', function () {
     return _.uniq(_.union(this.get('namespaces'), this.get('classes')).sort(), true);
   })
 

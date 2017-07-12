@@ -1,19 +1,18 @@
 import Ember from 'ember';
 
-const { Service, isPresent, A } = Ember;
 
-export default Service.extend({
+export default Ember.Service.extend({
 
   availableProjectVersions: {
-    'ember': A(),
-    'ember-data':A()
+    'ember': Ember.A(),
+    'ember-data':Ember.A()
   },
 
   projectRevMap: {},
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
     let projectRevMap = this.get('projectRevMap');
-    if (!isPresent(projectRevMap[projectVersionKey])) {
+    if (!Ember.isPresent(projectRevMap[projectVersionKey])) {
       projectRevMap[projectVersionKey] =  projectRevDoc;
       this.set('projectRevMap', projectRevMap);
     }
@@ -26,8 +25,8 @@ export default Service.extend({
   initializeStore(availableProjectVersions, projectRevMap) {
     this.setProperties({
       availableProjectVersions: {
-        'ember': A(availableProjectVersions['ember']),
-        'ember-data': A(availableProjectVersions['ember-data'])
+        'ember': Ember.A(availableProjectVersions['ember']),
+        'ember-data': Ember.A(availableProjectVersions['ember-data'])
       },
       projectRevMap: projectRevMap
     })

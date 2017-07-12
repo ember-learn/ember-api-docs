@@ -1,6 +1,5 @@
 import Ember from 'ember';
 
-const {isPresent} = Ember;
 
 export function initialize(appInstance) {
   const metaStore = appInstance.lookup('service:meta-store');
@@ -10,7 +9,7 @@ export function initialize(appInstance) {
 
   if (typeof FastBoot !== 'undefined') {
     shoebox.put('meta-store', metaStore.getProperties('availableProjectVersions', 'projectRevMap'));
-  } else if (isPresent(shoebox.retrieve('meta-store'))) {
+  } else if (Ember.isPresent(shoebox.retrieve('meta-store'))) {
     const {availableProjectVersions, projectRevMap} = shoebox.retrieve('meta-store');
     metaStore.initializeStore(availableProjectVersions, projectRevMap);
   }
