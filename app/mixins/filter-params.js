@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
   Mixin, get, set, computed, A,
-  String: { capitalize, w },
+  String: { capitalize },
   inject: { service },
   isEmpty
 } = Ember;
@@ -13,17 +13,17 @@ const DEFAULT_FILTER = 'inherited';
 export default Mixin.create({
   filterData: service(),
 
-  queryParams: [{visibilityFilter: 'show'}],
+  queryParams: [{ visibilityFilter: 'show' }],
 
   visibilityFilter: computed(
     'filterData.{showInherited,showProtected,showPrivate,showDeprecated}',
     {
       get() {
         let appliedFilters = filterTypes.reduce((filters, filter) => {
-          let filterValue = get(this, `filterData.show${capitalize(filter)}`) ? filter: null;
-          filters.push(filterValue)
+          let filterValue = get(this, `filterData.show${capitalize(filter)}`) ? filter : null;
+          filters.push(filterValue);
           return filters;
-        }, A()).compact()
+        }, A()).compact();
 
         if (isEmpty(appliedFilters)) {
           return DEFAULT_FILTER;
@@ -34,9 +34,9 @@ export default Mixin.create({
       set(key, value = '') {
         let filters = A(value.split(','));
         filterTypes.forEach(filter => {
-            let enabled = filters.includes(filter);
-            set(this, `filterData.show${capitalize(filter)}`, enabled);
-          });
+          let enabled = filters.includes(filter);
+          set(this, `filterData.show${capitalize(filter)}`, enabled);
+        });
         return value;
       }
     }
