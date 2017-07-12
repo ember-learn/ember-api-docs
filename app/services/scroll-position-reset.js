@@ -1,4 +1,8 @@
 import Ember from 'ember';
+import config from 'ember-api-docs/config/environment';
+
+const { scrollContainerElement } = config.APP;
+
 
 const {$} = Ember;
 
@@ -24,7 +28,7 @@ export default Ember.Service.extend({
 
   doReset() {
     if (this.get('_shouldResetScroll')) {
-      $('section.content').scrollTop(0);
+      $(scrollContainerElement).scrollTop(0);
       this.set('_shouldResetScroll', false);
     }
   }
