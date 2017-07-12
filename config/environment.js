@@ -1,9 +1,16 @@
 /* eslint-env node */
+'use strict';
+
 module.exports = function(environment) {
   let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
   let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
 
   let ENV = {
+    'ember-resolver': {
+      features: {
+        EMBER_RESOLVER_MODULE_UNIFICATION: true
+      }
+    },
     modulePrefix: 'ember-api-docs',
     environment,
     rootURL: '/',
@@ -12,11 +19,15 @@ module.exports = function(environment) {
     API_HOST: 'https://ember-api-docs.global.ssl.fastly.net',
     gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
-      EXTEND_PROTOTYPES: false,
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
+      },
       FEATURES: {
         //'ember-glimmer': true
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
+        'ember-module-unification': true
       }
     },
 

@@ -18,9 +18,12 @@ module.exports = function(defaults) {
     },
     sassOptions: {
       includePaths: [
-        'app/styles',
+        'src/ui/styles',
         'bower_components/neat/app/assets/stylesheets',
         'bower_components/bitters/core'
+
+        // 'bower_components/bourbon/app/assets/stylesheets/',
+        // 'node_modules/ember-power-select/app/styles/'
       ]
     },
     autoprefixer: {

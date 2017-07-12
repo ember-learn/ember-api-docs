@@ -5,6 +5,7 @@
     "bitters": "^1.5.0",
     "neat": "^1.8.0",
     "remarkable": "^1.7.1",
-    "highlightjs": "^9.8.0"
+    "highlightjs": "^9.8.0",
+    "ember": "components/ember#canary"
   }
 }

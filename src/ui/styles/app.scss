@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+@import "normalize.css";
+@import "bourbon";
+@import "./base/base";
+@import "neat";
+@import "./components/all";
+@import "class";
+
+body {
+  margin: 0;
+  width: 100%;
+}
+
+.header {
+  z-index: 2;
+}
+@include media($medium-large-screen-up) {
+  .header {
+    top: 0;
+    width: 100%;
+    position: fixed;
+  }
+
+  main.container {
+    width: 100%;
+  }
+
+  main.container .content {
+    position: relative;
+    margin-right: 0;
+    margin-top: $top-spacing;
+    margin-bottom: 0;
+    overflow:auto;
+    padding: $base-spacing;
+
+    &::after {
+      clear: both;
+      display: table;
+    }
+
+  }
+
+  main.container .content .chapter {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+
+@import "ember-power-select";

@@ -1,4 +1,4 @@
-import Resolver from '../../resolver';
+import Resolver from '../../src/resolver';
 import config from '../../config/environment';
 
 const resolver = Resolver.create();
