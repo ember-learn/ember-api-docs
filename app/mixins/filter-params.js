@@ -3,8 +3,12 @@ import Ember from 'ember';
 const {
   Mixin, get, set, computed, A,
   String: { capitalize, w },
-  inject: { service }
+  inject: { service },
+  isEmpty
 } = Ember;
+
+const filterTypes = ['inherited', 'protected', 'private', 'deprecated'];
+const DEFAULT_FILTER = 'inherited';
 
 export default Mixin.create({
   filterData: service(),
@@ -15,17 +19,21 @@ export default Mixin.create({
     'filterData.{showInherited,showProtected,showPrivate,showDeprecated}',
     {
       get() {
-        return A([
-          get(this, 'filterData.showInherited') ? 'inherited' : null,
-          get(this, 'filterData.showProtected') ? 'protected' : null,
-          get(this, 'filterData.showPrivate') ? 'private' : null,
-          get(this, 'filterData.showDeprecated') ? 'deprecated' : null
-        ]).compact().join(',');
+        let appliedFilters = filterTypes.reduce((filters, filter) => {
+          let filterValue = get(this, `filterData.show${capitalize(filter)}`) ? filter: null;
+          filters.push(filterValue)
+          return filters;
+        }, A()).compact()
+
+        if (isEmpty(appliedFilters)) {
+          return DEFAULT_FILTER;
+        } else {
+          return appliedFilters.join(',');
+        }
       },
       set(key, value = '') {
         let filters = A(value.split(','));
-        w('inherited protected private deprecated')
-          .forEach(filter => {
+        filterTypes.forEach(filter => {
             let enabled = filters.includes(filter);
             set(this, `filterData.show${capitalize(filter)}`, enabled);
           });
