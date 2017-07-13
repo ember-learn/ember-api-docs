@@ -10,7 +10,6 @@ module.exports = function(defaults) {
   }
 
   let app = new EmberApp(defaults, {
-
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg'],
       prepend: prepend,
@@ -36,6 +35,9 @@ module.exports = function(defaults) {
     svgJar: {
       sourceDirs: ['public/assets/images'],
     },
+    fingerprint: {
+      prepend
+    }
   });
 
   var docsSlug = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
