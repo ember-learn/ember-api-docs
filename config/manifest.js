@@ -1,19 +1,18 @@
 /* eslint-env node */
 'use strict';
 
-module.exports = function(environment /*, appConfig */) {
+module.exports = function(environment, appConfig) {
   // See https://github.com/san650/ember-web-app#documentation for a list of
   // supported properties
-
   return {
     name: 'Ember API Docs',
     short_name: 'Ember API',
     description: 'Ember & Ember Data API Documentation',
-    start_url: environment.routerRootURL,
+    start_url: appConfig.routerRootURL,
     display: 'standalone',
     background_color: '#FDFDFD',
     theme_color: '#f67862',
-    scope: environment.routerRootURL,
+    scope: appConfig.routerRootURL,
     lang: 'en-US',
     icons: [
       {
