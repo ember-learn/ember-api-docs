@@ -48,7 +48,7 @@ export default Component.extend({
     };
 
     const searchObj = {
-      indexName: 'emberjs_versions',
+      indexName: 'emberjs_versions_new',
       query
     };
 
