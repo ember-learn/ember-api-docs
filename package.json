@@ -63,6 +63,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-helpers": "^0.5.2",
     "ember-normalize": "^1.0.0",
+    "ember-percy": "^1.2.13",
     "ember-power-select": "^1.9.2",
     "ember-resolver": "^4.3.0",
     "ember-route-action-helper": "^2.0.3",
