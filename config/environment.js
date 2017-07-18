@@ -67,7 +67,7 @@ module.exports = function(environment) {
         desktop: 1280
       },
       defaultBreakpoints: ['mobile', 'desktop']
-    }};
+    };
 
   }
 
