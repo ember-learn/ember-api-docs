@@ -97,7 +97,6 @@
     ]
   },
   "fastbootDependencies": [
-    "algoliasearch",
-    "hide-powered-by"
+    "algoliasearch"
   ]
 }
