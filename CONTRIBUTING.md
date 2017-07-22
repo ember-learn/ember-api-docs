@@ -66,7 +66,7 @@ along.
 
 If you have a question please reach out to us on the #team-learning channel on ember slack
 
-# Building Ember.js API
+# Building Ember.js API Docs
 
 ```sh
 clone the latest ember.js api docs from github
@@ -85,7 +85,7 @@ follow these commands to build ember.js
 
 # Development steps
 
-1. Follow the setup steps listed above under [Building Ember.js API](#building-emberjs-api).
+1. Follow the setup steps listed above under [Building Ember.js API](#building-emberjs-api-docs).
 
 2. To start the development server, run `yarn start`.
 
