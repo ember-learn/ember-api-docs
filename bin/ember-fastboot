@@ -38,15 +38,31 @@ const app = httpServer.app;
 /** We rewrite the 307 location header into a relativeURL so that our special setup is handled */
 app.use(function(req, res, next) {
   const originalSendFn = res.send;
+
   res.send = function(data) {
     if (res.hasHeader('location')) {
-      const originalLocation = res.getHeader('location');
-      const relativeURL = new URL(originalLocation).pathname;
+      let originalLocation = res.getHeader('location');
+
+      // FastBoot broke us once by removing the protocol so adding a check for safety
+      if (originalLocation.startsWith('//')) {
+        originalLocation = `http:${originalLocation}`;
+      }
+
+      let relativeURL = '/api/ember/2.14/namespaces/Ember';
+
+      try {
+        relativeURL = new URL(originalLocation).pathname;
+      } catch (e) {
+        console.log(`Original location value: ${originalLocation}`)
+        console.log(e);
+      }
+
       res.setHeader('location', relativeURL);
       arguments[0] = arguments[0].replace(new RegExp(originalLocation, 'g'), relativeURL);
     }
     originalSendFn.apply(res, arguments);
   }
+
   res.removeHeader('X-Powered-By');
   next();
 });
