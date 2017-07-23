@@ -47,7 +47,8 @@ export default Component.extend({
     if (!this.get('filterData.showDeprecated')) {
       items = items.filter(item => item.deprecated !== true);
     }
-    return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
+    let sortedUniqueItems = _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
+    return this.filterMultipleInheritance(sortedUniqueItems)
   },
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
@@ -56,6 +57,24 @@ export default Component.extend({
       properties: this.get('filteredProperties'),
       events: this.get('filteredEvents')
     };
-  })
+  }),
 
-});
+  /**
+  * Show the most local property if there are duplicate properties of the same name.
+  * The docs for the nearest inheritance are typically more helpful to users.
+  * Ember-jsonapi-docs returns a mix of inherited/local, but once sorted, the
+  * first item in the list is "most local."
+  * @method filterMultipleInheritance
+  */
+  filterMultipleInheritance(items) {
+    return items.filter(function(item, index, arr) {
+      if (index === 0) {
+        return true;
+      } else if (item.name === arr[index - 1].name) {
+        return false;
+      } else {
+        return true;
+      }
+    })
+  }
+})
