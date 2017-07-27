@@ -1,22 +1,63 @@
 import Ember from 'ember';
 import _ from 'lodash';
 
+const { inject, run } = Ember;
+
 export default Ember.Route.extend({
 
   metaStore: Ember.inject.service(),
 
   projectService: Ember.inject.service('project'),
+  headData: inject.service(),
+  router: inject.service(),
 
   titleToken: function(model) {
     return model.get('version');
   },
 
-  async model({project, project_version}) {
-    await this.store.findRecord('project', project);
-    const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
+  async model(params) {
+    const {project, project_version} = params;
+    const projectModel = await this.store.findRecord('project', project);
+    const projectVersion = projectModel.getFullVersion(project_version);
     const id = `${project}-${projectVersion}`;
     this.get('projectService').setVersion(projectVersion);
-    return this.store.findRecord('project-version', id, { includes: 'project' });
+    const versionModel = await this.store.findRecord('project-version', id, { includes: 'project' });
+    this.injectDataIntoHeadModel(params, versionModel);
+    this.setCanonicalURL(params, versionModel);
+
+    return versionModel;
+  },
+
+  setCanonicalURL({project_version}, versionModel) {
+    if (project_version !== 'lts' && project_version !== 'release') {
+
+
+      // run next is required so router.currentURL is present
+      // but it can be performance issue
+      // constructing the URL via href-to helper could be a good alternative
+      run.next(() => {
+        const currentURL = this.get('router.currentURL') || "";
+
+        if (versionModel.get('isRelease')) {
+          this.set('headData.canonicalURL', currentURL.replace(project_version, 'release'));
+        } else if (versionModel.get('isLTS')) {
+          this.set('headData.canonicalURL', currentURL.replace(project_version, 'lts'));
+        } else {
+          this.set('headData.canonicalURL', null);
+        }
+
+      });
+
+    } else {
+      this.set('headData.canonicalURL', null);
+    }
+  },
+
+  injectDataIntoHeadModel({project_version}, projectVersionModel) {
+    this.get('headData').setProperties({
+      projectVersionModel,
+      projectVersionParam: project_version
+    });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30

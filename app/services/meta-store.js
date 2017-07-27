@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import semverCompare from 'npm:semver-compare';
 
-const { Service, isPresent, A } = Ember;
+const { Service, isPresent, A, computed } = Ember;
 
 export default Service.extend({
 
@@ -23,7 +24,25 @@ export default Service.extend({
     return this.get('projectRevMap')[`${project}-${version}`][type][id];
   },
 
-  initializeStore(availableProjectVersions, projectRevMap) {
+  sortVersionsBySemVer(projectVersions) {
+    let sortedVersions = projectVersions.sort((a, b) => semverCompare(b, a));
+    sortedVersions = sortedVersions.map((version) => {
+      const compactVersion = version.split('.').slice(0, 2).join('.');
+      return { id: version, compactVersion };
+    });
+
+    return A(sortedVersions);
+  },
+
+  semVerSortedProjectVersions: computed('availableProjectVersions.ember.[]', 'availableProjectVersions.ember-data.[]', function() {
+    return {
+      'ember': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember')),
+      'ember-data': this.sortVersionsBySemVer(this.get('availableProjectVersions.ember-data'))
+    }
+  }),
+
+  initializeStoreFromShoebox(availableProjectVersions, projectRevMap) {
+
     this.setProperties({
       availableProjectVersions: {
         'ember': A(availableProjectVersions['ember']),
@@ -31,11 +50,6 @@ export default Service.extend({
       },
       projectRevMap: projectRevMap
     })
-  },
-
-  getFullVersion(projectName, compactProjVersion) {
-    const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
-    return availProjVersions.filter(v => v.includes(compactProjVersion))[0];
   }
 
 });
