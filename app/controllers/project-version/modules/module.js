@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import ClassController from '../classes/class';
 import uniq from 'npm:lodash.uniq';
 import union from 'npm:lodash.union';
 
-const { computed, inject } = Ember;
-
 export default ClassController.extend({
-  filterData: inject.service(),
+  filterData: service(),
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
   submodules: computed('model', function() {

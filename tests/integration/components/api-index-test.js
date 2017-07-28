@@ -1,6 +1,6 @@
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
 import { click, findAll, find } from 'ember-native-dom-helpers';
 
 moduleForComponent('api-index', 'Integration | Component | api index', {
@@ -8,7 +8,7 @@ moduleForComponent('api-index', 'Integration | Component | api index', {
 });
 
 test('should display api index', function (assert) {
-  let model = Ember.Object.create({
+  let model = EmberObject.create({
     project: {
       id: 'lolwut'
     },
@@ -73,7 +73,7 @@ test('should display api index', function (assert) {
 });
 
 test('should display text when no methods', function (assert) {
-  let model = Ember.Object.create({
+  let model = EmberObject.create({
     project: {
       id: 'lolwut'
     },
@@ -133,7 +133,7 @@ test('should display text when no methods', function (assert) {
 });
 
 test('should display api index with filter', function (assert) {
-  let model = Ember.Object.create({
+  let model = EmberObject.create({
     project: {
       id: 'lolwut'
     },
@@ -181,7 +181,7 @@ test('should display api index with filter', function (assert) {
     ]
   });
   this.set('myModel', model);
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: false,
     showProtected: false,
     showPrivate: false,
@@ -264,7 +264,7 @@ test('should display api index with filter', function (assert) {
 
 
 test('should display inherited method when show inherited toggled on', async function(assert) {
-  let model = Ember.Object.create({
+  let model = EmberObject.create({
     project: {
       id: 'lolwut'
     },
@@ -312,7 +312,7 @@ test('should display inherited method when show inherited toggled on', async fun
     ]
   });
   this.set('myModel', model);
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: false,
     showProtected: false,
     showPrivate: false,

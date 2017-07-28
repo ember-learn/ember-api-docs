@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import uniq from 'npm:lodash.uniq';
 import sortBy from 'npm:lodash.sortby';
 
-const { computed, Component } = Ember;
 
 export default Component.extend({
   classNames: ['api-index-filter'],

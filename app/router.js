@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import Router from '@ember/routing/router';
+import { on } from '@ember/object/evented';
 import config from './config/environment';
+import { inject as service } from '@ember/service';
 
-const { on, inject } = Ember;
+const AppRouter = Router.extend({
 
-const Router = Ember.Router.extend({
-
-  analytics: inject.service(),
+  analytics: service(),
 
   location: config.locationType,
   rootURL: config.routerRootURL,
@@ -19,7 +19,7 @@ const Router = Ember.Router.extend({
   })
 });
 
-Router.map(function() {
+AppRouter.map(function() {
   this.route('404');
   this.route('project', {path: '/:project'});
 
@@ -69,4 +69,4 @@ Router.map(function() {
   this.route('data-module', {path: '/data/modules/:module'});
 });
 
-export default Router;
+export default AppRouter;

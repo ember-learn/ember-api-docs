@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import ParentNameMixin from 'ember-api-docs/mixins/parent-name';
 
-const { Controller } = Ember;
-
 export default Controller.extend(ParentNameMixin, {
-  filterData: Ember.inject.service()
+  filterData: service()
 });

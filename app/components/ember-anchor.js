@@ -1,8 +1,7 @@
+import $ from 'jquery';
+import { get } from '@ember/object';
 import AnchorComponent from 'ember-anchor/components/ember-anchor';
-import Ember from 'ember';
 import config from 'ember-api-docs/config/environment';
-
-const { $, get } = Ember;
 
 export default AnchorComponent.extend({
 

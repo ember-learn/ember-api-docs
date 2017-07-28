@@ -1,6 +1,4 @@
-import Ember from 'ember';
-
-const {isPresent} = Ember;
+import { isPresent } from '@ember/utils';
 
 export function initialize(appInstance) {
   const metaStore = appInstance.lookup('service:meta-store');

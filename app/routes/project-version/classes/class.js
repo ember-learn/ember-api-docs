@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { resolve, all } from 'rsvp';
+import Route from '@ember/routing/route';
+import { set, get } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
+import { inject as service } from '@ember/service';
 
-const { get, set, inject } = Ember;
+export default Route.extend(ScrollTracker, {
 
-export default Ember.Route.extend(ScrollTracker, {
+  headData: service(),
 
-  headData: inject.service(),
-
-  metaStore: inject.service(),
+  metaStore: service(),
 
   titleToken: function(model) {
     return model.get('name');
@@ -29,7 +30,7 @@ export default Ember.Route.extend(ScrollTracker, {
   find(typeName, param) {
     return this.store.find(typeName, param).catch(() => {
       return this.store.find('namespace', param).catch(() => {
-        return Ember.RSVP.resolve({ isError: true });
+        return resolve({ isError: true });
       });
     });
   },
@@ -48,7 +49,7 @@ export default Ember.Route.extend(ScrollTracker, {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
         return memo.concat(relationshipPromises);
       }, []);
-      return Ember.RSVP.all(promises);
+      return all(promises);
     }
   },
 

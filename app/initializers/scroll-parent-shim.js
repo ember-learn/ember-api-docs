@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import $ from 'jquery';
 
 export function initialize() {
 
@@ -9,12 +9,12 @@ export function initialize() {
   /**
    *  https://raw.githubusercontent.com/slindberg/jquery-scrollparent/master/LICENSE
    */
-  Ember.$.fn.scrollParent = function() {
+  $.fn.scrollParent = function() {
     let overflowRegex = /(auto|scroll)/;
     let position = this.css( "position" );
     let excludeStaticParent = position === "absolute";
     let scrollParent = this.parents().filter( function() {
-      let parent = Ember.$( this );
+      let parent = $( this );
       if ( excludeStaticParent && parent.css( "position" ) === "static" ) {
         return false;
       }
@@ -22,7 +22,7 @@ export function initialize() {
       return (overflowRegex).test( overflowState.overflow + overflowState.overflowX + overflowState.overflowY );
     }).eq( 0 );
 
-    return position === "fixed" || !scrollParent.length ? Ember.$( this[ 0 ].ownerDocument || document ) : scrollParent;
+    return position === "fixed" || !scrollParent.length ? $( this[ 0 ].ownerDocument || document ) : scrollParent;
   };
 }
 
