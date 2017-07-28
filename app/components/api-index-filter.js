@@ -1,6 +1,8 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import _ from 'lodash';
+import uniq from 'npm:lodash.uniq';
+import sortBy from 'npm:lodash.sortby';
+
 
 export default Component.extend({
   classNames: ['api-index-filter'],
@@ -46,7 +48,7 @@ export default Component.extend({
     if (!this.get('filterData.showDeprecated')) {
       items = items.filter(item => item.deprecated !== true);
     }
-    return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
+    return uniq(sortBy(items, 'name'), true, (item => item.name));
   },
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
