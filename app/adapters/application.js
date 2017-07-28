@@ -1,11 +1,11 @@
+import { inject as service } from '@ember/service';
 import DS from 'ember-data';
 import Ember from 'ember';
 import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 
 const {
-  Inflector: { inflector },
-  inject: { service }
+  Inflector: { inflector }
 } = Ember;
 
 const { JSONAPIAdapter } = DS;

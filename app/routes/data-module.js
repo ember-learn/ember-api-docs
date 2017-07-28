@@ -1,9 +1,11 @@
+import { hash, resolve } from 'rsvp';
+import Route from '@ember/routing/route';
 import Ember from 'ember';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 const { Inflector: { inflector }} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
 
   model(params) {
     return this.get('store').findRecord('project', 'ember-data', { includes: 'project-version' })
@@ -12,9 +14,9 @@ export default Ember.Route.extend({
         let lastVersion = getLastVersion(versions);
         let className = params['module'].substr(0, params['module'].lastIndexOf('.'));
         let id = `ember-data-${lastVersion}-${className}`;
-        return Ember.RSVP.hash({
-          project: Ember.RSVP.resolve(project),
-          version: Ember.RSVP.resolve(lastVersion),
+        return hash({
+          project: resolve(project),
+          version: resolve(lastVersion),
           classData: this.store.find('class', id)
             .then((classData) => {
               return {
@@ -26,7 +28,7 @@ export default Ember.Route.extend({
               return this.transitionTo('project-version');
             })
         });
-      })
+      });
   },
 
   redirect(model) {

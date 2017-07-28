@@ -1,10 +1,8 @@
+import $ from 'jquery';
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import Ember from 'ember';
 import { visit } from 'ember-native-dom-helpers';
 import config from 'ember-api-docs/config/environment';
-
-const { $ } = Ember;
 
 const { scrollContainerElement } = config.APP;
 

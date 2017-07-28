@@ -1,11 +1,9 @@
-import Ember from 'ember';
-
-const {
-  Mixin, get, set, computed, A,
-  String: { capitalize },
-  inject: { service },
-  isEmpty
-} = Ember;
+import Mixin from '@ember/object/mixin';
+import { computed, set, get } from '@ember/object';
+import { A } from '@ember/array';
+import { capitalize } from '@ember/string';
+import { inject as service } from '@ember/service';
+import { isEmpty } from '@ember/utils';
 
 const filterTypes = ['inherited', 'protected', 'private', 'deprecated'];
 const DEFAULT_FILTER = 'inherited';

@@ -1,21 +1,26 @@
-import Ember from 'ember';
+import { later } from '@ember/runloop';
+import { denodeify } from 'rsvp';
+import { A } from '@ember/array';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
-import {task, timeout} from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 const SEARCH_DEBOUNCE_PERIOD = 300;
 
-export default Ember.Component.extend({
+export default Component.extend({
   // Public API
   value: '',
 
-  _searchClient: Ember.inject.service('algolia'),
+  _searchClient: service('algolia'),
 
   // Private API
   classNames: ['search-input'],
-  _projectService: Ember.inject.service('project'),
-  _projectVersion: Ember.computed.alias('_projectService.standardisedVersion'),
-  _results: Ember.A(),
+  _projectService: service('project'),
+  _projectVersion: alias('_projectService.standardisedVersion'),
+  _results: A(),
   _focused: false,
   _resultTetherConstraints: [
     {
@@ -47,7 +52,7 @@ export default Ember.Component.extend({
       query
     };
 
-    let searchFn = Ember.RSVP.denodeify(client.search.bind(client));
+    let searchFn = denodeify(client.search.bind(client));
     let res = yield searchFn(searchObj, params);
 
     const results = get(res, 'hits');
@@ -63,7 +68,7 @@ export default Ember.Component.extend({
     },
 
     onblur() {
-      Ember.run.later(this, function () {
+      later(this, function () {
         set(this, '_focused', false);
       }, 200);
     }

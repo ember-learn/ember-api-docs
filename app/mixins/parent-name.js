@@ -1,6 +1,10 @@
+import { computed } from '@ember/object';
+import Mixin from '@ember/object/mixin';
 import Ember from 'ember';
 
-const { computed, inject, Mixin } = Ember;
+const {
+  inject
+} = Ember;
 
 export default Mixin.create({
   router: inject.service('-routing'),

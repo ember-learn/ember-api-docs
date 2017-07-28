@@ -1,9 +1,13 @@
+import Router from '@ember/routing/router';
+import { on } from '@ember/object/evented';
 import Ember from 'ember';
 import config from './config/environment';
 
-const { on, inject } = Ember;
+const {
+  inject
+} = Ember;
 
-const Router = Ember.Router.extend({
+const Router = Router.extend({
 
   analytics: inject.service(),
 

@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
 import _ from 'lodash';
 import semverCompare from 'npm:semver-compare';
 import FilterParams from '../mixins/filter-params';
-
-const { Controller, computed, A, inject: {service} } = Ember;
 
 export default Controller.extend(FilterParams, {
 

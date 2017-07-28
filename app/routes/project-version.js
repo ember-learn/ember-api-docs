@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 import _ from 'lodash';
 
-export default Ember.Route.extend({
+export default Route.extend({
 
-  metaStore: Ember.inject.service(),
+  metaStore: service(),
 
-  projectService: Ember.inject.service('project'),
+  projectService: service('project'),
 
   titleToken: function(model) {
     return model.get('version');

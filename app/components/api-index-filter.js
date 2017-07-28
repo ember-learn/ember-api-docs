@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import _ from 'lodash';
-
-const { computed, Component } = Ember;
 
 export default Component.extend({
   classNames: ['api-index-filter'],

@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { Service, isPresent, A } = Ember;
+import Service from '@ember/service';
+import { isPresent } from '@ember/utils';
+import { A } from '@ember/array';
 
 export default Service.extend({
 

@@ -1,4 +1,4 @@
-import Ember from "ember";
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { find, findAll } from 'ember-native-dom-helpers';
@@ -9,7 +9,7 @@ moduleForComponent('class-field-description', 'Integration | Component | class f
 
 test('it renders', function(assert) {
   this.set('type', 'method');
-  this.set('field', Ember.Object.create({
+  this.set('field', EmberObject.create({
     access: "public",
     deprecated: true,
     name: "concat",

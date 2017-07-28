@@ -1,8 +1,11 @@
+import { computed } from '@ember/object';
 import Ember from 'ember';
 import ClassController from '../classes/class';
 import _ from 'lodash';
 
-const { computed, inject } = Ember;
+const {
+  inject
+} = Ember;
 
 export default ClassController.extend({
   filterData: inject.service(),

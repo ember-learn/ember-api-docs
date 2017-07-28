@@ -1,6 +1,9 @@
+import Mixin from '@ember/object/mixin';
 import Ember from 'ember';
 
-const { inject, Mixin } = Ember;
+const {
+  inject
+} = Ember;
 
 export default Mixin.create({
 
