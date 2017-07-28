@@ -38,6 +38,7 @@ const app = httpServer.app;
 app.use(express.static(distPath, {
   setHeaders(res, path, stat) {
     res.setHeader('Cache-Control', 'public, max-age=365000000, immutable');
+    res.removeHeader('X-Powered-By');
   }
 }));
 
