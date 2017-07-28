@@ -3,7 +3,7 @@ import { on } from '@ember/object/evented';
 import config from './config/environment';
 import { inject as service } from '@ember/service';
 
-const Router = Router.extend({
+const AppRouter = Router.extend({
 
   analytics: service(),
 
@@ -19,7 +19,7 @@ const Router = Router.extend({
   })
 });
 
-Router.map(function() {
+AppRouter.map(function() {
   this.route('404');
   this.route('project', {path: '/:project'});
 
@@ -69,4 +69,4 @@ Router.map(function() {
   this.route('data-module', {path: '/data/modules/:module'});
 });
 
-export default Router;
+export default AppRouter;
