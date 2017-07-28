@@ -1,9 +1,7 @@
 import { hash, resolve } from 'rsvp';
 import Route from '@ember/routing/route';
-import Ember from 'ember';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
-
-const { Inflector: { inflector }} = Ember;
+import { pluralize } from 'ember-inflector';
 
 export default Route.extend({
 
@@ -44,7 +42,7 @@ export default Route.extend({
   },
 
   redirect(model) {
-    return this.transitionTo(`project-version.${inflector.pluralize(model.classData.type)}.${model.classData.type}`,
+    return this.transitionTo(`project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
       model.project.id,
       model.version,
       model.classData.data.get('name'));
