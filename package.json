@@ -19,6 +19,12 @@
   },
   "dependencies": {
     "algoliasearch": "^3.24.3",
+    "lodash.groupby": "^4.6.0",
+    "lodash.last": "^3.0.0",
+    "lodash.sortby": "^4.7.0",
+    "lodash.union": "^4.6.0",
+    "lodash.uniq": "^4.5.0",
+    "lodash.values": "^4.3.0",
     "semver-compare": "^1.0.0"
   },
   "devDependencies": {
@@ -59,7 +65,6 @@
     "ember-fetch": "^3.2.9",
     "ember-inflector": "^2.0.1",
     "ember-load-initializers": "^1.0.0",
-    "ember-lodash": "^4.17.5",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-helpers": "^0.5.2",
     "ember-normalize": "^1.0.0",

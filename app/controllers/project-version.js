@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import _ from 'lodash';
+import values from 'npm:lodash.values';
+import groupBy from 'npm:lodash.groupby';
 import semverCompare from 'npm:semver-compare';
 import FilterParams from '../mixins/filter-params';
 
@@ -72,9 +73,9 @@ export default Controller.extend(FilterParams, {
       const compactVersion = version.split('.').slice(0, 2).join('.');
       return { id: version, compactVersion };
     });
-    let groupedVersions = _.groupBy(versions, version => version.compactVersion);
+    let groupedVersions = groupBy(versions, version => version.compactVersion);
 
-    return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
+    return values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
 
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {

@@ -1,5 +1,6 @@
 import Ember from 'ember';
-import _ from 'lodash';
+import uniq from 'npm:lodash.uniq';
+import sortBy from 'npm:lodash.sortby';
 
 const { computed, Component } = Ember;
 
@@ -47,7 +48,7 @@ export default Component.extend({
     if (!this.get('filterData.showDeprecated')) {
       items = items.filter(item => item.deprecated !== true);
     }
-    return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
+    return uniq(sortBy(items, 'name'), true, (item => item.name));
   },
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {

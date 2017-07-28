@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ClassController from '../classes/class';
-import _ from 'lodash';
+import uniq from 'npm:lodash.uniq';
+import union from 'npm:lodash.union';
 
 const { computed, inject } = Ember;
 
@@ -24,7 +25,7 @@ export default ClassController.extend({
   }),
 
   classesAndNamespaces: computed('classes', 'namespaces', function () {
-    return _.uniq(_.union(this.get('namespaces'), this.get('classes')).sort(), true);
+    return uniq(union(this.get('namespaces'), this.get('classes')).sort(), true);
   })
 
 });

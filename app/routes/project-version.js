@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import _ from 'lodash';
+import last from 'npm:lodash.last';
 
 export default Ember.Route.extend({
 
@@ -26,7 +26,7 @@ export default Ember.Route.extend({
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
       const namespaces = model.hasMany('namespaces').ids().sort();
-      const namespace = _.last(namespaces[0].split("-"));
+      const namespace = last(namespaces[0].split("-"));
       return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('compactVersion'), namespace);
     }
   },
