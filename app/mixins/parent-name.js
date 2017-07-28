@@ -1,13 +1,9 @@
 import { computed } from '@ember/object';
 import Mixin from '@ember/object/mixin';
-import Ember from 'ember';
-
-const {
-  inject
-} = Ember;
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
-  router: inject.service('-routing'),
+  router: service('-routing'),
 
   routeName: computed.readOnly('router.currentRouteName'),
   parentName: computed('routeName', function() {

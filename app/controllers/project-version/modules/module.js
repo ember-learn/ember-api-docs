@@ -1,14 +1,10 @@
 import { computed } from '@ember/object';
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
 import ClassController from '../classes/class';
 import _ from 'lodash';
 
-const {
-  inject
-} = Ember;
-
 export default ClassController.extend({
-  filterData: inject.service(),
+  filterData: service(),
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
   submodules: computed('model', function() {

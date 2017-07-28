@@ -1,18 +1,14 @@
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set, get } from '@ember/object';
-import Ember from 'ember';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
-
-const {
-  inject
-} = Ember;
+import { inject as service } from '@ember/service';
 
 export default Route.extend(ScrollTracker, {
 
-  headData: inject.service(),
+  headData: service(),
 
-  metaStore: inject.service(),
+  metaStore: service(),
 
   titleToken: function(model) {
     return model.get('name');

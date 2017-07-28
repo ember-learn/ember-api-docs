@@ -1,14 +1,10 @@
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
 import ENV from 'ember-api-docs/config/environment';
 
-const {
-  inject
-} = Ember;
-
 export default Route.extend({
-  headData: inject.service(),
+  headData: service(),
 
   title(tokens) {
     const [version, entity] = tokens;
