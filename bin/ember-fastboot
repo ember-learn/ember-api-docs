@@ -5,6 +5,7 @@
 const FastBootAppServer = require('fastboot-app-server');
 const ExpressHTTPServer = require('fastboot-app-server/src/express-http-server');
 const parseArgs = require('minimist');
+const express = require('express');
 const { URL } = require('url');
 
 // Provide a title to the process in `ps`
@@ -26,7 +27,6 @@ if (!distPath) {
 }
 
 const serverOptions = {
-  // assetsCacheControl: 'max-age=365000000, immutable',
   distPath,
   gzip: false, // Let Fastly take care of compression, reducing load on the fastboot
 };
@@ -34,6 +34,12 @@ const serverOptions = {
 const httpServer = new ExpressHTTPServer(serverOptions);
 
 const app = httpServer.app;
+
+app.use(express.static(distPath, {
+  setHeaders(res, path, stat) {
+    res.setHeader('Cache-Control', 'public, max-age=365000000, immutable');
+  }
+}));
 
 /** We rewrite the 307 location header into a relativeURL so that our special setup is handled */
 app.use(function(req, res, next) {
