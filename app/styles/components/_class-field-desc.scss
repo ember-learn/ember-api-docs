@@ -1,10 +1,11 @@
 .chapter li {
   margin: $small-spacing 0;
 
-  @media (max-width: $mobile-portrait-screen){
+  @media (max-width: $mobile-portrait-screen) {
     margin: 0;
   }
 }
+
 .chapter ul + .highlight {
   margin-top: $base-spacing;
 }
@@ -54,4 +55,20 @@
 p.github-link {
   margin: -12px 0 0;
   font-size: $small-font-size;
+}
+
+.class-field-description--link {
+  cursor: pointer;
+  position: relative;
+}
+
+.class-field-description--link-hover {
+  display: none;
+  position: absolute;
+  left: -24px;
+  top: 6px;
+}
+
+.class-field-description--link:hover .class-field-description--link-hover {
+  display: inline;
 }
