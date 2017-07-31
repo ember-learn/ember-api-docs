@@ -22,9 +22,9 @@ export default Ember.Route.extend({
   // Using redirect instead of afterModel so transition succeeds and returns 30
   redirect(model, transition) {
     let classParams = transition.params['project-version.classes.class'];
-    let moduleParams = transition.params['project-version.modules.module'];
+    let packageParams = transition.params['project-version.packages.package'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
-    if (!classParams && !moduleParams && !namespaceParams) {
+    if (!classParams && !packageParams && !namespaceParams) {
       const namespaces = model.hasMany('namespaces').ids().sort();
       const namespace = _.last(namespaces[0].split("-"));
       return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('compactVersion'), namespace);
@@ -54,9 +54,9 @@ export default Ember.Route.extend({
           endingRoute = `classes/${className}`;
           break;
         }
-        case 'project-version.modules.module.index': {
-          const moduleName = this.paramsFor('project-version.modules.module').module;
-          endingRoute = `modules/${moduleName}`;
+        case 'project-version.packages.package.index': {
+          const packageName = this.paramsFor('project-version.packages.package').package;
+          endingRoute = `packages/${packageName}`;
           break;
         }
         case 'project-version.namespaces.namespace.index': {

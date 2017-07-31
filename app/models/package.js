@@ -4,11 +4,11 @@ import DS from 'ember-data';
 const { attr, belongsTo } = DS;
 
 export default ClassModel.extend({
-  submodules: attr(),
+  subpackages: attr(),
   publicclasses: attr(),
   privateclasses: attr(),
   namespaces: attr(),
   parent: attr(),
 
-  projectVersion: belongsTo('project-version', {inverse: 'modules'})
+  projectVersion: belongsTo('project-version', {inverse: 'packages'})
 });

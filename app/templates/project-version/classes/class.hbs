@@ -30,10 +30,10 @@
         </span>
       </div>
     {{/if}}
-    {{#if model.module}}
+    {{#if model.package}}
       <div class="attribute">
-        <span class="attribute-label">Module:</span>
-        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.module}}{{model.module}}{{/link-to}}</span>
+        <span class="attribute-label">Package:</span>
+        <span class="attribute-value">{{#link-to 'project-version.packages.package' model.projectVersion.compactVersion model.package}}{{model.package}}{{/link-to}}</span>
       </div>
     {{/if}}
   </div>

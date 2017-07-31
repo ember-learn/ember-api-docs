@@ -29,12 +29,12 @@ export default Controller.extend(FilterParams, {
     return this.getRelationshipIDs('public-namespaces');
   }),
 
-  moduleIDs: computed('model', function() {
-    return this.getModuleRelationships(this.get('model.id'), 'modules');
+  packageIDs: computed('model', function() {
+    return this.getModuleRelationships(this.get('model.id'), 'packages');
   }),
 
-  publicModuleIDs: computed('model', function() {
-    return this.getModuleRelationships(this.get('model.id'), 'public-modules');
+  publicPackageIDs: computed('model', function() {
+    return this.getModuleRelationships(this.get('model.id'), 'public-packages');
   }),
 
   getModuleRelationships(versionId, moduleType) {
@@ -56,8 +56,8 @@ export default Controller.extend(FilterParams, {
     return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
   }),
 
-  shownModuleIDs: computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs', function() {
-    return this.get('showPrivateClasses') ? this.get('moduleIDs') : this.get('publicModuleIDs');
+  shownPackageIDs: computed('showPrivateClasses', 'packageIDs', 'publicPackageIDs', function() {
+    return this.get('showPrivateClasses') ? this.get('packageIDs') : this.get('publicPackageIDs');
   }),
 
   shownNamespaceIDs: computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {

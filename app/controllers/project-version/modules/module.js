@@ -8,8 +8,8 @@ export default ClassController.extend({
   filterData: inject.service(),
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
-  submodules: computed('model', function() {
-    return Object.keys(this.get('model.submodules'));
+  subpackages: computed('model', function() {
+    return Object.keys(this.get('model.subpackages'));
   }),
 
   namespaces: computed('model', function() {

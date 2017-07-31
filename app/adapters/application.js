@@ -26,7 +26,7 @@ export default JSONAPIAdapter.extend({
     let host = this.get('host');
     let projectName = this.get('currentProject');
 
-    if (['namespace', 'class', 'module'].includes(modelName)) {
+    if (['namespace', 'class', 'package'].includes(modelName)) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
       url = `json-docs/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
@@ -50,4 +50,3 @@ export default JSONAPIAdapter.extend({
   }
 
 });
-

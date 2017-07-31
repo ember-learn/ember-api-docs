@@ -5,21 +5,21 @@
     {{#if model.parent}}
       <div class="attribute">
         <span class="attribute-label">Parent:</span>
-        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.parent}}{{model.parent}}{{/link-to}}</span>
+        <span class="attribute-value">{{#link-to 'project-version.packages.package' model.projectVersion.compactVersion model.parent}}{{model.parent}}{{/link-to}}</span>
       </div>
     {{/if}}
   </p>
 
   <p class="description">{{html-safe model.description}}</p>
 
-  {{#if submodules}}
+  {{#if subpackages}}
     <section>
       <h2>Subpackages</h2>
       <ul class="spec-method-list">
-        {{#each submodules as |module|}}
+        {{#each subpackages as |package|}}
           <li>
-            {{#link-to 'project-version.modules.module' module}}
-              {{module}}
+            {{#link-to 'project-version.packages.package' package}}
+              {{package}}
             {{/link-to}}
           </li>
         {{/each}}

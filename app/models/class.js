@@ -44,7 +44,7 @@ export default DS.Model.extend({
   uses: attr(),
   file: attr(),
   line: attr(),
-  module: attr(),
+  package: attr(),
   parentClass: belongsTo('class', {async: true, inverse: null}),
   projectVersion: belongsTo('project-version', {inverse: 'classes'}),
   project: computed('projectVersion.id', function() {

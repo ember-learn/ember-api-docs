@@ -1,10 +1,10 @@
 <ol class="toc-level-0">
   <li class="toc-level-0">
-    <a {{action 'toggle' 'modules'}} href="#">Packages</a>
+    <a {{action 'toggle' 'packages'}} href="#">Packages</a>
     <ol class="toc-level-1 modules" style="display: block">
-      {{#each moduleIDs as |moduleID|}}
+      {{#each packageIDs as |packageID|}}
         <li class="toc-level-1" data-test-module={{moduleID}}>
-          {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
+          {{#link-to 'project-version.packages.package' version packageID}}{{packageID}}{{/link-to}}
         </li>
       {{/each}}
     </ol>
