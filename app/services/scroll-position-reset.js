@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import $ from 'jquery';
 import config from 'ember-api-docs/config/environment';
 
 const { scrollContainerElement } = config.APP;
 
 
-const {$} = Ember;
-
-export default Ember.Service.extend({
+export default Service.extend({
 
   _isChangingTab(transition) {
     const currentRouteParams = transition.router.state.params;

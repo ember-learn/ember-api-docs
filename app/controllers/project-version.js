@@ -1,9 +1,11 @@
-import Ember from 'ember';
-import _ from 'lodash';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import values from 'npm:lodash.values';
+import groupBy from 'npm:lodash.groupby';
 import semverCompare from 'npm:semver-compare';
 import FilterParams from '../mixins/filter-params';
-
-const { Controller, computed, A, inject: {service} } = Ember;
 
 export default Controller.extend(FilterParams, {
 
@@ -72,9 +74,9 @@ export default Controller.extend(FilterParams, {
       const compactVersion = version.split('.').slice(0, 2).join('.');
       return { id: version, compactVersion };
     });
-    let groupedVersions = _.groupBy(versions, version => version.compactVersion);
+    let groupedVersions = groupBy(versions, version => version.compactVersion);
 
-    return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
+    return values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
 
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {

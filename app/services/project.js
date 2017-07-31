@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Service from '@ember/service';
 import get from 'ember-metal/get';
 
-export default Ember.Service.extend({
+export default Service.extend({
   version: '0.0.0',
 
-  standardisedVersion: Ember.computed('version', function () {
+  standardisedVersion: computed('version', function () {
     const version = String(get(this, 'version'));
     const versionFragments = version.split('.');
     return `v${versionFragments[0]}.${versionFragments[1]}.0`;

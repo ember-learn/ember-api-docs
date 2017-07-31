@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 import getLastVersion from '../utils/get-last-version';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
-
-const { Route } = Ember;
 
 export default Route.extend(ScrollTracker, {
 

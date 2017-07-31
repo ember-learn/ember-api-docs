@@ -1,6 +1,11 @@
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import {test} from 'qunit';
-import { visit, click, findAll, findWithAssert } from 'ember-native-dom-helpers';
+import { test } from 'qunit';
+import {
+  visit,
+  click,
+  findAll,
+  findWithAssert
+} from 'ember-native-dom-helpers';
 import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | Switch Project');

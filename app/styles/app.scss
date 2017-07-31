@@ -42,7 +42,8 @@ body {
   }
 
   main.container .content .chapter {
-    max-width: 800px;
+    width: 800px;
+    max-width: 100%;
     margin: 0 auto;
   }
 }

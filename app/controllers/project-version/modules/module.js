@@ -1,11 +1,11 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import ClassController from '../classes/class';
-import _ from 'lodash';
-
-const { computed, inject } = Ember;
+import uniq from 'npm:lodash.uniq';
+import union from 'npm:lodash.union';
 
 export default ClassController.extend({
-  filterData: inject.service(),
+  filterData: service(),
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
   submodules: computed('model', function() {
@@ -24,7 +24,7 @@ export default ClassController.extend({
   }),
 
   classesAndNamespaces: computed('classes', 'namespaces', function () {
-    return _.uniq(_.union(this.get('namespaces'), this.get('classes')).sort(), true);
+    return uniq(union(this.get('namespaces'), this.get('classes')).sort(), true);
   })
 
 });

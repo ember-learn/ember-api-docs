@@ -1,10 +1,9 @@
-import Ember from 'ember';
-
-const { inject, Mixin } = Ember;
+import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
 
-  scrollPositionReset: inject.service(),
+  scrollPositionReset: service(),
 
   actions: {
     willTransition(transition) {
