@@ -41,16 +41,10 @@ Router.map(function() {
     });
     // this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
 
-    // Module routes
-    // project-version.module => project-version.modules.module
-    //    routes/project-version/module   =>  routes/project-version/modules/module
-    //    routes/project-version/module/* =>  routes/project-version/modules/module/*
-    this.route('modules', function() {
-      this.route('module', {path: '/:module'}, itemRoutes);
-    });
-    // this.route('module', {path: '/modules/:module'}, itemRoutes);
-
-    // Modules is being renamed to Packages
+    // Package routes
+    // project-version.package => project-version.packages.package
+    //    routes/project-version/package   =>  routes/project-version/packages/package
+    //    routes/project-version/package/* =>  routes/project-version/packages/package/*
     this.route('packages', function() {
       this.route('package', {path: '/:package'}, itemRoutes);
     });
@@ -69,11 +63,8 @@ Router.map(function() {
     }
   });
   this.route('class', {path: '/classes/:class'});
-  // why is module here again?
-  this.route('module', {path: '/modules/:module'});
   this.route('package', {path: '/packages/:package'});
   this.route('data-class', {path: '/data/classes/:class'});
-  // this.route('data-module', {path: '/data/modules/:module'});
   this.route('data-package', {path: '/data/packages/:package'});
 });
 

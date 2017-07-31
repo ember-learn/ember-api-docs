@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-const moduleIds = [
+const packageIds = [
   "ember-2.10.0-ember",
   "ember-2.10.0-ember-application",
   "ember-2.10.0-ember-debug",
@@ -14,7 +14,7 @@ const moduleIds = [
   "ember-2.10.0-ember-views"
 ];
 
-const expectedModuleNames = [
+const expectedPackageNames = [
   "ember",
   "ember-application",
   "ember-debug",
@@ -32,13 +32,13 @@ moduleFor('controller:project-version', 'Unit | Controller | project version', {
   needs: ['service:filterData', 'service:metaStore', 'service:analytics']
 });
 
-test('should render module names', function(assert) {
+test('should render package names', function(assert) {
   let controller = this.subject({
     getRelations(relationship) {
-      return moduleIds;
+      return packageIds;
     }
   });
 
-  let moduleNames = controller.getModuleRelationships('ember-2.10.1');
-  assert.deepEqual(moduleNames, expectedModuleNames);
+  let packageNames = controller.getPackageRelationships('ember-2.10.1');
+  assert.deepEqual(packageNames, expectedPackageNames);
 });

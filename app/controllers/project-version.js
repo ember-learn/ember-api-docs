@@ -30,14 +30,14 @@ export default Controller.extend(FilterParams, {
   }),
 
   packageIDs: computed('model', function() {
-    return this.getModuleRelationships(this.get('model.id'), 'packages');
+    return this.getPackageRelationships(this.get('model.id'), 'packages');
   }),
 
   publicPackageIDs: computed('model', function() {
-    return this.getModuleRelationships(this.get('model.id'), 'public-packages');
+    return this.getPackageRelationships(this.get('model.id'), 'public-packages');
   }),
 
-  getModuleRelationships(versionId, moduleType) {
+  getPackageRelationships(versionId, moduleType) {
     let relations = this.getRelations(moduleType);
     return relations.map(id => id.substring(versionId.length + 1))
   },
