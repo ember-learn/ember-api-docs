@@ -41,5 +41,4 @@ export default Ember.Route.extend({
       namespace: model.classData.get('name')
     }
   }
-
 });

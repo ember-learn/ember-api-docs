@@ -69,9 +69,12 @@ Router.map(function() {
     }
   });
   this.route('class', {path: '/classes/:class'});
+  // why is module here again?
   this.route('module', {path: '/modules/:module'});
+  this.route('package', {path: '/packages/:package'});
   this.route('data-class', {path: '/data/classes/:class'});
-  this.route('data-module', {path: '/data/modules/:module'});
+  // this.route('data-module', {path: '/data/modules/:module'});
+  this.route('data-package', {path: '/data/packages/:package'});
 });
 
 export default Router;

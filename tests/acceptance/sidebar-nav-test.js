@@ -13,11 +13,11 @@ test('can navigate to namespace from sidebar', async function(assert) {
   assert.equal(currentURL(), '/ember/1.0/namespaces/Ember.String', 'navigated to namespace');
 });
 
-test('can navigate to module from sidebar', async function(assert) {
+test('can navigate to package from sidebar', async function(assert) {
   await visit('/ember/1.0');
-  await click(`${testSelector('module', 'ember-application')} a`);
+  await click(`${testSelector('package', 'ember-application')} a`);
 
-  assert.equal(currentURL(), '/ember/1.0/modules/ember-application', 'navigated to module');
+  assert.equal(currentURL(), '/ember/1.0/packages/ember-application', 'navigated to package');
 });
 
 test('can navigate to class from sidebar', async function(assert) {

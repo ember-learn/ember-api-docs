@@ -28,14 +28,15 @@ test('switching versions', async function(assert) {
   await selectChoose('.select-container', '2.8');
   assert.equal(currentURL(), '/ember/2.8/namespaces/Ember.String', 'navigated to v2.8 namespace');
 
-  // Modules
+  // Packages
 
-  await visit('/ember/2.8/modules/ember-metal');
-  assert.equal(currentURL(), '/ember/2.8/modules/ember-metal', 'navigated to v2.8 module');
+  // getting a lot of "TypeError: Cannot read property \'split\' of undefined" but not sure where/how to debug
+  await visit('/ember/2.8/packages/ember-metal');
+  assert.equal(currentURL(), '/ember/2.8/packages/ember-metal', 'navigated to v2.8 package');
 
   await selectChoose('.select-container', '2.11');
-  assert.equal(currentURL(), '/ember/2.11/modules/ember-metal', 'navigated to v2.11 module');
+  assert.equal(currentURL(), '/ember/2.11/packages/ember-metal', 'navigated to v2.11 package');
 
   await selectChoose('.select-container', '2.7');
-  assert.equal(currentURL(), '/ember/2.7/modules/ember-metal', 'navigated to v2.7 module');
+  assert.equal(currentURL(), '/ember/2.7/packages/ember-metal', 'navigated to v2.7 package');
 });
