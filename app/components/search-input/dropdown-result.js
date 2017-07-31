@@ -1,6 +1,8 @@
-import Ember from 'ember';
+import { gt } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   // Public API
   result: {},
   role: 'option',
@@ -12,9 +14,9 @@ export default Ember.Component.extend({
   attributeBindings: ['role'],
 
   // Left sidebar should only be displayed for the first result in the group
-  _primaryColumn: Ember.computed('groupPosition,groupName', function () {
+  _primaryColumn: computed('groupPosition,groupName', function () {
     const { groupName, groupPosition } = this.getProperties('groupName', 'groupPosition');
     return groupPosition === 0? groupName : '';
   }),
-  isSecondary: Ember.computed.gt('groupPosition', 0)
+  isSecondary: gt('groupPosition', 0)
 });

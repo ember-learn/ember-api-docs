@@ -1,5 +1,5 @@
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
-import Ember from 'ember';
 import hbs from 'htmlbars-inline-precompile';
 import { click, findAll } from 'ember-native-dom-helpers';
 
@@ -7,7 +7,7 @@ moduleForComponent('api-index-filter', 'Integration | Component | api index filt
   integration: true
 });
 
-const model = Ember.Object.create({
+const model = EmberObject.create({
   project: {
     id: 'lolwut'
   },
@@ -57,7 +57,7 @@ const model = Ember.Object.create({
 
 
 test('clicking inherited shows inherited methods', async function(assert) {
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: false,
     showProtected: false,
     showPrivate: false,
@@ -116,7 +116,7 @@ test('clicking inherited shows inherited methods', async function(assert) {
 });
 
 test('clicking private shows private methods', async function(assert) {
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: false,
     showProtected: false,
     showPrivate: false,
@@ -175,7 +175,7 @@ test('clicking private shows private methods', async function(assert) {
 });
 
 test('clicking private and inherited shows both methods', async function(assert) {
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: false,
     showProtected: false,
     showPrivate: false,
@@ -237,7 +237,7 @@ test('clicking private and inherited shows both methods', async function(assert)
 
 
 test('clicking all toggles shows all methods', async function(assert) {
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: false,
     showProtected: false,
     showPrivate: false,
@@ -303,7 +303,7 @@ test('clicking all toggles shows all methods', async function(assert) {
 
 
 test('clicking all toggles off should only show public', async function(assert) {
-  let filterData = Ember.Object.create({
+  let filterData = EmberObject.create({
     showInherited: true,
     showProtected: true,
     showPrivate: true,

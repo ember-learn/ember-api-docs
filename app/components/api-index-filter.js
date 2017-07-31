@@ -1,7 +1,8 @@
-import Ember from 'ember';
-import _ from 'lodash';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import uniq from 'npm:lodash.uniq';
+import sortBy from 'npm:lodash.sortby';
 
-const { computed, Component } = Ember;
 
 export default Component.extend({
   classNames: ['api-index-filter'],
@@ -47,8 +48,9 @@ export default Component.extend({
     if (!this.get('filterData.showDeprecated')) {
       items = items.filter(item => item.deprecated !== true);
     }
-    let sortedUniqueItems = _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
-    return this.filterMultipleInheritance(sortedUniqueItems)
+
+    let sortedUniqueItems = uniq(sortBy(items, 'name'), true, (item => item.name));
+    return this.filterMultipleInheritance(sortedUniqueItems);
   },
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
