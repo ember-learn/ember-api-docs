@@ -16,7 +16,7 @@
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
-  <p class="github-link">
+  <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
       <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
