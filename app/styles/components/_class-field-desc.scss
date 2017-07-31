@@ -59,16 +59,18 @@ p.github-link {
 
 .class-field-description--link {
   cursor: pointer;
-  position: relative;
-}
 
-.class-field-description--link-hover {
-  display: none;
-  position: absolute;
-  left: -24px;
-  top: 6px;
-}
+  .anchor {
+    float: left;
+    margin-left: -28px;
+    padding: 4px 0 0 4px;
+  }
 
-.class-field-description--link:hover .class-field-description--link-hover {
-  display: inline;
+  .class-field-description--link-hover {
+    visibility: hidden;
+  }
+
+  &:hover .class-field-description--link-hover {
+    visibility: visible;
+  }
 }

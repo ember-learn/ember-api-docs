@@ -1,6 +1,8 @@
 <section class="{{type}}">
   <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
-    {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
+    <a class="anchor">
+      {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
+    </a>
     <span class="{{type}}-name">{{field.name}}</span>
     {{#if field.params}}
       <span class="args">
