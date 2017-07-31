@@ -1,6 +1,6 @@
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import { test } from 'qunit';
-import { visit, click } from 'ember-native-dom-helpers';
+import { visit, click, findAll} from 'ember-native-dom-helpers';
 import testSelector from 'ember-test-selectors';
 
 moduleForAcceptance('Acceptance | ItemRoutes');
@@ -10,6 +10,14 @@ test('Can navigate to method from class', async function(assert) {
   await click(`.spec-method-list ${testSelector('item', 'child')} a`);
 
   assert.equal(currentURL(), '/ember/1.0/classes/Container/methods/child?anchor=child', 'navigated to method');
+});
+
+test('Can navigate to method from method name', async function(assert) {
+  await visit('ember/1.0/classes/Container/methods/child?anchor=child');
+  const newAnchor = findAll('.class-field-description--link')[10];
+  await click(newAnchor);
+
+  assert.equal(currentURL(), '/ember/1.0/classes/Container/methods/child?anchor=register', 'navigated to method from method name');
 });
 
 test('Can navigate to property from class', async function(assert) {
