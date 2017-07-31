@@ -50,6 +50,11 @@ Router.map(function() {
     });
     // this.route('module', {path: '/modules/:module'}, itemRoutes);
 
+    // Modules is being renamed to Packages
+    this.route('packages', function() {
+      this.route('package', {path: '/:package'}, itemRoutes);
+    });
+
     // Common sub-routes
     function itemRoutes() {
       this.route('methods', function() {

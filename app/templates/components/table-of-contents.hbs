@@ -1,6 +1,6 @@
 <ol class="toc-level-0">
   <li class="toc-level-0">
-    <a {{action 'toggle' 'modules'}} href="#">Modules</a>
+    <a {{action 'toggle' 'modules'}} href="#">Packages</a>
     <ol class="toc-level-1 modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
         <li class="toc-level-1" data-test-module={{moduleID}}>
@@ -34,4 +34,3 @@
   {{input type="checkbox" checked=showPrivateClasses class='private-deprecated-toggle'}}
   Show Private / Deprecated
 </label>
-
