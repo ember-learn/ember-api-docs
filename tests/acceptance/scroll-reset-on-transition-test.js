@@ -24,14 +24,14 @@ test('reset scroll on transitions', async function(assert) {
   assert.equal($(scrollContainerElement).scrollTop(), 0, 'scroll position is resetted after transition: project.version.class.index to project-version.class.index (same route different model)');
   $(scrollContainerElement).scrollTop(1000);
 
-  await visit('ember/1.0/modules/ember');
+  await visit('ember/1.0/packages/ember');
 
-  assert.equal($(scrollContainerElement).scrollTop(), 0, 'scroll position is resetted after transition: project-version.class.index to project-version.module.index');
+  assert.equal($(scrollContainerElement).scrollTop(), 0, 'scroll position is resetted after transition: project-version.class.index to project-version.package.index');
   $(scrollContainerElement).scrollTop(1000);
 
-  await visit('ember/1.0/modules/runtime');
+  await visit('ember/1.0/packages/runtime');
 
-  assert.equal($(scrollContainerElement).scrollTop(), 0, 'scroll position is resetted after transition: project-version.module.index to project-version.module.index (same route different model)');
+  assert.equal($(scrollContainerElement).scrollTop(), 0, 'scroll position is resetted after transition: project-version.package.index to project-version.package.index (same route different model)');
   $(scrollContainerElement).scrollTop(1000);
 
   await visit('ember/1.0/namespaces/Ember');
