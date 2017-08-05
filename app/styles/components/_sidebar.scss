@@ -5,7 +5,11 @@
   z-index: 1;
   padding: $small-spacing 0;
 
-  @include media($medium-large-screen-up) {
+  @include media($medium-screen-up) {
+    margin-top: 5em;
+  }
+
+  @include media($large-screen-up) {
     // fixed sidebar, full height
     @include span-columns(3.5);
     margin-right: 0;

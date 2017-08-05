@@ -43,8 +43,8 @@ $white: white;
   display: -webkit-flex;
 }
 
-@media screen and (max-width: 53.75rem) {
-  .responsive .header .container {
+@media screen and (max-width: $medium-screen) {
+  .responsive.header .container {
     display: block;
   }
 }
@@ -56,7 +56,7 @@ $white: white;
   height: 2.8rem;
 }
 @media screen and (max-width: 53.75rem) {
-  .responsive .header .header-nav {
+  .responsive.header .header-nav {
     height: auto;
   }
 }
@@ -70,7 +70,7 @@ $white: white;
 }
 
 @media screen and (max-width: 53.75rem) {
-  .responsive .header a {
+  .responsive.header a {
     line-height: 24px; //do we need this
   }
 }

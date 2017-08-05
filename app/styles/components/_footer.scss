@@ -15,7 +15,7 @@
 }
 
 @media screen and (max-width: 53.75rem) {
-  .responsive .footer .container {
+  .responsive.footer .container {
     padding: 2rem 1rem;
 
     .footer-info {
@@ -60,8 +60,8 @@
   display: flex
 }
 
-@media screen and (max-width: 53.75rem) {
-  .responsive .footer .container {
+@media screen and (max-width: 40rem) {
+  .responsive.footer .container {
     text-align: center;
     display: block;
   }
@@ -83,15 +83,15 @@
 }
 
 @media screen and (max-width: 53.75rem) {
-  .responsive .footer .footer-info {
+  .responsive.footer .footer-info {
     text-align: center;
   }
 
-  .responsive .footer .footer-statement {
+  .responsive.footer .footer-statement {
     text-align: center;
   }
 
-  .responsive .footer .footer-tagline {
+  .responsive.footer .footer-tagline {
     padding-left: 2em;
     padding-right: 2em;
   }
