@@ -27,7 +27,7 @@
       </a>
     {{else}}
       Defined in
-      <a href="{{github-link model.project.id model.projectVersion.version model.file field.line}}" target="_blank" rel="noopener">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
         {{field.file}}:{{field.line}}
       </a>
     {{/if}}
