@@ -14,8 +14,8 @@
   border-bottom: none;
 }
 
-@media screen and (max-width: 53.75rem) {
-  .responsive .footer .container {
+@media screen and (max-width: $medium-screen) {
+  .responsive.footer .container {
     padding: 2rem 1rem;
 
     .footer-info {
@@ -60,8 +60,8 @@
   display: flex
 }
 
-@media screen and (max-width: 53.75rem) {
-  .responsive .footer .container {
+@media screen and (max-width: $large-screen) {
+  .responsive.footer .container {
     text-align: center;
     display: block;
   }
@@ -82,16 +82,16 @@
   text-align: left
 }
 
-@media screen and (max-width: 53.75rem) {
-  .responsive .footer .footer-info {
+@media screen and (max-width: $large-screen) {
+  .responsive.footer .footer-info {
     text-align: center;
   }
 
-  .responsive .footer .footer-statement {
+  .responsive.footer .footer-statement {
     text-align: center;
   }
 
-  .responsive .footer .footer-tagline {
+  .responsive.footer .footer-tagline {
     padding-left: 2em;
     padding-right: 2em;
   }
@@ -130,7 +130,7 @@
   max-height: 45px;
 }
 
-@media screen and (min-width: 53.75rem) {
+@media screen and (min-width: $large-screen) {
   .footer .footer-contributions {
     display: flex;
     flex:0 0 21em;
@@ -152,7 +152,7 @@
   }
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .footer .footer-social a:first-child {
     margin-left: 0;
   }

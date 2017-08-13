@@ -12,14 +12,10 @@ body {
   width: 100%;
 }
 
-.header {
-  z-index: 2;
-}
-@include media($medium-large-screen-up) {
+@include media($large-screen-up) {
   .header {
     top: 0;
     width: 100%;
-    position: fixed;
   }
 
   main.container {
@@ -29,7 +25,6 @@ body {
   main.container .content {
     position: relative;
     margin-right: 0;
-    margin-top: $top-spacing;
     margin-bottom: 0;
     overflow:auto;
     padding: $base-spacing;
