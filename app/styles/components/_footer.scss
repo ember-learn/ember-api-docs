@@ -14,7 +14,7 @@
   border-bottom: none;
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $medium-screen) {
   .responsive.footer .container {
     padding: 2rem 1rem;
 
@@ -60,7 +60,7 @@
   display: flex
 }
 
-@media screen and (max-width: 40rem) {
+@media screen and (max-width: $large-screen) {
   .responsive.footer .container {
     text-align: center;
     display: block;
@@ -82,7 +82,7 @@
   text-align: left
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .responsive.footer .footer-info {
     text-align: center;
   }
@@ -130,7 +130,7 @@
   max-height: 45px;
 }
 
-@media screen and (min-width: 53.75rem) {
+@media screen and (min-width: $large-screen) {
   .footer .footer-contributions {
     display: flex;
     flex:0 0 21em;
@@ -152,7 +152,7 @@
   }
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .footer .footer-social a:first-child {
     margin-left: 0;
   }

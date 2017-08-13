@@ -43,7 +43,7 @@ $white: white;
   display: -webkit-flex;
 }
 
-@media screen and (max-width: $medium-screen) {
+@media screen and (max-width: $large-screen) {
   .responsive.header .container {
     display: block;
   }
@@ -55,7 +55,7 @@ $white: white;
   justify-content: space-between;
   height: 2.8rem;
 }
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .responsive.header .header-nav {
     height: auto;
   }
@@ -69,7 +69,7 @@ $white: white;
   width: 100%;
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .responsive.header a {
     line-height: 24px; //do we need this
   }
@@ -90,12 +90,12 @@ $white: white;
   text-align: center;
 }
 
-@media screen and (max-width: 53.75em) {
+@media screen and (max-width: $large-screen) {
   .responsive .header-nav li {
     display: inherit;
   }
 }
-@media screen and (max-width: 53.75em) {
+@media screen and (max-width: $large-screen) {
   .responsive .header-nav li:not(.header-logo):not(.header-search) {
     width: 32%;
     display: inline-block;
@@ -105,8 +105,6 @@ $white: white;
 
 .header-nav li:not(.header-logo):not(.header-search) {
   width: auto;
-}
-@media screen and (min-width: 53.75rem) {
 }
 
 .header-nav .header-logo {
@@ -119,7 +117,7 @@ $white: white;
   flex: 1.5 0 0;
 }
 
-@media screen and (min-width: 53.75rem) {
+@media screen and (min-width: $large-screen) {
 }
 
 .header-nav .header-search {
@@ -132,7 +130,7 @@ $white: white;
   flex: 2 0 0;
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .responsive .header-nav .header-search {
     display: block;
   }
@@ -147,7 +145,7 @@ $white: white;
   display: block;
 }
 
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .responsive .header-logo a {
     margin: 0 auto;
   }
@@ -193,7 +191,7 @@ $white: white;
     color: white;
   }
 }
-@media screen and (max-width: 53.75rem) {
+@media screen and (max-width: $large-screen) {
   .responsive .header-search {
     margin-left: 0;
   }
