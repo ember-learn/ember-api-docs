@@ -13,7 +13,7 @@ export default AnchorComponent.extend({
     let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
     if (offset) {
       const navMenuHeight = $('header').outerHeight();
-      $(config.APP.scrollContainerElement).scrollTop(offset - navMenuHeight - 10);
+      $(config.APP.scrollContainerSelector).scrollTop(offset - navMenuHeight - 10);
     }
   }
 });
