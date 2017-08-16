@@ -37,9 +37,9 @@ export default Component.extend({
     const projectVersion = get(this, '_projectVersion');
 
     // Hide and don't run query if there's no search query
-    // if (!query) {
-    //   return set(this, '_focused', false);
-    // }
+    if (!query) {
+      return set(this, '_focused', false);
+    }
 
     const params = {
       hitsPerPage: 15,
