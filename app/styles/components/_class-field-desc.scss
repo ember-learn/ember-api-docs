@@ -47,13 +47,6 @@
   }
 }
 
-.return .return-type,
-.parameter .parameter-type {
-  color: #bd695b;
-  font-style: italic;
-  margin-right: 5px;
-}
-
 .method, .property, .event {
   border-bottom: $base-border;
 
