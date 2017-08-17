@@ -2,7 +2,7 @@ import Service from '@ember/service';
 import $ from 'jquery';
 import config from 'ember-api-docs/config/environment';
 
-const { scrollContainerElement } = config.APP;
+const { scrollContainerSelector } = config.APP;
 
 
 export default Service.extend({
@@ -27,7 +27,7 @@ export default Service.extend({
 
   doReset() {
     if (this.get('_shouldResetScroll')) {
-      $(scrollContainerElement).scrollTop(0);
+      $(scrollContainerSelector).scrollTop(0);
       this.set('_shouldResetScroll', false);
     }
   }
