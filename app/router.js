@@ -45,7 +45,7 @@ AppRouter.map(function() {
     // project-version.module => project-version.modules.module
     //    routes/project-version/module   =>  routes/project-version/modules/module
     //    routes/project-version/module/* =>  routes/project-version/modules/module/*
-    this.route('modules', function() {
+    this.route('modules', {path: '/packages'}, function() {
       this.route('module', {path: '/:module'}, itemRoutes);
     });
     // this.route('module', {path: '/modules/:module'}, itemRoutes);
@@ -64,9 +64,9 @@ AppRouter.map(function() {
     }
   });
   this.route('class', {path: '/classes/:class'});
-  this.route('module', {path: '/modules/:module'});
+  this.route('module', {path: '/packages/:module_id'});
   this.route('data-class', {path: '/data/classes/:class'});
-  this.route('data-module', {path: '/data/modules/:module'});
+  this.route('data-module', {path: '/data/packages/:module'});
 });
 
 export default AppRouter;
