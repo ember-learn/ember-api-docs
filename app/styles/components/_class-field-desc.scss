@@ -17,11 +17,14 @@
   font-size: $base-font-size;
 }
 
-.return-type {
+.class-field-description--link .return-type,
+.return .return-type,
+.parameter .parameter-type {
   color: $medium-gray;
   font-style: italic;
   font-weight: normal;
   font-size: $base-font-size;
+  margin-right: 5px;
 }
 
 .access {
@@ -42,6 +45,13 @@
   dd {
     display: inline-block;
   }
+}
+
+.return .return-type,
+.parameter .parameter-type {
+  color: #bd695b;
+  font-style: italic;
+  margin-right: 5px;
 }
 
 .method, .property, .event {
