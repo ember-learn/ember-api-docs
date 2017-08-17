@@ -36,14 +36,14 @@
     {{#each field.params as |param|}}
       <div class="parameter">
         <dt>{{param.name}}</dt>
-        <dd>{{param.type}}</dd>
+        <dd class="parameter-type">{{param.type}}</dd>
         <dd>{{param.description}}</dd>
       </div>
     {{/each}}
     {{#if field.return}}
       <div class="return">
         <dt>returns</dt>
-        <dd>{{field.return.type}}</dd>
+        <dd class="return-type">{{field.return.type}}</dd>
         <dd>{{field.return.description}}</dd>
       </div>
     {{/if}}
