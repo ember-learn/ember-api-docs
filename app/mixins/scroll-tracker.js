@@ -14,17 +14,15 @@ export default Mixin.create({
 
     didTransition() {
       this._super();
-      let isAnchorEmpty = window && window.location && window.location.search === '?anchor='
-      if ((typeof FastBoot === 'undefined') && isAnchorEmpty ) {
+      if ((typeof FastBoot === 'undefined') && window.location.search === '?anchor=' ) {
         let elem = $('#methods');
-        let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
+        let offset = elem.offset() ? elem.offset().top : 0;
         if (offset) {
-          const navMenuHeight = $('header').outerHeight();
-          $(config.APP.scrollContainerSelector).scrollTop(offset - navMenuHeight - 10);
+          $(config.APP.scrollContainerSelector).scrollTop(offset - 10);
+          return;
         }
-      } else {
-        this.get('scrollPositionReset').doReset();
       }
+      this.get('scrollPositionReset').doReset();
     }
   }
 });
