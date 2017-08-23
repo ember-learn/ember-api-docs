@@ -8,8 +8,7 @@ export default Route.extend({
 
   title(tokens) {
     const [version, entity] = tokens;
-    const compactVersion = version.split('.').slice(0, 2).join('.');
-
+    const compactVersion = version ? version.split('.').slice(0, 2).join('.'): '';
     const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
 
     set(this, 'headData.title', title);

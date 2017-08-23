@@ -71,7 +71,7 @@ export default Controller.extend(FilterParams, {
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
-      const compactVersion = version.split('.').slice(0, 2).join('.');
+      const compactVersion = version ? version.split('.').slice(0, 2).join('.') : '';
       return { id: version, compactVersion };
     });
     let groupedVersions = groupBy(versions, version => version.compactVersion);

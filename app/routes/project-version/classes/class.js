@@ -11,7 +11,7 @@ export default Route.extend(ScrollTracker, {
   metaStore: service(),
 
   titleToken: function(model) {
-    return model.get('name');
+    return get(model, 'name');
   },
 
   model(params, transition) {
@@ -20,7 +20,7 @@ export default Route.extend(ScrollTracker, {
 
   getModel(typeName, params, transition) {
     const projectID = transition.params['project-version'].project;
-    let compactVersion = transition.params['project-version'].project_version;
+    const compactVersion = transition.params['project-version'].project_version;
     const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
 
     const klass = params[typeName];
@@ -43,7 +43,7 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      set(this, 'headData.description', klass.get('ogDescription'));
+      set(this, 'headData.description', get(klass, 'ogDescription'));
       const relationships = get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
@@ -55,7 +55,7 @@ export default Route.extend(ScrollTracker, {
 
   serialize(model) {
     return {
-      class: model.get('name')
+      class: get(model, 'name')
     };
   }
 
