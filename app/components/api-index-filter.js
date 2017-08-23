@@ -3,33 +3,22 @@ import Component from '@ember/component';
 import uniq from 'npm:lodash.uniq';
 import sortBy from 'npm:lodash.sortby';
 
+const filterDataComputedParams = 'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 
 export default Component.extend({
   classNames: ['api-index-filter'],
 
-  filteredMethods: computed('model.methods.[]',
-    'filterData.showInherited',
-    'filterData.showProtected',
-    'filterData.showPrivate',
-    'filterData.showDeprecated',
+  filteredMethods: computed('model.methods.[]', filterDataComputedParams,
     function() {
       return this.filterItems('methods');
     }),
 
-  filteredEvents: computed('model.events.[]',
-    'filterData.showInherited',
-    'filterData.showProtected',
-    'filterData.showPrivate',
-    'filterData.showDeprecated',
+  filteredEvents: computed('model.events.[]', filterDataComputedParams,
     function() {
       return this.filterItems('events');
     }),
 
-  filteredProperties: computed('model.properties.[]',
-    'filterData.showInherited',
-    'filterData.showProtected',
-    'filterData.showPrivate',
-    'filterData.showDeprecated',
+  filteredProperties: computed('model.properties.[]', filterDataComputedParams,
     function() {
       return this.filterItems('properties');
     }),
