@@ -15,7 +15,7 @@ export default Route.extend(ScrollTracker, {
   metaStore: service(),
 
   titleToken: function(model) {
-    return model.get('name');
+    return get(model, 'name');
   },
 
   async model(params, transition) {
@@ -79,7 +79,7 @@ export default Route.extend(ScrollTracker, {
 
   serialize(model) {
     return {
-      class: model.get('name')
+      class: get(model, 'name')
     };
   }
 
