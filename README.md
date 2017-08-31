@@ -1,6 +1,7 @@
-# [Ember-api-docs](https://emberjs.com/api/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
+# [Ember API Docs](https://emberjs.com/api/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
 
-This app is used to produce versioned [Ember api docs](https://emberjs.com/api).  To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
+This project is the versioned API documentation viewer built with Emberjs used at [Ember api docs](https://emberjs.com/api).
+To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
 
 ## Want to help out?
 
