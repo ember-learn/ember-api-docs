@@ -1,4 +1,5 @@
 <section class="{{type}}">
+  {{#sticky-element top=0 bottom=0}}
   <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
     <a class="anchor">
       {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
@@ -19,6 +20,7 @@
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
+  {{/sticky-element}}
   <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
