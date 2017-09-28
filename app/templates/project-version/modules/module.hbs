@@ -30,7 +30,7 @@
 
   {{#if classesAndNamespaces}}
     <section>
-      <h2>Classes and Namespaces</h2>
+      <h2>Classes</h2>
       <ul class="spec-property-list">
         {{#each classesAndNamespaces as |klass|}}
           <li>
@@ -43,6 +43,16 @@
     </section>
   {{/if}}
 
+  {{#if model.publicfunctions}}
+
+    <h2>Functions</h2>
+    <ul class="spec-property-list">
+      {{#each model.publicfunctions as |func|}}
+        <li>{{func.name}} - {{func.class}}</li>
+      {{/each}}
+    </ul>
+
+  {{/if}}
   {{outlet}}
 
 </article>
