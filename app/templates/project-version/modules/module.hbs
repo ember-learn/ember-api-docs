@@ -48,7 +48,17 @@
     <h2>Functions</h2>
     <ul class="spec-property-list">
       {{#each model.publicfunctions as |func|}}
-        <li>{{func.name}} - {{func.class}}</li>
+        <li>
+          {{#link-to 'project-version.classes.class.methods.method'
+             model.project.id
+             model.projectVersion.compactVersion
+             func.class
+             func.name
+             (query-params anchor=func.name)
+          }}
+            {{func.name}} - {{func.class}}
+          {{/link-to}}
+        </li>
       {{/each}}
     </ul>
 
