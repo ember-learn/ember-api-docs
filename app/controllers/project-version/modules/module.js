@@ -28,7 +28,7 @@ export default ClassController.extend({
   }),
 
   functionHeadings: computed('model', function () {
-    return Object.keys(this.get('model.staticfunctions'));
+    return Object.keys(this.get('model.staticfunctions')).sort();
   })
 
 });
