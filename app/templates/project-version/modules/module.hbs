@@ -50,17 +50,17 @@
       <h4>{{funcHeading}}</h4>
       <ul class="spec-method-list">
         {{#each (get model.staticfunctions funcHeading) as |method|}}
-        <li>
-          {{#link-to 'project-version.classes.class.methods.method'
-             model.project.id
-             model.projectVersion.compactVersion
-             method.class
-             method.name
-             (query-params anchor=method.name)
-          }}
-            {{method.name}}
-          {{/link-to}}
-        </li>
+          <li>
+            {{#link-to 'project-version.classes.class.methods.method'
+               model.project.id
+               model.projectVersion.compactVersion
+               method.class
+               method.name
+               (query-params anchor=method.name)
+            }}
+              {{method.name}}
+            {{/link-to}}
+          </li>
         {{/each}}
       </ul>
     {{/each}}
