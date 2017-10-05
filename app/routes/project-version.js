@@ -44,7 +44,6 @@ export default Route.extend({
     updateProject(project, ver /*, component */) {
       const projectVersionID = ver.compactVersion;
       let endingRoute, routeName;
-
       switch (routeName = this.router.currentRouteName) {
         case 'project-version.classes.class': {
           const className = this.modelFor(routeName).get('name');
@@ -69,6 +68,12 @@ export default Route.extend({
         default:
           break;
       }
+      // if the user is navigating to/from api versions >= 2.16, take them
+      // to the home page instead of trying to translate the url
+      let shouldConvertPackages = this.shouldConvertPackages(ver, this.modelFor(routeName).get('id'))
+      if (shouldConvertPackages) {
+        endingRoute = null;
+      }
 
       if (endingRoute) {
         this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
@@ -76,5 +81,15 @@ export default Route.extend({
         this.transitionTo(`/${project}/${projectVersionID}`);
       }
     }
+  },
+  // Input some version info, returns a boolean based on
+  // whether the user is switching versions for a 2.16 docs release or later.
+  // The urls for pre-2.16 classes and later packages are quite different
+  shouldConvertPackages(targetVer, previousVer) {
+    let targetVerNumbers = targetVer.id.split('.')
+    let targetVersion = Number(targetVerNumbers[0] + '.' + targetVerNumbers[1])
+    let prevVerNumbers = previousVer.split('-')[1].split('.')
+    let previousVersion = Number(prevVerNumbers[0] + '.' + prevVerNumbers[1])
+    return (previousVersion >= 2.16 || targetVersion >= 2.16)
   }
 });

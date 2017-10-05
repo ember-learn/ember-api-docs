@@ -25,7 +25,8 @@ export default JSONAPIAdapter.extend({
     if (['namespace', 'class', 'module'].includes(modelName)) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
-      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
+      let encodedRevId = encodeURIComponent(revId);
+      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${encodedRevId}`;
     } else if (modelName === 'missing') {
       let version = this.get('projectService.version');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
