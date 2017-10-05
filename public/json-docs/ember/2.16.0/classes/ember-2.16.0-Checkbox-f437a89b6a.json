@@ -1,0 +1,1297 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Checkbox",
+    "type": "class",
+    "attributes": {
+      "name": "Checkbox",
+      "shortname": "Checkbox",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/component",
+      "namespace": "",
+      "file": "packages/ember-glimmer/lib/components/checkbox.js",
+      "line": 9,
+      "description": "<html><head></head><body><p>The internal class used to create text inputs when the <code>{{input}}</code>\nhelper is used with <code>type</code> of <code>checkbox</code>.</p>\n<p>See <a href=\"/api/classes/Ember.Templates.helpers.html#method_input\">Ember.Templates.helpers.input</a>  for usage details.</p>\n<h2 id=\"direct-manipulation-of-checked-\">Direct manipulation of <code>checked</code></h2>\n<p>The <code>checked</code> attribute of an <code>Ember.Checkbox</code> object should always be set\nthrough the Ember object or by interacting with its rendered element\nrepresentation via the mouse, keyboard, or touch. Updating the value of the\ncheckbox via jQuery will result in the checked value of the object and its\nelement losing synchronization.</p>\n<h2 id=\"layout-and-layoutname-properties\">Layout and LayoutName properties</h2>\n<p>Because HTML <code>input</code> elements are self closing <code>layout</code> and <code>layoutName</code>\nproperties will not be applied. See <a href=\"/api/classes/Ember.View.html\">Ember.View</a>&apos;s\nlayout section for more information.</p>\n</body></html>",
+      "extends": "Component",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 632,
+          "description": "<html><head></head><body><p>Normally, Ember&apos;s component model is &quot;write-only&quot;. The component takes a\nbunch of attributes that it got passed in, and uses them to render its\ntemplate.</p>\n<p>One nice thing about this model is that if you try to set a value to the\nsame thing as last time, Ember (through HTMLBars) will avoid doing any\nwork on the DOM.</p>\n<p>This is not just a performance optimization. If an attribute has not\nchanged, it is important not to clobber the element&apos;s &quot;hidden state&quot;.\nFor example, if you set an input&apos;s <code>value</code> to the same value as before,\nit will clobber selection state and cursor position. In other words,\nsetting an attribute is not <strong>always</strong> idempotent.</p>\n<p>This method provides a way to read an element&apos;s attribute and also\nupdate the last value Ember knows about at the same time. This makes\nsetting an attribute idempotent.</p>\n<p>In particular, what this means is that if you get an <code>&lt;input&gt;</code> element&apos;s\n<code>value</code> attribute and then re-render the template with the same value,\nit will avoid clobbering the cursor and selection position.\nSince most attribute sets are idempotent in the browser, you typically\ncan get away with reading attributes using jQuery, but the most reliable\nway to do so is through this method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "readDOMAttr",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the attribute",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 737,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been updated.\nCalled both during the initial render of a container and during a rerender.\nCan be used in place of an observer; code placed here will be executed\nevery time any attribute updates.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didReceiveAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 757,
+          "description": "<html><head></head><body><p>Called after a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 773,
+          "description": "<html><head></head><body><p>Called before a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 789,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been changed.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didUpdateAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 805,
+          "description": "<html><head></head><body><p>Called when the component is about to update and rerender itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 821,
+          "description": "<html><head></head><body><p>Called when the component has updated and rerendered itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 854,
+          "description": "<html><head></head><body><p>Returns a jQuery object for this component&apos;s element. If you pass in a selector\nstring, this method will return a jQuery object, using the current element\nas its buffer.\nFor example, calling <code>component.$(&apos;li&apos;)</code> will return a jQuery object containing\nall of the <code>li</code> elements inside the DOM element of this component.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "$",
+          "params": [
+            {
+              "name": "selector",
+              "description": "a jQuery-compatible selector string",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the jQuery object for the DOM node",
+            "type": "JQuery"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 25,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRootViews",
+          "params": [
+            {
+              "name": "owner",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 46,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewId",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 61,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewElement",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 80,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getChildViews",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 117,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewBounds",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 126,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewRange",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 141,
+          "description": "<html><head></head><body><p><code>getViewClientRects</code> provides information about the position of the border\nbox edges of a view relative to the viewport.</p>\n<p>It is only intended to be used by development tools like the Ember Inspector\nand may not work on older browsers.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewClientRects",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 157,
+          "description": "<html><head></head><body><p><code>getViewBoundingClientRect</code> provides information about the position of the\nbounding border box edges of a view relative to the viewport.</p>\n<p>It is only intended to be used by development tools like the Ember Inspector\nand may not work on older browsers.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewBoundingClientRect",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 173,
+          "description": "<html><head></head><body><p>Determines if the element matches the specified selector.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "matches",
+          "params": [
+            {
+              "name": "el",
+              "description": "",
+              "type": "DOMElement"
+            },
+            {
+              "name": "selector",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/views/core_view.js",
+          "line": 61,
+          "description": "<html><head></head><body><p>Override the default event firing from <code>Ember.Evented</code> to\nalso call methods with the given name.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 81,
+          "description": "<html><head></head><body><p>Return the nearest ancestor that is an instance of the provided\nclass or mixin.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nearestOfType",
+          "params": [
+            {
+              "name": "klass",
+              "description": "Subclass of Ember.View (or Ember.View itself),\n       or an instance of Ember.Mixin.",
+              "type": "Class,Mixin"
+            }
+          ],
+          "return": {
+            "description": "Ember.View"
+          },
+          "deprecated": true,
+          "deprecationMessage": "use `yield` and contextual components for composition instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>Return the nearest ancestor that has a given property.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nearestWithProperty",
+          "params": [
+            {
+              "name": "property",
+              "description": "A property name",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "Ember.View"
+          },
+          "deprecated": true,
+          "deprecationMessage": "use `yield` and contextual components for composition instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 122,
+          "description": "<html><head></head><body><p>Renders the view again. This will work regardless of whether the\nview is already in the DOM or not. If the view is in the DOM, the\nrendering process will be deferred to give bindings a chance\nto synchronize.</p>\n<p>If children were added during the rendering process using <code>appendChild</code>,\n<code>rerender</code> will remove them, because they will be added again\nif needed by the next <code>render</code>.</p>\n<p>In general, if the display of your view changes, you should modify\nthe DOM element directly instead of manually calling <code>rerender</code>, which can\nbe slow.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "rerender",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 162,
+          "description": "<html><head></head><body><p>Returns a jQuery object for this view&apos;s element. If you pass in a selector\nstring, this method will return a jQuery object, using the current element\nas its buffer.</p>\n<p>For example, calling <code>view.$(&apos;li&apos;)</code> will return a jQuery object containing\nall of the <code>li</code> elements inside the DOM element of this view.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "$",
+          "params": [
+            {
+              "name": "selector",
+              "description": "a jQuery-compatible selector string",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the jQuery object for the DOM node",
+            "type": "JQuery"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 182,
+          "description": "<html><head></head><body><p>Appends the view&apos;s element to the specified parent element.</p>\n<p>Note that this method just schedules the view to be appended; the DOM\nelement will not be appended to the given element until all bindings have\nfinished synchronizing.</p>\n<p>This is not typically a function that you will need to call directly when\nbuilding your application. If you do need to use <code>appendTo</code>, be sure that\nthe target element you are providing is associated with an <code>Ember.Application</code>\nand does not have an ancestor element that is associated with an Ember view.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "appendTo",
+          "params": [
+            {
+              "name": "A",
+              "description": "selector, element, HTML string, or jQuery object",
+              "type": "String|DOMElement|jQuery"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Ember.View"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 232,
+          "description": "<html><head></head><body><p>Appends the view&apos;s element to the document body. If the view does\nnot have an HTML representation yet\nthe element will be generated automatically.</p>\n<p>If your application uses the <code>rootElement</code> property, you must append\nthe view within that element. Rendering views outside of the <code>rootElement</code>\nis not supported.</p>\n<p>Note that this method just schedules the view to be appended; the DOM\nelement will not be appended to the document body until all bindings have\nfinished synchronizing.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "append",
+          "return": {
+            "description": "receiver",
+            "type": "Ember.View"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 286,
+          "description": "<html><head></head><body><p>Attempts to discover the element in the parent element. The default\nimplementation looks for an element with an ID of <code>elementId</code> (or the\nview&apos;s guid if <code>elementId</code> is null). You can override this method to\nprovide your own form of lookup. For example, if you want to discover your\nelement using a CSS class name instead of an ID.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "findElementInParentElement",
+          "params": [
+            {
+              "name": "parentElement",
+              "description": "The parent's DOM element",
+              "type": "DOMElement"
+            }
+          ],
+          "return": {
+            "description": "The discovered element",
+            "type": "DOMElement"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 334,
+          "description": "<html><head></head><body><p>You must call <code>destroy</code> on a view to destroy the view (and all of its\nchild views). This will remove the view from any parent node, then make\nsure that the DOM element managed by the view can be released by the\nmemory manager.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 394,
+          "description": "<html><head></head><body><p>Setup a view, but do not finish waking it up.</p>\n<ul>\n<li>configure <code>childViews</code></li>\n<li>register the view with the global views hash, which is used for event\ndispatch</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 456,
+          "description": "<html><head></head><body><p>Handle events from <code>EventDispatcher</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "handleEvent",
+          "params": [
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "evt",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/action_support.js",
+          "line": 28,
+          "description": "<html><head></head><body><p>Calls an action passed to a component.</p>\n<p>For example a component for playing or pausing music may translate click events\ninto action notifications of &quot;play&quot; or &quot;stop&quot; depending on some internal state\nof the component:</p>\n<div class=\"highlight button.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">button.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component from <span class=\"string\">&apos;@ember/component&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Component.extend({\n  click() {\n    <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isPlaying&apos;</span>)) {\n      <span class=\"keyword\">this</span>.sendAction(<span class=\"string\">&apos;play&apos;</span>);\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">this</span>.sendAction(<span class=\"string\">&apos;stop&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The actions &quot;play&quot; and &quot;stop&quot; must be passed to this <code>play-button</code> component:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{! app/templates/application.hbs }}\n{{play-button play=(<span class=\"name\">action</span> <span class=\"string\">&quot;musicStarted&quot;</span>) stop=(<span class=\"name\">action</span> <span class=\"string\">&quot;musicStopped&quot;</span>)}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When the component receives a browser <code>click</code> event it translate this\ninteraction into application-specific semantics (&quot;play&quot; or &quot;stop&quot;) and\ncalls the specified action.</p>\n<div class=\"highlight app/controller/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/controller/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Controller <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/controller&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Controller.extend({\n  <span class=\"attr\">actions</span>: {\n    musicStarted() {\n      <span class=\"comment\">// called when the play button is clicked</span>\n      <span class=\"comment\">// and the music started playing</span>\n    },\n    musicStopped() {\n      <span class=\"comment\">// called when the play button is clicked</span>\n      <span class=\"comment\">// and the music stopped playing</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If no action is passed to <code>sendAction</code> a default name of &quot;action&quot;\nis assumed.</p>\n<div class=\"highlight button.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">button.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component from <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"built_in\">default</span> Component.extend({\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.sendAction();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{! app/templates/application.hbs }}\n{{next-button action=(<span class=\"name\">action</span> <span class=\"string\">&quot;playNextSongInAlbum&quot;</span>)}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/controllers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/controllers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Controller from <span class=\"string\">&apos;@ember/controller&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Controller.extend({\n  actions: {\n    playNextSongInAlbum() {\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "sendAction",
+          "params": [
+            {
+              "name": "action",
+              "description": "the action to call",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "params",
+              "description": "arguments for the action",
+              "type": "*",
+              "optional": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionSupport"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/target_action_support.js",
+          "line": 42,
+          "description": "<html><head></head><body><p>Send an <code>action</code> with an <code>actionContext</code> to a <code>target</code>. The action, actionContext\nand target will be retrieved from properties of the object. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;controller&apos;</span>),\n  action: <span class=\"string\">&apos;save&apos;</span>,\n  actionContext: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;context&apos;</span>),\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction(); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n                          <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>target</code>, <code>action</code>, and <code>actionContext</code> can be provided as properties of\nan optional object argument to <code>triggerAction</code> as well.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>,\n      target: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;controller&apos;</span>),\n      actionContext: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;context&apos;</span>)\n    }); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>actionContext</code> defaults to the object you are mixing <code>TargetActionSupport</code> into.\nBut <code>target</code> and <code>action</code> must be specified either as properties or with the argument\nto <code>triggerAction</code>, or a combination:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.alias(<span class=\"string\">&apos;controller&apos;</span>),\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>\n    }); <span class=\"comment\">// Sends the `save` action, along with a reference to `this`,</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "triggerAction",
+          "params": [
+            {
+              "name": "opts",
+              "description": "(optional, with the optional keys action, target and/or actionContext)",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "true if the action was sent successfully and did not return false",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.TargetActionSupport"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 168,
+          "description": "<html><head></head><body><p>Triggers a named action on the <code>ActionHandler</code>. Any parameters\nsupplied after the <code>actionName</code> string will be passed as arguments\nto the action target function.</p>\n<p>If the <code>ActionHandler</code> has its <code>target</code> property set, actions may\nbubble to the <code>target</code>. Bubbling happens when an <code>actionName</code> can\nnot be found in the <code>ActionHandler</code>&apos;s <code>actions</code> hash or if the\naction target function returns <code>true</code>.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/welcome.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/welcome.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    playTheme() {\n      <span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;playMusic&apos;</span>, <span class=\"string\">&apos;theme.mp3&apos;</span>);\n    },\n    playMusic(track) {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "send",
+          "params": [
+            {
+              "name": "actionName",
+              "description": "The action to trigger",
+              "type": "String"
+            },
+            {
+              "name": "context",
+              "description": "a context to send with the action",
+              "type": "*"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionHandler"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 390,
+          "itemtype": "method",
+          "name": "mixin",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "mixins",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "obj"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 494,
+          "itemtype": "method",
+          "name": "create",
+          "static": 1,
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 522,
+          "itemtype": "method",
+          "name": "reopen",
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 559,
+          "itemtype": "method",
+          "name": "apply",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "applied object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 573,
+          "itemtype": "method",
+          "name": "detect",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        }
+      ],
+      "events": [
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 747,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been updated.\nCalled both during the initial render of a container and during a rerender.\nCan be used in place of an observer; code placed here will be executed\nevery time any attribute updates.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didReceiveAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 765,
+          "description": "<html><head></head><body><p>Called after a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 781,
+          "description": "<html><head></head><body><p>Called before a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 797,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been changed.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didUpdateAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 813,
+          "description": "<html><head></head><body><p>Called when the component is about to update and rerender itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 829,
+          "description": "<html><head></head><body><p>Called when the component has updated and rerendered itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 303,
+          "description": "<html><head></head><body><p>Called when a view is going to insert an element into the DOM.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willInsertElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 311,
+          "description": "<html><head></head><body><p>Called when the element of the view has been inserted into the DOM.\nOverride this function to do any set up that requires an element\nin the document body.</p>\n<p>When a view has children, didInsertElement will be called on the\nchild view(s) first and on itself afterwards.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didInsertElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 324,
+          "description": "<html><head></head><body><p>Called when the view is about to rerender, but before anything has\nbeen torn down. This is a good opportunity to tear down any manual\nobservers you have installed based on the DOM state</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willClearRender",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 348,
+          "description": "<html><head></head><body><p>Called when the element of the view is going to be destroyed. Override\nthis function to do any teardown that requires an element, like removing\nevent listeners.</p>\n<p>Please note: any property changes made during this event will have no\neffect on object observers.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willDestroyElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 361,
+          "description": "<html><head></head><body><p>Called when the parentView property has changed.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "parentViewDidChange",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        }
+      ],
+      "properties": [
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 668,
+          "description": "<html><head></head><body><p>The WAI-ARIA role of the control represented by this view. For example, a\nbutton may have a role of type &apos;button&apos;, or a pane may have a role of\ntype &apos;alertdialog&apos;. This property is used by assistive software to help\nvisually challenged users navigate rich web applications.</p>\n<p>The full list of valid WAI-ARIA roles is available at:\n<a href=\"http://www.w3.org/TR/wai-aria/roles#roles_categorization\">http://www.w3.org/TR/wai-aria/roles#roles_categorization</a></p>\n</body></html>",
+          "itemtype": "property",
+          "name": "ariaRole",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 683,
+          "description": "<html><head></head><body><p>Enables components to take a list of parameters as arguments.\nFor example, a component that takes two parameters with the names\n<code>name</code> and <code>age</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> MyComponent = Ember.Component.extend;\n\nMyComponent.reopenClass({\n  positionalParams: [<span class=\"string\">&apos;name&apos;</span>, <span class=\"string\">&apos;age&apos;</span>]\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It can then be invoked like this:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>{{my-component <span class=\"string\">&quot;John&quot;</span> <span class=\"number\">38</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The parameters can be referred to just like named parameters:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>Name: {{name}}, Age: {{age}}.</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using a string instead of an array allows for an arbitrary number of\nparameters:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> MyComponent = Ember.Component.extend;\n\nMyComponent.reopenClass({\n  positionalParams: <span class=\"string\">&apos;names&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It can then be invoked like this:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>{{my-component <span class=\"string\">&quot;John&quot;</span> <span class=\"string\">&quot;Michael&quot;</span> <span class=\"string\">&quot;Scott&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The parameters can then be referred to by enumerating over the list:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> names <span class=\"keyword\">as</span> |name|}}</span><span class=\"xml\"></span><span class=\"template-variable\">{{name}}</span><span class=\"xml\"></span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "static": 1,
+          "access": "public",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "positionalParams",
+          "since": "2.16.0",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 837,
+          "description": "<html><head></head><body><p>Layout can be used to wrap content in a component.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "layout",
+          "type": "Function",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 844,
+          "description": "<html><head></head><body><p>The name of the layout to lookup if no layout is provided.\nBy default <code>Ember.Component</code> will lookup a template with this name in\n<code>Ember.TEMPLATES</code> (a shared global object).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "layoutName",
+          "type": "String",
+          "default": "null",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 866,
+          "description": "<html><head></head><body><p>The HTML <code>id</code> of the component&apos;s element in the DOM. You can provide this\nvalue yourself but it must be unique (just as in HTML):</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>{{my-component elementId=<span class=\"string\">&quot;a-really-cool-id&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If not manually set a default value will be provided by the framework.\nOnce rendered an element&apos;s <code>elementId</code> is considered immutable and you\nshould never change it. If you need to compute a dynamic value for the\n<code>elementId</code>, you should do this when the component or element is being\ninstantiated:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>export <span class=\"keyword\">default</span> Component.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n\n    <span class=\"keyword\">var</span> index = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;index&apos;</span>);\n    <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;elementId&apos;</span>, `component-id${index}`);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "elementId",
+          "type": "String",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 895,
+          "description": "<html><head></head><body><p>If <code>false</code>, the view will appear hidden in DOM.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isVisible",
+          "type": "Boolean",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "@ember/component",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Component"
+        },
+        {
+          "file": "packages/ember-views/lib/views/core_view.js",
+          "line": 43,
+          "description": "<html><head></head><body><p>If the view is currently inserted into the DOM of a parent view, this\nproperty will point to the parent of the view.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "parentView",
+          "type": "Ember.View",
+          "default": "null",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 18,
+          "description": "<html><head></head><body><p>A list of properties of the view to apply as attributes. If the property\nis a string value, the value of that string will be applied as the value\nfor an attribute of the property&apos;s name.</p>\n<p>The following example creates a tag like <code>&lt;div priority=&quot;high&quot; /&gt;</code>.</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  attributeBindings: [<span class=\"string\">&apos;priority&apos;</span>],\n  priority: <span class=\"string\">&apos;high&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the value of the property is a Boolean, the attribute is treated as\nan HTML Boolean attribute. It will be present if the property is <code>true</code>\nand omitted if the property is <code>false</code>.</p>\n<p>The following example creates markup like <code>&lt;div visible /&gt;</code>.</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  attributeBindings: [<span class=\"string\">&apos;visible&apos;</span>],\n  visible: <span class=\"literal\">true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you would prefer to use a custom value instead of the property name,\nyou can create the same markup as the last example with a binding like\nthis:</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  attributeBindings: [<span class=\"string\">&apos;isVisible:visible&apos;</span>],\n  isVisible: <span class=\"literal\">true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This list of attributes is inherited from the component&apos;s superclasses,\nas well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "attributeBindings",
+          "type": "Array",
+          "default": "[]",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 147,
+          "description": "<html><head></head><body><p>Returns the current DOM element for the view.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "element",
+          "type": "DOMElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 253,
+          "description": "<html><head></head><body><p>The HTML <code>id</code> of the view&apos;s element in the DOM. You can provide this\nvalue yourself but it must be unique (just as in HTML):</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>  {{my-component elementId=<span class=\"string\">&quot;a-really-cool-id&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If not manually set a default value will be provided by the framework.</p>\n<p>Once rendered an element&apos;s <code>elementId</code> is considered immutable and you\nshould never change it. If you need to compute a dynamic value for the\n<code>elementId</code>, you should do this when the component or element is being\ninstantiated:</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component from <span class=\"string\">&apos;@ember/component&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Component.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n    let index = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;index&apos;</span>);\n    <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;elementId&apos;</span>, <span class=\"string\">&apos;component-id&apos;</span> + index);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "elementId",
+          "type": "String",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 373,
+          "description": "<html><head></head><body><p>Tag name for the view&apos;s outer element. The tag name is only used when an\nelement is first created. If you change the <code>tagName</code> for an element, you\nmust destroy and recreate the view element.</p>\n<p>By default, the render buffer will use a <code>&lt;div&gt;</code> tag for views.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "tagName",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/child_views_support.js",
+          "line": 22,
+          "description": "<html><head></head><body><p>Array of child views. You should never edit this array directly.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "childViews",
+          "type": "Array",
+          "default": "[]",
+          "access": "private",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ClassNamesSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/class_names_support.js",
+          "line": 26,
+          "description": "<html><head></head><body><p>Standard CSS class names to apply to the view&apos;s outer element. This\nproperty automatically inherits any class names defined by the view&apos;s\nsuperclasses as well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "classNames",
+          "type": "Array",
+          "default": "['ember-view']",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ClassNamesSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/class_names_support.js",
+          "line": 38,
+          "description": "<html><head></head><body><p>A list of properties of the view to apply as class names. If the property\nis a string value, the value of that string will be applied as a class\nname.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;high&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;priority&apos;</span>],\n  <span class=\"attribute\">priority</span>: <span class=\"string\">&apos;high&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the value of the property is a Boolean, the name of that property is\nadded as a dasherized class name.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;is-urgent&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;isUrgent&apos;</span>],\n  <span class=\"attribute\">isUrgent</span>: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you would prefer to use a custom value instead of the dasherized\nproperty name, you can pass a binding like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;urgent&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;isUrgent:urgent&apos;</span>],\n  <span class=\"attribute\">isUrgent</span>: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This list of properties is inherited from the component&apos;s superclasses as well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "classNameBindings",
+          "type": "Array",
+          "default": "[]",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ClassNamesSupport"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 23,
+          "description": "<html><head></head><body><p>The collection of functions, keyed by name, available on this\n<code>ActionHandler</code> as action targets.</p>\n<p>These functions will be invoked when a matching <code>{{action}}</code> is triggered\nfrom within a template and the application&apos;s current route is this route.</p>\n<p>Actions can also be invoked from other parts of your application\nvia <code>ActionHandler#send</code>.</p>\n<p>The <code>actions</code> hash will inherit action handlers from\nthe <code>actions</code> hash defined on extended parent classes\nor mixins rather than just replace the entire hash, e.g.:</p>\n<div class=\"highlight banner.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">banner.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Mixin <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/mixin&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Mixin.create({\n  <span class=\"attr\">actions</span>: {\n    displayBanner(msg) {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/welcome.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/welcome.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n<span class=\"keyword\">import</span> CanDisplayBanner <span class=\"keyword\">from</span> <span class=\"string\">&apos;../mixins/can-display-banner&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend(CanDisplayBanner, {\n  <span class=\"attr\">actions</span>: {\n    playMusic() {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});\n\n<span class=\"comment\">// `WelcomeRoute`, when active, will be able to respond</span>\n<span class=\"comment\">// to both actions, since the actions hash is merged rather</span>\n<span class=\"comment\">// then replaced when extending mixins / parent classes.</span>\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;displayBanner&apos;</span>);\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;playMusic&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Within a Controller, Route or Component&apos;s action handler,\nthe value of the <code>this</code> context is the Controller, Route or\nComponent object:</p>\n<div class=\"highlight app/routes/song.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/song.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    myAction() {\n      <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&quot;song&quot;</span>);\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&quot;other.route&quot;</span>);\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It is also possible to call <code>this._super(...arguments)</code> from within an\naction handler if it overrides a handler defined on a parent\nclass or mixin:</p>\n<p>Take for example the following routes:</p>\n<div class=\"highlight route.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">route.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Mixin <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/mixin&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Mixin.create({\n  actions: {\n    debugRouteInformation() {\n      <span class=\"built_in\">console</span>.debug(<span class=\"string\">&quot;It&apos;s a-me, console.debug!&quot;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight debug.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">debug.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n<span class=\"keyword\">import</span> DebugRoute <span class=\"keyword\">from</span> <span class=\"string\">&apos;../mixins/debug-route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend(DebugRoute, {\n  <span class=\"attr\">actions</span>: {\n    debugRouteInformation() {\n      <span class=\"comment\">// also call the debugRouteInformation of mixed in DebugRoute</span>\n      <span class=\"keyword\">this</span>._super(...arguments);\n\n      <span class=\"comment\">// show additional annoyance</span>\n      <span class=\"built_in\">window</span>.alert(...);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"bubbling\">Bubbling</h2>\n<p>By default, an action will stop bubbling once a handler defined\non the <code>actions</code> hash handles it. To continue bubbling the action,\nyou must return <code>true</code> from the handler:</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>Router.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;album&quot;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;song&quot;</span>);\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/album.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/album.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">startPlaying</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight song.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">song.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    startPlaying() {\n      <span class=\"comment\">// ...</span>\n\n      <span class=\"keyword\">if</span> (actionShouldAlsoBeTriggeredOnParentRoute) {\n        <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "actions",
+          "type": "Object",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Checkbox",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionHandler"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.16.0-Component",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/component",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

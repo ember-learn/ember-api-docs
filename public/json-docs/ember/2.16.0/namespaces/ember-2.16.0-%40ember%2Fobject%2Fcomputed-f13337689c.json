@@ -1,0 +1,1017 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/object/computed",
+    "type": "namespace",
+    "attributes": {
+      "name": "@ember/object/computed",
+      "shortname": "@ember/object/computed",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/computed.js",
+      "line": 25,
+      "description": "<html><head></head><body><p>A computed property transforms an object literal with object&apos;s accessor function(s) into a property.</p>\n<p>By default the function backing the computed property will only be called\nonce and the result will be cached. You can specify various properties\nthat your computed property depends on. This will force the cached\nresult to be recomputed if the dependencies are modified.</p>\n<p>In the following example we declare a computed property - <code>fullName</code> - by calling\n<code>.Ember.computed()</code> with property dependencies (<code>firstName</code> and <code>lastName</code>) as leading arguments and getter accessor function. The <code>fullName</code> getter function\nwill be called once (regardless of how many times it is accessed) as long\nas its dependencies have not changed. Once <code>firstName</code> or <code>lastName</code> are updated\nany future calls (or anything bound) to <code>fullName</code> will incorporate the new\nvalues.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  <span class=\"comment\">// these will be supplied by `create`</span>\n  firstName: <span class=\"literal\">null</span>,\n  lastName: <span class=\"literal\">null</span>,\n\n  fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, function() {\n    <span class=\"keyword\">let</span> firstName = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>),\n        lastName  = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n\n    <span class=\"keyword\">return</span> firstName + <span class=\"string\">&apos; &apos;</span> + lastName;\n  })\n});\n\n<span class=\"keyword\">let</span> tom = Person.create({\n  firstName: <span class=\"string\">&apos;Tom&apos;</span>,\n  lastName: <span class=\"string\">&apos;Dale&apos;</span>\n});\n\ntom.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>) <span class=\"comment\">// &apos;Tom Dale&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also define what Ember should do when setting a computed property by providing additional function (<code>set</code>) in hash argument.\nIf you try to set a computed property, it will try to invoke setter accessor function with the key and\nvalue you want to set it to as arguments.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  <span class=\"comment\">// these will be supplied by `create`</span>\n  firstName: <span class=\"literal\">null</span>,\n  lastName: <span class=\"literal\">null</span>,\n\n  fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, {\n    <span class=\"keyword\">get</span>(key) {\n      <span class=\"keyword\">let</span> firstName = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>),\n          lastName  = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n\n      <span class=\"keyword\">return</span> firstName + <span class=\"string\">&apos; &apos;</span> + lastName;\n    },\n    <span class=\"keyword\">set</span>(key, <span class=\"keyword\">value</span>) {\n      <span class=\"keyword\">let</span> [firstName, lastName] = <span class=\"keyword\">value</span>.split(<span class=\"string\">&apos; &apos;</span>);\n\n      <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;firstName&apos;</span>, firstName);\n      <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;lastName&apos;</span>, lastName);\n\n      <span class=\"keyword\">return</span> <span class=\"keyword\">value</span>;\n    }\n  })\n});\n\n<span class=\"keyword\">let</span> person = Person.create();\n\nperson.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;fullName&apos;</span>, <span class=\"string\">&apos;Peter Wagenet&apos;</span>);\nperson.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>); <span class=\"comment\">// &apos;Peter&apos;</span>\nperson.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);  <span class=\"comment\">// &apos;Wagenet&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can overwrite computed property with normal property (no longer computed), that won&apos;t change if dependencies change, if you set computed property and it won&apos;t have setter accessor function defined.</p>\n<p>You can also mark computed property as <code>.readOnly()</code> and block all attempts to set it.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  <span class=\"comment\">// these will be supplied by `create`</span>\n  firstName: <span class=\"literal\">null</span>,\n  lastName: <span class=\"literal\">null</span>,\n\n  fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, {\n    <span class=\"keyword\">get</span>(key) {\n      <span class=\"keyword\">let</span> firstName = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>);\n      <span class=\"keyword\">let</span> lastName  = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n\n      <span class=\"keyword\">return</span> firstName + <span class=\"string\">&apos; &apos;</span> + lastName;\n    }\n  }).readOnly()\n});\n\n<span class=\"keyword\">let</span> person = Person.create();\nperson.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;fullName&apos;</span>, <span class=\"string\">&apos;Peter Wagenet&apos;</span>); <span class=\"comment\">// Uncaught Error: Cannot set read-only property &quot;fullName&quot; on object: &lt;(...):emberXXX&gt;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Additional resources:</p>\n<ul>\n<li><a href=\"https://github.com/emberjs/rfcs/blob/master/text/0011-improved-cp-syntax.md\">New CP syntax RFC</a></li>\n<li><a href=\"https://emberjs.com/blog/2015/05/13/ember-1-12-released.html#toc_new-computed-syntax\">New computed syntax explained in &quot;Ember 1.12 released&quot; </a></li>\n</ul>\n</body></html>",
+      "static": 1,
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/computed.js",
+          "line": 154,
+          "description": "<html><head></head><body><p>Call on a computed property to set it into non-cached mode. When in this\nmode the computed property will not automatically cache the return value.</p>\n<p>It also does not automatically fire any change events. You must manually notify\nany changes if you want to observe this property.</p>\n<p>Dependency keys have no effect on volatile properties as they are for cache\ninvalidation and notification when cached value is invalidated.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>let outsideService = Ember.Object.extend({\n  <span class=\"keyword\">value</span>: Ember.computed(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span> {\n    <span class=\"keyword\">return</span> OutsideService.getValue();\n  }).<span class=\"keyword\">volatile</span>()\n}).create();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "volatile",
+          "static": 1,
+          "return": {
+            "description": "this",
+            "type": "@ember/object/computed"
+          },
+          "chainable": 1,
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/computed.js",
+          "line": 184,
+          "description": "<html><head></head><body><p>Call on a computed property to set it into read-only mode. When in this\nmode the computed property will throw an error when set.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  <span class=\"attr\">guid</span>: Ember.computed(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">return</span> <span class=\"string\">&apos;guid-guid-guid&apos;</span>;\n  }).readOnly()\n});\n\n<span class=\"keyword\">let</span> person = Person.create();\n\nperson.set(<span class=\"string\">&apos;guid&apos;</span>, <span class=\"string\">&apos;new-guid&apos;</span>); <span class=\"comment\">// will throw an exception</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "readOnly",
+          "static": 1,
+          "return": {
+            "description": "this",
+            "type": "@ember/object/computed"
+          },
+          "chainable": 1,
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/computed.js",
+          "line": 213,
+          "description": "<html><head></head><body><p>Sets the dependent keys on this computed property. Pass any number of\narguments containing key paths that this computed property depends on.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre>let President = Ember.Object.extend({\n  fullName: Ember.computed(function() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>) + <span class=\"string\">&apos; &apos;</span> + <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n\n    <span class=\"comment\">// Tell Ember that this computed property depends on firstName</span>\n    <span class=\"comment\">// and lastName</span>\n  }).property(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>)\n});\n\nlet president = President.create({\n  firstName: <span class=\"string\">&apos;Barack&apos;</span>,\n  lastName: <span class=\"string\">&apos;Obama&apos;</span>\n});\n\npresident.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>); <span class=\"comment\">// &apos;Barack Obama&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "property",
+          "static": 1,
+          "params": [
+            {
+              "name": "path",
+              "description": "zero or more property paths",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "this",
+            "type": "@ember/object/computed"
+          },
+          "chainable": 1,
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/computed.js",
+          "line": 265,
+          "description": "<html><head></head><body><p>In some cases, you may want to annotate computed properties with additional\nmetadata about how they function or what values they operate on. For example,\ncomputed property functions may close over variables that are then no longer\navailable for introspection.</p>\n<p>You can pass a hash of these values to a computed property like this:</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> { computed } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object&apos;</span>;\n<span class=\"keyword\">import</span> Person <span class=\"keyword\">from</span> <span class=\"string\">&apos;my-app/utils/person&apos;</span>;\n\nperson: computed(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">let</span> personId = <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;personId&apos;</span>);\n  <span class=\"keyword\">return</span> Person.create({ <span class=\"attr\">id</span>: personId });\n}).meta({ <span class=\"attr\">type</span>: Person })</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>The hash that you pass to the <code>meta()</code> function will be saved on the\ncomputed property descriptor under the <code>_meta</code> key. Ember runtime\nexposes a public API for retrieving these values from classes,\nvia the <code>metaForProperty()</code> function.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "meta",
+          "static": 1,
+          "params": [
+            {
+              "name": "meta",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "chainable": 1,
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 58,
+          "description": "<html><head></head><body><p>A computed property that returns true if the value of the dependent\nproperty is null, an empty string, empty array, or empty function.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> ToDoList = Ember.Object.extend({\n  isDone: Ember.computed.empty(<span class=\"string\">&apos;todos&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> todoList = ToDoList.create({\n  todos: [<span class=\"string\">&apos;Unit Test&apos;</span>, <span class=\"string\">&apos;Documentation&apos;</span>, <span class=\"string\">&apos;Release&apos;</span>]\n});\n\ntodoList.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isDone&apos;</span>); <span class=\"comment\">// false</span>\ntodoList.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;todos&apos;</span>).clear();\ntodoList.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isDone&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "empty",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\nthe value of the dependent property is null, an empty string, empty array,\nor empty function and false if the underlying value is not empty.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 95,
+          "description": "<html><head></head><body><p>A computed property that returns true if the value of the dependent\nproperty is NOT null, an empty string, empty array, or empty function.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  hasStuff: Ember.computed.notEmpty(<span class=\"string\">&apos;backpack&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create({ backpack: [<span class=\"string\">&apos;Food&apos;</span>, <span class=\"string\">&apos;Sleeping Bag&apos;</span>, <span class=\"string\">&apos;Tent&apos;</span>] });\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasStuff&apos;</span>);         <span class=\"comment\">// true</span>\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;backpack&apos;</span>).clear(); <span class=\"comment\">// []</span>\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasStuff&apos;</span>);         <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "notEmpty",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\noriginal value for property is not empty.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 127,
+          "description": "<html><head></head><body><p>A computed property that returns true if the value of the dependent\nproperty is null or undefined. This avoids errors from JSLint complaining\nabout use of ==, which can be technically confusing.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  isHungry: Ember.computed.none(<span class=\"string\">&apos;food&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isHungry&apos;</span>); <span class=\"comment\">// true</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;food&apos;</span>, <span class=\"string\">&apos;Banana&apos;</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isHungry&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;food&apos;</span>, <span class=\"literal\">null</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isHungry&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "none",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which\nreturns true if original value for property is null or undefined.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 162,
+          "description": "<html><head></head><body><p>A computed property that returns the inverse boolean value\nof the original value for the dependent property.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> User = Ember.Object.extend({\n  isAnonymous: Ember.computed.not(<span class=\"string\">&apos;loggedIn&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> user = User.create({loggedIn: <span class=\"literal\">false</span>});\n\nuser.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isAnonymous&apos;</span>); <span class=\"comment\">// true</span>\nuser.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;loggedIn&apos;</span>, <span class=\"literal\">true</span>);\nuser.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isAnonymous&apos;</span>); <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "not",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns\ninverse of the original value for property",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 194,
+          "description": "<html><head></head><body><p>A computed property that converts the provided dependent property\ninto a boolean value.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  hasBananas: Ember.computed.<span class=\"keyword\">bool</span>(<span class=\"string\">&apos;numBananas&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">0</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">1</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasBananas&apos;</span>); <span class=\"comment\">// true</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"literal\">null</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasBananas&apos;</span>); <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "bool",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which converts\nto boolean the original value for property",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 228,
+          "description": "<html><head></head><body><p>A computed property which matches the original value for the\ndependent property against a given RegExp, returning <code>true</code>\nif the value matches the RegExp and <code>false</code> if it does not.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> User = Ember.Object.extend({\n  hasValidEmail: Ember.computed.match(<span class=\"string\">&apos;email&apos;</span>, /^.+@.+\\..+$/)\n});\n\n<span class=\"keyword\">let</span> user = User.create({loggedIn: <span class=\"literal\">false</span>});\n\nuser.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasValidEmail&apos;</span>); <span class=\"comment\">// false</span>\nuser.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;email&apos;</span>, <span class=\"string\">&apos;&apos;</span>);\nuser.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasValidEmail&apos;</span>); <span class=\"comment\">// false</span>\nuser.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;email&apos;</span>, <span class=\"string\">&apos;ember_hamster@example.com&apos;</span>);\nuser.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasValidEmail&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "match",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "regexp",
+              "description": "",
+              "type": "RegExp"
+            }
+          ],
+          "return": {
+            "description": "computed property which match\nthe original value for property against a given RegExp",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 265,
+          "description": "<html><head></head><body><p>A computed property that returns true if the provided dependent property\nis equal to the given value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  satisfied: Ember.computed.equal(<span class=\"string\">&apos;percentCarrotsEaten&apos;</span>, <span class=\"number\">100</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;satisfied&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;percentCarrotsEaten&apos;</span>, <span class=\"number\">100</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;satisfied&apos;</span>); <span class=\"comment\">// true</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;percentCarrotsEaten&apos;</span>, <span class=\"number\">50</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;satisfied&apos;</span>); <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "equal",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "String|Number|Object"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\nthe original value for property is equal to the given value.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 300,
+          "description": "<html><head></head><body><p>A computed property that returns true if the provided dependent property\nis greater than the provided value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  hasTooManyBananas: Ember.computed.gt(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">10</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasTooManyBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">3</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasTooManyBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">11</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasTooManyBananas&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "gt",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\nthe original value for property is greater than given value.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 335,
+          "description": "<html><head></head><body><p>A computed property that returns true if the provided dependent property\nis greater than or equal to the provided value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  hasTooManyBananas: Ember.computed.gte(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">10</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasTooManyBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">3</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasTooManyBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">10</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasTooManyBananas&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "gte",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\nthe original value for property is greater or equal then given value.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 370,
+          "description": "<html><head></head><body><p>A computed property that returns true if the provided dependent property\nis less than the provided value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  needsMoreBananas: Ember.computed.lt(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">3</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;needsMoreBananas&apos;</span>); <span class=\"comment\">// true</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">3</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;needsMoreBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">2</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;needsMoreBananas&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "lt",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\nthe original value for property is less then given value.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 405,
+          "description": "<html><head></head><body><p>A computed property that returns true if the provided dependent property\nis less than or equal to the provided value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  needsMoreBananas: Ember.computed.lte(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">3</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;needsMoreBananas&apos;</span>); <span class=\"comment\">// true</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">5</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;needsMoreBananas&apos;</span>); <span class=\"comment\">// false</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;numBananas&apos;</span>, <span class=\"number\">3</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;needsMoreBananas&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "lte",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "computed property which returns true if\nthe original value for property is less or equal than given value.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 440,
+          "description": "<html><head></head><body><p>A computed property that performs a logical <code>and</code> on the\noriginal values for the provided dependent properties.</p>\n<p>You may pass in more than two properties and even use\nproperty brace expansion.  The computed property will\nreturn the first falsy value or last truthy value\njust like JavaScript&apos;s <code>&amp;&amp;</code> operator.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  readyForCamp: Ember.computed.and(<span class=\"string\">&apos;hasTent&apos;</span>, <span class=\"string\">&apos;hasBackpack&apos;</span>),\n  readyForHike: Ember.computed.and(<span class=\"string\">&apos;hasWalkingStick&apos;</span>, <span class=\"string\">&apos;hasBackpack&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> tomster = Hamster.create();\n\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForCamp&apos;</span>); <span class=\"comment\">// false</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasTent&apos;</span>, <span class=\"literal\">true</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForCamp&apos;</span>); <span class=\"comment\">// false</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasBackpack&apos;</span>, <span class=\"literal\">true</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForCamp&apos;</span>); <span class=\"comment\">// true</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasBackpack&apos;</span>, <span class=\"string\">&apos;Yes&apos;</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForCamp&apos;</span>); <span class=\"comment\">// &apos;Yes&apos;</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasWalkingStick&apos;</span>, <span class=\"literal\">null</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForHike&apos;</span>); <span class=\"comment\">// null</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "and",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "computed property which performs\na logical `and` on the values of all the original values for properties.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 480,
+          "description": "<html><head></head><body><p>A computed property which performs a logical <code>or</code> on the\noriginal values for the provided dependent properties.</p>\n<p>You may pass in more than two properties and even use\nproperty brace expansion.  The computed property will\nreturn the first truthy value or last falsy value just\nlike JavaScript&apos;s <code>||</code> operator.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  readyForRain: Ember.computed.or(<span class=\"string\">&apos;hasJacket&apos;</span>, <span class=\"string\">&apos;hasUmbrella&apos;</span>),\n  readyForBeach: Ember.computed.or(<span class=\"string\">&apos;{hasSunscreen,hasUmbrella}&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> tomster = Hamster.create();\n\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForRain&apos;</span>); <span class=\"comment\">// undefined</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasUmbrella&apos;</span>, <span class=\"literal\">true</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForRain&apos;</span>); <span class=\"comment\">// true</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasJacket&apos;</span>, <span class=\"string\">&apos;Yes&apos;</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForRain&apos;</span>); <span class=\"comment\">// &apos;Yes&apos;</span>\ntomster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hasSunscreen&apos;</span>, <span class=\"string\">&apos;Check&apos;</span>);\ntomster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;readyForBeach&apos;</span>); <span class=\"comment\">// &apos;Check&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "or",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "computed property which performs\na logical `or` on the values of all the original values for properties.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 518,
+          "description": "<html><head></head><body><p>Creates a new property that is an alias for another property\non an object. Calls to <code>get</code> or <code>set</code> this property behave as\nthough they were called on the original property.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  name: <span class=\"string\">&apos;Alex Matchneer&apos;</span>,\n  nomen: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;name&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> alex = Person.create();\n\nalex.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;nomen&apos;</span>); <span class=\"comment\">// &apos;Alex Matchneer&apos;</span>\nalex.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>);  <span class=\"comment\">// &apos;Alex Matchneer&apos;</span>\n\nalex.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;nomen&apos;</span>, <span class=\"string\">&apos;@machty&apos;</span>);\nalex.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>);  <span class=\"comment\">// &apos;@machty&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "alias",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which creates an\nalias to the original value for property.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 547,
+          "description": "<html><head></head><body><p>Where <code>computed.alias</code> aliases <code>get</code> and <code>set</code>, and allows for bidirectional\ndata flow, <code>computed.oneWay</code> only provides an aliased <code>get</code>. The <code>set</code> will\nnot mutate the upstream property, rather causes the current property to\nbecome the value set. This causes the downstream property to permanently\ndiverge from the upstream property.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> User = Ember.Object.extend({\n  firstName: <span class=\"literal\">null</span>,\n  lastName: <span class=\"literal\">null</span>,\n  nickName: Ember.computed.oneWay(<span class=\"string\">&apos;firstName&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> teddy = User.create({\n  firstName: <span class=\"string\">&apos;Teddy&apos;</span>,\n  lastName:  <span class=\"string\">&apos;Zeenny&apos;</span>\n});\n\nteddy.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;nickName&apos;</span>);              <span class=\"comment\">// &apos;Teddy&apos;</span>\nteddy.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;nickName&apos;</span>, <span class=\"string\">&apos;TeddyBear&apos;</span>); <span class=\"comment\">// &apos;TeddyBear&apos;</span>\nteddy.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>);             <span class=\"comment\">// &apos;Teddy&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "oneWay",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which creates a\none way computed property to the original value for property.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 585,
+          "description": "<html><head></head><body><p>This is a more semantically meaningful alias of <code>computed.oneWay</code>,\nwhose name is somewhat ambiguous as to which direction the data flows.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reads",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which creates a\n  one way computed property to the original value for property.",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 598,
+          "description": "<html><head></head><body><p>Where <code>computed.oneWay</code> provides oneWay bindings, <code>computed.readOnly</code> provides\na readOnly one way binding. Very often when using <code>computed.oneWay</code> one does\nnot also want changes to propagate back up, as they will replace the value.</p>\n<p>This prevents the reverse flow, and also throws an exception when it occurs.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> User = Ember.Object.extend({\n  firstName: <span class=\"literal\">null</span>,\n  lastName: <span class=\"literal\">null</span>,\n  nickName: Ember.computed.readOnly(<span class=\"string\">&apos;firstName&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> teddy = User.create({\n  firstName: <span class=\"string\">&apos;Teddy&apos;</span>,\n  lastName:  <span class=\"string\">&apos;Zeenny&apos;</span>\n});\n\nteddy.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;nickName&apos;</span>);              <span class=\"comment\">// &apos;Teddy&apos;</span>\nteddy.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;nickName&apos;</span>, <span class=\"string\">&apos;TeddyBear&apos;</span>); <span class=\"comment\">// throws Exception</span>\n<span class=\"comment\">// throw new Ember.Error(&apos;Cannot Set: nickName on: &lt;User:ember27288&gt;&apos; );`</span>\nteddy.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>);             <span class=\"comment\">// &apos;Teddy&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "readOnly",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computed property which creates a\none way computed property to the original value for property.",
+            "type": "@ember/object/computed"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/computed_macros.js",
+          "line": 638,
+          "description": "<html><head></head><body><p>Creates a new property that is an alias for another property\non an object. Calls to <code>get</code> or <code>set</code> this property behave as\nthough they were called on the original property, but also\nprint a deprecation warning.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  bananaCount: Ember.computed.deprecatingAlias(<span class=\"string\">&apos;cavendishCount&apos;</span>, {\n    id: <span class=\"string\">&apos;hamster.deprecate-banana&apos;</span>,\n    until: <span class=\"string\">&apos;3.0.0&apos;</span>\n  })\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;bananaCount&apos;</span>, <span class=\"number\">5</span>); <span class=\"comment\">// Prints a deprecation warning.</span>\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;cavendishCount&apos;</span>); <span class=\"comment\">// 5</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deprecatingAlias",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "Options for `Ember.deprecate`.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "computed property which creates an\nalias with a deprecation to the original value for property.",
+            "type": "@ember/object/computed"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 63,
+          "description": "<html><head></head><body><p>A computed property that returns the sum of the values\nin the dependent array.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "sum",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computes the sum of all values in the dependentKey's array",
+            "type": "Ember.ComputedProperty"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 79,
+          "description": "<html><head></head><body><p>A computed property that calculates the maximum value in the\ndependent array. This will return <code>-Infinity</code> when the dependent\narray is empty.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  childAges: Ember.computed.mapBy(<span class=\"string\">&apos;children&apos;</span>, <span class=\"string\">&apos;age&apos;</span>),\n  maxChildAge: Ember.computed.max(<span class=\"string\">&apos;childAges&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> lordByron = Person.create({ children: [] });\n\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;maxChildAge&apos;</span>); <span class=\"comment\">// -Infinity</span>\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;children&apos;</span>).pushObject({\n  name: <span class=\"string\">&apos;Augusta Ada Byron&apos;</span>, age: <span class=\"number\">7</span>\n});\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;maxChildAge&apos;</span>); <span class=\"comment\">// 7</span>\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;children&apos;</span>).pushObjects([{\n  name: <span class=\"string\">&apos;Allegra Byron&apos;</span>,\n  age: <span class=\"number\">5</span>\n}, {\n  name: <span class=\"string\">&apos;Elizabeth Medora Leigh&apos;</span>,\n  age: <span class=\"number\">8</span>\n}]);\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;maxChildAge&apos;</span>); <span class=\"comment\">// 8</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the types of the arguments are not numbers,\nthey will be converted to numbers and the type\nof the return value will always be <code>Number</code>.\nFor example, the max of a list of Date objects will be\nthe highest timestamp as a <code>Number</code>.\nThis behavior is consistent with <code>Math.max</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "max",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computes the largest value in the dependentKey's array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 125,
+          "description": "<html><head></head><body><p>A computed property that calculates the minimum value in the\ndependent array. This will return <code>Infinity</code> when the dependent\narray is empty.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  childAges: Ember.computed.mapBy(<span class=\"string\">&apos;children&apos;</span>, <span class=\"string\">&apos;age&apos;</span>),\n  minChildAge: Ember.computed.min(<span class=\"string\">&apos;childAges&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> lordByron = Person.create({ children: [] });\n\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;minChildAge&apos;</span>); <span class=\"comment\">// Infinity</span>\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;children&apos;</span>).pushObject({\n  name: <span class=\"string\">&apos;Augusta Ada Byron&apos;</span>, age: <span class=\"number\">7</span>\n});\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;minChildAge&apos;</span>); <span class=\"comment\">// 7</span>\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;children&apos;</span>).pushObjects([{\n  name: <span class=\"string\">&apos;Allegra Byron&apos;</span>,\n  age: <span class=\"number\">5</span>\n}, {\n  name: <span class=\"string\">&apos;Elizabeth Medora Leigh&apos;</span>,\n  age: <span class=\"number\">8</span>\n}]);\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;minChildAge&apos;</span>); <span class=\"comment\">// 5</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the types of the arguments are not numbers,\nthey will be converted to numbers and the type\nof the return value will always be <code>Number</code>.\nFor example, the min of a list of Date objects will be\nthe lowest timestamp as a <code>Number</code>.\nThis behavior is consistent with <code>Math.min</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "min",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computes the smallest value in the dependentKey's array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 171,
+          "description": "<html><head></head><body><p>Returns an array mapped via the callback</p>\n<p>The callback method you provide should have the following signature.\n<code>item</code> is the current item in the iteration.\n<code>index</code> is the integer index of the current item in the iteration.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  <span class=\"attr\">excitingChores</span>: Ember.computed.map(<span class=\"string\">&apos;chores&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">chore, index</span>) </span>{\n    <span class=\"keyword\">return</span> chore.toUpperCase() + <span class=\"string\">&apos;!&apos;</span>;\n  })\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create({\n  <span class=\"attr\">chores</span>: [<span class=\"string\">&apos;clean&apos;</span>, <span class=\"string\">&apos;write more unit tests&apos;</span>]\n});\n\nhamster.get(<span class=\"string\">&apos;excitingChores&apos;</span>); <span class=\"comment\">// [&apos;CLEAN!&apos;, &apos;WRITE MORE UNIT TESTS!&apos;]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "map",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "an array mapped via the callback",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 212,
+          "description": "<html><head></head><body><p>Returns an array mapped to the specified key.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  childAges: Ember.computed.mapBy(<span class=\"string\">&apos;children&apos;</span>, <span class=\"string\">&apos;age&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> lordByron = Person.create({ children: [] });\n\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;childAges&apos;</span>); <span class=\"comment\">// []</span>\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;children&apos;</span>).pushObject({ name: <span class=\"string\">&apos;Augusta Ada Byron&apos;</span>, age: <span class=\"number\">7</span> });\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;childAges&apos;</span>); <span class=\"comment\">// [7]</span>\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;children&apos;</span>).pushObjects([{\n  name: <span class=\"string\">&apos;Allegra Byron&apos;</span>,\n  age: <span class=\"number\">5</span>\n}, {\n  name: <span class=\"string\">&apos;Elizabeth Medora Leigh&apos;</span>,\n  age: <span class=\"number\">8</span>\n}]);\nlordByron.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;childAges&apos;</span>); <span class=\"comment\">// [7, 5, 8]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "mapBy",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "propertyKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "an array mapped to the specified key",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 253,
+          "description": "<html><head></head><body><p>Filters the array by the callback.</p>\n<p>The callback method you provide should have the following signature.\n<code>item</code> is the current item in the iteration.\n<code>index</code> is the integer index of the current item in the iteration.\n<code>array</code> is the dependant array itself.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, <span class=\"keyword\">array</span>)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">let</span> Hamster = Ember.Object.extend({\n  remainingChores: Ember.computed.filter(<span class=\"string\">&apos;chores&apos;</span>, <span class=\"keyword\">function</span>(chore, index, array) {\n    <span class=\"built_in\">return</span> !chore.done;\n  })\n});\n\n<span class=\"built_in\">let</span> hamster = Hamster.create({\n  chores: [\n    { name: <span class=\"string\">&apos;cook&apos;</span>, <span class=\"keyword\">done</span>: <span class=\"literal\">true</span> },\n    { name: <span class=\"string\">&apos;clean&apos;</span>, <span class=\"keyword\">done</span>: <span class=\"literal\">true</span> },\n    { name: <span class=\"string\">&apos;write more unit tests&apos;</span>, <span class=\"keyword\">done</span>: <span class=\"literal\">false</span> }\n  ]\n});\n\nhamster.get(<span class=\"string\">&apos;remainingChores&apos;</span>); // [{name: <span class=\"string\">&apos;write more unit tests&apos;</span>, <span class=\"keyword\">done</span>: <span class=\"literal\">false</span>}]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also use <code>@each.property</code> in your dependent key, the callback will still use the underlying array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>let Hamster = Ember.<span class=\"keyword\">Object</span>.extend({\n  remainingChores: Ember.computed.<span class=\"built_in\">filter</span>(<span class=\"string\">&apos;chores.@each.done&apos;</span>, function(chore, index, array) {\n    <span class=\"keyword\">return</span> !chore.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;done&apos;</span>);\n  })\n});\n\nlet hamster = Hamster.create({\n  chores: Ember.A([\n    Ember.<span class=\"keyword\">Object</span>.create({ name: <span class=\"string\">&apos;cook&apos;</span>, done: <span class=\"keyword\">true</span> }),\n    Ember.<span class=\"keyword\">Object</span>.create({ name: <span class=\"string\">&apos;clean&apos;</span>, done: <span class=\"keyword\">true</span> }),\n    Ember.<span class=\"keyword\">Object</span>.create({ name: <span class=\"string\">&apos;write more unit tests&apos;</span>, done: <span class=\"keyword\">false</span> })\n  ])\n});\nhamster.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;remainingChores&apos;</span>); <span class=\"comment\">// [{name: &apos;write more unit tests&apos;, done: false}]</span>\nhamster.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;chores&apos;</span>).objectAt(<span class=\"number\">2</span>).<span class=\"built_in\">set</span>(<span class=\"string\">&apos;done&apos;</span>, <span class=\"keyword\">true</span>);\nhamster.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;remainingChores&apos;</span>); <span class=\"comment\">// []</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "filter",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "the filtered array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 319,
+          "description": "<html><head></head><body><p>Filters the array by the property and value</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">let</span> <span class=\"string\">Hamster</span> <span class=\"string\">=</span> <span class=\"string\">Ember.Object.extend({</span>\n<span class=\"attr\">  remainingChores:</span> <span class=\"string\">Ember.computed.filterBy(&apos;chores&apos;,</span> <span class=\"string\">&apos;done&apos;</span><span class=\"string\">,</span> <span class=\"literal\">false</span><span class=\"string\">)</span>\n<span class=\"string\">});</span>\n\n<span class=\"string\">let</span> <span class=\"string\">hamster</span> <span class=\"string\">=</span> <span class=\"string\">Hamster.create({</span>\n<span class=\"attr\">  chores:</span> <span class=\"string\">[</span>\n    <span class=\"string\">{</span> <span class=\"attr\">name:</span> <span class=\"string\">&apos;cook&apos;</span><span class=\"string\">,</span> <span class=\"attr\">done:</span> <span class=\"literal\">true</span> <span class=\"string\">},</span>\n    <span class=\"string\">{</span> <span class=\"attr\">name:</span> <span class=\"string\">&apos;clean&apos;</span><span class=\"string\">,</span> <span class=\"attr\">done:</span> <span class=\"literal\">true</span> <span class=\"string\">},</span>\n    <span class=\"string\">{</span> <span class=\"attr\">name:</span> <span class=\"string\">&apos;write more unit tests&apos;</span><span class=\"string\">,</span> <span class=\"attr\">done:</span> <span class=\"literal\">false</span> <span class=\"string\">}</span>\n  <span class=\"string\">]</span>\n<span class=\"string\">});</span>\n\n<span class=\"string\">hamster.get(&apos;remainingChores&apos;);</span> <span class=\"string\">//</span> <span class=\"string\">[{</span> <span class=\"attr\">name:</span> <span class=\"string\">&apos;write more unit tests&apos;</span><span class=\"string\">,</span> <span class=\"attr\">done:</span> <span class=\"literal\">false</span> <span class=\"string\">}]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "filterBy",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "propertyKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "*"
+            }
+          ],
+          "return": {
+            "description": "the filtered array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 359,
+          "description": "<html><head></head><body><p>A computed property which returns a new array with all the unique\nelements from one or more dependent arrays.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>let Hamster = Ember.Object.extend({\n  uniqueFruits: Ember.computed.uni<span class=\"string\">q(&apos;fruits&apos;)</span>\n});\n\nlet hamster = Hamster.create({\n  fruits: [\n    <span class=\"string\">&apos;banana&apos;</span>,\n    <span class=\"string\">&apos;grape&apos;</span>,\n    <span class=\"string\">&apos;kale&apos;</span>,\n    <span class=\"string\">&apos;banana&apos;</span>\n  ]\n});\n\nhamster.get(<span class=\"string\">&apos;uniqueFruits&apos;</span>); <span class=\"regexp\">//</span> [<span class=\"string\">&apos;banana&apos;</span>, <span class=\"string\">&apos;grape&apos;</span>, <span class=\"string\">&apos;kale&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "uniq",
+          "static": 1,
+          "params": [
+            {
+              "name": "propertyKey",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "computes a new array with all the\nunique elements from the dependent array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 409,
+          "description": "<html><head></head><body><p>A computed property which returns a new array with all the unique\nelements from an array, with uniqueness determined by specific key.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  uniqueFruits: Ember.computed.uniqBy(<span class=\"string\">&apos;fruits&apos;</span>, <span class=\"string\">&apos;id&apos;</span>)\n});\n<span class=\"keyword\">let</span> hamster = Hamster.create({\n  fruits: [\n    { id: <span class=\"number\">1</span>, <span class=\"string\">&apos;banana&apos;</span> },\n    { id: <span class=\"number\">2</span>, <span class=\"string\">&apos;grape&apos;</span> },\n    { id: <span class=\"number\">3</span>, <span class=\"string\">&apos;peach&apos;</span> },\n    { id: <span class=\"number\">1</span>, <span class=\"string\">&apos;banana&apos;</span> }\n  ]\n});\nhamster.get(<span class=\"string\">&apos;uniqueFruits&apos;</span>); // [ { id: <span class=\"number\">1</span>, <span class=\"string\">&apos;banana&apos;</span> }, { id: <span class=\"number\">2</span>, <span class=\"string\">&apos;grape&apos;</span> }, { id: <span class=\"number\">3</span>, <span class=\"string\">&apos;peach&apos;</span> }]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "uniqBy",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "propertyKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computes a new array with all the\nunique elements from the dependent array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 459,
+          "description": "<html><head></head><body><p>A computed property which returns a new array with all the unique\nelements from one or more dependent arrays.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  uniqueFruits: Ember.computed.union(<span class=\"string\">&apos;fruits&apos;</span>, <span class=\"string\">&apos;vegetables&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create({\n  fruits: [\n    <span class=\"string\">&apos;banana&apos;</span>,\n    <span class=\"string\">&apos;grape&apos;</span>,\n    <span class=\"string\">&apos;kale&apos;</span>,\n    <span class=\"string\">&apos;banana&apos;</span>,\n    <span class=\"string\">&apos;tomato&apos;</span>\n  ],\n  vegetables: [\n    <span class=\"string\">&apos;tomato&apos;</span>,\n    <span class=\"string\">&apos;carrot&apos;</span>,\n    <span class=\"string\">&apos;lettuce&apos;</span>\n  ]\n});\n\nhamster.get(<span class=\"string\">&apos;uniqueFruits&apos;</span>); // [<span class=\"string\">&apos;banana&apos;</span>, <span class=\"string\">&apos;grape&apos;</span>, <span class=\"string\">&apos;kale&apos;</span>, <span class=\"string\">&apos;tomato&apos;</span>, <span class=\"string\">&apos;carrot&apos;</span>, <span class=\"string\">&apos;lettuce&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "union",
+          "static": 1,
+          "params": [
+            {
+              "name": "propertyKey",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "computes a new array with all the\nunique elements from the dependent array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 498,
+          "description": "<html><head></head><body><p>A computed property which returns a new array with all the elements\ntwo or more dependent arrays have in common.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>let obj = <span class=\"symbol\">Ember</span>.<span class=\"symbol\">Object</span>.extend({\n  friendsInCommon: <span class=\"symbol\">Ember</span>.computed.intersect(<span class=\"string\">&apos;adaFriends&apos;</span>, <span class=\"string\">&apos;charlesFriends&apos;</span>)\n}).create({\n  adaFriends: [<span class=\"string\">&apos;Charles Babbage&apos;</span>, <span class=\"string\">&apos;John Hobhouse&apos;</span>, <span class=\"string\">&apos;William King&apos;</span>, <span class=\"string\">&apos;Mary Somerville&apos;</span>],\n  charlesFriends: [<span class=\"string\">&apos;William King&apos;</span>, <span class=\"string\">&apos;Mary Somerville&apos;</span>, <span class=\"string\">&apos;Ada Lovelace&apos;</span>, <span class=\"string\">&apos;George Peacock&apos;</span>]\n});\n\nobj.get(<span class=\"string\">&apos;friendsInCommon&apos;</span>); // [<span class=\"string\">&apos;William King&apos;</span>, <span class=\"string\">&apos;Mary Somerville&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "intersect",
+          "static": 1,
+          "params": [
+            {
+              "name": "propertyKey",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "computes a new array with all the\nduplicated elements from the dependent arrays",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 553,
+          "description": "<html><head></head><body><p>A computed property which returns a new array with all the\nproperties from the first dependent array that are not in the second\ndependent array.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  likes: [<span class=\"string\">&apos;banana&apos;</span>, <span class=\"string\">&apos;grape&apos;</span>, <span class=\"string\">&apos;kale&apos;</span>],\n  wants: Ember.computed.setDiff(<span class=\"string\">&apos;likes&apos;</span>, <span class=\"string\">&apos;fruits&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create({\n  fruits: [\n    <span class=\"string\">&apos;grape&apos;</span>,\n    <span class=\"string\">&apos;kale&apos;</span>,\n  ]\n});\n\nhamster.get(<span class=\"string\">&apos;wants&apos;</span>); // [<span class=\"string\">&apos;banana&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "setDiff",
+          "static": 1,
+          "params": [
+            {
+              "name": "setAProperty",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "setBProperty",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "computes a new array with all the\nitems from the first dependent array that are not in the second\ndependent array",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 607,
+          "description": "<html><head></head><body><p>A computed property that returns the array of values\nfor the provided dependent properties.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Hamster = Ember.Object.extend({\n  clothes: Ember.computed.collect(<span class=\"string\">&apos;hat&apos;</span>, <span class=\"string\">&apos;shirt&apos;</span>)\n});\n\n<span class=\"keyword\">let</span> hamster = Hamster.create();\n\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;clothes&apos;</span>); <span class=\"comment\">// [null, null]</span>\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;hat&apos;</span>, <span class=\"string\">&apos;Camp Hat&apos;</span>);\nhamster.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;shirt&apos;</span>, <span class=\"string\">&apos;Camp Shirt&apos;</span>);\nhamster.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;clothes&apos;</span>); <span class=\"comment\">// [&apos;Camp Hat&apos;, &apos;Camp Shirt&apos;]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "collect",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKey",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "computed property which maps\nvalues of all passed in properties to an array.",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/computed/reduce_computed_macros.js",
+          "line": 651,
+          "description": "<html><head></head><body><p>A computed property which returns a new array with all the\nproperties from the first dependent array sorted based on a property\nor sort function.</p>\n<p>The callback method you provide should have the following signature:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(itemA, itemB)</span></span>;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>itemA</code> the first item to compare.</li>\n<li><code>itemB</code> the second item to compare.</li>\n</ul>\n<p>This function should return negative number (e.g. <code>-1</code>) when <code>itemA</code> should come before\n<code>itemB</code>. It should return positive number (e.g. <code>1</code>) when <code>itemA</code> should come after\n<code>itemB</code>. If the <code>itemA</code> and <code>itemB</code> are equal this function should return <code>0</code>.</p>\n<p>Therefore, if this function is comparing some numeric values, simple <code>itemA - itemB</code> or\n<code>itemA.get( &apos;foo&apos; ) - itemB.get( &apos;foo&apos; )</code> can be used instead of series of <code>if</code>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> ToDoList = Ember.Object.extend({\n  // using standard ascending sort\n  todosSorting: [<span class=\"string\">&apos;name&apos;</span>],\n  sortedTodos: Ember.computed.sort(<span class=\"string\">&apos;todos&apos;</span>, <span class=\"string\">&apos;todosSorting&apos;</span>),\n\n  // using descending sort\n  todosSortingDesc: [<span class=\"string\">&apos;name:desc&apos;</span>],\n  sortedTodosDesc: Ember.computed.sort(<span class=\"string\">&apos;todos&apos;</span>, <span class=\"string\">&apos;todosSortingDesc&apos;</span>),\n\n  // using a custom sort function\n  priorityTodos: Ember.computed.sort(<span class=\"string\">&apos;todos&apos;</span>, function(a, b){\n    if (a.priority &gt; b.priority) {\n      return <span class=\"number\">1</span>;\n    } else if (a.priority &lt; b.priority) {\n      return -<span class=\"number\">1</span>;\n    }\n\n    return <span class=\"number\">0</span>;\n  })\n});\n\n<span class=\"keyword\">let</span> todoList = ToDoList.create({todos: [\n  { name: <span class=\"string\">&apos;Unit Test&apos;</span>, priority: <span class=\"number\">2</span> },\n  { name: <span class=\"string\">&apos;Documentation&apos;</span>, priority: <span class=\"number\">3</span> },\n  { name: <span class=\"string\">&apos;Release&apos;</span>, priority: <span class=\"number\">1</span> }\n]});\n\ntodoList.get(<span class=\"string\">&apos;sortedTodos&apos;</span>);      // [{ name:<span class=\"string\">&apos;Documentation&apos;</span>, priority:<span class=\"number\">3</span> }, { name:<span class=\"string\">&apos;Release&apos;</span>, priority:<span class=\"number\">1</span> }, { name:<span class=\"string\">&apos;Unit Test&apos;</span>, priority:<span class=\"number\">2</span> }]\ntodoList.get(<span class=\"string\">&apos;sortedTodosDesc&apos;</span>);  // [{ name:<span class=\"string\">&apos;Unit Test&apos;</span>, priority:<span class=\"number\">2</span> }, { name:<span class=\"string\">&apos;Release&apos;</span>, priority:<span class=\"number\">1</span> }, { name:<span class=\"string\">&apos;Documentation&apos;</span>, priority:<span class=\"number\">3</span> }]\ntodoList.get(<span class=\"string\">&apos;priorityTodos&apos;</span>);    // [{ name:<span class=\"string\">&apos;Release&apos;</span>, priority:<span class=\"number\">1</span> }, { name:<span class=\"string\">&apos;Unit Test&apos;</span>, priority:<span class=\"number\">2</span> }, { name:<span class=\"string\">&apos;Documentation&apos;</span>, priority:<span class=\"number\">3</span> }]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "sort",
+          "static": 1,
+          "params": [
+            {
+              "name": "itemsKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "sortDefinition",
+              "description": "a dependent key to an\narray of sort properties (add `:desc` to the arrays sort properties to sort descending) or a function to use when sorting",
+              "type": "String or Function"
+            }
+          ],
+          "return": {
+            "description": "computes a new sorted array based\non the sort property array or callback function",
+            "type": "Ember.ComputedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/computed",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

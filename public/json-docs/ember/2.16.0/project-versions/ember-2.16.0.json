@@ -1,0 +1,1044 @@
+{
+  "data": {
+    "id": "ember-2.16.0",
+    "type": "project-version",
+    "attributes": {
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": [
+          {
+            "id": "ember-2.16.0-RSVP",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RSVP.EventTarget",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RSVP.Promise",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Container",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Registry",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ApplicationInstance",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ApplicationInstance.BootOptions",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Application",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EngineInstance",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/engine",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Engine",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-GlobalsResolver",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/debug",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/application/deprecations",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EmberError",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ContainerDebugAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-DataAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Checkbox",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Templates.helpers",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-LinkComponent",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-TextArea",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-TextField",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ComponentStateBucket",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/string",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Component",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Helper",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Binding",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Ember",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/internals",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Descriptor",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/events",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/evented",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.InjectedProperty",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/instrumentation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/utils",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Libraries",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.OrderedSet",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Map",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.MapWithDefault",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/polyfills",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Mixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/observers",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ControllerMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Location",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-HashLocation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-HistoryLocation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-NoneLocation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RouterService",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RoutingService",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-BucketCache",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Route",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Router",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Controller",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/controller",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Function",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ProxyMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ActionHandler",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EmberArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EachProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Comparable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ContainerProxyMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Copyable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Enumerable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Evented",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Freezable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-MutableArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.MutableEnumerable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Observable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-PromiseProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RegistryProxyMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.TargetActionSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ArrayProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-CoreObject",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/application",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Namespace",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/array",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EmberObject",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ObjectProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/service",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Service",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Adapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Test.QUnitAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/test",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Test",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ActionSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ClassNamesSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.TextSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ViewMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.EventDispatcher",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.CoreView",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Debug",
+            "type": "class"
+          }
+        ]
+      },
+      "namespaces": {
+        "data": [
+          {
+            "id": "ember-2.16.0-Ember.FEATURES",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/computed",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Ember",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Instrumentation",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-@ember/runloop",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-AutoLocation",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Ember.String",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Ember.inject",
+            "type": "namespace"
+          }
+        ]
+      },
+      "modules": {
+        "data": [
+          {
+            "id": "ember-2.16.0-@ember/application",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/engine",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/debug",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/error",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-glimmer",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/component",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/routing",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/string",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-metal",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/instrumentation",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/utils",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/polyfills",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/runloop",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-routing",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-views",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/controller",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-runtime",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/array",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/enumerable",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/service",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/test",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-testing",
+            "type": "module"
+          }
+        ]
+      },
+      "project": {
+        "data": {
+          "id": "ember",
+          "type": "project"
+        }
+      },
+      "private-classes": {
+        "data": [
+          {
+            "id": "ember-2.16.0-Container",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Registry",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ComponentStateBucket",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Binding",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Descriptor",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.InjectedProperty",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Libraries",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.OrderedSet",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Map",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.MapWithDefault",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ControllerMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Location",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RoutingService",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-BucketCache",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ProxyMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ActionHandler",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EachProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Comparable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Copyable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Enumerable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Freezable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RegistryProxyMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.TargetActionSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ActionSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ClassNamesSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.TextSupport",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.ViewMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.EventDispatcher",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.CoreView",
+            "type": "class"
+          }
+        ]
+      },
+      "public-classes": {
+        "data": [
+          {
+            "id": "ember-2.16.0-RSVP",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RSVP.EventTarget",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RSVP.Promise",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ApplicationInstance",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ApplicationInstance.BootOptions",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Application",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EngineInstance",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/engine",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Engine",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-GlobalsResolver",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/debug",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/application/deprecations",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EmberError",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ContainerDebugAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-DataAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Checkbox",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Templates.helpers",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-LinkComponent",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-TextArea",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-TextField",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/string",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Component",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Helper",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Ember",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/internals",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/events",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/evented",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/instrumentation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/utils",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/polyfills",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Mixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/observers",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-HashLocation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-HistoryLocation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-NoneLocation",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-RouterService",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Route",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Router",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Controller",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/controller",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Function",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EmberArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ContainerProxyMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Evented",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-MutableArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.MutableEnumerable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Observable",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-PromiseProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ArrayProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-CoreObject",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/application",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Namespace",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/array",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EmberObject",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-ObjectProxy",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/service",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Service",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Adapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Test.QUnitAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-@ember/test",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Test",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Ember.Debug",
+            "type": "class"
+          }
+        ]
+      },
+      "private-namespaces": {
+        "data": [
+          {
+            "id": "ember-2.16.0-Instrumentation",
+            "type": "namespace"
+          }
+        ]
+      },
+      "public-namespaces": {
+        "data": [
+          {
+            "id": "ember-2.16.0-Ember.FEATURES",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object/computed",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Ember",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-@ember/runloop",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-AutoLocation",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Ember.String",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-Ember.inject",
+            "type": "namespace"
+          }
+        ]
+      },
+      "private-modules": {
+        "data": []
+      },
+      "public-modules": {
+        "data": [
+          {
+            "id": "ember-2.16.0-@ember/application",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/engine",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/debug",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/error",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-glimmer",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/component",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/routing",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/string",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-metal",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/object",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/instrumentation",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/utils",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/polyfills",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/runloop",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-routing",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-views",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/controller",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-runtime",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/array",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/enumerable",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/service",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/test",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-ember-testing",
+            "type": "module"
+          }
+        ]
+      }
+    }
+  }
+}

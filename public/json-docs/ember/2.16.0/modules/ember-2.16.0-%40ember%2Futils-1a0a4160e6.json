@@ -1,0 +1,165 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/utils",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/utils",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/utils": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-runtime/lib/utils.js",
+      "line": 59,
+      "parent": null,
+      "publicclasses": [],
+      "privateclasses": [
+        "@ember/array",
+        "@ember/utils"
+      ],
+      "staticfunctions": {
+        "@ember/utils": [
+          {
+            "file": "packages/ember-metal/lib/is_blank.js",
+            "line": 5,
+            "description": "A value is blank if it is empty or a whitespace string.\n\n```javascript\nEmber.isBlank();                // true\nEmber.isBlank(null);            // true\nEmber.isBlank(undefined);       // true\nEmber.isBlank('');              // true\nEmber.isBlank([]);              // true\nEmber.isBlank('\\n\\t');          // true\nEmber.isBlank('  ');            // true\nEmber.isBlank({});              // false\nEmber.isBlank('\\n\\t Hello');    // false\nEmber.isBlank('Hello world');   // false\nEmber.isBlank([1,2,3]);         // false\n```",
+            "itemtype": "method",
+            "name": "isBlank",
+            "static": 1,
+            "params": [
+              {
+                "name": "obj",
+                "description": "Value to test",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "",
+              "type": "Boolean"
+            },
+            "since": "2.16.0",
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/utils",
+            "module": "@ember/utils",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/is_empty.js",
+            "line": 6,
+            "description": "Verifies that a value is `null` or `undefined`, an empty string, or an empty\narray.\n\nConstrains the rules on `Ember.isNone` by returning true for empty strings and\nempty arrays.\n\n```javascript\nEmber.isEmpty();                // true\nEmber.isEmpty(null);            // true\nEmber.isEmpty(undefined);       // true\nEmber.isEmpty('');              // true\nEmber.isEmpty([]);              // true\nEmber.isEmpty({});              // false\nEmber.isEmpty('Adam Hawkins');  // false\nEmber.isEmpty([0,1,2]);         // false\nEmber.isEmpty('\\n\\t');          // false\nEmber.isEmpty('  ');            // false\n```",
+            "itemtype": "method",
+            "name": "isEmpty",
+            "static": 1,
+            "params": [
+              {
+                "name": "obj",
+                "description": "Value to test",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "",
+              "type": "Boolean"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/utils",
+            "module": "@ember/utils",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/is_none.js",
+            "line": 4,
+            "description": "Returns true if the passed value is null or undefined. This avoids errors\nfrom JSLint complaining about use of ==, which can be technically\nconfusing.\n\n```javascript\nEmber.isNone();              // true\nEmber.isNone(null);          // true\nEmber.isNone(undefined);     // true\nEmber.isNone('');            // false\nEmber.isNone([]);            // false\nEmber.isNone(function() {}); // false\n```",
+            "itemtype": "method",
+            "name": "isNone",
+            "static": 1,
+            "params": [
+              {
+                "name": "obj",
+                "description": "Value to test",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "",
+              "type": "Boolean"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/utils",
+            "module": "@ember/utils",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/is_present.js",
+            "line": 5,
+            "description": "A value is present if it not `isBlank`.\n\n```javascript\nEmber.isPresent();                // false\nEmber.isPresent(null);            // false\nEmber.isPresent(undefined);       // false\nEmber.isPresent('');              // false\nEmber.isPresent('  ');            // false\nEmber.isPresent('\\n\\t');          // false\nEmber.isPresent([]);              // false\nEmber.isPresent({ length: 0 })    // false\nEmber.isPresent(false);           // true\nEmber.isPresent(true);            // true\nEmber.isPresent('string');        // true\nEmber.isPresent(0);               // true\nEmber.isPresent(function() {})    // true\nEmber.isPresent({});              // true\nEmber.isPresent(false);           // true\nEmber.isPresent('\\n\\t Hello');    // true\nEmber.isPresent([1,2,3]);         // true\n```",
+            "itemtype": "method",
+            "name": "isPresent",
+            "static": 1,
+            "params": [
+              {
+                "name": "obj",
+                "description": "Value to test",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "",
+              "type": "Boolean"
+            },
+            "since": "2.16.0",
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/utils",
+            "module": "@ember/utils",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-runtime/lib/utils.js",
+            "line": 62,
+            "description": "Returns a consistent type for the passed object.\n\nUse this instead of the built-in `typeof` to get the type of an item.\nIt will return the same result across all browsers and includes a bit\nmore detail. Here is what will be returned:\n\n    | Return Value  | Meaning                                              |\n    |---------------|------------------------------------------------------|\n    | 'string'      | String primitive or String object.                   |\n    | 'number'      | Number primitive or Number object.                   |\n    | 'boolean'     | Boolean primitive or Boolean object.                 |\n    | 'null'        | Null value                                           |\n    | 'undefined'   | Undefined value                                      |\n    | 'function'    | A function                                           |\n    | 'array'       | An instance of Array                                 |\n    | 'regexp'      | An instance of RegExp                                |\n    | 'date'        | An instance of Date                                  |\n    | 'filelist'    | An instance of FileList                              |\n    | 'class'       | An Ember class (created using Ember.Object.extend()) |\n    | 'instance'    | An Ember object instance                             |\n    | 'error'       | An instance of the Error object                      |\n    | 'object'      | A JavaScript object not inheriting from Ember.Object |\n\nExamples:\n\n```javascript\nEmber.typeOf();                       // 'undefined'\nEmber.typeOf(null);                   // 'null'\nEmber.typeOf(undefined);              // 'undefined'\nEmber.typeOf('michael');              // 'string'\nEmber.typeOf(new String('michael'));  // 'string'\nEmber.typeOf(101);                    // 'number'\nEmber.typeOf(new Number(101));        // 'number'\nEmber.typeOf(true);                   // 'boolean'\nEmber.typeOf(new Boolean(true));      // 'boolean'\nEmber.typeOf(Ember.A);                // 'function'\nEmber.typeOf([1, 2, 90]);             // 'array'\nEmber.typeOf(/abc/);                  // 'regexp'\nEmber.typeOf(new Date());             // 'date'\nEmber.typeOf(event.target.files);     // 'filelist'\nEmber.typeOf(Ember.Object.extend());  // 'class'\nEmber.typeOf(Ember.Object.create());  // 'instance'\nEmber.typeOf(new Error('teamocil'));  // 'error'\n\n// 'normal' JavaScript object\nEmber.typeOf({ a: 'b' });             // 'object'\n```",
+            "itemtype": "method",
+            "name": "typeOf",
+            "params": [
+              {
+                "name": "item",
+                "description": "the item to check",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "the type",
+              "type": "String"
+            },
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "class": "@ember/utils",
+            "module": "@ember/utils",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

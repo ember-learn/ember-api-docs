@@ -1,0 +1,34 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/enumerable",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/enumerable",
+      "submodules": {},
+      "elements": {},
+      "fors": {},
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+      "line": 55,
+      "parent": null,
+      "publicclasses": [],
+      "privateclasses": [
+        "Enumerable"
+      ],
+      "staticfunctions": {},
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

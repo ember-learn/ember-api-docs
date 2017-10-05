@@ -1,0 +1,469 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/runloop",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/runloop",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/runloop": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-metal/lib/run_loop.js",
+      "line": 40,
+      "parent": null,
+      "publicclasses": [],
+      "privateclasses": [
+        "@ember/runloop"
+      ],
+      "staticfunctions": {
+        "@ember/runloop": [
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 181,
+            "description": "Begins a new RunLoop. Any deferred actions invoked after the begin will\nbe buffered until you invoke a matching call to `run.end()`. This is\na lower-level way to use a RunLoop instead of using `run()`.\n\n```javascript\nrun.begin();\n// code to be executed within a RunLoop\nrun.end();\n```",
+            "itemtype": "method",
+            "name": "begin",
+            "static": 1,
+            "return": {
+              "description": "",
+              "type": "Void"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 114,
+            "description": "Allows you to specify which context to call the specified function in while\nadding the execution of that function to the Ember run loop. This ability\nmakes this method a great way to asynchronously integrate third-party libraries\ninto your Ember application.\n\n`run.bind` takes two main arguments, the desired context and the function to\ninvoke in that context. Any additional arguments will be supplied as arguments\nto the function that is passed in.\n\nLet's use the creation of a TinyMCE component as an example. Currently,\nTinyMCE provides a setup configuration option we can use to do some processing\nafter the TinyMCE instance is initialized but before it is actually rendered.\nWe can use that setup option to do some additional setup for our component.\nThe component itself could look something like the following:\n\n```app/components/rich-text-editor.js\nimport Component from '@ember/component';\nimport { bind } from '@ember/runloop';\n\nexport default Component.extend({\n  initializeTinyMCE: Ember.on('didInsertElement', function() {\n    tinymce.init({\n      selector: '#' + this.$().prop('id'),\n      setup: Ember.run.bind(this, this.setupEditor)\n    });\n  }),\n  \n  didInsertElement() {\n    tinymce.init({\n      selector: '#' + this.$().prop('id'),\n      setup: Ember.run.bind(this, this.setupEditor)\n    });\n  }\n\n  setupEditor(editor) {\n    this.set('editor', editor);\n\n    editor.on('change', function() {\n      console.log('content changed!');\n    });\n  }\n});\n```\n\nIn this example, we use Ember.run.bind to bind the setupEditor method to the\ncontext of the RichTextEditor component and to have the invocation of that\nmethod be safely handled and executed by the Ember run loop.",
+            "itemtype": "method",
+            "name": "bind",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "target of method to call",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "Method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Any additional arguments you wish to pass to the method.",
+                "type": "Object",
+                "optional": true
+              }
+            ],
+            "return": {
+              "description": "returns a new function that will always have a particular context",
+              "type": "Function"
+            },
+            "since": "2.16.0",
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 526,
+            "description": "Cancels a scheduled item. Must be a value returned by `run.later()`,\n`run.once()`, `run.scheduleOnce()`, `run.next()`, `run.debounce()`, or\n`run.throttle()`.\n\n```javascript\nlet runNext = run.next(myContext, function() {\n  // will not be executed\n});\n\nrun.cancel(runNext);\n\nlet runLater = run.later(myContext, function() {\n  // will not be executed\n}, 500);\n\nrun.cancel(runLater);\n\nlet runScheduleOnce = run.scheduleOnce('afterRender', myContext, function() {\n  // will not be executed\n});\n\nrun.cancel(runScheduleOnce);\n\nlet runOnce = run.once(myContext, function() {\n  // will not be executed\n});\n\nrun.cancel(runOnce);\n\nlet throttle = run.throttle(myContext, function() {\n  // will not be executed\n}, 1, false);\n\nrun.cancel(throttle);\n\nlet debounce = run.debounce(myContext, function() {\n  // will not be executed\n}, 1);\n\nrun.cancel(debounce);\n\nlet debounceImmediate = run.debounce(myContext, function() {\n  // will be executed since we passed in true (immediate)\n}, 100, true);\n\n// the 100ms delay until this method can be called again will be canceled\nrun.cancel(debounceImmediate);\n```",
+            "itemtype": "method",
+            "name": "cancel",
+            "static": 1,
+            "params": [
+              {
+                "name": "timer",
+                "description": "Timer object to cancel",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "true if canceled or false/undefined if it wasn't found",
+              "type": "Boolean"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 587,
+            "description": "Delay calling the target method until the debounce period has elapsed\nwith no additional debounce calls. If `debounce` is called again before\nthe specified time has elapsed, the timer is reset and the entire period\nmust pass again before the target method is called.\n\nThis method should be used when an event may be called multiple times\nbut the action should only be called once when the event is done firing.\nA common example is for scroll events where you only want updates to\nhappen once scrolling has ceased.\n\n```javascript\nfunction whoRan() {\n  console.log(this.name + ' ran.');\n}\n\nlet myContext = { name: 'debounce' };\n\nrun.debounce(myContext, whoRan, 150);\n\n// less than 150ms passes\nrun.debounce(myContext, whoRan, 150);\n\n// 150ms passes\n// whoRan is invoked with context myContext\n// console logs 'debounce ran.' one time.\n```\n\nImmediate allows you to run the function immediately, but debounce\nother calls for this function until the wait time has elapsed. If\n`debounce` is called again before the specified time has elapsed,\nthe timer is reset and the entire period must pass again before\nthe method can be called again.\n\n```javascript\nfunction whoRan() {\n  console.log(this.name + ' ran.');\n}\n\nlet myContext = { name: 'debounce' };\n\nrun.debounce(myContext, whoRan, 150, true);\n\n// console logs 'debounce ran.' one time immediately.\n// 100ms passes\nrun.debounce(myContext, whoRan, 150, true);\n\n// 150ms passes and nothing else is logged to the console and\n// the debouncee is no longer being watched\nrun.debounce(myContext, whoRan, 150, true);\n\n// console logs 'debounce ran.' one time immediately.\n// 150ms passes and nothing else is logged to the console and\n// the debouncee is no longer being watched\n\n```",
+            "itemtype": "method",
+            "name": "debounce",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "target of method to invoke",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Optional arguments to pass to the timeout.",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "wait",
+                "description": "Number of milliseconds to wait.",
+                "type": "Number"
+              },
+              {
+                "name": "immediate",
+                "description": "Trigger the function on the leading instead\n  of the trailing edge of the wait interval. Defaults to false.",
+                "type": "Boolean"
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "Array"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 202,
+            "description": "Ends a RunLoop. This must be called sometime after you call\n`run.begin()` to flush any deferred actions. This is a lower-level way\nto use a RunLoop instead of using `run()`.\n\n```javascript\nrun.begin();\n// code to be executed within a RunLoop\nrun.end();\n```",
+            "itemtype": "method",
+            "name": "end",
+            "static": 1,
+            "return": {
+              "description": "",
+              "type": "Void"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 71,
+            "description": "If no run-loop is present, it creates a new one. If a run loop is\npresent it will queue itself to run on the existing run-loops action\nqueue.\n\nPlease note: This is not for normal usage, and should be used sparingly.\n\nIf invoked when not within a run loop:\n\n```javascript\nrun.join(function() {\n  // creates a new run-loop\n});\n```\n\nAlternatively, if called within an existing run loop:\n\n```javascript\nrun(function() {\n  // creates a new run-loop\n  run.join(function() {\n    // joins with the existing run-loop, and queues for invocation on\n    // the existing run-loops action queue.\n  });\n});\n```",
+            "itemtype": "method",
+            "name": "join",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "target of method to call",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "Method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Any additional arguments you wish to pass to the method.",
+                "type": "Object",
+                "optional": true
+              }
+            ],
+            "return": {
+              "description": "Return value from invoking the passed function. Please note,\nwhen called within an existing loop, no return value is possible.",
+              "type": "Object"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 320,
+            "description": "Invokes the passed target/method and optional arguments after a specified\nperiod of time. The last parameter of this method must always be a number\nof milliseconds.\n\nYou should use this method whenever you need to run some action after a\nperiod of time instead of using `setTimeout()`. This method will ensure that\nitems that expire during the same script execution cycle all execute\ntogether, which is often more efficient than using a real setTimeout.\n\n```javascript\nrun.later(myContext, function() {\n  // code here will execute within a RunLoop in about 500ms with this == myContext\n}, 500);\n```",
+            "itemtype": "method",
+            "name": "later",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "target of method to invoke",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Optional arguments to pass to the timeout.",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "wait",
+                "description": "Number of milliseconds to wait.",
+                "type": "Number"
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "*"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 454,
+            "description": "Schedules an item to run from within a separate run loop, after\ncontrol has been returned to the system. This is equivalent to calling\n`run.later` with a wait time of 1ms.\n\n```javascript\nrun.next(myContext, function() {\n  // code to be executed in the next run loop,\n  // which will be scheduled after the current one\n});\n```\n\nMultiple operations scheduled with `run.next` will coalesce\ninto the same later run loop, along with any other operations\nscheduled by `run.later` that expire right around the same\ntime that `run.next` operations will fire.\n\nNote that there are often alternatives to using `run.next`.\nFor instance, if you'd like to schedule an operation to happen\nafter all DOM element operations have completed within the current\nrun loop, you can make use of the `afterRender` run loop queue (added\nby the `ember-views` package, along with the preceding `render` queue\nwhere all the DOM element operations happen).\n\nExample:\n\n```app/components/my-component.js\nimport Component from '@ember/component';\n\nexport Component.extend({\n  didInsertElement() {\n    this._super(...arguments);\n    run.scheduleOnce('afterRender', this, 'processChildElements');\n  },\n\n  processChildElements() {\n    // ... do something with component's child component\n    // elements after they've finished rendering, which\n    // can't be done within this component's\n    // `didInsertElement` hook because that gets run\n    // before the child elements have been added to the DOM.\n  }\n});\n```\n\nOne benefit of the above approach compared to using `run.next` is\nthat you will be able to perform DOM/CSS operations before unprocessed\nelements are rendered to the screen, which may prevent flickering or\nother artifacts caused by delaying processing until after rendering.\n\nThe other major benefit to the above approach is that `run.next`\nintroduces an element of non-determinism, which can make things much\nharder to test, due to its reliance on `setTimeout`; it's much harder\nto guarantee the order of scheduled operations when they are scheduled\noutside of the current run loop, i.e. with `run.next`.",
+            "itemtype": "method",
+            "name": "next",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "target of method to invoke",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Optional arguments to pass to the timeout.",
+                "type": "Object",
+                "optional": true
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "Object"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 352,
+            "description": "Schedule a function to run one time during the current RunLoop. This is equivalent\nto calling `scheduleOnce` with the \"actions\" queue.",
+            "itemtype": "method",
+            "name": "once",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "The target of the method to invoke.",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Optional arguments to pass to the timeout.",
+                "type": "Object",
+                "optional": true
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "Object"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 235,
+            "description": "Adds the passed target/method and any optional arguments to the named\nqueue to be executed at the end of the RunLoop. If you have not already\nstarted a RunLoop when calling this method one will be started for you\nautomatically.\n\nAt the end of a RunLoop, any methods scheduled in this way will be invoked.\nMethods will be invoked in an order matching the named queues defined in\nthe `run.queues` property.\n\n```javascript\nrun.schedule('sync', this, function() {\n  // this will be executed in the first RunLoop queue, when bindings are synced\n  console.log('scheduled on sync queue');\n});\n\nrun.schedule('actions', this, function() {\n  // this will be executed in the 'actions' queue, after bindings have synced.\n  console.log('scheduled on actions queue');\n});\n\n// Note the functions will be run in order based on the run queues order.\n// Output would be:\n//   scheduled on sync queue\n//   scheduled on actions queue\n```",
+            "itemtype": "method",
+            "name": "schedule",
+            "static": 1,
+            "params": [
+              {
+                "name": "queue",
+                "description": "The name of the queue to schedule against.\n  Default queues are 'sync' and 'actions'",
+                "type": "String"
+              },
+              {
+                "name": "target",
+                "description": "target object to use as the context when invoking a method.",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke. If you pass a string it\n  will be resolved on the target object at the time the scheduled item is\n  invoked allowing you to change the target function.",
+                "type": "String|Function"
+              },
+              {
+                "name": "arguments*",
+                "description": "Optional arguments to be passed to the queued method.",
+                "type": "Object",
+                "optional": true
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "*"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 377,
+            "description": "Schedules a function to run one time in a given queue of the current RunLoop.\nCalling this method with the same queue/target/method combination will have\nno effect (past the initial call).\n\nNote that although you can pass optional arguments these will not be\nconsidered when looking for duplicates. New arguments will replace previous\ncalls.\n\n```javascript\nfunction sayHi() {\n  console.log('hi');\n}\n\nrun(function() {\n  run.scheduleOnce('afterRender', myContext, sayHi);\n  run.scheduleOnce('afterRender', myContext, sayHi);\n  // sayHi will only be executed once, in the afterRender queue of the RunLoop\n});\n```\n\nAlso note that for `run.scheduleOnce` to prevent additional calls, you need to\npass the same function instance. The following case works as expected:\n\n```javascript\nfunction log() {\n  console.log('Logging only once');\n}\n\nfunction scheduleIt() {\n  run.scheduleOnce('actions', myContext, log);\n}\n\nscheduleIt();\nscheduleIt();\n```\n\nBut this other case will schedule the function multiple times:\n\n```javascript\nfunction scheduleIt() {\n  run.scheduleOnce('actions', myContext, function() {\n    console.log('Closure');\n  });\n}\n\nscheduleIt();\nscheduleIt();\n\n// \"Closure\" will print twice, even though we're using `run.scheduleOnce`,\n// because the function we pass to it won't match the\n// previously scheduled operation.\n```\n\nAvailable queues, and their order, can be found at `run.queues`",
+            "itemtype": "method",
+            "name": "scheduleOnce",
+            "static": 1,
+            "params": [
+              {
+                "name": "queue",
+                "description": "The name of the queue to schedule against. Default queues are 'sync' and 'actions'.",
+                "type": "String",
+                "optional": true
+              },
+              {
+                "name": "target",
+                "description": "The target of the method to invoke.",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Optional arguments to pass to the timeout.",
+                "type": "Object",
+                "optional": true
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "Object"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-metal/lib/run_loop.js",
+            "line": 662,
+            "description": "Ensure that the target method is never called more frequently than\nthe specified spacing period. The target method is called immediately.\n\n```javascript\nfunction whoRan() {\n  console.log(this.name + ' ran.');\n}\n\nlet myContext = { name: 'throttle' };\n\nrun.throttle(myContext, whoRan, 150);\n// whoRan is invoked with context myContext\n// console logs 'throttle ran.'\n\n// 50ms passes\nrun.throttle(myContext, whoRan, 150);\n\n// 50ms passes\nrun.throttle(myContext, whoRan, 150);\n\n// 150ms passes\nrun.throttle(myContext, whoRan, 150);\n// whoRan is invoked with context myContext\n// console logs 'throttle ran.'\n```",
+            "itemtype": "method",
+            "name": "throttle",
+            "static": 1,
+            "params": [
+              {
+                "name": "target",
+                "description": "target of method to invoke",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "method",
+                "description": "The method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+                "type": "Function|String"
+              },
+              {
+                "name": "args*",
+                "description": "Optional arguments to pass to the timeout.",
+                "type": "Object",
+                "optional": true
+              },
+              {
+                "name": "spacing",
+                "description": "Number of milliseconds to space out requests.",
+                "type": "Number"
+              },
+              {
+                "name": "immediate",
+                "description": "Trigger the function on the leading instead\n  of the trailing edge of the wait interval. Defaults to true.",
+                "type": "Boolean"
+              }
+            ],
+            "return": {
+              "description": "Timer information for use in canceling, see `run.cancel`.",
+              "type": "Array"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/runloop",
+            "module": "@ember/runloop",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/engine",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/engine",
+      "shortname": "@ember/engine",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/engine",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-application/lib/system/engine-parent.js",
+          "line": 5,
+          "description": "<html><head></head><body><p><code>getEngineParent</code> retrieves an engine instance&apos;s parent instance.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "getEngineParent",
+          "params": [
+            {
+              "name": "engine",
+              "description": "An engine instance.",
+              "type": "EngineInstance"
+            }
+          ],
+          "return": {
+            "description": "The parent engine instance.",
+            "type": "EngineInstance"
+          },
+          "static": 1,
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/engine",
+          "module": "@ember/engine",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/engine-parent.js",
+          "line": 19,
+          "description": "<html><head></head><body><p><code>setEngineParent</code> sets an engine instance&apos;s parent instance.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "setEngineParent",
+          "params": [
+            {
+              "name": "engine",
+              "description": "An engine instance.",
+              "type": "EngineInstance"
+            },
+            {
+              "name": "parent",
+              "description": "The parent engine instance.",
+              "type": "EngineInstance"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/engine",
+          "module": "@ember/engine",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/engine",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

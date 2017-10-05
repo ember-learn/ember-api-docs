@@ -1,0 +1,37 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/instrumentation",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/instrumentation",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/instrumentation": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-metal/lib/instrumentation.js",
+      "line": 9,
+      "parent": null,
+      "publicclasses": [],
+      "privateclasses": [
+        "Instrumentation",
+        "@ember/instrumentation"
+      ],
+      "staticfunctions": {},
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

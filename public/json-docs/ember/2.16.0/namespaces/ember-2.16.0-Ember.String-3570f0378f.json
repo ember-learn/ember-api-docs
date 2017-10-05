@@ -1,0 +1,296 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.String",
+    "type": "namespace",
+    "attributes": {
+      "name": "Ember.String",
+      "shortname": "Ember.String",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/system/string.js",
+      "line": 119,
+      "description": "<html><head></head><body><p>Defines string helper methods including string formatting and localization.\nUnless <code>EmberENV.EXTEND_PROTOTYPES.String</code> is <code>false</code> these methods will also be\nadded to the <code>String.prototype</code> as well.</p>\n</body></html>",
+      "static": 1,
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 130,
+          "description": "<html><head></head><body><p>Apply formatting options to the string. This will look for occurrences\nof &quot;%@&quot; in your string and substitute them with the arguments you pass into\nthis method. If you want to control the specific order of replacement,\nyou can add a number after the key as well to indicate which argument\nyou want to insert.</p>\n<p>Ordered insertions are most useful when building loc strings where values\nyou need to insert may appear in different orders.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&quot;Hello %@ %@&quot;</span>.fmt(<span class=\"string\">&apos;John&apos;</span>, <span class=\"string\">&apos;Doe&apos;</span>);     <span class=\"regexp\">//</span> <span class=\"string\">&quot;Hello John Doe&quot;</span>\n<span class=\"string\">&quot;Hello %@2, %@1&quot;</span>.fmt(<span class=\"string\">&apos;John&apos;</span>, <span class=\"string\">&apos;Doe&apos;</span>);  <span class=\"regexp\">//</span> <span class=\"string\">&quot;Hello Doe, John&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "fmt",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to format",
+              "type": "String"
+            },
+            {
+              "name": "formats",
+              "description": "An array of parameters to interpolate into string.",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "formatted string",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "deprecated": true,
+          "deprecationMessage": "Use ES6 template strings instead: http://babeljs.io/docs/learn-es2015/#template-strings",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 154,
+          "description": "<html><head></head><body><p>Formats the passed string, but first looks up the string in the localized\nstrings hash. This is a convenient way to localize text. See\n<code>Ember.String.fmt()</code> for more information on formatting.</p>\n<p>Note that it is traditional but not required to prefix localized string\nkeys with an underscore or other character so you can easily identify\nlocalized strings.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>Ember.STRINGS = {\n  <span class=\"string\">&apos;_Hello World&apos;</span>: <span class=\"string\">&apos;Bonjour le monde&apos;</span>,\n  <span class=\"string\">&apos;_Hello %@ %@&apos;</span>: <span class=\"string\">&apos;Bonjour %@ %@&apos;</span>\n};\n\nEmber.<span class=\"keyword\">String</span>.loc(<span class=\"string\">&quot;_Hello World&quot;</span>);  <span class=\"comment\">// &apos;Bonjour le monde&apos;;</span>\nEmber.<span class=\"keyword\">String</span>.loc(<span class=\"string\">&quot;_Hello %@ %@&quot;</span>, [<span class=\"string\">&quot;John&quot;</span>, <span class=\"string\">&quot;Smith&quot;</span>]);  <span class=\"comment\">// &quot;Bonjour John Smith&quot;;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "loc",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to format",
+              "type": "String"
+            },
+            {
+              "name": "formats",
+              "description": "Optional array of parameters to interpolate into string.",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "formatted string",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 181,
+          "description": "<html><head></head><body><p>Splits a string into separate units separated by spaces, eliminating any\nempty strings in the process. This is a convenience method for split that\nis mostly useful when applied to the <code>String.prototype</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>Ember.<span class=\"keyword\">String</span>.w(<span class=\"string\">&quot;alpha beta gamma&quot;</span>).forEach(function(<span class=\"built_in\">key</span>) {\n  console.<span class=\"built_in\">log</span>(<span class=\"built_in\">key</span>);\n});\n\n<span class=\"comment\">// &gt; alpha</span>\n<span class=\"comment\">// &gt; beta</span>\n<span class=\"comment\">// &gt; gamma</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "w",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to split",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "array containing the split strings",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 203,
+          "description": "<html><head></head><body><p>Converts a camelized string into all lower case separated by underscores.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;innerHTML&apos;</span>.decamelize();           <span class=\"regexp\">//</span> <span class=\"string\">&apos;inner_html&apos;</span>\n<span class=\"string\">&apos;action_name&apos;</span>.decamelize();        <span class=\"regexp\">//</span> <span class=\"string\">&apos;action_name&apos;</span>\n<span class=\"string\">&apos;css-class-name&apos;</span>.decamelize();     <span class=\"regexp\">//</span> <span class=\"string\">&apos;css-class-name&apos;</span>\n<span class=\"string\">&apos;my favorite items&apos;</span>.decamelize();  <span class=\"regexp\">//</span> <span class=\"string\">&apos;my favorite items&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "decamelize",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to decamelize.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the decamelized string.",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 220,
+          "description": "<html><head></head><body><p>Replaces underscores, spaces, or camelCase with dashes.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;innerHTML&apos;</span>.dasherize();          <span class=\"regexp\">//</span> <span class=\"string\">&apos;inner-html&apos;</span>\n<span class=\"string\">&apos;action_name&apos;</span>.dasherize();        <span class=\"regexp\">//</span> <span class=\"string\">&apos;action-name&apos;</span>\n<span class=\"string\">&apos;css-class-name&apos;</span>.dasherize();     <span class=\"regexp\">//</span> <span class=\"string\">&apos;css-class-name&apos;</span>\n<span class=\"string\">&apos;my favorite items&apos;</span>.dasherize();  <span class=\"regexp\">//</span> <span class=\"string\">&apos;my-favorite-items&apos;</span>\n<span class=\"string\">&apos;privateDocs/ownerInvoice&apos;</span>.dasherize(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;private-docs/owner-invoice&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "dasherize",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to dasherize.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the dasherized string.",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 238,
+          "description": "<html><head></head><body><p>Returns the lowerCamelCase form of a string.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;innerHTML&apos;</span>.camelize();          <span class=\"regexp\">//</span> <span class=\"string\">&apos;innerHTML&apos;</span>\n<span class=\"string\">&apos;action_name&apos;</span>.camelize();        <span class=\"regexp\">//</span> <span class=\"string\">&apos;actionName&apos;</span>\n<span class=\"string\">&apos;css-class-name&apos;</span>.camelize();     <span class=\"regexp\">//</span> <span class=\"string\">&apos;cssClassName&apos;</span>\n<span class=\"string\">&apos;my favorite items&apos;</span>.camelize();  <span class=\"regexp\">//</span> <span class=\"string\">&apos;myFavoriteItems&apos;</span>\n<span class=\"string\">&apos;My Favorite Items&apos;</span>.camelize();  <span class=\"regexp\">//</span> <span class=\"string\">&apos;myFavoriteItems&apos;</span>\n<span class=\"string\">&apos;private-docs/owner-invoice&apos;</span>.camelize(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;privateDocs/ownerInvoice&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "camelize",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to camelize.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the camelized string.",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 257,
+          "description": "<html><head></head><body><p>Returns the UpperCamelCase form of a string.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;innerHTML&apos;</span>.classify();          <span class=\"regexp\">//</span> <span class=\"string\">&apos;InnerHTML&apos;</span>\n<span class=\"string\">&apos;action_name&apos;</span>.classify();        <span class=\"regexp\">//</span> <span class=\"string\">&apos;ActionName&apos;</span>\n<span class=\"string\">&apos;css-class-name&apos;</span>.classify();     <span class=\"regexp\">//</span> <span class=\"string\">&apos;CssClassName&apos;</span>\n<span class=\"string\">&apos;my favorite items&apos;</span>.classify();  <span class=\"regexp\">//</span> <span class=\"string\">&apos;MyFavoriteItems&apos;</span>\n<span class=\"string\">&apos;private-docs/owner-invoice&apos;</span>.classify(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;PrivateDocs/OwnerInvoice&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "classify",
+          "params": [
+            {
+              "name": "str",
+              "description": "the string to classify",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the classified string",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 275,
+          "description": "<html><head></head><body><p>More general than decamelize. Returns the lower_case_and_underscored\nform of a string.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;innerHTML&apos;</span>.underscore();          <span class=\"regexp\">//</span> <span class=\"string\">&apos;inner_html&apos;</span>\n<span class=\"string\">&apos;action_name&apos;</span>.underscore();        <span class=\"regexp\">//</span> <span class=\"string\">&apos;action_name&apos;</span>\n<span class=\"string\">&apos;css-class-name&apos;</span>.underscore();     <span class=\"regexp\">//</span> <span class=\"string\">&apos;css_class_name&apos;</span>\n<span class=\"string\">&apos;my favorite items&apos;</span>.underscore();  <span class=\"regexp\">//</span> <span class=\"string\">&apos;my_favorite_items&apos;</span>\n<span class=\"string\">&apos;privateDocs/ownerInvoice&apos;</span>.underscore(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;private_docs/owner_invoice&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "underscore",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to underscore.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the underscored string.",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/string.js",
+          "line": 294,
+          "description": "<html><head></head><body><p>Returns the Capitalized form of a string</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;innerHTML&apos;</span>.capitalize()         <span class=\"regexp\">//</span> <span class=\"string\">&apos;InnerHTML&apos;</span>\n<span class=\"string\">&apos;action_name&apos;</span>.capitalize()       <span class=\"regexp\">//</span> <span class=\"string\">&apos;Action_name&apos;</span>\n<span class=\"string\">&apos;css-class-name&apos;</span>.capitalize()    <span class=\"regexp\">//</span> <span class=\"string\">&apos;Css-class-name&apos;</span>\n<span class=\"string\">&apos;my favorite items&apos;</span>.capitalize() <span class=\"regexp\">//</span> <span class=\"string\">&apos;My favorite items&apos;</span>\n<span class=\"string\">&apos;privateDocs/ownerInvoice&apos;</span>.capitalize(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;PrivateDocs/ownerInvoice&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "capitalize",
+          "params": [
+            {
+              "name": "str",
+              "description": "The string to capitalize.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The capitalized string.",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

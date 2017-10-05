@@ -1,0 +1,49 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember",
+    "type": "namespace",
+    "attributes": {
+      "name": "Ember",
+      "shortname": "Ember",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-metal",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/core.js",
+      "line": 8,
+      "description": "<html><head></head><body><p>This namespace contains all Ember methods and functions. Future versions of\nEmber may overwrite this namespace and therefore, you should avoid adding any\nnew properties.</p>\n<p>At the heart of Ember is Ember-Runtime, a set of core functions that provide\ncross-platform compatibility and object property observing.  Ember-Runtime is\nsmall and performance-focused so you can use it alongside other\ncross-platform libraries such as jQuery. For more details, see\n<a href=\"https://emberjs.com/api/modules/ember-runtime.html\">Ember-Runtime</a>.</p>\n</body></html>",
+      "static": 1,
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

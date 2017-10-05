@@ -1,0 +1,103 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/polyfills",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/polyfills",
+      "shortname": "@ember/polyfills",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/polyfills",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/merge.js",
+          "line": 4,
+          "description": "<html><head></head><body><p>Merge the contents of two objects together into the first object.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>Ember.merge({ first: <span class=\"string\">&apos;Tom&apos;</span> }, { last: <span class=\"string\">&apos;Dale&apos;</span> }); // { first: <span class=\"string\">&apos;Tom&apos;</span>, last: <span class=\"string\">&apos;Dale&apos;</span> }\nvar a = { first: <span class=\"string\">&apos;Yehuda&apos;</span> };\nvar b = { last: <span class=\"string\">&apos;Katz&apos;</span> };\nEmber.merge(a, b); // a == { first: <span class=\"string\">&apos;Yehuda&apos;</span>, last: <span class=\"string\">&apos;Katz&apos;</span> }, b == { last: <span class=\"string\">&apos;Katz&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "merge",
+          "static": 1,
+          "params": [
+            {
+              "name": "original",
+              "description": "The object to merge into",
+              "type": "Object"
+            },
+            {
+              "name": "updates",
+              "description": "The object to copy properties from",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/polyfills",
+          "module": "@ember/polyfills",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/assign.js",
+          "line": 4,
+          "description": "<html><head></head><body><p>Copy properties from a source object to a target object.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>var a = { first: <span class=\"string\">&apos;Yehuda&apos;</span> };\nvar b = { last: <span class=\"string\">&apos;Katz&apos;</span> };\nvar c = { company: <span class=\"string\">&apos;Tilde Inc.&apos;</span> };\nEmber.assign(a, b, c); // a === { first: <span class=\"string\">&apos;Yehuda&apos;</span>, last: <span class=\"string\">&apos;Katz&apos;</span>, company: <span class=\"string\">&apos;Tilde Inc.&apos;</span> }, b === { last: <span class=\"string\">&apos;Katz&apos;</span> }, c === { company: <span class=\"string\">&apos;Tilde Inc.&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "assign",
+          "params": [
+            {
+              "name": "original",
+              "description": "The object to assign into",
+              "type": "Object"
+            },
+            {
+              "name": "args",
+              "description": "The objects to copy properties from",
+              "type": "Object",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/polyfills",
+          "module": "@ember/polyfills",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/polyfills",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

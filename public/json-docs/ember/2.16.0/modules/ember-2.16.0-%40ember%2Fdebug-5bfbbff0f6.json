@@ -1,0 +1,175 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/debug",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/debug",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/debug": 1,
+        "Ember.Ember": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-extension-support/lib/data_adapter.js",
+      "line": 17,
+      "access": "public",
+      "tagname": "",
+      "static": 1,
+      "itemtype": "method",
+      "params": [
+        {
+          "name": "handler",
+          "description": "A function to handle deprecation calls.",
+          "type": "Function"
+        }
+      ],
+      "since": "2.1.0",
+      "parent": null,
+      "publicclasses": [
+        "ContainerDebugAdapter",
+        "DataAdapter"
+      ],
+      "privateclasses": [
+        "@ember/application/deprecations"
+      ],
+      "staticfunctions": {
+        "@ember/debug": [
+          {
+            "file": "packages/ember-debug/lib/index.js",
+            "line": 69,
+            "description": "Define an assertion that will throw an exception if the condition is not met.\n\n* In a production build, this method is defined as an empty function (NOP).\nUses of this method in Ember itself are stripped from the ember.prod.js build.\n\n```javascript\n// Test for truthiness\nEmber.assert('Must pass a valid object', obj);\n\n// Fail unconditionally\nEmber.assert('This code path should never be run');\n```",
+            "itemtype": "method",
+            "name": "assert",
+            "static": 1,
+            "params": [
+              {
+                "name": "desc",
+                "description": "A description of the assertion. This will become\n  the text of the Error thrown if the assertion fails.",
+                "type": "String"
+              },
+              {
+                "name": "test",
+                "description": "Must be truthy for the assertion to pass. If\n  falsy, an exception will be thrown.",
+                "type": "Boolean"
+              }
+            ],
+            "access": "public",
+            "tagname": "",
+            "since": "2.16.0",
+            "class": "@ember/debug",
+            "module": "@ember/debug",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-debug/lib/index.js",
+            "line": 99,
+            "description": "Display a debug notice.\n\n* In a production build, this method is defined as an empty function (NOP).\nUses of this method in Ember itself are stripped from the ember.prod.js build.\n\n```javascript\nEmber.debug('I\\'m a debug notice!');\n```",
+            "itemtype": "method",
+            "name": "debug",
+            "static": 1,
+            "params": [
+              {
+                "name": "message",
+                "description": "A debug message to display.",
+                "type": "String"
+              }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/debug",
+            "module": "@ember/debug",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-debug/lib/warn.js",
+            "line": 16,
+            "description": "Allows for runtime registration of handler functions that override the default warning behavior.\nWarnings are invoked by calls made to [Ember.warn](https://emberjs.com/api/classes/Ember.html#method_warn).\nThe following example demonstrates its usage by registering a handler that does nothing overriding Ember's\ndefault warning behavior.\n\n```javascript\n// next is not called, so no warnings get the default behavior\nEmber.Debug.registerWarnHandler(() => {});\n```\n\nThe handler function takes the following arguments:\n\n<ul>\n  <li> <code>message</code> - The message received from the warn call. </li>\n  <li> <code>options</code> - An object passed in with the warn call containing additional information including:</li>\n    <ul>\n      <li> <code>id</code> - An id of the warning in the form of <code>package-name.specific-warning</code>.</li>\n    </ul>\n  <li> <code>next</code> - A function that calls into the previously registered handler.</li>\n</ul>",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "itemtype": "method",
+            "name": "registerWarnHandler",
+            "params": [
+              {
+                "name": "handler",
+                "description": "A function to handle warnings.",
+                "type": "Function"
+              }
+            ],
+            "since": "2.16.0",
+            "class": "@ember/debug",
+            "module": "@ember/debug",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-debug/lib/index.js",
+            "line": 177,
+            "description": "Run a function meant for debugging.\n\n* In a production build, this method is defined as an empty function (NOP).\nUses of this method in Ember itself are stripped from the ember.prod.js build.\n\n```javascript\nEmber.runInDebug(() => {\n  Ember.Component.reopen({\n    didInsertElement() {\n      console.log(\"I'm happy\");\n    }\n  });\n});\n```",
+            "itemtype": "method",
+            "name": "runInDebug",
+            "static": 1,
+            "params": [
+              {
+                "name": "func",
+                "description": "The function to be executed.",
+                "type": "Function"
+              }
+            ],
+            "since": "2.16.0",
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/debug",
+            "module": "@ember/debug",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-debug/lib/warn.js",
+            "line": 61,
+            "description": "Display a warning with the provided message.\n\n* In a production build, this method is defined as an empty function (NOP).\nUses of this method in Ember itself are stripped from the ember.prod.js build.",
+            "itemtype": "method",
+            "name": "warn",
+            "static": 1,
+            "params": [
+              {
+                "name": "message",
+                "description": "A warning to display.",
+                "type": "String"
+              },
+              {
+                "name": "test",
+                "description": "An optional boolean. If falsy, the warning\n  will be displayed.",
+                "type": "Boolean"
+              },
+              {
+                "name": "options",
+                "description": "An object that can be used to pass a unique\n  `id` for this warning.  The `id` can be used by Ember debugging tools\n  to change the behavior (raise, log, or silence) for that specific warning.\n  The `id` should be namespaced by dots, e.g. \"ember-debug.feature-flag-with-features-stripped\"",
+                "type": "Object"
+              }
+            ],
+            "access": "public",
+            "tagname": "",
+            "since": "2.16.0",
+            "class": "@ember/debug",
+            "module": "@ember/debug",
+            "version": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/application/deprecations",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/application/deprecations",
+      "shortname": "@ember/application/deprecations",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/debug",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-debug/lib/index.js",
+          "line": 136,
+          "description": "<html><head></head><body><p>Alias an old, deprecated method with its new counterpart.</p>\n<p>Display a deprecation warning with the provided message and a stack trace\n(Chrome and Firefox only) when the assigned method is called.</p>\n<ul>\n<li>In a production build, this method is defined as an empty function (NOP).</li>\n</ul>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>Ember.oldMethod = Ember.deprecateFunc(<span class=\"symbol\">&apos;Please</span> <span class=\"keyword\">use</span> the <span class=\"keyword\">new</span>, updated method&apos;, Ember.newMethod);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deprecateFunc",
+          "static": 1,
+          "params": [
+            {
+              "name": "message",
+              "description": "A description of the deprecation.",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "The options object for Ember.deprecate.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "func",
+              "description": "The new function called to replace its deprecated counterpart.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "A new function that wraps the original function with a deprecation warning",
+            "type": "Function"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/application/deprecations",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/debug",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

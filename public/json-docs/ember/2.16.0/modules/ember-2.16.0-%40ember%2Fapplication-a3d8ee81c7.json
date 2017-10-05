@@ -1,0 +1,145 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/application",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/application",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/application/deprecations": 1,
+        "@ember/application": 1,
+        "Ember.Ember": 1
+      },
+      "namespaces": {
+        "ApplicationInstance": 1
+      },
+      "tag": "module",
+      "file": "packages/ember-application/lib/system/resolver.js",
+      "line": 34,
+      "itemtype": "method",
+      "params": [
+        {
+          "name": "message",
+          "description": "A description of the deprecation.",
+          "type": "String"
+        },
+        {
+          "name": "test",
+          "description": "A boolean. If falsy, the deprecation will be displayed.",
+          "type": "Boolean"
+        },
+        {
+          "name": "options",
+          "description": "",
+          "type": "Object",
+          "props": [
+            {
+              "name": "id",
+              "description": "A unique id for this deprecation. The id can be\n  used by Ember debugging tools to change the behavior (raise, log or silence)\n  for that specific deprecation. The id should be namespaced by dots, e.g.\n  \"view.helper.select\".",
+              "type": "String"
+            },
+            {
+              "name": "until",
+              "description": "The version of Ember when this deprecation\n  warning will be removed.",
+              "type": "String"
+            },
+            {
+              "name": "url",
+              "description": "An optional url to the transition guide on the\n  emberjs.com website.",
+              "type": "String",
+              "optional": true
+            }
+          ]
+        }
+      ],
+      "static": 1,
+      "access": "public",
+      "tagname": "",
+      "since": "1.0.0",
+      "parent": null,
+      "publicclasses": [
+        "ApplicationInstance",
+        "ApplicationInstance.BootOptions",
+        "Application",
+        "GlobalsResolver"
+      ],
+      "privateclasses": [
+        "@ember/debug",
+        "RSVP",
+        "RSVP.EventTarget",
+        "RSVP.Promise",
+        "Container",
+        "Registry",
+        "@ember/application"
+      ],
+      "staticfunctions": {
+        "@ember/application": [
+          {
+            "file": "packages/ember-utils/lib/owner.js",
+            "line": 9,
+            "description": "Framework objects in an Ember application (components, services, routes, etc.)\nare created via a factory and dependency injection system. Each of these\nobjects is the responsibility of an \"owner\", which handled its\ninstantiation and manages its lifetime.\n\n`getOwner` fetches the owner object responsible for an instance. This can\nbe used to lookup or resolve other class instances, or register new factories\ninto the owner.\n\nFor example, this component dynamically looks up a service based on the\n`audioType` passed as an attribute:\n\n```app/components/play-audio.js\nimport Component from '@ember/component';\nimport { computed } from '@ember/object';\nimport { getOwner } from '@ember/application';\n\n// Usage:\n//\n//   {{play-audio audioType=model.audioType audioFile=model.file}}\n//\nexport default Component.extend({\n  audioService: computed('audioType', function() {\n    let owner = getOwner(this);\n    return owner.lookup(`service:${this.get('audioType')}`);\n  }),\n\n  click() {\n    let player = this.get('audioService');\n    player.play(this.get('audioFile'));\n  }\n});\n```",
+            "itemtype": "method",
+            "name": "getOwner",
+            "static": 1,
+            "params": [
+              {
+                "name": "object",
+                "description": "An object with an owner.",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "An owner object.",
+              "type": "Object"
+            },
+            "since": "2.16.0",
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/application",
+            "module": "@ember/application",
+            "version": "2.16.0"
+          },
+          {
+            "file": "packages/ember-utils/lib/owner.js",
+            "line": 56,
+            "description": "`setOwner` forces a new owner on a given object instance. This is primarily\nuseful in some testing cases.",
+            "itemtype": "method",
+            "name": "setOwner",
+            "static": 1,
+            "params": [
+              {
+                "name": "object",
+                "description": "An object instance.",
+                "type": "Object"
+              },
+              {
+                "name": "object",
+                "description": "The new owner object of the object instance.",
+                "type": "Object"
+              }
+            ],
+            "since": "2.16.0",
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/application",
+            "module": "@ember/application",
+            "version": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/array",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/array",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/array": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-runtime/lib/system/array_proxy.js",
+      "line": 33,
+      "parent": null,
+      "publicclasses": [
+        "EmberArray",
+        "MutableArray",
+        "ArrayProxy"
+      ],
+      "privateclasses": [
+        "EachProxy"
+      ],
+      "staticfunctions": {
+        "@ember/array": [
+          {
+            "file": "packages/ember-runtime/lib/system/native_array.js",
+            "line": 107,
+            "description": "Creates an `Ember.NativeArray` from an Array like object.\nDoes not modify the original object's contents. Ember.A is not needed if\n`EmberENV.EXTEND_PROTOTYPES` is `true` (the default value). However,\nit is recommended that you use Ember.A when creating addons for\nember or when you can not guarantee that `EmberENV.EXTEND_PROTOTYPES`\nwill be `true`.\n\nExample\n\n```app/components/my-component.js\nimport Component from '@ember/component';\n\nexport default Component.extend({\n  tagName: 'ul',\n  classNames: ['pagination'],\n\n  init() {\n    this._super(...arguments);\n\n    if (!this.get('content')) {\n      this.set('content', Ember.A());\n    }\n  }\n});\n```",
+            "itemtype": "method",
+            "name": "A",
+            "static": 1,
+            "return": {
+              "description": "",
+              "type": "EmberArray"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/array",
+            "module": "@ember/array",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          },
+          {
+            "file": "packages/ember-runtime/lib/utils.js",
+            "line": 23,
+            "description": "Returns true if the passed object is an array or Array-like.\n\nObjects are considered Array-like if any of the following are true:\n\n  - the object is a native Array\n  - the object has an objectAt property\n  - the object is an Object, and has a length property\n\nUnlike `Ember.typeOf` this method returns true even if the passed object is\nnot formally an array but appears to be array-like (i.e. implements `Ember.Array`)\n\n```javascript\nEmber.isArray();                                          // false\nEmber.isArray([]);                                        // true\nEmber.isArray(Ember.ArrayProxy.create({ content: [] }));  // true\n```",
+            "itemtype": "method",
+            "name": "isArray",
+            "static": 1,
+            "params": [
+              {
+                "name": "obj",
+                "description": "The object to test",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "true if the passed object is an array or Array-like",
+              "type": "Boolean"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/array",
+            "module": "@ember/array",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

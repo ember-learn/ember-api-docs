@@ -1,0 +1,185 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/object/observers",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/object/observers",
+      "shortname": "@ember/object/observers",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/observer.js",
+          "line": 27,
+          "itemtype": "method",
+          "name": "addObserver",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "_path",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "Function|String",
+              "optional": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/observers",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/observer.js",
+          "line": 48,
+          "itemtype": "method",
+          "name": "removeObserver",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "path",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "Function|String",
+              "optional": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/observers",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/observer.js",
+          "line": 65,
+          "itemtype": "method",
+          "name": "_addBeforeObserver",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "path",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "Function|String",
+              "optional": true
+            }
+          ],
+          "deprecated": true,
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/object/observers",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/observer.js",
+          "line": 96,
+          "itemtype": "method",
+          "name": "removeBeforeObserver",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "path",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "Function|String",
+              "optional": true
+            }
+          ],
+          "deprecated": true,
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/object/observers",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

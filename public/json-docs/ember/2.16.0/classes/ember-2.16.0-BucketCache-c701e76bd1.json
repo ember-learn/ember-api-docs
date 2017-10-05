@@ -1,0 +1,47 @@
+{
+  "data": {
+    "id": "ember-2.16.0-BucketCache",
+    "type": "class",
+    "attributes": {
+      "name": "BucketCache",
+      "shortname": "BucketCache",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "namespace": "",
+      "file": "packages/ember-routing/lib/system/cache.js",
+      "line": 3,
+      "description": "<html><head></head><body><p>A two-tiered cache with support for fallback values when doing lookups.\nUses &quot;buckets&quot; and then &quot;keys&quot; to cache values.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

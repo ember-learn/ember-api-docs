@@ -1,0 +1,68 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/controller",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/controller",
+      "shortname": "@ember/controller",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/controller",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/controllers/controller.js",
+          "line": 29,
+          "description": "<html><head></head><body><p>Creates a property that lazily looks up another controller in the container.\nCan only be used when defining another controller.</p>\n<p>Example:</p>\n<div class=\"highlight app/controllers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/controllers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Controller, {\n  inject <span class=\"keyword\">as</span> controller\n} <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/controller&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Controller.extend({\n  posts: controller()\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This example will create a <code>posts</code> property on the <code>post</code> controller that\nlooks up the <code>posts</code> controller in the container, making it easy to\nreference other controllers. This is functionally equivalent to:</p>\n<div class=\"highlight app/controllers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/controllers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Controller <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/controller&apos;</span>;\n<span class=\"keyword\">import</span> { alias } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object/computed&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Controller.extend({\n  needs: <span class=\"string\">&apos;posts&apos;</span>,\n  posts: alias(<span class=\"string\">&apos;controllers.posts&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "inject",
+          "static": 1,
+          "since": "2.16.0",
+          "params": [
+            {
+              "name": "name",
+              "description": "(optional) name of the controller to inject, defaults\n       to the property's name",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "injection descriptor instance",
+            "type": "Ember.InjectedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/controller",
+          "module": "@ember/controller",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/controller",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

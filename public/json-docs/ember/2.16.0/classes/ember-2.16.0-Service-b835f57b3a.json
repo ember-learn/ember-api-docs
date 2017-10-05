@@ -1,0 +1,46 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Service",
+    "type": "class",
+    "attributes": {
+      "name": "Service",
+      "shortname": "Service",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/service",
+      "namespace": "",
+      "file": "packages/ember-runtime/lib/system/service.js",
+      "line": 42,
+      "since": "2.16.0",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/service",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

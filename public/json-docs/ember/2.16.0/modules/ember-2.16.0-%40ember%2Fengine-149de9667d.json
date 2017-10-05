@@ -1,0 +1,39 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/engine",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/engine",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/engine": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-application/lib/system/engine.js",
+      "line": 34,
+      "parent": null,
+      "publicclasses": [
+        "EngineInstance",
+        "Engine"
+      ],
+      "privateclasses": [
+        "@ember/engine"
+      ],
+      "staticfunctions": {},
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

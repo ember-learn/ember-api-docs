@@ -1,0 +1,58 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.Namespace",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Namespace",
+      "shortname": "Ember.Namespace",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/system/namespace.js",
+      "line": 26,
+      "description": "<html><head></head><body><p>A Namespace is an object usually used to contain other objects or methods\nsuch as an application or framework. Create a namespace anytime you want\nto define one of these new containers.</p>\n<h1 id=\"example-usage\">Example Usage</h1>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"attribute\">MyFramework</span> = Ember.Namespace.create({\n  VERSION: <span class=\"string\">&apos;1.0.0&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "Ember.Object",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Object",
+          "type": "missing",
+          "version": "2.16.0"
+        }
+      },
+      "descendants": {
+        "data": [
+          {
+            "type": "class",
+            "id": "ember-2.16.0-Engine"
+          }
+        ]
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

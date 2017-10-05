@@ -1,0 +1,562 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/runloop",
+    "type": "namespace",
+    "attributes": {
+      "name": "@ember/runloop",
+      "shortname": "@ember/runloop",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/runloop",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/run_loop.js",
+      "line": 40,
+      "description": "<html><head></head><body><p>Runs the passed target and method inside of a RunLoop, ensuring any\ndeferred actions including bindings and views updates are flushed at the\nend.</p>\n<p>Normally you should not need to invoke this method yourself. However if\nyou are implementing raw event handlers when interfacing with other\nlibraries or plugins, you should probably wrap all of your code inside this\ncall.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>run(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"comment\">// code to be executed within a RunLoop</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "static": 1,
+      "is_constructor": 1,
+      "params": [
+        {
+          "name": "target",
+          "description": "target of method to call",
+          "type": "Object",
+          "optional": true
+        },
+        {
+          "name": "method",
+          "description": "Method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+          "type": "Function|String"
+        },
+        {
+          "name": "args*",
+          "description": "Any additional arguments you wish to pass to the method.",
+          "type": "Object",
+          "optional": true
+        }
+      ],
+      "return": {
+        "description": "return value from invoking the passed function.",
+        "type": "Object"
+      },
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 71,
+          "description": "<html><head></head><body><p>If no run-loop is present, it creates a new one. If a run loop is\npresent it will queue itself to run on the existing run-loops action\nqueue.</p>\n<p>Please note: This is not for normal usage, and should be used sparingly.</p>\n<p>If invoked when not within a run loop:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">run</span>.<span class=\"bash\">join(<span class=\"function\"><span class=\"title\">function</span></span>() {\n</span>  // creates a new <span class=\"keyword\">run</span><span class=\"bash\">-loop\n</span>});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Alternatively, if called within an existing run loop:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">run</span><span class=\"bash\">(<span class=\"function\"><span class=\"title\">function</span></span>() {\n</span>  // creates a new <span class=\"keyword\">run</span><span class=\"bash\">-loop\n</span>  <span class=\"keyword\">run</span>.<span class=\"bash\">join(<span class=\"function\"><span class=\"title\">function</span></span>() {\n</span>    // joins with the existing <span class=\"keyword\">run</span><span class=\"bash\">-loop, and queues <span class=\"keyword\">for</span> invocation on\n</span>    // the existing <span class=\"keyword\">run</span><span class=\"bash\">-loops action queue.\n</span>  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "join",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "target of method to call",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "Method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Any additional arguments you wish to pass to the method.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "Return value from invoking the passed function. Please note,\nwhen called within an existing loop, no return value is possible.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 114,
+          "description": "<html><head></head><body><p>Allows you to specify which context to call the specified function in while\nadding the execution of that function to the Ember run loop. This ability\nmakes this method a great way to asynchronously integrate third-party libraries\ninto your Ember application.</p>\n<p><code>run.bind</code> takes two main arguments, the desired context and the function to\ninvoke in that context. Any additional arguments will be supplied as arguments\nto the function that is passed in.</p>\n<p>Let&apos;s use the creation of a TinyMCE component as an example. Currently,\nTinyMCE provides a setup configuration option we can use to do some processing\nafter the TinyMCE instance is initialized but before it is actually rendered.\nWe can use that setup option to do some additional setup for our component.\nThe component itself could look something like the following:</p>\n<div class=\"highlight editor.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">editor.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n<span class=\"keyword\">import</span> { bind } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/runloop&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  <span class=\"attr\">initializeTinyMCE</span>: Ember.on(<span class=\"string\">&apos;didInsertElement&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    tinymce.init({\n      <span class=\"attr\">selector</span>: <span class=\"string\">&apos;#&apos;</span> + <span class=\"keyword\">this</span>.$().prop(<span class=\"string\">&apos;id&apos;</span>),\n      <span class=\"attr\">setup</span>: Ember.run.bind(<span class=\"keyword\">this</span>, <span class=\"keyword\">this</span>.setupEditor)\n    });\n  }),\n\n  didInsertElement() {\n    tinymce.init({\n      <span class=\"attr\">selector</span>: <span class=\"string\">&apos;#&apos;</span> + <span class=\"keyword\">this</span>.$().prop(<span class=\"string\">&apos;id&apos;</span>),\n      <span class=\"attr\">setup</span>: Ember.run.bind(<span class=\"keyword\">this</span>, <span class=\"keyword\">this</span>.setupEditor)\n    });\n  }\n\n  setupEditor(editor) {\n    <span class=\"keyword\">this</span>.set(<span class=\"string\">&apos;editor&apos;</span>, editor);\n\n    editor.on(<span class=\"string\">&apos;change&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;content changed!&apos;</span>);\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>In this example, we use Ember.run.bind to bind the setupEditor method to the\ncontext of the RichTextEditor component and to have the invocation of that\nmethod be safely handled and executed by the Ember run loop.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "bind",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "target of method to call",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "Method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Any additional arguments you wish to pass to the method.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "returns a new function that will always have a particular context",
+            "type": "Function"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 181,
+          "description": "<html><head></head><body><p>Begins a new RunLoop. Any deferred actions invoked after the begin will\nbe buffered until you invoke a matching call to <code>run.end()</code>. This is\na lower-level way to use a RunLoop instead of using <code>run()</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">run</span>.<span class=\"built_in\">begin</span>();\n<span class=\"comment\">// code to be executed within a RunLoop</span>\n<span class=\"built_in\">run</span>.<span class=\"built_in\">end</span>();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "begin",
+          "static": 1,
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 202,
+          "description": "<html><head></head><body><p>Ends a RunLoop. This must be called sometime after you call\n<code>run.begin()</code> to flush any deferred actions. This is a lower-level way\nto use a RunLoop instead of using <code>run()</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">run</span>.<span class=\"built_in\">begin</span>();\n<span class=\"comment\">// code to be executed within a RunLoop</span>\n<span class=\"built_in\">run</span>.<span class=\"built_in\">end</span>();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "end",
+          "static": 1,
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 235,
+          "description": "<html><head></head><body><p>Adds the passed target/method and any optional arguments to the named\nqueue to be executed at the end of the RunLoop. If you have not already\nstarted a RunLoop when calling this method one will be started for you\nautomatically.</p>\n<p>At the end of a RunLoop, any methods scheduled in this way will be invoked.\nMethods will be invoked in an order matching the named queues defined in\nthe <code>run.queues</code> property.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>run.schedule(<span class=\"string\">&apos;sync&apos;</span>, <span class=\"keyword\">this</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// this will be executed in the first RunLoop queue, when bindings are synced</span>\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;scheduled on sync queue&apos;</span>);\n});\n\nrun.schedule(<span class=\"string\">&apos;actions&apos;</span>, <span class=\"keyword\">this</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// this will be executed in the &apos;actions&apos; queue, after bindings have synced.</span>\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;scheduled on actions queue&apos;</span>);\n});\n\n<span class=\"comment\">// Note the functions will be run in order based on the run queues order.</span>\n<span class=\"comment\">// Output would be:</span>\n<span class=\"comment\">//   scheduled on sync queue</span>\n<span class=\"comment\">//   scheduled on actions queue</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "schedule",
+          "static": 1,
+          "params": [
+            {
+              "name": "queue",
+              "description": "The name of the queue to schedule against.\n  Default queues are 'sync' and 'actions'",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "target object to use as the context when invoking a method.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke. If you pass a string it\n  will be resolved on the target object at the time the scheduled item is\n  invoked allowing you to change the target function.",
+              "type": "String|Function"
+            },
+            {
+              "name": "arguments*",
+              "description": "Optional arguments to be passed to the queued method.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "*"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 295,
+          "description": "<html><head></head><body><p>Immediately flushes any events scheduled in the &apos;sync&apos; queue. Bindings\nuse this queue so this method is a useful way to immediately force all\nbindings in the application to sync.</p>\n<p>You should call this method anytime you need any changed state to propagate\nthroughout the app immediately without repainting the UI (which happens\nin the later &apos;render&apos; queue added by the <code>ember-views</code> package).</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">run</span>.<span class=\"bash\">sync();</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "sync",
+          "static": 1,
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 320,
+          "description": "<html><head></head><body><p>Invokes the passed target/method and optional arguments after a specified\nperiod of time. The last parameter of this method must always be a number\nof milliseconds.</p>\n<p>You should use this method whenever you need to run some action after a\nperiod of time instead of using <code>setTimeout()</code>. This method will ensure that\nitems that expire during the same script execution cycle all execute\ntogether, which is often more efficient than using a real setTimeout.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>run.later(myContext, function() {\n  // code here will<span class=\"built_in\"> execute </span>within a RunLoop in about 500ms with this == myContext\n}, 500);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "later",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "target of method to invoke",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Optional arguments to pass to the timeout.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "wait",
+              "description": "Number of milliseconds to wait.",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "*"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 352,
+          "description": "<html><head></head><body><p>Schedule a function to run one time during the current RunLoop. This is equivalent\nto calling <code>scheduleOnce</code> with the &quot;actions&quot; queue.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "once",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "The target of the method to invoke.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Optional arguments to pass to the timeout.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 377,
+          "description": "<html><head></head><body><p>Schedules a function to run one time in a given queue of the current RunLoop.\nCalling this method with the same queue/target/method combination will have\nno effect (past the initial call).</p>\n<p>Note that although you can pass optional arguments these will not be\nconsidered when looking for duplicates. New arguments will replace previous\ncalls.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">sayHi</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;hi&apos;</span>);\n}\n\nrun(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  run.scheduleOnce(<span class=\"string\">&apos;afterRender&apos;</span>, myContext, sayHi);\n  run.scheduleOnce(<span class=\"string\">&apos;afterRender&apos;</span>, myContext, sayHi);\n  <span class=\"comment\">// sayHi will only be executed once, in the afterRender queue of the RunLoop</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Also note that for <code>run.scheduleOnce</code> to prevent additional calls, you need to\npass the same function instance. The following case works as expected:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">log</span><span class=\"params\">()</span></span> {\n  console.<span class=\"built_in\">log</span>(<span class=\"string\">&apos;Logging only once&apos;</span>);\n}\n\n<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">scheduleIt</span><span class=\"params\">()</span></span> {\n  run.scheduleOnce(<span class=\"string\">&apos;actions&apos;</span>, myContext, <span class=\"built_in\">log</span>);\n}\n\nscheduleIt();\nscheduleIt();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>But this other case will schedule the function multiple times:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">scheduleIt</span>(<span class=\"params\"></span>) </span>{\n  run.scheduleOnce(<span class=\"string\">&apos;actions&apos;</span>, myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;Closure&apos;</span>);\n  });\n}\n\nscheduleIt();\nscheduleIt();\n\n<span class=\"comment\">// &quot;Closure&quot; will print twice, even though we&apos;re using `run.scheduleOnce`,</span>\n<span class=\"comment\">// because the function we pass to it won&apos;t match the</span>\n<span class=\"comment\">// previously scheduled operation.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Available queues, and their order, can be found at <code>run.queues</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "scheduleOnce",
+          "static": 1,
+          "params": [
+            {
+              "name": "queue",
+              "description": "The name of the queue to schedule against. Default queues are 'sync' and 'actions'.",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "target",
+              "description": "The target of the method to invoke.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Optional arguments to pass to the timeout.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 454,
+          "description": "<html><head></head><body><p>Schedules an item to run from within a separate run loop, after\ncontrol has been returned to the system. This is equivalent to calling\n<code>run.later</code> with a wait time of 1ms.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>run.next(myContext, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"comment\">// code to be executed in the next run loop,</span>\n  <span class=\"comment\">// which will be scheduled after the current one</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Multiple operations scheduled with <code>run.next</code> will coalesce\ninto the same later run loop, along with any other operations\nscheduled by <code>run.later</code> that expire right around the same\ntime that <code>run.next</code> operations will fire.</p>\n<p>Note that there are often alternatives to using <code>run.next</code>.\nFor instance, if you&apos;d like to schedule an operation to happen\nafter all DOM element operations have completed within the current\nrun loop, you can make use of the <code>afterRender</code> run loop queue (added\nby the <code>ember-views</code> package, along with the preceding <code>render</code> queue\nwhere all the DOM element operations happen).</p>\n<p>Example:</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component from <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> Component.extend({\n  didInsertElement() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n    <span class=\"built_in\">run</span>.scheduleOnce(<span class=\"string\">&apos;afterRender&apos;</span>, <span class=\"keyword\">this</span>, <span class=\"string\">&apos;processChildElements&apos;</span>);\n  },\n\n  processChildElements() {\n    <span class=\"comment\">// ... do something with component&apos;s child component</span>\n    <span class=\"comment\">// elements after they&apos;ve finished rendering, which</span>\n    <span class=\"comment\">// can&apos;t be done within this component&apos;s</span>\n    <span class=\"comment\">// `didInsertElement` hook because that gets run</span>\n    <span class=\"comment\">// before the child elements have been added to the DOM.</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>One benefit of the above approach compared to using <code>run.next</code> is\nthat you will be able to perform DOM/CSS operations before unprocessed\nelements are rendered to the screen, which may prevent flickering or\nother artifacts caused by delaying processing until after rendering.</p>\n<p>The other major benefit to the above approach is that <code>run.next</code>\nintroduces an element of non-determinism, which can make things much\nharder to test, due to its reliance on <code>setTimeout</code>; it&apos;s much harder\nto guarantee the order of scheduled operations when they are scheduled\noutside of the current run loop, i.e. with <code>run.next</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "next",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "target of method to invoke",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke.\n  If you pass a string it will be resolved on the\n  target at the time the method is invoked.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Optional arguments to pass to the timeout.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 526,
+          "description": "<html><head></head><body><p>Cancels a scheduled item. Must be a value returned by <code>run.later()</code>,\n<code>run.once()</code>, <code>run.scheduleOnce()</code>, <code>run.next()</code>, <code>run.debounce()</code>, or\n<code>run.throttle()</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> runNext = run.next(myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will not be executed</span>\n});\n\nrun.cancel(runNext);\n\n<span class=\"keyword\">let</span> runLater = run.later(myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will not be executed</span>\n}, <span class=\"number\">500</span>);\n\nrun.cancel(runLater);\n\n<span class=\"keyword\">let</span> runScheduleOnce = run.scheduleOnce(<span class=\"string\">&apos;afterRender&apos;</span>, myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will not be executed</span>\n});\n\nrun.cancel(runScheduleOnce);\n\n<span class=\"keyword\">let</span> runOnce = run.once(myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will not be executed</span>\n});\n\nrun.cancel(runOnce);\n\n<span class=\"keyword\">let</span> throttle = run.throttle(myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will not be executed</span>\n}, <span class=\"number\">1</span>, <span class=\"literal\">false</span>);\n\nrun.cancel(throttle);\n\n<span class=\"keyword\">let</span> debounce = run.debounce(myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will not be executed</span>\n}, <span class=\"number\">1</span>);\n\nrun.cancel(debounce);\n\n<span class=\"keyword\">let</span> debounceImmediate = run.debounce(myContext, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// will be executed since we passed in true (immediate)</span>\n}, <span class=\"number\">100</span>, <span class=\"literal\">true</span>);\n\n<span class=\"comment\">// the 100ms delay until this method can be called again will be canceled</span>\nrun.cancel(debounceImmediate);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "cancel",
+          "static": 1,
+          "params": [
+            {
+              "name": "timer",
+              "description": "Timer object to cancel",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "true if canceled or false/undefined if it wasn't found",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 587,
+          "description": "<html><head></head><body><p>Delay calling the target method until the debounce period has elapsed\nwith no additional debounce calls. If <code>debounce</code> is called again before\nthe specified time has elapsed, the timer is reset and the entire period\nmust pass again before the target method is called.</p>\n<p>This method should be used when an event may be called multiple times\nbut the action should only be called once when the event is done firing.\nA common example is for scroll events where you only want updates to\nhappen once scrolling has ceased.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">whoRan</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"keyword\">this</span>.name + <span class=\"string\">&apos; ran.&apos;</span>);\n}\n\n<span class=\"keyword\">let</span> myContext = { <span class=\"attr\">name</span>: <span class=\"string\">&apos;debounce&apos;</span> };\n\nrun.debounce(myContext, whoRan, <span class=\"number\">150</span>);\n\n<span class=\"comment\">// less than 150ms passes</span>\nrun.debounce(myContext, whoRan, <span class=\"number\">150</span>);\n\n<span class=\"comment\">// 150ms passes</span>\n<span class=\"comment\">// whoRan is invoked with context myContext</span>\n<span class=\"comment\">// console logs &apos;debounce ran.&apos; one time.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Immediate allows you to run the function immediately, but debounce\nother calls for this function until the wait time has elapsed. If\n<code>debounce</code> is called again before the specified time has elapsed,\nthe timer is reset and the entire period must pass again before\nthe method can be called again.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre>function whoRan() {\n  <span class=\"built_in\">console</span>.log(<span class=\"keyword\">this</span>.name + <span class=\"string\">&apos; ran.&apos;</span>);\n}\n\nlet myContext = { name: <span class=\"string\">&apos;debounce&apos;</span> };\n\nrun.debounce(myContext, whoRan, <span class=\"number\">150</span>, <span class=\"literal\">true</span>);\n\n<span class=\"regexp\">//</span> <span class=\"built_in\">console</span> logs <span class=\"string\">&apos;debounce ran.&apos;</span> one time immediately.\n<span class=\"regexp\">//</span> <span class=\"number\">100</span>ms passes\nrun.debounce(myContext, whoRan, <span class=\"number\">150</span>, <span class=\"literal\">true</span>);\n\n<span class=\"regexp\">//</span> <span class=\"number\">150</span>ms passes <span class=\"keyword\">and</span> nothing <span class=\"keyword\">else</span> <span class=\"keyword\">is</span> logged to the <span class=\"built_in\">console</span> <span class=\"keyword\">and</span>\n<span class=\"regexp\">//</span> the debouncee <span class=\"keyword\">is</span> <span class=\"literal\">no</span> longer being watched\nrun.debounce(myContext, whoRan, <span class=\"number\">150</span>, <span class=\"literal\">true</span>);\n\n<span class=\"regexp\">//</span> <span class=\"built_in\">console</span> logs <span class=\"string\">&apos;debounce ran.&apos;</span> one time immediately.\n<span class=\"regexp\">//</span> <span class=\"number\">150</span>ms passes <span class=\"keyword\">and</span> nothing <span class=\"keyword\">else</span> <span class=\"keyword\">is</span> logged to the <span class=\"built_in\">console</span> <span class=\"keyword\">and</span>\n<span class=\"regexp\">//</span> the debouncee <span class=\"keyword\">is</span> <span class=\"literal\">no</span> longer being watched</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "debounce",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "target of method to invoke",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Optional arguments to pass to the timeout.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "wait",
+              "description": "Number of milliseconds to wait.",
+              "type": "Number"
+            },
+            {
+              "name": "immediate",
+              "description": "Trigger the function on the leading instead\n  of the trailing edge of the wait interval. Defaults to false.",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 662,
+          "description": "<html><head></head><body><p>Ensure that the target method is never called more frequently than\nthe specified spacing period. The target method is called immediately.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre>function whoRan() {\n  console.log(this.name + <span class=\"string\">&apos; ran.&apos;</span>);\n}\n\nlet myContext = { name: <span class=\"string\">&apos;throttle&apos;</span> };\n\n<span class=\"keyword\">run</span>.<span class=\"bash\">throttle(myContext, whoRan, 150);\n</span>// whoRan is invoked with context myContext\n// console logs <span class=\"string\">&apos;throttle ran.&apos;</span>\n\n// <span class=\"number\">50</span>ms passes\n<span class=\"keyword\">run</span>.<span class=\"bash\">throttle(myContext, whoRan, 150);\n</span>\n// <span class=\"number\">50</span>ms passes\n<span class=\"keyword\">run</span>.<span class=\"bash\">throttle(myContext, whoRan, 150);\n</span>\n// <span class=\"number\">150</span>ms passes\n<span class=\"keyword\">run</span>.<span class=\"bash\">throttle(myContext, whoRan, 150);\n</span>// whoRan is invoked with context myContext\n// console logs <span class=\"string\">&apos;throttle ran.&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "throttle",
+          "static": 1,
+          "params": [
+            {
+              "name": "target",
+              "description": "target of method to invoke",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke.\n  May be a function or a string. If you pass a string\n  then it will be looked up on the passed target.",
+              "type": "Function|String"
+            },
+            {
+              "name": "args*",
+              "description": "Optional arguments to pass to the timeout.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "spacing",
+              "description": "Number of milliseconds to space out requests.",
+              "type": "Number"
+            },
+            {
+              "name": "immediate",
+              "description": "Trigger the function on the leading instead\n  of the trailing edge of the wait interval. Defaults to true.",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "Timer information for use in canceling, see `run.cancel`.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 707,
+          "description": "<html><head></head><body><p>Add a new named queue after the specified queue.</p>\n<p>The queue to add will only be added once.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_addQueue",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the queue to add.",
+              "type": "String"
+            },
+            {
+              "name": "after",
+              "description": "the name of the queue to add after.",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-metal/lib/run_loop.js",
+          "line": 223,
+          "description": "<html><head></head><body><p>Array of named queues. This array determines the order in which queues\nare flushed at the end of the RunLoop. You can define your own queues by\nsimply adding the queue name to this array. Normally you should not need\nto inspect or modify this property.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "queues",
+          "type": "Array",
+          "default": "['sync', 'actions', 'destroy']",
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/runloop",
+          "module": "@ember/runloop",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/runloop",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

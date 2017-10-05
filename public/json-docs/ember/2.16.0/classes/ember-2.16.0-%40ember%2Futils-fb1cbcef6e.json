@@ -1,0 +1,168 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/utils",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/utils",
+      "shortname": "@ember/utils",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/utils",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/is_blank.js",
+          "line": 5,
+          "description": "<html><head></head><body><p>A value is blank if it is empty or a whitespace string.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>();                <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(null);            <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(undefined);       <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(<span class=\"string\">&apos;&apos;</span>);              <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>([]);              <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(<span class=\"string\">&apos;\\n\\t&apos;</span>);          <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(<span class=\"string\">&apos;  &apos;</span>);            <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>({});              <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(<span class=\"string\">&apos;\\n\\t Hello&apos;</span>);    <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>(<span class=\"string\">&apos;Hello world&apos;</span>);   <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isBlank</span>([<span class=\"number\">1</span>,<span class=\"number\">2</span>,<span class=\"number\">3</span>]);         <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "isBlank",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "Value to test",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/utils",
+          "module": "@ember/utils",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/is_empty.js",
+          "line": 6,
+          "description": "<html><head></head><body><p>Verifies that a value is <code>null</code> or <code>undefined</code>, an empty string, or an empty\narray.</p>\n<p>Constrains the rules on <code>Ember.isNone</code> by returning true for empty strings and\nempty arrays.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>();                <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>(null);            <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>(undefined);       <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>(<span class=\"string\">&apos;&apos;</span>);              <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>([]);              <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>({});              <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>(<span class=\"string\">&apos;Adam Hawkins&apos;</span>);  <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>([<span class=\"number\">0</span>,<span class=\"number\">1</span>,<span class=\"number\">2</span>]);         <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>(<span class=\"string\">&apos;\\n\\t&apos;</span>);          <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isEmpty</span>(<span class=\"string\">&apos;  &apos;</span>);            <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "isEmpty",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "Value to test",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/utils",
+          "module": "@ember/utils",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/is_none.js",
+          "line": 4,
+          "description": "<html><head></head><body><p>Returns true if the passed value is null or undefined. This avoids errors\nfrom JSLint complaining about use of ==, which can be technically\nconfusing.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isNone</span>();              <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isNone</span>(null);          <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isNone</span>(undefined);     <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isNone</span>(<span class=\"string\">&apos;&apos;</span>);            <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isNone</span>([]);            <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isNone</span>(function() {}); <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "isNone",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "Value to test",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/utils",
+          "module": "@ember/utils",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/is_present.js",
+          "line": 5,
+          "description": "<html><head></head><body><p>A value is present if it not <code>isBlank</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>();                <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(null);            <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(undefined);       <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(<span class=\"string\">&apos;&apos;</span>);              <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(<span class=\"string\">&apos;  &apos;</span>);            <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(<span class=\"string\">&apos;\\n\\t&apos;</span>);          <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>([]);              <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>({ <span class=\"attribute\">length</span>: <span class=\"number\">0</span> })    <span class=\"comment\">// false</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(false);           <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(true);            <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(<span class=\"string\">&apos;string&apos;</span>);        <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(<span class=\"number\">0</span>);               <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(function() {})    <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>({});              <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(false);           <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>(<span class=\"string\">&apos;\\n\\t Hello&apos;</span>);    <span class=\"comment\">// true</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.isPresent</span>([<span class=\"number\">1</span>,<span class=\"number\">2</span>,<span class=\"number\">3</span>]);         <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "isPresent",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "Value to test",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/utils",
+          "module": "@ember/utils",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/utils.js",
+          "line": 62,
+          "description": "<html><head></head><body><p>Returns a consistent type for the passed object.</p>\n<p>Use this instead of the built-in <code>typeof</code> to get the type of an item.\nIt will return the same result across all browsers and includes a bit\nmore detail. Here is what will be returned:</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>| Return Value  | Meaning                                              |\n|---------------|------------------------------------------------------|\n| &apos;string&apos;      | String primitive<span class=\"built_in\"> or </span>String object.                   |\n| &apos;number&apos;      | Number primitive<span class=\"built_in\"> or </span>Number object.                   |\n| &apos;boolean&apos;     | Boolean primitive<span class=\"built_in\"> or </span>Boolean object.                 |\n| &apos;null&apos;        | Null value                                           |\n| &apos;undefined&apos;   | Undefined value                                      |\n| &apos;function&apos;    | A function                                           |\n| &apos;array&apos;       | An<span class=\"built_in\"> instance </span>of Array                                 |\n| &apos;regexp&apos;      | An<span class=\"built_in\"> instance </span>of RegExp                                |\n| &apos;date&apos;        | An<span class=\"built_in\"> instance </span>of Date                                  |\n| &apos;filelist&apos;    | An<span class=\"built_in\"> instance </span>of FileList                              |\n| &apos;class&apos;       | An Ember class (created using Ember.Object.extend()) |\n| &apos;instance&apos;    | An Ember object<span class=\"built_in\"> instance </span>                            |\n| &apos;error&apos;       | An<span class=\"built_in\"> instance </span>of the Error object                      |\n| &apos;object&apos;      | A JavaScript object<span class=\"built_in\"> not </span>inheriting from Ember.Object |</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>Examples:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"type\">Ember</span>.typeOf();                       // &apos;undefined&apos;\n<span class=\"type\">Ember</span>.typeOf(null);                   // &apos;null&apos;\n<span class=\"type\">Ember</span>.typeOf(undefined);              // &apos;undefined&apos;\n<span class=\"type\">Ember</span>.typeOf(&apos;michael&apos;);              // &apos;string&apos;\n<span class=\"type\">Ember</span>.typeOf(new <span class=\"type\">String</span>(&apos;michael&apos;));  // &apos;string&apos;\n<span class=\"type\">Ember</span>.typeOf(101);                    // &apos;number&apos;\n<span class=\"type\">Ember</span>.typeOf(new <span class=\"type\">Number(101)</span>);        // &apos;number&apos;\n<span class=\"type\">Ember</span>.typeOf(true);                   // &apos;boolean&apos;\n<span class=\"type\">Ember</span>.typeOf(new <span class=\"type\">Boolean(true)</span>);      // &apos;boolean&apos;\n<span class=\"type\">Ember</span>.typeOf(<span class=\"type\">Ember</span>.<span class=\"type\">A</span>);                // &apos;function&apos;\n<span class=\"type\">Ember</span>.typeOf([1, 2, 90]);             // &apos;array&apos;\n<span class=\"type\">Ember</span>.typeOf(/abc/);                  // &apos;regexp&apos;\n<span class=\"type\">Ember</span>.typeOf(new <span class=\"type\">Date</span>());             // &apos;date&apos;\n<span class=\"type\">Ember</span>.typeOf(event.target.files);     // &apos;filelist&apos;\n<span class=\"type\">Ember</span>.typeOf(<span class=\"type\">Ember</span>.<span class=\"type\">Object</span>.extend());  // &apos;class&apos;\n<span class=\"type\">Ember</span>.typeOf(<span class=\"type\">Ember</span>.<span class=\"type\">Object</span>.create());  // &apos;instance&apos;\n<span class=\"type\">Ember</span>.typeOf(new <span class=\"type\">Error</span>(&apos;teamocil&apos;));  // &apos;error&apos;\n\n// &apos;normal&apos; <span class=\"type\">JavaScript</span> object\n<span class=\"type\">Ember</span>.typeOf({ a: &apos;b&apos; });             // &apos;object&apos;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "typeOf",
+          "params": [
+            {
+              "name": "item",
+              "description": "the item to check",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the type",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "static": 1,
+          "class": "@ember/utils",
+          "module": "@ember/utils",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/utils",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

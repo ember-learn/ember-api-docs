@@ -1,0 +1,180 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.EventDispatcher",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.EventDispatcher",
+      "shortname": "Ember.EventDispatcher",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-views",
+      "namespace": "Ember",
+      "file": "packages/ember-views/lib/system/event_dispatcher.js",
+      "line": 19,
+      "description": "<html><head></head><body><p><code>Ember.EventDispatcher</code> handles delegating browser events to their\ncorresponding <code>Ember.Views.</code> For example, when you click on a view,\n<code>Ember.EventDispatcher</code> ensures that that view&apos;s <code>mouseDown</code> method gets\ncalled.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "extends": "Ember.Object",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-views/lib/system/event_dispatcher.js",
+          "line": 151,
+          "description": "<html><head></head><body><p>Sets up event listeners for standard browser events.</p>\n<p>This will be called after the browser sends a <code>DOMContentReady</code> event. By\ndefault, it will set up all of the listeners on the document body. If you\nwould like to register the listeners on a different element, set the event\ndispatcher&apos;s <code>root</code> property.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "setup",
+          "params": [
+            {
+              "name": "addedEvents",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Ember.EventDispatcher",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/system/event_dispatcher.js",
+          "line": 194,
+          "description": "<html><head></head><body><p>Registers an event listener on the rootElement. If the given event is\ntriggered, the provided event handler will be triggered on the target view.</p>\n<p>If the target view does not implement the event handler, or if the handler\nreturns <code>false</code>, the parent view will be called. The event will continue to\nbubble to each successive parent view until it reaches the top.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "setupHandler",
+          "params": [
+            {
+              "name": "rootElement",
+              "description": "",
+              "type": "Element"
+            },
+            {
+              "name": "event",
+              "description": "the browser-originated event to listen to",
+              "type": "String"
+            },
+            {
+              "name": "eventName",
+              "description": "the name of the method to call on the view",
+              "type": "String"
+            },
+            {
+              "name": "viewRegistry",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Ember.EventDispatcher",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-views/lib/system/action_manager.js",
+          "line": 8,
+          "description": "<html><head></head><body><p>Global action id hash.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "registeredActions",
+          "type": "Object",
+          "class": "Ember.EventDispatcher",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/system/event_dispatcher.js",
+          "line": 32,
+          "description": "<html><head></head><body><p>The set of events names (and associated handler function names) to be setup\nand dispatched by the <code>EventDispatcher</code>. Modifications to this list can be done\nat setup time, generally via the <code>Ember.Application.customEvents</code> hash.</p>\n<p>To add new events to be listened to:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> App = Ember.Application.create({\n  customEvents: {\n    paste: <span class=\"string\">&apos;paste&apos;</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>To prevent default events from being listened to:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">let</span> <span class=\"string\">App</span> <span class=\"string\">=</span> <span class=\"string\">Ember.Application.create({</span>\n<span class=\"attr\">  customEvents:</span> <span class=\"string\">{</span>\n<span class=\"attr\">    mouseenter:</span> <span class=\"literal\">null</span><span class=\"string\">,</span>\n<span class=\"attr\">    mouseleave:</span> <span class=\"literal\">null</span>\n  <span class=\"string\">}</span>\n<span class=\"string\">});</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "events",
+          "type": "Object",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.EventDispatcher",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/system/event_dispatcher.js",
+          "line": 91,
+          "description": "<html><head></head><body><p>The root DOM element to which event listeners should be attached. Event\nlisteners will be attached to the document unless this is overridden.</p>\n<p>Can be specified as a DOMElement or a selector string.</p>\n<p>The default body is a string since this may be evaluated before document.body\nexists in the DOM.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "rootElement",
+          "type": "DOMElement",
+          "default": "'body'",
+          "class": "Ember.EventDispatcher",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/system/event_dispatcher.js",
+          "line": 107,
+          "description": "<html><head></head><body><p>It enables events to be dispatched to the view&apos;s <code>eventManager.</code> When present,\nthis object takes precedence over handling of events on the view itself.</p>\n<p>Note that most Ember applications do not use this feature. If your app also\ndoes not use it, consider setting this property to false to gain some performance\nimprovement by allowing the EventDispatcher to skip the search for the\n<code>eventManager</code> on the view tree.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>let EventDispatcher = Em.EventDispatcher.extend({\n<span class=\"symbol\">  events:</span> {\n      <span class=\"string\">click       :</span> <span class=\"string\">&apos;click&apos;</span>,\n      <span class=\"string\">focusin     :</span> <span class=\"string\">&apos;focusIn&apos;</span>,\n      <span class=\"string\">focusout    :</span> <span class=\"string\">&apos;focusOut&apos;</span>,\n      <span class=\"string\">change      :</span> <span class=\"string\">&apos;change&apos;</span>\n  },\n<span class=\"symbol\">  canDispatchToEventManager:</span> <span class=\"literal\">false</span>\n});\ncontainer.register(<span class=\"string\">&apos;event_dispatcher:main&apos;</span>, EventDispatcher);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "canDispatchToEventManager",
+          "type": "boolean",
+          "default": "false",
+          "since": "2.16.0",
+          "deprecated": true,
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.EventDispatcher",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Object",
+          "type": "missing",
+          "version": "2.16.0"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

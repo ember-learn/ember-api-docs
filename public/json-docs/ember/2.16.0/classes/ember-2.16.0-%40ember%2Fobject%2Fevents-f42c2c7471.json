@@ -1,0 +1,309 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/object/events",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/object/events",
+      "shortname": "@ember/object/events",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 27,
+          "description": "<html><head></head><body><p>Add an event listener</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addListener",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "A target object or a function",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "A function or the name of a function to be called on `target`",
+              "type": "Function|String"
+            },
+            {
+              "name": "once",
+              "description": "A flag whether a function should only be called once",
+              "type": "Boolean"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 70,
+          "description": "<html><head></head><body><p>Remove an event listener</p>\n<p>Arguments should match those passed to <code>Ember.addListener</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeListener",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "A target object or a function",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "A function or the name of a function to be called on `target`",
+              "type": "Function|String"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 97,
+          "description": "<html><head></head><body><p>Suspend listener during callback.</p>\n<p>This should only be used by the target of the event listener\nwhen it is taking an action that would cause the event, e.g.\nan object might suspend its property change listener while it is\nsetting that property.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "suspendListener",
+          "static": 1,
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "A target object or a function",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "A function or the name of a function to be called on `target`",
+              "type": "Function|String"
+            },
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 120,
+          "description": "<html><head></head><body><p>Suspends multiple listeners during a callback.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "suspendListeners",
+          "static": 1,
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventNames",
+              "description": "Array of event names",
+              "type": "Array"
+            },
+            {
+              "name": "target",
+              "description": "A target object or a function",
+              "type": "Object|Function"
+            },
+            {
+              "name": "method",
+              "description": "A function or the name of a function to be called on `target`",
+              "type": "Function|String"
+            },
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 142,
+          "description": "<html><head></head><body><p>Return a list of currently watched events</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "watchedEvents",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 156,
+          "description": "<html><head></head><body><p>Send an event. The execution of suspended listeners\nis skipped, and once listeners are removed. A listener without\na target is executed on the passed object. If an array of actions\nis not passed, the actions stored on the passed object are invoked.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "sendEvent",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "params",
+              "description": "Optional parameters for each listener.",
+              "type": "Array"
+            },
+            {
+              "name": "actions",
+              "description": "Optional array of actions (listeners).",
+              "type": "Array"
+            },
+            {
+              "name": "meta",
+              "description": "Optional meta to lookup listeners",
+              "type": "Meta"
+            }
+          ],
+          "return": {
+            "description": "true"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 209,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "hasListeners",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/events.js",
+          "line": 224,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "listenersFor",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "@ember/object/events",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

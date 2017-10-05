@@ -1,0 +1,34 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/error",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/error",
+      "submodules": {},
+      "elements": {},
+      "fors": {},
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-debug/lib/error.js",
+      "line": 14,
+      "parent": null,
+      "publicclasses": [
+        "EmberError"
+      ],
+      "privateclasses": [],
+      "staticfunctions": {},
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

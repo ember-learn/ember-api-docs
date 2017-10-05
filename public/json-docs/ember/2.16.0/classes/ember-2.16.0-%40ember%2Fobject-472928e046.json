@@ -1,0 +1,376 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/object",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/object",
+      "shortname": "@ember/object",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/computed.js",
+          "line": 444,
+          "description": "<html><head></head><body><p>This helper returns a new property descriptor that wraps the passed\ncomputed property function. You can use this helper to define properties\nwith mixins or via <code>Ember.defineProperty()</code>.</p>\n<p>If you pass a function as an argument, it will be used as a getter. A computed\nproperty defined in this way might look like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre>let Person = Ember.Object.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n\n    <span class=\"keyword\">this</span>.firstName = <span class=\"string\">&apos;Betty&apos;</span>;\n    <span class=\"keyword\">this</span>.lastName = <span class=\"string\">&apos;Jones&apos;</span>;\n  },\n\n  fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, function() {\n    <span class=\"keyword\">return</span> `${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>)} ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>)}`;\n  })\n});\n\nlet client = Person.create();\n\nclient.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>); <span class=\"comment\">// &apos;Betty Jones&apos;</span>\n\nclient.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;Fuller&apos;</span>);\nclient.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>); <span class=\"comment\">// &apos;Betty Fuller&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can pass a hash with two functions, <code>get</code> and <code>set</code>, as an\nargument to provide both a getter and setter:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n</pre></td>\n              <td class=\"code\"><pre>let Person = Ember.Object.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n\n    <span class=\"keyword\">this</span>.firstName = <span class=\"string\">&apos;Betty&apos;</span>;\n    <span class=\"keyword\">this</span>.lastName = <span class=\"string\">&apos;Jones&apos;</span>;\n  },\n\n  fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, {\n    <span class=\"keyword\">get</span>(key) {\n      <span class=\"keyword\">return</span> `${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>)} ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>)}`;\n    },\n    <span class=\"keyword\">set</span>(key, value) {\n      let [firstName, lastName] = value.split(/\\s+/);\n      <span class=\"keyword\">this</span>.setProperties({ firstName, lastName });\n      <span class=\"keyword\">return</span> value;\n    }\n  })\n});\n\nlet client = Person.create();\nclient.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>); <span class=\"comment\">// &apos;Betty&apos;</span>\n\nclient.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;fullName&apos;</span>, <span class=\"string\">&apos;Carroll Fuller&apos;</span>);\nclient.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>); <span class=\"comment\">// &apos;Carroll&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>set</code> function should accept two parameters, <code>key</code> and <code>value</code>. The value\nreturned from <code>set</code> will be the new value of the property.</p>\n<p><em>Note: This is the preferred way to define computed properties when writing third-party\nlibraries that depend on or use Ember, since there is no guarantee that the user\nwill have <a href=\"https://emberjs.com/guides/configuring-ember/disabling-prototype-extensions/\">prototype Extensions</a> enabled.</em></p>\n<p>The alternative syntax, with prototype extensions, might look like:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>fullName: function() {\n  <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>) + <span class=\"string\">&apos; &apos;</span> + <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n}.property(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>)</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "computed",
+          "static": 1,
+          "params": [
+            {
+              "name": "dependentKeys*",
+              "description": "Optional dependent keys that trigger this computed property.",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "func",
+              "description": "The computed property function.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "property descriptor instance",
+            "type": "@ember/object/computed"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/expand_properties.js",
+          "line": 9,
+          "description": "<html><head></head><body><p>Expands <code>pattern</code>, invoking <code>callback</code> for each expansion.</p>\n<p>The only pattern supported is brace-expansion, anything else will be passed\nonce to <code>callback</code> directly.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">function</span> echo(arg){ console.log(arg); }\n\nEmber.expandProperties(<span class=\"string\">&apos;foo.bar&apos;</span>, echo);              <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo.bar&apos;</span>\nEmber.expandProperties(<span class=\"string\">&apos;{foo,bar}&apos;</span>, echo);            <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;bar&apos;</span>\nEmber.expandProperties(<span class=\"string\">&apos;foo.{bar,baz}&apos;</span>, echo);        <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo.bar&apos;</span>, <span class=\"string\">&apos;foo.baz&apos;</span>\nEmber.expandProperties(<span class=\"string\">&apos;{foo,bar}.baz&apos;</span>, echo);        <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo.baz&apos;</span>, <span class=\"string\">&apos;bar.baz&apos;</span>\nEmber.expandProperties(<span class=\"string\">&apos;foo.{bar,baz}.[]&apos;</span>, echo)      <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo.bar.[]&apos;</span>, <span class=\"string\">&apos;foo.baz.[]&apos;</span>\nEmber.expandProperties(<span class=\"string\">&apos;{foo,bar}.{spam,eggs}&apos;</span>, echo) <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo.spam&apos;</span>, <span class=\"string\">&apos;foo.eggs&apos;</span>, <span class=\"string\">&apos;bar.spam&apos;</span>, <span class=\"string\">&apos;bar.eggs&apos;</span>\nEmber.expandProperties(<span class=\"string\">&apos;{foo}.bar.{baz}&apos;</span>)             <span class=\"regexp\">//</span>=&gt; <span class=\"string\">&apos;foo.bar.baz&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "expandProperties",
+          "static": 1,
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "pattern",
+              "description": "The property pattern to expand.",
+              "type": "String"
+            },
+            {
+              "name": "callback",
+              "description": "The callback to invoke.  It is invoked once per\nexpansion, and is passed the expansion.",
+              "type": "Function"
+            }
+          ],
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/get_properties.js",
+          "line": 5,
+          "description": "<html><head></head><body><p>To get multiple properties at once, call <code>Ember.getProperties</code>\nwith an object followed by a list of strings or an array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>Ember.getProperties(record, <span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;zipCode&apos;</span>);\n<span class=\"regexp\">//</span> { firstName: <span class=\"string\">&apos;John&apos;</span>, lastName: <span class=\"string\">&apos;Doe&apos;</span>, zipCode: <span class=\"string\">&apos;10011&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>is equivalent to:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>Ember.getProperties(record, [<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;zipCode&apos;</span>]);\n<span class=\"regexp\">//</span> { firstName: <span class=\"string\">&apos;John&apos;</span>, lastName: <span class=\"string\">&apos;Doe&apos;</span>, zipCode: <span class=\"string\">&apos;10011&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getProperties",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "list",
+              "description": "of keys to get",
+              "type": "String...|Array"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 678,
+          "description": "<html><head></head><body><p>Makes a method available via an additional name.</p>\n<div class=\"highlight app/utils/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/utils/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> EmberObject, {\n  aliasMethod\n} <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> EmberObject.extend({\n  name() {\n    <span class=\"keyword\">return</span> <span class=\"string\">&apos;Tomhuda Katzdale&apos;</span>;\n  },\n  moniker: aliasMethod(<span class=\"string\">&apos;name&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>let goodGuy = Person.create();\n\ngoodGuy.name();    <span class=\"regexp\">//</span> <span class=\"string\">&apos;Tomhuda Katzdale&apos;</span>\ngoodGuy.moniker(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;Tomhuda Katzdale&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "aliasMethod",
+          "static": 1,
+          "params": [
+            {
+              "name": "methodName",
+              "description": "name of the method to alias",
+              "type": "String"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 715,
+          "description": "<html><head></head><body><p>Specify a method that observes property changes.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Object</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">valueObserver</span>: Ember.<span class=\"built_in\">observer</span>(<span class=\"string\">&apos;value&apos;</span>, function() {\n    // Executes whenever the <span class=\"string\">&quot;value&quot;</span> property changes\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Also available as <code>Function.prototype.observes</code> if prototype extensions are\nenabled.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "observer",
+          "params": [
+            {
+              "name": "propertyNames",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            },
+            {
+              "name": "func",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "func"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/properties.js",
+          "line": 87,
+          "description": "<html><head></head><body><p>NOTE: This is a low-level method used by other parts of the API. You almost\nnever want to call this method directly. Instead you should use\n<code>Ember.mixin()</code> to define new properties.</p>\n<p>Defines a property on an object. This method works much like the ES5\n<code>Object.defineProperty()</code> method except that it can also accept computed\nproperties and other special descriptors.</p>\n<p>Normally this method takes only three parameters. However if you pass an\ninstance of <code>Descriptor</code> as the third param then you can pass an\noptional value as the fourth parameter. This is often more efficient than\ncreating new descriptor hashes for each property.</p>\n<h2 id=\"examples\">Examples</h2>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ES5 compatible mode</span>\nEmber.defineProperty(contact, <span class=\"string\">&apos;firstName&apos;</span>, {\n  writable: <span class=\"literal\">true</span>,\n  configurable: <span class=\"literal\">false</span>,\n  enumerable: <span class=\"literal\">true</span>,\n  value: <span class=\"string\">&apos;Charles&apos;</span>\n});\n\n<span class=\"comment\">// define a simple property</span>\nEmber.defineProperty(contact, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"literal\">undefined</span>, <span class=\"string\">&apos;Jolley&apos;</span>);\n\n<span class=\"comment\">// define a computed property</span>\nEmber.defineProperty(contact, <span class=\"string\">&apos;fullName&apos;</span>, Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.firstName+<span class=\"string\">&apos; &apos;</span>+<span class=\"keyword\">this</span>.lastName;\n}));</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "defineProperty",
+          "params": [
+            {
+              "name": "obj",
+              "description": "the object to define this property on. This may be a prototype.",
+              "type": "Object"
+            },
+            {
+              "name": "keyName",
+              "description": "the name of the property",
+              "type": "String"
+            },
+            {
+              "name": "desc",
+              "description": "an instance of `Descriptor` (typically a\n  computed property) or an ES5 descriptor.\n  You must provide this or `data` but not both.",
+              "type": "Descriptor",
+              "optional": true
+            },
+            {
+              "name": "data",
+              "description": "something other than a descriptor, that will\n  become the explicit value of this property.",
+              "type": "*",
+              "optional": true
+            }
+          ],
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_get.js",
+          "line": 21,
+          "description": "<html><head></head><body><p>Gets the value of a property on an object. If the property is computed,\nthe function will be invoked. If the property is not defined but the\nobject implements the <code>unknownProperty</code> method then that will be invoked.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>Ember.<span class=\"builtin-name\">get</span>(obj, <span class=\"string\">&quot;name&quot;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you plan to run on IE8 and older browsers then you should use this\nmethod anytime you want to retrieve a property on an object that you don&apos;t\nknow for sure is private. (Properties beginning with an underscore &apos;_&apos;\nare considered private.)</p>\n<p>On all newer browsers, you only need to use this method to retrieve\nproperties if the property might not be defined on the object and you want\nto respect the <code>unknownProperty</code> handler. Otherwise you can ignore this\nmethod.</p>\n<p>Note that if the object itself is <code>undefined</code>, this method will throw\nan error.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "get",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to retrieve from.",
+              "type": "Object"
+            },
+            {
+              "name": "keyName",
+              "description": "The property key to retrieve",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the property value or `null`.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_get.js",
+          "line": 96,
+          "description": "<html><head></head><body><p>Retrieves the value of a property from an Object, or a default value in the\ncase that the property returns <code>undefined</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.getWithDefault</span>(person, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;Doe&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getWithDefault",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to retrieve from.",
+              "type": "Object"
+            },
+            {
+              "name": "keyName",
+              "description": "The name of the property to retrieve",
+              "type": "String"
+            },
+            {
+              "name": "defaultValue",
+              "description": "The value to return if the property value is undefined",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The property value or the defaultValue.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_set.js",
+          "line": 19,
+          "description": "<html><head></head><body><p>Sets the value of a property on an object, respecting computed properties\nand notifying observers and other listeners of the change. If the\nproperty is not defined but the object implements the <code>setUnknownProperty</code>\nmethod then that will be invoked as well.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>Ember.<span class=\"keyword\">set</span>(obj, <span class=\"string\">&quot;name&quot;</span>, <span class=\"keyword\">value</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "set",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to modify.",
+              "type": "Object"
+            },
+            {
+              "name": "keyName",
+              "description": "The property key to set",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "The value to set",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the passed value.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_set.js",
+          "line": 114,
+          "description": "<html><head></head><body><p>Error-tolerant form of <code>Ember.set</code>. Will not blow up if any part of the\nchain is <code>undefined</code>, <code>null</code>, or destroyed.</p>\n<p>This is primarily used when syncing bindings, which may try to update after\nan object has been destroyed.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "trySet",
+          "static": 1,
+          "params": [
+            {
+              "name": "root",
+              "description": "The object to modify.",
+              "type": "Object"
+            },
+            {
+              "name": "path",
+              "description": "The property path to set",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "The value to set",
+              "type": "Object"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/set_properties.js",
+          "line": 6,
+          "description": "<html><head></head><body><p>Set a list of properties on an object. These properties are set inside\na single <code>beginPropertyChanges</code> and <code>endPropertyChanges</code> batch, so\nobservers will be buffered.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> anObject = Ember.Object.create();\n\nanObject.setProperties({\n  firstName: <span class=\"string\">&apos;Stanley&apos;</span>,\n  lastName: <span class=\"string\">&apos;Stuart&apos;</span>,\n  age: <span class=\"number\">21</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "setProperties",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "properties",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "properties"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

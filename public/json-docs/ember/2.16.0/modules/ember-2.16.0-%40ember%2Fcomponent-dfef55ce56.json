@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/component",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/component",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.Templates.helpers": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-glimmer/lib/helper.js",
+      "line": 11,
+      "parent": null,
+      "publicclasses": [
+        "Checkbox",
+        "TextArea",
+        "TextField",
+        "Component",
+        "Helper"
+      ],
+      "privateclasses": [],
+      "staticfunctions": {
+        "Helper": [
+          {
+            "file": "packages/ember-glimmer/lib/helper.js",
+            "line": 107,
+            "description": "In many cases, the ceremony of a full `Ember.Helper` class is not required.\nThe `helper` method create pure-function helpers without instances. For\nexample:\n\n```app/helpers/format-currency.js\nimport { helper } from '@ember/component/helper';\n\nexport default helper(function(params, hash) {\n  let cents = params[0];\n  let currency = hash.currency;\n  return `${currency}${cents * 0.01}`;\n});\n```",
+            "static": 1,
+            "params": [
+              {
+                "name": "helper",
+                "description": "The helper function",
+                "type": "Function"
+              }
+            ],
+            "itemtype": "method",
+            "name": "helper",
+            "access": "public",
+            "tagname": "",
+            "since": "2.16.0",
+            "class": "Helper",
+            "module": "@ember/component",
+            "version": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

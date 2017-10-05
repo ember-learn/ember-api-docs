@@ -1,0 +1,42 @@
+{
+  "data": {
+    "id": "ember-2.16.0-ember-routing",
+    "type": "module",
+    "attributes": {
+      "name": "ember-routing",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.ControllerMixin": 1,
+        "Ember.Ember": 1
+      },
+      "is_submodule": 1,
+      "namespaces": {},
+      "namespace": "",
+      "file": "packages/ember-routing/lib/services/routing.js",
+      "line": 15,
+      "description": "<html><head></head><body><p>The Router service is the public API that provides component/view layer\naccess to the router.</p>\n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "RouterService"
+      ],
+      "privateclasses": [
+        "Ember.ControllerMixin",
+        "RoutingService"
+      ],
+      "staticfunctions": {},
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}
