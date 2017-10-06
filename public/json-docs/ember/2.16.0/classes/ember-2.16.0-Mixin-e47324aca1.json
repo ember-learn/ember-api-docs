@@ -1,0 +1,83 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Mixin",
+    "type": "class",
+    "attributes": {
+      "name": "Mixin",
+      "shortname": "Mixin",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/mixin.js",
+      "line": 398,
+      "description": "<html><head></head><body><p>The <code>Mixin</code> class allows you to create mixins, whose properties can be\nadded to other classes. For instance,</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Mixin <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object/mixin&apos;</span>;\n\n<span class=\"keyword\">const</span> EditableMixin = Mixin.create({\n  edit() {\n    <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;starting to edit&apos;</span>);\n    <span class=\"keyword\">this</span>.set(<span class=\"string\">&apos;isEditing&apos;</span>, <span class=\"literal\">true</span>);\n  },\n  <span class=\"attr\">isEditing</span>: <span class=\"literal\">false</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> EmberObject <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object&apos;</span>;\n<span class=\"keyword\">import</span> EditableMixin <span class=\"keyword\">from</span> <span class=\"string\">&apos;../mixins/editable&apos;</span>;\n\n<span class=\"comment\">// Mix mixins into classes by passing them as the first arguments to</span>\n<span class=\"comment\">// `.extend.`</span>\n<span class=\"keyword\">const</span> Comment = EmberObject.extend(EditableMixin, {\n  <span class=\"attr\">post</span>: <span class=\"literal\">null</span>\n});\n\n<span class=\"keyword\">let</span> comment = Comment.create({\n  <span class=\"attr\">post</span>: somePost\n});\n\ncomment.edit(); <span class=\"comment\">// outputs &apos;starting to edit&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note that Mixins are created with <code>Mixin.create</code>, not\n<code>Mixin.extend</code>.</p>\n<p>Note that mixins extend a constructor&apos;s prototype so arrays and object literals\ndefined as properties will be shared amongst objects that implement the mixin.\nIf you want to define a property in a mixin that is not shared, you can define\nit either as a computed property or have it be created on initialization of the object.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre>// filters<span class=\"built_in\"> array </span>will be shared amongst any object implementing mixin\nimport Mixin from &apos;@ember/object/mixin&apos;;\nimport { A } from &apos;@ember/array&apos;;\nimport { computed } from &apos;@ember/object&apos;;\n<span class=\"built_in\">\nconst </span>FilterableMixin = Mixin.create({\n  filters: A()\n});\n\n// filters will be a separate<span class=\"built_in\"> array </span>for every object implementing the mixin<span class=\"built_in\">\nconst </span>FilterableMixin = Mixin.create({\n  filters: computed(function() {\n   <span class=\"built_in\"> return </span>A();\n  })\n});\n\n// filters will be created as a separate<span class=\"built_in\"> array </span>during the object&apos;s initialization<span class=\"built_in\">\nconst </span>Filterable = Mixin.create({\n  init() {\n    this._super(...arguments);\n    this.set(<span class=\"string\">&quot;filters&quot;</span>, A());\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 386,
+          "itemtype": "method",
+          "name": "mixin",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "mixins",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "obj"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Mixin",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": [
+          {
+            "type": "class",
+            "id": "ember-2.16.0-Ember.TargetActionSupport"
+          },
+          {
+            "type": "class",
+            "id": "ember-2.16.0-Ember.TextSupport"
+          }
+        ]
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

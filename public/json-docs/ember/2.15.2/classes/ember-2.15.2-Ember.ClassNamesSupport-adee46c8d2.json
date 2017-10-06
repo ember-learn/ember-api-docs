@@ -1,0 +1,100 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.ClassNamesSupport",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.ClassNamesSupport",
+      "shortname": "Ember.ClassNamesSupport",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Ember.Component"
+      ],
+      "module": "ember",
+      "submodule": "ember-views",
+      "namespace": "Ember",
+      "file": "packages/ember-views/lib/mixins/class_names_support.js",
+      "line": 11,
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-views/lib/mixins/child_views_support.js",
+          "line": 22,
+          "description": "<html><head></head><body><p>Array of child views. You should never edit this array directly.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "childViews",
+          "type": "Array",
+          "default": "[]",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ClassNamesSupport",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/class_names_support.js",
+          "line": 26,
+          "description": "<html><head></head><body><p>Standard CSS class names to apply to the view&apos;s outer element. This\nproperty automatically inherits any class names defined by the view&apos;s\nsuperclasses as well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "classNames",
+          "type": "Array",
+          "default": "['ember-view']",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ClassNamesSupport",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/class_names_support.js",
+          "line": 38,
+          "description": "<html><head></head><body><p>A list of properties of the view to apply as class names. If the property\nis a string value, the value of that string will be applied as a class\nname.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;high&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;priority&apos;</span>],\n  <span class=\"attribute\">priority</span>: <span class=\"string\">&apos;high&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the value of the property is a Boolean, the name of that property is\nadded as a dasherized class name.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;is-urgent&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;isUrgent&apos;</span>],\n  <span class=\"attribute\">isUrgent</span>: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you would prefer to use a custom value instead of the dasherized\nproperty name, you can pass a binding like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;urgent&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;isUrgent:urgent&apos;</span>],\n  <span class=\"attribute\">isUrgent</span>: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This list of properties is inherited from the component&apos;s superclasses as well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "classNameBindings",
+          "type": "Array",
+          "default": "[]",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ClassNamesSupport",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,337 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.TextSupport",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.TextSupport",
+      "shortname": "Ember.TextSupport",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "TextArea",
+        "TextField"
+      ],
+      "module": "ember",
+      "namespace": "Ember",
+      "file": "packages/ember-views/lib/mixins/text_support.js",
+      "line": 17,
+      "description": "<html><head></head><body><p><code>TextSupport</code> is a shared mixin used by both <code>Ember.TextField</code> and\n<code>Ember.TextArea</code>. <code>TextSupport</code> adds a number of methods that allow you to\nspecify a controller action to invoke when a certain event is fired on your\ntext field or textarea. The specified controller action would get the current\nvalue of the field passed in as the only argument unless the value of\nthe field is empty. In that case, the instance of the field itself is passed\nin as the only argument.</p>\n<p>Let&apos;s use the pressing of the escape key as an example. If you wanted to\ninvoke a controller action when a user presses the escape key while on your\nfield, you would use the <code>escape-press</code> attribute on your field like so:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>  {{! application.hbs}}\n\n  {{input escape-press=<span class=\"string\">&apos;alertUser&apos;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>    App = Ember.Application.<span class=\"built_in\">create</span>();\n\n    App.ApplicationController = Ember.Controller.extend({\n      actions: {\n        alertUser: <span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">( currentValue )</span></span> {\n          alert( <span class=\"string\">&apos;escape pressed, current value: &apos;</span> + currentValue );\n        }\n      }\n    });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The following chart is a visual representation of what takes place when the\nescape key is pressed in this scenario:</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n</pre></td>\n              <td class=\"code\"><pre>The <span class=\"keyword\">Template</span>\n+---------------------------+\n|<span class=\"string\">                           </span>|\n|<span class=\"string\"> escape-press=&apos;alertUser&apos;  </span>|\n|<span class=\"string\">                           </span>|<span class=\"string\">          TextSupport Mixin\n+----+----------------------+          +-------------------------------+\n     </span>|<span class=\"string\">                                 </span>|<span class=\"string\"> cancel method                 </span>|\n     |<span class=\"string\">      escape button pressed      </span>|<span class=\"string\">                               </span>|\n     +-------------------------------&gt; |<span class=\"string\"> checks for the `escape-press` </span>|\n                                       |<span class=\"string\"> attribute and pulls out the   </span>|\n     +-------------------------------+ |<span class=\"string\"> `alertUser` value             </span>|\n     |<span class=\"string\">     action name &apos;alertUser&apos;     +-------------------------------+\n     </span>|<span class=\"string\">     sent to controller\n     v\nController\n+------------------------------------------ +\n</span>|<span class=\"string\">                                           </span>|\n|<span class=\"string\">  actions: {                               </span>|\n|<span class=\"string\">     alertUser: function( currentValue ){  </span>|\n|<span class=\"string\">       alert( &apos;the esc key was pressed!&apos; ) </span>|\n|<span class=\"string\">     }                                     </span>|\n|<span class=\"string\">  }                                        </span>|\n|<span class=\"string\">                                           </span>|\n+-------------------------------------------+</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>Here are the events that we currently support along with the name of the\nattribute you would need to use on your field. To reiterate, you would use the\nattribute name like so:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>  {{<span class=\"selector-tag\">input</span> attribute-name=<span class=\"string\">&apos;controllerAction&apos;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre>+--------------------+----------------+\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> event              </span>|<span class=\"string\"> attribute name </span>|\n+--------------------+----------------+\n|<span class=\"string\"> new line inserted  </span>|<span class=\"string\"> insert-newline </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> enter key pressed  </span>|<span class=\"string\"> insert-newline </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> cancel key pressed </span>|<span class=\"string\"> escape-press   </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> focusin            </span>|<span class=\"string\"> focus-in       </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> focusout           </span>|<span class=\"string\"> focus-out      </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> keypress           </span>|<span class=\"string\"> key-press      </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> keyup              </span>|<span class=\"string\"> key-up         </span>|\n|<span class=\"string\">                    </span>|<span class=\"string\">                </span>|\n|<span class=\"string\"> keydown            </span>|<span class=\"string\"> key-down       </span>|\n+--------------------+----------------+</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    </body></html>",
+      "uses": [
+        "Ember.TargetActionSupport"
+      ],
+      "extends": "Mixin",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 208,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when either the <code>enter</code>\nkey is pressed or, in the case of the field being a textarea, when a newline\nis inserted. To use this method, give your field an <code>insert-newline</code>\nattribute. The value of that attribute should be the name of the action\nin your controller that you wish to invoke.</p>\n<p>For an example on how to use the <code>insert-newline</code> attribute, please\nreference the example near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "insertNewline",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 227,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when the escape button\nis pressed. To use this method, give your field an <code>escape-press</code>\nattribute. The value of that attribute should be the name of the action\nin your controller that you wish to invoke.</p>\n<p>For an example on how to use the <code>escape-press</code> attribute, please reference\nthe example near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "cancel",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 244,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a field receives\nfocus. To use this method, give your field a <code>focus-in</code> attribute. The value\nof that attribute should be the name of the action in your controller\nthat you wish to invoke.</p>\n<p>For an example on how to use the <code>focus-in</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "focusIn",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 261,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a field loses\nfocus. To use this method, give your field a <code>focus-out</code> attribute. The value\nof that attribute should be the name of the action in your controller\nthat you wish to invoke.</p>\n<p>For an example on how to use the <code>focus-out</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "focusOut",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 279,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a key is pressed.\nTo use this method, give your field a <code>key-press</code> attribute. The value of\nthat attribute should be the name of the action in your controller you\nthat wish to invoke.</p>\n<p>For an example on how to use the <code>key-press</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyPress",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 296,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a key-up event is\nfired. To use this method, give your field a <code>key-up</code> attribute. The value\nof that attribute should be the name of the action in your controller\nthat you wish to invoke.</p>\n<p>For an example on how to use the <code>key-up</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyUp",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 315,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a key-down event is\nfired. To use this method, give your field a <code>key-down</code> attribute. The value\nof that attribute should be the name of the action in your controller that\nyou wish to invoke.</p>\n<p>For an example on how to use the <code>key-down</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyDown",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 386,
+          "itemtype": "method",
+          "name": "mixin",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "mixins",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "obj"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/target_action_support.js",
+          "line": 41,
+          "description": "<html><head></head><body><p>Send an <code>action</code> with an <code>actionContext</code> to a <code>target</code>. The action, actionContext\nand target will be retrieved from properties of the object. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;controller&apos;</span>),\n  action: <span class=\"string\">&apos;save&apos;</span>,\n  actionContext: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;context&apos;</span>),\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction(); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n                          <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>target</code>, <code>action</code>, and <code>actionContext</code> can be provided as properties of\nan optional object argument to <code>triggerAction</code> as well.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>,\n      target: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;controller&apos;</span>),\n      actionContext: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;context&apos;</span>)\n    }); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>actionContext</code> defaults to the object you are mixing <code>TargetActionSupport</code> into.\nBut <code>target</code> and <code>action</code> must be specified either as properties or with the argument\nto <code>triggerAction</code>, or a combination:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.alias(<span class=\"string\">&apos;controller&apos;</span>),\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>\n    }); <span class=\"comment\">// Sends the `save` action, along with a reference to `this`,</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "triggerAction",
+          "params": [
+            {
+              "name": "opts",
+              "description": "(optional, with the optional keys action, target and/or actionContext)",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "true if the action was sent successfully and did not return false",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.TargetActionSupport"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 386,
+          "itemtype": "method",
+          "name": "mixin",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "mixins",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "obj"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 145,
+          "description": "<html><head></head><body><p>The action to be sent when the user presses the return key.</p>\n<p>This is similar to the <code>{{action}}</code> helper, but is fired when\nthe user presses the return key when editing a text field, and sends\nthe value of the field as the context.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "action",
+          "type": "String",
+          "default": "null",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 159,
+          "description": "<html><head></head><body><p>The event that should send the action.</p>\n<p>Options are:</p>\n<ul>\n<li><code>enter</code>: the user pressed enter</li>\n<li><code>keyPress</code>: the user pressed a key</li>\n</ul>\n</body></html>",
+          "itemtype": "property",
+          "name": "onEvent",
+          "type": "String",
+          "default": "enter",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 174,
+          "description": "<html><head></head><body><p>Whether the <code>keyUp</code> event that triggers an <code>action</code> to be sent continues\npropagating to other views.</p>\n<p>By default, when the user presses the return key on their keyboard and\nthe text field has an <code>action</code> set, the action will be sent to the view&apos;s\ncontroller and the key event will stop propagating.</p>\n<p>If you would like parent views to receive the <code>keyUp</code> event even after an\naction has been dispatched, set <code>bubbles</code> to true.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "bubbles",
+          "type": "Boolean",
+          "default": "false",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.16.0-Mixin",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1972 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.RESTAdapter",
+    "type": "class",
+    "attributes": {
+      "name": "DS.RESTAdapter",
+      "shortname": "DS.RESTAdapter",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/adapters/rest.js",
+      "line": 34,
+      "description": "<html><head></head><body><p>The REST adapter allows your store to communicate with an HTTP server by\ntransmitting JSON via XHR. Most Ember.js apps that consume a JSON API\nshould use the REST adapter.</p>\n<p>This adapter is designed around the idea that the JSON exchanged with\nthe server should be conventional.</p>\n<h2 id=\"success-and-failure\">Success and failure</h2>\n<p>The REST adapter will consider a success any response with a status code\nof the 2xx family (&quot;Success&quot;), as well as 304 (&quot;Not Modified&quot;). Any other\nstatus code will be considered a failure.</p>\n<p>On success, the request promise will be resolved with the full response\npayload.</p>\n<p>Failed responses with status code 422 (&quot;Unprocessable Entity&quot;) will be\nconsidered &quot;invalid&quot;. The response will be discarded, except for the\n<code>errors</code> key. The request promise will be rejected with a <code>DS.InvalidError</code>.\nThis error object will encapsulate the saved <code>errors</code> value.</p>\n<p>Any other status codes will be treated as an &quot;adapter error&quot;. The request\npromise will be rejected, similarly to the &quot;invalid&quot; case, but with\nan instance of <code>DS.AdapterError</code> instead.</p>\n<h2 id=\"json-structure\">JSON Structure</h2>\n<p>The REST adapter expects the JSON returned from your server to follow\nthese conventions.</p>\n<h3 id=\"object-root\">Object Root</h3>\n<p>The JSON payload should be an object that contains the record inside a\nroot property. For example, in response to a <code>GET</code> request for\n<code>/posts/1</code>, the JSON should look like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;posts&quot;</span>: {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;I&apos;m Running to Reform the W3C&apos;s Tag&quot;</span>,\n    <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;Yehuda Katz&quot;</span>\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Similarly, in response to a <code>GET</code> request for <code>/posts</code>, the JSON should\nlook like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;posts&quot;</span>: [\n    {\n      <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n      <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;I&apos;m Running to Reform the W3C&apos;s Tag&quot;</span>,\n      <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;Yehuda Katz&quot;</span>\n    },\n    {\n      <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">2</span>,\n      <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;Rails is omakase&quot;</span>,\n      <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;D2H&quot;</span>\n    }\n  ]\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note that the object root can be pluralized for both a single-object response\nand an array response: the REST adapter is not strict on this. Further, if the\nHTTP server responds to a <code>GET</code> request to <code>/posts/1</code> (e.g. the response to a\n<code>findRecord</code> query) with more than one object in the array, Ember Data will\nonly display the object with the matching ID.</p>\n<h3 id=\"conventional-names\">Conventional Names</h3>\n<p>Attribute names in your JSON payload should be the camelCased versions of\nthe attributes in your Ember.js models.</p>\n<p>For example, if you have a <code>Person</code> model:</p>\n<div class=\"highlight app/models/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  firstName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  lastName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  occupation: DS.attr(<span class=\"string\">&apos;string&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The JSON returned should look like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;people&quot;</span>: {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">5</span>,\n    <span class=\"attr\">&quot;firstName&quot;</span>: <span class=\"string\">&quot;Zaphod&quot;</span>,\n    <span class=\"attr\">&quot;lastName&quot;</span>: <span class=\"string\">&quot;Beeblebrox&quot;</span>,\n    <span class=\"attr\">&quot;occupation&quot;</span>: <span class=\"string\">&quot;President&quot;</span>\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h4 id=\"relationships\">Relationships</h4>\n<p>Relationships are usually represented by ids to the record in the\nrelationship. The related records can then be sideloaded in the\nresponse under a key for the type.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;posts&quot;</span>: {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">5</span>,\n    <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;I&apos;m Running to Reform the W3C&apos;s Tag&quot;</span>,\n    <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;Yehuda Katz&quot;</span>,\n    <span class=\"attr\">&quot;comments&quot;</span>: [<span class=\"number\">1</span>, <span class=\"number\">2</span>]\n  },\n  <span class=\"attr\">&quot;comments&quot;</span>: [{\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;User 1&quot;</span>,\n    <span class=\"attr\">&quot;message&quot;</span>: <span class=\"string\">&quot;First!&quot;</span>,\n  }, {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">2</span>,\n    <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;User 2&quot;</span>,\n    <span class=\"attr\">&quot;message&quot;</span>: <span class=\"string\">&quot;Good Luck!&quot;</span>,\n  }]\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the records in the relationship are not known when the response\nis serialized its also possible to represent the relationship as a\nurl using the <code>links</code> key in the response. Ember Data will fetch\nthis url to resolve the relationship when it is accessed for the\nfirst time.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;posts&quot;</span>: {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">5</span>,\n    <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;I&apos;m Running to Reform the W3C&apos;s Tag&quot;</span>,\n    <span class=\"attr\">&quot;author&quot;</span>: <span class=\"string\">&quot;Yehuda Katz&quot;</span>,\n    <span class=\"attr\">&quot;links&quot;</span>: {\n      <span class=\"attr\">&quot;comments&quot;</span>: <span class=\"string\">&quot;/posts/5/comments&quot;</span>\n    }\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h3 id=\"errors\">Errors</h3>\n<p>If a response is considered a failure, the JSON payload is expected to include\na top-level key <code>errors</code>, detailing any specific issues. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;errors&quot;</span>: {\n    <span class=\"attr\">&quot;msg&quot;</span>: <span class=\"string\">&quot;Something went wrong&quot;</span>\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This adapter does not make any assumptions as to the format of the <code>errors</code>\nobject. It will simply be passed along as is, wrapped in an instance\nof <code>DS.InvalidError</code> or <code>DS.AdapterError</code>. The serializer can interpret it\nafterwards.</p>\n<h2 id=\"customization\">Customization</h2>\n<h3 id=\"endpoint-path-customization\">Endpoint path customization</h3>\n<p>Endpoint paths can be prefixed with a <code>namespace</code> by setting the namespace\nproperty on the adapter:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"keyword\">namespace</span>: <span class=\"string\">&apos;api/1&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Requests for the <code>Person</code> model would now target <code>/api/1/people/1</code>.</p>\n<h3 id=\"host-customization\">Host customization</h3>\n<p>An adapter can target other hosts by setting the <code>host</code> property.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  host: <span class=\"string\">&apos;https://api.example.com&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h3 id=\"headers-customization\">Headers customization</h3>\n<p>Some APIs require HTTP headers, e.g. to provide an API key. Arbitrary\nheaders can be set as key/value pairs on the <code>RESTAdapter</code>&apos;s <code>headers</code>\nobject and Ember Data will send them along with each ajax request.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  headers: {\n    <span class=\"string\">&apos;API_KEY&apos;</span>: <span class=\"string\">&apos;secret key&apos;</span>,\n    <span class=\"string\">&apos;ANOTHER_HEADER&apos;</span>: <span class=\"string\">&apos;Some header value&apos;</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>headers</code> can also be used as a computed property to support dynamic\nheaders. In the example below, the <code>session</code> object has been\ninjected into an adapter by Ember&apos;s container.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"attr\">headers</span>: Ember.computed(<span class=\"string\">&apos;session.authToken&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">return</span> {\n      <span class=\"string\">&apos;API_KEY&apos;</span>: <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;session.authToken&apos;</span>),\n      <span class=\"string\">&apos;ANOTHER_HEADER&apos;</span>: <span class=\"string\">&apos;Some header value&apos;</span>\n    };\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>In some cases, your dynamic headers may require data from some\nobject outside of Ember&apos;s observer system (for example\n<code>document.cookie</code>). You can use the\n<a href=\"/api/classes/Ember.ComputedProperty.html#method_volatile\">volatile</a>\nfunction to set the property into a non-cached mode causing the headers to\nbe recomputed with every request.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"attr\">headers</span>: Ember.computed(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">return</span> {\n      <span class=\"string\">&apos;API_KEY&apos;</span>: Ember.get(<span class=\"built_in\">document</span>.cookie.match(<span class=\"regexp\">/apiKey\\=([^;]*)/</span>), <span class=\"string\">&apos;1&apos;</span>),\n      <span class=\"string\">&apos;ANOTHER_HEADER&apos;</span>: <span class=\"string\">&apos;Some header value&apos;</span>\n    };\n  }).volatile()\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "is_constructor": 1,
+      "extends": "DS.Adapter",
+      "uses": [
+        "DS.BuildURLMixin"
+      ],
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 292,
+          "description": "<html><head></head><body><p>By default, the RESTAdapter will send the query params sorted alphabetically to the\nserver.</p>\n<p>For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>store.query(<span class=\"string\">&apos;posts&apos;</span>, { <span class=\"string\">sort:</span> <span class=\"string\">&apos;price&apos;</span>, <span class=\"string\">category:</span> <span class=\"string\">&apos;pets&apos;</span> });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>will generate a requests like this <code>/posts?category=pets&amp;sort=price</code>, even if the\nparameters were specified in a different order.</p>\n<p>That way the generated URL will be deterministic and that simplifies caching mechanisms\nin the backend.</p>\n<p>Setting <code>sortQueryParams</code> to a falsey value will respect the original order.</p>\n<p>In case you want to sort the query parameters with a different criteria, set\n<code>sortQueryParams</code> to your custom sort function.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>import DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  sortQueryParams(<span class=\"keyword\">params</span>) {\n    <span class=\"keyword\">let</span> sortedKeys = Object.keys(<span class=\"keyword\">params</span>).sort().reverse();\n    <span class=\"keyword\">let</span> len = sortedKeys.length, newParams = {};\n\n    <span class=\"keyword\">for</span> (<span class=\"keyword\">let</span> i = <span class=\"number\">0</span>; i &lt; len; i++) {\n      newParams[sortedKeys[i]] = <span class=\"keyword\">params</span>[sortedKeys[i]];\n    }\n\n    <span class=\"keyword\">return</span> newParams;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "sortQueryParams",
+          "params": [
+            {
+              "name": "obj",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 455,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch the JSON for a given\ntype and ID.</p>\n<p>The <code>findRecord</code> method makes an Ajax request to a URL computed by\n<code>buildURL</code>, and returns a promise for the resulting payload.</p>\n<p>This method performs an HTTP <code>GET</code> request with the id provided as part of the query string.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "findRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 488,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch a JSON array for all\nof the records for a given type.</p>\n<p>The <code>findAll</code> method makes an Ajax (HTTP GET) request to a URL computed by <code>buildURL</code>, and returns a\npromise for the resulting payload.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "findAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "sinceToken",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 524,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch a JSON array for\nthe records that match a particular query.</p>\n<p>The <code>query</code> method makes an Ajax (HTTP GET) request to a URL\ncomputed by <code>buildURL</code>, and returns a promise for the resulting\npayload.</p>\n<p>The <code>query</code> argument is a simple JavaScript object that will be passed directly\nto the server as parameters.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "query",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 560,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch a JSON object for\nthe record that matches a particular query.</p>\n<p>The <code>queryRecord</code> method makes an Ajax (HTTP GET) request to a URL\ncomputed by <code>buildURL</code>, and returns a promise for the resulting\npayload.</p>\n<p>The <code>query</code> argument is a simple JavaScript object that will be passed directly\nto the server as parameters.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "queryRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 597,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch several records together if <code>coalesceFindRequests</code> is true</p>\n<p>For example, if the original payload looks like:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n  <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;Rails is omakase&quot;</span>,\n  <span class=\"attr\">&quot;comments&quot;</span>: [ <span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span> ]\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The IDs will be passed as a URL-encoded Array of IDs, in this form:</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>ids<span class=\"string\">[]</span>=<span class=\"number\">1</span>&amp;ids<span class=\"string\">[]</span>=<span class=\"number\">2</span>&amp;ids<span class=\"string\">[]</span>=<span class=\"number\">3</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>Many servers, such as Rails and PHP, will automatically convert this URL-encoded array\ninto an Array for you on the server-side. If you want to encode the\nIDs, differently, just override this (one-line) method.</p>\n<p>The <code>findMany</code> method makes an Ajax (HTTP GET) request to a URL computed by <code>buildURL</code>, and returns a\npromise for the resulting payload.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "findMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "ids",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 644,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch a JSON array for\nthe unloaded records in a has-many relationship that were originally\nspecified as a URL (inside of <code>links</code>).</p>\n<p>For example, if your original payload looks like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;post&quot;</span>: {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;Rails is omakase&quot;</span>,\n    <span class=\"attr\">&quot;links&quot;</span>: { <span class=\"attr\">&quot;comments&quot;</span>: <span class=\"string\">&quot;/posts/1/comments&quot;</span> }\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method will be called with the parent record and <code>/posts/1/comments</code>.</p>\n<p>The <code>findHasMany</code> method will make an Ajax (HTTP GET) request to the originally specified URL.</p>\n<p>The format of your <code>links</code> value will influence the final request URL via the <code>urlPrefix</code> method:</p>\n<ul>\n<li><p>Links beginning with <code>//</code>, <code>http://</code>, <code>https://</code>, will be used as is, with no further manipulation.</p>\n</li>\n<li><p>Links beginning with a single <code>/</code> will have the current adapter&apos;s <code>host</code> value prepended to it.</p>\n</li>\n<li><p>Links with no beginning <code>/</code> will have a parentURL prepended to it, via the current adapter&apos;s <code>buildURL</code>.</p>\n</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "findHasMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "url",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "relationship",
+              "description": "meta object describing the relationship",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 698,
+          "description": "<html><head></head><body><p>Called by the store in order to fetch the JSON for the unloaded record in a\nbelongs-to relationship that was originally specified as a URL (inside of\n<code>links</code>).</p>\n<p>For example, if your original payload looks like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;person&quot;</span>: {\n    <span class=\"attr\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"attr\">&quot;name&quot;</span>: <span class=\"string\">&quot;Tom Dale&quot;</span>,\n    <span class=\"attr\">&quot;links&quot;</span>: { <span class=\"attr\">&quot;group&quot;</span>: <span class=\"string\">&quot;/people/1/group&quot;</span> }\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method will be called with the parent record and <code>/people/1/group</code>.</p>\n<p>The <code>findBelongsTo</code> method will make an Ajax (HTTP GET) request to the originally specified URL.</p>\n<p>The format of your <code>links</code> value will influence the final request URL via the <code>urlPrefix</code> method:</p>\n<ul>\n<li><p>Links beginning with <code>//</code>, <code>http://</code>, <code>https://</code>, will be used as is, with no further manipulation.</p>\n</li>\n<li><p>Links beginning with a single <code>/</code> will have the current adapter&apos;s <code>host</code> value prepended to it.</p>\n</li>\n<li><p>Links with no beginning <code>/</code> will have a parentURL prepended to it, via the current adapter&apos;s <code>buildURL</code>.</p>\n</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "findBelongsTo",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "url",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 750,
+          "description": "<html><head></head><body><p>Called by the store when a newly created record is\nsaved via the <code>save</code> method on a model record instance.</p>\n<p>The <code>createRecord</code> method serializes the record and makes an Ajax (HTTP POST) request\nto a URL computed by <code>buildURL</code>.</p>\n<p>See <code>serialize</code> for information on how to customize the serialized form\nof a record.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "createRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 785,
+          "description": "<html><head></head><body><p>Called by the store when an existing record is saved\nvia the <code>save</code> method on a model record instance.</p>\n<p>The <code>updateRecord</code> method serializes the record and makes an Ajax (HTTP PUT) request\nto a URL computed by <code>buildURL</code>.</p>\n<p>See <code>serialize</code> for information on how to customize the serialized form\nof a record.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "updateRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 822,
+          "description": "<html><head></head><body><p>Called by the store when a record is deleted.</p>\n<p>The <code>deleteRecord</code> method  makes an Ajax (HTTP DELETE) request to a URL computed by <code>buildURL</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "deleteRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 872,
+          "description": "<html><head></head><body><p>Organize records into groups, each of which is to be passed to separate\ncalls to <code>findMany</code>.</p>\n<p>This implementation groups together records that have the same base URL but\ndiffering ids. For example <code>/comments/1</code> and <code>/comments/2</code> will be grouped together\nbecause we know findMany can coalesce them together as <code>/comments?ids[]=1&amp;ids[]=2</code></p>\n<p>It also supports urls where ids are passed as a query param, such as <code>/comments?id=1</code>\nbut not those where there is more than 1 query param such as <code>/comments?id=2&amp;name=David</code>\nCurrently only the query param of <code>id</code> is supported. If you need to support others, please\noverride this or the <code>_stripIDFromURL</code> method.</p>\n<p>It does not group records that have differing base urls, such as for example: <code>/posts/1/comments/2</code>\nand <code>/posts/2/comments/3</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "groupRecordsForFindMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "an array of arrays of records, each of which is to be\n                  loaded separately by `findMany`.",
+            "type": "Array"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 936,
+          "description": "<html><head></head><body><p>Takes an ajax response, and returns the json payload or an error.</p>\n<p>By default this hook just returns the json payload passed to it.\nYou might want to override it in two cases:</p>\n<ol>\n<li><p>Your API might return useful results in the response headers.\nResponse headers are passed in as the second argument.</p>\n</li>\n<li><p>Your API might return errors as successful responses with status code\n200 and an Errors text or object. You can return a <code>DS.InvalidError</code> or a\n<code>DS.AdapterError</code> (or a sub class) from this hook and it will automatically\nreject the promise and put your record into the invalid or error state.</p>\n</li>\n</ol>\n<p>Returning a <code>DS.InvalidError</code> from this method will cause the\nrecord to transition into the <code>invalid</code> state and make the\n<code>errors</code> object available on the record. When returning an\n<code>DS.InvalidError</code> the store will attempt to normalize the error data\nreturned from the server using the serializer&apos;s <code>extractErrors</code>\nmethod.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "handleResponse",
+          "params": [
+            {
+              "name": "status",
+              "description": "",
+              "type": "Number"
+            },
+            {
+              "name": "headers",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "requestData",
+              "description": "- the original request information",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "response",
+            "type": "Object | DS.AdapterError"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 993,
+          "description": "<html><head></head><body><p>Default <code>handleResponse</code> implementation uses this hook to decide if the\nresponse is a success.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "isSuccess",
+          "params": [
+            {
+              "name": "status",
+              "description": "",
+              "type": "Number"
+            },
+            {
+              "name": "headers",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1008,
+          "description": "<html><head></head><body><p>Default <code>handleResponse</code> implementation uses this hook to decide if the\nresponse is an invalid error.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "isInvalid",
+          "params": [
+            {
+              "name": "status",
+              "description": "",
+              "type": "Number"
+            },
+            {
+              "name": "headers",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1023,
+          "description": "<html><head></head><body><p>Takes a URL, an HTTP method and a hash of data, and makes an\nHTTP request.</p>\n<p>When the server responds with a payload, Ember Data will call into <code>extractSingle</code>\nor <code>extractArray</code> (depending on whether the original query was for one record or\nmany records).</p>\n<p>By default, <code>ajax</code> method has the following behavior:</p>\n<ul>\n<li>It sets the response <code>dataType</code> to <code>&quot;json&quot;</code></li>\n<li>If the HTTP method is not <code>&quot;GET&quot;</code>, it sets the <code>Content-Type</code> to be\n<code>application/json; charset=utf-8</code></li>\n<li>If the HTTP method is not <code>&quot;GET&quot;</code>, it stringifies the data passed in. The\ndata is the serialized record in the case of a save.</li>\n<li>Registers success and failure handlers.</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "ajax",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "url",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "type",
+              "description": "The request type GET, POST, PUT, DELETE etc.",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1079,
+          "itemtype": "method",
+          "name": "_ajaxRequest",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "options",
+              "description": "jQuery ajax options to be used for the ajax request",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1088,
+          "itemtype": "method",
+          "name": "ajaxOptions",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "url",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "type",
+              "description": "The request type GET, POST, PUT, DELETE etc.",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1134,
+          "itemtype": "method",
+          "name": "parseErrorResponse",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "responseText",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1152,
+          "itemtype": "method",
+          "name": "normalizeErrorResponse",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "status",
+              "description": "",
+              "type": "Number"
+            },
+            {
+              "name": "headers",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "errors payload",
+            "type": "Array"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1174,
+          "description": "<html><head></head><body><p>Generates a detailed (&quot;friendly&quot;) error message, with plenty\nof information for debugging (good luck!)</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "generatedDetailedMessage",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "status",
+              "description": "",
+              "type": "Number"
+            },
+            {
+              "name": "headers",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "requestData",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "detailed error message",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1244,
+          "description": "<html><head></head><body><p>Get the data (body or query params) for a request.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "dataForRequest",
+          "params": [
+            {
+              "name": "params",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "data",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1302,
+          "description": "<html><head></head><body><p>Get the HTTP method for a request.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "methodForRequest",
+          "params": [
+            {
+              "name": "params",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "HTTP method",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1322,
+          "description": "<html><head></head><body><p>Get the URL for a request.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "urlForRequest",
+          "params": [
+            {
+              "name": "params",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "URL",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1359,
+          "description": "<html><head></head><body><p>Get the headers for a request.</p>\n<p>By default the value of the <code>headers</code> property of the adapter is\nreturned.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "headersForRequest",
+          "params": [
+            {
+              "name": "params",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "headers",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1374,
+          "description": "<html><head></head><body><p>Get an object which contains all properties for a request which should\nbe made.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_requestFor",
+          "params": [
+            {
+              "name": "params",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "request object",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1392,
+          "description": "<html><head></head><body><p>Convert a request object into a hash which can be passed to <code>jQuery.ajax</code>.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_requestToJQueryAjaxHash",
+          "params": [
+            {
+              "name": "request",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "jQuery ajax hash",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 1427,
+          "description": "<html><head></head><body><p>Make a request using <code>jQuery.ajax</code>.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_makeRequest",
+          "params": [
+            {
+              "name": "request",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 87,
+          "description": "<html><head></head><body><p>The <code>findRecord()</code> method is invoked when the store is asked for a record that\nhas not previously been loaded. In response to <code>findRecord()</code> being called, you\nshould query your persistence layer for a record with the given ID. The <code>findRecord</code>\nmethod should return a promise that will resolve to a JavaScript object that will be\nnormalized by the serializer.</p>\n<p>Here is an example <code>findRecord</code> implementation:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  findRecord(store, type, id, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/<span class=\"subst\">${id}</span>`</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "findRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 122,
+          "description": "<html><head></head><body><p>The <code>findAll()</code> method is used to retrieve all records for a given type.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  findAll(store, type, sinceToken) {\n    <span class=\"keyword\">let</span> query = { <span class=\"attr\">since</span>: sinceToken };\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>, query).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "findAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "sinceToken",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 155,
+          "description": "<html><head></head><body><p>This method is called when you call <code>query</code> on the store.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  query(store, type, query) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>, query).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "query",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "recordArray",
+              "description": "",
+              "type": "DS.AdapterPopulatedRecordArray"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 186,
+          "description": "<html><head></head><body><p>The <code>queryRecord()</code> method is invoked when the store is asked for a single\nrecord through a query object.</p>\n<p>In response to <code>queryRecord()</code> being called, you should always fetch fresh\ndata. Once found, you can asynchronously call the store&apos;s <code>push()</code> method\nto push the record into the store.</p>\n<p>Here is an example <code>queryRecord</code> implementation:</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend(DS.BuildURLMixin, {\n  queryRecord(store, type, query) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>, query).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "queryRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "subclass of DS.Model"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 223,
+          "description": "<html><head></head><body><p>If the globally unique IDs for your records should be generated on the client,\nimplement the <code>generateIdForRecord()</code> method. This method will be invoked\neach time you create a new record, and the value returned from it will be\nassigned to the record&apos;s <code>primaryKey</code>.</p>\n<p>Most traditional REST-like HTTP APIs will not use this method. Instead, the ID\nof the record will be set by the server, and your adapter will update the store\nwith the new ID when it calls <code>didCreateRecord()</code>. Only implement this method if\nyou intend to generate record IDs on the client-side.</p>\n<p>The <code>generateIdForRecord()</code> method will be invoked with the requesting store as\nthe first parameter and the newly created record as the second parameter:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n<span class=\"keyword\">import</span> { v4 } <span class=\"keyword\">from</span> <span class=\"string\">&apos;uuid&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  generateIdForRecord(store, inputProperties) {\n    <span class=\"keyword\">return</span> v4();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "generateIdForRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "inputProperties",
+              "description": "a hash of properties to set on the\n  newly created record.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "id",
+            "type": "(String|Number)"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 257,
+          "description": "<html><head></head><body><p>Proxies to the serializer&apos;s <code>serialize</code> method.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  createRecord(store, <span class=\"keyword\">type</span>, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { includeId: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">let</span> url = <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>;\n\n    <span class=\"comment\">// ...</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "serialized snapshot",
+            "type": "Object"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 284,
+          "description": "<html><head></head><body><p>Implement this method in a subclass to handle the creation of\nnew records.</p>\n<p>Serializes the record and sends it to the server.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  createRecord(store, type, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { <span class=\"attr\">includeId</span>: <span class=\"literal\">true</span> });\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;POST&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: data\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "createRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 325,
+          "description": "<html><head></head><body><p>Implement this method in a subclass to handle the updating of\na record.</p>\n<p>Serializes the record update and sends it to the server.</p>\n<p>The updateRecord method is expected to return a promise that will\nresolve with the serialized record. This allows the backend to\ninform the Ember Data store the current state of this record after\nthe update. If it is not possible to return a serialized record\nthe updateRecord promise can also resolve with <code>undefined</code> and the\nEmber Data store will assume all of the updates were successfully\napplied on the backend.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  updateRecord(store, type, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { <span class=\"attr\">includeId</span>: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">let</span> id = snapshot.id;\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;PUT&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/<span class=\"subst\">${id}</span>`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: data\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "updateRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 375,
+          "description": "<html><head></head><body><p>Implement this method in a subclass to handle the deletion of\na record.</p>\n<p>Sends a delete request for the record to the server.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  deleteRecord(store, type, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { <span class=\"attr\">includeId</span>: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">let</span> id = snapshot.id;\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;DELETE&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/<span class=\"subst\">${id}</span>`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: data\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deleteRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 428,
+          "description": "<html><head></head><body><p>The store will call <code>findMany</code> instead of multiple <code>findRecord</code>\nrequests to find multiple records at once if coalesceFindRequests\nis true.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  findMany(store, type, ids, snapshots) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;GET&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: { <span class=\"attr\">filter</span>: { <span class=\"attr\">id</span>: ids.join(<span class=\"string\">&apos;,&apos;</span>) } }\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "findMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the records",
+              "type": "DS.Model"
+            },
+            {
+              "name": "ids",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 465,
+          "description": "<html><head></head><body><p>Organize records into groups, each of which is to be passed to separate\ncalls to <code>findMany</code>.</p>\n<p>For example, if your api has nested URLs that depend on the parent, you will\nwant to group records by their parent.</p>\n<p>The default implementation returns the records as a single group.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "groupRecordsForFindMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "an array of arrays of records, each of which is to be\n                  loaded separately by `findMany`.",
+            "type": "Array"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 485,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload a record from the adapter when a record is requested by\n<code>store.findRecord</code>.</p>\n<p>If this method returns <code>true</code>, the store will re-fetch a record from\nthe adapter. If this method returns <code>false</code>, the store will resolve\nimmediately using the cached record.</p>\n<p>For example, if you are building an events ticketing system, in which users\ncan only reserve tickets for 20 minutes at a time, and want to ensure that\nin each route you have data that is no more than 20 minutes old you could\nwrite:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>shouldReloadRecord(store, ticketSnapshot) {\n  <span class=\"built_in\">let</span> lastAccessedAt = ticketSnapshot.attr(<span class=\"string\">&apos;lastAccessedAt&apos;</span>);\n  <span class=\"built_in\">let</span> timeDiff = moment().diff(lastAccessedAt, <span class=\"string\">&apos;minutes&apos;</span>);\n\n  <span class=\"keyword\">if</span> (timeDiff &gt; 20) {\n    <span class=\"built_in\">return</span> <span class=\"literal\">true</span>;\n  } <span class=\"keyword\">else</span> {\n    <span class=\"built_in\">return</span> <span class=\"literal\">false</span>;\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method would ensure that whenever you do <code>store.findRecord(&apos;ticket&apos;,\nid)</code> you will always get a ticket that is no more than 20 minutes old. In\ncase the cached version is more than 20 minutes old, <code>findRecord</code> will not\nresolve until you fetched the latest version.</p>\n<p>By default this hook returns <code>false</code>, as most UIs should not block user\ninteractions while waiting on data update.</p>\n<p>Note that, with default settings, <code>shouldBackgroundReloadRecord</code> will always\nre-fetch the records in the background even if <code>shouldReloadRecord</code> returns\n<code>false</code>. You can override <code>shouldBackgroundReloadRecord</code> if this does not\nsuit your use case.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "shouldReloadRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 535,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload all records from the adapter when records are requested by\n<code>store.findAll</code>.</p>\n<p>If this method returns <code>true</code>, the store will re-fetch all records from\nthe adapter. If this method returns <code>false</code>, the store will resolve\nimmediately using the cached records.</p>\n<p>For example, if you are building an events ticketing system, in which users\ncan only reserve tickets for 20 minutes at a time, and want to ensure that\nin each route you have data that is no more than 20 minutes old you could\nwrite:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>shouldReloadAll(store, snapshotArray) {\n  <span class=\"keyword\">let</span> snapshots = snapshotArray.snapshots();\n\n  <span class=\"keyword\">return</span> snapshots.any(<span class=\"function\">(<span class=\"params\">ticketSnapshot</span>) =&gt;</span> {\n    <span class=\"keyword\">let</span> lastAccessedAt = ticketSnapshot.attr(<span class=\"string\">&apos;lastAccessedAt&apos;</span>);\n    <span class=\"keyword\">let</span> timeDiff = moment().diff(lastAccessedAt, <span class=\"string\">&apos;minutes&apos;</span>);\n\n    <span class=\"keyword\">if</span> (timeDiff &gt; <span class=\"number\">20</span>) {\n      <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">return</span> <span class=\"literal\">false</span>;\n    }\n  });\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method would ensure that whenever you do <code>store.findAll(&apos;ticket&apos;)</code> you\nwill always get a list of tickets that are no more than 20 minutes old. In\ncase a cached version is more than 20 minutes old, <code>findAll</code> will not\nresolve until you fetched the latest versions.</p>\n<p>By default this methods returns <code>true</code> if the passed <code>snapshotRecordArray</code>\nis empty (meaning that there are no records locally available yet),\notherwise it returns <code>false</code>.</p>\n<p>Note that, with default settings, <code>shouldBackgroundReloadAll</code> will always\nre-fetch all the records in the background even if <code>shouldReloadAll</code> returns\n<code>false</code>. You can override <code>shouldBackgroundReloadAll</code> if this does not suit\nyour use case.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "shouldReloadAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 590,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload a record after the <code>store.findRecord</code> method resolves a\ncached record.</p>\n<p>This method is <em>only</em> checked by the store when the store is\nreturning a cached record.</p>\n<p>If this method returns <code>true</code> the store will re-fetch a record from\nthe adapter.</p>\n<p>For example, if you do not want to fetch complex data over a mobile\nconnection, or if the network is down, you can implement\n<code>shouldBackgroundReloadRecord</code> as follows:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>shouldBackgroundReloadRecord(store, snapshot) {\n  <span class=\"keyword\">let</span> connection = <span class=\"built_in\">window</span>.navigator.connection;\n\n  <span class=\"keyword\">if</span> (connection === <span class=\"string\">&apos;cellular&apos;</span> || connection === <span class=\"string\">&apos;none&apos;</span>) {\n    <span class=\"keyword\">return</span> <span class=\"literal\">false</span>;\n  } <span class=\"keyword\">else</span> {\n    <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default this hook returns <code>true</code> so the data for the record is updated\nin the background.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "shouldBackgroundReloadRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 630,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload a record array after the <code>store.findAll</code> method resolves\nwith a cached record array.</p>\n<p>This method is <em>only</em> checked by the store when the store is\nreturning a cached record array.</p>\n<p>If this method returns <code>true</code> the store will re-fetch all records\nfrom the adapter.</p>\n<p>For example, if you do not want to fetch complex data over a mobile\nconnection, or if the network is down, you can implement\n<code>shouldBackgroundReloadAll</code> as follows:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>shouldBackgroundReloadAll(store, snapshotArray) {\n  <span class=\"keyword\">let</span> connection = <span class=\"built_in\">window</span>.navigator.connection;\n\n  <span class=\"keyword\">if</span> (connection === <span class=\"string\">&apos;cellular&apos;</span> || connection === <span class=\"string\">&apos;none&apos;</span>) {\n    <span class=\"keyword\">return</span> <span class=\"literal\">false</span>;\n  } <span class=\"keyword\">else</span> {\n    <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default this method returns <code>true</code>, indicating that a background reload\nshould always be triggered.</p>\n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "shouldBackgroundReloadAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 33,
+          "description": "<html><head></head><body><p>Builds a URL for a given type and optional ID.</p>\n<p>By default, it pluralizes the type&apos;s name (for example, &apos;post&apos;\nbecomes &apos;posts&apos; and &apos;person&apos; becomes &apos;people&apos;). To override the\npluralization see <a href=\"#method_pathForType\">pathForType</a>.</p>\n<p>If an ID is specified, it adds the ID to the path generated\nfor the type, separated by a <code>/</code>.</p>\n<p>When called by RESTAdapter.findMany() the <code>id</code> and <code>snapshot</code> parameters\nwill be arrays of ids and snapshots.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "buildURL",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "id",
+              "description": "single id or array of ids or query",
+              "type": "(String|Array|Object)"
+            },
+            {
+              "name": "snapshot",
+              "description": "single snapshot or array of snapshots",
+              "type": "(DS.Snapshot|Array)"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "query",
+              "description": "object of query parameters to send for query requests.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 81,
+          "itemtype": "method",
+          "name": "_buildURL",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 110,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.findRecord(type, id)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/user.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindRecord(id, modelName, snapshot) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL();\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/users/<span class=\"subst\">${snapshot.adapterOptions.user_id}</span>/playlists/<span class=\"subst\">${id}</span>`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindRecord",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 137,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.findAll(type)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/comment.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindAll(modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"string\">&apos;data/comments.json&apos;</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindAll",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 161,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.query(type, query)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"attr\">host</span>: <span class=\"string\">&apos;https://api.github.com&apos;</span>,\n  urlForQuery (query, modelName) {\n    <span class=\"keyword\">switch</span>(modelName) {\n      <span class=\"keyword\">case</span> <span class=\"string\">&apos;repo&apos;</span>:\n        <span class=\"keyword\">return</span> <span class=\"string\">`https://api.github.com/orgs/<span class=\"subst\">${query.orgId}</span>/repos`</span>;\n      <span class=\"keyword\">default</span>:\n        <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForQuery",
+          "params": [
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 191,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.queryRecord(type, query)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForQueryRecord({ slug }, modelName) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL();\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/<span class=\"subst\">${<span class=\"built_in\">encodeURIComponent</span>(slug)}</span>`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForQueryRecord",
+          "params": [
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 216,
+          "description": "<html><head></head><body><p>Builds a URL for coalesceing multiple <code>store.findRecord(type, id)</code>\nrecords into 1 request when the adapter&apos;s <code>coalesceFindRequests</code>\nproperty is true.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForFindMany(ids, modelName) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL();\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/coalesce`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindMany",
+          "params": [
+            {
+              "name": "ids",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 244,
+          "description": "<html><head></head><body><p>Builds a URL for fetching a async hasMany relationship when a url\nis not provided by the server.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindHasMany(id, modelName, snapshot) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL(id, modelName);\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/relationships`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindHasMany",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 271,
+          "description": "<html><head></head><body><p>Builds a URL for fetching a async belongsTo relationship when a url\nis not provided by the server.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindBelongsTo(id, modelName, snapshot) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL(id, modelName);\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/relationships`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindBelongsTo",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 298,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>record.save()</code> call when the record was created\nlocally using <code>store.createRecord()</code>.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForCreateRecord(modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments) + <span class=\"string\">&apos;/new&apos;</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForCreateRecord",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 323,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>record.save()</code> call when the record has been update locally.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForUpdateRecord(id, modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"string\">`/<span class=\"subst\">${id}</span>/feed?access_token=<span class=\"subst\">${snapshot.adapterOptions.token}</span>`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForUpdateRecord",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 348,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>record.save()</code> call when the record has been deleted locally.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForDeleteRecord(id, modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments) + <span class=\"string\">&apos;/destroy&apos;</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForDeleteRecord",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 373,
+          "itemtype": "method",
+          "name": "urlPrefix",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "path",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "parentURL",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "urlPrefix",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 410,
+          "description": "<html><head></head><body><p>Determines the pathname for a given type.</p>\n<p>By default, it pluralizes the type&apos;s name (for example,\n&apos;post&apos; becomes &apos;posts&apos; and &apos;person&apos; becomes &apos;people&apos;).</p>\n<h3 id=\"pathname-customization\">Pathname customization</h3>\n<p>For example if you have an object LineItem with an\nendpoint of &quot;/line_items/&quot;.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"attr\">pathForType</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">modelName</span>) </span>{\n    <span class=\"keyword\">var</span> decamelized = Ember.String.decamelize(modelName);\n    <span class=\"keyword\">return</span> Ember.String.pluralize(decamelized);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "pathForType",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "path",
+            "type": "String"
+          },
+          "class": "DS.RESTAdapter",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.BuildURLMixin"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 349,
+          "description": "<html><head></head><body><p>By default the RESTAdapter will send each find request coming from a <code>store.find</code>\nor from accessing a relationship separately to the server. If your server supports passing\nids as a query string, you can set coalesceFindRequests to true to coalesce all find requests\nwithin a single runloop.</p>\n<p>For example, if you have an initial payload of:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attribute\">post</span>: {\n    id: <span class=\"number\">1</span>,\n    comments: [<span class=\"number\">1</span>, <span class=\"number\">2</span>]\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default calling <code>post.get(&apos;comments&apos;)</code> will trigger the following requests(assuming the\ncomments haven&apos;t been loaded before):</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"builtin-name\">GET</span> /comments/1\n<span class=\"builtin-name\">GET</span> /comments/2</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>If you set coalesceFindRequests to <code>true</code> it will instead trigger the following request:</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>GET /comments?ids<span class=\"string\">[]</span>=<span class=\"number\">1</span>&amp;ids<span class=\"string\">[]</span>=<span class=\"number\">2</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>Setting coalesceFindRequests to <code>true</code> also works for <code>store.find</code> requests and <code>belongsTo</code>\nrelationships accessed within the same runloop. If you set <code>coalesceFindRequests: true</code></p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">store</span><span class=\"selector-class\">.findRecord</span>(<span class=\"string\">&apos;comment&apos;</span>, <span class=\"number\">1</span>);\n<span class=\"selector-tag\">store</span><span class=\"selector-class\">.findRecord</span>(<span class=\"string\">&apos;comment&apos;</span>, <span class=\"number\">2</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>will also send a request to: <code>GET /comments?ids[]=1&amp;ids[]=2</code></p>\n<p>Note: Requests coalescing rely on URL building strategy. So if you override <code>buildURL</code> in your app\n<code>groupRecordsForFindMany</code> more likely should be overridden as well in order for coalescing to work.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "coalesceFindRequests",
+          "type": "{boolean}",
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 398,
+          "description": "<html><head></head><body><p>Endpoint paths can be prefixed with a <code>namespace</code> by setting the namespace\nproperty on the adapter:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"keyword\">namespace</span>: <span class=\"string\">&apos;api/1&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Requests for the <code>Post</code> model would now target <code>/api/1/post/</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "namespace",
+          "type": "{String}",
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 416,
+          "description": "<html><head></head><body><p>An adapter can target other hosts by setting the <code>host</code> property.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  host: <span class=\"string\">&apos;https://api.example.com&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Requests for the <code>Post</code> model would now target <code>https://api.example.com/post/</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "host",
+          "type": "{String}",
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapters/rest.js",
+          "line": 433,
+          "description": "<html><head></head><body><p>Some APIs require HTTP headers, e.g. to provide an API\nkey. Arbitrary headers can be set as key/value pairs on the\n<code>RESTAdapter</code>&apos;s <code>headers</code> object and Ember Data will send them\nalong with each ajax request. For dynamic headers see <a href=\"/api/data/classes/DS.RESTAdapter.html#toc_headers-customization\">headers\ncustomization</a>.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  headers: {\n    <span class=\"string\">&apos;API_KEY&apos;</span>: <span class=\"string\">&apos;secret key&apos;</span>,\n    <span class=\"string\">&apos;ANOTHER_HEADER&apos;</span>: <span class=\"string\">&apos;Some header value&apos;</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "headers",
+          "type": "{Object}",
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 65,
+          "description": "<html><head></head><body><p>If you would like your adapter to use a custom serializer you can\nset the <code>defaultSerializer</code> property to be the name of the custom\nserializer.</p>\n<p>Note the <code>defaultSerializer</code> serializer has a lower priority than\na model specific serializer (i.e. <code>PostSerializer</code>) or the\n<code>application</code> serializer.</p>\n<div class=\"highlight app/adapters/django.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/django.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  defaultSerializer: <span class=\"string\">&apos;django&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "defaultSerializer",
+          "type": "{String}",
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 417,
+          "description": "<html><head></head><body><p>By default the store will try to coalesce all <code>fetchRecord</code> calls within the same runloop\ninto as few requests as possible by calling groupRecordsForFindMany and passing it into a findMany call.\nYou can opt out of this behaviour by either not implementing the findMany hook or by setting\ncoalesceFindRequests to false.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "coalesceFindRequests",
+          "type": "{boolean}",
+          "class": "DS.RESTAdapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Adapter"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-data-2.15.3-DS.Adapter",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": [
+          {
+            "type": "class",
+            "id": "ember-data-2.15.3-DS.JSONAPIAdapter"
+          }
+        ]
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

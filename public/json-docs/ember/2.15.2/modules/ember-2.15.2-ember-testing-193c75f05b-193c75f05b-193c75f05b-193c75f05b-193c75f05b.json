@@ -1,0 +1,41 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-testing",
+    "type": "module",
+    "attributes": {
+      "name": "ember-testing",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.Test": 1
+      },
+      "is_submodule": 1,
+      "namespaces": {
+        "Ember.Test": 1,
+        "Ember": 1
+      },
+      "namespace": "",
+      "file": "packages/ember-testing/lib/test.js",
+      "line": 27,
+      "description": "<html><head></head><body><p>The primary purpose of this class is to create hooks that can be implemented\nby an adapter for various test frameworks.</p>\n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.Test.Adapter",
+        "Ember.Test"
+      ],
+      "privateclasses": [],
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

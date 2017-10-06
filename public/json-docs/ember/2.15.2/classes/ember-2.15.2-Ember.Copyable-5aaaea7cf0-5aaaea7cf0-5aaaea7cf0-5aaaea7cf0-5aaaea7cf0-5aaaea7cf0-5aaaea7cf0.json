@@ -1,0 +1,111 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Copyable",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Copyable",
+      "shortname": "Ember.Copyable",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Ember.NativeArray"
+      ],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/copyable.js",
+      "line": 13,
+      "description": "<html><head></head><body><p>Implements some standard methods for copying an object. Add this mixin to\nany object you create that can create a copy of itself. This mixin is\nadded automatically to the built-in array.</p>\n<p>You should generally implement the <code>copy()</code> method to return a copy of the\nreceiver.</p>\n<p>Note that <code>frozenCopy()</code> will only work if you also implement\n<code>Ember.Freezable</code>.</p>\n</body></html>",
+      "since": "2.15.2",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/controller_content_model_alias_deprecation.js",
+          "line": 19,
+          "access": "private",
+          "tagname": "Moves `content` to `model`  at extend time if a `model` is not also specified.\n\nNote that this currently modifies the mixin themselves, which is technically\ndubious but is practically of little consequence. This may change in the\nfuture.",
+          "itemtype": "method",
+          "name": "willMergeMixin",
+          "since": "2.15.2",
+          "class": "Ember.Copyable",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/copyable.js",
+          "line": 30,
+          "description": "<html><head></head><body><p><strong>Required.</strong> You must implement this method to apply this mixin.</p>\n<p>Override to return a copy of the receiver. Default implementation raises\nan exception.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "copy",
+          "params": [
+            {
+              "name": "deep",
+              "description": "if `true`, a deep copy of the object should be made",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "copy of receiver",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Copyable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/copyable.js",
+          "line": 43,
+          "description": "<html><head></head><body><p>If the object implements <code>Ember.Freezable</code>, then this will return a new\ncopy if the object is not frozen and the receiver if the object is frozen.</p>\n<p>Raises an exception if you try to call this method on a object that does\nnot support freezing.</p>\n<p>You should use this method whenever you want a copy of a freezable object\nsince a freezable object can simply return itself without actually\nconsuming more memory.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "frozenCopy",
+          "return": {
+            "description": "copy of receiver or receiver",
+            "type": "Object"
+          },
+          "deprecated": true,
+          "deprecationMessage": "Use `Object.freeze` instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Copyable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

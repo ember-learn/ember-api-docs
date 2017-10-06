@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.AbortError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.AbortError",
+      "shortname": "DS.AbortError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 206,
+      "description": "<html><head></head><body><p>A <code>DS.AbortError</code> is used by an adapter to signal that a request to\nthe external API was aborted. For example, this can occur if the user\nnavigates away from the current page after a request to the external API\nhas been initiated but before a response has been received.</p>\n</body></html>",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

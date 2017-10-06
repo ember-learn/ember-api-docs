@@ -1,0 +1,53 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Error",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Error",
+      "shortname": "Ember.Error",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "namespace": "Ember",
+      "file": "packages/ember-debug/lib/error.js",
+      "line": 12,
+      "description": "<html><head></head><body><p>A subclass of the JavaScript Error object for use in Ember.</p>\n</body></html>",
+      "extends": "Error",
+      "is_constructor": 1,
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Error",
+          "type": "missing",
+          "version": "2.15.2"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

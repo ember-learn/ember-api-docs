@@ -1,0 +1,44 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-application",
+    "type": "module",
+    "attributes": {
+      "name": "ember-application",
+      "submodules": {},
+      "elements": {},
+      "fors": {},
+      "is_submodule": 1,
+      "namespaces": {
+        "Ember.ApplicationInstance": 1,
+        "Ember": 1
+      },
+      "namespace": "",
+      "file": "packages/ember-application/lib/system/resolver.js",
+      "line": 35,
+      "description": "<html><head></head><body><p>The <code>ApplicationInstance</code> encapsulates all of the stateful aspects of a\nrunning <code>Application</code>.</p>\n<p>At a high-level, we break application boot into two distinct phases:</p>\n<ul>\n<li>Definition time, where all of the classes, templates, and other\ndependencies are loaded (typically in the browser).</li>\n<li>Run time, where we begin executing the application once everything\nhas loaded.</li>\n</ul>\n<p>Definition time can be expensive and only needs to happen once since it is\nan idempotent operation. For example, between test runs and FastBoot\nrequests, the application stays the same. It is only the state that we want\nto reset.</p>\n<p>That state is what the <code>ApplicationInstance</code> manages: it is responsible for\ncreating the container that contains all application state, and disposing of\nit once the particular test run or FastBoot request has finished.</p>\n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.ApplicationInstance",
+        "Ember.ApplicationInstance.BootOptions",
+        "Ember.Application",
+        "Ember.EngineInstance",
+        "Ember.Engine",
+        "Ember.DefaultResolver"
+      ],
+      "privateclasses": [],
+      "staticfunctions": {},
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

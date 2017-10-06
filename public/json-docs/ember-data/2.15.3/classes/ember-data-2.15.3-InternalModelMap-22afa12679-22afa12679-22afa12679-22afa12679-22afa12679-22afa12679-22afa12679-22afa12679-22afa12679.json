@@ -1,0 +1,59 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-InternalModelMap",
+    "type": "class",
+    "attributes": {
+      "name": "InternalModelMap",
+      "shortname": "InternalModelMap",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "",
+      "file": "addon/-private/system/internal-model-map.js",
+      "line": 4,
+      "description": "<html><head></head><body><p><code>InternalModelMap</code> is a custom storage map for internalModels of a given modelName\nused by <code>IdentityMap</code>.</p>\n<p>It was extracted from an implicit pojo based &quot;internalModel map&quot; and preserves\nthat interface while we work towards a more official API.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/internal-model-map.js",
+          "line": 109,
+          "description": "<html><head></head><body><p>Destroy all models in the internalModelTest and wipe metadata.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "clear",
+          "class": "InternalModelMap",
+          "module": "ember-data",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

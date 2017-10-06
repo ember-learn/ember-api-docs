@@ -1,0 +1,113 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.Transform",
+    "type": "class",
+    "attributes": {
+      "name": "DS.Transform",
+      "shortname": "DS.Transform",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/transforms/transform.js",
+      "line": 3,
+      "description": "<html><head></head><body><p>The <code>DS.Transform</code> class is used to serialize and deserialize model\nattributes when they are saved or loaded from an\nadapter. Subclassing <code>DS.Transform</code> is useful for creating custom\nattributes. All subclasses of <code>DS.Transform</code> must implement a\n<code>serialize</code> and a <code>deserialize</code> method.</p>\n<p>Example</p>\n<div class=\"highlight app/transforms/temperature.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/transforms/temperature.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"comment\">// Converts centigrade in the JSON to fahrenheit in the app</span>\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Transform.extend({\n  deserialize(serialized, options) {\n    <span class=\"keyword\">return</span> (serialized *  <span class=\"number\">1.8</span>) + <span class=\"number\">32</span>;\n  },\n\n  serialize(deserialized, options) {\n    <span class=\"keyword\">return</span> (deserialized - <span class=\"number\">32</span>) / <span class=\"number\">1.8</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The options passed into the <code>DS.attr</code> function when the attribute is\ndeclared on the model is also available in the transform.</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">export</span> <span class=\"selector-tag\">default</span> <span class=\"selector-tag\">DS</span><span class=\"selector-class\">.Model</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">title</span>: DS.<span class=\"built_in\">attr</span>(<span class=\"string\">&apos;string&apos;</span>),\n  markdown: DS.<span class=\"built_in\">attr</span>(<span class=\"string\">&apos;markdown&apos;</span>, {\n    markdown: {\n      gfm: false,\n      sanitize: true\n    }\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/transforms/markdown.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/transforms/markdown.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"builtin-name\">export</span><span class=\"built_in\"> default </span>DS.Transform.extend({\n  serialize(deserialized, options) {\n    return deserialized.raw;\n  },\n\n  deserialize(serialized, options) {\n    var markdownOptions = options.markdown || {};\n\n    return marked(serialized, markdownOptions);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Usage</p>\n<div class=\"highlight app/models/requirement.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/requirement.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  name: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  temperature: DS.attr(<span class=\"string\">&apos;temperature&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/transforms/transform.js",
+          "line": 71,
+          "description": "<html><head></head><body><p>When given a deserialized value from a record attribute this\nmethod must return the serialized value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>serialize(deserialized, options) {\n  <span class=\"keyword\">return</span> Ember.isEmpty(deserialized) ? <span class=\"literal\">null</span> : <span class=\"built_in\">Number</span>(deserialized)<span class=\"comment\">;</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "deserialized",
+              "description": "The deserialized value"
+            },
+            {
+              "name": "options",
+              "description": "hash of options passed to `DS.attr`"
+            }
+          ],
+          "return": {
+            "description": "The serialized value"
+          },
+          "class": "DS.Transform",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/transforms/transform.js",
+          "line": 90,
+          "description": "<html><head></head><body><p>When given a serialize value from a JSON object this method must\nreturn the deserialized value for the record attribute.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>deserialize(serialized, options) {\n  <span class=\"keyword\">return</span> empty(serialized) ? <span class=\"literal\">null</span> : <span class=\"built_in\">Number</span>(serialized)<span class=\"comment\">;</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deserialize",
+          "params": [
+            {
+              "name": "serialized",
+              "description": "The serialized value"
+            },
+            {
+              "name": "options",
+              "description": "hash of options passed to `DS.attr`"
+            }
+          ],
+          "return": {
+            "description": "The deserialized value"
+          },
+          "class": "DS.Transform",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": [
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.BooleanTransform"
+          },
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.DateTransform"
+          },
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.NumberTransform"
+          },
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.StringTransform"
+          }
+        ]
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

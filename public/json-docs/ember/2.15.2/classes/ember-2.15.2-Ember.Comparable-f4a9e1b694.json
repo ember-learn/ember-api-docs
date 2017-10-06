@@ -1,0 +1,80 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Comparable",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Comparable",
+      "shortname": "Ember.Comparable",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/comparable.js",
+      "line": 8,
+      "description": "<html><head></head><body><p>Implements some standard methods for comparing objects. Add this mixin to\nany class you create that can compare its instances.</p>\n<p>You should implement the <code>compare()</code> method.</p>\n</body></html>",
+      "since": "2.15.2",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/comparable.js",
+          "line": 21,
+          "description": "<html><head></head><body><p><strong>Required.</strong> You must implement this method to apply this mixin.</p>\n<p>Override to return the result of the comparison of the two parameters. The\ncompare method should return:</p>\n<ul>\n<li><code>-1</code> if <code>a &lt; b</code></li>\n<li><code>0</code> if <code>a == b</code></li>\n<li><code>1</code> if <code>a &gt; b</code></li>\n</ul>\n<p>Default implementation raises an exception.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "compare",
+          "params": [
+            {
+              "name": "a",
+              "description": "the first object to compare",
+              "type": "Object"
+            },
+            {
+              "name": "b",
+              "description": "the second object to compare",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the result of the comparison",
+            "type": "Number"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Comparable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,508 @@
+{
+  "data": {
+    "id": "ember-2.16.0-GlobalsResolver",
+    "type": "class",
+    "attributes": {
+      "name": "GlobalsResolver",
+      "shortname": "GlobalsResolver",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/application",
+      "namespace": "",
+      "file": "packages/ember-application/lib/system/resolver.js",
+      "line": 34,
+      "description": "<html><head></head><body><p>The DefaultResolver defines the default lookup rules to resolve\ncontainer lookups before consulting the container for registered\nitems:</p>\n<ul>\n<li>templates are looked up on <code>Ember.TEMPLATES</code></li>\n<li>other names are looked up on the application after converting\nthe name. For example, <code>controller:post</code> looks up\n<code>App.PostController</code> by default.</li>\n<li>there are some nuances (see examples below)</li>\n</ul>\n<h3 id=\"how-resolving-works\">How Resolving Works</h3>\n<p>The container calls this object&apos;s <code>resolve</code> method with the\n<code>fullName</code> argument.</p>\n<p>It first parses the fullName into an object using <code>parseName</code>.</p>\n<p>Then it checks for the presence of a type-specific instance\nmethod of the form <code>resolve[Type]</code> and calls it if it exists.\nFor example if it was resolving &apos;template:post&apos;, it would call\nthe <code>resolveTemplate</code> method.</p>\n<p>Its last resort is to call the <code>resolveOther</code> method.</p>\n<p>The methods of this object are designed to be easy to override\nin a subclass. For example, you could enhance how a template\nis resolved like so:</p>\n<div class=\"highlight app/app.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/app.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Application <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/application&apos;</span>;\n<span class=\"keyword\">import</span> GlobalsResolver <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/application/globals-resolver&apos;</span>;\n\nApp = Application.create({\n  <span class=\"attr\">Resolver</span>: GlobalsResolver.extend({\n    resolveTemplate(parsedName) {\n      <span class=\"keyword\">let</span> resolvedTemplate = <span class=\"keyword\">this</span>._super(parsedName);\n      <span class=\"keyword\">if</span> (resolvedTemplate) { <span class=\"keyword\">return</span> resolvedTemplate; }\n\n      <span class=\"keyword\">return</span> Ember.TEMPLATES[<span class=\"string\">&apos;not_found&apos;</span>];\n    }\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Some examples of how names are resolved:</p>\n<div class=\"highlight text\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">&apos;template:post&apos;</span>           <span class=\"regexp\">//</span>=&gt; Ember.TEMPLATES[<span class=\"string\">&apos;post&apos;</span>]\n<span class=\"string\">&apos;template:posts/byline&apos;</span>   <span class=\"regexp\">//</span>=&gt; Ember.TEMPLATES[<span class=\"string\">&apos;posts/byline&apos;</span>]\n<span class=\"string\">&apos;template:posts.byline&apos;</span>   <span class=\"regexp\">//</span>=&gt; Ember.TEMPLATES[<span class=\"string\">&apos;posts/byline&apos;</span>]\n<span class=\"string\">&apos;template:blogPost&apos;</span>       <span class=\"regexp\">//</span>=&gt; Ember.TEMPLATES[<span class=\"string\">&apos;blog-post&apos;</span>]\n<span class=\"string\">&apos;controller:post&apos;</span>         <span class=\"regexp\">//</span>=&gt; App.PostController\n<span class=\"string\">&apos;controller:posts.index&apos;</span>  <span class=\"regexp\">//</span>=&gt; App.PostsIndexController\n<span class=\"string\">&apos;controller:blog/post&apos;</span>    <span class=\"regexp\">//</span>=&gt; Blog.PostController\n<span class=\"string\">&apos;controller:basic&apos;</span>        <span class=\"regexp\">//</span>=&gt; Controller\n<span class=\"string\">&apos;route:post&apos;</span>              <span class=\"regexp\">//</span>=&gt; App.PostRoute\n<span class=\"string\">&apos;route:posts.index&apos;</span>       <span class=\"regexp\">//</span>=&gt; App.PostsIndexRoute\n<span class=\"string\">&apos;route:blog/post&apos;</span>         <span class=\"regexp\">//</span>=&gt; Blog.PostRoute\n<span class=\"string\">&apos;route:basic&apos;</span>             <span class=\"regexp\">//</span>=&gt; Route\n<span class=\"string\">&apos;foo:post&apos;</span>                <span class=\"regexp\">//</span>=&gt; App.PostFoo\n<span class=\"string\">&apos;model:post&apos;</span>              <span class=\"regexp\">//</span>=&gt; App.Post</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "EmberObject",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 137,
+          "description": "<html><head></head><body><p>This method is called via the container&apos;s resolver method.\nIt parses the provided <code>fullName</code> and then looks up and\nreturns the appropriate template or class.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "resolve",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "the lookup string",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the resolved factory",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 171,
+          "description": "<html><head></head><body><p>Convert the string name of the form &apos;type:name&apos; to\na Javascript object with the parsed aspects of the name\nbroken out.</p>\n</body></html>",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "the lookup string",
+              "type": "String"
+            }
+          ],
+          "itemtype": "method",
+          "name": "parseName",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 225,
+          "description": "<html><head></head><body><p>Returns a human-readable description for a fullName. Used by the\nApplication namespace in assertions to describe the\nprecise name of the class that Ember is looking for, rather than\ncontainer keys.</p>\n</body></html>",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "the lookup string",
+              "type": "String"
+            }
+          ],
+          "itemtype": "method",
+          "name": "lookupDescription",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 256,
+          "description": "<html><head></head><body><p>Given a parseName object (output from <code>parseName</code>), apply\nthe conventions expected by <code>Ember.Router</code></p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "useRouterNaming",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 272,
+          "description": "<html><head></head><body><p>Look up the template in Ember.TEMPLATES</p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveTemplate",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 286,
+          "description": "<html><head></head><body><p>Lookup the view using <code>resolveOther</code></p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveView",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 299,
+          "description": "<html><head></head><body><p>Lookup the controller using <code>resolveOther</code></p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveController",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 311,
+          "description": "<html><head></head><body><p>Lookup the route using <code>resolveOther</code></p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveRoute",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 324,
+          "description": "<html><head></head><body><p>Lookup the model on the Application namespace</p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveModel",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 338,
+          "description": "<html><head></head><body><p>Look up the specified object (from parsedName) on the appropriate\nnamespace (usually on the Application)</p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveHelper",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 350,
+          "description": "<html><head></head><body><p>Look up the specified object (from parsedName) on the appropriate\nnamespace (usually on the Application)</p>\n</body></html>",
+          "params": [
+            {
+              "name": "parsedName",
+              "description": "a parseName object with the parsed\n  fullName lookup string",
+              "type": "Object"
+            }
+          ],
+          "itemtype": "method",
+          "name": "resolveOther",
+          "access": "protected",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 370,
+          "itemtype": "method",
+          "name": "_logLookup",
+          "params": [
+            {
+              "name": "found",
+              "description": "",
+              "type": "Boolean"
+            },
+            {
+              "name": "parsedName",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 389,
+          "description": "<html><head></head><body><p>Used to iterate all items of a given type.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "knownForType",
+          "params": [
+            {
+              "name": "type",
+              "description": "the type to search for",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 416,
+          "description": "<html><head></head><body><p>Converts provided name from the backing namespace into a container lookup name.</p>\n<p>Examples:</p>\n<ul>\n<li>App.FooBarHelper -&gt; helper:foo-bar</li>\n<li>App.THelper -&gt; helper:t</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "translateToContainerFullname",
+          "params": [
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 209,
+          "description": "<html><head></head><body><p>An overridable method called when objects are instantiated. By default,\ndoes nothing unless it is overridden during class definition.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  init() {\n    alert(`Name <span class=\"keyword\">is</span> ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>)}`);\n  }\n});\n\n<span class=\"keyword\">let</span> steve = Person.create({\n  name: <span class=\"string\">&apos;Steve&apos;</span>\n});\n\n<span class=\"comment\">// alerts &apos;Name is Steve&apos;.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>NOTE: If you do override <code>init</code> for a framework class like <code>Ember.View</code>,\nbe sure to call <code>this._super(...arguments)</code> in your\n<code>init</code> declaration! If you don&apos;t, Ember may not have an opportunity to\ndo important setup work, and you&apos;ll see strange behavior in your\napplication.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 444,
+          "description": "<html><head></head><body><p>Destroys an object by setting the <code>isDestroyed</code> flag and removing its\nmetadata, which effectively destroys observers and bindings.</p>\n<p>If you try to set a property on a destroyed object, an exception will be\nraised.</p>\n<p>Note that destruction is scheduled for the end of the run loop and does not\nhappen immediately.  It will set an isDestroying flag immediately.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "return": {
+            "description": "receiver",
+            "type": "EmberObject"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 470,
+          "description": "<html><head></head><body><p>Override to implement teardown.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willDestroy",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 478,
+          "description": "<html><head></head><body><p>Invoked by the run loop to actually destroy the object. This is\nscheduled for execution by the <code>destroy</code> method.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_scheduledDestroy",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 497,
+          "description": "<html><head></head><body><p>Returns a string representation which attempts to provide more information\nthan Javascript&apos;s <code>toString</code> typically does, in a generic way for all Ember\nobjects.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"keyword\">Person</span> = Ember.Object.extend()\n<span class=\"keyword\">person</span> = <span class=\"keyword\">Person</span>.create()\n<span class=\"keyword\">person</span>.toString() //=&gt; <span class=\"string\">&quot;&lt;Person:ember1024&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the object&apos;s class is not defined on an Ember namespace, it will\nindicate it is a subclass of the registered superclass:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"attr\">Student</span> = Person.extend()\n<span class=\"keyword\">let</span> <span class=\"attr\">student</span> = Student.create()\nstudent.<span class=\"built_in\">toString</span>() //=&gt; <span class=\"string\">&quot;&lt;(subclass of Person):ember1025&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the method <code>toStringExtension</code> is defined, its return value will be\nincluded in the output.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>const Teacher = Person.extend({\n  toStringExtension() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>);\n  }\n});\nteacher = Teacher.create()\nteacher.toString(); <span class=\"comment\">//=&gt; &quot;&lt;Teacher:ember1026:Tom Dale&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "toString",
+          "return": {
+            "description": "string representation",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-application/lib/system/resolver.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>This will be set to the Application instance when it is\ncreated.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "namespace",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 247,
+          "description": "<html><head></head><body><p>Defines the properties that will be concatenated from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by combining the superclass&apos; property\nvalue with the subclass&apos; value. An example of this in use within Ember\nis the <code>classNames</code> property of <code>Ember.View</code>.</p>\n<p>Here is some sample code showing the difference between a concatenated\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"symbol\">Bar</span> = <span class=\"symbol\">Ember</span>.<span class=\"symbol\">Object</span>.extend({\n  // <span class=\"symbol\">Configure</span> which properties to concatenate\n  concatenatedProperties: [<span class=\"string\">&apos;concatenatedProperty&apos;</span>],\n\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>]\n});\n\nconst <span class=\"symbol\">FooBar</span> = <span class=\"symbol\">Bar</span>.extend({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>]\n});\n\nlet fooBar = <span class=\"symbol\">FooBar</span>.create();\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;foo&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior extends to object creation as well. Continuing the\nabove example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let fooBar = <span class=\"symbol\">FooBar</span>.create({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>]\n})\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;baz&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Adding a single property that is not an array will just add it in the array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fooBar = FooBar.create({\n  concatenatedProperty: <span class=\"string\">&apos;baz&apos;</span>\n})\nview.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using the <code>concatenatedProperties</code> property, we can tell Ember to mix the\ncontent of the properties.</p>\n<p>In <code>Ember.Component</code> the <code>classNames</code>, <code>classNameBindings</code> and\n<code>attributeBindings</code> properties are concatenated.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual concatenated property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "concatenatedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 320,
+          "description": "<html><head></head><body><p>Defines the properties that will be merged from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by merging the superclass property value\nwith the subclass property&apos;s value. An example of this in use within Ember\nis the <code>queryParams</code> property of routes.</p>\n<p>Here is some sample code showing the difference between a merged\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Bar = Ember.Object.extend({\n  <span class=\"comment\">// Configure which properties are to be merged</span>\n  mergedProperties: [<span class=\"string\">&apos;mergedProperty&apos;</span>],\n\n  someNonMergedProperty: {\n    nonMerged: <span class=\"string\">&apos;superclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    page: { replace: <span class=\"literal\">false</span> },\n    limit: { replace: <span class=\"literal\">true</span> }\n  }\n});\n\n<span class=\"keyword\">const</span> FooBar = Bar.extend({\n  someNonMergedProperty: {\n    completelyNonMerged: <span class=\"string\">&apos;subclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    limit: { replace: <span class=\"literal\">false</span> }\n  }\n});\n\n<span class=\"keyword\">let</span> fooBar = FooBar.create();\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;someNonMergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; { completelyNonMerged: &apos;subclass value of nonMerged&apos; }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the entire object, including the nonMerged property of</span>\n<span class=\"comment\">// the superclass object, has been replaced</span>\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;mergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; {</span>\n<span class=\"comment\">//   page: {replace: false},</span>\n<span class=\"comment\">//   limit: {replace: false}</span>\n<span class=\"comment\">// }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the page remains from the superclass, and the</span>\n<span class=\"comment\">// `limit` property&apos;s value of `false` has been merged from</span>\n<span class=\"comment\">// the subclass.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior is not available during object <code>create</code> calls. It is only\navailable at <code>extend</code> time.</p>\n<p>In <code>Ember.Route</code> the <code>queryParams</code> property is merged.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual merged property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "mergedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 394,
+          "description": "<html><head></head><body><p>Destroyed object property flag.</p>\n<p>if this property is <code>true</code> the observers and bindings were already\nremoved by the effect of calling the <code>destroy()</code> method.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroyed",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 419,
+          "description": "<html><head></head><body><p>Destruction scheduled flag. The <code>destroy()</code> method has been called.</p>\n<p>The object stays intact until the end of the run loop at which point\nthe <code>isDestroyed</code> flag is set.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroying",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "GlobalsResolver",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.16.0-EmberObject",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/application",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

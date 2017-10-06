@@ -1,0 +1,87 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Freezable",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Freezable",
+      "shortname": "Ember.Freezable",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/freezable.js",
+      "line": 13,
+      "description": "<html><head></head><body><p>The <code>Ember.Freezable</code> mixin implements some basic methods for marking an\nobject as frozen. Once an object is frozen it should be read only. No changes\nmay be made the internal state of the object.</p>\n<h2 id=\"enforcement\">Enforcement</h2>\n<p>To fully support freezing in your subclass, you must include this mixin and\noverride any method that might alter any property on the object to instead\nraise an exception. You can check the state of an object by checking the\n<code>isFrozen</code> property.</p>\n<p>Although future versions of JavaScript may support language-level freezing\nobject objects, that is not the case today. Even if an object is freezable,\nit is still technically possible to modify the object, even though it could\nbreak other parts of your application that do not expect a frozen object to\nchange. It is, therefore, very important that you always respect the\n<code>isFrozen</code> property on all freezable objects.</p>\n<h2 id=\"example-usage\">Example Usage</h2>\n<p>The example below shows a simple object that implement the <code>Ember.Freezable</code>\nprotocol.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre>Contact = Ember.Object.extend(Ember.Freezable, {\n  firstName: <span class=\"literal\">null</span>,\n  lastName: <span class=\"literal\">null</span>,\n\n  <span class=\"comment\">// swaps the names</span>\n  swapNames: function() {\n    <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isFrozen&apos;</span>)) <span class=\"keyword\">throw</span> Ember.FROZEN_ERROR;\n    <span class=\"keyword\">var</span> tmp = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>);\n    <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>));\n    <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;lastName&apos;</span>, tmp);\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>;\n  }\n\n});\n\nc = Contact.create({ firstName: <span class=\"string\">&quot;John&quot;</span>, lastName: <span class=\"string\">&quot;Doe&quot;</span> });\nc.swapNames();  <span class=\"comment\">// returns c</span>\nc.freeze();\nc.swapNames();  <span class=\"comment\">// EXCEPTION</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"copying\">Copying</h2>\n<p>Usually the <code>Ember.Freezable</code> protocol is implemented in cooperation with the\n<code>Ember.Copyable</code> protocol, which defines a <code>frozenCopy()</code> method that will\nreturn a frozen object, if the object implements this method as well.</p>\n</body></html>",
+      "since": "2.15.2",
+      "deprecated": true,
+      "deprecationMessage": "Use `Object.freeze` instead.",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/freezable.js",
+          "line": 92,
+          "description": "<html><head></head><body><p>Freezes the object. Once this method has been called the object should\nno longer allow any properties to be edited.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "freeze",
+          "return": {
+            "description": "receiver",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Freezable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/freezable.js",
+          "line": 82,
+          "description": "<html><head></head><body><p>Set to <code>true</code> when the object is frozen. Use this property to detect\nwhether your object is frozen or not.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isFrozen",
+          "type": "Boolean",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Freezable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "data": {
+    "id": "ember-2.16.0-ComponentStateBucket",
+    "type": "class",
+    "attributes": {
+      "name": "ComponentStateBucket",
+      "shortname": "ComponentStateBucket",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "namespace": "",
+      "file": "packages/ember-glimmer/lib/utils/curly-component-state-bucket.js",
+      "line": 7,
+      "description": "<html><head></head><body><p>Represents the internal state of the component.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

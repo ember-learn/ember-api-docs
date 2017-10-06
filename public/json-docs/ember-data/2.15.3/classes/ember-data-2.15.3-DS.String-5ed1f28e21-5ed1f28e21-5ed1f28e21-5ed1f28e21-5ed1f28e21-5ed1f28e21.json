@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.String",
+    "type": "class",
+    "attributes": {
+      "name": "DS.String",
+      "shortname": "String",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "node_modules/ember-inflector/addon/lib/ext/string.js",
+          "line": 8,
+          "description": "<html><head></head><body><p>See {{#crossLink &quot;Ember.String/pluralize&quot;}}{{/crossLink}}</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "pluralize",
+          "class": "DS.String",
+          "module": "ember-data",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/ext/string.js",
+          "line": 18,
+          "description": "<html><head></head><body><p>See {{#crossLink &quot;Ember.String/singularize&quot;}}{{/crossLink}}</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "singularize",
+          "class": "DS.String",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

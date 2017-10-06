@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.NotFoundError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.NotFoundError",
+      "shortname": "DS.NotFoundError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 265,
+      "description": "<html><head></head><body><p>A <code>DS.NotFoundError</code> equates to a HTTP <code>404 Not Found</code> response status.\nIt is used by an adapter to signal that a request to the external API\nwas rejected because the resource could not be found on the API.</p>\n<p>An example use case would be to detect if the user has entered a route\nfor a specific model that does not exist. For example:</p>\n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember from <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">const</span> { NotFoundError } = DS;\n\nexport <span class=\"keyword\">default</span> Ember.Route.extend({\n  model(params) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;store&apos;</span>).findRecord(<span class=\"string\">&apos;post&apos;</span>, params.post_id);\n  },\n\n  actions: {\n    <span class=\"keyword\">error</span>(<span class=\"keyword\">error</span>, transition) {\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">error</span> <span class=\"keyword\">instanceof</span> NotFoundError) {\n        <span class=\"comment\">// redirect to a list of all posts instead</span>\n        <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;posts&apos;</span>);\n      } <span class=\"keyword\">else</span> {\n        <span class=\"comment\">// otherwise let the error bubble</span>\n        <span class=\"keyword\">return</span> <span class=\"keyword\">true</span>;\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

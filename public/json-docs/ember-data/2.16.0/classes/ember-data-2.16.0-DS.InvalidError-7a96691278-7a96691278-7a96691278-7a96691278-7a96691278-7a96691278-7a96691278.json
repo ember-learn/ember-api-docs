@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.InvalidError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.InvalidError",
+      "shortname": "DS.InvalidError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 110,
+      "description": "<html><head></head><body><p>A <code>DS.InvalidError</code> is used by an adapter to signal the external API\nwas unable to process a request because the content was not\nsemantically correct or meaningful per the API. Usually this means a\nrecord failed some form of server side validation. When a promise\nfrom an adapter is rejected with a <code>DS.InvalidError</code> the record will\ntransition to the <code>invalid</code> state and the errors will be set to the\n<code>errors</code> property on the record.</p>\n<p>For Ember Data to correctly map errors to their corresponding\nproperties on the model, Ember Data expects each error to be\na valid json-api error object with a <code>source/pointer</code> that matches\nthe property name. For example if you had a Post model that\nlooked like this.</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  title: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  content: DS.attr(<span class=\"string\">&apos;string&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>To show an error from the server related to the <code>title</code> and\n<code>content</code> properties your adapter could return a promise that\nrejects with a <code>DS.InvalidError</code> object that looks like this:</p>\n<div class=\"highlight app/adapters/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  updateRecord() {\n    <span class=\"comment\">// Fictional adapter that always rejects</span>\n    <span class=\"keyword\">return</span> Ember.RSVP.reject(<span class=\"keyword\">new</span> DS.InvalidError([\n      {\n        detail: <span class=\"string\">&apos;Must be unique&apos;</span>,\n        <span class=\"keyword\">source</span>: { pointer: <span class=\"string\">&apos;/data/attributes/title&apos;</span> }\n      },\n      {\n        detail: <span class=\"string\">&apos;Must not be blank&apos;</span>,\n        <span class=\"keyword\">source</span>: { pointer: <span class=\"string\">&apos;/data/attributes/content&apos;</span>}\n      }\n    ]));\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Your backend may use different property names for your records the\nstore will attempt extract and normalize the errors using the\nserializer&apos;s <code>extractErrors</code> method before the errors get added to\nthe the model. As a result, it is safe for the <code>InvalidError</code> to\nwrap the error payload unaltered.</p>\n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.ForbiddenError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.ForbiddenError",
+      "shortname": "DS.ForbiddenError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 253,
+      "description": "<html><head></head><body><p>A <code>DS.ForbiddenError</code> equates to a HTTP <code>403 Forbidden</code> response status.\nIt is used by an adapter to signal that a request to the external API was\nvalid but the server is refusing to respond to it. If authorization was\nprovided and is valid, then the authenticated user does not have the\nnecessary permissions for the request.</p>\n</body></html>",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

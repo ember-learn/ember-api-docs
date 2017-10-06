@@ -1,0 +1,211 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS",
+    "type": "namespace",
+    "attributes": {
+      "name": "DS",
+      "shortname": "DS",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "",
+      "file": "addon/-private/core.js",
+      "line": 8,
+      "description": "<html><head></head><body><p>All Ember Data classes, methods and functions are defined inside of this namespace.</p>\n</body></html>",
+      "static": 1,
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/-private/adapters/errors.js",
+          "line": 325,
+          "description": "<html><head></head><body><p>Convert an hash of errors into an array with errors in JSON-API format.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n</pre></td>\n              <td class=\"code\"><pre>import DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nconst { errorsHashToArray } = DS;\n\nlet errors = {\n  base: <span class=\"string\">&apos;Invalid attributes on saving this record&apos;</span>,\n  name: <span class=\"string\">&apos;Must be present&apos;</span>,\n  age: [<span class=\"string\">&apos;Must be present&apos;</span>, <span class=\"string\">&apos;Must be a number&apos;</span>]\n};\n\nlet errorsArray = errorsHashToArray(errors);\n<span class=\"regexp\">//</span> [\n<span class=\"regexp\">//</span>   {\n<span class=\"regexp\">//</span>     title: <span class=\"string\">&quot;Invalid Document&quot;</span>,\n<span class=\"regexp\">//</span>     detail: <span class=\"string\">&quot;Invalid attributes on saving this record&quot;</span>,\n<span class=\"regexp\">//</span>     source: { pointer: <span class=\"string\">&quot;/data&quot;</span> }\n<span class=\"regexp\">//</span>   },\n<span class=\"regexp\">//</span>   {\n<span class=\"regexp\">//</span>     title: <span class=\"string\">&quot;Invalid Attribute&quot;</span>,\n<span class=\"regexp\">//</span>     detail: <span class=\"string\">&quot;Must be present&quot;</span>,\n<span class=\"regexp\">//</span>     source: { pointer: <span class=\"string\">&quot;/data/attributes/name&quot;</span> }\n<span class=\"regexp\">//</span>   },\n<span class=\"regexp\">//</span>   {\n<span class=\"regexp\">//</span>     title: <span class=\"string\">&quot;Invalid Attribute&quot;</span>,\n<span class=\"regexp\">//</span>     detail: <span class=\"string\">&quot;Must be present&quot;</span>,\n<span class=\"regexp\">//</span>     source: { pointer: <span class=\"string\">&quot;/data/attributes/age&quot;</span> }\n<span class=\"regexp\">//</span>   },\n<span class=\"regexp\">//</span>   {\n<span class=\"regexp\">//</span>     title: <span class=\"string\">&quot;Invalid Attribute&quot;</span>,\n<span class=\"regexp\">//</span>     detail: <span class=\"string\">&quot;Must be a number&quot;</span>,\n<span class=\"regexp\">//</span>     source: { pointer: <span class=\"string\">&quot;/data/attributes/age&quot;</span> }\n<span class=\"regexp\">//</span>   }\n<span class=\"regexp\">//</span> ]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "errorsHashToArray",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "errors",
+              "description": "hash with errors as properties",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "array of errors in JSON-API format",
+            "type": "Array"
+          },
+          "class": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/errors.js",
+          "line": 398,
+          "description": "<html><head></head><body><p>Convert an array of errors in JSON-API format into an object.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nconst { errorsArrayToHash } = DS;\n\n<span class=\"keyword\">let</span> errorsArray = [\n  {\n    title: <span class=\"string\">&apos;Invalid Attribute&apos;</span>,\n    detail: <span class=\"string\">&apos;Must be present&apos;</span>,\n    source: { pointer: <span class=\"string\">&apos;/data/attributes/name&apos;</span> }\n  },\n  {\n    title: <span class=\"string\">&apos;Invalid Attribute&apos;</span>,\n    detail: <span class=\"string\">&apos;Must be present&apos;</span>,\n    source: { pointer: <span class=\"string\">&apos;/data/attributes/age&apos;</span> }\n  },\n  {\n    title: <span class=\"string\">&apos;Invalid Attribute&apos;</span>,\n    detail: <span class=\"string\">&apos;Must be a number&apos;</span>,\n    source: { pointer: <span class=\"string\">&apos;/data/attributes/age&apos;</span> }\n  }\n];\n\n<span class=\"keyword\">let</span> errors = errorsArrayToHash(errorsArray);\n// {\n//   <span class=\"string\">&quot;name&quot;</span>: [<span class=\"string\">&quot;Must be present&quot;</span>],\n//   <span class=\"string\">&quot;age&quot;</span>:  [<span class=\"string\">&quot;Must be present&quot;</span>, <span class=\"string\">&quot;must be a number&quot;</span>]\n// }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "errorsArrayToHash",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "errors",
+              "description": "array of errors in JSON-API format",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/relationships/belongs-to.js",
+          "line": 5,
+          "description": "<html><head></head><body><p><code>DS.belongsTo</code> is used to define One-To-One and One-To-Many\nrelationships on a <a href=\"/api/data/classes/DS.Model.html\">DS.Model</a>.</p>\n<p><code>DS.belongsTo</code> takes an optional hash as a second parameter, currently\nsupported options are:</p>\n<ul>\n<li><code>async</code>: A boolean value used to explicitly declare this to be an async relationship.</li>\n<li><code>inverse</code>: A string used to identify the inverse property on a\nrelated model in a One-To-Many relationship. See <a href=\"#toc_explicit-inverses\">Explicit Inverses</a></li>\n</ul>\n<h4 id=\"one-to-one\">One-To-One</h4>\n<p>To declare a one-to-one relationship between two models, use\n<code>DS.belongsTo</code>:</p>\n<div class=\"highlight app/models/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  profile: DS.belongsTo(<span class=\"string\">&apos;profile&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/profile.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  user: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h4 id=\"one-to-many\">One-To-Many</h4>\n<p>To declare a one-to-many relationship between two models, use\n<code>DS.belongsTo</code> in combination with <code>DS.hasMany</code>, like this:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  comments: DS.hasMany(<span class=\"string\">&apos;comment&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  post: DS.belongsTo(<span class=\"string\">&apos;post&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can avoid passing a string as the first parameter. In that case Ember Data\nwill infer the type from the key name.</p>\n<div class=\"highlight app/models/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  post: DS.belongsTo()\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>will lookup for a Post type.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "belongsTo",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "(optional) type of the relationship",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "(optional) a hash of options",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "relationship",
+            "type": "Ember.computed"
+          },
+          "class": "DS",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/relationships/has-many.js",
+          "line": 12,
+          "description": "<html><head></head><body><p><code>DS.hasMany</code> is used to define One-To-Many and Many-To-Many\nrelationships on a <a href=\"/api/data/classes/DS.Model.html\">DS.Model</a>.</p>\n<p><code>DS.hasMany</code> takes an optional hash as a second parameter, currently\nsupported options are:</p>\n<ul>\n<li><code>async</code>: A boolean value used to explicitly declare this to be an async relationship.</li>\n<li><code>inverse</code>: A string used to identify the inverse property on a related model.</li>\n</ul>\n<h4 id=\"one-to-many\">One-To-Many</h4>\n<p>To declare a one-to-many relationship between two models, use\n<code>DS.belongsTo</code> in combination with <code>DS.hasMany</code>, like this:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  comments: DS.hasMany(<span class=\"string\">&apos;comment&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  post: DS.belongsTo(<span class=\"string\">&apos;post&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h4 id=\"many-to-many\">Many-To-Many</h4>\n<p>To declare a many-to-many relationship between two models, use\n<code>DS.hasMany</code>:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  tags: DS.hasMany(<span class=\"string\">&apos;tag&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/tag.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  posts: DS.hasMany(<span class=\"string\">&apos;post&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can avoid passing a string as the first parameter. In that case Ember Data\nwill infer the type from the singularized key name.</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  tags: DS.hasMany()\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>will lookup for a Tag type.</p>\n<h4 id=\"explicit-inverses\">Explicit Inverses</h4>\n<p>Ember Data will do its best to discover which relationships map to\none another. In the one-to-many code above, for example, Ember Data\ncan figure out that changing the <code>comments</code> relationship should update\nthe <code>post</code> relationship on the inverse because post is the only\nrelationship to that model.</p>\n<p>However, sometimes you may have multiple <code>belongsTo</code>/<code>hasMany</code> for the\nsame type. You can specify which property on the related model is\nthe inverse using <code>DS.hasMany</code>&apos;s <code>inverse</code> option:</p>\n<div class=\"highlight app/models/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>import <span class=\"keyword\">DS</span> from &apos;ember-data&apos;;\n\nexport default <span class=\"keyword\">DS</span>.Model.extend({\n  onePost: <span class=\"keyword\">DS</span>.belongsTo(&apos;<span class=\"keyword\">post</span>&apos;),\n  twoPost: <span class=\"keyword\">DS</span>.belongsTo(&apos;<span class=\"keyword\">post</span>&apos;),\n  redPost: <span class=\"keyword\">DS</span>.belongsTo(&apos;<span class=\"keyword\">post</span>&apos;),\n  bluePost: <span class=\"keyword\">DS</span>.belongsTo(&apos;<span class=\"keyword\">post</span>&apos;)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  comments: DS.hasMany(<span class=\"string\">&apos;comment&apos;</span>, {\n    inverse: <span class=\"string\">&apos;redPost&apos;</span>\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also specify an inverse on a <code>belongsTo</code>, which works how\nyou&apos;d expect.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "hasMany",
+          "params": [
+            {
+              "name": "type",
+              "description": "(optional) type of the relationship",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "(optional) a hash of options",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "relationship",
+            "type": "Ember.computed"
+          },
+          "class": "DS",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/normalize-model-name.js",
+          "line": 6,
+          "description": "<html><head></head><body><p>This method normalizes a modelName into the format Ember Data uses\ninternally.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "normalizeModelName",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalizedModelName",
+            "type": "String"
+          },
+          "class": "DS",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/attr.js",
+          "line": 38,
+          "description": "<html><head></head><body><p><code>DS.attr</code> defines an attribute on a <a href=\"/api/data/classes/DS.Model.html\">DS.Model</a>.\nBy default, attributes are passed through as-is, however you can specify an\noptional type to have the value automatically transformed.\nEmber Data ships with four basic transform types: <code>string</code>, <code>number</code>,\n<code>boolean</code> and <code>date</code>. You can define your own transforms by subclassing\n<a href=\"/api/data/classes/DS.Transform.html\">DS.Transform</a>.</p>\n<p>Note that you cannot use <code>attr</code> to define an attribute of <code>id</code>.</p>\n<p><code>DS.attr</code> takes an optional hash as a second parameter, currently\nsupported options are:</p>\n<ul>\n<li><code>defaultValue</code>: Pass a string or a function to be called to set the attribute<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>            <span class=\"keyword\">to</span> a<span class=\"built_in\"> default </span>value <span class=\"keyword\">if</span> none is supplied.</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    </li>\n</ul>\n<p>Example</p>\n<div class=\"highlight app/models/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  username: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  email: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  verified: DS.attr(<span class=\"string\">&apos;boolean&apos;</span>, { defaultValue: <span class=\"literal\">false</span> })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Default value can also be a function. This is useful it you want to return\na new object for each attribute.</p>\n<div class=\"highlight app/models/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.Model.extend({\n  username: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  email: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  settings: DS.attr({\n    defaultValue() {\n      return {};\n    }\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>options</code> hash is passed as second argument to a transforms&apos;\n<code>serialize</code> and <code>deserialize</code> method. This allows to configure a\ntransformation and adapt the corresponding value, based on the config:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  text: DS.attr(<span class=\"string\">&apos;text&apos;</span>, {\n    uppercase: <span class=\"literal\">true</span>\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/transforms/text.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.Transform.extend({\n  serialize(<span class=\"keyword\">value</span>, options) {\n    <span class=\"keyword\">if</span> (options.uppercase) {\n      <span class=\"keyword\">return</span> <span class=\"keyword\">value</span>.toUpperCase();\n    }\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">value</span>;\n  },\n\n  deserialize(<span class=\"keyword\">value</span>) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">value</span>;\n  }\n})</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "attr",
+          "params": [
+            {
+              "name": "type",
+              "description": "the attribute type",
+              "type": "String|Object"
+            },
+            {
+              "name": "options",
+              "description": "a hash of options",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Attribute"
+          },
+          "class": "DS",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/-private/core.js",
+          "line": 15,
+          "itemtype": "property",
+          "name": "VERSION",
+          "type": "String",
+          "static": 1,
+          "class": "DS",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

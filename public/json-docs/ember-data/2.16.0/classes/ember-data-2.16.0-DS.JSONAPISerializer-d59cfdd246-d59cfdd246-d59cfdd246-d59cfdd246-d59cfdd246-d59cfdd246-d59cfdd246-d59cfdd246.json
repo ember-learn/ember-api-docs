@@ -1,0 +1,2078 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.JSONAPISerializer",
+    "type": "class",
+    "attributes": {
+      "name": "DS.JSONAPISerializer",
+      "shortname": "DS.JSONAPISerializer",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/serializers/json-api.js",
+      "line": 15,
+      "description": "<html><head></head><body><p>Ember Data 2.0 Serializer:</p>\n<p>In Ember Data a Serializer is used to serialize and deserialize\nrecords when they are transferred in and out of an external source.\nThis process involves normalizing property names, transforming\nattribute values and serializing relationships.</p>\n<p><code>JSONAPISerializer</code> supports the <a href=\"http://jsonapi.org/\">http://jsonapi.org/</a> spec and is the\nserializer recommended by Ember Data.</p>\n<p>This serializer normalizes a JSON API payload that looks like:</p>\n<div class=\"highlight app/models/player.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/player.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  name: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  skill: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  gamesPlayed: DS.attr(<span class=\"string\">&apos;number&apos;</span>),\n  club: DS.belongsTo(<span class=\"string\">&apos;club&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/club.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/club.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  name: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  location: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  players: DS.hasMany(<span class=\"string\">&apos;player&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n</pre></td>\n              <td class=\"code\"><pre>  {\n    <span class=\"attr\">&quot;data&quot;</span>: [\n      {\n        <span class=\"attr\">&quot;attributes&quot;</span>: {\n          <span class=\"attr\">&quot;name&quot;</span>: <span class=\"string\">&quot;Benfica&quot;</span>,\n          <span class=\"attr\">&quot;location&quot;</span>: <span class=\"string\">&quot;Portugal&quot;</span>\n        },\n        <span class=\"attr\">&quot;id&quot;</span>: <span class=\"string\">&quot;1&quot;</span>,\n        <span class=\"attr\">&quot;relationships&quot;</span>: {\n          <span class=\"attr\">&quot;players&quot;</span>: {\n            <span class=\"attr\">&quot;data&quot;</span>: [\n              {\n                <span class=\"attr\">&quot;id&quot;</span>: <span class=\"string\">&quot;3&quot;</span>,\n                <span class=\"attr\">&quot;type&quot;</span>: <span class=\"string\">&quot;players&quot;</span>\n              }\n            ]\n          }\n        },\n        <span class=\"attr\">&quot;type&quot;</span>: <span class=\"string\">&quot;clubs&quot;</span>\n      }\n    ],\n    <span class=\"attr\">&quot;included&quot;</span>: [\n      {\n        <span class=\"attr\">&quot;attributes&quot;</span>: {\n          <span class=\"attr\">&quot;name&quot;</span>: <span class=\"string\">&quot;Eusebio Silva Ferreira&quot;</span>,\n          <span class=\"attr\">&quot;skill&quot;</span>: <span class=\"string\">&quot;Rocket shot&quot;</span>,\n          <span class=\"attr\">&quot;games-played&quot;</span>: <span class=\"number\">431</span>\n        },\n        <span class=\"attr\">&quot;id&quot;</span>: <span class=\"string\">&quot;3&quot;</span>,\n        <span class=\"attr\">&quot;relationships&quot;</span>: {\n          <span class=\"attr\">&quot;club&quot;</span>: {\n            <span class=\"attr\">&quot;data&quot;</span>: {\n              <span class=\"attr\">&quot;id&quot;</span>: <span class=\"string\">&quot;1&quot;</span>,\n              <span class=\"attr\">&quot;type&quot;</span>: <span class=\"string\">&quot;clubs&quot;</span>\n            }\n          }\n        },\n        <span class=\"attr\">&quot;type&quot;</span>: <span class=\"string\">&quot;players&quot;</span>\n      }\n    ]\n  }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>to the format that the Ember Data store expects.</p>\n<h3 id=\"customizing-meta\">Customizing meta</h3>\n<p>Since a JSON API Document can have meta defined in multiple locations you can\nuse the specific serializer hooks if you need to customize the meta.</p>\n<p>One scenario would be to camelCase the meta keys of your payload. The example\nbelow shows how this could be done using <code>normalizeArrayResponse</code> and\n<code>extractRelationship</code>.</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre>export <span class=\"keyword\">default</span> JSONAPISerializer.extend({\n  normalizeArrayResponse(store, primaryModelClass, payload, id, requestType) {\n    <span class=\"keyword\">let</span> normalizedDocument = <span class=\"keyword\">this</span>.<span class=\"number\">_</span><span class=\"keyword\">super</span>(...arguments);\n\n    <span class=\"comment\">// Customize document meta</span>\n    normalizedDocument.meta = camelCaseKeys(normalizedDocument.meta);\n\n    <span class=\"keyword\">return</span> normalizedDocument;\n  },\n\n  extractRelationship(relationshipHash) {\n    <span class=\"keyword\">let</span> normalizedRelationship = <span class=\"keyword\">this</span>.<span class=\"number\">_</span><span class=\"keyword\">super</span>(...arguments);\n\n    <span class=\"comment\">// Customize relationship meta</span>\n    normalizedRelationship.meta = camelCaseKeys(normalizedRelationship.meta);\n\n    <span class=\"keyword\">return</span> normalizedRelationship;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "since": "2.16.0",
+      "extends": "DS.JSONSerializer",
+      "version": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 133,
+          "itemtype": "method",
+          "name": "_normalizeDocumentHelper",
+          "params": [
+            {
+              "name": "documentHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 168,
+          "itemtype": "method",
+          "name": "_normalizeRelationshipDataHelper",
+          "params": [
+            {
+              "name": "relationshipDataHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 196,
+          "itemtype": "method",
+          "name": "_normalizeResourceHelper",
+          "params": [
+            {
+              "name": "resourceHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 242,
+          "itemtype": "method",
+          "name": "pushPayload",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 256,
+          "itemtype": "method",
+          "name": "_normalizeResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "isSingle",
+              "description": "",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 345,
+          "itemtype": "method",
+          "name": "_extractType",
+          "params": [
+            {
+              "name": "modelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "resourceHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "String"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 372,
+          "description": "<html><head></head><body><p>Dasherizes and singularizes the model name in the payload to match\nthe format Ember Data uses internally for the model name.</p>\n<p>For example the key <code>posts</code> would be converted to <code>post</code> and the\nkey <code>studentAssesments</code> would be converted to <code>student-assesment</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "modelNameFromPayloadKey",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the model's modelName",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 388,
+          "description": "<html><head></head><body><p>Converts the model name to a pluralized version of the model name.</p>\n<p>For example <code>post</code> would be converted to <code>posts</code> and\n<code>student-assesment</code> would be converted to <code>student-assesments</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "payloadKeyFromModelName",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 424,
+          "description": "<html><head></head><body><p><code>keyForAttribute</code> can be used to define rules for how to convert an\nattribute name in your model to a key in your JSON.\nBy default <code>JSONAPISerializer</code> follows the format used on the examples of\n<a href=\"http://jsonapi.org/format\">http://jsonapi.org/format</a> and uses dashes as the word separator in the JSON\nattribute keys.</p>\n<p>This behaviour can be easily customized by extending this method.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"built_in\">default</span> DS.JSONAPISerializer.extend({\n  keyForAttribute(attr, method) {\n    <span class=\"built_in\">return</span> Ember.<span class=\"keyword\">String</span>.dasherize(attr).toUpperCase();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "keyForAttribute",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized key",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 454,
+          "description": "<html><head></head><body><p><code>keyForRelationship</code> can be used to define a custom key when\nserializing and deserializing relationship properties.\nBy default <code>JSONAPISerializer</code> follows the format used on the examples of\n<a href=\"http://jsonapi.org/format\">http://jsonapi.org/format</a> and uses dashes as word separators in\nrelationship properties.</p>\n<p>This behaviour can be easily customized by extending this method.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n export <span class=\"keyword\">default</span> DS.JSONAPISerializer.extend({\n   keyForRelationship(<span class=\"built_in\">key</span>, relationship, method) {\n     <span class=\"keyword\">return</span> Ember.<span class=\"keyword\">String</span>.underscore(<span class=\"built_in\">key</span>);\n   }\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "keyForRelationship",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized key",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 632,
+          "description": "<html><head></head><body><p><code>modelNameFromPayloadType</code> can be used to change the mapping for a DS model\nname, taken from the value in the payload.</p>\n<p>Say your API namespaces the type of a model and returns the following\npayload for the <code>post</code> model:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>/<span class=\"regexp\">/ GET /api</span><span class=\"regexp\">/posts/</span><span class=\"number\">1</span>\n{\n  <span class=\"string\">&quot;data&quot;</span>: {\n    <span class=\"string\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"string\">&quot;type: &quot;</span><span class=\"symbol\">api:</span><span class=\"symbol\">:v1</span><span class=\"symbol\">:</span><span class=\"symbol\">:post<span class=\"string\">&quot;\n  }\n}</span></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By overwriting <code>modelNameFromPayloadType</code> you can specify that the\n<code>post</code> model should be used:</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPISerializer.extend({\n  modelNameFromPayloadType(payloadType) {\n    <span class=\"keyword\">return</span> payloadType.replace(<span class=\"string\">&apos;api::v1::&apos;</span>, <span class=\"string\">&apos;&apos;</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default the modelName for a model is its singularized name in dasherized\nform.  Usually, Ember Data can use the correct inflection to do this for\nyou. Most of the time, you won&apos;t need to override\n<code>modelNameFromPayloadType</code> for this purpose.</p>\n<p>Also take a look at\n<a href=\"#method_payloadTypeFromModelName\">payloadTypeFromModelName</a> to customize\nhow the type of a record should be serialized.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "modelNameFromPayloadType",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "payloadType",
+              "description": "type from payload",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "modelName",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json-api.js",
+          "line": 680,
+          "description": "<html><head></head><body><p><code>payloadTypeFromModelName</code> can be used to change the mapping for the type in\nthe payload, taken from the model name.</p>\n<p>Say your API namespaces the type of a model and expects the following\npayload when you update the <code>post</code> model:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>/<span class=\"regexp\">/ POST /api</span><span class=\"regexp\">/posts/</span><span class=\"number\">1</span>\n{\n  <span class=\"string\">&quot;data&quot;</span>: {\n    <span class=\"string\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"string\">&quot;type&quot;</span>: <span class=\"string\">&quot;api::v1::post&quot;</span>\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By overwriting <code>payloadTypeFromModelName</code> you can specify that the\nnamespaces model name for the <code>post</code> should be used:</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> JSONAPISerializer.extend({\n  payloadTypeFromModelName(modelName) {\n    <span class=\"keyword\">return</span> <span class=\"string\">&apos;api::v1::&apos;</span> + modelName;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default the payload type is the pluralized model name. Usually, Ember\nData can use the correct inflection to do this for you. Most of the time,\nyou won&apos;t need to override <code>payloadTypeFromModelName</code> for this purpose.</p>\n<p>Also take a look at\n<a href=\"#method_modelNameFromPayloadType\">modelNameFromPayloadType</a> to customize\nhow the model name from should be mapped from the payload.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "payloadTypeFromModelName",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "modelname",
+              "description": "modelName from the record",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "payloadType",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 173,
+          "description": "<html><head></head><body><p>Given a subclass of <code>DS.Model</code> and a JSON object this method will\niterate through each attribute of the <code>DS.Model</code> and invoke the\n<code>DS.Transform#deserialize</code> method on the matching property of the\nJSON object.  This method is typically called after the\nserializer&apos;s <code>normalize</code> method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "applyTransforms",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "data",
+              "description": "The data to transform",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "data The transformed data object",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 200,
+          "description": "<html><head></head><body><p>The <code>normalizeResponse</code> method is used to normalize a payload from the\nserver to a JSON-API Document.</p>\n<p><a href=\"http://jsonapi.org/format/#document-structure\">http://jsonapi.org/format/#document-structure</a></p>\n<p>This method delegates to a more specific normalize method based on\nthe <code>requestType</code>.</p>\n<p>To override this method with a custom one, make sure to call\n<code>return this._super(store, primaryModelClass, payload, id, requestType)</code> with your\npre-processed data.</p>\n<p>Here&apos;s an example of using <code>normalizeResponse</code> manually:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>socket.<span class=\"keyword\">on</span>(<span class=\"string\">&apos;message&apos;</span>, function(message) {\n  <span class=\"built_in\">var</span> <span class=\"built_in\">data</span> = message.<span class=\"built_in\">data</span>;\n  <span class=\"built_in\">var</span> modelClass = store.modelFor(<span class=\"built_in\">data</span>.modelName);\n  <span class=\"built_in\">var</span> serializer = store.serializerFor(<span class=\"built_in\">data</span>.modelName);\n  <span class=\"built_in\">var</span> normalized = serializer.normalizeSingleResponse(store, modelClass, <span class=\"built_in\">data</span>, <span class=\"built_in\">data</span>.id);\n\n  store.push(normalized);\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 260,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeFindRecordResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 274,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeQueryRecordResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 288,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeFindAllResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 302,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeFindBelongsToResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 316,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeFindHasManyResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 330,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeFindManyResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 344,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeQueryResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 358,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeCreateRecordResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 372,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeDeleteRecordResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 386,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeUpdateRecordResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 400,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeSaveResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 414,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeSingleResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 428,
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeArrayResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 442,
+          "itemtype": "method",
+          "name": "_normalizeResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "isSingle",
+              "description": "",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 489,
+          "description": "<html><head></head><body><p>Normalizes a part of the JSON payload returned by\nthe server. You should override this method, munge the hash\nand call super if you have generic normalization to do.</p>\n<p>It takes the type of the record that is being normalized\n(as a DS.Model class), the property where the hash was\noriginally found, and the hash to normalize.</p>\n<p>You can use this method, for example, to normalize underscored keys to camelized\nor other general-purpose normalizations.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  normalize(typeClass, hash) {\n    <span class=\"keyword\">var</span> fields = Ember.get(typeClass, <span class=\"string\">&apos;fields&apos;</span>);\n\n    fields.forEach(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">field</span>) </span>{\n      <span class=\"keyword\">var</span> payloadField = Ember.String.underscore(field);\n      <span class=\"keyword\">if</span> (field === payloadField) { <span class=\"keyword\">return</span>; }\n\n      hash[field] = hash[payloadField];\n      <span class=\"keyword\">delete</span> hash[payloadField];\n    });\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super.apply(<span class=\"keyword\">this</span>, <span class=\"built_in\">arguments</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "normalize",
+          "params": [
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "hash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 550,
+          "description": "<html><head></head><body><p>Returns the resource&apos;s ID.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "extractId",
+          "params": [
+            {
+              "name": "modelClass",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "resourceHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 564,
+          "description": "<html><head></head><body><p>Returns the resource&apos;s attributes formatted as a JSON-API &quot;attributes object&quot;.</p>\n<p><a href=\"http://jsonapi.org/format/#document-resource-object-attributes\">http://jsonapi.org/format/#document-resource-object-attributes</a></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "extractAttributes",
+          "params": [
+            {
+              "name": "modelClass",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "resourceHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 588,
+          "description": "<html><head></head><body><p>Returns a relationship formatted as a JSON-API &quot;relationship object&quot;.</p>\n<p><a href=\"http://jsonapi.org/format/#document-resource-object-relationships\">http://jsonapi.org/format/#document-resource-object-relationships</a></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "extractRelationship",
+          "params": [
+            {
+              "name": "relationshipModelName",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "relationshipHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 637,
+          "description": "<html><head></head><body><p>Returns a polymorphic relationship formatted as a JSON-API &quot;relationship object&quot;.</p>\n<p><a href=\"http://jsonapi.org/format/#document-resource-object-relationships\">http://jsonapi.org/format/#document-resource-object-relationships</a></p>\n<p><code>relationshipOptions</code> is a hash which contains more information about the\npolymorphic relationship which should be extracted:</p>\n<ul>\n<li><code>resourceHash</code> complete hash of the resource the relationship should be\nextracted from</li>\n<li><code>relationshipKey</code> key under which the value for the relationship is\nextracted from the resourceHash</li>\n<li><code>relationshipMeta</code> meta information about the relationship</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "extractPolymorphicRelationship",
+          "params": [
+            {
+              "name": "relationshipModelName",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "relationshipHash",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "relationshipOptions",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 660,
+          "description": "<html><head></head><body><p>Returns the resource&apos;s relationships formatted as a JSON-API &quot;relationships object&quot;.</p>\n<p><a href=\"http://jsonapi.org/format/#document-resource-object-relationships\">http://jsonapi.org/format/#document-resource-object-relationships</a></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "extractRelationships",
+          "params": [
+            {
+              "name": "modelClass",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "resourceHash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 716,
+          "itemtype": "method",
+          "name": "modelNameFromPayloadKey",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the model's modelName",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 726,
+          "itemtype": "method",
+          "name": "normalizeRelationships",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 745,
+          "itemtype": "method",
+          "name": "normalizeUsingDeclaredMapping",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 776,
+          "description": "<html><head></head><body><p>Looks up the property key that was set by the custom <code>attr</code> mapping\npassed to the serializer.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_getMappedKey",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "key",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 807,
+          "description": "<html><head></head><body><p>Check attrs.key.serialize property to inform if the <code>key</code>\ncan be serialized</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_canSerialize",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "true if the key can be serialized",
+            "type": "Boolean"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 822,
+          "description": "<html><head></head><body><p>When attrs.key.serialize is set to true then\nit takes priority over the other checks and the related\nattribute/relationship will be serialized</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_mustSerialize",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "true if the key must be serialized",
+            "type": "Boolean"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 838,
+          "description": "<html><head></head><body><p>Check if the given hasMany relationship should be serialized</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "shouldSerializeHasMany",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "relationshipType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "true if the hasMany relationship should be serialized",
+            "type": "Boolean"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 859,
+          "description": "<html><head></head><body><p>Check if the given hasMany relationship should be serialized</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_shouldSerializeHasMany",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "relationshipType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "true if the hasMany relationship should be serialized",
+            "type": "Boolean"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 879,
+          "description": "<html><head></head><body><p>Called when a record is saved in order to convert the\nrecord into JSON.</p>\n<p>By default, it creates a JSON object with a key for\neach attribute and belongsTo relationship.</p>\n<p>For example, consider this model:</p>\n<div class=\"highlight app/models/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/comment.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  title: DS.attr(),\n  body: DS.attr(),\n\n  author: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The default serialization would create a JSON object like:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;title&quot;</span>: <span class=\"string\">&quot;Rails is unagi&quot;</span>,\n  <span class=\"attr\">&quot;body&quot;</span>: <span class=\"string\">&quot;Rails? Omakase? O_O&quot;</span>,\n  <span class=\"attr\">&quot;author&quot;</span>: <span class=\"number\">12</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default, attributes are passed through as-is, unless\nyou specified an attribute type (<code>DS.attr(&apos;date&apos;)</code>). If\nyou specify a transform, the JavaScript value will be\nserialized when inserted into the JSON hash.</p>\n<p>By default, belongs-to relationships are converted into\nIDs when inserted into the JSON hash.</p>\n<h2 id=\"ids\">IDs</h2>\n<p><code>serialize</code> takes an options hash with a single option:\n<code>includeId</code>. If this option is <code>true</code>, <code>serialize</code> will,\nby default include the ID in the JSON object it builds.</p>\n<p>The adapter passes in <code>includeId: true</code> when serializing\na record for <code>createRecord</code>, but not for <code>updateRecord</code>.</p>\n<h2 id=\"customization\">Customization</h2>\n<p>Your server may expect a different JSON format than the\nbuilt-in serialization format.</p>\n<p>In that case, you can implement <code>serialize</code> yourself and\nreturn a JSON hash of your choosing.</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  serialize(snapshot, <span class=\"keyword\">options</span>) {\n    var json = {\n      POST_TTL: snapshot.attr(<span class=\"string\">&apos;title&apos;</span>),\n      POST_BDY: snapshot.attr(<span class=\"string\">&apos;body&apos;</span>),\n      POST_CMS: snapshot.hasMany(<span class=\"string\">&apos;comments&apos;</span>, { ids: <span class=\"keyword\">true</span> })\n    };\n\n    <span class=\"keyword\">if</span> (<span class=\"keyword\">options</span>.includeId) {\n      json.POST_ID_ = snapshot.id;\n    }\n\n    <span class=\"keyword\">return</span> json;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"customizing-an-app-wide-serializer\">Customizing an App-Wide Serializer</h2>\n<p>If you want to define a serializer for your entire\napplication, you&apos;ll probably want to use <code>eachAttribute</code>\nand <code>eachRelationship</code> on the record.</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n<span class=\"keyword\">import</span> { singularize } <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-inflector&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  serialize(snapshot, options) {\n    <span class=\"keyword\">var</span> json = {};\n\n    snapshot.eachAttribute(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">name</span>) </span>{\n      json[serverAttributeName(name)] = snapshot.attr(name);\n    });\n\n    snapshot.eachRelationship(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">name, relationship</span>) </span>{\n      <span class=\"keyword\">if</span> (relationship.kind === <span class=\"string\">&apos;hasMany&apos;</span>) {\n        json[serverHasManyName(name)] = snapshot.hasMany(name, { <span class=\"attr\">ids</span>: <span class=\"literal\">true</span> });\n      }\n    });\n\n    <span class=\"keyword\">if</span> (options.includeId) {\n      json.ID_ = snapshot.id;\n    }\n\n    <span class=\"keyword\">return</span> json;\n  }\n});\n\n<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">serverAttributeName</span>(<span class=\"params\">attribute</span>) </span>{\n  <span class=\"keyword\">return</span> attribute.underscore().toUpperCase();\n}\n\n<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">serverHasManyName</span>(<span class=\"params\">name</span>) </span>{\n  <span class=\"keyword\">return</span> serverAttributeName(singularize(name)) + <span class=\"string\">&quot;_IDS&quot;</span>;\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This serializer will generate JSON that looks like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;TITLE&quot;</span>: <span class=\"string\">&quot;Rails is omakase&quot;</span>,\n  <span class=\"attr\">&quot;BODY&quot;</span>: <span class=\"string\">&quot;Yep. Omakase.&quot;</span>,\n  <span class=\"attr\">&quot;COMMENT_IDS&quot;</span>: [ <span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span> ]\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"tweaking-the-default-json\">Tweaking the Default JSON</h2>\n<p>If you just want to do some small tweaks on the default JSON,\nyou can call super first and make the tweaks on the returned\nJSON.</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  serialize(snapshot, options) {\n    <span class=\"keyword\">var</span> json = <span class=\"keyword\">this</span>._super(...arguments);\n\n    json.subject = json.title;\n    <span class=\"keyword\">delete</span> json.title;\n\n    <span class=\"keyword\">return</span> json;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "json",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1060,
+          "description": "<html><head></head><body><p>You can use this method to customize how a serialized record is added to the complete\nJSON hash to be sent to the server. By default the JSON Serializer does not namespace\nthe payload and just sends the raw serialized JSON object.\nIf your server expects namespaced keys, you should consider using the RESTSerializer.\nOtherwise you can override this method to customize how the record is added to the hash.\nThe hash property should be modified by reference.</p>\n<p>For example, your server may expect underscored root objects.</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> <span class=\"type\">DS</span> from <span class=\"symbol\">&apos;ember</span>-data&apos;;\n\nexport <span class=\"keyword\">default</span> <span class=\"type\">DS</span>.<span class=\"type\">RESTSerializer</span>.extend({\n  serializeIntoHash(data, <span class=\"class\"><span class=\"keyword\">type</span>, <span class=\"title\">snapshot</span>, <span class=\"title\">options</span>) </span>{\n    <span class=\"keyword\">var</span> root = <span class=\"type\">Ember</span>.<span class=\"type\">String</span>.decamelize(<span class=\"class\"><span class=\"keyword\">type</span>.<span class=\"title\">modelName</span>)</span>;\n    data[root] = <span class=\"keyword\">this</span>.serialize(snapshot, options);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serializeIntoHash",
+          "params": [
+            {
+              "name": "hash",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1091,
+          "description": "<html><head></head><body><p><code>serializeAttribute</code> can be used to customize how <code>DS.attr</code>\nproperties are serialized</p>\n<p>For example if you wanted to ensure all your attributes were always\nserialized as properties on an <code>attributes</code> object you could\nwrite:</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>import DS from <span class=\"string\">&apos;ember-data&apos;</span><span class=\"comment\">;</span>\n\nexport default DS.<span class=\"keyword\">JSONSerializer.extend({\n</span>  serializeAttribute(snapshot, <span class=\"keyword\">json, </span>key, attributes) {\n    <span class=\"keyword\">json.attributes </span>= <span class=\"keyword\">json.attributes </span><span class=\"title\">||</span> {}<span class=\"comment\">;</span>\n    this._super(snapshot, <span class=\"keyword\">json.attributes, </span>key, attributes)<span class=\"comment\">;</span>\n  }\n})<span class=\"comment\">;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serializeAttribute",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "json",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "attribute",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1138,
+          "description": "<html><head></head><body><p><code>serializeBelongsTo</code> can be used to customize how <code>DS.belongsTo</code>\nproperties are serialized.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre>import DS from <span class=\"string\">&apos;ember-data&apos;</span><span class=\"comment\">;</span>\n\nexport default DS.<span class=\"keyword\">JSONSerializer.extend({\n</span>  serializeBelongsTo(snapshot, <span class=\"keyword\">json, </span>relationship) {\n    var key = relationship.key<span class=\"comment\">;</span>\n    var <span class=\"keyword\">belongsTo </span>= snapshot.<span class=\"keyword\">belongsTo(key);\n</span>\n    key = this.keyForRelationship ? this.keyForRelationship(key, <span class=\"string\">&quot;belongsTo&quot;</span>, <span class=\"string\">&quot;serialize&quot;</span>) : key<span class=\"comment\">;</span>\n\n    <span class=\"keyword\">json[key] </span>= Ember.isNone(<span class=\"keyword\">belongsTo) </span>? <span class=\"keyword\">belongsTo </span>: <span class=\"keyword\">belongsTo.record.toJSON();\n</span>  }\n})<span class=\"comment\">;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serializeBelongsTo",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "json",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "relationship",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1190,
+          "description": "<html><head></head><body><p><code>serializeHasMany</code> can be used to customize how <code>DS.hasMany</code>\nproperties are serialized.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  serializeHasMany(snapshot, json, relationship) {\n    <span class=\"keyword\">var</span> key = relationship.key;\n    <span class=\"keyword\">if</span> (key === <span class=\"string\">&apos;comments&apos;</span>) {\n      <span class=\"keyword\">return</span>;\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">this</span>._super(...arguments);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serializeHasMany",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "json",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "relationship",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1239,
+          "description": "<html><head></head><body><p>You can use this method to customize how polymorphic objects are\nserialized. Objects are considered to be polymorphic if\n<code>{ polymorphic: true }</code> is pass as the second argument to the\n<code>DS.belongsTo</code> function.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/comment.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  serializePolymorphicType(snapshot, json, relationship) {\n    var <span class=\"built_in\">key</span> = relationship.<span class=\"built_in\">key</span>;\n    var belongsTo = snapshot.belongsTo(<span class=\"built_in\">key</span>);\n\n    <span class=\"built_in\">key</span> = <span class=\"keyword\">this</span>.keyForAttribute ? <span class=\"keyword\">this</span>.keyForAttribute(<span class=\"built_in\">key</span>, <span class=\"string\">&apos;serialize&apos;</span>) : <span class=\"built_in\">key</span>;\n\n    <span class=\"keyword\">if</span> (Ember.isNone(belongsTo)) {\n      json[<span class=\"built_in\">key</span> + <span class=\"string\">&apos;_type&apos;</span>] = <span class=\"keyword\">null</span>;\n    } <span class=\"keyword\">else</span> {\n      json[<span class=\"built_in\">key</span> + <span class=\"string\">&apos;_type&apos;</span>] = belongsTo.modelName;\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serializePolymorphicType",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "json",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "relationship",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1273,
+          "description": "<html><head></head><body><p><code>extractMeta</code> is used to deserialize any meta information in the\nadapter payload. By default Ember Data expects meta information to\nbe located on the <code>meta</code> property of the payload object.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  extractMeta(store, typeClass, payload) {\n    <span class=\"keyword\">if</span> (payload &amp;&amp; payload.hasOwnProperty(<span class=\"string\">&apos;_pagination&apos;</span>)) {\n      <span class=\"keyword\">let</span> meta = payload._pagination;\n      <span class=\"keyword\">delete</span> payload._pagination;\n      <span class=\"keyword\">return</span> meta;\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "extractMeta",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "modelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1307,
+          "description": "<html><head></head><body><p><code>extractErrors</code> is used to extract model errors when a call\nto <code>DS.Model#save</code> fails with an <code>InvalidError</code>. By default\nEmber Data expects error information to be located on the <code>errors</code>\nproperty of the payload object.</p>\n<p>This serializer expects this <code>errors</code> object to be an Array similar\nto the following, compliant with the JSON-API specification:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;errors&quot;</span>: [\n    {\n      <span class=\"attr\">&quot;detail&quot;</span>: <span class=\"string\">&quot;This username is already taken!&quot;</span>,\n      <span class=\"attr\">&quot;source&quot;</span>: {\n        <span class=\"attr\">&quot;pointer&quot;</span>: <span class=\"string\">&quot;data/attributes/username&quot;</span>\n      }\n    }, {\n      <span class=\"attr\">&quot;detail&quot;</span>: <span class=\"string\">&quot;Doesn&apos;t look like a valid email.&quot;</span>,\n      <span class=\"attr\">&quot;source&quot;</span>: {\n        <span class=\"attr\">&quot;pointer&quot;</span>: <span class=\"string\">&quot;data/attributes/email&quot;</span>\n      }\n    }\n  ]\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The key <code>detail</code> provides a textual description of the problem.\nAlternatively, the key <code>title</code> can be used for the same purpose.</p>\n<p>The nested keys <code>source.pointer</code> detail which specific element\nof the request data was invalid.</p>\n<p>Note that JSON-API also allows for object-level errors to be placed\nin an object with pointer <code>data</code>, signifying that the problem\ncannot be traced to a specific attribute:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;errors&quot;</span>: [\n    {\n      <span class=\"attr\">&quot;detail&quot;</span>: <span class=\"string\">&quot;Some generic non property error message&quot;</span>,\n      <span class=\"attr\">&quot;source&quot;</span>: {\n        <span class=\"attr\">&quot;pointer&quot;</span>: <span class=\"string\">&quot;data&quot;</span>\n      }\n    }\n  ]\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When turn into a <code>DS.Errors</code> object, you can read these errors\nthrough the property <code>base</code>:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.base <span class=\"keyword\">as</span> |error|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{error.message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Example of alternative implementation, overriding the default\nbehavior to deal with a different format of errors:</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  extractErrors(store, typeClass, payload, id) {\n    <span class=\"keyword\">if</span> (payload &amp;&amp; <span class=\"keyword\">typeof</span> payload === <span class=\"string\">&apos;object&apos;</span> &amp;&amp; payload._problems) {\n      payload = payload._problems;\n      <span class=\"keyword\">this</span>.normalizeErrors(typeClass, payload);\n    }\n    <span class=\"keyword\">return</span> payload;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "extractErrors",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "(String|Number)"
+            }
+          ],
+          "return": {
+            "description": "json The deserialized errors",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1418,
+          "description": "<html><head></head><body><p><code>keyForAttribute</code> can be used to define rules for how to convert an\nattribute name in your model to a key in your JSON.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"built_in\">default</span> DS.RESTSerializer.extend({\n  keyForAttribute(attr, method) {\n    <span class=\"built_in\">return</span> Ember.<span class=\"keyword\">String</span>.underscore(attr).toUpperCase();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "keyForAttribute",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized key",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1443,
+          "description": "<html><head></head><body><p><code>keyForRelationship</code> can be used to define a custom key when\nserializing and deserializing relationship properties. By default\n<code>JSONSerializer</code> does not provide an implementation of this method.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n export <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n   keyForRelationship(<span class=\"built_in\">key</span>, relationship, method) {\n     <span class=\"keyword\">return</span> <span class=\"string\">&apos;rel_&apos;</span> + Ember.<span class=\"keyword\">String</span>.underscore(<span class=\"built_in\">key</span>);\n   }\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "keyForRelationship",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "method",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized key",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1470,
+          "description": "<html><head></head><body><p><code>keyForLink</code> can be used to define a custom key when deserializing link\nproperties.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyForLink",
+          "params": [
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "kind",
+              "description": "`belongsTo` or `hasMany`",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized key",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1485,
+          "itemtype": "method",
+          "name": "transformFor",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "attributeType",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "skipAssertion",
+              "description": "",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "transform",
+            "type": "DS.Transform"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1505,
+          "itemtype": "method",
+          "name": "modelNameFromPayloadType",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the model's modelName",
+            "type": "String"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 1527,
+          "description": "<html><head></head><body><p>serializeId can be used to customize how id is serialized\nFor example, your server may expect integer datatype of id</p>\n<p>By default the snapshot&apos;s id (String) is set on the json hash via json[primaryKey] = snapshot.id.</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\nserializeId(snapshot, json, primaryKey) {\n    <span class=\"keyword\">var</span> id = snapshot.id;\n    json[primaryKey] = <span class=\"built_in\">parseInt</span>(id, <span class=\"number\">10</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serializeId",
+          "access": "public",
+          "tagname": "",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "json",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "primaryKey",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializer.js",
+          "line": 51,
+          "description": "<html><head></head><body><p>The <code>normalizeResponse</code> method is used to normalize a payload from the\nserver to a JSON-API Document.</p>\n<p><a href=\"http://jsonapi.org/format/#document-structure\">http://jsonapi.org/format/#document-structure</a></p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>Serializer.extend({\n  normalizeResponse(store, primaryModelClass, payload, id, requestType) {\n    <span class=\"keyword\">if</span> (requestType === <span class=\"string\">&apos;findRecord&apos;</span>) {\n      <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.normalize(primaryModelClass, payload);\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">return</span> payload.reduce(function(documentHash, item) {\n        let { <span class=\"keyword\">data</span>, included } = <span class=\"keyword\">this</span>.normalize(primaryModelClass, item);\n        documentHash.included.push(...included);\n        documentHash.<span class=\"keyword\">data</span>.push(<span class=\"keyword\">data</span>);\n        <span class=\"keyword\">return</span> documentHash;\n      }, { <span class=\"keyword\">data</span>: [], included: [] })\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "normalizeResponse",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "primaryModelClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String|Number"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "JSON-API Document",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.Serializer"
+        },
+        {
+          "file": "addon/serializer.js",
+          "line": 87,
+          "description": "<html><head></head><body><p>The <code>serialize</code> method is used when a record is saved in order to convert\nthe record into the form that your external data source expects.</p>\n<p><code>serialize</code> takes an optional <code>options</code> hash with a single option:</p>\n<ul>\n<li><code>includeId</code>: If this is <code>true</code>, <code>serialize</code> should include the ID\nin the serialized object it builds.</li>\n</ul>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n</pre></td>\n              <td class=\"code\"><pre>Serializer.extend({\n  serialize(snapshot, options) {\n    var json = {\n      id: snapshot.id\n    };\n\n    snapshot.eachAttribute((<span class=\"built_in\">key</span>, attribute) =&gt; {\n      json[<span class=\"built_in\">key</span>] = snapshot.attr(<span class=\"built_in\">key</span>);\n    });\n\n    snapshot.eachRelationship((<span class=\"built_in\">key</span>, relationship) =&gt; {\n      <span class=\"keyword\">if</span> (relationship.kind === <span class=\"string\">&apos;belongsTo&apos;</span>) {\n        json[<span class=\"built_in\">key</span>] = snapshot.belongsTo(<span class=\"built_in\">key</span>, { id: <span class=\"keyword\">true</span> });\n      } <span class=\"keyword\">else</span> <span class=\"keyword\">if</span> (relationship.kind === <span class=\"string\">&apos;hasMany&apos;</span>) {\n        json[<span class=\"built_in\">key</span>] = snapshot.hasMany(<span class=\"built_in\">key</span>, { ids: <span class=\"keyword\">true</span> });\n      }\n    });\n\n    <span class=\"keyword\">return</span> json;\n  },\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.Serializer"
+        },
+        {
+          "file": "addon/serializer.js",
+          "line": 129,
+          "description": "<html><head></head><body><p>The <code>normalize</code> method is used to convert a payload received from your\nexternal data source into the normalized form <code>store.push()</code> expects. You\nshould override this method, munge the hash and return the normalized\npayload.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"type\">Serializer</span>.extend({\n  normalize(modelClass, resourceHash) {\n    var <span class=\"class\"><span class=\"keyword\">data</span> = {\n      <span class=\"title\">id</span>:            <span class=\"title\">resourceHash</span>.<span class=\"title\">id</span>,\n      <span class=\"title\">type</span>:          <span class=\"title\">modelClass</span>.<span class=\"title\">modelName</span>,\n      <span class=\"title\">attributes</span>:    <span class=\"title\">resourceHash</span>\n    };</span>\n    return { <span class=\"class\"><span class=\"keyword\">data</span>: <span class=\"keyword\">data</span> };</span>\n  }\n})</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "normalize",
+          "params": [
+            {
+              "name": "typeClass",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "hash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.Serializer"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/serializers/json.js",
+          "line": 85,
+          "description": "<html><head></head><body><p>The <code>primaryKey</code> is used when serializing and deserializing\ndata. Ember Data always uses the <code>id</code> property to store the id of\nthe record. The external source may not always follow this\nconvention. In these cases it is useful to override the\n<code>primaryKey</code> property to match the <code>primaryKey</code> of your external\nstore.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  primaryKey: <span class=\"string\">&apos;_id&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "primaryKey",
+          "type": "{String}",
+          "default": "'id'",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializers/json.js",
+          "line": 109,
+          "description": "<html><head></head><body><p>The <code>attrs</code> object can be used to declare a simple mapping between\nproperty names on <code>DS.Model</code> records and payload keys in the\nserialized JSON object representing the record. An object with the\nproperty <code>key</code> can also be used to designate the attribute&apos;s key on\nthe response payload.</p>\n<p>Example</p>\n<div class=\"highlight app/models/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  firstName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  lastName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  occupation: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  admin: DS.attr(<span class=\"string\">&apos;boolean&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/serializers/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  attrs: {\n    admin: <span class=\"string\">&apos;is_admin&apos;</span>,\n    occupation: { key: <span class=\"string\">&apos;career&apos;</span> }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also remove attributes by setting the <code>serialize</code> key to\n<code>false</code> in your mapping object.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nexport <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n  attrs: {\n    admin: { serialize: false },\n    occupation: { key: <span class=\"string\">&apos;career&apos;</span> }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When serialized:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"attr\">&quot;firstName&quot;</span>: <span class=\"string\">&quot;Harry&quot;</span>,\n  <span class=\"attr\">&quot;lastName&quot;</span>: <span class=\"string\">&quot;Houdini&quot;</span>,\n  <span class=\"attr\">&quot;career&quot;</span>: <span class=\"string\">&quot;magician&quot;</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note that the <code>admin</code> is now not included in the payload.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "attrs",
+          "type": "{Object}",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.JSONSerializer"
+        },
+        {
+          "file": "addon/serializer.js",
+          "line": 29,
+          "description": "<html><head></head><body><p>The <code>store</code> property is the application&apos;s <code>store</code> that contains\nall records. It can be used to look up serializers for other model\ntypes that may be nested inside the payload response.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>Serializer.extend({\n  extractRelationship(relationshipModelName, relationshipHash) {\n    <span class=\"keyword\">var</span> modelClass = <span class=\"keyword\">this</span>.store.modelFor(relationshipModelName);\n    <span class=\"keyword\">var</span> relationshipSerializer = <span class=\"keyword\">this</span>.store.serializerFor(relationshipModelName);\n    <span class=\"keyword\">return</span> relationshipSerializer.normalize(modelClass, relationshipHash);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "store",
+          "type": "{DS.Store}",
+          "access": "public",
+          "tagname": "",
+          "class": "DS.JSONAPISerializer",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "DS.Serializer"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-data-2.16.0-DS.JSONSerializer",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,283 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Transition",
+    "type": "class",
+    "attributes": {
+      "name": "Transition",
+      "shortname": "Transition",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "file": "node_modules/router_js/lib/router/transition.js",
+      "line": 5,
+      "description": "<html><head></head><body><p>A Transition is a thennable (a promise-like object) that represents\nan attempt to transition to another route. It can be aborted, either\nexplicitly via <code>abort</code> or by attempting another transition while a\nprevious one is still underway. An aborted transition can also\nbe <code>retry()</code>d later.</p>\n</body></html>",
+      "is_constructor": 1,
+      "params": [
+        {
+          "name": "router",
+          "description": "",
+          "type": "Object"
+        },
+        {
+          "name": "intent",
+          "description": "",
+          "type": "Object"
+        },
+        {
+          "name": "state",
+          "description": "",
+          "type": "Object"
+        },
+        {
+          "name": "error",
+          "description": "",
+          "type": "Object"
+        }
+      ],
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 152,
+          "description": "<html><head></head><body><p>A standard promise hook that resolves if the transition\nsucceeds and rejects if it fails/redirects/aborts.</p>\n<p>Forwards to the internal <code>promise</code> property which you can\nuse in situations where you want to pass around a thennable,\nbut not the Transition itself.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "then",
+          "params": [
+            {
+              "name": "onFulfilled",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "onRejected",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 172,
+          "description": "<html><head></head><body><p>Forwards to the internal <code>promise</code> property which you can\n    use in situations where you want to pass around a thennable,\n    but not the Transition itself.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "catch",
+          "params": [
+            {
+              "name": "onRejection",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\n    Useful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 189,
+          "description": "<html><head></head><body><p>Forwards to the internal <code>promise</code> property which you can\n    use in situations where you want to pass around a thennable,\n    but not the Transition itself.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "finally",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\n    Useful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 206,
+          "description": "<html><head></head><body><p>Aborts the Transition. Note you can also implicitly abort a transition\nby initiating another transition while a previous one is underway.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "abort",
+          "return": {
+            "description": "this transition",
+            "type": "Transition"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 224,
+          "description": "<html><head></head><body><p>Retries a previously-aborted transition (making sure to abort the\n    transition if it&apos;s still active). Returns a new transition that\n    represents the new attempt to transition.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "retry",
+          "return": {
+            "description": "new transition",
+            "type": "Transition"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 253,
+          "description": "<html><head></head><body><p>Sets the URL-changing method to be employed at the end of a\n    successful transition. By default, a new Transition will just\n    use <code>updateURL</code>, but passing &apos;replace&apos; to this method will\n    cause the URL to update using &apos;replaceWith&apos; instead. Omitting\n    a parameter will disable the URL change, allowing for transitions\n    that don&apos;t update the URL at completion (this is also used for\n    handleURL, since the URL has already changed before the\n    transition took place).</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "method",
+          "params": [
+            {
+              "name": "method",
+              "description": "the type of URL-changing method to use\n      at the end of a transition. Accepted values are 'replace',\n      falsy values, or any other non-falsy value (which is\n      interpreted as an updateURL transition).",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "this transition",
+            "type": "Transition"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 278,
+          "description": "<html><head></head><body><p>Fires an event on the current list of resolved/resolving\n    handlers within this transition. Useful for firing events\n    on route hierarchies that haven&apos;t fully been entered yet.\nNote: This method is also aliased as <code>send</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "ignoreFailure",
+              "description": "a boolean specifying whether unhandled events throw an error",
+              "type": "Boolean",
+              "optional": true,
+              "optdefault": "false"
+            },
+            {
+              "name": "name",
+              "description": "the name of the event to fire",
+              "type": "String"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 302,
+          "description": "<html><head></head><body><p>Transitions are aborted and their promises rejected\nwhen redirects occur; this method returns a promise\nthat will follow any redirects that occur and fulfill\nwith the value fulfilled by any redirecting transitions\nthat occur.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "followRedirects",
+          "return": {
+            "description": "a promise that fulfills with the same\n  value that the final redirecting transition fulfills with",
+            "type": "Promise"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 125,
+          "description": "<html><head></head><body><p>The Transition&apos;s internal promise. Calling <code>.then</code> on this property\nis that same as calling <code>.then</code> on the Transition object itself, but\nthis property is exposed for when you want to pass around a\nTransition&apos;s promise, but not the Transition object itself, since\nTransition object can be externally <code>abort</code>ed, while the promise\ncannot.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "promise",
+          "type": "{Object}",
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/router_js/lib/router/transition.js",
+          "line": 139,
+          "description": "<html><head></head><body><p>Custom state can be stored on a Transition&apos;s <code>data</code> object.\nThis can be useful for decorating a Transition within an earlier\nhook and shared with a later hook. Properties set on <code>data</code> will\nbe copied to new transitions generated by calling <code>retry</code> on this\ntransition.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "data",
+          "type": "{Object}",
+          "access": "public",
+          "tagname": "",
+          "class": "Transition",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.PromiseObject",
+    "type": "class",
+    "attributes": {
+      "name": "DS.PromiseObject",
+      "shortname": "DS.PromiseObject",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/promise-proxies.js",
+      "line": 37,
+      "description": "<html><head></head><body><p>A <code>PromiseObject</code> is an object that acts like both an <code>Ember.Object</code>\nand a promise. When the promise is resolved, then the resulting value\nwill be set to the <code>PromiseObject</code>&apos;s <code>content</code> property. This makes\nit easy to create data bindings with the <code>PromiseObject</code> that will\nbe updated when the promise resolves.</p>\n<p>For more information see the <a href=\"/api/classes/Ember.PromiseProxyMixin.html\">Ember.PromiseProxyMixin\ndocumentation</a>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promiseObject = DS.PromiseObject.create({\n  <span class=\"attr\">promise</span>: $.getJSON(<span class=\"string\">&apos;/some/remote/data.json&apos;</span>)\n});\n\npromiseObject.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// null</span>\n\npromiseObject.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  promiseObject.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Tomster&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "Ember.ObjectProxy",
+      "uses": [
+        "Ember.PromiseProxyMixin"
+      ],
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.ObjectProxy",
+          "type": "missing",
+          "version": "2.16.0"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

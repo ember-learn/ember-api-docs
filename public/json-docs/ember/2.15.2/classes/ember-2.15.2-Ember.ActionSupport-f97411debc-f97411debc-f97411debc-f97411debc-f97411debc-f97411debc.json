@@ -1,0 +1,79 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.ActionSupport",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.ActionSupport",
+      "shortname": "Ember.ActionSupport",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Ember.Component"
+      ],
+      "module": "ember",
+      "submodule": "ember-views",
+      "namespace": "Ember",
+      "file": "packages/ember-views/lib/mixins/action_support.js",
+      "line": 22,
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-views/lib/mixins/action_support.js",
+          "line": 28,
+          "description": "<html><head></head><body><p>Calls an action passed to a component.</p>\n<p>For example a component for playing or pausing music may translate click events\ninto action notifications of &quot;play&quot; or &quot;stop&quot; depending on some internal state\nof the component:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// app/components/play-button.js</span>\nexport <span class=\"keyword\">default</span> Ember.Component.extend({\n  click() {\n    <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isPlaying&apos;</span>)) {\n      <span class=\"keyword\">this</span>.sendAction(<span class=\"string\">&apos;play&apos;</span>);\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">this</span>.sendAction(<span class=\"string\">&apos;stop&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The actions &quot;play&quot; and &quot;stop&quot; must be passed to this <code>play-button</code> component:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{! app/templates/application.hbs }}\n{{play-button play=(<span class=\"name\">action</span> <span class=\"string\">&quot;musicStarted&quot;</span>) stop=(<span class=\"name\">action</span> <span class=\"string\">&quot;musicStopped&quot;</span>)}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When the component receives a browser <code>click</code> event it translate this\ninteraction into application-specific semantics (&quot;play&quot; or &quot;stop&quot;) and\ncalls the specified action.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// app/controller/application.js</span>\n<span class=\"selector-tag\">export</span> <span class=\"selector-tag\">default</span> <span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Controller</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">actions</span>: {\n    musicStarted() {\n      <span class=\"comment\">// called when the play button is clicked</span>\n      <span class=\"comment\">// and the music started playing</span>\n    },\n    <span class=\"selector-tag\">musicStopped</span>() {\n      <span class=\"comment\">// called when the play button is clicked</span>\n      <span class=\"comment\">// and the music stopped playing</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If no action is passed to <code>sendAction</code> a default name of &quot;action&quot;\nis assumed.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// app/components/next-button.js</span>\n<span class=\"keyword\">export</span> <span class=\"built_in\">default</span> Ember.Component.extend({\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.sendAction();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{! app/templates/application.hbs }}\n{{next-button action=(<span class=\"name\">action</span> <span class=\"string\">&quot;playNextSongInAlbum&quot;</span>)}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>// app/controllers/application.js\nApp.ApplicationController = Ember.Controller.extend({\n  actions: {\n    playNextSongInAlbum() {\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "sendAction",
+          "params": [
+            {
+              "name": "action",
+              "description": "the action to call",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "params",
+              "description": "arguments for the action",
+              "type": "*",
+              "optional": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ActionSupport",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

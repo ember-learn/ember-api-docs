@@ -1,0 +1,2890 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.TextField",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.TextField",
+      "shortname": "Ember.TextField",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-views",
+      "namespace": "Ember",
+      "file": "packages/ember-glimmer/lib/components/text_field.js",
+      "line": 36,
+      "description": "<html><head></head><body><p>The internal class used to create text inputs when the <code>{{input}}</code>\n  helper is used with <code>type</code> of <code>text</code>.\nSee <a href=\"/api/classes/Ember.Templates.helpers.html#method_input\">Ember.Templates.helpers.input</a>  for usage details.</p>\n<h2 id=\"layout-and-layoutname-properties\">Layout and LayoutName properties</h2>\n<p>Because HTML <code>input</code> elements are self closing <code>layout</code> and <code>layoutName</code>\n  properties will not be applied. See <a href=\"/api/classes/Ember.View.html\">Ember.View</a>&apos;s\n  layout section for more information.</p>\n</body></html>",
+      "extends": "Ember.Component",
+      "uses": [
+        "Ember.TextSupport"
+      ],
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 634,
+          "description": "<html><head></head><body><p>Normally, Ember&apos;s component model is &quot;write-only&quot;. The component takes a\nbunch of attributes that it got passed in, and uses them to render its\ntemplate.</p>\n<p>One nice thing about this model is that if you try to set a value to the\nsame thing as last time, Ember (through HTMLBars) will avoid doing any\nwork on the DOM.</p>\n<p>This is not just a performance optimization. If an attribute has not\nchanged, it is important not to clobber the element&apos;s &quot;hidden state&quot;.\nFor example, if you set an input&apos;s <code>value</code> to the same value as before,\nit will clobber selection state and cursor position. In other words,\nsetting an attribute is not <strong>always</strong> idempotent.</p>\n<p>This method provides a way to read an element&apos;s attribute and also\nupdate the last value Ember knows about at the same time. This makes\nsetting an attribute idempotent.</p>\n<p>In particular, what this means is that if you get an <code>&lt;input&gt;</code> element&apos;s\n<code>value</code> attribute and then re-render the template with the same value,\nit will avoid clobbering the cursor and selection position.\nSince most attribute sets are idempotent in the browser, you typically\ncan get away with reading attributes using jQuery, but the most reliable\nway to do so is through this method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "readDOMAttr",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the attribute",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 739,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been updated.\nCalled both during the initial render of a container and during a rerender.\nCan be used in place of an observer; code placed here will be executed\nevery time any attribute updates.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didReceiveAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 759,
+          "description": "<html><head></head><body><p>Called after a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 775,
+          "description": "<html><head></head><body><p>Called before a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 791,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been changed.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didUpdateAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 807,
+          "description": "<html><head></head><body><p>Called when the component is about to update and rerender itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 823,
+          "description": "<html><head></head><body><p>Called when the component has updated and rerendered itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 856,
+          "description": "<html><head></head><body><p>Returns a jQuery object for this component&apos;s element. If you pass in a selector\nstring, this method will return a jQuery object, using the current element\nas its buffer.\nFor example, calling <code>component.$(&apos;li&apos;)</code> will return a jQuery object containing\nall of the <code>li</code> elements inside the DOM element of this component.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "$",
+          "params": [
+            {
+              "name": "selector",
+              "description": "a jQuery-compatible selector string",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the jQuery object for the DOM node",
+            "type": "JQuery"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 209,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when either the <code>enter</code>\nkey is pressed or, in the case of the field being a textarea, when a newline\nis inserted. To use this method, give your field an <code>insert-newline</code>\nattribute. The value of that attribute should be the name of the action\nin your controller that you wish to invoke.</p>\n<p>For an example on how to use the <code>insert-newline</code> attribute, please\nreference the example near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "insertNewline",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 228,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when the escape button\nis pressed. To use this method, give your field an <code>escape-press</code>\nattribute. The value of that attribute should be the name of the action\nin your controller that you wish to invoke.</p>\n<p>For an example on how to use the <code>escape-press</code> attribute, please reference\nthe example near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "cancel",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 245,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a field receives\nfocus. To use this method, give your field a <code>focus-in</code> attribute. The value\nof that attribute should be the name of the action in your controller\nthat you wish to invoke.</p>\n<p>For an example on how to use the <code>focus-in</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "focusIn",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 262,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a field loses\nfocus. To use this method, give your field a <code>focus-out</code> attribute. The value\nof that attribute should be the name of the action in your controller\nthat you wish to invoke.</p>\n<p>For an example on how to use the <code>focus-out</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "focusOut",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 280,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a key is pressed.\nTo use this method, give your field a <code>key-press</code> attribute. The value of\nthat attribute should be the name of the action in your controller you\nthat wish to invoke.</p>\n<p>For an example on how to use the <code>key-press</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyPress",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 297,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a key-up event is\nfired. To use this method, give your field a <code>key-up</code> attribute. The value\nof that attribute should be the name of the action in your controller\nthat you wish to invoke.</p>\n<p>For an example on how to use the <code>key-up</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyUp",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 316,
+          "description": "<html><head></head><body><p>Allows you to specify a controller action to invoke when a key-down event is\nfired. To use this method, give your field a <code>key-down</code> attribute. The value\nof that attribute should be the name of the action in your controller that\nyou wish to invoke.</p>\n<p>For an example on how to use the <code>key-down</code> attribute, please reference the\nexample near the top of this file.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "keyDown",
+          "params": [
+            {
+              "name": "event",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 25,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRootViews",
+          "params": [
+            {
+              "name": "owner",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 46,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewId",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 61,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewElement",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 80,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getChildViews",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 117,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewBounds",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 126,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewRange",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 141,
+          "description": "<html><head></head><body><p><code>getViewClientRects</code> provides information about the position of the border\nbox edges of a view relative to the viewport.</p>\n<p>It is only intended to be used by development tools like the Ember Inspector\nand may not work on older browsers.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewClientRects",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 157,
+          "description": "<html><head></head><body><p><code>getViewBoundingClientRect</code> provides information about the position of the\nbounding border box edges of a view relative to the viewport.</p>\n<p>It is only intended to be used by development tools like the Ember Inspector\nand may not work on older browsers.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getViewBoundingClientRect",
+          "params": [
+            {
+              "name": "view",
+              "description": "",
+              "type": "Ember.View"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/system/utils.js",
+          "line": 173,
+          "description": "<html><head></head><body><p>Determines if the element matches the specified selector.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "matches",
+          "params": [
+            {
+              "name": "el",
+              "description": "",
+              "type": "DOMElement"
+            },
+            {
+              "name": "selector",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/views/core_view.js",
+          "line": 61,
+          "description": "<html><head></head><body><p>Override the default event firing from <code>Ember.Evented</code> to\nalso call methods with the given name.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/target_action_support.js",
+          "line": 42,
+          "description": "<html><head></head><body><p>Send an <code>action</code> with an <code>actionContext</code> to a <code>target</code>. The action, actionContext\nand target will be retrieved from properties of the object. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;controller&apos;</span>),\n  action: <span class=\"string\">&apos;save&apos;</span>,\n  actionContext: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;context&apos;</span>),\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction(); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n                          <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>target</code>, <code>action</code>, and <code>actionContext</code> can be provided as properties of\nan optional object argument to <code>triggerAction</code> as well.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>,\n      target: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;controller&apos;</span>),\n      actionContext: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;context&apos;</span>)\n    }); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>actionContext</code> defaults to the object you are mixing <code>TargetActionSupport</code> into.\nBut <code>target</code> and <code>action</code> must be specified either as properties or with the argument\nto <code>triggerAction</code>, or a combination:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.alias(<span class=\"string\">&apos;controller&apos;</span>),\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>\n    }); <span class=\"comment\">// Sends the `save` action, along with a reference to `this`,</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "triggerAction",
+          "params": [
+            {
+              "name": "opts",
+              "description": "(optional, with the optional keys action, target and/or actionContext)",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "true if the action was sent successfully and did not return false",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TargetActionSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/action_support.js",
+          "line": 28,
+          "description": "<html><head></head><body><p>Calls an action passed to a component.</p>\n<p>For example a component for playing or pausing music may translate click events\ninto action notifications of &quot;play&quot; or &quot;stop&quot; depending on some internal state\nof the component:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// app/components/play-button.js</span>\nexport <span class=\"keyword\">default</span> Ember.Component.extend({\n  click() {\n    <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isPlaying&apos;</span>)) {\n      <span class=\"keyword\">this</span>.sendAction(<span class=\"string\">&apos;play&apos;</span>);\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">this</span>.sendAction(<span class=\"string\">&apos;stop&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The actions &quot;play&quot; and &quot;stop&quot; must be passed to this <code>play-button</code> component:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{! app/templates/application.hbs }}\n{{play-button play=(<span class=\"name\">action</span> <span class=\"string\">&quot;musicStarted&quot;</span>) stop=(<span class=\"name\">action</span> <span class=\"string\">&quot;musicStopped&quot;</span>)}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When the component receives a browser <code>click</code> event it translate this\ninteraction into application-specific semantics (&quot;play&quot; or &quot;stop&quot;) and\ncalls the specified action.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// app/controller/application.js</span>\n<span class=\"selector-tag\">export</span> <span class=\"selector-tag\">default</span> <span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Controller</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">actions</span>: {\n    musicStarted() {\n      <span class=\"comment\">// called when the play button is clicked</span>\n      <span class=\"comment\">// and the music started playing</span>\n    },\n    <span class=\"selector-tag\">musicStopped</span>() {\n      <span class=\"comment\">// called when the play button is clicked</span>\n      <span class=\"comment\">// and the music stopped playing</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If no action is passed to <code>sendAction</code> a default name of &quot;action&quot;\nis assumed.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// app/components/next-button.js</span>\n<span class=\"keyword\">export</span> <span class=\"built_in\">default</span> Ember.Component.extend({\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.sendAction();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{! app/templates/application.hbs }}\n{{next-button action=(<span class=\"name\">action</span> <span class=\"string\">&quot;playNextSongInAlbum&quot;</span>)}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>// app/controllers/application.js\nApp.ApplicationController = Ember.Controller.extend({\n  actions: {\n    playNextSongInAlbum() {\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "sendAction",
+          "params": [
+            {
+              "name": "action",
+              "description": "the action to call",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "params",
+              "description": "arguments for the action",
+              "type": "*",
+              "optional": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 75,
+          "description": "<html><head></head><body><p>Return the nearest ancestor that is an instance of the provided\nclass or mixin.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nearestOfType",
+          "params": [
+            {
+              "name": "klass",
+              "description": "Subclass of Ember.View (or Ember.View itself),\n       or an instance of Ember.Mixin.",
+              "type": "Class,Mixin"
+            }
+          ],
+          "return": {
+            "description": "Ember.View"
+          },
+          "deprecated": true,
+          "deprecationMessage": "use `yield` and contextual components for composition instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 98,
+          "description": "<html><head></head><body><p>Return the nearest ancestor that has a given property.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nearestWithProperty",
+          "params": [
+            {
+              "name": "property",
+              "description": "A property name",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "Ember.View"
+          },
+          "deprecated": true,
+          "deprecationMessage": "use `yield` and contextual components for composition instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 116,
+          "description": "<html><head></head><body><p>Renders the view again. This will work regardless of whether the\nview is already in the DOM or not. If the view is in the DOM, the\nrendering process will be deferred to give bindings a chance\nto synchronize.</p>\n<p>If children were added during the rendering process using <code>appendChild</code>,\n<code>rerender</code> will remove them, because they will be added again\nif needed by the next <code>render</code>.</p>\n<p>In general, if the display of your view changes, you should modify\nthe DOM element directly instead of manually calling <code>rerender</code>, which can\nbe slow.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "rerender",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 156,
+          "description": "<html><head></head><body><p>Returns a jQuery object for this view&apos;s element. If you pass in a selector\nstring, this method will return a jQuery object, using the current element\nas its buffer.</p>\n<p>For example, calling <code>view.$(&apos;li&apos;)</code> will return a jQuery object containing\nall of the <code>li</code> elements inside the DOM element of this view.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "$",
+          "params": [
+            {
+              "name": "selector",
+              "description": "a jQuery-compatible selector string",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the jQuery object for the DOM node",
+            "type": "JQuery"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 176,
+          "description": "<html><head></head><body><p>Appends the view&apos;s element to the specified parent element.</p>\n<p>Note that this method just schedules the view to be appended; the DOM\nelement will not be appended to the given element until all bindings have\nfinished synchronizing.</p>\n<p>This is not typically a function that you will need to call directly when\nbuilding your application. If you do need to use <code>appendTo</code>, be sure that\nthe target element you are providing is associated with an <code>Ember.Application</code>\nand does not have an ancestor element that is associated with an Ember view.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "appendTo",
+          "params": [
+            {
+              "name": "A",
+              "description": "selector, element, HTML string, or jQuery object",
+              "type": "String|DOMElement|jQuery"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Ember.View"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 226,
+          "description": "<html><head></head><body><p>Appends the view&apos;s element to the document body. If the view does\nnot have an HTML representation yet\nthe element will be generated automatically.</p>\n<p>If your application uses the <code>rootElement</code> property, you must append\nthe view within that element. Rendering views outside of the <code>rootElement</code>\nis not supported.</p>\n<p>Note that this method just schedules the view to be appended; the DOM\nelement will not be appended to the document body until all bindings have\nfinished synchronizing.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "append",
+          "return": {
+            "description": "receiver",
+            "type": "Ember.View"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 278,
+          "description": "<html><head></head><body><p>Attempts to discover the element in the parent element. The default\nimplementation looks for an element with an ID of <code>elementId</code> (or the\nview&apos;s guid if <code>elementId</code> is null). You can override this method to\nprovide your own form of lookup. For example, if you want to discover your\nelement using a CSS class name instead of an ID.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "findElementInParentElement",
+          "params": [
+            {
+              "name": "parentElement",
+              "description": "The parent's DOM element",
+              "type": "DOMElement"
+            }
+          ],
+          "return": {
+            "description": "The discovered element",
+            "type": "DOMElement"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 326,
+          "description": "<html><head></head><body><p>You must call <code>destroy</code> on a view to destroy the view (and all of its\nchild views). This will remove the view from any parent node, then make\nsure that the DOM element managed by the view can be released by the\nmemory manager.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 386,
+          "description": "<html><head></head><body><p>Setup a view, but do not finish waking it up.</p>\n<ul>\n<li>configure <code>childViews</code></li>\n<li>register the view with the global views hash, which is used for event\ndispatch</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 448,
+          "description": "<html><head></head><body><p>Handle events from <code>Ember.EventDispatcher</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "handleEvent",
+          "params": [
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "evt",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 501,
+          "itemtype": "method",
+          "name": "create",
+          "static": 1,
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 546,
+          "itemtype": "method",
+          "name": "reopen",
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 583,
+          "itemtype": "method",
+          "name": "apply",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "applied object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 614,
+          "itemtype": "method",
+          "name": "detect",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/target_action_support.js",
+          "line": 42,
+          "description": "<html><head></head><body><p>Send an <code>action</code> with an <code>actionContext</code> to a <code>target</code>. The action, actionContext\nand target will be retrieved from properties of the object. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;controller&apos;</span>),\n  action: <span class=\"string\">&apos;save&apos;</span>,\n  actionContext: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;context&apos;</span>),\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction(); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n                          <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>target</code>, <code>action</code>, and <code>actionContext</code> can be provided as properties of\nan optional object argument to <code>triggerAction</code> as well.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>,\n      target: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;controller&apos;</span>),\n      actionContext: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;context&apos;</span>)\n    }); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>actionContext</code> defaults to the object you are mixing <code>TargetActionSupport</code> into.\nBut <code>target</code> and <code>action</code> must be specified either as properties or with the argument\nto <code>triggerAction</code>, or a combination:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.alias(<span class=\"string\">&apos;controller&apos;</span>),\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>\n    }); <span class=\"comment\">// Sends the `save` action, along with a reference to `this`,</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "triggerAction",
+          "params": [
+            {
+              "name": "opts",
+              "description": "(optional, with the optional keys action, target and/or actionContext)",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "true if the action was sent successfully and did not return false",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TargetActionSupport"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 52,
+          "description": "<html><head></head><body><p>Subscribes to a named event with given function.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didLoad&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"comment\">// fired once the person has loaded</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An optional target can be passed in as the 2nd argument that will\nbe set as the &quot;this&quot; for the callback. This is a good way to give your\nfunction access to the object triggering the event. When the target\nparameter is used the callback becomes the third argument.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "on",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 78,
+          "description": "<html><head></head><body><p>Subscribes a function to a named event and then cancels the subscription\nafter the first time the event is triggered. It is good to use <code>one</code> when\nyou only care about the first time an event has taken place.</p>\n<p>This function takes an optional 2nd argument that will become the &quot;this&quot;\nvalue for the callback. If this argument is passed then the 3rd argument\nbecomes the function.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "one",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>Triggers a named event for the object. Any additional arguments\nwill be passed as parameters to the functions that are subscribed to the\nevent.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">food</span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;person ate some &apos;</span> + food);\n});\n\nperson.trigger(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"string\">&apos;broccoli&apos;</span>);\n\n<span class=\"comment\">// outputs: person ate some broccoli</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "Optional arguments to pass on",
+              "type": "Object..."
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 127,
+          "description": "<html><head></head><body><p>Cancels subscription for given name, target, and method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "off",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target of the subscription",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The function of the subscription",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 142,
+          "description": "<html><head></head><body><p>Checks to see if object has any subscriptions for named event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "has",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "does the object have a subscription for event",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 144,
+          "description": "<html><head></head><body><p>Triggers a named action on the <code>ActionHandler</code>. Any parameters\nsupplied after the <code>actionName</code> string will be passed as arguments\nto the action target function.</p>\n<p>If the <code>ActionHandler</code> has its <code>target</code> property set, actions may\nbubble to the <code>target</code>. Bubbling happens when an <code>actionName</code> can\nnot be found in the <code>ActionHandler</code>&apos;s <code>actions</code> hash or if the\naction target function returns <code>true</code>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.WelcomeRoute = Ember.Route.extend({\n  actions: {\n    playTheme() {\n       this.send(<span class=\"string\">&apos;playMusic&apos;</span>, <span class=\"string\">&apos;theme.mp3&apos;</span>);\n    },\n    playMusic(track) {\n      // ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "send",
+          "params": [
+            {
+              "name": "actionName",
+              "description": "The action to trigger",
+              "type": "String"
+            },
+            {
+              "name": "context",
+              "description": "a context to send with the action",
+              "type": "*"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionHandler"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 501,
+          "itemtype": "method",
+          "name": "create",
+          "static": 1,
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 546,
+          "itemtype": "method",
+          "name": "reopen",
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 583,
+          "itemtype": "method",
+          "name": "apply",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "applied object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 614,
+          "itemtype": "method",
+          "name": "detect",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 501,
+          "itemtype": "method",
+          "name": "create",
+          "static": 1,
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 546,
+          "itemtype": "method",
+          "name": "reopen",
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 583,
+          "itemtype": "method",
+          "name": "apply",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "applied object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 614,
+          "itemtype": "method",
+          "name": "detect",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Mixin"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 211,
+          "description": "<html><head></head><body><p>An overridable method called when objects are instantiated. By default,\ndoes nothing unless it is overridden during class definition.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  init() {\n    alert(`Name <span class=\"keyword\">is</span> ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>)}`);\n  }\n});\n\n<span class=\"keyword\">let</span> steve = Person.create({\n  name: <span class=\"string\">&apos;Steve&apos;</span>\n});\n\n<span class=\"comment\">// alerts &apos;Name is Steve&apos;.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>NOTE: If you do override <code>init</code> for a framework class like <code>Ember.View</code>,\nbe sure to call <code>this._super(...arguments)</code> in your\n<code>init</code> declaration! If you don&apos;t, Ember may not have an opportunity to\ndo important setup work, and you&apos;ll see strange behavior in your\napplication.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 446,
+          "description": "<html><head></head><body><p>Destroys an object by setting the <code>isDestroyed</code> flag and removing its\nmetadata, which effectively destroys observers and bindings.</p>\n<p>If you try to set a property on a destroyed object, an exception will be\nraised.</p>\n<p>Note that destruction is scheduled for the end of the run loop and does not\nhappen immediately.  It will set an isDestroying flag immediately.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "return": {
+            "description": "receiver",
+            "type": "Ember.Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 472,
+          "description": "<html><head></head><body><p>Override to implement teardown.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willDestroy",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 480,
+          "description": "<html><head></head><body><p>Invoked by the run loop to actually destroy the object. This is\nscheduled for execution by the <code>destroy</code> method.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_scheduledDestroy",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 499,
+          "description": "<html><head></head><body><p>Returns a string representation which attempts to provide more information\nthan Javascript&apos;s <code>toString</code> typically does, in a generic way for all Ember\nobjects.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"keyword\">Person</span> = Ember.Object.extend()\n<span class=\"keyword\">person</span> = <span class=\"keyword\">Person</span>.create()\n<span class=\"keyword\">person</span>.toString() //=&gt; <span class=\"string\">&quot;&lt;Person:ember1024&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the object&apos;s class is not defined on an Ember namespace, it will\nindicate it is a subclass of the registered superclass:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"attr\">Student</span> = Person.extend()\n<span class=\"keyword\">let</span> <span class=\"attr\">student</span> = Student.create()\nstudent.<span class=\"built_in\">toString</span>() //=&gt; <span class=\"string\">&quot;&lt;(subclass of Person):ember1025&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the method <code>toStringExtension</code> is defined, its return value will be\nincluded in the output.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>const Teacher = Person.extend({\n  toStringExtension() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>);\n  }\n});\nteacher = Teacher.create()\nteacher.toString(); <span class=\"comment\">//=&gt; &quot;&lt;Teacher:ember1026:Tom Dale&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "toString",
+          "return": {
+            "description": "string representation",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 561,
+          "description": "<html><head></head><body><p>Creates a new subclass.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"keyword\">Person</span> = Ember.Object.extend({\n  <span class=\"keyword\">say</span>(<span class=\"keyword\">thing</span>) {\n    alert(<span class=\"keyword\">thing</span>);\n   }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This defines a new subclass of Ember.Object: <code>Person</code>. It contains one method: <code>say()</code>.</p>\n<p>You can also create a subclass from any existing class by calling its <code>extend()</code> method.\nFor example, you might want to create a subclass of Ember&apos;s built-in <code>Ember.Component</code> class:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"attribute\">const PersonComponent</span> = Ember.Component.extend({\n  tagName: <span class=\"string\">&apos;li&apos;</span>,\n  classNameBindings: [<span class=\"string\">&apos;isAdministrator&apos;</span>]\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When defining a subclass, you can override methods but still access the\nimplementation of your parent class by calling the special <code>_super()</code> method:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  say(thing) {\n    <span class=\"keyword\">let</span> name = <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;name&apos;</span>);\n    alert(<span class=\"string\">`<span class=\"subst\">${name}</span> says: <span class=\"subst\">${thing}</span>`</span>);\n  }\n});\n\n<span class=\"keyword\">const</span> Soldier = Person.extend({\n  say(thing) {\n    <span class=\"keyword\">this</span>._super(<span class=\"string\">`<span class=\"subst\">${thing}</span>, sir!`</span>);\n  },\n  march(numberOfHours) {\n    alert(<span class=\"string\">`<span class=\"subst\">${<span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;name&apos;</span>)}</span> marches for <span class=\"subst\">${numberOfHours}</span> hours.`</span>);\n  }\n});\n\n<span class=\"keyword\">let</span> yehuda = Soldier.create({\n  <span class=\"attr\">name</span>: <span class=\"string\">&apos;Yehuda Katz&apos;</span>\n});\n\nyehuda.say(<span class=\"string\">&apos;Yes&apos;</span>);  <span class=\"comment\">// alerts &quot;Yehuda Katz says: Yes, sir!&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>create()</code> on line #17 creates an <em>instance</em> of the <code>Soldier</code> class.\nThe <code>extend()</code> on line #8 creates a <em>subclass</em> of <code>Person</code>. Any instance\nof the <code>Person</code> class will <em>not</em> have the <code>march()</code> method.</p>\n<p>You can also pass <code>Mixin</code> classes to add additional properties to the subclass.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  say(thing) {\n    alert(<span class=\"string\">`<span class=\"subst\">${<span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;name&apos;</span>)}</span> says: <span class=\"subst\">${thing}</span>`</span>);\n  }\n});\n\n<span class=\"keyword\">const</span> SingingMixin = Mixin.create({\n  sing(thing){\n    alert(<span class=\"string\">`<span class=\"subst\">${<span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;name&apos;</span>)}</span> sings: la la la <span class=\"subst\">${thing}</span>`</span>);\n  }\n});\n\n<span class=\"keyword\">const</span> BroadwayStar = Person.extend(SingingMixin, {\n  dance() {\n    alert(<span class=\"string\">`<span class=\"subst\">${<span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;name&apos;</span>)}</span> dances: tap tap tap tap `</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>BroadwayStar</code> class contains three methods: <code>say()</code>, <code>sing()</code>, and <code>dance()</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "extend",
+          "static": 1,
+          "params": [
+            {
+              "name": "mixins",
+              "description": "One or more Mixin classes",
+              "type": "Mixin",
+              "optional": true,
+              "multiple": true
+            },
+            {
+              "name": "arguments",
+              "description": "Object containing values to use within the new class",
+              "type": "Object",
+              "optional": true,
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 669,
+          "description": "<html><head></head><body><p>Creates an instance of a class. Accepts either no arguments, or an object\ncontaining values to initialize the newly instantiated object with.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  helloWorld() {\n    alert(`Hi, my name <span class=\"keyword\">is</span> ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>)}`);\n  }\n});\n\n<span class=\"keyword\">let</span> tom = Person.create({\n  name: <span class=\"string\">&apos;Tom Dale&apos;</span>\n});\n\ntom.helloWorld(); <span class=\"comment\">// alerts &quot;Hi, my name is Tom Dale&quot;.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>create</code> will call the <code>init</code> function if defined during\n<code>Ember.AnyObject.extend</code></p>\n<p>If no arguments are passed to <code>create</code>, it will not set values to the new\ninstance during initialization:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> noName = Person.<span class=\"keyword\">create</span>();\nnoName.helloWorld(); <span class=\"comment\">// alerts undefined</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>NOTE: For performance reasons, you cannot declare methods or computed\nproperties during <code>create</code>. You should instead declare methods and computed\nproperties when using <code>extend</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "create",
+          "static": 1,
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "optional": true,
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 715,
+          "description": "<html><head></head><body><p>Augments a constructor&apos;s prototype with additional\nproperties and functions:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre>const MyObject = Ember.Object.extend({\n  <span class=\"built_in\">name</span>: <span class=\"string\">&apos;an object&apos;</span>\n});\n\no = MyObject.create();\no.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;an object&apos;</span>\n\nMyObject.reopen({\n  <span class=\"built_in\">say</span>(msg) {\n    console.<span class=\"built_in\">log</span>(msg);\n  }\n});\n\no2 = MyObject.create();\no2.<span class=\"built_in\">say</span>(<span class=\"string\">&apos;hello&apos;</span>); <span class=\"comment\">// logs &quot;hello&quot;</span>\n\no.<span class=\"built_in\">say</span>(<span class=\"string\">&apos;goodbye&apos;</span>); <span class=\"comment\">// logs &quot;goodbye&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>To add functions and properties to the constructor itself,\nsee <code>reopenClass</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reopen",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 751,
+          "description": "<html><head></head><body><p>Augments a constructor&apos;s own properties and functions:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"string\">const</span> <span class=\"string\">MyObject</span> <span class=\"string\">=</span> <span class=\"string\">Ember.Object.extend({</span>\n<span class=\"attr\">  name:</span> <span class=\"string\">&apos;an object&apos;</span>\n<span class=\"string\">});</span>\n\n<span class=\"string\">MyObject.reopenClass({</span>\n<span class=\"attr\">  canBuild:</span> <span class=\"literal\">false</span>\n<span class=\"string\">});</span>\n\n<span class=\"string\">MyObject.canBuild;</span> <span class=\"string\">//</span> <span class=\"literal\">false</span>\n<span class=\"string\">o</span> <span class=\"string\">=</span> <span class=\"string\">MyObject.create();</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>In other words, this creates static properties and functions for the class.\nThese are only available on the class and not on any instance of that class.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre>const Person = Ember.Object.extend({\n  name: <span class=\"string\">&apos;&apos;</span>,\n  sayHello() {\n    alert(`Hello. My name is ${this.get(<span class=\"string\">&apos;name&apos;</span>)}`);\n  }\n});\n\nPerson.reopenClass({\n  species: <span class=\"string\">&apos;Homo sapiens&apos;</span>,\n\n  createPerson(name) {\n    return Person.create({ name });\n  }\n});\n\n<span class=\"keyword\">let</span> tom = Person.create({\n  name: <span class=\"string\">&apos;Tom Dale&apos;</span>\n});\n<span class=\"keyword\">let</span> yehuda = Person.createPerson(<span class=\"string\">&apos;Yehuda Katz&apos;</span>);\n\ntom.sayHello(); // <span class=\"string\">&quot;Hello. My name is Tom Dale&quot;</span>\nyehuda.sayHello(); // <span class=\"string\">&quot;Hello. My name is Yehuda Katz&quot;</span>\nalert(Person.species); // <span class=\"string\">&quot;Homo sapiens&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note that <code>species</code> and <code>createPerson</code> are <em>not</em> valid on the <code>tom</code> and <code>yehuda</code>\nvariables. They are only valid on <code>Person</code>.</p>\n<p>To add functions and properties to instances of\na constructor by extending the constructor&apos;s prototype\nsee <code>reopen</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reopenClass",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 825,
+          "description": "<html><head></head><body><p>In some cases, you may want to annotate computed properties with additional\nmetadata about how they function or what values they operate on. For\nexample, computed property functions may close over variables that are then\nno longer available for introspection.</p>\n<p>You can pass a hash of these values to a computed property like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"attribute\">person</span>: Ember.computed(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">let</span> personId = <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;personId&apos;</span>);\n  <span class=\"keyword\">return</span> Person.create({ <span class=\"attribute\">id:</span><span class=\"string\"> personId</span> });\n}).meta({ <span class=\"attribute\">type</span>: Person })</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Once you&apos;ve done this, you can retrieve the values saved to the computed\nproperty from your class like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">MyClass</span><span class=\"selector-class\">.metaForProperty</span>(<span class=\"string\">&apos;person&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This will return the original hash that was passed to <code>meta()</code>.</p>\n</body></html>",
+          "static": 1,
+          "itemtype": "method",
+          "name": "metaForProperty",
+          "params": [
+            {
+              "name": "key",
+              "description": "property name",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 884,
+          "description": "<html><head></head><body><p>Iterate over each computed property for the class, passing its name\nand any associated metadata (see <code>metaForProperty</code>) to the callback.</p>\n</body></html>",
+          "static": 1,
+          "itemtype": "method",
+          "name": "eachComputedProperty",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 912,
+          "description": "<html><head></head><body><p>Provides lookup-time type validation for injected properties.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_onLookup",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 921,
+          "description": "<html><head></head><body><p>Returns a hash of property names and container names that injected\nproperties will lookup on the container lazily.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_lazyInjections",
+          "return": {
+            "description": "Hash of all lazy injected property keys to container names",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 96,
+          "description": "<html><head></head><body><p>Retrieves the value of a property from the object.</p>\n<p>This method is usually similar to using <code>object[keyName]</code> or <code>object.keyName</code>,\nhowever it supports both computed properties and the unknownProperty\nhandler.</p>\n<p>Because <code>get</code> unifies the syntax for accessing all these kinds\nof properties, it can make many refactorings easier, such as replacing a\nsimple property with a computed property, or vice versa.</p>\n<h3 id=\"computed-properties\">Computed Properties</h3>\n<p>Computed properties are methods defined with the <code>property</code> modifier\ndeclared at the end, such as:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, function() {\n  <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>) + <span class=\"string\">&apos; &apos;</span> + <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n})</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When you call <code>get</code> on a computed property, the function will be\ncalled and the return value will be returned instead of the function\nitself.</p>\n<h3 id=\"unknown-properties\">Unknown Properties</h3>\n<p>Likewise, if you try to call <code>get</code> on a property whose value is\n<code>undefined</code>, the <code>unknownProperty()</code> method will be called on the object.\nIf this method returns any value other than <code>undefined</code>, it will be returned\ninstead. This allows you to implement &quot;virtual&quot; properties that are\nnot defined upfront.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "get",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property to retrieve",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The property value or undefined.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 139,
+          "description": "<html><head></head><body><p>To get the values of multiple properties at once, call <code>getProperties</code>\nwith a list of strings or an array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>record.getProperties(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;zipCode&apos;</span>);\n<span class=\"regexp\">//</span> { firstName: <span class=\"string\">&apos;John&apos;</span>, lastName: <span class=\"string\">&apos;Doe&apos;</span>, zipCode: <span class=\"string\">&apos;10011&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>is equivalent to:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>record.getProperties([<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;zipCode&apos;</span>]);\n<span class=\"regexp\">//</span> { firstName: <span class=\"string\">&apos;John&apos;</span>, lastName: <span class=\"string\">&apos;Doe&apos;</span>, zipCode: <span class=\"string\">&apos;10011&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getProperties",
+          "params": [
+            {
+              "name": "list",
+              "description": "of keys to get",
+              "type": "String...|Array"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 164,
+          "description": "<html><head></head><body><p>Sets the provided key or path to the value.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">record</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&quot;key&quot;</span>, value);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method is generally very similar to calling <code>object[&quot;key&quot;] = value</code> or\n<code>object.key = value</code>, except that it provides support for computed\nproperties, the <code>setUnknownProperty()</code> method and property observers.</p>\n<h3 id=\"computed-properties\">Computed Properties</h3>\n<p>If you try to set a value on a key that has a computed property handler\ndefined (see the <code>get()</code> method for an example), then <code>set()</code> will call\nthat method, passing both the value and key instead of simply changing\nthe value itself. This is useful for those times when you need to\nimplement a property that is composed of one or more member\nproperties.</p>\n<h3 id=\"unknown-properties\">Unknown Properties</h3>\n<p>If you try to set a value on a key that is undefined in the target\nobject, then the <code>setUnknownProperty()</code> handler will be called instead. This\ngives you an opportunity to implement complex &quot;virtual&quot; properties that\nare not predefined on the object. If <code>setUnknownProperty()</code> returns\nundefined, then <code>set()</code> will simply set the value on the object.</p>\n<h3 id=\"property-observers\">Property Observers</h3>\n<p>In addition to changing the property, <code>set()</code> will also register a property\nchange with the object. Unless you have placed this call inside of a\n<code>beginPropertyChanges()</code> and <code>endPropertyChanges(),</code> any &quot;local&quot; observers\n(i.e. observer methods declared on the same object), will be called\nimmediately. Any &quot;remote&quot; observers (i.e. observer methods declared on\nanother object) will be placed in a queue and called at a later time in a\ncoalesced manner.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "set",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property to set",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "The value to set or `null`.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The passed value",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 213,
+          "description": "<html><head></head><body><p>Sets a list of properties at once. These properties are set inside\na single <code>beginPropertyChanges</code> and <code>endPropertyChanges</code> batch, so\nobservers will be buffered.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">record</span><span class=\"selector-class\">.setProperties</span>({ <span class=\"attribute\">firstName</span>: <span class=\"string\">&apos;Charles&apos;</span>, lastName: <span class=\"string\">&apos;Jolley&apos;</span> });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "setProperties",
+          "params": [
+            {
+              "name": "hash",
+              "description": "the hash of keys and values to set",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The passed in hash",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 231,
+          "description": "<html><head></head><body><p>Begins a grouping of property changes.</p>\n<p>You can use this method to group property changes so that notifications\nwill not be sent until the changes are finished. If you plan to make a\nlarge number of changes to an object at one time, you should call this\nmethod at the beginning of the changes to begin deferring change\nnotifications. When you are done making changes, call\n<code>endPropertyChanges()</code> to deliver the deferred change notifications and end\ndeferring.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "beginPropertyChanges",
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 251,
+          "description": "<html><head></head><body><p>Ends a grouping of property changes.</p>\n<p>You can use this method to group property changes so that notifications\nwill not be sent until the changes are finished. If you plan to make a\nlarge number of changes to an object at one time, you should call\n<code>beginPropertyChanges()</code> at the beginning of the changes to defer change\nnotifications. When you are done making changes, call this method to\ndeliver the deferred change notifications and end deferring.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "endPropertyChanges",
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 270,
+          "description": "<html><head></head><body><p>Notify the observer system that a property is about to change.</p>\n<p>Sometimes you need to change a value directly or indirectly without\nactually calling <code>get()</code> or <code>set()</code> on it. In this case, you can use this\nmethod and <code>propertyDidChange()</code> instead. Calling these two methods\ntogether will notify all observers that the property has potentially\nchanged value.</p>\n<p>Note that you must always call <code>propertyWillChange</code> and <code>propertyDidChange</code>\nas a pair. If you do not, it may get the property change groups out of\norder and cause notifications to be delivered more often than you would\nlike.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "propertyWillChange",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property key that is about to change.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 294,
+          "description": "<html><head></head><body><p>Notify the observer system that a property has just changed.</p>\n<p>Sometimes you need to change a value directly or indirectly without\nactually calling <code>get()</code> or <code>set()</code> on it. In this case, you can use this\nmethod and <code>propertyWillChange()</code> instead. Calling these two methods\ntogether will notify all observers that the property has potentially\nchanged value.</p>\n<p>Note that you must always call <code>propertyWillChange</code> and <code>propertyDidChange</code>\nas a pair. If you do not, it may get the property change groups out of\norder and cause notifications to be delivered more often than you would\nlike.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "propertyDidChange",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property key that has just changed.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 318,
+          "description": "<html><head></head><body><p>Convenience method to call <code>propertyWillChange</code> and <code>propertyDidChange</code> in\nsuccession.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "notifyPropertyChange",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property key to be notified about.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 333,
+          "description": "<html><head></head><body><p>Adds an observer on a property.</p>\n<p>This is the core method used to register an observer for a property.</p>\n<p>Once you call this method, any time the key&apos;s value is set, your observer\nwill be notified. Note that the observers are triggered any time the\nvalue is set, regardless of whether it has actually changed. Your\nobserver should be prepared to handle that.</p>\n<h3 id=\"observer-methods\">Observer Methods</h3>\n<p>Observer methods have the following signature:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>export <span class=\"keyword\">default</span> Ember.Component.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n    <span class=\"keyword\">this</span>.addObserver(<span class=\"string\">&apos;foo&apos;</span>, <span class=\"keyword\">this</span>, <span class=\"string\">&apos;fooDidChange&apos;</span>);\n  },\n\n  fooDidChange(sender, key, value, rev) {\n    <span class=\"comment\">// your code</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>sender</code> is the object that changed. The <code>key</code> is the property that\nchanges. The <code>value</code> property is currently reserved and unused. The <code>rev</code>\nis the last property revision of the object when it changed, which you can\nuse to detect if the key value has really changed or not.</p>\n<p>Usually you will not need the value or revision parameters at\nthe end. In this case, it is common to write observer methods that take\nonly a sender and key value as parameters or, if you aren&apos;t interested in\nany of these values, to write an observer that has no parameters at all.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addObserver",
+          "params": [
+            {
+              "name": "key",
+              "description": "The key to observe",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target object to invoke",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke",
+              "type": "String|Function"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 380,
+          "description": "<html><head></head><body><p>Remove an observer you have previously registered on this object. Pass\nthe same key, target, and method you passed to <code>addObserver()</code> and your\ntarget will no longer receive notifications.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeObserver",
+          "params": [
+            {
+              "name": "key",
+              "description": "The key to observe",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target object to invoke",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke",
+              "type": "String|Function"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 395,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the object currently has observers registered for a\nparticular key. You can use this method to potentially defer performing\nan expensive action until someone begins observing a particular property\non the object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "hasObserverFor",
+          "params": [
+            {
+              "name": "key",
+              "description": "Key to check",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 410,
+          "description": "<html><head></head><body><p>Retrieves the value of a property, or a default value in the case that the\nproperty returns <code>undefined</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">person</span><span class=\"selector-class\">.getWithDefault</span>(<span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;Doe&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getWithDefault",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to retrieve",
+              "type": "String"
+            },
+            {
+              "name": "defaultValue",
+              "description": "The value to return if the property value is undefined",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The property value or the defaultValue.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 428,
+          "description": "<html><head></head><body><p>Set the value of a property to the current value plus some amount.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">person</span><span class=\"selector-class\">.incrementProperty</span>(<span class=\"string\">&apos;age&apos;</span>);\n<span class=\"selector-tag\">team</span><span class=\"selector-class\">.incrementProperty</span>(<span class=\"string\">&apos;score&apos;</span>, <span class=\"number\">2</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "incrementProperty",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to increment",
+              "type": "String"
+            },
+            {
+              "name": "increment",
+              "description": "The amount to increment by. Defaults to 1",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "The new property value",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 448,
+          "description": "<html><head></head><body><p>Set the value of a property to the current value minus some amount.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">player</span><span class=\"selector-class\">.decrementProperty</span>(<span class=\"string\">&apos;lives&apos;</span>);\n<span class=\"selector-tag\">orc</span><span class=\"selector-class\">.decrementProperty</span>(<span class=\"string\">&apos;health&apos;</span>, <span class=\"number\">5</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "decrementProperty",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to decrement",
+              "type": "String"
+            },
+            {
+              "name": "decrement",
+              "description": "The amount to decrement by. Defaults to 1",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "The new property value",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 468,
+          "description": "<html><head></head><body><p>Set the value of a boolean property to the opposite of its\ncurrent value.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">starship</span><span class=\"selector-class\">.toggleProperty</span>(<span class=\"string\">&apos;warpDriveEngaged&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "toggleProperty",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to toggle",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The new property value",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 485,
+          "description": "<html><head></head><body><p>Returns the cached value of a computed property, if it exists.\nThis allows you to inspect the value of a computed property\nwithout accidentally invoking it if it is intended to be\ngenerated lazily.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "cacheFor",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The cached value of the computed property, if any",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Observable"
+        }
+      ],
+      "events": [
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 749,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been updated.\nCalled both during the initial render of a container and during a rerender.\nCan be used in place of an observer; code placed here will be executed\nevery time any attribute updates.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didReceiveAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 767,
+          "description": "<html><head></head><body><p>Called after a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 783,
+          "description": "<html><head></head><body><p>Called before a component has been rendered, both on initial render and\nin subsequent rerenders.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willRender",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 799,
+          "description": "<html><head></head><body><p>Called when the attributes passed into the component have been changed.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didUpdateAttrs",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 815,
+          "description": "<html><head></head><body><p>Called when the component is about to update and rerender itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 831,
+          "description": "<html><head></head><body><p>Called when the component has updated and rerendered itself.\nCalled only during a rerender, not during an initial render.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didUpdate",
+          "access": "public",
+          "tagname": "",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 295,
+          "description": "<html><head></head><body><p>Called when a view is going to insert an element into the DOM.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willInsertElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 303,
+          "description": "<html><head></head><body><p>Called when the element of the view has been inserted into the DOM.\nOverride this function to do any set up that requires an element\nin the document body.</p>\n<p>When a view has children, didInsertElement will be called on the\nchild view(s) first and on itself afterwards.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didInsertElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 316,
+          "description": "<html><head></head><body><p>Called when the view is about to rerender, but before anything has\nbeen torn down. This is a good opportunity to tear down any manual\nobservers you have installed based on the DOM state</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willClearRender",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 340,
+          "description": "<html><head></head><body><p>Called when the element of the view is going to be destroyed. Override\nthis function to do any teardown that requires an element, like removing\nevent listeners.</p>\n<p>Please note: any property changes made during this event will have no\neffect on object observers.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willDestroyElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 353,
+          "description": "<html><head></head><body><p>Called when the parentView property has changed.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "parentViewDidChange",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        }
+      ],
+      "properties": [
+        {
+          "file": "packages/ember-glimmer/lib/components/text_field.js",
+          "line": 85,
+          "description": "<html><head></head><body><p>The <code>value</code> attribute of the input element. As the user inputs text, this\nproperty is updated live.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "value",
+          "type": "String",
+          "default": "\"\"",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/components/text_field.js",
+          "line": 96,
+          "description": "<html><head></head><body><p>The <code>type</code> attribute of the input element.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "type",
+          "type": "String",
+          "default": "\"text\"",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/components/text_field.js",
+          "line": 120,
+          "description": "<html><head></head><body><p>The <code>size</code> of the text field in characters.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "size",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/components/text_field.js",
+          "line": 130,
+          "description": "<html><head></head><body><p>The <code>pattern</code> attribute of input element.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "pattern",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/components/text_field.js",
+          "line": 140,
+          "description": "<html><head></head><body><p>The <code>min</code> attribute of input element used with <code>type=&quot;number&quot;</code> or <code>type=&quot;range&quot;</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "min",
+          "type": "String",
+          "default": "null",
+          "since": "2.15.2",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/components/text_field.js",
+          "line": 151,
+          "description": "<html><head></head><body><p>The <code>max</code> attribute of input element used with <code>type=&quot;number&quot;</code> or <code>type=&quot;range&quot;</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "max",
+          "type": "String",
+          "default": "null",
+          "since": "2.15.2",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 670,
+          "description": "<html><head></head><body><p>The WAI-ARIA role of the control represented by this view. For example, a\nbutton may have a role of type &apos;button&apos;, or a pane may have a role of\ntype &apos;alertdialog&apos;. This property is used by assistive software to help\nvisually challenged users navigate rich web applications.</p>\n<p>The full list of valid WAI-ARIA roles is available at:\n<a href=\"http://www.w3.org/TR/wai-aria/roles#roles_categorization\">http://www.w3.org/TR/wai-aria/roles#roles_categorization</a></p>\n</body></html>",
+          "itemtype": "property",
+          "name": "ariaRole",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 685,
+          "description": "<html><head></head><body><p>Enables components to take a list of parameters as arguments.\nFor example, a component that takes two parameters with the names\n<code>name</code> and <code>age</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> MyComponent = Ember.Component.extend;\n\nMyComponent.reopenClass({\n  positionalParams: [<span class=\"string\">&apos;name&apos;</span>, <span class=\"string\">&apos;age&apos;</span>]\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It can then be invoked like this:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>{{my-component <span class=\"string\">&quot;John&quot;</span> <span class=\"number\">38</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The parameters can be referred to just like named parameters:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>Name: {{name}}, Age: {{age}}.</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using a string instead of an array allows for an arbitrary number of\nparameters:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> MyComponent = Ember.Component.extend;\n\nMyComponent.reopenClass({\n  positionalParams: <span class=\"string\">&apos;names&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It can then be invoked like this:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>{{my-component <span class=\"string\">&quot;John&quot;</span> <span class=\"string\">&quot;Michael&quot;</span> <span class=\"string\">&quot;Scott&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The parameters can then be referred to by enumerating over the list:</p>\n<div class=\"highlight hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> names <span class=\"keyword\">as</span> |name|}}</span><span class=\"xml\"></span><span class=\"template-variable\">{{name}}</span><span class=\"xml\"></span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "static": 1,
+          "access": "public",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "positionalParams",
+          "since": "2.15.2",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 839,
+          "description": "<html><head></head><body><p>Layout can be used to wrap content in a component.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "layout",
+          "type": "Function",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 846,
+          "description": "<html><head></head><body><p>The name of the layout to lookup if no layout is provided.\nBy default <code>Ember.Component</code> will lookup a template with this name in\n<code>Ember.TEMPLATES</code> (a shared global object).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "layoutName",
+          "type": "String",
+          "default": "null",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 868,
+          "description": "<html><head></head><body><p>The HTML <code>id</code> of the component&apos;s element in the DOM. You can provide this\nvalue yourself but it must be unique (just as in HTML):</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>{{my-component elementId=<span class=\"string\">&quot;a-really-cool-id&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If not manually set a default value will be provided by the framework.\nOnce rendered an element&apos;s <code>elementId</code> is considered immutable and you\nshould never change it. If you need to compute a dynamic value for the\n<code>elementId</code>, you should do this when the component or element is being\ninstantiated:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>export <span class=\"keyword\">default</span> Ember.Component.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n\n    <span class=\"keyword\">var</span> index = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;index&apos;</span>);\n    <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;elementId&apos;</span>, `component-id${index}`);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "elementId",
+          "type": "String",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-glimmer/lib/component.js",
+          "line": 897,
+          "description": "<html><head></head><body><p>If <code>false</code>, the view will appear hidden in DOM.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isVisible",
+          "type": "Boolean",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-glimmer",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Component"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 146,
+          "description": "<html><head></head><body><p>The action to be sent when the user presses the return key.</p>\n<p>This is similar to the <code>{{action}}</code> helper, but is fired when\nthe user presses the return key when editing a text field, and sends\nthe value of the field as the context.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "action",
+          "type": "String",
+          "default": "null",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 160,
+          "description": "<html><head></head><body><p>The event that should send the action.</p>\n<p>Options are:</p>\n<ul>\n<li><code>enter</code>: the user pressed enter</li>\n<li><code>keyPress</code>: the user pressed a key</li>\n</ul>\n</body></html>",
+          "itemtype": "property",
+          "name": "onEvent",
+          "type": "String",
+          "default": "enter",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/text_support.js",
+          "line": 175,
+          "description": "<html><head></head><body><p>Whether the <code>keyUp</code> event that triggers an <code>action</code> to be sent continues\npropagating to other views.</p>\n<p>By default, when the user presses the return key on their keyboard and\nthe text field has an <code>action</code> set, the action will be sent to the view&apos;s\ncontroller and the key event will stop propagating.</p>\n<p>If you would like parent views to receive the <code>keyUp</code> event even after an\naction has been dispatched, set <code>bubbles</code> to true.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "bubbles",
+          "type": "Boolean",
+          "default": "false",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.TextSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/views/core_view.js",
+          "line": 43,
+          "description": "<html><head></head><body><p>If the view is currently inserted into the DOM of a parent view, this\nproperty will point to the parent of the view.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "parentView",
+          "type": "Ember.View",
+          "default": "null",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreView"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/child_views_support.js",
+          "line": 22,
+          "description": "<html><head></head><body><p>Array of child views. You should never edit this array directly.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "childViews",
+          "type": "Array",
+          "default": "[]",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ClassNamesSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/class_names_support.js",
+          "line": 26,
+          "description": "<html><head></head><body><p>Standard CSS class names to apply to the view&apos;s outer element. This\nproperty automatically inherits any class names defined by the view&apos;s\nsuperclasses as well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "classNames",
+          "type": "Array",
+          "default": "['ember-view']",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ClassNamesSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/class_names_support.js",
+          "line": 38,
+          "description": "<html><head></head><body><p>A list of properties of the view to apply as class names. If the property\nis a string value, the value of that string will be applied as a class\nname.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;high&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;priority&apos;</span>],\n  <span class=\"attribute\">priority</span>: <span class=\"string\">&apos;high&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the value of the property is a Boolean, the name of that property is\nadded as a dasherized class name.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;is-urgent&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;isUrgent&apos;</span>],\n  <span class=\"attribute\">isUrgent</span>: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you would prefer to use a custom value instead of the dasherized\nproperty name, you can pass a binding like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Applies the &apos;urgent&apos; class to the view element</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">classNameBindings</span>: [<span class=\"string\">&apos;isUrgent:urgent&apos;</span>],\n  <span class=\"attribute\">isUrgent</span>: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This list of properties is inherited from the component&apos;s superclasses as well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "classNameBindings",
+          "type": "Array",
+          "default": "[]",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-views",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ClassNamesSupport"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 18,
+          "description": "<html><head></head><body><p>A list of properties of the view to apply as attributes. If the property\nis a string value, the value of that string will be applied as the value\nfor an attribute of the property&apos;s name.</p>\n<p>The following example creates a tag like <code>&lt;div priority=&quot;high&quot; /&gt;</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">attributeBindings</span>: [<span class=\"string\">&apos;priority&apos;</span>],\n  priority: <span class=\"string\">&apos;high&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the value of the property is a Boolean, the attribute is treated as\nan HTML Boolean attribute. It will be present if the property is <code>true</code>\nand omitted if the property is <code>false</code>.</p>\n<p>The following example creates markup like <code>&lt;div visible /&gt;</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">attributeBindings</span>: [<span class=\"string\">&apos;visible&apos;</span>],\n  visible: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you would prefer to use a custom value instead of the property name,\nyou can create the same markup as the last example with a binding like\nthis:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Component</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">attributeBindings</span>: [<span class=\"string\">&apos;isVisible:visible&apos;</span>],\n  isVisible: true\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This list of attributes is inherited from the component&apos;s superclasses,\nas well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "attributeBindings",
+          "type": "Array",
+          "default": "[]",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 141,
+          "description": "<html><head></head><body><p>Returns the current DOM element for the view.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "element",
+          "type": "DOMElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 247,
+          "description": "<html><head></head><body><p>The HTML <code>id</code> of the view&apos;s element in the DOM. You can provide this\nvalue yourself but it must be unique (just as in HTML):</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>  {{my-component elementId=<span class=\"string\">&quot;a-really-cool-id&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If not manually set a default value will be provided by the framework.</p>\n<p>Once rendered an element&apos;s <code>elementId</code> is considered immutable and you\nshould never change it. If you need to compute a dynamic value for the\n<code>elementId</code>, you should do this when the component or element is being\ninstantiated:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>  export <span class=\"keyword\">default</span> Ember.Component.extend({\n    init() {\n      <span class=\"keyword\">this</span>._super(...arguments);\n      let index = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;index&apos;</span>);\n      <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;elementId&apos;</span>, <span class=\"string\">&apos;component-id&apos;</span> + index);\n    }\n  });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "elementId",
+          "type": "String",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 365,
+          "description": "<html><head></head><body><p>Tag name for the view&apos;s outer element. The tag name is only used when an\nelement is first created. If you change the <code>tagName</code> for an element, you\nmust destroy and recreate the view element.</p>\n<p>By default, the render buffer will use a <code>&lt;div&gt;</code> tag for views.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "tagName",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ViewMixin"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 23,
+          "description": "<html><head></head><body><p>The collection of functions, keyed by name, available on this\n<code>ActionHandler</code> as action targets.</p>\n<p>These functions will be invoked when a matching <code>{{action}}</code> is triggered\nfrom within a template and the application&apos;s current route is this route.</p>\n<p>Actions can also be invoked from other parts of your application\nvia <code>ActionHandler#send</code>.</p>\n<p>The <code>actions</code> hash will inherit action handlers from\nthe <code>actions</code> hash defined on extended parent classes\nor mixins rather than just replace the entire hash, e.g.:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n</pre></td>\n              <td class=\"code\"><pre>App.CanDisplayBanner = Ember.Mixin.create({\n  actions: {\n    displayBanner(msg) {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});\n\nApp.WelcomeRoute = Ember.Route.extend(App.CanDisplayBanner, {\n  actions: {\n    playMusic() {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});\n\n<span class=\"comment\">// `WelcomeRoute`, when active, will be able to respond</span>\n<span class=\"comment\">// to both actions, since the actions hash is merged rather</span>\n<span class=\"comment\">// then replaced when extending mixins / parent classes.</span>\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;displayBanner&apos;</span>);\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;playMusic&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Within a Controller, Route or Component&apos;s action handler,\nthe value of the <code>this</code> context is the Controller, Route or\nComponent object:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SongRoute = Ember.Route.extend({\n  actions: {\n    myAction() {\n      <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&quot;song&quot;</span>);\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&quot;other.route&quot;</span>);\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It is also possible to call <code>this._super(...arguments)</code> from within an\naction handler if it overrides a handler defined on a parent\nclass or mixin:</p>\n<p>Take for example the following routes:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">App</span>.DebugRoute = Ember.Mixin.create({\n  actions: {\n    debugRouteInformation() {\n      console.debug(<span class=\"string\">&quot;trololo&quot;</span>);\n    }\n  }\n});\n\n<span class=\"keyword\">App</span>.AnnoyingDebugRoute = Ember.Route.extend(<span class=\"keyword\">App</span>.DebugRoute, {\n  actions: {\n    debugRouteInformation() {\n      <span class=\"comment\">// also call the debugRouteInformation of mixed in App.DebugRoute</span>\n      this._super(...arguments);\n\n      <span class=\"comment\">// show additional annoyance</span>\n      <span class=\"keyword\">window</span>.alert(...);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"bubbling\">Bubbling</h2>\n<p>By default, an action will stop bubbling once a handler defined\non the <code>actions</code> hash handles it. To continue bubbling the action,\nyou must return <code>true</code> from the handler:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n</pre></td>\n              <td class=\"code\"><pre>App.Router.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;album&quot;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;song&quot;</span>);\n  });\n});\n\nApp.AlbumRoute = Ember.Route.extend({\n  actions: {\n    startPlaying: <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    }\n  }\n});\n\nApp.AlbumSongRoute = Ember.Route.extend({\n  actions: {\n    startPlaying() {\n      <span class=\"comment\">// ...</span>\n\n      <span class=\"keyword\">if</span> (actionShouldAlsoBeTriggeredOnParentRoute) {\n        <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "actions",
+          "type": "Object",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionHandler"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 249,
+          "description": "<html><head></head><body><p>Defines the properties that will be concatenated from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by combining the superclass&apos; property\nvalue with the subclass&apos; value. An example of this in use within Ember\nis the <code>classNames</code> property of <code>Ember.View</code>.</p>\n<p>Here is some sample code showing the difference between a concatenated\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"symbol\">Bar</span> = <span class=\"symbol\">Ember</span>.<span class=\"symbol\">Object</span>.extend({\n  // <span class=\"symbol\">Configure</span> which properties to concatenate\n  concatenatedProperties: [<span class=\"string\">&apos;concatenatedProperty&apos;</span>],\n\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>]\n});\n\nconst <span class=\"symbol\">FooBar</span> = <span class=\"symbol\">Bar</span>.extend({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>]\n});\n\nlet fooBar = <span class=\"symbol\">FooBar</span>.create();\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;foo&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior extends to object creation as well. Continuing the\nabove example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let fooBar = <span class=\"symbol\">FooBar</span>.create({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>]\n})\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;baz&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Adding a single property that is not an array will just add it in the array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fooBar = FooBar.create({\n  concatenatedProperty: <span class=\"string\">&apos;baz&apos;</span>\n})\nview.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using the <code>concatenatedProperties</code> property, we can tell Ember to mix the\ncontent of the properties.</p>\n<p>In <code>Ember.Component</code> the <code>classNames</code>, <code>classNameBindings</code> and\n<code>attributeBindings</code> properties are concatenated.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual concatenated property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "concatenatedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 322,
+          "description": "<html><head></head><body><p>Defines the properties that will be merged from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by merging the superclass property value\nwith the subclass property&apos;s value. An example of this in use within Ember\nis the <code>queryParams</code> property of routes.</p>\n<p>Here is some sample code showing the difference between a merged\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Bar = Ember.Object.extend({\n  <span class=\"comment\">// Configure which properties are to be merged</span>\n  mergedProperties: [<span class=\"string\">&apos;mergedProperty&apos;</span>],\n\n  someNonMergedProperty: {\n    nonMerged: <span class=\"string\">&apos;superclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    page: { replace: <span class=\"literal\">false</span> },\n    limit: { replace: <span class=\"literal\">true</span> }\n  }\n});\n\n<span class=\"keyword\">const</span> FooBar = Bar.extend({\n  someNonMergedProperty: {\n    completelyNonMerged: <span class=\"string\">&apos;subclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    limit: { replace: <span class=\"literal\">false</span> }\n  }\n});\n\n<span class=\"keyword\">let</span> fooBar = FooBar.create();\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;someNonMergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; { completelyNonMerged: &apos;subclass value of nonMerged&apos; }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the entire object, including the nonMerged property of</span>\n<span class=\"comment\">// the superclass object, has been replaced</span>\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;mergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; {</span>\n<span class=\"comment\">//   page: {replace: false},</span>\n<span class=\"comment\">//   limit: {replace: false}</span>\n<span class=\"comment\">// }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the page remains from the superclass, and the</span>\n<span class=\"comment\">// `limit` property&apos;s value of `false` has been merged from</span>\n<span class=\"comment\">// the subclass.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior is not available during object <code>create</code> calls. It is only\navailable at <code>extend</code> time.</p>\n<p>In <code>Ember.Route</code> the <code>queryParams</code> property is merged.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual merged property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "mergedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 396,
+          "description": "<html><head></head><body><p>Destroyed object property flag.</p>\n<p>if this property is <code>true</code> the observers and bindings were already\nremoved by the effect of calling the <code>destroy()</code> method.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroyed",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 421,
+          "description": "<html><head></head><body><p>Destruction scheduled flag. The <code>destroy()</code> method has been called.</p>\n<p>The object stays intact until the end of the run loop at which point\nthe <code>isDestroyed</code> flag is set.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroying",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.TextField",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.CoreObject"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.15.2-Ember.Component",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

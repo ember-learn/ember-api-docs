@@ -1,0 +1,101 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Function",
+    "type": "class",
+    "attributes": {
+      "name": "Function",
+      "shortname": "Function",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/ext/function.js",
+          "line": 17,
+          "description": "<html><head></head><body><p>The <code>property</code> extension of Javascript&apos;s Function prototype is available\nwhen <code>EmberENV.EXTEND_PROTOTYPES</code> or <code>EmberENV.EXTEND_PROTOTYPES.Function</code> is\n<code>true</code>, which is the default.</p>\n<p>Computed properties allow you to treat a function like a property:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre>MyApp.President = Ember.Object.extend({\n  firstName: <span class=\"string\">&apos;&apos;</span>,\n  lastName:  <span class=\"string\">&apos;&apos;</span>,\n\n  fullName: function() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>) + <span class=\"string\">&apos; &apos;</span> + <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n  }.property() <span class=\"comment\">// Call this flag to mark the function as a property</span>\n});\n\nlet president = MyApp.President.create({\n  firstName: <span class=\"string\">&apos;Barack&apos;</span>,\n  lastName: <span class=\"string\">&apos;Obama&apos;</span>\n});\n\npresident.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>); <span class=\"comment\">// &apos;Barack Obama&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Treating a function like a property is useful because they can work with\nbindings, just like any other property.</p>\n<p>Many computed properties have dependencies on other properties. For\nexample, in the above example, the <code>fullName</code> property depends on\n<code>firstName</code> and <code>lastName</code> to determine its value. You can tell Ember\nabout these dependencies like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre>MyApp.President = Ember.Object.extend({\n  firstName: <span class=\"string\">&apos;&apos;</span>,\n  lastName:  <span class=\"string\">&apos;&apos;</span>,\n\n  fullName: function() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>) + <span class=\"string\">&apos; &apos;</span> + <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n\n    <span class=\"comment\">// Tell Ember.js that this computed property depends on firstName</span>\n    <span class=\"comment\">// and lastName</span>\n  }.property(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Make sure you list these dependencies so Ember knows when to update\nbindings that connect to a computed property. Changing a dependency\nwill not immediately trigger an update of the computed property, but\nwill instead clear the cache so that it is updated when the next <code>get</code>\nis called on the property.</p>\n<p>See <a href=\"/api/classes/Ember.ComputedProperty.html\">Ember.ComputedProperty</a>, <a href=\"/api/classes/Ember.computed.html\">Ember.computed</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "property",
+          "access": "public",
+          "tagname": "",
+          "class": "Function",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/function.js",
+          "line": 83,
+          "description": "<html><head></head><body><p>The <code>observes</code> extension of Javascript&apos;s Function prototype is available\nwhen <code>EmberENV.EXTEND_PROTOTYPES</code> or <code>EmberENV.EXTEND_PROTOTYPES.Function</code> is\ntrue, which is the default.</p>\n<p>You can observe property changes simply by adding the <code>observes</code>\ncall to the end of your method declarations in classes that you write.\nFor example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Object</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">valueObserver</span>: function() {\n    <span class=\"comment\">// Executes whenever the &quot;value&quot; property changes</span>\n  }<span class=\"selector-class\">.observes</span>(<span class=\"string\">&apos;value&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>In the future this method may become asynchronous.</p>\n<p>See <code>Ember.observer</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "observes",
+          "access": "public",
+          "tagname": "",
+          "class": "Function",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/function.js",
+          "line": 131,
+          "description": "<html><head></head><body><p>The <code>observesImmediately</code> extension of Javascript&apos;s Function prototype is\navailable when <code>EmberENV.EXTEND_PROTOTYPES</code> or\n<code>EmberENV.EXTEND_PROTOTYPES.Function</code> is true, which is the default.</p>\n<p>You can observe property changes simply by adding the <code>observesImmediately</code>\ncall to the end of your method declarations in classes that you write.\nFor example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Object</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">valueObserver</span>: function() {\n    <span class=\"comment\">// Executes immediately after the &quot;value&quot; property changes</span>\n  }<span class=\"selector-class\">.observesImmediately</span>(<span class=\"string\">&apos;value&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>In the future, <code>observes</code> may become asynchronous. In this event,\n<code>observesImmediately</code> will maintain the synchronous behavior.</p>\n<p>See <code>Ember.immediateObserver</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "observesImmediately",
+          "deprecated": true,
+          "access": "private",
+          "tagname": "",
+          "class": "Function",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/function.js",
+          "line": 164,
+          "description": "<html><head></head><body><p>The <code>on</code> extension of Javascript&apos;s Function prototype is available\nwhen <code>EmberENV.EXTEND_PROTOTYPES</code> or <code>EmberENV.EXTEND_PROTOTYPES.Function</code> is\ntrue, which is the default.</p>\n<p>You can listen for events simply by adding the <code>on</code> call to the end of\nyour method declarations in classes or mixins that you write. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Mixin</span><span class=\"selector-class\">.create</span>({\n  <span class=\"attribute\">doSomethingWithElement</span>: function() {\n    <span class=\"comment\">// Executes whenever the &quot;didInsertElement&quot; event fires</span>\n  }<span class=\"selector-class\">.on</span>(<span class=\"string\">&apos;didInsertElement&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>See <code>Ember.on</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "on",
+          "access": "public",
+          "tagname": "",
+          "class": "Function",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

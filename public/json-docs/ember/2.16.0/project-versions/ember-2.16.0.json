@@ -9,18 +9,6 @@
       "classes": {
         "data": [
           {
-            "id": "ember-2.16.0-RSVP",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-RSVP.EventTarget",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-RSVP.Promise",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Container",
             "type": "class"
           },
@@ -45,23 +33,11 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/engine",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Engine",
             "type": "class"
           },
           {
             "id": "ember-2.16.0-GlobalsResolver",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/debug",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/application/deprecations",
             "type": "class"
           },
           {
@@ -101,10 +77,6 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/string",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Component",
             "type": "class"
           },
@@ -117,39 +89,11 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-Ember.Ember",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/internals",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Descriptor",
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/object/events",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/evented",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Ember.InjectedProperty",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/instrumentation",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/utils",
             "type": "class"
           },
           {
@@ -169,15 +113,7 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/polyfills",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Mixin",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/observers",
             "type": "class"
           },
           {
@@ -222,14 +158,6 @@
           },
           {
             "id": "ember-2.16.0-Controller",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/controller",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-Function",
             "type": "class"
           },
           {
@@ -305,15 +233,7 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/application",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Ember.Namespace",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/array",
             "type": "class"
           },
           {
@@ -325,11 +245,11 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/service",
+            "id": "ember-2.16.0-Service",
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-Service",
+            "id": "ember-2.16.0-String",
             "type": "class"
           },
           {
@@ -338,10 +258,6 @@
           },
           {
             "id": "ember-2.16.0-Ember.Test.QUnitAdapter",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/test",
             "type": "class"
           },
           {
@@ -375,6 +291,14 @@
           {
             "id": "ember-2.16.0-Ember.Debug",
             "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Promise",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EventTarget",
+            "type": "class"
           }
         ]
       },
@@ -385,7 +309,7 @@
             "type": "namespace"
           },
           {
-            "id": "ember-2.16.0-@ember/object/computed",
+            "id": "ember-2.16.0-ComputedProperty",
             "type": "namespace"
           },
           {
@@ -405,11 +329,15 @@
             "type": "namespace"
           },
           {
-            "id": "ember-2.16.0-Ember.String",
+            "id": "ember-2.16.0-Ember.inject",
             "type": "namespace"
           },
           {
-            "id": "ember-2.16.0-Ember.inject",
+            "id": "ember-2.16.0-jquery",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-rsvp",
             "type": "namespace"
           }
         ]
@@ -433,14 +361,6 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-ember-glimmer",
-            "type": "module"
-          },
-          {
             "id": "ember-2.16.0-@ember/component",
             "type": "module"
           },
@@ -450,10 +370,6 @@
           },
           {
             "id": "ember-2.16.0-@ember/string",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-ember-metal",
             "type": "module"
           },
           {
@@ -477,19 +393,7 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember-routing",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-ember-views",
-            "type": "module"
-          },
-          {
             "id": "ember-2.16.0-@ember/controller",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-ember-runtime",
             "type": "module"
           },
           {
@@ -509,7 +413,11 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember-testing",
+            "id": "ember-2.16.0-jquery",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-rsvp",
             "type": "module"
           }
         ]
@@ -643,18 +551,6 @@
       "public-classes": {
         "data": [
           {
-            "id": "ember-2.16.0-RSVP",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-RSVP.EventTarget",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-RSVP.Promise",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-ApplicationInstance",
             "type": "class"
           },
@@ -671,23 +567,11 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/engine",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Engine",
             "type": "class"
           },
           {
             "id": "ember-2.16.0-GlobalsResolver",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/debug",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/application/deprecations",
             "type": "class"
           },
           {
@@ -723,10 +607,6 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/string",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Component",
             "type": "class"
           },
@@ -735,43 +615,7 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-Ember.Ember",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/internals",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/events",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/evented",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/instrumentation",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/utils",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/polyfills",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Mixin",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/object/observers",
             "type": "class"
           },
           {
@@ -800,14 +644,6 @@
           },
           {
             "id": "ember-2.16.0-Controller",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/controller",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-Function",
             "type": "class"
           },
           {
@@ -847,15 +683,7 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/application",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Ember.Namespace",
-            "type": "class"
-          },
-          {
-            "id": "ember-2.16.0-@ember/array",
             "type": "class"
           },
           {
@@ -867,11 +695,11 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/service",
+            "id": "ember-2.16.0-Service",
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-Service",
+            "id": "ember-2.16.0-String",
             "type": "class"
           },
           {
@@ -883,15 +711,19 @@
             "type": "class"
           },
           {
-            "id": "ember-2.16.0-@ember/test",
-            "type": "class"
-          },
-          {
             "id": "ember-2.16.0-Ember.Test",
             "type": "class"
           },
           {
             "id": "ember-2.16.0-Ember.Debug",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-Promise",
+            "type": "class"
+          },
+          {
+            "id": "ember-2.16.0-EventTarget",
             "type": "class"
           }
         ]
@@ -911,7 +743,7 @@
             "type": "namespace"
           },
           {
-            "id": "ember-2.16.0-@ember/object/computed",
+            "id": "ember-2.16.0-ComputedProperty",
             "type": "namespace"
           },
           {
@@ -927,17 +759,30 @@
             "type": "namespace"
           },
           {
-            "id": "ember-2.16.0-Ember.String",
+            "id": "ember-2.16.0-Ember.inject",
             "type": "namespace"
           },
           {
-            "id": "ember-2.16.0-Ember.inject",
+            "id": "ember-2.16.0-jquery",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-2.16.0-rsvp",
             "type": "namespace"
           }
         ]
       },
       "private-modules": {
-        "data": []
+        "data": [
+          {
+            "id": "ember-2.16.0-@ember/instrumentation",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-@ember/enumerable",
+            "type": "module"
+          }
+        ]
       },
       "public-modules": {
         "data": [
@@ -958,14 +803,6 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-ember-glimmer",
-            "type": "module"
-          },
-          {
             "id": "ember-2.16.0-@ember/component",
             "type": "module"
           },
@@ -978,15 +815,7 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember-metal",
-            "type": "module"
-          },
-          {
             "id": "ember-2.16.0-@ember/object",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-@ember/instrumentation",
             "type": "module"
           },
           {
@@ -1002,27 +831,11 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember-routing",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-ember-views",
-            "type": "module"
-          },
-          {
             "id": "ember-2.16.0-@ember/controller",
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember-runtime",
-            "type": "module"
-          },
-          {
             "id": "ember-2.16.0-@ember/array",
-            "type": "module"
-          },
-          {
-            "id": "ember-2.16.0-@ember/enumerable",
             "type": "module"
           },
           {
@@ -1034,7 +847,11 @@
             "type": "module"
           },
           {
-            "id": "ember-2.16.0-ember-testing",
+            "id": "ember-2.16.0-jquery",
+            "type": "module"
+          },
+          {
+            "id": "ember-2.16.0-rsvp",
             "type": "module"
           }
         ]

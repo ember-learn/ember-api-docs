@@ -1,0 +1,110 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Test.QUnitAdapter",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Test.QUnitAdapter",
+      "shortname": "Ember.Test.QUnitAdapter",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "namespace": "Ember.Test",
+      "file": "packages/ember-testing/lib/adapters/qunit.js",
+      "line": 4,
+      "description": "<html><head></head><body><p>This class implements the methods defined by Ember.Test.Adapter for the\nQUnit testing framework.</p>\n</body></html>",
+      "extends": "Ember.Test.Adapter",
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-testing/lib/adapters/adapter.js",
+          "line": 19,
+          "description": "<html><head></head><body><p>This callback will be called whenever an async operation is about to start.</p>\n<p>Override this to call your framework&apos;s methods that handle async\noperations.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "asyncStart",
+          "class": "Ember.Test.QUnitAdapter",
+          "module": "ember",
+          "submodule": "ember-testing",
+          "namespace": "Ember.Test",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Test.Adapter"
+        },
+        {
+          "file": "packages/ember-testing/lib/adapters/adapter.js",
+          "line": 30,
+          "description": "<html><head></head><body><p>This callback will be called whenever an async operation has completed.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "asyncEnd",
+          "class": "Ember.Test.QUnitAdapter",
+          "module": "ember",
+          "submodule": "ember-testing",
+          "namespace": "Ember.Test",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Test.Adapter"
+        },
+        {
+          "file": "packages/ember-testing/lib/adapters/adapter.js",
+          "line": 38,
+          "description": "<html><head></head><body><p>Override this method with your testing framework&apos;s false assertion.\nThis function is called whenever an exception occurs causing the testing\npromise to fail.</p>\n<p>QUnit example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>  exception: <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(error)</span></span> {\n    ok(<span class=\"literal\">false</span>, <span class=\"built_in\">error</span>);\n  };</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "exception",
+          "params": [
+            {
+              "name": "error",
+              "description": "The exception to be raised.",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Test.QUnitAdapter",
+          "module": "ember",
+          "submodule": "ember-testing",
+          "namespace": "Ember.Test",
+          "version": "2.15.2",
+          "since": "2.15.2",
+          "inherited": true,
+          "inheritedFrom": "Ember.Test.Adapter"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.15.2-Ember.Test.Adapter",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

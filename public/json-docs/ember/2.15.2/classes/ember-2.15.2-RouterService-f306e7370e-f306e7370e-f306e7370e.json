@@ -1,0 +1,208 @@
+{
+  "data": {
+    "id": "ember-2.15.2-RouterService",
+    "type": "class",
+    "attributes": {
+      "name": "RouterService",
+      "shortname": "RouterService",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-routing",
+      "namespace": "",
+      "file": "packages/ember-routing/lib/services/router.js",
+      "line": 25,
+      "description": "<html><head></head><body><p>The Router service is the public API that provides component/view layer\naccess to the router.</p>\n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "category": [
+        "ember-routing-router-service"
+      ],
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-routing/lib/services/router.js",
+          "line": 40,
+          "description": "<html><head></head><body><p>Transition the application into another route. The route may\nbe either a single route or route path:</p>\n<p>See <a href=\"https://emberjs.com/api/classes/Ember.Route.html#method_transitionTo\">Route.transitionTo</a> for more info.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "transitionTo",
+          "category": [
+            "ember-routing-router-service"
+          ],
+          "params": [
+            {
+              "name": "routeNameOrUrl",
+              "description": "the name of the route or a URL",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the transition object associated with this\n  attempted transition",
+            "type": "Transition"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "RouterService",
+          "module": "ember",
+          "submodule": "ember-routing",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-routing/lib/services/router.js",
+          "line": 78,
+          "description": "<html><head></head><body><p>Transition into another route while replacing the current URL, if possible.\nThe route may be either a single route or route path:</p>\n<p>See <a href=\"https://emberjs.com/api/classes/Ember.Route.html#method_replaceWith\">Route.replaceWith</a> for more info.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "replaceWith",
+          "category": [
+            "ember-routing-router-service"
+          ],
+          "params": [
+            {
+              "name": "routeNameOrUrl",
+              "description": "the name of the route or a URL",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the transition object associated with this\n  attempted transition",
+            "type": "Transition"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "RouterService",
+          "module": "ember",
+          "submodule": "ember-routing",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-routing/lib/services/router.js",
+          "line": 99,
+          "description": "<html><head></head><body><p>Generate a URL based on the supplied route name.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "urlFor",
+          "category": [
+            "ember-routing-router-service"
+          ],
+          "params": [
+            {
+              "name": "routeName",
+              "description": "the name of the route",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the string representing the generated URL",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "RouterService",
+          "module": "ember",
+          "submodule": "ember-routing",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-routing/lib/services/router.js",
+          "line": 116,
+          "description": "<html><head></head><body><p>Determines whether a route is active.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "isActive",
+          "category": [
+            "ember-routing-router-service"
+          ],
+          "params": [
+            {
+              "name": "routeName",
+              "description": "the name of the route",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "true if the provided routeName/models/queryParams are active",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "RouterService",
+          "module": "ember",
+          "submodule": "ember-routing",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

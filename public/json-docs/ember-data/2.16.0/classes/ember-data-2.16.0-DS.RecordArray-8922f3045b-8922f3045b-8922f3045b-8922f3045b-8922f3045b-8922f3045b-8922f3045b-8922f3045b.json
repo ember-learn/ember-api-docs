@@ -1,0 +1,241 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.RecordArray",
+    "type": "class",
+    "attributes": {
+      "name": "DS.RecordArray",
+      "shortname": "DS.RecordArray",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/record-arrays/record-array.js",
+      "line": 11,
+      "description": "<html><head></head><body><p>A record array is an array that contains records of a certain modelName. The record\narray materializes records as needed when they are retrieved for the first\ntime. You should not create record arrays yourself. Instead, an instance of\n<code>DS.RecordArray</code> or its subclasses will be returned by your application&apos;s store\nin response to queries.</p>\n</body></html>",
+      "extends": "Ember.ArrayProxy",
+      "uses": [
+        "Ember.Evented"
+      ],
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 99,
+          "description": "<html><head></head><body><p>Retrieves an object from the content by index.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "objectAtContent",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "index",
+              "description": "",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "record",
+            "type": "DS.Model"
+          },
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 112,
+          "description": "<html><head></head><body><p>Used to get the latest version of all of the records in this array\nfrom the adapter.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> people = store.peekAll(<span class=\"string\">&apos;person&apos;</span>);\npeople.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isUpdating&apos;</span>); <span class=\"comment\">// false</span>\n\npeople.update().then(<span class=\"function\"><span class=\"keyword\">function</span></span>() {\n  people.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isUpdating&apos;</span>); <span class=\"comment\">// false</span>\n});\n\npeople.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isUpdating&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "update",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 155,
+          "description": "<html><head></head><body><p>Adds an internal model to the <code>RecordArray</code> without duplicates</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_pushInternalModels",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "internalModel",
+              "description": "",
+              "type": "InternalModel"
+            }
+          ],
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 169,
+          "description": "<html><head></head><body><p>Removes an internalModel to the <code>RecordArray</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeInternalModel",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "internalModel",
+              "description": "",
+              "type": "InternalModel"
+            }
+          ],
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 180,
+          "description": "<html><head></head><body><p>Saves all of the records in the <code>RecordArray</code>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> messages = store.peekAll(<span class=\"string\">&apos;message&apos;</span>);\nmessages.<span class=\"keyword\">forEach</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(message)</span> </span>{\n  message.set(<span class=\"string\">&apos;hasBeenSeen&apos;</span>, <span class=\"keyword\">true</span>);\n});\nmessages.save();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "save",
+          "return": {
+            "description": "promise",
+            "type": "DS.PromiseArray"
+          },
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 214,
+          "itemtype": "method",
+          "name": "_unregisterFromManager",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 28,
+          "description": "<html><head></head><body><p>The array of client ids backing the record array. When a\nrecord is requested from the record array, the record\nfor the client id at the same index is materialized, if\nnecessary, by the store.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "content",
+          "access": "private",
+          "tagname": "",
+          "type": "Ember.Array",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 40,
+          "description": "<html><head></head><body><p>The flag to signal a <code>RecordArray</code> is finished loading data.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> people = store.peekAll(<span class=\"string\">&apos;person&apos;</span>);\npeople.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isLoaded&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isLoaded",
+          "type": "Boolean",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 54,
+          "description": "<html><head></head><body><p>The flag to signal a <code>RecordArray</code> is currently loading data.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> people = store.peekAll(<span class=\"string\">&apos;person&apos;</span>);\npeople.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isUpdating&apos;</span>); <span class=\"comment\">// false</span>\npeople.update();\npeople.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isUpdating&apos;</span>); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isUpdating",
+          "type": "Boolean",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 71,
+          "description": "<html><head></head><body><p>The store that created this record array.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "store",
+          "access": "private",
+          "tagname": "",
+          "type": "DS.Store",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/record-arrays/record-array.js",
+          "line": 86,
+          "description": "<html><head></head><body><p>The modelClass represented by this record array.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "type",
+          "type": "DS.Model",
+          "class": "DS.RecordArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.ArrayProxy",
+          "type": "missing",
+          "version": "2.16.0"
+        }
+      },
+      "descendants": {
+        "data": [
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.AdapterPopulatedRecordArray"
+          },
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.FilteredRecordArray"
+          }
+        ]
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

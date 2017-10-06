@@ -1,0 +1,48 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.EachProxy",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.EachProxy",
+      "shortname": "EachProxy",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/array.js",
+      "line": 642,
+      "description": "<html><head></head><body><p>This is the object instance returned when you get the <code>@each</code> property on an\narray. It uses the unknownProperty handler to automatically create\nEachArray instances for property names.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

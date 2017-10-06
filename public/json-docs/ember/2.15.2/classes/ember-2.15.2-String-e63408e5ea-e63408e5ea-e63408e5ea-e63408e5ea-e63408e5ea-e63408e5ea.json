@@ -1,0 +1,171 @@
+{
+  "data": {
+    "id": "ember-2.15.2-String",
+    "type": "class",
+    "attributes": {
+      "name": "String",
+      "shortname": "String",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 22,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_fmt\">Ember.String.fmt</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "fmt",
+          "access": "private",
+          "tagname": "",
+          "deprecated": true,
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 34,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_w\">Ember.String.w</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "w",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 45,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_loc\">Ember.String.loc</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "loc",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 56,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_camelize\">Ember.String.camelize</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "camelize",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 67,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_decamelize\">Ember.String.decamelize</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "decamelize",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 78,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_dasherize\">Ember.String.dasherize</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "dasherize",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 89,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_underscore\">Ember.String.underscore</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "underscore",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 100,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_classify\">Ember.String.classify</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "classify",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/ext/string.js",
+          "line": 111,
+          "description": "<html><head></head><body><p>See <a href=\"/api/classes/Ember.String.html#method_capitalize\">Ember.String.capitalize</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "capitalize",
+          "access": "private",
+          "tagname": "",
+          "class": "String",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

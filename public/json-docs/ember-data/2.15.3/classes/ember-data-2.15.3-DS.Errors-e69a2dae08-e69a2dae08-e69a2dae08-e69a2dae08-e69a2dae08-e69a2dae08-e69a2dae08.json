@@ -1,0 +1,340 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.Errors",
+    "type": "class",
+    "attributes": {
+      "name": "DS.Errors",
+      "shortname": "DS.Errors",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/model/errors.js",
+      "line": 15,
+      "description": "<html><head></head><body><p>Holds validation errors for a given record, organized by attribute names.</p>\n<p>Every <code>DS.Model</code> has an <code>errors</code> property that is an instance of\n<code>DS.Errors</code>. This can be used to display validation error\nmessages returned from the server when a <code>record.save()</code> rejects.</p>\n<p>For Example, if you had a <code>User</code> model that looked like this:</p>\n<div class=\"highlight app/models/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/user.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  username: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  email: DS.attr(<span class=\"string\">&apos;string&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>And you attempted to save a record that did not validate on the backend:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">user</span> = store.createRecord(<span class=\"string\">&apos;user&apos;</span>, {\n  username: <span class=\"string\">&apos;tomster&apos;</span>,\n  email: <span class=\"string\">&apos;invalidEmail&apos;</span>\n});\n<span class=\"keyword\">user</span>.save();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Your backend would be expected to return an error response that described\nthe problem, so that error messages can be generated on the app.</p>\n<p>API responses will be translated into instances of <code>DS.Errors</code> differently,\ndepending on the specific combination of adapter and serializer used. You\nmay want to check the documentation or the source code of the libraries\nthat you are using, to know how they expect errors to be communicated.</p>\n<p>Errors can be displayed to the user by accessing their property name\nto get an array of all the error objects for that property. Each\nerror object is a JavaScript object with two keys:</p>\n<ul>\n<li><code>message</code> A string containing the error message from the backend</li>\n<li><code>attribute</code> The name of the property associated with this error message</li>\n</ul>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"><span class=\"tag\">&lt;<span class=\"name\">label</span>&gt;</span>Username: </span><span class=\"template-variable\">{{<span class=\"built_in\">input</span> value=username}}</span><span class=\"xml\"> <span class=\"tag\">&lt;/<span class=\"name\">label</span>&gt;</span>\n</span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.username <span class=\"keyword\">as</span> |error|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{error.message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\">\n\n<span class=\"tag\">&lt;<span class=\"name\">label</span>&gt;</span>Email: </span><span class=\"template-variable\">{{<span class=\"built_in\">input</span> value=email}}</span><span class=\"xml\"> <span class=\"tag\">&lt;/<span class=\"name\">label</span>&gt;</span>\n</span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.email <span class=\"keyword\">as</span> |error|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{error.message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also access the special <code>messages</code> property on the error\nobject to get an array of all the error strings.</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.messages <span class=\"keyword\">as</span> |message|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "Ember.Object",
+      "uses": [
+        "Ember.Evented",
+        "Ember.Enumerable"
+      ],
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 91,
+          "description": "<html><head></head><body><p>Register with target handler</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "registerHandlers",
+          "params": [
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "becameInvalid",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "becameValid",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "deprecated": true,
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 111,
+          "description": "<html><head></head><body><p>Register with target handler</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_registerHandlers",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 136,
+          "description": "<html><head></head><body><p>Returns errors for a given attribute</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>let user = store.createRecord(<span class=\"string\">&apos;user&apos;</span>, {\n  username: <span class=\"string\">&apos;tomster&apos;</span>,\n  email: <span class=\"string\">&apos;invalidEmail&apos;</span>\n});\nuser.save().<span class=\"keyword\">catch</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span>{\n  user.get(<span class=\"string\">&apos;errors&apos;</span>).errorsFor(<span class=\"string\">&apos;email&apos;</span>); <span class=\"comment\">// returns:</span>\n  <span class=\"comment\">// [{attribute: &quot;email&quot;, message: &quot;Doesn&apos;t look like a valid email.&quot;}]</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "errorsFor",
+          "params": [
+            {
+              "name": "attribute",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Array"
+          },
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 184,
+          "itemtype": "method",
+          "name": "unknownProperty",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 209,
+          "description": "<html><head></head><body><p>Adds error messages to a given attribute and sends\n<code>becameInvalid</code> event to the record.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">if</span> (!user.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;username&apos;</span>) {\n  user.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;errors&apos;</span>).<span class=\"keyword\">add</span>(<span class=\"string\">&apos;username&apos;</span>, <span class=\"string\">&apos;This field is required&apos;</span>);\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "add",
+          "params": [
+            {
+              "name": "attribute",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "messages",
+              "description": "",
+              "type": "(Array|String)"
+            }
+          ],
+          "deprecated": true,
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 241,
+          "description": "<html><head></head><body><p>Adds error messages to a given attribute without sending event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_add",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 255,
+          "itemtype": "method",
+          "name": "_findOrCreateMessages",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 280,
+          "description": "<html><head></head><body><p>Removes all error messages from the given attribute and sends\n<code>becameValid</code> event to the record if there no more errors left.</p>\n<p>Example:</p>\n<div class=\"highlight app/models/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/user.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  email: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  twoFactorAuth: DS.attr(<span class=\"string\">&apos;boolean&apos;</span>),\n  phone: DS.attr(<span class=\"string\">&apos;string&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/user/edit.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/user/edit.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">save</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">user</span>) </span>{\n       <span class=\"keyword\">if</span> (!user.get(<span class=\"string\">&apos;twoFactorAuth&apos;</span>)) {\n         user.get(<span class=\"string\">&apos;errors&apos;</span>).remove(<span class=\"string\">&apos;phone&apos;</span>);\n       }\n       user.save();\n     }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "remove",
+          "params": [
+            {
+              "name": "attribute",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "deprecated": true,
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 329,
+          "description": "<html><head></head><body><p>Removes all error messages from the given attribute without sending event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_remove",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 345,
+          "description": "<html><head></head><body><p>Removes all error messages and sends <code>becameValid</code> event\nto the record.</p>\n<p>Example:</p>\n<div class=\"highlight app/routes/user/edit.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/user/edit.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">retrySave</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">user</span>) </span>{\n       user.get(<span class=\"string\">&apos;errors&apos;</span>).clear();\n       user.save();\n     }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "clear",
+          "deprecated": true,
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 379,
+          "description": "<html><head></head><body><p>Removes all error messages.\nto the record.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_clear",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 405,
+          "description": "<html><head></head><body><p>Checks if there is error messages for the given attribute.</p>\n<div class=\"highlight app/routes/user/edit.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/user/edit.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">save</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">user</span>) </span>{\n       <span class=\"keyword\">if</span> (user.get(<span class=\"string\">&apos;errors&apos;</span>).has(<span class=\"string\">&apos;email&apos;</span>)) {\n         <span class=\"keyword\">return</span> alert(<span class=\"string\">&apos;Please update your email before attempting to save.&apos;</span>);\n       }\n       user.save();\n     }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "has",
+          "params": [
+            {
+              "name": "attribute",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "true if there some errors on given attribute",
+            "type": "Boolean"
+          },
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 123,
+          "itemtype": "property",
+          "name": "errorsByAttributeName",
+          "type": "{Ember.MapWithDefault}",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 158,
+          "description": "<html><head></head><body><p>An array containing all of the error messages for this\nrecord. This is useful for displaying all errors to the user.</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.messages <span class=\"keyword\">as</span> |message|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "messages",
+          "type": "{Array}",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 175,
+          "itemtype": "property",
+          "name": "content",
+          "type": "{Array}",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 194,
+          "description": "<html><head></head><body><p>Total number of errors.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "length",
+          "type": "{Number}",
+          "readonly": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/errors.js",
+          "line": 202,
+          "itemtype": "property",
+          "name": "isEmpty",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Errors",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Object",
+          "type": "missing",
+          "version": "2.15.3"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

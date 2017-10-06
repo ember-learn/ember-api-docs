@@ -1,0 +1,162 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/object/internals",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/object/internals",
+      "shortname": "@ember/object/internals",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/computed.js",
+          "line": 556,
+          "description": "<html><head></head><body><p>Returns the cached value for a property, if one exists.\nThis can be useful for peeking at the value of a computed\nproperty that is generated lazily, without accidentally causing\nit to be created.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "cacheFor",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "the object whose property you want to check",
+              "type": "Object"
+            },
+            {
+              "name": "key",
+              "description": "the name of the property whose cached value you want\n  to return",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the cached value",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/internals",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/copy.js",
+          "line": 68,
+          "description": "<html><head></head><body><p>Creates a shallow copy of the passed object. A deep copy of the object is\nreturned if the optional <code>deep</code> argument is <code>true</code>.</p>\n<p>If the passed object implements the <code>Ember.Copyable</code> interface, then this\nfunction will delegate to the object&apos;s <code>copy()</code> method and return the\nresult. See <code>Ember.Copyable</code> for further details.</p>\n<p>For primitive values (which are immutable in JavaScript), the passed object\nis simply returned.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "copy",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to clone",
+              "type": "Object"
+            },
+            {
+              "name": "deep",
+              "description": "If true, a deep copy of the object is made.",
+              "type": "Boolean",
+              "optional": true,
+              "optdefault": "false"
+            }
+          ],
+          "return": {
+            "description": "The copied object",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/internals",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/guid.js",
+          "line": 76,
+          "description": "<html><head></head><body><p>Generates a new guid, optionally saving the guid to the object that you\npass in. You will rarely need to use this method. Instead you should\ncall <code>Ember.guidFor(obj)</code>, which return an existing guid if available.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "generateGuid",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "Object the guid will be used for. If passed in, the guid will\n  be saved on the object and reused whenever you pass the same object\n  again.\n\n  If no object is passed, just generate a new guid.",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "prefix",
+              "description": "Prefix to place in front of the guid. Useful when you want to\n  separate the guid into separate namespaces.",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the guid",
+            "type": "String"
+          },
+          "class": "@ember/object/internals",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/guid.js",
+          "line": 115,
+          "description": "<html><head></head><body><p>Returns a unique id for the object. If the object does not yet have a guid,\none will be assigned to it. You can call this on any object,\n<code>Ember.Object</code>-based or not, but be aware that it will add a <code>_guid</code>\nproperty.</p>\n<p>You can also use this method on DOM Element objects.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "static": 1,
+          "itemtype": "method",
+          "name": "guidFor",
+          "params": [
+            {
+              "name": "obj",
+              "description": "any object, string, number, Element, or primitive",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the unique guid for this instance.",
+            "type": "String"
+          },
+          "class": "@ember/object/internals",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}
