@@ -27,9 +27,9 @@ export default Route.extend({
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
-      const namespaces = model.hasMany('namespaces').ids().sort();
-      const namespace = last(namespaces[0].split("-"));
-      return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('compactVersion'), namespace);
+      const modules = model.hasMany('modules').ids().sort();
+      const module = last(modules[0].split("-"));
+      return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
     }
   },
 
