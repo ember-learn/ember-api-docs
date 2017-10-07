@@ -49,11 +49,12 @@ export default Controller.extend(FilterParams, {
   },
 
   getRelationshipIDs(relationship) {
+    const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
     const classes = this.get('model').hasMany(relationship);
     const sorted = A(classes.ids()).sort();
     //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin
     //so we take the string after the 2nd '-'
-    return A(sorted).toArray().map(id => id.split('-').slice(2).join('-'));
+    return A(sorted).toArray().map(id => id.split('-').slice(splitPoint).join('-'));
   },
 
   shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
