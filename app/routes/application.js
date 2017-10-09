@@ -8,13 +8,16 @@ export default Route.extend({
 
   title(tokens) {
     const [version, entity] = tokens;
-    const compactVersion = version.split('.').slice(0, 2).join('.');
+    if (version) {
+      const compactVersion = version.split('.').slice(0, 2).join('.');
 
-    const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
+      const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
 
-    set(this, 'headData.title', title);
-    set(this, 'headData.cdnDomain', ENV.API_HOST);
-    return title;
+      set(this, 'headData.title', title);
+      set(this, 'headData.cdnDomain', ENV.API_HOST);
+      return title;
+    }
+    return '';
   }
 
 });
