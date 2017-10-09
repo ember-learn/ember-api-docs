@@ -1,0 +1,214 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.PromiseProxyMixin",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.PromiseProxyMixin",
+      "shortname": "Ember.PromiseProxyMixin",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "",
+      "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+      "line": 40,
+      "description": "<html><head></head><body><p>A low level mixin making ObjectProxy promise-aware.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> ObjectPromiseProxy = Ember.ObjectProxy.extend(Ember.PromiseProxyMixin);\n\n<span class=\"keyword\">let</span> proxy = ObjectPromiseProxy.create({\n  <span class=\"attr\">promise</span>: Ember.RSVP.resolve($.getJSON(<span class=\"string\">&apos;/some/remote/data.json&apos;</span>))\n});\n\nproxy.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">json</span>)</span>{\n   <span class=\"comment\">// the json</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>) </span>{\n   <span class=\"comment\">// the reason why you have no json</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>the proxy has bindable attributes which\ntrack the promises life cycle</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>proxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isPending&apos;</span>)   <span class=\"comment\">//=&gt; true</span>\nproxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isSettled&apos;</span>)  <span class=\"comment\">//=&gt; false</span>\nproxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isRejected&apos;</span>)  <span class=\"comment\">//=&gt; false</span>\nproxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isFulfilled&apos;</span>) <span class=\"comment\">//=&gt; false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When the $.getJSON completes, and the promise is fulfilled\nwith json, the life cycle attributes will update accordingly.\nNote that $.getJSON doesn&apos;t return an ECMA specified promise,\nit is useful to wrap this with an <code>RSVP.resolve</code> so that it behaves\nas a spec compliant promise.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>proxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isPending&apos;</span>)   <span class=\"comment\">//=&gt; false</span>\nproxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isSettled&apos;</span>)   <span class=\"comment\">//=&gt; true</span>\nproxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isRejected&apos;</span>)  <span class=\"comment\">//=&gt; false</span>\nproxy.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;isFulfilled&apos;</span>) <span class=\"comment\">//=&gt; true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>As the proxy is an ObjectProxy, and the json now its content,\nall the json properties will be available directly from the proxy.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Assuming the following json:</span>\n{\n  <span class=\"attribute\">firstName</span>: <span class=\"string\">&apos;Stefan&apos;</span>,\n  <span class=\"attribute\">lastName</span>: <span class=\"string\">&apos;Penner&apos;</span>\n}\n\n<span class=\"comment\">// both properties will accessible on the proxy</span>\n<span class=\"selector-tag\">proxy</span><span class=\"selector-class\">.get</span>(<span class=\"string\">&apos;firstName&apos;</span>) <span class=\"comment\">//=&gt; &apos;Stefan&apos;</span>\n<span class=\"selector-tag\">proxy</span><span class=\"selector-class\">.get</span>(<span class=\"string\">&apos;lastName&apos;</span>)  <span class=\"comment\">//=&gt; &apos;Penner&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 171,
+          "description": "<html><head></head><body><p>An alias to the proxied promise&apos;s <code>then</code>.</p>\n<p>See RSVP.Promise.then.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "then",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "RSVP.Promise"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 183,
+          "description": "<html><head></head><body><p>An alias to the proxied promise&apos;s <code>catch</code>.</p>\n<p>See RSVP.Promise.catch.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "catch",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "RSVP.Promise"
+          },
+          "since": "2.15.2",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 196,
+          "description": "<html><head></head><body><p>An alias to the proxied promise&apos;s <code>finally</code>.</p>\n<p>See RSVP.Promise.finally.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "finally",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "RSVP.Promise"
+          },
+          "since": "2.15.2",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 99,
+          "description": "<html><head></head><body><p>If the proxied promise is rejected this will contain the reason\nprovided.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "reason",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 109,
+          "description": "<html><head></head><body><p>Once the proxied promise has settled this will become <code>false</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isPending",
+          "default": "true",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 118,
+          "description": "<html><head></head><body><p>Once the proxied promise has settled this will become <code>true</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isSettled",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 127,
+          "description": "<html><head></head><body><p>Will become <code>true</code> if the proxied promise is rejected.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isRejected",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 136,
+          "description": "<html><head></head><body><p>Will become <code>true</code> if the proxied promise is fulfilled.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isFulfilled",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/promise_proxy.js",
+          "line": 145,
+          "description": "<html><head></head><body><p>The promise whose fulfillment value is being proxied by this object.</p>\n<p>This property must be specified upon creation, and should not be\nchanged once created.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.ObjectProxy</span><span class=\"selector-class\">.extend</span>(<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.PromiseProxyMixin</span>)<span class=\"selector-class\">.create</span>({\n  <span class=\"attribute\">promise</span>: &lt;thenable&gt;\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "promise",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.PromiseProxyMixin",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.RecordArrayManager",
+    "type": "class",
+    "attributes": {
+      "name": "DS.RecordArrayManager",
+      "shortname": "DS.RecordArrayManager",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/record-array-manager.js",
+      "line": 53,
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 148,
+          "description": "<html><head></head><body><p>Update an individual filter.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "updateFilterRecordArray",
+          "params": [
+            {
+              "name": "array",
+              "description": "",
+              "type": "DS.FilteredRecordArray"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "internalModels",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 214,
+          "description": "<html><head></head><body><p>This method is invoked if the <code>filterFunction</code> property is\nchanged on a <code>DS.FilteredRecordArray</code>.</p>\n<p>It essentially re-runs the filter from scratch. This same\nmethod is invoked when the filter is created in th first place.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "updateFilter",
+          "params": [
+            {
+              "name": "array",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "filter",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 242,
+          "description": "<html><head></head><body><p>Get the <code>DS.RecordArray</code> for a modelName, which contains all loaded records of\ngiven modelName.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "liveRecordArrayFor",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "DS.RecordArray"
+          },
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 282,
+          "description": "<html><head></head><body><p>Get the <code>DS.RecordArray</code> for a modelName, which contains all loaded records of\ngiven modelName.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "filteredRecordArraysFor",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "DS.RecordArray"
+          },
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 297,
+          "description": "<html><head></head><body><p>Create a <code>DS.RecordArray</code> for a modelName.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "createRecordArray",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "_content",
+              "description": "(optional|private)",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "DS.RecordArray"
+          },
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 324,
+          "description": "<html><head></head><body><p>Create a <code>DS.FilteredRecordArray</code> for a modelName and register it for updates.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "createFilteredRecordArray",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "filter",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "query",
+              "description": "(optional",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "DS.FilteredRecordArray"
+          },
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 351,
+          "description": "<html><head></head><body><p>Create a <code>DS.AdapterPopulatedRecordArray</code> for a modelName with given query.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "createAdapterPopulatedRecordArray",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "DS.AdapterPopulatedRecordArray"
+          },
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 393,
+          "description": "<html><head></head><body><p>Register a RecordArray for a given modelName to be backed by\na filter function. This will cause the array to update\nautomatically when records of that modelName change attribute\nvalues or states.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "registerFilteredRecordArray",
+          "params": [
+            {
+              "name": "array",
+              "description": "",
+              "type": "DS.RecordArray"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "filter",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/record-array-manager.js",
+          "line": 412,
+          "description": "<html><head></head><body><p>Unregister a RecordArray.\nSo manager will not update this array.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "unregisterRecordArray",
+          "params": [
+            {
+              "name": "array",
+              "description": "",
+              "type": "DS.RecordArray"
+            }
+          ],
+          "class": "DS.RecordArrayManager",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

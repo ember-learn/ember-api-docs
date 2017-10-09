@@ -1,0 +1,104 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.StringTransform",
+    "type": "class",
+    "attributes": {
+      "name": "DS.StringTransform",
+      "shortname": "DS.StringTransform",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/transforms/string.js",
+      "line": 6,
+      "description": "<html><head></head><body><p>The <code>DS.StringTransform</code> class is used to serialize and deserialize\nstring attributes on Ember Data record objects. This transform is\nused when <code>string</code> is passed as the type parameter to the\n<a href=\"../../data#method_attr\">DS.attr</a> function.</p>\n<p>Usage</p>\n<div class=\"highlight app/models/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  isAdmin: DS.attr(<span class=\"string\">&apos;boolean&apos;</span>),\n  name: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  email: DS.attr(<span class=\"string\">&apos;string&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "DS.Transform",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/transforms/transform.js",
+          "line": 71,
+          "description": "<html><head></head><body><p>When given a deserialized value from a record attribute this\nmethod must return the serialized value.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>serialize(deserialized, options) {\n  <span class=\"keyword\">return</span> Ember.isEmpty(deserialized) ? <span class=\"literal\">null</span> : <span class=\"built_in\">Number</span>(deserialized)<span class=\"comment\">;</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "deserialized",
+              "description": "The deserialized value"
+            },
+            {
+              "name": "options",
+              "description": "hash of options passed to `DS.attr`"
+            }
+          ],
+          "return": {
+            "description": "The serialized value"
+          },
+          "class": "DS.StringTransform",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Transform"
+        },
+        {
+          "file": "addon/transforms/transform.js",
+          "line": 90,
+          "description": "<html><head></head><body><p>When given a serialize value from a JSON object this method must\nreturn the deserialized value for the record attribute.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>deserialize(serialized, options) {\n  <span class=\"keyword\">return</span> empty(serialized) ? <span class=\"literal\">null</span> : <span class=\"built_in\">Number</span>(serialized)<span class=\"comment\">;</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deserialize",
+          "params": [
+            {
+              "name": "serialized",
+              "description": "The serialized value"
+            },
+            {
+              "name": "options",
+              "description": "hash of options passed to `DS.attr`"
+            }
+          ],
+          "return": {
+            "description": "The deserialized value"
+          },
+          "class": "DS.StringTransform",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3",
+          "inherited": true,
+          "inheritedFrom": "DS.Transform"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-data-2.15.3-DS.Transform",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

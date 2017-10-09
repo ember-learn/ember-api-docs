@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/component/helper",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/component/helper",
+      "shortname": "@ember/component/helper",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/component",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-glimmer/lib/helper.js",
+          "line": 107,
+          "description": "<html><head></head><body><p>In many cases, the ceremony of a full <code>Helper</code> class is not required.\nThe <code>helper</code> method create pure-function helpers without instances. For\nexample:</p>\n<div class=\"highlight currency.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">currency.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> { helper } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component/helper&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> helper(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">params, hash</span>) </span>{\n  <span class=\"keyword\">let</span> cents = params[<span class=\"number\">0</span>];\n  <span class=\"keyword\">let</span> currency = hash.currency;\n  <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${currency}</span><span class=\"subst\">${cents * <span class=\"number\">0.01</span>}</span>`</span>;\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "static": 1,
+          "params": [
+            {
+              "name": "helper",
+              "description": "The helper function",
+              "type": "Function"
+            }
+          ],
+          "itemtype": "method",
+          "name": "helper",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "@ember/component/helper",
+          "module": "@ember/component",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/component",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.AdapterError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.AdapterError",
+      "shortname": "DS.AdapterError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 10,
+      "description": "<html><head></head><body><p>A <code>DS.AdapterError</code> is used by an adapter to signal that an error occurred\nduring a request to an external API. It indicates a generic error, and\nsubclasses are used to indicate specific error states. The following\nsubclasses are provided:</p>\n<ul>\n<li><code>DS.InvalidError</code></li>\n<li><code>DS.TimeoutError</code></li>\n<li><code>DS.AbortError</code></li>\n<li><code>DS.UnauthorizedError</code></li>\n<li><code>DS.ForbiddenError</code></li>\n<li><code>DS.NotFoundError</code></li>\n<li><code>DS.ConflictError</code></li>\n<li><code>DS.ServerError</code></li>\n</ul>\n<p>To create a custom error to signal a specific error state in communicating\nwith an external API, extend the <code>DS.AdapterError</code>. For example if the\nexternal API exclusively used HTTP <code>503 Service Unavailable</code> to indicate\nit was closed for maintenance:</p>\n<div class=\"highlight error.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">error.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.AdapterError.extend({ message: <span class=\"string\">&quot;Down for maintenance.&quot;</span> });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This error would then be returned by an adapter&apos;s <code>handleResponse</code> method:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n<span class=\"keyword\">import</span> MaintenanceError <span class=\"keyword\">from</span> <span class=\"string\">&apos;./maintenance-error&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  handleResponse(status) {\n    <span class=\"keyword\">if</span> (<span class=\"number\">503</span> === status) {\n      <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> MaintenanceError();\n    }\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>And can then be detected in an application and used to send the user to an\n<code>under-maintenance</code> route:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember from <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> MaintenanceError from <span class=\"string\">&apos;../adapters/maintenance-error&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Ember.Route.extend({\n  actions: {\n    <span class=\"keyword\">error</span>(<span class=\"keyword\">error</span>, transition) {\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">error</span> <span class=\"keyword\">instanceof</span> MaintenanceError) {\n        <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;under-maintenance&apos;</span>);\n        <span class=\"keyword\">return</span>;\n      }\n\n      <span class=\"comment\">// ...other error handling logic</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

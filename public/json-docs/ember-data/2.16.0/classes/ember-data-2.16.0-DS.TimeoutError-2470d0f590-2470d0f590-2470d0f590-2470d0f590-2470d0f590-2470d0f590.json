@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.TimeoutError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.TimeoutError",
+      "shortname": "DS.TimeoutError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 171,
+      "description": "<html><head></head><body><p>A <code>DS.TimeoutError</code> is used by an adapter to signal that a request\nto the external API has timed out. I.e. no response was received from\nthe external API within an allowed time period.</p>\n<p>An example use case would be to warn the user to check their internet\nconnection if an adapter operation has timed out:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember from <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">const</span> { TimeoutError } = DS;\n\nexport <span class=\"keyword\">default</span> Ember.Route.extend({\n  actions: {\n    <span class=\"keyword\">error</span>(<span class=\"keyword\">error</span>, transition) {\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">error</span> <span class=\"keyword\">instanceof</span> TimeoutError) {\n        <span class=\"comment\">// alert the user</span>\n        alert(<span class=\"string\">&apos;Are you still connected to the internet?&apos;</span>);\n        <span class=\"keyword\">return</span>;\n      }\n\n      <span class=\"comment\">// ...other error handling logic</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

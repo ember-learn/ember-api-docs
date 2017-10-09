@@ -1,0 +1,39 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-extension-support",
+    "type": "module",
+    "attributes": {
+      "name": "ember-extension-support",
+      "submodules": {},
+      "elements": {},
+      "fors": {},
+      "is_submodule": 1,
+      "namespaces": {
+        "Ember": 1
+      },
+      "namespace": "",
+      "file": "packages/ember-extension-support/lib/data_adapter.js",
+      "line": 18,
+      "description": "<html><head></head><body><p>The <code>ContainerDebugAdapter</code> helps the container and resolver interface\nwith tools that debug Ember such as the\n<a href=\"https://github.com/emberjs/ember-inspector\">Ember Inspector</a>\nfor Chrome and Firefox.</p>\n<p>This class can be extended by a custom resolver implementer\nto override some of the methods with library-specific code.</p>\n<p>The methods likely to be overridden are:</p>\n<ul>\n<li><code>canCatalogEntriesByType</code></li>\n<li><code>catalogEntriesByType</code></li>\n</ul>\n<p>The adapter will need to be registered\nin the application&apos;s container as <code>container-debug-adapter:main</code>.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Application</span><span class=\"selector-class\">.initializer</span>({\n  <span class=\"attribute\">name</span>: <span class=\"string\">&quot;containerDebugAdapter&quot;</span>,\n\n  <span class=\"built_in\">initialize</span>(application) {\n    application.<span class=\"built_in\">register</span>(<span class=\"string\">&apos;container-debug-adapter:main&apos;</span>, require(<span class=\"string\">&apos;app/container-debug-adapter&apos;</span>));\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.ContainerDebugAdapter",
+        "Ember.DataAdapter"
+      ],
+      "privateclasses": [],
+      "staticfunctions": {},
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

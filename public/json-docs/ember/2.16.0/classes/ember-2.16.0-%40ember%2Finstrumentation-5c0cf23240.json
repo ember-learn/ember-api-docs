@@ -1,0 +1,148 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/instrumentation",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/instrumentation",
+      "shortname": "@ember/instrumentation",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/instrumentation",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/instrumentation.js",
+          "line": 87,
+          "description": "<html><head></head><body><p>Notifies event&apos;s subscribers, calls <code>before</code> and <code>after</code> hooks.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "instrument",
+          "static": 1,
+          "params": [
+            {
+              "name": "name",
+              "description": "Namespaced event name.",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "_payload",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "callback",
+              "description": "Function that you're instrumenting.",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "Context that instrument function is called with.",
+              "type": "Object"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/instrumentation",
+          "module": "@ember/instrumentation",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/instrumentation.js",
+          "line": 190,
+          "description": "<html><head></head><body><p>Subscribes to a particular event or instrumented block of code.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "subscribe",
+          "static": 1,
+          "params": [
+            {
+              "name": "pattern",
+              "description": "Namespaced event name.",
+              "type": "String",
+              "optional": true
+            },
+            {
+              "name": "object",
+              "description": "Before and After hooks.",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Subscriber"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/instrumentation",
+          "module": "@ember/instrumentation",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/instrumentation.js",
+          "line": 232,
+          "description": "<html><head></head><body><p>Unsubscribes from a particular event or instrumented block of code.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "unsubscribe",
+          "static": 1,
+          "params": [
+            {
+              "name": "subscriber",
+              "description": "",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/instrumentation",
+          "module": "@ember/instrumentation",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/instrumentation.js",
+          "line": 255,
+          "description": "<html><head></head><body><p>Resets <code>Instrumentation</code> by flushing list of subscribers.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reset",
+          "static": 1,
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/instrumentation",
+          "module": "@ember/instrumentation",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/instrumentation",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

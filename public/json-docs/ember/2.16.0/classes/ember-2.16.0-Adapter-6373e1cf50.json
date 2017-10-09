@@ -1,0 +1,94 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Adapter",
+    "type": "class",
+    "attributes": {
+      "name": "Adapter",
+      "shortname": "Adapter",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/test",
+      "namespace": "",
+      "file": "packages/ember-testing/lib/adapters/adapter.js",
+      "line": 9,
+      "description": "<html><head></head><body><p>The primary purpose of this class is to create hooks that can be implemented\nby an adapter for various test frameworks.</p>\n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-testing/lib/adapters/adapter.js",
+          "line": 17,
+          "description": "<html><head></head><body><p>This callback will be called whenever an async operation is about to start.</p>\n<p>Override this to call your framework&apos;s methods that handle async\noperations.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "asyncStart",
+          "class": "Adapter",
+          "module": "@ember/test",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-testing/lib/adapters/adapter.js",
+          "line": 28,
+          "description": "<html><head></head><body><p>This callback will be called whenever an async operation has completed.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "asyncEnd",
+          "class": "Adapter",
+          "module": "@ember/test",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-testing/lib/adapters/adapter.js",
+          "line": 36,
+          "description": "<html><head></head><body><p>Override this method with your testing framework&apos;s false assertion.\nThis function is called whenever an exception occurs causing the testing\npromise to fail.</p>\n<p>QUnit example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>  exception: <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(error)</span></span> {\n    ok(<span class=\"literal\">false</span>, <span class=\"built_in\">error</span>);\n  };</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "exception",
+          "params": [
+            {
+              "name": "error",
+              "description": "The exception to be raised.",
+              "type": "String"
+            }
+          ],
+          "class": "Adapter",
+          "module": "@ember/test",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/test",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

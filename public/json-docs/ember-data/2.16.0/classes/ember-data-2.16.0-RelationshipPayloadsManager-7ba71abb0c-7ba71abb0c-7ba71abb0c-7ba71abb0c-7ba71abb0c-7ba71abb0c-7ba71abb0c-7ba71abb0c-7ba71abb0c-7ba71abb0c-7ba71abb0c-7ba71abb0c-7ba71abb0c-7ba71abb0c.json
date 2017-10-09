@@ -1,0 +1,119 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-RelationshipPayloadsManager",
+    "type": "class",
+    "attributes": {
+      "name": "RelationshipPayloadsManager",
+      "shortname": "RelationshipPayloadsManager",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "",
+      "file": "addon/-private/system/relationships/relationship-payloads-manager.js",
+      "line": 6,
+      "description": "<html><head></head><body><p>Manages relationship payloads for a given store, for uninitialized\nrelationships.  Acts as a single source of truth (of payloads) for both sides\nof an uninitialized relationship so they can agree on the most up-to-date\npayload received without needing too much eager processing when those payloads\nare pushed into the store.</p>\n<p>This minimizes the work spent on relationships that are never initialized.</p>\n<p>Once relationships are initialized, their state is managed in a relationship\nstate object (eg BelongsToRelationship or ManyRelationship).</p>\n</body></html>",
+      "example": [
+        "\n\n  let relationshipPayloadsManager = new RelationshipPayloadsManager(store);\n\n  const User = DS.Model.extend({\n    hobbies: DS.hasMany('hobby')\n  });\n\n  const Hobby = DS.Model.extend({\n    user: DS.belongsTo('user')\n  });\n\n  let userPayload = {\n    data: {\n      id: 1,\n      type: 'user',\n      relationships: {\n        hobbies: {\n          data: [{\n            id: 2,\n            type: 'hobby'\n          }]\n        }\n      }\n    },\n  };\n  relationshipPayloadsManager.push('user', 1, userPayload.data.relationships);\n\n  relationshipPayloadsManager.get('hobby', 2, 'user') === {\n    {\n      data: {\n        id: 1,\n        type: 'user'\n      }\n    }\n  }"
+      ],
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/-private/system/relationships/relationship-payloads-manager.js",
+          "line": 66,
+          "description": "<html><head></head><body><p>Find the payload for the given relationship of the given model.</p>\n<p>Returns the payload for the given relationship, whether raw or computed from\nthe payload of the inverse relationship.</p>\n</body></html>",
+          "example": [
+            "\n\n  relationshipPayloadsManager.get('hobby', 2, 'user') === {\n    {\n      data: {\n        id: 1,\n        type: 'user'\n      }\n    }\n  }"
+          ],
+          "itemtype": "method",
+          "name": "",
+          "class": "RelationshipPayloadsManager",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/relationships/relationship-payloads-manager.js",
+          "line": 92,
+          "description": "<html><head></head><body><p>Push a model&apos;s relationships payload into this cache.</p>\n</body></html>",
+          "example": [
+            "\n\n  let userPayload = {\n    data: {\n      id: 1,\n      type: 'user',\n      relationships: {\n        hobbies: {\n          data: [{\n            id: 2,\n            type: 'hobby'\n          }]\n        }\n      }\n    },\n  };\n  relationshipPayloadsManager.push('user', 1, userPayload.data.relationships);"
+          ],
+          "itemtype": "method",
+          "name": "",
+          "class": "RelationshipPayloadsManager",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/relationships/relationship-payloads-manager.js",
+          "line": 128,
+          "description": "<html><head></head><body><p>Unload a model&apos;s relationships payload.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "",
+          "class": "RelationshipPayloadsManager",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/relationships/relationship-payloads-manager.js",
+          "line": 144,
+          "description": "<html><head></head><body><p>Find the RelationshipPayloads object for the given relationship.  The same\nRelationshipPayloads object is returned for either side of a relationship.</p>\n</body></html>",
+          "example": [
+            "\n\n  const User = DS.Model.extend({\n    hobbies: DS.hasMany('hobby')\n  });\n\n  const Hobby = DS.Model.extend({\n    user: DS.belongsTo('user')\n  });\n\n  relationshipPayloads.get('user', 'hobbies') === relationshipPayloads.get('hobby', 'user');\n\nThe signature has a somewhat large arity to avoid extra work, such as\n  a)  string maipulation & allocation with `modelName` and\n     `relationshipName`\n  b)  repeatedly getting `relationshipsByName` via `Ember.get`"
+          ],
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "",
+          "class": "RelationshipPayloadsManager",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/system/relationships/relationship-payloads-manager.js",
+          "line": 180,
+          "description": "<html><head></head><body><p>Create the <code>RelationshipsPayload</code> for the relationship <code>modelName</code>, <code>relationshipName</code>, and its inverse.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "",
+          "class": "RelationshipPayloadsManager",
+          "module": "ember-data",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

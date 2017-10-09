@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.UnauthorizedError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.UnauthorizedError",
+      "shortname": "DS.UnauthorizedError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 218,
+      "description": "<html><head></head><body><p>A <code>DS.UnauthorizedError</code> equates to a HTTP <code>401 Unauthorized</code> response\nstatus. It is used by an adapter to signal that a request to the external\nAPI was rejected because authorization is required and has failed or has not\nyet been provided.</p>\n<p>An example use case would be to redirect the user to a log in route if a\nrequest is unauthorized:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember from <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">const</span> { UnauthorizedError } = DS;\n\nexport <span class=\"keyword\">default</span> Ember.Route.extend({\n  actions: {\n    <span class=\"keyword\">error</span>(<span class=\"keyword\">error</span>, transition) {\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">error</span> <span class=\"keyword\">instanceof</span> UnauthorizedError) {\n        <span class=\"comment\">// go to the sign in route</span>\n        <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;login&apos;</span>);\n        <span class=\"keyword\">return</span>;\n      }\n\n      <span class=\"comment\">// ...other error handling logic</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

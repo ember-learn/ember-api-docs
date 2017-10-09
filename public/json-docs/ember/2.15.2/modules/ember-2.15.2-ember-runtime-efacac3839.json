@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-runtime",
+    "type": "module",
+    "attributes": {
+      "name": "ember-runtime",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.computed": 1,
+        "Ember.inject": 1,
+        "Function": 1,
+        "String": 1,
+        "Ember": 1
+      },
+      "is_submodule": 1,
+      "namespaces": {
+        "Ember": 1
+      },
+      "namespace": "",
+      "file": "packages/ember-runtime/lib/system/object.js",
+      "line": 16,
+      "description": "<html><head></head><body><p>Defines string helper methods including string formatting and localization.\nUnless <code>EmberENV.EXTEND_PROTOTYPES.String</code> is <code>false</code> these methods will also be\nadded to the <code>String.prototype</code> as well.</p>\n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.Controller",
+        "Ember.Array",
+        "ContainerProxyMixin",
+        "Ember.Evented",
+        "Ember.MutableArray",
+        "Ember.MutableEnumerable",
+        "Ember.Observable",
+        "Ember.PromiseProxyMixin",
+        "Ember.ArrayProxy",
+        "Ember.CoreObject",
+        "Ember.Namespace",
+        "Ember.NativeArray",
+        "Ember.Object"
+      ],
+      "privateclasses": [
+        "Ember.ProxyMixin",
+        "Ember.ActionHandler",
+        "Ember.EachProxy",
+        "Ember.Comparable",
+        "Ember.Copyable",
+        "Ember.Enumerable",
+        "Ember.Freezable",
+        "RegistryProxyMixin",
+        "Ember.TargetActionSupport"
+      ],
+      "staticfunctions": {},
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

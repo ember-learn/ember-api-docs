@@ -1,0 +1,148 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.RecordReference",
+    "type": "class",
+    "attributes": {
+      "name": "DS.RecordReference",
+      "shortname": "DS.RecordReference",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/references/record.js",
+      "line": 4,
+      "description": "<html><head></head><body><p>An RecordReference is a low level API that allows users and\naddon author to perform meta-operations on a record.</p>\n</body></html>",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/references/record.js",
+          "line": 21,
+          "description": "<html><head></head><body><p>The <code>id</code> of the record that this reference refers to.</p>\n<p>Together, the <code>type</code> and <code>id</code> properties form a composite key for\nthe identity map.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>let userRef = store.getReference(<span class=\"string\">&apos;user&apos;</span>, <span class=\"number\">1</span>);\n\nuserRef.id(); <span class=\"regexp\">//</span> <span class=\"string\">&apos;1&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "id",
+          "return": {
+            "description": "The id of the record.",
+            "type": "String"
+          },
+          "class": "DS.RecordReference",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/references/record.js",
+          "line": 42,
+          "description": "<html><head></head><body><p>How the reference will be looked up when it is loaded: Currently\nthis always return <code>identity</code> to signifying that a record will be\nloaded by the <code>type</code> and <code>id</code>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> userRef = store.getReference(<span class=\"string\">&apos;user&apos;</span>, <span class=\"number\">1</span>);\n\nuserRef.remoteType(); <span class=\"comment\">// &apos;identity&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "remoteType",
+          "return": {
+            "description": "'identity'",
+            "type": "String"
+          },
+          "class": "DS.RecordReference",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/references/record.js",
+          "line": 62,
+          "description": "<html><head></head><body><p>This API allows you to provide a reference with new data. The\nsimplest usage of this API is similar to <code>store.push</code>: you provide a\nnormalized hash of data and the object represented by the reference\nwill update.</p>\n<p>If you pass a promise to <code>push</code>, Ember Data will not ask the adapter\nfor the data if another attempt to fetch it is made in the\ninterim. When the promise resolves, the underlying object is updated\nwith the new data, and the promise returned by <em>this function</em> is resolved\nwith that object.</p>\n<p>For example, <code>recordReference.push(promise)</code> will be resolved with a\nrecord.</p>\n<p> Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> userRef = store.getReference(<span class=\"string\">&apos;user&apos;</span>, <span class=\"number\">1</span>);\n\n <span class=\"comment\">// provide data for reference</span>\n userRef.push({ <span class=\"attribute\">data</span>: { <span class=\"attribute\">id:</span><span class=\"string\"> 1, username</span>: <span class=\"string\">&quot;@user&quot;</span> }}).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">user</span>) </span>{\n   userRef.value() === user;\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "push",
+          "params": [
+            {
+              "name": "UNKNOWN",
+              "description": "",
+              "type": "Promise|Object"
+            }
+          ],
+          "return": {
+            "description": "Promise<record> a promise for the value (record or relationship)"
+          },
+          "class": "DS.RecordReference",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/references/record.js",
+          "line": 98,
+          "description": "<html><head></head><body><p>If the entity referred to by the reference is already loaded, it is\npresent as <code>reference.value</code>. Otherwise the value returned by this function\nis <code>null</code>.</p>\n<p> Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> userRef = store.getReference(<span class=\"string\">&apos;user&apos;</span>, <span class=\"number\">1</span>);\n\n userRef.<span class=\"keyword\">value</span>(); <span class=\"comment\">// user</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "value",
+          "return": {
+            "description": "the record for this RecordReference",
+            "type": "DS.Model"
+          },
+          "class": "DS.RecordReference",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/references/record.js",
+          "line": 120,
+          "description": "<html><head></head><body><p>Triggers a fetch for the backing entity based on its <code>remoteType</code>\n(see <code>remoteType</code> definitions per reference type).</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">user</span>Ref = store.getReference(&apos;<span class=\"keyword\">user</span>&apos;, <span class=\"number\">1</span>);\n\n// <span class=\"built_in\">load</span> <span class=\"keyword\">user</span> (via store.find)\n<span class=\"keyword\">user</span>Ref.<span class=\"built_in\">load</span>().then(...)</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "load",
+          "return": {
+            "description": "the record for this RecordReference",
+            "type": "Promise<record>"
+          },
+          "class": "DS.RecordReference",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/references/record.js",
+          "line": 140,
+          "description": "<html><head></head><body><p>Reloads the record if it is already loaded. If the record is not\nloaded it will load the record via <code>store.findRecord</code></p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> userRef = store.getReference(<span class=\"string\">&apos;user&apos;</span>, <span class=\"number\">1</span>);\n\n<span class=\"comment\">// or trigger a reload</span>\nuserRef.reload().<span class=\"keyword\">then</span>(...)</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "reload",
+          "return": {
+            "description": "the record for this RecordReference",
+            "type": "Promise<record>"
+          },
+          "class": "DS.RecordReference",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

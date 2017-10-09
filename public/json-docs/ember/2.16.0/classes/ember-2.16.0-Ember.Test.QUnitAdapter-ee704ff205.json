@@ -1,0 +1,52 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.Test.QUnitAdapter",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Test.QUnitAdapter",
+      "shortname": "Ember.Test.QUnitAdapter",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/test",
+      "namespace": "Ember.Test",
+      "file": "packages/ember-testing/lib/adapters/qunit.js",
+      "line": 4,
+      "description": "<html><head></head><body><p>This class implements the methods defined by Ember.Test.Adapter for the\nQUnit testing framework.</p>\n</body></html>",
+      "extends": "Ember.Test.Adapter",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Test.Adapter",
+          "type": "missing",
+          "version": "2.16.0"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/test",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

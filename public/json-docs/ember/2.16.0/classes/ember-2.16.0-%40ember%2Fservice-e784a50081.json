@@ -1,0 +1,68 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/service",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/service",
+      "shortname": "@ember/service",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/service",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/system/service.js",
+          "line": 8,
+          "description": "<html><head></head><body><p>Creates a property that lazily looks up a service in the container. There\nare no restrictions as to what objects a service can be injected into.</p>\n<p>Example:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n<span class=\"keyword\">import</span> { inject <span class=\"keyword\">as</span> service } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/service&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  authManager: service(<span class=\"string\">&apos;auth&apos;</span>),\n\n  model() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;authManager&apos;</span>).findCurrentUser();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This example will create an <code>authManager</code> property on the application route\nthat looks up the <code>auth</code> service in the container, making it easily\naccessible in the <code>model</code> hook.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "inject",
+          "static": 1,
+          "since": "2.16.0",
+          "params": [
+            {
+              "name": "name",
+              "description": "(optional) name of the service to inject, defaults to\n       the property's name",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "injection descriptor instance",
+            "type": "Ember.InjectedProperty"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/service",
+          "module": "@ember/service",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/service",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/component",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/component",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.Templates.helpers": 1,
+        "@ember/component/helper": 1
+      },
+      "namespaces": {},
+      "tag": "main",
+      "file": "packages/ember-glimmer/lib/helper.js",
+      "line": 11,
+      "description": "<html><head></head><body><p><a href=\"https://github.com/tildeio/glimmer\">Glimmer</a> is a templating engine used by Ember.js that is compatible with a subset of the <a href=\"http://handlebarsjs.com/\">Handlebars</a> syntax.</p>\n<h3 id=\"showing-a-property\">Showing a property</h3>\n<p>Templates manage the flow of an application&apos;s UI, and display state (through\nthe DOM) to a user. For example, given a component with the property &quot;name&quot;,\nthat component&apos;s template can use the name in several ways:</p>\n<div class=\"highlight profile.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">profile.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  name: <span class=\"string\">&apos;Jill&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight profile.hbs\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">profile.hbs</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-variable\">{{name}}</span><span class=\"xml\">\n<span class=\"tag\">&lt;<span class=\"name\">div</span>&gt;</span></span><span class=\"template-variable\">{{name}}</span><span class=\"xml\"><span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n<span class=\"tag\">&lt;<span class=\"name\">span</span> <span class=\"attr\">data-name</span>=</span></span><span class=\"template-variable\">{{name}}</span><span class=\"xml\"><span class=\"tag\">&gt;</span><span class=\"tag\">&lt;/<span class=\"name\">span</span>&gt;</span></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Any time the &quot;name&quot; property on the component changes, the DOM will be\nupdated.</p>\n<p>Properties can be chained as well:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{aUserModel.<span class=\"built_in\">name</span>}}\n&lt;<span class=\"keyword\">div</span>&gt;{{listOfUsers.firstObject.<span class=\"built_in\">name</span>}}&lt;/<span class=\"keyword\">div</span>&gt;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h3 id=\"using-ember-helpers\">Using Ember helpers</h3>\n<p>When content is passed in mustaches <code>{{}}</code>, Ember will first try to find a helper\nor component with that name. For example, the <code>if</code> helper:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>{{<span class=\"keyword\">if</span> <span class=\"keyword\">name</span> <span class=\"string\">&quot;I have a name&quot;</span> <span class=\"string\">&quot;I have no name&quot;</span>}}\n&lt;span <span class=\"keyword\">data</span>-has-<span class=\"keyword\">name</span>={{<span class=\"keyword\">if</span> <span class=\"keyword\">name</span> <span class=\"literal\">true</span>}}&gt;&lt;/span&gt;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The returned value is placed where the <code>{{}}</code> is called. The above style is\ncalled &quot;inline&quot;. A second style of helper usage is called &quot;block&quot;. For example:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">if</span></span> name}}</span><span class=\"xml\">\nI have a name\n</span><span class=\"template-variable\">{{<span class=\"builtin-name\">else</span>}}</span><span class=\"xml\">\nI have no name\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">if</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The block form of helpers allows you to control how the UI is created based\non the values of properties.\nA third form of helper is called &quot;nested&quot;. For example here the concat\nhelper will add &quot; Doe&quot; to a displayed name if the person has no last name:</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"><span class=\"tag\">&lt;<span class=\"name\">span</span> <span class=\"attr\">data-name</span>=</span></span><span class=\"template-variable\">{{<span class=\"built_in\">concat</span> firstName (\n<span class=\"built_in\">if</span> lastName (<span class=\"built_in\">concat</span> <span class=\"string\">&quot; &quot;</span> lastName) <span class=\"string\">&quot;Doe&quot;</span>\n)}}</span><span class=\"xml\"><span class=\"tag\">&gt;</span><span class=\"tag\">&lt;/<span class=\"name\">span</span>&gt;</span></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Ember&apos;s built-in helpers are described under the <a href=\"/api/classes/Ember.Templates.helpers.html\">Ember.Templates.helpers</a>\nnamespace. Documentation on creating custom helpers can be found under\n<a href=\"/api/classes/Ember.Helper.html\">Helper</a>.</p>\n<h3 id=\"invoking-a-component\">Invoking a Component</h3>\n<p>Ember components represent state to the UI of an application. Further\nreading on components can be found under <a href=\"/api/classes/Ember.Component.html\">Component</a>.</p>\n</body></html>",
+      "itemtype": "main",
+      "parent": null,
+      "publicclasses": [
+        "Checkbox",
+        "TextArea",
+        "TextField",
+        "Component",
+        "Helper"
+      ],
+      "privateclasses": [],
+      "staticfunctions": {
+        "@ember/component/helper": [
+          {
+            "file": "packages/ember-glimmer/lib/helper.js",
+            "line": 107,
+            "description": "In many cases, the ceremony of a full `Helper` class is not required.\nThe `helper` method create pure-function helpers without instances. For\nexample:\n\n```app/helpers/format-currency.js\nimport { helper } from '@ember/component/helper';\n\nexport default helper(function(params, hash) {\n  let cents = params[0];\n  let currency = hash.currency;\n  return `${currency}${cents * 0.01}`;\n});\n```",
+            "static": 1,
+            "params": [
+              {
+                "name": "helper",
+                "description": "The helper function",
+                "type": "Function"
+              }
+            ],
+            "itemtype": "method",
+            "name": "helper",
+            "access": "public",
+            "tagname": "",
+            "since": "2.16.0",
+            "class": "@ember/component/helper",
+            "module": "@ember/component",
+            "version": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

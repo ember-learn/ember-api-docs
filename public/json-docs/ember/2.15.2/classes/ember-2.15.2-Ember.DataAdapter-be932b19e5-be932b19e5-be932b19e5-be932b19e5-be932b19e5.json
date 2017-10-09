@@ -1,0 +1,540 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.DataAdapter",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.DataAdapter",
+      "shortname": "Ember.DataAdapter",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-extension-support",
+      "namespace": "Ember",
+      "file": "packages/ember-extension-support/lib/data_adapter.js",
+      "line": 18,
+      "description": "<html><head></head><body><p>The <code>DataAdapter</code> helps a data persistence library\ninterface with tools that debug Ember such\nas the <a href=\"https://github.com/tildeio/ember-extension\">Ember Extension</a>\nfor Chrome and Firefox.</p>\n<p>This class will be extended by a persistence library\nwhich will override some of the methods with\nlibrary-specific code.</p>\n<p>The methods likely to be overridden are:</p>\n<ul>\n<li><code>getFilters</code></li>\n<li><code>detect</code></li>\n<li><code>columnsForType</code></li>\n<li><code>getRecords</code></li>\n<li><code>getRecordColumnValues</code></li>\n<li><code>getRecordKeywords</code></li>\n<li><code>getRecordFilterValues</code></li>\n<li><code>getRecordColor</code></li>\n<li><code>observeRecord</code></li>\n</ul>\n<p>The adapter will need to be registered\nin the application&apos;s container as <code>dataAdapter:main</code>.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Application</span><span class=\"selector-class\">.initializer</span>({\n  <span class=\"attribute\">name</span>: <span class=\"string\">&quot;data-adapter&quot;</span>,\n\n  initialize: <span class=\"built_in\">function</span>(application) {\n    application.<span class=\"built_in\">register</span>(<span class=\"string\">&apos;data-adapter:main&apos;</span>, DS.DataAdapter);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "EmberObject",
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 113,
+          "description": "<html><head></head><body><p>Specifies how records can be filtered.\nRecords returned will need to have a <code>filterValues</code>\nproperty with a key for every name in the returned array.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getFilters",
+          "return": {
+            "description": "List of objects defining filters.\n The object should have a `name` and `desc` property.",
+            "type": "Array"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 127,
+          "description": "<html><head></head><body><p>Fetch the model types and observe them for changes.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "watchModelTypes",
+          "params": [
+            {
+              "name": "typesAdded",
+              "description": "Callback to call to add types.\nTakes an array of objects containing wrapped types (returned from `wrapModelType`).",
+              "type": "Function"
+            },
+            {
+              "name": "typesUpdated",
+              "description": "Callback to call when a type has changed.\nTakes an array of objects containing wrapped types.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "Method to call to remove all observers",
+            "type": "Function"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 172,
+          "description": "<html><head></head><body><p>Fetch the records of a given type and observe them for changes.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "watchRecords",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "The model name.",
+              "type": "String"
+            },
+            {
+              "name": "recordsAdded",
+              "description": "Callback to call to add records.\nTakes an array of objects containing wrapped records.\nThe object should have the following properties:\n  columnValues: {Object} The key and value of a table cell.\n  object: {Object} The actual record object.",
+              "type": "Function"
+            },
+            {
+              "name": "recordsUpdated",
+              "description": "Callback to call when a record has changed.\nTakes an array of objects containing wrapped records.",
+              "type": "Function"
+            },
+            {
+              "name": "recordsRemoved",
+              "description": "Callback to call when a record has removed.\nTakes the following parameters:\n  index: The array index where the records were removed.\n  count: The number of records removed.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "Method to call to remove all observers.",
+            "type": "Function"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 239,
+          "description": "<html><head></head><body><p>Clear all observers before destruction</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "willDestroy",
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 249,
+          "description": "<html><head></head><body><p>Detect whether a class is a model.</p>\n<p>Test that against the model class\nof your persistence library.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "detect",
+          "params": [
+            {
+              "name": "klass",
+              "description": "The class to test.",
+              "type": "Class"
+            }
+          ],
+          "return": {
+            "description": "boolean Whether the class is a model class or not."
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 264,
+          "description": "<html><head></head><body><p>Get the columns for a given model type.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "columnsForType",
+          "params": [
+            {
+              "name": "type",
+              "description": "The model type.",
+              "type": "Class"
+            }
+          ],
+          "return": {
+            "description": "An array of columns of the following format:\n name: {String} The name of the column.\n desc: {String} Humanized description (what would show in a table column name).",
+            "type": "Array"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 278,
+          "description": "<html><head></head><body><p>Adds observers to a model type class.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "observeModelType",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "The model type name.",
+              "type": "String"
+            },
+            {
+              "name": "typesUpdated",
+              "description": "Called when a type is modified.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "The function to call to remove observers.",
+            "type": "Function"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 315,
+          "description": "<html><head></head><body><p>Wraps a given model type and observes changes to it.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "wrapModelType",
+          "params": [
+            {
+              "name": "klass",
+              "description": "A model class.",
+              "type": "Class"
+            },
+            {
+              "name": "modelName",
+              "description": "Name of the class.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "Contains the wrapped type and the function to remove observers\nFormat:\n  type: {Object} The wrapped type.\n    The wrapped type has the following format:\n      name: {String} The name of the type.\n      count: {Integer} The number of records available.\n      columns: {Columns} An array of columns to describe the record.\n      object: {Class} The actual Model type class.\n  release: {Function} The function to remove observers.",
+            "type": "Object"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 347,
+          "description": "<html><head></head><body><p>Fetches all models defined in the application.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getModelTypes",
+          "return": {
+            "description": "Array of model types.",
+            "type": "Array"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 376,
+          "description": "<html><head></head><body><p>Loops over all namespaces and all objects\nattached to them.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_getObjectsOnNamespaces",
+          "return": {
+            "description": "Array of model type strings.",
+            "type": "Array"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 401,
+          "description": "<html><head></head><body><p>Fetches all loaded records for a given type.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRecords",
+          "return": {
+            "description": "An array of records.\n This array will be observed for changes,\n so it should update when new records are added/removed.",
+            "type": "Array"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 414,
+          "description": "<html><head></head><body><p>Wraps a record and observers changes to it.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "wrapRecord",
+          "params": [
+            {
+              "name": "record",
+              "description": "The record instance.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The wrapped record. Format:\ncolumnValues: {Array}\nsearchKeywords: {Array}",
+            "type": "Object"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 435,
+          "description": "<html><head></head><body><p>Gets the values for each column.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRecordColumnValues",
+          "return": {
+            "description": "Keys should match column names defined\nby the model type.",
+            "type": "Object"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 447,
+          "description": "<html><head></head><body><p>Returns keywords to match when searching records.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRecordKeywords",
+          "return": {
+            "description": "Relevant keywords for search.",
+            "type": "Array"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 458,
+          "description": "<html><head></head><body><p>Returns the values of filters defined by <code>getFilters</code>.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRecordFilterValues",
+          "params": [
+            {
+              "name": "record",
+              "description": "The record instance.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The filter values.",
+            "type": "Object"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 470,
+          "description": "<html><head></head><body><p>Each record can have a color that represents its state.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getRecordColor",
+          "params": [
+            {
+              "name": "record",
+              "description": "The record instance",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The records color.\n  Possible options: black, red, blue, green.",
+            "type": "String"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 483,
+          "description": "<html><head></head><body><p>Observes all relevant properties and re-sends the wrapped record\nwhen a change occurs.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "observerRecord",
+          "params": [
+            {
+              "name": "record",
+              "description": "The record instance.",
+              "type": "Object"
+            },
+            {
+              "name": "recordUpdated",
+              "description": "The callback to call when a record is updated.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "The function to call to remove all observers.",
+            "type": "Function"
+          },
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 66,
+          "description": "<html><head></head><body><p>The container-debug-adapter which is used\nto list all models.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "containerDebugAdapter",
+          "default": "undefined",
+          "since": "2.15.2",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 77,
+          "description": "<html><head></head><body><p>The number of attributes to send\nas columns. (Enough to make the record\nidentifiable).</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "attributeLimit",
+          "default": "3",
+          "since": "2.15.2",
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 89,
+          "description": "<html><head></head><body><p>Ember Data &gt; v1.0.0-beta.18\nrequires string model names to be passed\naround instead of the actual factories.</p>\n<p>This is a stamp for the Ember Inspector\nto differentiate between the versions\nto be able to support older versions too.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "acceptsModelName",
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-extension-support/lib/data_adapter.js",
+          "line": 103,
+          "description": "<html><head></head><body><p>Stores all methods that clear observers.\nThese methods will be called on destruction.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "releaseMethods",
+          "since": "2.15.2",
+          "class": "Ember.DataAdapter",
+          "module": "ember",
+          "submodule": "ember-extension-support",
+          "namespace": "Ember",
+          "version": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "EmberObject",
+          "type": "missing",
+          "version": "2.15.2"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

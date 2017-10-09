@@ -1,0 +1,108 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.TargetActionSupport",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.TargetActionSupport",
+      "shortname": "Ember.TargetActionSupport",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Component",
+        "Ember.TextSupport"
+      ],
+      "module": "ember",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/target_action_support.js",
+      "line": 12,
+      "description": "<html><head></head><body><p><code>Ember.TargetActionSupport</code> is a mixin that can be included in a class\nto add a <code>triggerAction</code> method with semantics similar to the Handlebars\n<code>{{action}}</code> helper. In normal Ember usage, the <code>{{action}}</code> helper is\nusually the best choice. This mixin is most often useful when you are\ndoing more complex event handling in Components.</p>\n</body></html>",
+      "extends": "Mixin",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/target_action_support.js",
+          "line": 41,
+          "description": "<html><head></head><body><p>Send an <code>action</code> with an <code>actionContext</code> to a <code>target</code>. The action, actionContext\nand target will be retrieved from properties of the object. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;controller&apos;</span>),\n  action: <span class=\"string\">&apos;save&apos;</span>,\n  actionContext: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;context&apos;</span>),\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction(); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n                          <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>target</code>, <code>action</code>, and <code>actionContext</code> can be provided as properties of\nan optional object argument to <code>triggerAction</code> as well.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  click() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>,\n      target: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;controller&apos;</span>),\n      actionContext: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;context&apos;</span>)\n    }); <span class=\"comment\">// Sends the `save` action, along with the current context</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>actionContext</code> defaults to the object you are mixing <code>TargetActionSupport</code> into.\nBut <code>target</code> and <code>action</code> must be specified either as properties or with the argument\nto <code>triggerAction</code>, or a combination:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SaveButtonView = Ember.View.extend(Ember.TargetActionSupport, {\n  target: Ember.computed.alias(<span class=\"string\">&apos;controller&apos;</span>),\n  <span class=\"built_in\">click</span>() {\n    <span class=\"keyword\">this</span>.triggerAction({\n      action: <span class=\"string\">&apos;save&apos;</span>\n    }); <span class=\"comment\">// Sends the `save` action, along with a reference to `this`,</span>\n        <span class=\"comment\">// to the current controller</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "triggerAction",
+          "params": [
+            {
+              "name": "opts",
+              "description": "(optional, with the optional keys action, target and/or actionContext)",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "true if the action was sent successfully and did not return false",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TargetActionSupport",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 386,
+          "itemtype": "method",
+          "name": "mixin",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "mixins",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "return": {
+            "description": "obj"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.TargetActionSupport",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Mixin"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.16.0-Mixin",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

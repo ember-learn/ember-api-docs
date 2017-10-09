@@ -1,0 +1,877 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Router",
+    "type": "class",
+    "attributes": {
+      "name": "Router",
+      "shortname": "Router",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/routing",
+      "namespace": "",
+      "file": "packages/ember-routing/lib/system/router.js",
+      "line": 53,
+      "description": "<html><head></head><body><p>The <code>Ember.Router</code> class manages the application state and URLs. Refer to\nthe <a href=\"https://emberjs.com/guides/routing/\">routing guide</a> for documentation.</p>\n</body></html>",
+      "extends": "EmberObject",
+      "uses": [
+        "Evented"
+      ],
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 161,
+          "description": "<html><head></head><body><p>Represents the current URL.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "url",
+          "return": {
+            "description": "The current URL.",
+            "type": "String"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 184,
+          "description": "<html><head></head><body><p>Initializes the current router instance and sets up the change handling\nevent listeners used by the instances <code>location</code> implementation.</p>\n<p>A property named <code>initialURL</code> will be used to determine the initial URL.\nIf no value is found <code>/</code> will be used.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "startRouting",
+          "access": "private",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 229,
+          "description": "<html><head></head><body><p>Handles updating the paths and notifying any listeners of the URL\nchange.</p>\n<p>Triggers the router level <code>didTransition</code> hook.</p>\n<p>For example, to notify google analytics when the route changes,\nyou could use this hook.  (Note: requires also including GA scripts, etc.)</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre>let Router = Ember.Router.extend({\n  location: config.locationType,\n\n  didTransition: function() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n\n    <span class=\"keyword\">return</span> ga(<span class=\"string\">&apos;send&apos;</span>, <span class=\"string\">&apos;pageview&apos;</span>, {\n      <span class=\"string\">&apos;page&apos;</span>: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;url&apos;</span>),\n      <span class=\"string\">&apos;title&apos;</span>: <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;url&apos;</span>)\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "didTransition",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 329,
+          "description": "<html><head></head><body><p>Handles notifying any listeners of an impending URL\nchange.</p>\n<p>Triggers the router level <code>willTransition</code> hook.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willTransition",
+          "access": "public",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 362,
+          "description": "<html><head></head><body><p>Transition the application into another route. The route may\nbe either a single route or route path:</p>\n<p>See <a href=\"https://emberjs.com/api/classes/Ember.Route.html#method_transitionTo\">Route.transitionTo</a> for more info.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "transitionTo",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the route or a URL",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the transition object associated with this\n  attempted transition",
+            "type": "Transition"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 418,
+          "description": "<html><head></head><body><p>Determines if the supplied route is currently active.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "isActive",
+          "params": [
+            {
+              "name": "routeName",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 430,
+          "description": "<html><head></head><body><p>An alternative form of <code>isActive</code> that doesn&apos;t require\nmanual concatenation of the arguments into a single\narray.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "isActiveIntent",
+          "params": [
+            {
+              "name": "routeName",
+              "description": ""
+            },
+            {
+              "name": "models",
+              "description": ""
+            },
+            {
+              "name": "queryParams",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 451,
+          "description": "<html><head></head><body><p>Does this router instance have the given route.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "hasRoute",
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 462,
+          "description": "<html><head></head><body><p>Resets the state of the router by clearing the current route\nhandlers and deactivating them.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "reset",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 671,
+          "description": "<html><head></head><body><p>Serializes the given query params according to their QP meta information.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_serializeQueryParams",
+          "params": [
+            {
+              "name": "handlerInfos",
+              "description": "",
+              "type": "Arrray<HandlerInfo>"
+            },
+            {
+              "name": "queryParams",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 693,
+          "description": "<html><head></head><body><p>Serializes the value of a query parameter based on a type</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_serializeQueryParam",
+          "params": [
+            {
+              "name": "value",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 709,
+          "description": "<html><head></head><body><p>Deserializes the given query params according to their QP meta information.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_deserializeQueryParams",
+          "params": [
+            {
+              "name": "handlerInfos",
+              "description": "",
+              "type": "Array<HandlerInfo>"
+            },
+            {
+              "name": "queryParams",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 729,
+          "description": "<html><head></head><body><p>Deserializes the value of a query parameter based on a default type</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_deserializeQueryParam",
+          "params": [
+            {
+              "name": "value",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "defaultType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 748,
+          "description": "<html><head></head><body><p>Removes (prunes) any query params with default values from the given QP\nobject. Default values are determined from the QP meta information per key.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_pruneDefaultQueryParamValues",
+          "params": [
+            {
+              "name": "handlerInfos",
+              "description": "",
+              "type": "Array<HandlerInfo>"
+            },
+            {
+              "name": "queryParams",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 809,
+          "description": "<html><head></head><body><p>Prepares the query params for a URL or Transition. Restores any undefined QP\nkeys/values, serializes all values, and then prunes any default values.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_prepareQueryParams",
+          "params": [
+            {
+              "name": "targetRouteName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "",
+              "type": "Array<Object>"
+            },
+            {
+              "name": "queryParams",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "keepDefaultQueryParamValues",
+              "description": "",
+              "type": "Boolean"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 831,
+          "description": "<html><head></head><body><p>Returns the meta information for the query params of a given route. This\nwill be overridden to allow support for lazy routes.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_getQPMeta",
+          "params": [
+            {
+              "name": "handlerInfo",
+              "description": "",
+              "type": "HandlerInfo"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 845,
+          "description": "<html><head></head><body><p>Returns a merged query params meta object for a given set of handlerInfos.\nUseful for knowing what query params are available for a given route hierarchy.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_queryParamsFor",
+          "params": [
+            {
+              "name": "handlerInfos",
+              "description": "",
+              "type": "Array<HandlerInfo>"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 902,
+          "description": "<html><head></head><body><p>Maps all query param keys to their fully scoped property name of the form\n<code>controllerName:propName</code>.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_fullyScopeQueryParams",
+          "params": [
+            {
+              "name": "leafRouteName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "contexts",
+              "description": "",
+              "type": "Array<Object>"
+            },
+            {
+              "name": "queryParams",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 939,
+          "description": "<html><head></head><body><p>Hydrates (adds/restores) any query params that have pre-existing values into\nthe given queryParams hash. This is what allows query params to be &quot;sticky&quot;\nand restore their last known values for their scope.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_hydrateUnsuppliedQueryParams",
+          "params": [
+            {
+              "name": "state",
+              "description": "",
+              "type": "TransitionState"
+            },
+            {
+              "name": "queryParams",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 1355,
+          "description": "<html><head></head><body><p>The <code>Router.map</code> function allows you to define mappings from URLs to routes\nin your application. These mappings are defined within the\nsupplied callback function using <code>this.route</code>.</p>\n<p>The first parameter is the name of the route which is used by default as the\npath name as well.</p>\n<p>The second parameter is the optional options hash. Available options are:</p>\n<ul>\n<li><code>path</code>: allows you to provide your own path as well as mark dynamic\nsegments.</li>\n<li><code>resetNamespace</code>: false by default; when nesting routes, ember will\ncombine the route names to form the fully-qualified route name, which is\nused with <code>{{link-to}}</code> or manually transitioning to routes. Setting\n<code>resetNamespace: true</code> will cause the route not to inherit from its\nparent route&apos;s names. This is handy for preventing extremely long route names.\nKeep in mind that the actual URL path behavior is still retained.</li>\n</ul>\n<p>The third parameter is a function, which can be used to nest routes.\nNested routes, by default, will have the parent route tree&apos;s route name and\npath prepended to it&apos;s own.</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>Router.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;post&apos;</span>, { path: <span class=\"string\">&apos;/post/:post_id&apos;</span> }, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;edit&apos;</span>);\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;comments&apos;</span>, { resetNamespace: <span class=\"literal\">true</span> }, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n      <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;new&apos;</span>);\n    });\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>For more detailed documentation and examples please see\n<a href=\"https://emberjs.com/guides/routing/defining-your-routes/\">the guides</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "map",
+          "params": [
+            {
+              "name": "callback",
+              "description": ""
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 55,
+          "description": "<html><head></head><body><p>Subscribes to a named event with given function.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didLoad&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"comment\">// fired once the person has loaded</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An optional target can be passed in as the 2nd argument that will\nbe set as the &quot;this&quot; for the callback. This is a good way to give your\nfunction access to the object triggering the event. When the target\nparameter is used the callback becomes the third argument.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "on",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 81,
+          "description": "<html><head></head><body><p>Subscribes a function to a named event and then cancels the subscription\nafter the first time the event is triggered. It is good to use <code>one</code> when\nyou only care about the first time an event has taken place.</p>\n<p>This function takes an optional 2nd argument that will become the &quot;this&quot;\nvalue for the callback. If this argument is passed then the 3rd argument\nbecomes the function.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "one",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 107,
+          "description": "<html><head></head><body><p>Triggers a named event for the object. Any additional arguments\nwill be passed as parameters to the functions that are subscribed to the\nevent.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">food</span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;person ate some &apos;</span> + food);\n});\n\nperson.trigger(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"string\">&apos;broccoli&apos;</span>);\n\n<span class=\"comment\">// outputs: person ate some broccoli</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "Optional arguments to pass on",
+              "type": "Object..."
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 130,
+          "description": "<html><head></head><body><p>Cancels subscription for given name, target, and method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "off",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target of the subscription",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The function of the subscription",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 145,
+          "description": "<html><head></head><body><p>Checks to see if object has any subscriptions for named event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "has",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "does the object have a subscription for event",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 209,
+          "description": "<html><head></head><body><p>An overridable method called when objects are instantiated. By default,\ndoes nothing unless it is overridden during class definition.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  init() {\n    alert(`Name <span class=\"keyword\">is</span> ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>)}`);\n  }\n});\n\n<span class=\"keyword\">let</span> steve = Person.create({\n  name: <span class=\"string\">&apos;Steve&apos;</span>\n});\n\n<span class=\"comment\">// alerts &apos;Name is Steve&apos;.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>NOTE: If you do override <code>init</code> for a framework class like <code>Ember.View</code>,\nbe sure to call <code>this._super(...arguments)</code> in your\n<code>init</code> declaration! If you don&apos;t, Ember may not have an opportunity to\ndo important setup work, and you&apos;ll see strange behavior in your\napplication.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 444,
+          "description": "<html><head></head><body><p>Destroys an object by setting the <code>isDestroyed</code> flag and removing its\nmetadata, which effectively destroys observers and bindings.</p>\n<p>If you try to set a property on a destroyed object, an exception will be\nraised.</p>\n<p>Note that destruction is scheduled for the end of the run loop and does not\nhappen immediately.  It will set an isDestroying flag immediately.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "return": {
+            "description": "receiver",
+            "type": "EmberObject"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 470,
+          "description": "<html><head></head><body><p>Override to implement teardown.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willDestroy",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 478,
+          "description": "<html><head></head><body><p>Invoked by the run loop to actually destroy the object. This is\nscheduled for execution by the <code>destroy</code> method.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_scheduledDestroy",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 497,
+          "description": "<html><head></head><body><p>Returns a string representation which attempts to provide more information\nthan Javascript&apos;s <code>toString</code> typically does, in a generic way for all Ember\nobjects.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"keyword\">Person</span> = Ember.Object.extend()\n<span class=\"keyword\">person</span> = <span class=\"keyword\">Person</span>.create()\n<span class=\"keyword\">person</span>.toString() //=&gt; <span class=\"string\">&quot;&lt;Person:ember1024&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the object&apos;s class is not defined on an Ember namespace, it will\nindicate it is a subclass of the registered superclass:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"attr\">Student</span> = Person.extend()\n<span class=\"keyword\">let</span> <span class=\"attr\">student</span> = Student.create()\nstudent.<span class=\"built_in\">toString</span>() //=&gt; <span class=\"string\">&quot;&lt;(subclass of Person):ember1025&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the method <code>toStringExtension</code> is defined, its return value will be\nincluded in the output.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>const Teacher = Person.extend({\n  toStringExtension() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>);\n  }\n});\nteacher = Teacher.create()\nteacher.toString(); <span class=\"comment\">//=&gt; &quot;&lt;Teacher:ember1026:Tom Dale&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "toString",
+          "return": {
+            "description": "string representation",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 63,
+          "description": "<html><head></head><body><p>The <code>location</code> property determines the type of URL&apos;s that your\napplication will use.</p>\n<p>The following location types are currently available:</p>\n<ul>\n<li><code>history</code> - use the browser&apos;s history API to make the URLs look just like any standard URL</li>\n<li><code>hash</code> - use <code>#</code> to separate the server part of the URL from the Ember part: <code>/blog/#/posts/new</code></li>\n<li><code>none</code> - do not store the Ember URL in the actual browser URL (mainly used for testing)</li>\n<li><code>auto</code> - use the best option based on browser capabilities: <code>history</code> if possible, then <code>hash</code> if possible, otherwise <code>none</code></li>\n</ul>\n<p>This value is defaulted to <code>auto</code> by the <code>locationType</code> setting of <code>/config/environment.js</code></p>\n</body></html>",
+          "itemtype": "property",
+          "name": "location",
+          "default": "'hash'",
+          "see": [
+            "{Location}"
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/router.js",
+          "line": 83,
+          "description": "<html><head></head><body><p>Represents the URL of the root of the application, often &apos;/&apos;. This prefix is\nassumed on all routes defined on this router.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "rootURL",
+          "default": "'/'",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 247,
+          "description": "<html><head></head><body><p>Defines the properties that will be concatenated from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by combining the superclass&apos; property\nvalue with the subclass&apos; value. An example of this in use within Ember\nis the <code>classNames</code> property of <code>Ember.View</code>.</p>\n<p>Here is some sample code showing the difference between a concatenated\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"symbol\">Bar</span> = <span class=\"symbol\">Ember</span>.<span class=\"symbol\">Object</span>.extend({\n  // <span class=\"symbol\">Configure</span> which properties to concatenate\n  concatenatedProperties: [<span class=\"string\">&apos;concatenatedProperty&apos;</span>],\n\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>]\n});\n\nconst <span class=\"symbol\">FooBar</span> = <span class=\"symbol\">Bar</span>.extend({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>]\n});\n\nlet fooBar = <span class=\"symbol\">FooBar</span>.create();\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;foo&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior extends to object creation as well. Continuing the\nabove example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let fooBar = <span class=\"symbol\">FooBar</span>.create({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>]\n})\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;baz&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Adding a single property that is not an array will just add it in the array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fooBar = FooBar.create({\n  concatenatedProperty: <span class=\"string\">&apos;baz&apos;</span>\n})\nview.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using the <code>concatenatedProperties</code> property, we can tell Ember to mix the\ncontent of the properties.</p>\n<p>In <code>Ember.Component</code> the <code>classNames</code>, <code>classNameBindings</code> and\n<code>attributeBindings</code> properties are concatenated.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual concatenated property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "concatenatedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 320,
+          "description": "<html><head></head><body><p>Defines the properties that will be merged from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by merging the superclass property value\nwith the subclass property&apos;s value. An example of this in use within Ember\nis the <code>queryParams</code> property of routes.</p>\n<p>Here is some sample code showing the difference between a merged\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Bar = Ember.Object.extend({\n  <span class=\"comment\">// Configure which properties are to be merged</span>\n  mergedProperties: [<span class=\"string\">&apos;mergedProperty&apos;</span>],\n\n  someNonMergedProperty: {\n    nonMerged: <span class=\"string\">&apos;superclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    page: { replace: <span class=\"literal\">false</span> },\n    limit: { replace: <span class=\"literal\">true</span> }\n  }\n});\n\n<span class=\"keyword\">const</span> FooBar = Bar.extend({\n  someNonMergedProperty: {\n    completelyNonMerged: <span class=\"string\">&apos;subclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    limit: { replace: <span class=\"literal\">false</span> }\n  }\n});\n\n<span class=\"keyword\">let</span> fooBar = FooBar.create();\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;someNonMergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; { completelyNonMerged: &apos;subclass value of nonMerged&apos; }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the entire object, including the nonMerged property of</span>\n<span class=\"comment\">// the superclass object, has been replaced</span>\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;mergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; {</span>\n<span class=\"comment\">//   page: {replace: false},</span>\n<span class=\"comment\">//   limit: {replace: false}</span>\n<span class=\"comment\">// }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the page remains from the superclass, and the</span>\n<span class=\"comment\">// `limit` property&apos;s value of `false` has been merged from</span>\n<span class=\"comment\">// the subclass.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior is not available during object <code>create</code> calls. It is only\navailable at <code>extend</code> time.</p>\n<p>In <code>Ember.Route</code> the <code>queryParams</code> property is merged.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual merged property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "mergedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 394,
+          "description": "<html><head></head><body><p>Destroyed object property flag.</p>\n<p>if this property is <code>true</code> the observers and bindings were already\nremoved by the effect of calling the <code>destroy()</code> method.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroyed",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 419,
+          "description": "<html><head></head><body><p>Destruction scheduled flag. The <code>destroy()</code> method has been called.</p>\n<p>The object stays intact until the end of the run loop at which point\nthe <code>isDestroyed</code> flag is set.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroying",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Router",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.16.0-EmberObject",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/routing",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

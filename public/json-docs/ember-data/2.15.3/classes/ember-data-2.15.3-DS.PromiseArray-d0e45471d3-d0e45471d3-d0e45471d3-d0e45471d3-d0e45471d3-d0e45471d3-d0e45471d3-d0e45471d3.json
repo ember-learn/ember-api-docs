@@ -1,0 +1,53 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.PromiseArray",
+    "type": "class",
+    "attributes": {
+      "name": "DS.PromiseArray",
+      "shortname": "DS.PromiseArray",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/promise-proxies.js",
+      "line": 6,
+      "description": "<html><head></head><body><p>A <code>PromiseArray</code> is an object that acts like both an <code>Ember.Array</code>\nand a promise. When the promise is resolved the resulting value\nwill be set to the <code>PromiseArray</code>&apos;s <code>content</code> property. This makes\nit easy to create data bindings with the <code>PromiseArray</code> that will be\nupdated when the promise resolves.</p>\n<p>For more information see the <a href=\"/api/classes/Ember.PromiseProxyMixin.html\">Ember.PromiseProxyMixin\ndocumentation</a>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promiseArray = DS.PromiseArray.create({\n  <span class=\"attr\">promise</span>: $.getJSON(<span class=\"string\">&apos;/some/remote/data.json&apos;</span>)\n});\n\npromiseArray.get(<span class=\"string\">&apos;length&apos;</span>); <span class=\"comment\">// 0</span>\n\npromiseArray.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  promiseArray.get(<span class=\"string\">&apos;length&apos;</span>); <span class=\"comment\">// 100</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "extends": "Ember.ArrayProxy",
+      "uses": [
+        "Ember.PromiseProxyMixin"
+      ],
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.ArrayProxy",
+          "type": "missing",
+          "version": "2.15.3"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

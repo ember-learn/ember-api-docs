@@ -1,0 +1,559 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Registry",
+    "type": "class",
+    "attributes": {
+      "name": "Registry",
+      "shortname": "Registry",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "file": "packages/container/lib/registry.js",
+      "line": 9,
+      "description": "<html><head></head><body><p>A registry used to store factory and option information keyed\nby type.</p>\n<p>A <code>Registry</code> stores the factory and option information needed by a\n<code>Container</code> to instantiate and cache objects.</p>\n<p>The API for <code>Registry</code> is still in flux and should not be considered stable.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "since": "2.15.2",
+      "version": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 120,
+          "description": "<html><head></head><body><p>Creates a container based on this registry.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "container",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "created container",
+            "type": "Container"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 132,
+          "description": "<html><head></head><body><p>Registers a factory for later injection.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = new <span class=\"type\">Registry</span><span class=\"literal\">()</span>;\n\nregistry.register(<span class=\"symbol\">&apos;model</span>:user&apos;, <span class=\"type\">Person</span>, {singleton: <span class=\"literal\">false</span> });\nregistry.register(<span class=\"symbol\">&apos;fruit</span>:favorite&apos;, <span class=\"type\">Orange</span>);\nregistry.register(<span class=\"symbol\">&apos;communication</span>:main&apos;, <span class=\"type\">Email</span>, {singleton: <span class=\"literal\">false</span>});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "register",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "factory",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 169,
+          "description": "<html><head></head><body><p>Unregister a fullName</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = <span class=\"keyword\">new</span> Registry();\nregistry.register(<span class=\"string\">&apos;model:user&apos;</span>, User);\n\nregistry.resolve(<span class=\"string\">&apos;model:user&apos;</span>).create() <span class=\"keyword\">instanceof</span> User <span class=\"comment\">//=&gt; true</span>\n\nregistry.unregister(<span class=\"string\">&apos;model:user&apos;</span>)\nregistry.resolve(<span class=\"string\">&apos;model:user&apos;</span>) === <span class=\"literal\">undefined</span> <span class=\"comment\">//=&gt; true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "unregister",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 199,
+          "description": "<html><head></head><body><p>Given a fullName return the corresponding factory.</p>\n<p>By default <code>resolve</code> will retrieve the factory from\nthe registry.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = <span class=\"function\"><span class=\"keyword\">new</span> <span class=\"title\">Registry</span>();\n<span class=\"title\">registry</span>.<span class=\"title\">register</span>(&apos;api:twitter&apos;, <span class=\"type\">Twitter</span>);\n\n<span class=\"title\">registry</span>.<span class=\"title\">resolve</span>(&apos;api:twitter&apos;) <span class=\"comment\">// =&gt; Twitter</span></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Optionally the registry can be provided with a custom resolver.\nIf provided, <code>resolve</code> will first provide the custom resolver\nthe opportunity to resolve the fullName, otherwise it will fallback\nto the registry.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = <span class=\"keyword\">new</span> Registry();\nregistry.resolver = <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">fullName</span>) </span>{\n   <span class=\"comment\">// lookup via the module system of choice</span>\n };\n\n<span class=\"comment\">// the twitter factory is added to the module system</span>\nregistry.resolve(<span class=\"string\">&apos;api:twitter&apos;</span>) <span class=\"comment\">// =&gt; Twitter</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "resolve",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true,
+              "props": [
+                {
+                  "name": "source",
+                  "description": "the fullname of the request source (used for local lookups)",
+                  "type": "String",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "return": {
+            "description": "fullName's factory",
+            "type": "Function"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 243,
+          "description": "<html><head></head><body><p>A hook that can be used to describe how the resolver will\nattempt to find the factory.</p>\n<p>For example, the default Ember <code>.describe</code> returns the full\nclass name (including namespace) where Ember&apos;s resolver expects\nto find the <code>fullName</code>.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "describe",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "described fullName",
+            "type": "String"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 266,
+          "description": "<html><head></head><body><p>A hook to enable custom fullName normalization behavior</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "normalizeFullName",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized fullName",
+            "type": "String"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 284,
+          "description": "<html><head></head><body><p>Normalize a fullName based on the application&apos;s conventions</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "normalize",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "normalized fullName",
+            "type": "String"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 298,
+          "itemtype": "method",
+          "name": "makeToString",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "factory",
+              "description": "",
+              "type": "Any"
+            },
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "toString function",
+            "type": "Function"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 316,
+          "description": "<html><head></head><body><p>Given a fullName check if the container is aware of its factory\nor singleton instance.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "has",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true,
+              "props": [
+                {
+                  "name": "source",
+                  "description": "the fullname of the request source (used for local lookups)",
+                  "type": "String",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 337,
+          "description": "<html><head></head><body><p>Allow registering options for all factories of a type.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n</pre></td>\n              <td class=\"code\"><pre>let registry = <span class=\"keyword\">new</span> Registry();\nlet <span class=\"keyword\">container</span> = registry.<span class=\"keyword\">container</span>();\n\n<span class=\"comment\">// if all of type `connection` must not be singletons</span>\nregistry.optionsForType(<span class=\"string\">&apos;connection&apos;</span>, { singleton: <span class=\"keyword\">false</span> });\n\nregistry.register(<span class=\"string\">&apos;connection:twitter&apos;</span>, TwitterConnection);\nregistry.register(<span class=\"string\">&apos;connection:facebook&apos;</span>, FacebookConnection);\n\nlet twitter = <span class=\"keyword\">container</span>.lookup(<span class=\"string\">&apos;connection:twitter&apos;</span>);\nlet twitter2 = <span class=\"keyword\">container</span>.lookup(<span class=\"string\">&apos;connection:twitter&apos;</span>);\n\ntwitter === twitter2; <span class=\"comment\">// =&gt; false</span>\n\nlet facebook = <span class=\"keyword\">container</span>.lookup(<span class=\"string\">&apos;connection:facebook&apos;</span>);\nlet facebook2 = <span class=\"keyword\">container</span>.lookup(<span class=\"string\">&apos;connection:facebook&apos;</span>);\n\nfacebook === facebook2; <span class=\"comment\">// =&gt; false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "optionsForType",
+          "params": [
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 378,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "options",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 416,
+          "description": "<html><head></head><body><p>Used only via <code>injection</code>.</p>\n<p>Provides a specialized form of injection, specifically enabling\nall objects of one type to be injected with a reference to another\nobject.</p>\n<p>For example, provided each object of type <code>controller</code> needed a <code>router</code>.\none would do the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = <span class=\"keyword\">new</span> Registry();\n<span class=\"keyword\">let</span> container = registry.container();\n\nregistry.register(<span class=\"string\">&apos;router:main&apos;</span>, Router);\nregistry.register(<span class=\"string\">&apos;controller:user&apos;</span>, UserController);\nregistry.register(<span class=\"string\">&apos;controller:post&apos;</span>, PostController);\n\nregistry.typeInjection(<span class=\"string\">&apos;controller&apos;</span>, <span class=\"string\">&apos;router&apos;</span>, <span class=\"string\">&apos;router:main&apos;</span>);\n\n<span class=\"keyword\">let</span> user = container.lookup(<span class=\"string\">&apos;controller:user&apos;</span>);\n<span class=\"keyword\">let</span> post = container.lookup(<span class=\"string\">&apos;controller:post&apos;</span>);\n\nuser.router <span class=\"keyword\">instanceof</span> Router; <span class=\"comment\">//=&gt; true</span>\npost.router <span class=\"keyword\">instanceof</span> Router; <span class=\"comment\">//=&gt; true</span>\n\n<span class=\"comment\">// both controllers share the same router</span>\nuser.router === post.router; <span class=\"comment\">//=&gt; true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "typeInjection",
+          "params": [
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "property",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 469,
+          "description": "<html><head></head><body><p>Defines injection rules.</p>\n<p>These rules are used to inject dependencies onto objects when they\nare instantiated.</p>\n<p>Two forms of injections are possible:</p>\n<ul>\n<li>Injecting one fullName on another fullName</li>\n<li>Injecting one fullName on a type</li>\n</ul>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n</pre></td>\n              <td class=\"code\"><pre>let registry = <span class=\"keyword\">new</span> Registry();\nlet container = registry.container();\n\nregistry.register(<span class=\"string\">&apos;source:main&apos;</span>, <span class=\"keyword\">Source</span>);\nregistry.register(<span class=\"string\">&apos;model:user&apos;</span>, User);\nregistry.register(<span class=\"string\">&apos;model:post&apos;</span>, Post);\n\n<span class=\"comment\">// injecting one fullName on another fullName</span>\n<span class=\"comment\">// eg. each user model gets a post model</span>\nregistry.injection(<span class=\"string\">&apos;model:user&apos;</span>, <span class=\"string\">&apos;post&apos;</span>, <span class=\"string\">&apos;model:post&apos;</span>);\n\n<span class=\"comment\">// injecting one fullName on another type</span>\nregistry.injection(<span class=\"string\">&apos;model&apos;</span>, <span class=\"string\">&apos;source&apos;</span>, <span class=\"string\">&apos;source:main&apos;</span>);\n\nlet user = container.lookup(<span class=\"string\">&apos;model:user&apos;</span>);\nlet post = container.lookup(<span class=\"string\">&apos;model:post&apos;</span>);\n\nuser.<span class=\"keyword\">source</span> <span class=\"keyword\">instanceof</span> <span class=\"keyword\">Source</span>; <span class=\"comment\">//=&gt; true</span>\npost.<span class=\"keyword\">source</span> <span class=\"keyword\">instanceof</span> <span class=\"keyword\">Source</span>; <span class=\"comment\">//=&gt; true</span>\n\nuser.post <span class=\"keyword\">instanceof</span> Post; <span class=\"comment\">//=&gt; true</span>\n\n<span class=\"comment\">// and both models share the same source</span>\nuser.<span class=\"keyword\">source</span> === post.<span class=\"keyword\">source</span>; <span class=\"comment\">//=&gt; true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "injection",
+          "params": [
+            {
+              "name": "factoryName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "property",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "injectionName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 535,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "knownForType",
+          "params": [
+            {
+              "name": "type",
+              "description": "the type to iterate over",
+              "type": "String"
+            }
+          ],
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 642,
+          "description": "<html><head></head><body><p>Given a fullName and a source fullName returns the fully resolved\nfullName. Used to allow for local lookup.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = <span class=\"keyword\">new</span> Registry();\n\n<span class=\"comment\">// the twitter factory is added to the module system</span>\nregistry.expandLocalLookup(<span class=\"string\">&apos;component:post-title&apos;</span>, { source: <span class=\"string\">&apos;template:post&apos;</span> }) <span class=\"comment\">// =&gt; component:post/post-title</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "expandLocalLookup",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true,
+              "props": [
+                {
+                  "name": "source",
+                  "description": "the fullname of the request source (used for local lookups)",
+                  "type": "String",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "return": {
+            "description": "fullName",
+            "type": "String"
+          },
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 47,
+          "description": "<html><head></head><body><p>A backup registry for resolving registrations when no matches can be found.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "fallback",
+          "type": "Registry",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 56,
+          "description": "<html><head></head><body><p>An object that has a <code>resolve</code> method that resolves a name.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "resolver",
+          "type": "Resolver",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 65,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "registrations",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 72,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_typeInjections",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 80,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_injections",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 88,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_normalizeCache",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 96,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_resolveCache",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 104,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_options",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/registry.js",
+          "line": 112,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_typeOptions",
+          "type": "InheritingDict",
+          "class": "Registry",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

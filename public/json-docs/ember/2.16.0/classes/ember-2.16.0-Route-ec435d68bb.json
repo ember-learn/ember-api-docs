@@ -1,0 +1,1489 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Route",
+    "type": "class",
+    "attributes": {
+      "name": "Route",
+      "shortname": "Route",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/routing",
+      "namespace": "",
+      "file": "packages/ember-routing/lib/system/route.js",
+      "line": 65,
+      "description": "<html><head></head><body><p>The <code>Ember.Route</code> class is used to define individual routes. Refer to\nthe <a href=\"https://emberjs.com/guides/routing/\">routing guide</a> for documentation.</p>\n</body></html>",
+      "extends": "EmberObject",
+      "uses": [
+        "Evented",
+        "Ember.ActionHandler"
+      ],
+      "since": "2.16.0",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 135,
+          "description": "<html><head></head><body><p>Sets the name for this route, including a fully resolved name for routes\ninside engines.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_setRouteName",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 277,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_stashNames",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 315,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_updatingQPChanged",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 325,
+          "description": "<html><head></head><body><p>Returns a hash containing the parameters of an ancestor route.</p>\n<p>Example</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;member&apos;</span>, { path: <span class=\"string\">&apos;:name&apos;</span> }, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;interest&apos;</span>, { path: <span class=\"string\">&apos;:interest&apos;</span> });\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/member.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/member.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  queryParams: {\n    memberQp: { refreshModel: <span class=\"literal\">true</span> }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/member/interest.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/member/interest.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"function\"><span class=\"keyword\">default</span> Route.<span class=\"title\">extend</span><span class=\"params\">({\n  queryParams: {\n    interestQp: { refreshModel: <span class=\"keyword\">true</span> }\n  },\n\n  model()</span> </span>{\n    <span class=\"function\"><span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"title\">paramsFor</span><span class=\"params\">(<span class=\"string\">&apos;member&apos;</span>)</span></span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If we visit <code>/turing/maths?memberQp=member&amp;interestQp=interest</code> the model for\nthe <code>member.interest</code> route is hash with:</p>\n<ul>\n<li><code>name</code>: <code>turing</code></li>\n<li><code>memberQp</code>: <code>member</code></li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "paramsFor",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "hash containing the parameters of the route `name`",
+            "type": "Object"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 397,
+          "description": "<html><head></head><body><p>Serializes the query parameter key</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "serializeQueryParamKey",
+          "params": [
+            {
+              "name": "controllerPropertyName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 408,
+          "description": "<html><head></head><body><p>Serializes value of the query parameter based on defaultValueType</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "serializeQueryParam",
+          "params": [
+            {
+              "name": "value",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "urlKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "defaultValueType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 424,
+          "description": "<html><head></head><body><p>Deserializes value of the query parameter based on defaultValueType</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "deserializeQueryParam",
+          "params": [
+            {
+              "name": "value",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "urlKey",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "defaultValueType",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 449,
+          "description": "<html><head></head><body><p>A hook you can use to reset controller values either when the model\nchanges or the route is exiting.</p>\n<div class=\"highlight app/routes/articles.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/articles.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  resetController(controller, isExiting, transition) {\n    <span class=\"keyword\">if</span> (isExiting &amp;&amp; transition.targetName !== <span class=\"string\">&apos;error&apos;</span>) {\n      controller.set(<span class=\"string\">&apos;page&apos;</span>, <span class=\"number\">1</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "resetController",
+          "params": [
+            {
+              "name": "controller",
+              "description": "instance",
+              "type": "Controller"
+            },
+            {
+              "name": "isExiting",
+              "description": "",
+              "type": "Boolean"
+            },
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 474,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "exit",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 485,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_reset",
+          "since": "2.16.0",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 498,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "enter",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 793,
+          "description": "<html><head></head><body><p>This action is called when one or more query params have changed. Bubbles.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "queryParamsDidChange",
+          "params": [
+            {
+              "name": "changed",
+              "description": "Keys are names of query params that have changed.",
+              "type": "Object"
+            },
+            {
+              "name": "totalPresent",
+              "description": "Keys are names of query params that are currently set.",
+              "type": "Object"
+            },
+            {
+              "name": "removed",
+              "description": "Keys are names of query params that have been removed.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 903,
+          "description": "<html><head></head><body><p>This hook is executed when the router completely exits this route. It is\nnot executed when the model for the route changes.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "deactivate",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 913,
+          "description": "<html><head></head><body><p>This hook is executed when the router enters the route. It is not executed\nwhen the model for the route changes.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "activate",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 923,
+          "description": "<html><head></head><body><p>Transition the application into another route. The route may\nbe either a single route or route path:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;blogPosts&apos;</span>);\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;blogPosts.recentEntries&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Optionally supply a model for the route in question. The model\nwill be serialized into the URL using the <code>serialize</code> hook of\nthe route:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;blogPost&apos;</span>, aPost);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If a literal is passed (such as a number or a string), it will\nbe treated as an identifier instead. In this case, the <code>model</code>\nhook of the route will be triggered:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;blogPost&apos;</span>, <span class=\"number\">1</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Multiple models will be applied last to first recursively up the\nroute tree.</p>\n<div class=\"highlight app/routes.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;blogPost&apos;</span>, { <span class=\"attr\">path</span>:<span class=\"string\">&apos;:blogPostId&apos;</span> }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;blogComment&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;:blogCommentId&apos;</span> });\n  });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;blogComment&apos;</span>, aPost, aComment);\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;blogComment&apos;</span>, <span class=\"number\">1</span>, <span class=\"number\">13</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It is also possible to pass a URL (a string that starts with a\n<code>/</code>). This is intended for testing and debugging purposes and\nshould rarely be used in production code.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;/&apos;</span>);\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;/blog/post/1/comment/13&apos;</span>);\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;/blog/posts?sort=title&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An options hash with a <code>queryParams</code> property may be provided as\nthe final argument to add query parameters to the destination URL.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">this</span><span class=\"selector-class\">.transitionTo</span>(<span class=\"string\">&apos;blogPost&apos;</span>, <span class=\"number\">1</span>, {\n  <span class=\"attribute\">queryParams</span>: { <span class=\"attribute\">showComments</span>: <span class=\"string\">&apos;true&apos;</span> }\n});\n\n<span class=\"comment\">// if you just want to transition the query parameters without changing the route</span>\n<span class=\"selector-tag\">this</span><span class=\"selector-class\">.transitionTo</span>({ <span class=\"attribute\">queryParams</span>: { <span class=\"attribute\">sort</span>: <span class=\"string\">&apos;date&apos;</span> } });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>See also <a href=\"#method_replaceWith\">replaceWith</a>.</p>\n<p>Simple Transition Example</p>\n<div class=\"highlight app/routes.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;index&apos;</span>);\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;secret&apos;</span>);\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;fourOhFour&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;*:&apos;</span> });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>:\n\n<span class=\"keyword\">export</span> Ember.Route.extend({\n  actions: {\n    moveToSecret(context) {\n      <span class=\"keyword\">if</span> (authorized()) {\n        <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;secret&apos;</span>, context);\n      } <span class=\"keyword\">else</span> {\n        <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;fourOhFour&apos;</span>);\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Transition to a nested route</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;articles&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;/articles&apos;</span> }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;new&apos;</span>);\n  });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    transitionToNewArticle() {\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;articles.new&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Multiple Models Example</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;index&apos;</span>);\n\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;breakfast&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;:breakfastId&apos;</span> }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;cereal&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;:cerealId&apos;</span> });\n  });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    moveToChocolateCereal() {\n      <span class=\"keyword\">let</span> cereal = { <span class=\"attr\">cerealId</span>: <span class=\"string\">&apos;ChocolateYumminess&apos;</span> };\n      <span class=\"keyword\">let</span> breakfast = { <span class=\"attr\">breakfastId</span>: <span class=\"string\">&apos;CerealAndMilk&apos;</span> };\n\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;breakfast.cereal&apos;</span>, breakfast, cereal);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Nested Route with Query String Example</p>\n<div class=\"highlight app/routes.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;fruits&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;apples&apos;</span>);\n  });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    transitionToApples() {\n      this.transitionTo(<span class=\"string\">&apos;fruits.apples&apos;</span>, { queryParams: { color: <span class=\"string\">&apos;red&apos;</span> } });\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "transitionTo",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the route or a URL",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the transition object associated with this\n  attempted transition",
+            "type": "Transition"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1120,
+          "description": "<html><head></head><body><p>Perform a synchronous transition into another route without attempting\nto resolve promises, update the URL, or abort any currently active\nasynchronous transitions (i.e. regular transitions caused by\n<code>transitionTo</code> or URL changes).</p>\n<p>This method is handy for performing intermediate transitions on the\nway to a final destination route, and is called internally by the\ndefault implementations of the <code>error</code> and <code>loading</code> handlers.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "intermediateTransitionTo",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the route",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) to be used while transitioning\nto the route.",
+              "type": "...Object"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1141,
+          "description": "<html><head></head><body><p>Refresh the model on this route and any child routes, firing the\n<code>beforeModel</code>, <code>model</code>, and <code>afterModel</code> hooks in a similar fashion\nto how routes are entered when transitioning in from other route.\nThe current route params (e.g. <code>article_id</code>) will be passed in\nto the respective model hooks, and if a different model is returned,\n<code>setupController</code> and associated route hooks will re-fire as well.</p>\n<p>An example usage of this method is re-querying the server for the\nlatest information using the same parameters as when the route\nwas first entered.</p>\n<p>Note that this will cause <code>model</code> hooks to fire even on routes\nthat were provided a model object when the route was initially\nentered.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "refresh",
+          "return": {
+            "description": "the transition object associated with this\n  attempted transition",
+            "type": "Transition"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1167,
+          "description": "<html><head></head><body><p>Transition into another route while replacing the current URL, if possible.\nThis will replace the current history entry instead of adding a new one.\nBeside that, it is identical to <code>transitionTo</code> in all other respects. See\n&apos;transitionTo&apos; for additional information regarding multiple models.</p>\n<p>Example</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;index&apos;</span>);\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;secret&apos;</span>);\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/secret.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/secret.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  afterModel() {\n    <span class=\"keyword\">if</span> (!authorized()){\n      <span class=\"keyword\">this</span>.replaceWith(<span class=\"string\">&apos;index&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "replaceWith",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the route or a URL",
+              "type": "String"
+            },
+            {
+              "name": "models",
+              "description": "the model(s) or identifier(s) to be used while\n  transitioning to the route.",
+              "type": "...Object"
+            },
+            {
+              "name": "options",
+              "description": "optional hash with a queryParams property\n  containing a mapping of query parameters",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the transition object associated with this\n  attempted transition",
+            "type": "Transition"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1213,
+          "description": "<html><head></head><body><p>Sends an action to the router, which will delegate it to the currently\nactive route hierarchy per the bubbling rules explained under <code>actions</code>.</p>\n<p>Example</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;index&apos;</span>);\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    track(arg) {\n      <span class=\"built_in\">console</span>.log(arg, <span class=\"string\">&apos;was clicked&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    trackIfDebug(arg) {\n      <span class=\"keyword\">if</span> (debug) {\n        <span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;track&apos;</span>, arg);\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "send",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the action to trigger",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "",
+              "type": "...*"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1273,
+          "description": "<html><head></head><body><p>This hook is the entry point for router.js</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "setup",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1347,
+          "description": "<html><head></head><body><p>This hook is the first of the route entry validation hooks\ncalled when an attempt is made to transition into a route\nor one of its children. It is called before <code>model</code> and\n<code>afterModel</code>, and is appropriate for cases when:</p>\n<p>1) A decision can be made to redirect elsewhere without\n   needing to resolve the model first.\n2) Any async operations need to occur first before the\n   model is attempted to be resolved.</p>\n<p>This hook is provided the current <code>transition</code> attempt\nas a parameter, which can be used to <code>.abort()</code> the transition,\nsave it for a later <code>.retry()</code>, or retrieve values set\non it from a previous hook. You can also just call\n<code>this.transitionTo</code> to another route to implicitly\nabort the <code>transition</code>.</p>\n<p>You can return a promise from this hook to pause the\ntransition until the promise resolves (or rejects). This could\nbe useful, for instance, for retrieving async code from\nthe server that is required to enter a route.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "beforeModel",
+          "params": [
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            }
+          ],
+          "return": {
+            "description": "if the value returned from this hook is\n  a promise, the transition will pause until the transition\n  resolves. Otherwise, non-promise return values are not\n  utilized in any way.",
+            "type": "Any | Promise<any>"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1381,
+          "description": "<html><head></head><body><p>This hook is called after this route&apos;s model has resolved.\nIt follows identical async/promise semantics to <code>beforeModel</code>\nbut is provided the route&apos;s resolved model in addition to\nthe <code>transition</code>, and is therefore suited to performing\nlogic that can only take place after the model has already\nresolved.</p>\n<div class=\"highlight app/routes/posts.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/posts.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"built_in\">default</span> Route.extend({\n  afterModel(posts, transition) {\n    <span class=\"built_in\">if</span> (posts.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;length&apos;</span>) === <span class=\"number\">1</span>) {\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;post.show&apos;</span>, posts.<span class=\"built_in\">get</span>(<span class=\"string\">&apos;firstObject&apos;</span>));\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Refer to documentation for <code>beforeModel</code> for a description\nof transition-pausing semantics when a promise is returned\nfrom this hook.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "afterModel",
+          "params": [
+            {
+              "name": "resolvedModel",
+              "description": "the value returned from `model`,\n  or its resolved value if it was a promise",
+              "type": "Object"
+            },
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            }
+          ],
+          "return": {
+            "description": "if the value returned from this hook is\n  a promise, the transition will pause until the transition\n  resolves. Otherwise, non-promise return values are not\n  utilized in any way.",
+            "type": "Any | Promise<any>"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1418,
+          "description": "<html><head></head><body><p>A hook you can implement to optionally redirect to another route.</p>\n<p>If you call <code>this.transitionTo</code> from inside of this hook, this route\nwill not be entered in favor of the other hook.</p>\n<p><code>redirect</code> and <code>afterModel</code> behave very similarly and are\ncalled almost at the same time, but they have an important\ndistinction in the case that, from one of these hooks, a\nredirect into a child route of this route occurs: redirects\nfrom <code>afterModel</code> essentially invalidate the current attempt\nto enter this route, and will result in this route&apos;s <code>beforeModel</code>,\n<code>model</code>, and <code>afterModel</code> hooks being fired again within\nthe new, redirecting transition. Redirects that occur within\nthe <code>redirect</code> hook, on the other hand, will <em>not</em> cause\nthese hooks to be fired again the second time around; in\nother words, by the time the <code>redirect</code> hook has been called,\nboth the resolved model and attempted entry into this route\nare considered to be fully validated.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "redirect",
+          "params": [
+            {
+              "name": "model",
+              "description": "the model for this route",
+              "type": "Object"
+            },
+            {
+              "name": "transition",
+              "description": "the transition object associated with the current transition",
+              "type": "Transition"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1446,
+          "description": "<html><head></head><body><p>Called when the context is changed by router.js.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "contextDidChange",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1456,
+          "description": "<html><head></head><body><p>A hook you can implement to convert the URL into the model for\nthis route.</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;post&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;/posts/:post_id&apos;</span> });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The model for the <code>post</code> route is <code>store.findRecord(&apos;post&apos;, params.post_id)</code>.</p>\n<p>By default, if your route has a dynamic segment ending in <code>_id</code>:</p>\n<ul>\n<li>The model class is determined from the segment (<code>post_id</code>&apos;s\nclass is <code>App.Post</code>)</li>\n<li>The find method is called on the model class with the value of\nthe dynamic segment.</li>\n</ul>\n<p>Note that for routes with dynamic segments, this hook is not always\nexecuted. If the route is entered through a transition (e.g. when\nusing the <code>link-to</code> Handlebars helper or the <code>transitionTo</code> method\nof routes), and a model context is already provided this hook\nis not called.</p>\n<p>A model context does not include a primitive string or number,\nwhich does cause the model hook to be called.</p>\n<p>Routes without dynamic segments will always execute the model hook.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// no dynamic segment, model hook always called</span>\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;posts&apos;</span>);\n\n<span class=\"comment\">// model passed in, so model hook not called</span>\nthePost = store.findRecord(<span class=\"string\">&apos;post&apos;</span>, <span class=\"number\">1</span>);\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;post&apos;</span>, thePost);\n\n<span class=\"comment\">// integer passed in, model hook is called</span>\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;post&apos;</span>, <span class=\"number\">1</span>);\n\n<span class=\"comment\">// model id passed in, model hook is called</span>\n<span class=\"comment\">// useful for forcing the hook to execute</span>\nthePost = store.findRecord(<span class=\"string\">&apos;post&apos;</span>, <span class=\"number\">1</span>);\n<span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;post&apos;</span>, thePost.id);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This hook follows the asynchronous/promise semantics\ndescribed in the documentation for <code>beforeModel</code>. In particular,\nif a promise returned from <code>model</code> fails, the error will be\nhandled by the <code>error</code> hook on <code>Ember.Route</code>.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  model(params) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.store.findRecord(<span class=\"string\">&apos;post&apos;</span>, params.post_id);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "model",
+          "params": [
+            {
+              "name": "params",
+              "description": "the parameters extracted from the URL",
+              "type": "Object"
+            },
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            }
+          ],
+          "return": {
+            "description": "the model for this route. If\n  a promise is returned, the transition will pause until\n  the promise resolves, and the resolved value of the promise\n  will be used as the model for this route.",
+            "type": "Any | Promise<any>"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1564,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "deserialize",
+          "params": [
+            {
+              "name": "params",
+              "description": "the parameters extracted from the URL",
+              "type": "Object"
+            },
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            }
+          ],
+          "return": {
+            "description": "the model for this route.\n\nRouter.js hook.",
+            "type": "Any | Promise<any>"
+          },
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1577,
+          "itemtype": "method",
+          "name": "findModel",
+          "params": [
+            {
+              "name": "type",
+              "description": "the model type",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "the value passed to find",
+              "type": "Object"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1588,
+          "description": "<html><head></head><body><p>Store property provides a hook for data persistence libraries to inject themselves.</p>\n<p>By default, this store property provides the exact same functionality previously\nin the model hook.</p>\n<p>Currently, the required interface is:</p>\n<p><code>store.find(modelName, findArguments)</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "store",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1627,
+          "description": "<html><head></head><body><p>A hook you can implement to convert the route&apos;s model into parameters\nfor the URL.</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;post&apos;</span>, { path: <span class=\"string\">&apos;/posts/:post_id&apos;</span> });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  model(params) {\n    <span class=\"comment\">// the server returns `{ id: 12 }`</span>\n    <span class=\"keyword\">return</span> Ember.$.getJSON(<span class=\"string\">&apos;/posts/&apos;</span> + params.post_id);\n  },\n\n  serialize(model) {\n    <span class=\"comment\">// this will make the URL `/posts/12`</span>\n    <span class=\"keyword\">return</span> { <span class=\"attr\">post_id</span>: model.id };\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The default <code>serialize</code> method will insert the model&apos;s <code>id</code> into the\nroute&apos;s dynamic segment (in this case, <code>:post_id</code>) if the segment contains &apos;_id&apos;.\nIf the route has multiple dynamic segments or does not contain &apos;_id&apos;, <code>serialize</code>\nwill return <code>Ember.getProperties(model, params)</code></p>\n<p>This method is called when <code>transitionTo</code> is called with a context\nin order to populate the URL.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "model",
+              "description": "the routes model",
+              "type": "Object"
+            },
+            {
+              "name": "params",
+              "description": "an Array of parameter names for the current\n  route (in the example, `['post_id']`.",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "the serialized parameters",
+            "type": "Object"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1674,
+          "description": "<html><head></head><body><p>A hook you can use to setup the controller for the current route.</p>\n<p>This method is called with the controller for the current route and the\nmodel supplied by the <code>model</code> hook.</p>\n<p>By default, the <code>setupController</code> hook sets the <code>model</code> property of\nthe controller to the specified <code>model</code> when it is not <code>undefined</code>.</p>\n<p>If you implement the <code>setupController</code> hook in your Route, it will\nprevent this default behavior. If you want to preserve that behavior\nwhen implementing your <code>setupController</code> function, make sure to call\n<code>_super</code>:</p>\n<div class=\"highlight app/routes/photos.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/photos.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  model() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.store.findAll(<span class=\"string\">&apos;photo&apos;</span>);\n  },\n\n  setupController(controller, model) {\n    <span class=\"comment\">// Call _super for default behavior</span>\n    <span class=\"keyword\">this</span>._super(controller, model);\n    <span class=\"comment\">// Implement your custom setup after</span>\n    <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&apos;application&apos;</span>).<span class=\"keyword\">set</span>(<span class=\"string\">&apos;showingPhotos&apos;</span>, <span class=\"literal\">true</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The provided controller will be one resolved based on the name\nof this route.</p>\n<p>If no explicit controller is defined, Ember will automatically create one.</p>\n<p>As an example, consider the router:</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;post&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;/posts/:post_id&apos;</span> });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>For the <code>post</code> route, a controller named <code>App.PostController</code> would\nbe used if it is defined. If it is not defined, a basic <code>Ember.Controller</code>\ninstance would be used.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  setupController(controller, model) {\n    controller.set(<span class=\"string\">&apos;model&apos;</span>, model);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "setupController",
+          "params": [
+            {
+              "name": "controller",
+              "description": "instance",
+              "type": "Controller"
+            },
+            {
+              "name": "model",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1750,
+          "description": "<html><head></head><body><p>Returns the controller of the current route, or a parent (or any ancestor)\nroute in a route hierarchy.</p>\n<p>The controller instance must already have been created, either through entering the\nassociated route or using <code>generateController</code>.</p>\n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  setupController(controller, post) {\n    <span class=\"keyword\">this</span>._super(controller, post);\n    <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&apos;posts&apos;</span>).<span class=\"keyword\">set</span>(<span class=\"string\">&apos;currentPost&apos;</span>, post);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "controllerFor",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the route or controller",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Controller"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1793,
+          "description": "<html><head></head><body><p>Generates a controller for a route.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  setupController(controller, post) {\n    <span class=\"keyword\">this</span>._super(controller, post);\n    <span class=\"keyword\">this</span>.generateController(<span class=\"string\">&apos;posts&apos;</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "generateController",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the controller",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1819,
+          "description": "<html><head></head><body><p>Returns the resolved model of a parent (or any ancestor) route\nin a route hierarchy.  During a transition, all routes\nmust resolve a model object, and if a route\nneeds access to a parent route&apos;s model in order to\nresolve a model (or just reuse the model from a parent),\nit can call <code>this.modelFor(theNameOfParentRoute)</code> to\nretrieve it. If the ancestor route&apos;s model was a promise,\nits resolved result is returned.</p>\n<p>Example</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;post&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;/posts/:post_id&apos;</span> }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;comments&apos;</span>);\n  });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/post/comments.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post/comments.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  model() {\n    <span class=\"keyword\">let</span> post = <span class=\"keyword\">this</span>.modelFor(<span class=\"string\">&apos;post&apos;</span>);\n    <span class=\"keyword\">return</span> post.get(<span class=\"string\">&apos;comments&apos;</span>);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "modelFor",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the route",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "the model object",
+            "type": "Object"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1886,
+          "description": "<html><head></head><body><p>A hook you can use to render the template for the current route.</p>\n<p>This method is called with the controller for the current route and the\nmodel supplied by the <code>model</code> hook. By default, it renders the route&apos;s\ntemplate, configured with the controller for the route.</p>\n<p>This method can be overridden to set up and render additional or\nalternative templates.</p>\n<div class=\"highlight app/routes/posts.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/posts.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  renderTemplate(controller, model) {\n    <span class=\"keyword\">let</span> favController = <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&apos;favoritePost&apos;</span>);\n\n    <span class=\"comment\">// Render the `favoritePost` template into</span>\n    <span class=\"comment\">// the outlet `posts`, and display the `favoritePost`</span>\n    <span class=\"comment\">// controller.</span>\n    <span class=\"keyword\">this</span>.render(<span class=\"string\">&apos;favoritePost&apos;</span>, {\n      <span class=\"attr\">outlet</span>: <span class=\"string\">&apos;posts&apos;</span>,\n      <span class=\"attr\">controller</span>: favController\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "renderTemplate",
+          "params": [
+            {
+              "name": "controller",
+              "description": "the route's controller",
+              "type": "Object"
+            },
+            {
+              "name": "model",
+              "description": "the route's model",
+              "type": "Object"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 1924,
+          "description": "<html><head></head><body><p><code>render</code> is used to render a template into a region of another template\n(indicated by an <code>{{outlet}}</code>). <code>render</code> is used both during the entry\nphase of routing (via the <code>renderTemplate</code> hook) and later in response to\nuser interaction.</p>\n<p>For example, given the following minimal router and templates:</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;photos&apos;</span>);\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"><span class=\"comment\">&lt;!-- application.hbs --&gt;</span>\n<span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&apos;something-in-the-app-hbs&apos;</span>&gt;</span>\n  </span><span class=\"template-variable\">{{<span class=\"built_in\">outlet</span> <span class=\"string\">&quot;anOutletName&quot;</span>}}</span><span class=\"xml\">\n<span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">&lt;!-- photos.hbs --&gt;</span>\n<span class=\"tag\">&lt;<span class=\"name\">h1</span>&gt;</span>Photos<span class=\"tag\">&lt;/<span class=\"name\">h1</span>&gt;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can render <code>photos.hbs</code> into the <code>&quot;anOutletName&quot;</code> outlet of\n<code>application.hbs</code> by calling <code>render</code>:</p>\n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  renderTemplate() {\n    <span class=\"keyword\">this</span>.render(<span class=\"string\">&apos;photos&apos;</span>, {\n      into: <span class=\"string\">&apos;application&apos;</span>,\n      outlet: <span class=\"string\">&apos;anOutletName&apos;</span>\n    })\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>render</code> additionally allows you to supply which <code>controller</code> and\n<code>model</code> objects should be loaded and associated with the rendered template.</p>\n<div class=\"highlight app/routes/posts.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/posts.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  renderTemplate(controller, model){\n    <span class=\"keyword\">this</span>.render(<span class=\"string\">&apos;posts&apos;</span>, {    <span class=\"comment\">// the template to render, referenced by name</span>\n      <span class=\"keyword\">into</span>: <span class=\"string\">&apos;application&apos;</span>,    <span class=\"comment\">// the template to render into, referenced by name</span>\n      outlet: <span class=\"string\">&apos;anOutletName&apos;</span>, <span class=\"comment\">// the outlet inside `options.into` to render into.</span>\n      controller: <span class=\"string\">&apos;someControllerName&apos;</span>, <span class=\"comment\">// the controller to use for this template, referenced by name</span>\n      model: model            <span class=\"comment\">// the model to set on `options.controller`.</span>\n    })\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The string values provided for the template name, and controller\nwill eventually pass through to the resolver for lookup. See\nEmber.Resolver for how these are mapped to JavaScript objects in your\napplication. The template to render into needs to be related to  either the\ncurrent route or one of its ancestors.</p>\n<p>Not all options need to be passed to <code>render</code>. Default values will be used\nbased on the name of the route specified in the router or the Route&apos;s\n<code>controllerName</code> and <code>templateName</code> properties.</p>\n<p>For example:</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// ...</span>\n\nRouter.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;index&apos;</span>);\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&apos;post&apos;</span>, { <span class=\"attr\">path</span>: <span class=\"string\">&apos;/posts/:post_id&apos;</span> });\n});\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Router;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  renderTemplate() {\n    <span class=\"keyword\">this</span>.render(); <span class=\"comment\">// all defaults apply</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The name of the route, defined by the router, is <code>post</code>.</p>\n<p>The following equivalent default options will be applied when\nthe Route calls <code>render</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">this</span><span class=\"selector-class\">.render</span>(<span class=\"string\">&apos;post&apos;</span>, {  <span class=\"comment\">// the template name associated with &apos;post&apos; Route</span>\n  <span class=\"attribute\">into</span>: <span class=\"string\">&apos;application&apos;</span>, <span class=\"comment\">// the parent route to &apos;post&apos; Route</span>\n  <span class=\"attribute\">outlet</span>: <span class=\"string\">&apos;main&apos;</span>,      <span class=\"comment\">// {{outlet}} and {{outlet &apos;main&apos;}} are synonymous,</span>\n  <span class=\"attribute\">controller</span>: <span class=\"string\">&apos;post&apos;</span>,  <span class=\"comment\">// the controller associated with the &apos;post&apos; Route</span>\n})</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default the controller&apos;s <code>model</code> will be the route&apos;s model, so it does not\nneed to be passed unless you wish to change which model is being used.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "render",
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the template to render",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "the options",
+              "type": "Object",
+              "optional": true,
+              "props": [
+                {
+                  "name": "into",
+                  "description": "the template to render into,\n                referenced by name. Defaults to the parent template",
+                  "type": "String",
+                  "optional": true
+                },
+                {
+                  "name": "outlet",
+                  "description": "the outlet inside `options.into` to render into.\n                Defaults to 'main'",
+                  "type": "String",
+                  "optional": true
+                },
+                {
+                  "name": "controller",
+                  "description": "the controller to use for this template,\n                referenced by name or as a controller instance. Defaults to the Route's paired controller",
+                  "type": "String|Object",
+                  "optional": true
+                },
+                {
+                  "name": "model",
+                  "description": "the model object to set on `options.controller`.\n                Defaults to the return value of the Route's model hook",
+                  "type": "Object",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 2071,
+          "description": "<html><head></head><body><p>Disconnects a view that has been rendered into an outlet.</p>\n<p>You may pass any or all of the following options to <code>disconnectOutlet</code>:</p>\n<ul>\n<li><code>outlet</code>: the name of the outlet to clear (default: &apos;main&apos;)</li>\n<li><code>parentView</code>: the name of the view containing the outlet to clear\n (default: the view rendered by the parent route)</li>\n</ul>\n<p>Example:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    showModal(evt) {\n      this.render(evt.modalName, {\n        outlet: <span class=\"string\">&apos;modal&apos;</span>,\n        into: <span class=\"string\">&apos;application&apos;</span>\n      });\n    },\n\n    hideModal(evt) {\n      this.disconnectOutlet({\n        outlet: <span class=\"string\">&apos;modal&apos;</span>,\n        parentView: <span class=\"string\">&apos;application&apos;</span>\n      });\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Alternatively, you can pass the <code>outlet</code> name directly as a string.</p>\n<p>Example:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    showModal(evt) {\n      <span class=\"comment\">// ...</span>\n    },\n    hideModal(evt) {\n      <span class=\"keyword\">this</span>.disconnectOutlet(<span class=\"string\">&apos;modal&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "disconnectOutlet",
+          "params": [
+            {
+              "name": "options",
+              "description": "the options hash or outlet name",
+              "type": "Object|String"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 2189,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "teardownViews",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 55,
+          "description": "<html><head></head><body><p>Subscribes to a named event with given function.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didLoad&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"comment\">// fired once the person has loaded</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An optional target can be passed in as the 2nd argument that will\nbe set as the &quot;this&quot; for the callback. This is a good way to give your\nfunction access to the object triggering the event. When the target\nparameter is used the callback becomes the third argument.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "on",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 81,
+          "description": "<html><head></head><body><p>Subscribes a function to a named event and then cancels the subscription\nafter the first time the event is triggered. It is good to use <code>one</code> when\nyou only care about the first time an event has taken place.</p>\n<p>This function takes an optional 2nd argument that will become the &quot;this&quot;\nvalue for the callback. If this argument is passed then the 3rd argument\nbecomes the function.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "one",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 107,
+          "description": "<html><head></head><body><p>Triggers a named event for the object. Any additional arguments\nwill be passed as parameters to the functions that are subscribed to the\nevent.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">food</span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;person ate some &apos;</span> + food);\n});\n\nperson.trigger(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"string\">&apos;broccoli&apos;</span>);\n\n<span class=\"comment\">// outputs: person ate some broccoli</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "Optional arguments to pass on",
+              "type": "Object..."
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 130,
+          "description": "<html><head></head><body><p>Cancels subscription for given name, target, and method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "off",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target of the subscription",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The function of the subscription",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 145,
+          "description": "<html><head></head><body><p>Checks to see if object has any subscriptions for named event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "has",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "does the object have a subscription for event",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Evented"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 167,
+          "description": "<html><head></head><body><p>Triggers a named action on the <code>ActionHandler</code>. Any parameters\nsupplied after the <code>actionName</code> string will be passed as arguments\nto the action target function.</p>\n<p>If the <code>ActionHandler</code> has its <code>target</code> property set, actions may\nbubble to the <code>target</code>. Bubbling happens when an <code>actionName</code> can\nnot be found in the <code>ActionHandler</code>&apos;s <code>actions</code> hash or if the\naction target function returns <code>true</code>.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/welcome.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/welcome.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    playTheme() {\n      <span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;playMusic&apos;</span>, <span class=\"string\">&apos;theme.mp3&apos;</span>);\n    },\n    playMusic(track) {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "send",
+          "params": [
+            {
+              "name": "actionName",
+              "description": "The action to trigger",
+              "type": "String"
+            },
+            {
+              "name": "context",
+              "description": "a context to send with the action",
+              "type": "*"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionHandler"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 209,
+          "description": "<html><head></head><body><p>An overridable method called when objects are instantiated. By default,\ndoes nothing unless it is overridden during class definition.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Person = Ember.Object.extend({\n  init() {\n    alert(`Name <span class=\"keyword\">is</span> ${<span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;name&apos;</span>)}`);\n  }\n});\n\n<span class=\"keyword\">let</span> steve = Person.create({\n  name: <span class=\"string\">&apos;Steve&apos;</span>\n});\n\n<span class=\"comment\">// alerts &apos;Name is Steve&apos;.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>NOTE: If you do override <code>init</code> for a framework class like <code>Ember.View</code>,\nbe sure to call <code>this._super(...arguments)</code> in your\n<code>init</code> declaration! If you don&apos;t, Ember may not have an opportunity to\ndo important setup work, and you&apos;ll see strange behavior in your\napplication.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 444,
+          "description": "<html><head></head><body><p>Destroys an object by setting the <code>isDestroyed</code> flag and removing its\nmetadata, which effectively destroys observers and bindings.</p>\n<p>If you try to set a property on a destroyed object, an exception will be\nraised.</p>\n<p>Note that destruction is scheduled for the end of the run loop and does not\nhappen immediately.  It will set an isDestroying flag immediately.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "return": {
+            "description": "receiver",
+            "type": "EmberObject"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 470,
+          "description": "<html><head></head><body><p>Override to implement teardown.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "willDestroy",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 478,
+          "description": "<html><head></head><body><p>Invoked by the run loop to actually destroy the object. This is\nscheduled for execution by the <code>destroy</code> method.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "_scheduledDestroy",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 497,
+          "description": "<html><head></head><body><p>Returns a string representation which attempts to provide more information\nthan Javascript&apos;s <code>toString</code> typically does, in a generic way for all Ember\nobjects.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"keyword\">Person</span> = Ember.Object.extend()\n<span class=\"keyword\">person</span> = <span class=\"keyword\">Person</span>.create()\n<span class=\"keyword\">person</span>.toString() //=&gt; <span class=\"string\">&quot;&lt;Person:ember1024&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the object&apos;s class is not defined on an Ember namespace, it will\nindicate it is a subclass of the registered superclass:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"attr\">Student</span> = Person.extend()\n<span class=\"keyword\">let</span> <span class=\"attr\">student</span> = Student.create()\nstudent.<span class=\"built_in\">toString</span>() //=&gt; <span class=\"string\">&quot;&lt;(subclass of Person):ember1025&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the method <code>toStringExtension</code> is defined, its return value will be\nincluded in the output.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>const Teacher = Person.extend({\n  toStringExtension() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;fullName&apos;</span>);\n  }\n});\nteacher = Teacher.create()\nteacher.toString(); <span class=\"comment\">//=&gt; &quot;&lt;Teacher:ember1026:Tom Dale&gt;&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "toString",
+          "return": {
+            "description": "string representation",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        }
+      ],
+      "events": [
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 563,
+          "description": "<html><head></head><body><p>The <code>willTransition</code> action is fired at the beginning of any\nattempted transition with a <code>Transition</code> object as the sole\nargument. This action can be used for aborting, redirecting,\nor decorating the transition from the currently active routes.</p>\n<p>A good example is preventing navigation when a form is\nhalf-filled out:</p>\n<div class=\"highlight form.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">form.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    willTransition(transition) {\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.controller.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;userHasEnteredData&apos;</span>)) {\n        <span class=\"keyword\">this</span>.controller.displayNavigationConfirm();\n        transition.abort();\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also redirect elsewhere by calling\n<code>this.transitionTo(&apos;elsewhere&apos;)</code> from within <code>willTransition</code>.\nNote that <code>willTransition</code> will not be fired for the\nredirecting <code>transitionTo</code>, since <code>willTransition</code> doesn&apos;t\nfire when there is already a transition underway. If you want\nsubsequent <code>willTransition</code> actions to fire for the redirecting\ntransition, you must first explicitly call\n<code>transition.abort()</code>.</p>\n<p>To allow the <code>willTransition</code> event to continue bubbling to the parent\nroute, use <code>return true;</code>. When the <code>willTransition</code> method has a\nreturn value of <code>true</code> then the parent route&apos;s <code>willTransition</code> method\nwill be fired, enabling &quot;bubbling&quot; behavior for the event.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willTransition",
+          "params": [
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 607,
+          "description": "<html><head></head><body><p>The <code>didTransition</code> action is fired after a transition has\nsuccessfully been completed. This occurs after the normal model\nhooks (<code>beforeModel</code>, <code>model</code>, <code>afterModel</code>, <code>setupController</code>)\nhave resolved. The <code>didTransition</code> action has no arguments,\nhowever, it can be useful for tracking page views or resetting\nstate on the controller.</p>\n<div class=\"highlight app/routes/login.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/login.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    didTransition() {\n      <span class=\"keyword\">this</span>.controller.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;errors.base&apos;</span>).clear();\n      <span class=\"keyword\">return</span> <span class=\"literal\">true</span>; <span class=\"comment\">// Bubble the didTransition event</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "event",
+          "name": "didTransition",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 633,
+          "description": "<html><head></head><body><p>The <code>loading</code> action is fired on the route when a route&apos;s <code>model</code>\nhook returns a promise that is not already resolved. The current\n<code>Transition</code> object is the first parameter and the route that\ntriggered the loading event is the second parameter.</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    loading(transition, route) {\n      <span class=\"keyword\">let</span> controller = <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&apos;foo&apos;</span>);\n      controller.set(<span class=\"string\">&apos;currentlyLoading&apos;</span>, <span class=\"literal\">true</span>);\n\n      transition.finally(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n        controller.set(<span class=\"string\">&apos;currentlyLoading&apos;</span>, <span class=\"literal\">false</span>);\n      });\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "event",
+          "name": "loading",
+          "params": [
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            },
+            {
+              "name": "route",
+              "description": "The route that triggered the loading event",
+              "type": "Route"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 663,
+          "description": "<html><head></head><body><p>When attempting to transition into a route, any of the hooks\nmay return a promise that rejects, at which point an <code>error</code>\naction will be fired on the partially-entered routes, allowing\nfor per-route error handling logic, or shared error handling\nlogic defined on a parent route.</p>\n<p>Here is an example of an error handler that will be invoked\nfor rejected promises from the various hooks on the route,\nas well as any unhandled errors from child routes:</p>\n<div class=\"highlight app/routes/admin.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/admin.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"function\"><span class=\"keyword\">default</span> Route.<span class=\"title\">extend</span><span class=\"params\">({\n  beforeModel()</span> </span>{\n    <span class=\"keyword\">return</span> Ember.RSVP.reject(<span class=\"string\">&apos;bad things!&apos;</span>);\n  },\n\n  actions: {\n    <span class=\"keyword\">error</span>(<span class=\"keyword\">error</span>, transition) {\n      <span class=\"comment\">// Assuming we got here due to the error in `beforeModel`,</span>\n      <span class=\"comment\">// we can expect that error === &quot;bad things!&quot;,</span>\n      <span class=\"comment\">// but a promise model rejecting would also</span>\n      <span class=\"comment\">// call this hook, as would any errors encountered</span>\n      <span class=\"comment\">// in `afterModel`.</span>\n\n      <span class=\"comment\">// The `error` hook is also provided the failed</span>\n      <span class=\"comment\">// `transition`, which can be stored and later</span>\n      <span class=\"comment\">// `.retry()`d if desired.</span>\n\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&apos;login&apos;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>error</code> actions that bubble up all the way to <code>ApplicationRoute</code>\nwill fire a default error handler that logs the error. You can\nspecify your own global default error handler by overriding the\n<code>error</code> handler on <code>ApplicationRoute</code>:</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"function\"><span class=\"keyword\">default</span> Route.<span class=\"title\">extend</span><span class=\"params\">({\n  actions: {\n    <span class=\"keyword\">error</span>(<span class=\"keyword\">error</span>, transition)</span> </span>{\n      <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&apos;banner&apos;</span>).displayError(<span class=\"keyword\">error</span>.message);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "event",
+          "name": "error",
+          "params": [
+            {
+              "name": "error",
+              "description": "",
+              "type": "Error"
+            },
+            {
+              "name": "transition",
+              "description": "",
+              "type": "Transition"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 723,
+          "description": "<html><head></head><body><p>This event is triggered when the router enters the route. It is\nnot executed when the model for the route changes.</p>\n<div class=\"highlight app/routes/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">collectAnalytics</span>: Ember.on(<span class=\"string\">&apos;activate&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n    collectAnalytics();\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "event",
+          "name": "activate",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 742,
+          "description": "<html><head></head><body><p>This event is triggered when the router completely exits this\nroute. It is not executed when the model for the route changes.</p>\n<div class=\"highlight app/routes/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">trackPageLeaveAnalytics</span>: Ember.on(<span class=\"string\">&apos;deactivate&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n    trackPageLeaveAnalytics();\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "event",
+          "name": "deactivate",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        }
+      ],
+      "properties": [
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 77,
+          "description": "<html><head></head><body><p>Configuration hash for this route&apos;s queryParams. The possible\nconfiguration options and their defaults are as follows\n(assuming a query param whose controller property is <code>page</code>):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n</pre></td>\n              <td class=\"code\"><pre><span class=\"attribute\">queryParams</span>: {\n  <span class=\"attribute\">page</span>: {\n    <span class=\"comment\">// By default, controller query param properties don&apos;t</span>\n    <span class=\"comment\">// cause a full transition when they are changed, but</span>\n    <span class=\"comment\">// rather only cause the URL to update. Setting</span>\n    <span class=\"comment\">// `refreshModel` to true will cause an &quot;in-place&quot;</span>\n    <span class=\"comment\">// transition to occur, whereby the model hooks for</span>\n    <span class=\"comment\">// this route (and any child routes) will re-fire, allowing</span>\n    <span class=\"comment\">// you to reload models (e.g., from the server) using the</span>\n    <span class=\"comment\">// updated query param values.</span>\n    <span class=\"attribute\">refreshModel</span>: false,\n\n    <span class=\"comment\">// By default, changes to controller query param properties</span>\n    <span class=\"comment\">// cause the URL to update via `pushState`, which means an</span>\n    <span class=\"comment\">// item will be added to the browser&apos;s history, allowing</span>\n    <span class=\"comment\">// you to use the back button to restore the app to the</span>\n    <span class=\"comment\">// previous state before the query param property was changed.</span>\n    <span class=\"comment\">// Setting `replace` to true will use `replaceState` (or its</span>\n    <span class=\"comment\">// hash location equivalent), which causes no browser history</span>\n    <span class=\"comment\">// item to be added. This options name and default value are</span>\n    <span class=\"comment\">// the same as the `link-to` helper&apos;s `replace` option.</span>\n    <span class=\"attribute\">replace</span>: false,\n\n    <span class=\"comment\">// By default, the query param URL key is the same name as</span>\n    <span class=\"comment\">// the controller property name. Use `as` to specify a</span>\n    <span class=\"comment\">// different URL key.</span>\n    <span class=\"attribute\">as</span>: <span class=\"string\">&apos;page&apos;</span>\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "queryParams",
+          "type": "Object",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 122,
+          "description": "<html><head></head><body><p>The name of the route, dot-delimited.</p>\n<p>For example, a route found at <code>app/routes/posts/post.js</code> will have\na <code>routeName</code> of <code>posts.post</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "routeName",
+          "type": "String",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 148,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_qp",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 270,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_names",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 306,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_activeQPChanged",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 440,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "_optionsForQueryParam",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 509,
+          "description": "<html><head></head><body><p>The name of the template to use by default when rendering this routes\ntemplate.</p>\n<div class=\"highlight app/routes/posts/list.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/posts/list.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  templateName: <span class=\"string\">&apos;posts/list&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/posts/index.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/posts/index.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> PostsList <span class=\"keyword\">from</span> <span class=\"string\">&apos;../posts/list&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> PostsList.extend();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/posts/archived.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/posts/archived.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> PostsList <span class=\"keyword\">from</span> <span class=\"string\">&apos;../posts/list&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> PostsList.extend();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "templateName",
+          "type": "String",
+          "default": "null",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 541,
+          "description": "<html><head></head><body><p>The name of the controller to associate with this route.</p>\n<p>By default, Ember will lookup a route&apos;s controller that matches the name\nof the route (i.e. <code>App.PostController</code> for <code>App.PostRoute</code>). However,\nif you would like to define a specific controller to use, you can do so\nusing this property.</p>\n<p>This is useful in many ways, as the controller specified will be:</p>\n<ul>\n<li>passed to the <code>setupController</code> method.</li>\n<li>used as the controller for the template being rendered by the route.</li>\n<li>returned from a call to <code>controllerFor</code> for the route.</li>\n</ul>\n</body></html>",
+          "itemtype": "property",
+          "name": "controllerName",
+          "type": "String",
+          "default": "null",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/route.js",
+          "line": 761,
+          "description": "<html><head></head><body><p>The controller associated with this route.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/form.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/form.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route from <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    willTransition(transition) {\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.controller.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;userHasEnteredData&apos;</span>) &amp;&amp;\n          !confirm(<span class=\"string\">&apos;Are you sure you want to abandon progress?&apos;</span>)) {\n        transition.abort();\n      } <span class=\"keyword\">else</span> {\n        <span class=\"comment\">// Bubble the `willTransition` action so that</span>\n        <span class=\"comment\">// parent routes can decide whether or not to abort.</span>\n        <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "controller",
+          "type": "Controller",
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 22,
+          "description": "<html><head></head><body><p>The collection of functions, keyed by name, available on this\n<code>ActionHandler</code> as action targets.</p>\n<p>These functions will be invoked when a matching <code>{{action}}</code> is triggered\nfrom within a template and the application&apos;s current route is this route.</p>\n<p>Actions can also be invoked from other parts of your application\nvia <code>ActionHandler#send</code>.</p>\n<p>The <code>actions</code> hash will inherit action handlers from\nthe <code>actions</code> hash defined on extended parent classes\nor mixins rather than just replace the entire hash, e.g.:</p>\n<div class=\"highlight banner.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">banner.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Mixin <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/mixin&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Mixin.create({\n  <span class=\"attr\">actions</span>: {\n    displayBanner(msg) {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/welcome.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/welcome.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n<span class=\"keyword\">import</span> CanDisplayBanner <span class=\"keyword\">from</span> <span class=\"string\">&apos;../mixins/can-display-banner&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend(CanDisplayBanner, {\n  <span class=\"attr\">actions</span>: {\n    playMusic() {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});\n\n<span class=\"comment\">// `WelcomeRoute`, when active, will be able to respond</span>\n<span class=\"comment\">// to both actions, since the actions hash is merged rather</span>\n<span class=\"comment\">// then replaced when extending mixins / parent classes.</span>\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;displayBanner&apos;</span>);\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;playMusic&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Within a Controller, Route or Component&apos;s action handler,\nthe value of the <code>this</code> context is the Controller, Route or\nComponent object:</p>\n<div class=\"highlight app/routes/song.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/song.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  actions: {\n    myAction() {\n      <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&quot;song&quot;</span>);\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&quot;other.route&quot;</span>);\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It is also possible to call <code>this._super(...arguments)</code> from within an\naction handler if it overrides a handler defined on a parent\nclass or mixin:</p>\n<p>Take for example the following routes:</p>\n<div class=\"highlight route.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">route.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Mixin <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/mixin&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Mixin.create({\n  actions: {\n    debugRouteInformation() {\n      <span class=\"built_in\">console</span>.debug(<span class=\"string\">&quot;It&apos;s a-me, console.debug!&quot;</span>);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight debug.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">debug.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n<span class=\"keyword\">import</span> DebugRoute <span class=\"keyword\">from</span> <span class=\"string\">&apos;../mixins/debug-route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend(DebugRoute, {\n  <span class=\"attr\">actions</span>: {\n    debugRouteInformation() {\n      <span class=\"comment\">// also call the debugRouteInformation of mixed in DebugRoute</span>\n      <span class=\"keyword\">this</span>._super(...arguments);\n\n      <span class=\"comment\">// show additional annoyance</span>\n      <span class=\"built_in\">window</span>.alert(...);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"bubbling\">Bubbling</h2>\n<p>By default, an action will stop bubbling once a handler defined\non the <code>actions</code> hash handles it. To continue bubbling the action,\nyou must return <code>true</code> from the handler:</p>\n<div class=\"highlight app/router.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/router.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>Router.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;album&quot;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;song&quot;</span>);\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/routes/album.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/album.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">startPlaying</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight song.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">song.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Route <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/routing/route&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Route.extend({\n  <span class=\"attr\">actions</span>: {\n    startPlaying() {\n      <span class=\"comment\">// ...</span>\n\n      <span class=\"keyword\">if</span> (actionShouldAlsoBeTriggeredOnParentRoute) {\n        <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "actions",
+          "type": "Object",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Ember.ActionHandler"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 247,
+          "description": "<html><head></head><body><p>Defines the properties that will be concatenated from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by combining the superclass&apos; property\nvalue with the subclass&apos; value. An example of this in use within Ember\nis the <code>classNames</code> property of <code>Ember.View</code>.</p>\n<p>Here is some sample code showing the difference between a concatenated\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>const <span class=\"symbol\">Bar</span> = <span class=\"symbol\">Ember</span>.<span class=\"symbol\">Object</span>.extend({\n  // <span class=\"symbol\">Configure</span> which properties to concatenate\n  concatenatedProperties: [<span class=\"string\">&apos;concatenatedProperty&apos;</span>],\n\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;bar&apos;</span>]\n});\n\nconst <span class=\"symbol\">FooBar</span> = <span class=\"symbol\">Bar</span>.extend({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;foo&apos;</span>]\n});\n\nlet fooBar = <span class=\"symbol\">FooBar</span>.create();\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;foo&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior extends to object creation as well. Continuing the\nabove example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let fooBar = <span class=\"symbol\">FooBar</span>.create({\n  someNonConcatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>],\n  concatenatedProperty: [<span class=\"string\">&apos;baz&apos;</span>]\n})\nfooBar.get(<span class=\"string\">&apos;someNonConcatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;baz&apos;</span>]\nfooBar.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Adding a single property that is not an array will just add it in the array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fooBar = FooBar.create({\n  concatenatedProperty: <span class=\"string\">&apos;baz&apos;</span>\n})\nview.get(<span class=\"string\">&apos;concatenatedProperty&apos;</span>); // [<span class=\"string\">&apos;bar&apos;</span>, <span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;baz&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using the <code>concatenatedProperties</code> property, we can tell Ember to mix the\ncontent of the properties.</p>\n<p>In <code>Ember.Component</code> the <code>classNames</code>, <code>classNameBindings</code> and\n<code>attributeBindings</code> properties are concatenated.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual concatenated property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "concatenatedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 320,
+          "description": "<html><head></head><body><p>Defines the properties that will be merged from the superclass\n(instead of overridden).</p>\n<p>By default, when you extend an Ember class a property defined in\nthe subclass overrides a property with the same name that is defined\nin the superclass. However, there are some cases where it is preferable\nto build up a property&apos;s value by merging the superclass property value\nwith the subclass property&apos;s value. An example of this in use within Ember\nis the <code>queryParams</code> property of routes.</p>\n<p>Here is some sample code showing the difference between a merged\nproperty and a normal one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">const</span> Bar = Ember.Object.extend({\n  <span class=\"comment\">// Configure which properties are to be merged</span>\n  mergedProperties: [<span class=\"string\">&apos;mergedProperty&apos;</span>],\n\n  someNonMergedProperty: {\n    nonMerged: <span class=\"string\">&apos;superclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    page: { replace: <span class=\"literal\">false</span> },\n    limit: { replace: <span class=\"literal\">true</span> }\n  }\n});\n\n<span class=\"keyword\">const</span> FooBar = Bar.extend({\n  someNonMergedProperty: {\n    completelyNonMerged: <span class=\"string\">&apos;subclass value of nonMerged&apos;</span>\n  },\n  mergedProperty: {\n    limit: { replace: <span class=\"literal\">false</span> }\n  }\n});\n\n<span class=\"keyword\">let</span> fooBar = FooBar.create();\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;someNonMergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; { completelyNonMerged: &apos;subclass value of nonMerged&apos; }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the entire object, including the nonMerged property of</span>\n<span class=\"comment\">// the superclass object, has been replaced</span>\n\nfooBar.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;mergedProperty&apos;</span>);\n<span class=\"comment\">// =&gt; {</span>\n<span class=\"comment\">//   page: {replace: false},</span>\n<span class=\"comment\">//   limit: {replace: false}</span>\n<span class=\"comment\">// }</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">// Note the page remains from the superclass, and the</span>\n<span class=\"comment\">// `limit` property&apos;s value of `false` has been merged from</span>\n<span class=\"comment\">// the subclass.</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This behavior is not available during object <code>create</code> calls. It is only\navailable at <code>extend</code> time.</p>\n<p>In <code>Ember.Route</code> the <code>queryParams</code> property is merged.</p>\n<p>This feature is available for you to use throughout the Ember object model,\nalthough typical app developers are likely to use it infrequently. Since\nit changes expectations about behavior of properties, you should properly\ndocument its usage in each individual merged property (to not\nmislead your users to think they can override the property in a subclass).</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "mergedProperties",
+          "type": "Array",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 394,
+          "description": "<html><head></head><body><p>Destroyed object property flag.</p>\n<p>if this property is <code>true</code> the observers and bindings were already\nremoved by the effect of calling the <code>destroy()</code> method.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroyed",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/core_object.js",
+          "line": 419,
+          "description": "<html><head></head><body><p>Destruction scheduled flag. The <code>destroy()</code> method has been called.</p>\n<p>The object stays intact until the end of the run loop at which point\nthe <code>isDestroyed</code> flag is set.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isDestroying",
+          "default": "false",
+          "access": "public",
+          "tagname": "",
+          "class": "Route",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "CoreObject"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "ember-2.16.0-EmberObject",
+          "type": "class"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/routing",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

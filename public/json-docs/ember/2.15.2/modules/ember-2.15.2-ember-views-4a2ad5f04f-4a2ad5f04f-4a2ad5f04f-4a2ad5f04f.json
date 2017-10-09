@@ -1,0 +1,44 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-views",
+    "type": "module",
+    "attributes": {
+      "name": "ember-views",
+      "submodules": {},
+      "elements": {},
+      "fors": {},
+      "is_submodule": 1,
+      "namespaces": {
+        "Ember": 1
+      },
+      "namespace": "",
+      "file": "packages/ember-views/lib/system/event_dispatcher.js",
+      "line": 18,
+      "description": "<html><head></head><body><p>The internal class used to create text inputs when the <code>{{input}}</code>\nhelper is used with <code>type</code> of <code>checkbox</code>.</p>\n<p>See <a href=\"/api/classes/Ember.Templates.helpers.html#method_input\">Ember.Templates.helpers.input</a>  for usage details.</p>\n<h2 id=\"direct-manipulation-of-checked-\">Direct manipulation of <code>checked</code></h2>\n<p>The <code>checked</code> attribute of an <code>Ember.Checkbox</code> object should always be set\nthrough the Ember object or by interacting with its rendered element\nrepresentation via the mouse, keyboard, or touch. Updating the value of the\ncheckbox via jQuery will result in the checked value of the object and its\nelement losing synchronization.</p>\n<h2 id=\"layout-and-layoutname-properties\">Layout and LayoutName properties</h2>\n<p>Because HTML <code>input</code> elements are self closing <code>layout</code> and <code>layoutName</code>\nproperties will not be applied. See <a href=\"/api/classes/Ember.View.html\">Ember.View</a>&apos;s\nlayout section for more information.</p>\n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.Checkbox",
+        "Ember.TextField"
+      ],
+      "privateclasses": [
+        "Ember.ActionSupport",
+        "Ember.ClassNamesSupport",
+        "Ember.TextSupport",
+        "Ember.EventDispatcher"
+      ],
+      "staticfunctions": {},
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

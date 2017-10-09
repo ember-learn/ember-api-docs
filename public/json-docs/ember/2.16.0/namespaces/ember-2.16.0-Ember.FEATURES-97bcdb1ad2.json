@@ -1,0 +1,74 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.FEATURES",
+    "type": "namespace",
+    "attributes": {
+      "name": "Ember.FEATURES",
+      "shortname": "Ember.FEATURES",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "namespace": "Ember",
+      "file": "packages/ember-debug/lib/features.js",
+      "line": 9,
+      "description": "<html><head></head><body><p>The hash of enabled Canary features. Add to this, any canary features\nbefore creating your application.</p>\n<p>Alternatively (and recommended), you can also define <code>EmberENV.FEATURES</code>\nif you need to enable features flagged at runtime.</p>\n</body></html>",
+      "static": 1,
+      "since": "2.16.0",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-debug/lib/features.js",
+          "line": 25,
+          "description": "<html><head></head><body><p>Determine whether the specified <code>feature</code> is enabled. Used by Ember&apos;s\nbuild tools to exclude experimental features from beta/stable builds.</p>\n<p>You can define the following configuration options:</p>\n<ul>\n<li><code>EmberENV.ENABLE_OPTIONAL_FEATURES</code> - enable any features that have not been explicitly\nenabled/disabled.</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "isEnabled",
+          "params": [
+            {
+              "name": "feature",
+              "description": "The feature to check",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.FEATURES",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

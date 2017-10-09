@@ -1,0 +1,758 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.Ember",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Ember",
+      "shortname": "Ember",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "jquery",
+      "namespace": "Ember",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 484,
+          "description": "<html><head></head><body><p>Global helper method to create a new binding. Just pass the root object\nalong with a <code>to</code> and <code>from</code> path to create and connect the binding.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "bind",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The root object of the transform.",
+              "type": "Object"
+            },
+            {
+              "name": "to",
+              "description": "The path to the 'to' side of the binding.\n  Must be relative to obj.",
+              "type": "String"
+            },
+            {
+              "name": "from",
+              "description": "The path to the 'from' side of the binding.\n  Must be relative to obj or a global path.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "binding instance",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/meta.js",
+          "line": 535,
+          "description": "<html><head></head><body><p>Tears down the meta on an object so that it can be garbage collected.\nMultiple calls will have no effect.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "deleteMeta",
+          "params": [
+            {
+              "name": "obj",
+              "description": "the object to destroy",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/meta.js",
+          "line": 556,
+          "description": "<html><head></head><body><p>Retrieves the meta hash for an object. If <code>writable</code> is true ensures the\nhash is writable for this object as well.</p>\n<p>The meta object contains information about computed property descriptors as\nwell as any watched properties and other information. You generally will\nnot access this information directly but instead work with higher level\nmethods that manipulate this hash indirectly.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "meta",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to retrieve meta for",
+              "type": "Object"
+            },
+            {
+              "name": "writable",
+              "description": "Pass `false` if you do not intend to modify\n  the meta hash, allowing the method to avoid making an unnecessary copy.",
+              "type": "Boolean",
+              "optional": true,
+              "optdefault": "true"
+            }
+          ],
+          "return": {
+            "description": "the meta hash for an object",
+            "type": "Object"
+          },
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 663,
+          "description": "<html><head></head><body><p>Denotes a required property for a mixin</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "required",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 774,
+          "description": "<html><head></head><body><p>Specify a method that observes property changes.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> EmberObject <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object&apos;</span>;\n\nEmberObject.extend({\n  <span class=\"attr\">valueObserver</span>: Ember.immediateObserver(<span class=\"string\">&apos;value&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"comment\">// Executes whenever the &quot;value&quot; property changes</span>\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>In the future, <code>observer</code> may become asynchronous. In this event,\n<code>immediateObserver</code> will maintain the synchronous behavior.</p>\n<p>Also available as <code>Function.prototype.observesImmediately</code> if prototype extensions are\nenabled.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "_immediateObserver",
+          "params": [
+            {
+              "name": "propertyNames",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            },
+            {
+              "name": "func",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "deprecated": true,
+          "deprecationMessage": "Use `observer` instead.",
+          "return": {
+            "description": "func"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 815,
+          "description": "<html><head></head><body><p>When observers fire, they are called with the arguments <code>obj</code>, <code>keyName</code>.</p>\n<p>Note, <code>@each.property</code> observer is called per each add or replace of an element\nand it&apos;s not called with a specific enumeration item.</p>\n<p>A <code>_beforeObserver</code> fires before a property changes.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "beforeObserver",
+          "params": [
+            {
+              "name": "propertyNames",
+              "description": "",
+              "type": "String",
+              "multiple": true
+            },
+            {
+              "name": "func",
+              "description": "",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "func"
+          },
+          "deprecated": true,
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_events.js",
+          "line": 32,
+          "description": "<html><head></head><body><p>This function is called just before an object property is about to change.\nIt will notify any before observers and prepare caches among other things.</p>\n<p>Normally you will not need to call this method directly but if for some\nreason you can&apos;t directly watch a property you can invoke this method\nmanually along with <code>Ember.propertyDidChange()</code> which you should call just\nafter the property value changes.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "propertyWillChange",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object with the property that will change",
+              "type": "Object"
+            },
+            {
+              "name": "keyName",
+              "description": "The property key (or path) that will change.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_events.js",
+          "line": 67,
+          "description": "<html><head></head><body><p>This function is called just after an object property has changed.\nIt will notify any observers and clear caches among other things.</p>\n<p>Normally you will not need to call this method directly but if for some\nreason you can&apos;t directly watch a property you can invoke this method\nmanually along with <code>Ember.propertyWillChange()</code> which you should call just\nbefore the property value changes.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "propertyDidChange",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object with the property that will change",
+              "type": "Object"
+            },
+            {
+              "name": "keyName",
+              "description": "The property key (or path) that will change.",
+              "type": "String"
+            },
+            {
+              "name": "meta",
+              "description": "The objects meta.",
+              "type": "Meta"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Void"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_events.js",
+          "line": 203,
+          "itemtype": "method",
+          "name": "beginPropertyChanges",
+          "chainable": 1,
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_events.js",
+          "line": 212,
+          "itemtype": "method",
+          "name": "endPropertyChanges",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/property_events.js",
+          "line": 224,
+          "description": "<html><head></head><body><p>Make a series of property changes together in an\nexception-safe way.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>Ember.changeProperties(<span class=\"function\"><span class=\"keyword\">function</span></span>() {\n  obj1.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;foo&apos;</span>, mayBlowUpWhenSet);\n  obj2.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;bar&apos;</span>, baz);\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "changeProperties",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "",
+              "optional": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/watching.js",
+          "line": 19,
+          "description": "<html><head></head><body><p>Starts watching a property on an object. Whenever the property changes,\ninvokes <code>Ember.propertyWillChange</code> and <code>Ember.propertyDidChange</code>. This is the\nprimitive used by observers and dependent keys; usually you will never call\nthis method directly but instead use higher level methods like\n<code>Ember.addObserver()</code></p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "watch",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            },
+            {
+              "name": "_keyPath",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/controller_for.js",
+          "line": 5,
+          "description": "<html><head></head><body><p>Finds a controller instance.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "controllerFor",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/generate_controller.js",
+          "line": 8,
+          "description": "<html><head></head><body><p>Generates a controller factory</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "generateControllerFactory",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/system/generate_controller.js",
+          "line": 32,
+          "description": "<html><head></head><body><p>Generates and instantiates a controller extending from <code>controller:basic</code>\nif present, or <code>Ember.Controller</code> if not.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "generateController",
+          "access": "private",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/compare.js",
+          "line": 40,
+          "description": "<html><head></head><body><p>Compares two javascript values and returns:</p>\n<ul>\n<li>-1 if the first is smaller than the second,</li>\n<li>0 if both are equal,</li>\n<li><p>1 if the first is greater than the second.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.compare</span>(<span class=\"string\">&apos;hello&apos;</span>, <span class=\"string\">&apos;hello&apos;</span>);  <span class=\"comment\">// 0</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.compare</span>(<span class=\"string\">&apos;abc&apos;</span>, <span class=\"string\">&apos;dfg&apos;</span>);      <span class=\"comment\">// -1</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.compare</span>(<span class=\"number\">2</span>, <span class=\"number\">1</span>);              <span class=\"comment\">// 1</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</li>\n</ul>\n<p>If the types of the two objects are different precedence occurs in the\nfollowing order, with types earlier in the list considered <code>&lt;</code> types\nlater in the list:</p>\n<ul>\n<li>undefined</li>\n<li>null</li>\n<li>boolean</li>\n<li>number</li>\n<li>string</li>\n<li>array</li>\n<li>object</li>\n<li>instance</li>\n<li>function</li>\n<li>class</li>\n<li><p>date</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.compare</span>(<span class=\"string\">&apos;hello&apos;</span>, <span class=\"number\">50</span>);       <span class=\"comment\">// 1</span>\n<span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.compare</span>(<span class=\"number\">50</span>, <span class=\"string\">&apos;hello&apos;</span>);       <span class=\"comment\">// -1</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "compare",
+          "params": [
+            {
+              "name": "v",
+              "description": "First value to compare",
+              "type": "Object"
+            },
+            {
+              "name": "w",
+              "description": "Second value to compare",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "-1 if v < w, 0 if v = w and 1 if v > w.",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/string",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/inject.js",
+          "line": 19,
+          "description": "<html><head></head><body><p>This method allows other Ember modules to register injection helpers for a\ngiven container type. Helpers are exported to the <code>inject</code> namespace as the\ncontainer type itself.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "createInjectionHelper",
+          "since": "2.16.0",
+          "params": [
+            {
+              "name": "type",
+              "description": "The container type the helper will inject",
+              "type": "String"
+            },
+            {
+              "name": "validator",
+              "description": "A validation callback that is executed at mixin-time",
+              "type": "Function"
+            }
+          ],
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/inject.js",
+          "line": 37,
+          "description": "<html><head></head><body><p>Validation function that runs per-type validation functions once for each\ninjected type encountered.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "validatePropertyInjections",
+          "since": "2.16.0",
+          "params": [
+            {
+              "name": "factory",
+              "description": "The factory object",
+              "type": "Object"
+            }
+          ],
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/is-equal.js",
+          "line": 1,
+          "description": "<html><head></head><body><p>Compares two objects, returning true if they are equal.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>Ember.isEqual(<span class=\"string\">&apos;hello&apos;</span>, <span class=\"string\">&apos;hello&apos;</span>);                   <span class=\"regexp\">//</span> <span class=\"keyword\">true</span>\nEmber.isEqual(<span class=\"number\">1</span>, <span class=\"number\">2</span>);                               <span class=\"regexp\">//</span> <span class=\"keyword\">false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>isEqual</code> is a more specific comparison than a triple equal comparison.\nIt will call the <code>isEqual</code> instance method on the objects being\ncompared, allowing finer control over when objects should be considered\nequal to each other.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> Person = Ember.Object.extend({\n  isEqual(other) { return this.ssn == other.ssn; }\n});\n\n<span class=\"keyword\">let</span> personA = Person.create({name: <span class=\"string\">&apos;Muhammad Ali&apos;</span>, ssn: <span class=\"string\">&apos;123-45-6789&apos;</span>});\n<span class=\"keyword\">let</span> personB = Person.create({name: <span class=\"string\">&apos;Cassius Clay&apos;</span>, ssn: <span class=\"string\">&apos;123-45-6789&apos;</span>});\n\nEmber.isEqual(personA, personB); // <span class=\"literal\">true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Due to the expense of array comparisons, collections will never be equal to\neach other even if each of their items are equal to each other.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>Ember.isEqual([<span class=\"number\">4</span>, <span class=\"number\">2</span>], [<span class=\"number\">4</span>, <span class=\"number\">2</span>]);                     <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "isEqual",
+          "params": [
+            {
+              "name": "a",
+              "description": "first object to compare",
+              "type": "Object"
+            },
+            {
+              "name": "b",
+              "description": "second object to compare",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/inspect.js",
+          "line": 5,
+          "description": "<html><head></head><body><p>Convenience method to inspect an object. This method will attempt to\nconvert the object into a useful string description.</p>\n<p>It is a pretty simple implementation. If you want something more robust,\nuse something like JSDump: <a href=\"https://github.com/NV/jsDump\">https://github.com/NV/jsDump</a></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "inspect",
+          "static": 1,
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object you want to inspect.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "A description of the object",
+            "type": "String"
+          },
+          "since": "2.16.0",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/debug",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/invoke.js",
+          "line": 3,
+          "description": "<html><head></head><body><p>Checks to see if the <code>methodName</code> exists on the <code>obj</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> foo = { <span class=\"attr\">bar</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{ <span class=\"keyword\">return</span> <span class=\"string\">&apos;bar&apos;</span>; }, <span class=\"attr\">baz</span>: <span class=\"literal\">null</span> };\n\nEmber.canInvoke(foo, <span class=\"string\">&apos;bar&apos;</span>); <span class=\"comment\">// true</span>\nEmber.canInvoke(foo, <span class=\"string\">&apos;baz&apos;</span>); <span class=\"comment\">// false</span>\nEmber.canInvoke(foo, <span class=\"string\">&apos;bat&apos;</span>); <span class=\"comment\">// false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "canInvoke",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to check for the method",
+              "type": "Object"
+            },
+            {
+              "name": "methodName",
+              "description": "The method name to check for",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/debug",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/invoke.js",
+          "line": 25,
+          "description": "<html><head></head><body><p>Checks to see if the <code>methodName</code> exists on the <code>obj</code>,\nand if it does, invokes it with the arguments passed.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> d = <span class=\"keyword\">new</span> <span class=\"built_in\">Date</span>(<span class=\"string\">&apos;03/15/2013&apos;</span>);\n\nEmber.tryInvoke(d, <span class=\"string\">&apos;getTime&apos;</span>);              <span class=\"comment\">// 1363320000000</span>\nEmber.tryInvoke(d, <span class=\"string\">&apos;setFullYear&apos;</span>, [<span class=\"number\">2014</span>]);  <span class=\"comment\">// 1394856000000</span>\nEmber.tryInvoke(d, <span class=\"string\">&apos;noSuchMethod&apos;</span>, [<span class=\"number\">2014</span>]); <span class=\"comment\">// undefined</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "tryInvoke",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to check for the method",
+              "type": "Object"
+            },
+            {
+              "name": "methodName",
+              "description": "The method name to check for",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "The arguments to pass to the method",
+              "type": "Array",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the return value of the invoked method or undefined if it cannot be invoked",
+            "type": "*"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "@ember/debug",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/super.js",
+          "line": 30,
+          "description": "<html><head></head><body><p>Wraps the passed function so that <code>this._super</code> will point to the superFunc\nwhen the function is invoked. This is the primitive we use to implement\ncalls to super.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "wrap",
+          "params": [
+            {
+              "name": "func",
+              "description": "The function to call",
+              "type": "Function"
+            },
+            {
+              "name": "superFunc",
+              "description": "The super function.",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "wrapped function.",
+            "type": "Function"
+          },
+          "class": "Ember.Ember",
+          "module": "@ember/application",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember/lib/index.js",
+          "line": 228,
+          "description": "<html><head></head><body><p>An empty function useful for some operations. Always returns <code>this</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "K",
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "deprecated": true,
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [
+        {
+          "file": "packages/ember/lib/index.js",
+          "line": 201,
+          "description": "<html><head></head><body><p>A function may be assigned to <code>Ember.onerror</code> to be called when Ember\ninternals encounter an error. This is useful for specialized error handling\nand reporting code.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>Ember.onerror = function(<span class=\"keyword\">error</span>) {\n  Em.$.ajax(&apos;/<span class=\"keyword\">report</span>-<span class=\"keyword\">error</span>&apos;, &apos;<span class=\"keyword\">POST</span>&apos;, {\n    <span class=\"keyword\">stack</span>: <span class=\"keyword\">error</span>.<span class=\"keyword\">stack</span>,\n    otherInformation: &apos;whatever <span class=\"keyword\">app</span> state you want to provide&apos;\n  });\n};</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Internally, <code>Ember.onerror</code> is used as Backburner&apos;s error handler.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "onerror",
+          "params": [
+            {
+              "name": "error",
+              "description": "the error object",
+              "type": "Exception"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "properties": [
+        {
+          "file": "packages/ember-utils/lib/guid.js",
+          "line": 27,
+          "description": "<html><head></head><body><p>Prefix used for guids through out Ember.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "GUID_PREFIX",
+          "type": "String",
+          "final": 1,
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/guid.js",
+          "line": 41,
+          "description": "<html><head></head><body><p>A unique key used to assign guids and other private metadata to objects.\nIf you inspect an object in your browser debugger you will often see these.\nThey can be safely ignored.</p>\n<p>On browsers that support it, these properties are added with enumeration\ndisabled so they won&apos;t show up when you iterate over your properties.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "GUID_KEY",
+          "type": "String",
+          "final": 1,
+          "class": "Ember.Ember",
+          "module": "@ember/object",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember/lib/index.js",
+          "line": 420,
+          "description": "<html><head></head><body><p>Defines the hash of localized strings for the current language. Used by\nthe <code>Ember.String.loc()</code> helper. To localize, add string values to this\nhash.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "STRINGS",
+          "type": "Object",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember/lib/index.js",
+          "line": 436,
+          "description": "<html><head></head><body><p>Whether searching on the global for new Namespace instances is enabled.</p>\n<p>This is only exported here as to not break any addons.  Given the new\nvisit API, you will have issues if you treat this as a indicator of\nbooted.</p>\n<p>Internally this is only exposing a flag in Namespace.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "BOOTED",
+          "type": "Boolean",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember/lib/index.js",
+          "line": 502,
+          "description": "<html><head></head><body><p>Global hash of shared templates. This will automatically be populated\nby the build tools so that you can store your Handlebars templates in\nseparate files that get loaded into JavaScript at buildtime.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "TEMPLATES",
+          "type": "Object",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember/lib/index.js",
+          "line": 522,
+          "description": "<html><head></head><body><p>The semantic version</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "VERSION",
+          "type": "String",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Ember",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-jquery",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

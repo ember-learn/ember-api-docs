@@ -1,0 +1,67 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/polyfills",
+    "type": "module",
+    "attributes": {
+      "name": "@ember/polyfills",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "@ember/polyfills": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember-utils/lib/assign.js",
+      "line": 1,
+      "parent": null,
+      "publicclasses": [],
+      "privateclasses": [],
+      "staticfunctions": {
+        "@ember/polyfills": [
+          {
+            "file": "packages/ember-metal/lib/merge.js",
+            "line": 4,
+            "description": "Merge the contents of two objects together into the first object.\n\n```javascript\nimport { merge } from '@ember/polyfills';\n\nmerge({ first: 'Tom' }, { last: 'Dale' }); // { first: 'Tom', last: 'Dale' }\nvar a = { first: 'Yehuda' };\nvar b = { last: 'Katz' };\nmerge(a, b); // a == { first: 'Yehuda', last: 'Katz' }, b == { last: 'Katz' }\n```",
+            "itemtype": "method",
+            "name": "merge",
+            "static": 1,
+            "params": [
+              {
+                "name": "original",
+                "description": "The object to merge into",
+                "type": "Object"
+              },
+              {
+                "name": "updates",
+                "description": "The object to copy properties from",
+                "type": "Object"
+              }
+            ],
+            "return": {
+              "description": "",
+              "type": "Object"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "@ember/polyfills",
+            "module": "@ember/polyfills",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

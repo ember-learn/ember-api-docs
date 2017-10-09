@@ -1,0 +1,160 @@
+{
+  "data": {
+    "id": "ember-2.16.0-ApplicationInstance.BootOptions",
+    "type": "class",
+    "attributes": {
+      "name": "ApplicationInstance.BootOptions",
+      "shortname": "ApplicationInstance.BootOptions",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/application",
+      "namespace": "ApplicationInstance",
+      "file": "packages/ember-application/lib/system/application-instance.js",
+      "line": 299,
+      "description": "<html><head></head><body><p>A list of boot-time configuration options for customizing the behavior of\nan <code>Ember.ApplicationInstance</code>.</p>\n<p>This is an interface class that exists purely to document the available\noptions; you do not need to construct it manually. Simply pass a regular\nJavaScript object containing the desired options into methods that require\none of these options object:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>MyApp.visit(<span class=\"string\">&quot;/&quot;</span>, { <span class=\"string\">location:</span> <span class=\"string\">&quot;none&quot;</span>, <span class=\"string\">rootElement:</span> <span class=\"string\">&quot;#container&quot;</span> });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Not all combinations of the supported options are valid. See the documentation\non <code>Ember.Application#visit</code> for the supported configurations.</p>\n<p>Internal, experimental or otherwise unstable flags are marked as private.</p>\n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 322,
+          "description": "<html><head></head><body><p>Provide a specific instance of jQuery. This is useful in conjunction with\nthe <code>document</code> option, as it allows you to use a copy of <code>jQuery</code> that is\nappropriately bound to the foreign <code>document</code> (e.g. a jsdom).</p>\n<p>This is highly experimental and support very incomplete at the moment.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "jQuery",
+          "type": "Object",
+          "default": "auto-detected",
+          "access": "private",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 336,
+          "description": "<html><head></head><body><p>Interactive mode: whether we need to set up event delegation and invoke\nlifecycle callbacks on Components.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isInteractive",
+          "type": "boolean",
+          "default": "auto-detected",
+          "access": "private",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 347,
+          "description": "<html><head></head><body><p>Run in a full browser environment.</p>\n<p>When this flag is set to <code>false</code>, it will disable most browser-specific\nand interactive features. Specifically:</p>\n<ul>\n<li><p>It does not use <code>jQuery</code> to append the root view; the <code>rootElement</code>\n(either specified as a subsequent option or on the application itself)\nmust already be an <code>Element</code> in the given <code>document</code> (as opposed to a\nstring selector).</p>\n</li>\n<li><p>It does not set up an <code>EventDispatcher</code>.</p>\n</li>\n<li><p>It does not run any <code>Component</code> lifecycle hooks (such as <code>didInsertElement</code>).</p>\n</li>\n<li><p>It sets the <code>location</code> option to <code>&quot;none&quot;</code>. (If you would like to use\nthe location adapter specified in the app&apos;s router instead, you can also\nspecify <code>{ location: null }</code> to specifically opt-out.)</p>\n</li>\n</ul>\n</body></html>",
+          "itemtype": "property",
+          "name": "isBrowser",
+          "type": "boolean",
+          "default": "auto-detected",
+          "access": "public",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 383,
+          "description": "<html><head></head><body><p>Disable rendering completely.</p>\n<p>When this flag is set to <code>true</code>, it will disable the entire rendering\npipeline. Essentially, this puts the app into &quot;routing-only&quot; mode. No\ntemplates will be rendered, and no Components will be created.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "shouldRender",
+          "type": "boolean",
+          "default": "true",
+          "access": "public",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 406,
+          "description": "<html><head></head><body><p>If present, render into the given <code>Document</code> object instead of the\nglobal <code>window.document</code> object.</p>\n<p>In practice, this is only useful in non-browser environment or in\nnon-interactive mode, because Ember&apos;s <code>jQuery</code> dependency is\nimplicitly bound to the current document, causing event delegation\nto not work properly when the app is rendered into a foreign\ndocument object (such as an iframe&apos;s <code>contentDocument</code>).</p>\n<p>In non-browser mode, this could be a &quot;<code>Document</code>-like&quot; object as\nEmber only interact with a small subset of the DOM API in non-\ninteractive mode. While the exact requirements have not yet been\nformalized, the <code>SimpleDOM</code> library&apos;s implementation is known to\nwork.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "document",
+          "type": "Document",
+          "default": "the global `document` object",
+          "access": "public",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 433,
+          "description": "<html><head></head><body><p>If present, overrides the application&apos;s <code>rootElement</code> property on\nthe instance. This is useful for testing environment, where you\nmight want to append the root view to a fixture area.</p>\n<p>In non-browser mode, because Ember does not have access to jQuery,\nthis options must be specified as a DOM <code>Element</code> object instead of\na selector string.</p>\n<p>See the documentation on <code>Ember.Applications</code>&apos;s <code>rootElement</code> for\ndetails.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "rootElement",
+          "type": "String|Element",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-application/lib/system/application-instance.js",
+          "line": 458,
+          "description": "<html><head></head><body><p>If present, overrides the router&apos;s <code>location</code> property with this\nvalue. This is useful for environments where trying to modify the\nURL would be inappropriate.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "location",
+          "type": "string",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "ApplicationInstance.BootOptions",
+          "module": "@ember/application",
+          "namespace": "ApplicationInstance",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/application",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

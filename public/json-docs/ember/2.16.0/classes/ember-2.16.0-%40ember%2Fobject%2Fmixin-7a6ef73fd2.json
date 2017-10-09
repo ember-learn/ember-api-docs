@@ -1,0 +1,125 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/object/mixin",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/object/mixin",
+      "shortname": "@ember/object/mixin",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 501,
+          "itemtype": "method",
+          "name": "create",
+          "static": 1,
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/object/mixin",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 530,
+          "itemtype": "method",
+          "name": "reopen",
+          "params": [
+            {
+              "name": "arguments",
+              "description": "",
+              "multiple": true
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/object/mixin",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 567,
+          "itemtype": "method",
+          "name": "apply",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "applied object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/object/mixin",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-metal/lib/mixin.js",
+          "line": 581,
+          "itemtype": "method",
+          "name": "detect",
+          "params": [
+            {
+              "name": "obj",
+              "description": ""
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/object/mixin",
+          "module": "@ember/object",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

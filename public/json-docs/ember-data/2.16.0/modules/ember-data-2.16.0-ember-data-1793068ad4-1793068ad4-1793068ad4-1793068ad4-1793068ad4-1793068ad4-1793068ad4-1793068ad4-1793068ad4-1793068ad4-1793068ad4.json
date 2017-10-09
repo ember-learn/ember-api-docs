@@ -1,0 +1,94 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-ember-data",
+    "type": "module",
+    "attributes": {
+      "name": "ember-data",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "DS.Model": 1,
+        "DS": 1,
+        "String": 1,
+        "DS.String": 1,
+        "Ember.HTMLBars.helpers": 1
+      },
+      "namespaces": {
+        "DS": 1,
+        "Ember": 1
+      },
+      "tag": "main",
+      "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+      "line": 32,
+      "description": "<html><head></head><body><p>Ember Data</p>\n</body></html>",
+      "itemtype": "main",
+      "parent": null,
+      "publicclasses": [
+        "DS.BuildURLMixin",
+        "DS.AdapterError",
+        "DS.InvalidError",
+        "DS.TimeoutError",
+        "DS.AbortError",
+        "DS.UnauthorizedError",
+        "DS.ForbiddenError",
+        "DS.NotFoundError",
+        "DS.ConflictError",
+        "DS.ServerError",
+        "DS",
+        "DS.Errors",
+        "DS.Model",
+        "DS.RootState",
+        "DS.AdapterPopulatedRecordArray",
+        "DS.FilteredRecordArray",
+        "DS.RecordArray",
+        "DS.BelongsToReference",
+        "DS.HasManyReference",
+        "DS.RecordReference",
+        "DS.ManyArray",
+        "DS.PromiseArray",
+        "DS.PromiseObject",
+        "DS.PromiseManyArray",
+        "DS.Store",
+        "DS.JSONAPIAdapter",
+        "DS.RESTAdapter",
+        "DS.EmbeddedRecordsMixin",
+        "DS.JSONAPISerializer",
+        "DS.JSONSerializer",
+        "DS.RESTSerializer",
+        "DS.BooleanTransform",
+        "DS.DateTransform",
+        "DS.NumberTransform",
+        "DS.StringTransform",
+        "DS.Transform",
+        "DS.Adapter",
+        "DS.Serializer",
+        "DS.String",
+        "DS.Ember.HTMLBars.helpers",
+        "Ember.HTMLBars.helpers",
+        "Ember.Inflector"
+      ],
+      "privateclasses": [
+        "RelationshipPayloadsManager",
+        "RelationshipPayloads",
+        "IdentityMap",
+        "InternalModelMap",
+        "DS.RecordArrayManager",
+        "DS.SnapshotRecordArray",
+        "DS.Snapshot",
+        "Ember.Date"
+      ],
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

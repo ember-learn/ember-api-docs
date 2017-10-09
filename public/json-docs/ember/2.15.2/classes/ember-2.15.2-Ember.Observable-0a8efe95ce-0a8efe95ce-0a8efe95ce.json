@@ -1,0 +1,512 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Observable",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Observable",
+      "shortname": "Ember.Observable",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Ember.NativeArray",
+        "Ember.Object"
+      ],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/observable.js",
+      "line": 26,
+      "description": "<html><head></head><body><h2 id=\"overview\">Overview</h2>\n<p>This mixin provides properties and property observing functionality, core\nfeatures of the Ember object model.</p>\n<p>Properties and observers allow one object to observe changes to a\nproperty on another object. This is one of the fundamental ways that\nmodels, controllers and views communicate with each other in an Ember\napplication.</p>\n<p>Any object that has this mixin applied can be used in observer\noperations. That includes <code>Ember.Object</code> and most objects you will\ninteract with as you write your Ember application.</p>\n<p>Note that you will not generally apply this mixin to classes yourself,\nbut you will use the features provided by this module frequently, so it\nis important to understand how to use it.</p>\n<h2 id=\"using-get-and-set-\">Using <code>get()</code> and <code>set()</code></h2>\n<p>Because of Ember&apos;s support for bindings and observers, you will always\naccess properties using the get method, and set properties using the\nset method. This allows the observing objects to be notified and\ncomputed properties to be handled properly.</p>\n<p>More documentation about <code>get</code> and <code>set</code> are below.</p>\n<h2 id=\"observing-property-changes\">Observing Property Changes</h2>\n<p>You typically observe property changes simply by using the <code>Ember.observer</code>\nfunction in classes that you write.</p>\n<p>For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Object</span><span class=\"selector-class\">.extend</span>({\n  <span class=\"attribute\">valueObserver</span>: Ember.<span class=\"built_in\">observer</span>(<span class=\"string\">&apos;value&apos;</span>, function(sender, key, value, rev) {\n    // Executes whenever the <span class=\"string\">&quot;value&quot;</span> property changes\n    // See the addObserver method for more information about the callback arguments\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Although this is the most common way to add an observer, this capability\nis actually built into the <code>Ember.Object</code> class on top of two methods\ndefined in this mixin: <code>addObserver</code> and <code>removeObserver</code>. You can use\nthese two methods to add and remove observers yourself if you need to\ndo so at runtime.</p>\n<p>To add an observer for a property, call:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">object</span>.addObserver(<span class=\"string\">&apos;propertyKey&apos;</span>, targetObject, targetAction)</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This will call the <code>targetAction</code> method on the <code>targetObject</code> whenever\nthe value of the <code>propertyKey</code> changes.</p>\n<p>Note that if <code>propertyKey</code> is a computed property, the observer will be\ncalled when any of the property dependencies are changed, even if the\nresulting value of the computed property is unchanged. This is necessary\nbecause computed properties are not computed until <code>get</code> is called.</p>\n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 96,
+          "description": "<html><head></head><body><p>Retrieves the value of a property from the object.</p>\n<p>This method is usually similar to using <code>object[keyName]</code> or <code>object.keyName</code>,\nhowever it supports both computed properties and the unknownProperty\nhandler.</p>\n<p>Because <code>get</code> unifies the syntax for accessing all these kinds\nof properties, it can make many refactorings easier, such as replacing a\nsimple property with a computed property, or vice versa.</p>\n<h3 id=\"computed-properties\">Computed Properties</h3>\n<p>Computed properties are methods defined with the <code>property</code> modifier\ndeclared at the end, such as:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>fullName: Ember.computed(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, function() {\n  <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstName&apos;</span>) + <span class=\"string\">&apos; &apos;</span> + <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastName&apos;</span>);\n})</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>When you call <code>get</code> on a computed property, the function will be\ncalled and the return value will be returned instead of the function\nitself.</p>\n<h3 id=\"unknown-properties\">Unknown Properties</h3>\n<p>Likewise, if you try to call <code>get</code> on a property whose value is\n<code>undefined</code>, the <code>unknownProperty()</code> method will be called on the object.\nIf this method returns any value other than <code>undefined</code>, it will be returned\ninstead. This allows you to implement &quot;virtual&quot; properties that are\nnot defined upfront.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "get",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property to retrieve",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The property value or undefined.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 139,
+          "description": "<html><head></head><body><p>To get the values of multiple properties at once, call <code>getProperties</code>\nwith a list of strings or an array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>record.getProperties(<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;zipCode&apos;</span>);\n<span class=\"regexp\">//</span> { firstName: <span class=\"string\">&apos;John&apos;</span>, lastName: <span class=\"string\">&apos;Doe&apos;</span>, zipCode: <span class=\"string\">&apos;10011&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>is equivalent to:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>record.getProperties([<span class=\"string\">&apos;firstName&apos;</span>, <span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;zipCode&apos;</span>]);\n<span class=\"regexp\">//</span> { firstName: <span class=\"string\">&apos;John&apos;</span>, lastName: <span class=\"string\">&apos;Doe&apos;</span>, zipCode: <span class=\"string\">&apos;10011&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getProperties",
+          "params": [
+            {
+              "name": "list",
+              "description": "of keys to get",
+              "type": "String...|Array"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 164,
+          "description": "<html><head></head><body><p>Sets the provided key or path to the value.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">record</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&quot;key&quot;</span>, value);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method is generally very similar to calling <code>object[&quot;key&quot;] = value</code> or\n<code>object.key = value</code>, except that it provides support for computed\nproperties, the <code>setUnknownProperty()</code> method and property observers.</p>\n<h3 id=\"computed-properties\">Computed Properties</h3>\n<p>If you try to set a value on a key that has a computed property handler\ndefined (see the <code>get()</code> method for an example), then <code>set()</code> will call\nthat method, passing both the value and key instead of simply changing\nthe value itself. This is useful for those times when you need to\nimplement a property that is composed of one or more member\nproperties.</p>\n<h3 id=\"unknown-properties\">Unknown Properties</h3>\n<p>If you try to set a value on a key that is undefined in the target\nobject, then the <code>setUnknownProperty()</code> handler will be called instead. This\ngives you an opportunity to implement complex &quot;virtual&quot; properties that\nare not predefined on the object. If <code>setUnknownProperty()</code> returns\nundefined, then <code>set()</code> will simply set the value on the object.</p>\n<h3 id=\"property-observers\">Property Observers</h3>\n<p>In addition to changing the property, <code>set()</code> will also register a property\nchange with the object. Unless you have placed this call inside of a\n<code>beginPropertyChanges()</code> and <code>endPropertyChanges(),</code> any &quot;local&quot; observers\n(i.e. observer methods declared on the same object), will be called\nimmediately. Any &quot;remote&quot; observers (i.e. observer methods declared on\nanother object) will be placed in a queue and called at a later time in a\ncoalesced manner.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "set",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property to set",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "The value to set or `null`.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The passed value",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 213,
+          "description": "<html><head></head><body><p>Sets a list of properties at once. These properties are set inside\na single <code>beginPropertyChanges</code> and <code>endPropertyChanges</code> batch, so\nobservers will be buffered.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">record</span><span class=\"selector-class\">.setProperties</span>({ <span class=\"attribute\">firstName</span>: <span class=\"string\">&apos;Charles&apos;</span>, lastName: <span class=\"string\">&apos;Jolley&apos;</span> });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "setProperties",
+          "params": [
+            {
+              "name": "hash",
+              "description": "the hash of keys and values to set",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The passed in hash",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 231,
+          "description": "<html><head></head><body><p>Begins a grouping of property changes.</p>\n<p>You can use this method to group property changes so that notifications\nwill not be sent until the changes are finished. If you plan to make a\nlarge number of changes to an object at one time, you should call this\nmethod at the beginning of the changes to begin deferring change\nnotifications. When you are done making changes, call\n<code>endPropertyChanges()</code> to deliver the deferred change notifications and end\ndeferring.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "beginPropertyChanges",
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 251,
+          "description": "<html><head></head><body><p>Ends a grouping of property changes.</p>\n<p>You can use this method to group property changes so that notifications\nwill not be sent until the changes are finished. If you plan to make a\nlarge number of changes to an object at one time, you should call\n<code>beginPropertyChanges()</code> at the beginning of the changes to defer change\nnotifications. When you are done making changes, call this method to\ndeliver the deferred change notifications and end deferring.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "endPropertyChanges",
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 270,
+          "description": "<html><head></head><body><p>Notify the observer system that a property is about to change.</p>\n<p>Sometimes you need to change a value directly or indirectly without\nactually calling <code>get()</code> or <code>set()</code> on it. In this case, you can use this\nmethod and <code>propertyDidChange()</code> instead. Calling these two methods\ntogether will notify all observers that the property has potentially\nchanged value.</p>\n<p>Note that you must always call <code>propertyWillChange</code> and <code>propertyDidChange</code>\nas a pair. If you do not, it may get the property change groups out of\norder and cause notifications to be delivered more often than you would\nlike.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "propertyWillChange",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property key that is about to change.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 294,
+          "description": "<html><head></head><body><p>Notify the observer system that a property has just changed.</p>\n<p>Sometimes you need to change a value directly or indirectly without\nactually calling <code>get()</code> or <code>set()</code> on it. In this case, you can use this\nmethod and <code>propertyWillChange()</code> instead. Calling these two methods\ntogether will notify all observers that the property has potentially\nchanged value.</p>\n<p>Note that you must always call <code>propertyWillChange</code> and <code>propertyDidChange</code>\nas a pair. If you do not, it may get the property change groups out of\norder and cause notifications to be delivered more often than you would\nlike.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "propertyDidChange",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property key that has just changed.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 318,
+          "description": "<html><head></head><body><p>Convenience method to call <code>propertyWillChange</code> and <code>propertyDidChange</code> in\nsuccession.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "notifyPropertyChange",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The property key to be notified about.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Observable"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 333,
+          "description": "<html><head></head><body><p>Adds an observer on a property.</p>\n<p>This is the core method used to register an observer for a property.</p>\n<p>Once you call this method, any time the key&apos;s value is set, your observer\nwill be notified. Note that the observers are triggered any time the\nvalue is set, regardless of whether it has actually changed. Your\nobserver should be prepared to handle that.</p>\n<h3 id=\"observer-methods\">Observer Methods</h3>\n<p>Observer methods have the following signature:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>export <span class=\"keyword\">default</span> Ember.Component.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n    <span class=\"keyword\">this</span>.addObserver(<span class=\"string\">&apos;foo&apos;</span>, <span class=\"keyword\">this</span>, <span class=\"string\">&apos;fooDidChange&apos;</span>);\n  },\n\n  fooDidChange(sender, key, value, rev) {\n    <span class=\"comment\">// your code</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>sender</code> is the object that changed. The <code>key</code> is the property that\nchanges. The <code>value</code> property is currently reserved and unused. The <code>rev</code>\nis the last property revision of the object when it changed, which you can\nuse to detect if the key value has really changed or not.</p>\n<p>Usually you will not need the value or revision parameters at\nthe end. In this case, it is common to write observer methods that take\nonly a sender and key value as parameters or, if you aren&apos;t interested in\nany of these values, to write an observer that has no parameters at all.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addObserver",
+          "params": [
+            {
+              "name": "key",
+              "description": "The key to observe",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target object to invoke",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke",
+              "type": "String|Function"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 380,
+          "description": "<html><head></head><body><p>Remove an observer you have previously registered on this object. Pass\nthe same key, target, and method you passed to <code>addObserver()</code> and your\ntarget will no longer receive notifications.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeObserver",
+          "params": [
+            {
+              "name": "key",
+              "description": "The key to observe",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target object to invoke",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The method to invoke",
+              "type": "String|Function"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 395,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the object currently has observers registered for a\nparticular key. You can use this method to potentially defer performing\nan expensive action until someone begins observing a particular property\non the object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "hasObserverFor",
+          "params": [
+            {
+              "name": "key",
+              "description": "Key to check",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 410,
+          "description": "<html><head></head><body><p>Retrieves the value of a property, or a default value in the case that the\nproperty returns <code>undefined</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">person</span><span class=\"selector-class\">.getWithDefault</span>(<span class=\"string\">&apos;lastName&apos;</span>, <span class=\"string\">&apos;Doe&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getWithDefault",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to retrieve",
+              "type": "String"
+            },
+            {
+              "name": "defaultValue",
+              "description": "The value to return if the property value is undefined",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "The property value or the defaultValue.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 428,
+          "description": "<html><head></head><body><p>Set the value of a property to the current value plus some amount.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">person</span><span class=\"selector-class\">.incrementProperty</span>(<span class=\"string\">&apos;age&apos;</span>);\n<span class=\"selector-tag\">team</span><span class=\"selector-class\">.incrementProperty</span>(<span class=\"string\">&apos;score&apos;</span>, <span class=\"number\">2</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "incrementProperty",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to increment",
+              "type": "String"
+            },
+            {
+              "name": "increment",
+              "description": "The amount to increment by. Defaults to 1",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "The new property value",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 448,
+          "description": "<html><head></head><body><p>Set the value of a property to the current value minus some amount.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">player</span><span class=\"selector-class\">.decrementProperty</span>(<span class=\"string\">&apos;lives&apos;</span>);\n<span class=\"selector-tag\">orc</span><span class=\"selector-class\">.decrementProperty</span>(<span class=\"string\">&apos;health&apos;</span>, <span class=\"number\">5</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "decrementProperty",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to decrement",
+              "type": "String"
+            },
+            {
+              "name": "decrement",
+              "description": "The amount to decrement by. Defaults to 1",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "The new property value",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 468,
+          "description": "<html><head></head><body><p>Set the value of a boolean property to the opposite of its\ncurrent value.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">starship</span><span class=\"selector-class\">.toggleProperty</span>(<span class=\"string\">&apos;warpDriveEngaged&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "toggleProperty",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "The name of the property to toggle",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The new property value",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/observable.js",
+          "line": 485,
+          "description": "<html><head></head><body><p>Returns the cached value of a computed property, if it exists.\nThis allows you to inspect the value of a computed property\nwithout accidentally invoking it if it is intended to be\ngenerated lazily.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "cacheFor",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The cached value of the computed property, if any",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Observable",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

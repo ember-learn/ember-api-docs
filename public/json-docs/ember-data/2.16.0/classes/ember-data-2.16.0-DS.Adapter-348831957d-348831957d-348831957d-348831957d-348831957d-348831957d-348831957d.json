@@ -1,0 +1,568 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.Adapter",
+    "type": "class",
+    "attributes": {
+      "name": "DS.Adapter",
+      "shortname": "DS.Adapter",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/adapter.js",
+      "line": 7,
+      "description": "<html><head></head><body><p>An adapter is an object that receives requests from a store and\ntranslates them into the appropriate action to take against your\npersistence layer. The persistence layer is usually an HTTP API, but\nmay be anything, such as the browser&apos;s local storage. Typically the\nadapter is not invoked directly instead its functionality is accessed\nthrough the <code>store</code>.</p>\n<h3 id=\"creating-an-adapter\">Creating an Adapter</h3>\n<p>Create a new subclass of <code>DS.Adapter</code> in the <code>app/adapters</code> folder:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  <span class=\"comment\">// ...your code here</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Model-specific adapters can be created by putting your adapter\nclass in an <code>app/adapters/</code> + <code>model-name</code> + <code>.js</code> file of the application.</p>\n<div class=\"highlight app/adapters/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  <span class=\"comment\">// ...Post-specific adapter code goes here</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>DS.Adapter</code> is an abstract base class that you should override in your\napplication to customize it for your backend. The minimum set of methods\nthat you should implement is:</p>\n<ul>\n<li><code>findRecord()</code></li>\n<li><code>createRecord()</code></li>\n<li><code>updateRecord()</code></li>\n<li><code>deleteRecord()</code></li>\n<li><code>findAll()</code></li>\n<li><code>query()</code></li>\n</ul>\n<p>To improve the network performance of your application, you can optimize\nyour adapter by overriding these lower-level methods:</p>\n<ul>\n<li><code>findMany()</code></li>\n</ul>\n<p>For an example implementation, see <code>DS.RESTAdapter</code>, the\nincluded REST adapter.</p>\n</body></html>",
+      "extends": "Ember.Object",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/adapter.js",
+          "line": 87,
+          "description": "<html><head></head><body><p>The <code>findRecord()</code> method is invoked when the store is asked for a record that\nhas not previously been loaded. In response to <code>findRecord()</code> being called, you\nshould query your persistence layer for a record with the given ID. The <code>findRecord</code>\nmethod should return a promise that will resolve to a JavaScript object that will be\nnormalized by the serializer.</p>\n<p>Here is an example <code>findRecord</code> implementation:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  findRecord(store, type, id, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/<span class=\"subst\">${id}</span>`</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "findRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 122,
+          "description": "<html><head></head><body><p>The <code>findAll()</code> method is used to retrieve all records for a given type.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  findAll(store, type, sinceToken) {\n    <span class=\"keyword\">let</span> query = { <span class=\"attr\">since</span>: sinceToken };\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>, query).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "findAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "sinceToken",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 155,
+          "description": "<html><head></head><body><p>This method is called when you call <code>query</code> on the store.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  query(store, type, query) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>, query).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "query",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "DS.Model"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "recordArray",
+              "description": "",
+              "type": "DS.AdapterPopulatedRecordArray"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 186,
+          "description": "<html><head></head><body><p>The <code>queryRecord()</code> method is invoked when the store is asked for a single\nrecord through a query object.</p>\n<p>In response to <code>queryRecord()</code> being called, you should always fetch fresh\ndata. Once found, you can asynchronously call the store&apos;s <code>push()</code> method\nto push the record into the store.</p>\n<p>Here is an example <code>queryRecord</code> implementation:</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend(DS.BuildURLMixin, {\n  queryRecord(store, type, query) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.getJSON(<span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>, query).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        resolve(data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        reject(jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "queryRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "",
+              "type": "subclass of DS.Model"
+            },
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 223,
+          "description": "<html><head></head><body><p>If the globally unique IDs for your records should be generated on the client,\nimplement the <code>generateIdForRecord()</code> method. This method will be invoked\neach time you create a new record, and the value returned from it will be\nassigned to the record&apos;s <code>primaryKey</code>.</p>\n<p>Most traditional REST-like HTTP APIs will not use this method. Instead, the ID\nof the record will be set by the server, and your adapter will update the store\nwith the new ID when it calls <code>didCreateRecord()</code>. Only implement this method if\nyou intend to generate record IDs on the client-side.</p>\n<p>The <code>generateIdForRecord()</code> method will be invoked with the requesting store as\nthe first parameter and the newly created record as the second parameter:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n<span class=\"keyword\">import</span> { v4 } <span class=\"keyword\">from</span> <span class=\"string\">&apos;uuid&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  generateIdForRecord(store, inputProperties) {\n    <span class=\"keyword\">return</span> v4();\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "generateIdForRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "inputProperties",
+              "description": "a hash of properties to set on the\n  newly created record.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "id",
+            "type": "(String|Number)"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 257,
+          "description": "<html><head></head><body><p>Proxies to the serializer&apos;s <code>serialize</code> method.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  createRecord(store, <span class=\"keyword\">type</span>, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { includeId: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">let</span> url = <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>;\n\n    <span class=\"comment\">// ...</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "serialized snapshot",
+            "type": "Object"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 284,
+          "description": "<html><head></head><body><p>Implement this method in a subclass to handle the creation of\nnew records.</p>\n<p>Serializes the record and sends it to the server.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  createRecord(store, type, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { <span class=\"attr\">includeId</span>: <span class=\"literal\">true</span> });\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;POST&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: data\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "createRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 325,
+          "description": "<html><head></head><body><p>Implement this method in a subclass to handle the updating of\na record.</p>\n<p>Serializes the record update and sends it to the server.</p>\n<p>The updateRecord method is expected to return a promise that will\nresolve with the serialized record. This allows the backend to\ninform the Ember Data store the current state of this record after\nthe update. If it is not possible to return a serialized record\nthe updateRecord promise can also resolve with <code>undefined</code> and the\nEmber Data store will assume all of the updates were successfully\napplied on the backend.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  updateRecord(store, type, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { <span class=\"attr\">includeId</span>: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">let</span> id = snapshot.id;\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;PUT&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/<span class=\"subst\">${id}</span>`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: data\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "updateRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 375,
+          "description": "<html><head></head><body><p>Implement this method in a subclass to handle the deletion of\na record.</p>\n<p>Sends a delete request for the record to the server.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  deleteRecord(store, type, snapshot) {\n    <span class=\"keyword\">let</span> data = <span class=\"keyword\">this</span>.serialize(snapshot, { <span class=\"attr\">includeId</span>: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">let</span> id = snapshot.id;\n\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;DELETE&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/<span class=\"subst\">${id}</span>`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: data\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deleteRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the record",
+              "type": "DS.Model"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 428,
+          "description": "<html><head></head><body><p>The store will call <code>findMany</code> instead of multiple <code>findRecord</code>\nrequests to find multiple records at once if coalesceFindRequests\nis true.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  findMany(store, type, ids, snapshots) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Ember.RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n      Ember.$.ajax({\n        <span class=\"attr\">type</span>: <span class=\"string\">&apos;GET&apos;</span>,\n        <span class=\"attr\">url</span>: <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>/`</span>,\n        <span class=\"attr\">dataType</span>: <span class=\"string\">&apos;json&apos;</span>,\n        <span class=\"attr\">data</span>: { <span class=\"attr\">filter</span>: { <span class=\"attr\">id</span>: ids.join(<span class=\"string\">&apos;,&apos;</span>) } }\n      }).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>) </span>{\n        Ember.run(<span class=\"literal\">null</span>, resolve, data);\n      }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">jqXHR</span>) </span>{\n        jqXHR.then = <span class=\"literal\">null</span>; <span class=\"comment\">// tame jQuery&apos;s ill mannered promises</span>\n        Ember.run(<span class=\"literal\">null</span>, reject, jqXHR);\n      });\n    });\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "findMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "type",
+              "description": "the DS.Model class of the records",
+              "type": "DS.Model"
+            },
+            {
+              "name": "ids",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "promise",
+            "type": "Promise"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 465,
+          "description": "<html><head></head><body><p>Organize records into groups, each of which is to be passed to separate\ncalls to <code>findMany</code>.</p>\n<p>For example, if your api has nested URLs that depend on the parent, you will\nwant to group records by their parent.</p>\n<p>The default implementation returns the records as a single group.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "groupRecordsForFindMany",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "an array of arrays of records, each of which is to be\n                  loaded separately by `findMany`.",
+            "type": "Array"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 485,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload a record from the adapter when a record is requested by\n<code>store.findRecord</code>.</p>\n<p>If this method returns <code>true</code>, the store will re-fetch a record from\nthe adapter. If this method returns <code>false</code>, the store will resolve\nimmediately using the cached record.</p>\n<p>For example, if you are building an events ticketing system, in which users\ncan only reserve tickets for 20 minutes at a time, and want to ensure that\nin each route you have data that is no more than 20 minutes old you could\nwrite:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>shouldReloadRecord(store, ticketSnapshot) {\n  <span class=\"built_in\">let</span> lastAccessedAt = ticketSnapshot.attr(<span class=\"string\">&apos;lastAccessedAt&apos;</span>);\n  <span class=\"built_in\">let</span> timeDiff = moment().diff(lastAccessedAt, <span class=\"string\">&apos;minutes&apos;</span>);\n\n  <span class=\"keyword\">if</span> (timeDiff &gt; 20) {\n    <span class=\"built_in\">return</span> <span class=\"literal\">true</span>;\n  } <span class=\"keyword\">else</span> {\n    <span class=\"built_in\">return</span> <span class=\"literal\">false</span>;\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method would ensure that whenever you do <code>store.findRecord(&apos;ticket&apos;,\nid)</code> you will always get a ticket that is no more than 20 minutes old. In\ncase the cached version is more than 20 minutes old, <code>findRecord</code> will not\nresolve until you fetched the latest version.</p>\n<p>By default this hook returns <code>false</code>, as most UIs should not block user\ninteractions while waiting on data update.</p>\n<p>Note that, with default settings, <code>shouldBackgroundReloadRecord</code> will always\nre-fetch the records in the background even if <code>shouldReloadRecord</code> returns\n<code>false</code>. You can override <code>shouldBackgroundReloadRecord</code> if this does not\nsuit your use case.</p>\n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "shouldReloadRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 535,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload all records from the adapter when records are requested by\n<code>store.findAll</code>.</p>\n<p>If this method returns <code>true</code>, the store will re-fetch all records from\nthe adapter. If this method returns <code>false</code>, the store will resolve\nimmediately using the cached records.</p>\n<p>For example, if you are building an events ticketing system, in which users\ncan only reserve tickets for 20 minutes at a time, and want to ensure that\nin each route you have data that is no more than 20 minutes old you could\nwrite:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>shouldReloadAll(store, snapshotArray) {\n  <span class=\"keyword\">let</span> snapshots = snapshotArray.snapshots();\n\n  <span class=\"keyword\">return</span> snapshots.any(<span class=\"function\">(<span class=\"params\">ticketSnapshot</span>) =&gt;</span> {\n    <span class=\"keyword\">let</span> lastAccessedAt = ticketSnapshot.attr(<span class=\"string\">&apos;lastAccessedAt&apos;</span>);\n    <span class=\"keyword\">let</span> timeDiff = moment().diff(lastAccessedAt, <span class=\"string\">&apos;minutes&apos;</span>);\n\n    <span class=\"keyword\">if</span> (timeDiff &gt; <span class=\"number\">20</span>) {\n      <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n    } <span class=\"keyword\">else</span> {\n      <span class=\"keyword\">return</span> <span class=\"literal\">false</span>;\n    }\n  });\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This method would ensure that whenever you do <code>store.findAll(&apos;ticket&apos;)</code> you\nwill always get a list of tickets that are no more than 20 minutes old. In\ncase a cached version is more than 20 minutes old, <code>findAll</code> will not\nresolve until you fetched the latest versions.</p>\n<p>By default this methods returns <code>true</code> if the passed <code>snapshotRecordArray</code>\nis empty (meaning that there are no records locally available yet),\notherwise it returns <code>false</code>.</p>\n<p>Note that, with default settings, <code>shouldBackgroundReloadAll</code> will always\nre-fetch all the records in the background even if <code>shouldReloadAll</code> returns\n<code>false</code>. You can override <code>shouldBackgroundReloadAll</code> if this does not suit\nyour use case.</p>\n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "shouldReloadAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 590,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload a record after the <code>store.findRecord</code> method resolves a\ncached record.</p>\n<p>This method is <em>only</em> checked by the store when the store is\nreturning a cached record.</p>\n<p>If this method returns <code>true</code> the store will re-fetch a record from\nthe adapter.</p>\n<p>For example, if you do not want to fetch complex data over a mobile\nconnection, or if the network is down, you can implement\n<code>shouldBackgroundReloadRecord</code> as follows:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>shouldBackgroundReloadRecord(store, snapshot) {\n  <span class=\"keyword\">let</span> connection = <span class=\"built_in\">window</span>.navigator.connection;\n\n  <span class=\"keyword\">if</span> (connection === <span class=\"string\">&apos;cellular&apos;</span> || connection === <span class=\"string\">&apos;none&apos;</span>) {\n    <span class=\"keyword\">return</span> <span class=\"literal\">false</span>;\n  } <span class=\"keyword\">else</span> {\n    <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default this hook returns <code>true</code> so the data for the record is updated\nin the background.</p>\n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "shouldBackgroundReloadRecord",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 630,
+          "description": "<html><head></head><body><p>This method is used by the store to determine if the store should\nreload a record array after the <code>store.findAll</code> method resolves\nwith a cached record array.</p>\n<p>This method is <em>only</em> checked by the store when the store is\nreturning a cached record array.</p>\n<p>If this method returns <code>true</code> the store will re-fetch all records\nfrom the adapter.</p>\n<p>For example, if you do not want to fetch complex data over a mobile\nconnection, or if the network is down, you can implement\n<code>shouldBackgroundReloadAll</code> as follows:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>shouldBackgroundReloadAll(store, snapshotArray) {\n  <span class=\"keyword\">let</span> connection = <span class=\"built_in\">window</span>.navigator.connection;\n\n  <span class=\"keyword\">if</span> (connection === <span class=\"string\">&apos;cellular&apos;</span> || connection === <span class=\"string\">&apos;none&apos;</span>) {\n    <span class=\"keyword\">return</span> <span class=\"literal\">false</span>;\n  } <span class=\"keyword\">else</span> {\n    <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>By default this method returns <code>true</code>, indicating that a background reload\nshould always be triggered.</p>\n</body></html>",
+          "since": "2.16.0",
+          "itemtype": "method",
+          "name": "shouldBackgroundReloadAll",
+          "params": [
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            },
+            {
+              "name": "snapshotRecordArray",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/adapter.js",
+          "line": 65,
+          "description": "<html><head></head><body><p>If you would like your adapter to use a custom serializer you can\nset the <code>defaultSerializer</code> property to be the name of the custom\nserializer.</p>\n<p>Note the <code>defaultSerializer</code> serializer has a lower priority than\na model specific serializer (i.e. <code>PostSerializer</code>) or the\n<code>application</code> serializer.</p>\n<div class=\"highlight app/adapters/django.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/django.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  defaultSerializer: <span class=\"string\">&apos;django&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "defaultSerializer",
+          "type": "{String}",
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/adapter.js",
+          "line": 417,
+          "description": "<html><head></head><body><p>By default the store will try to coalesce all <code>fetchRecord</code> calls within the same runloop\ninto as few requests as possible by calling groupRecordsForFindMany and passing it into a findMany call.\nYou can opt out of this behaviour by either not implementing the findMany hook or by setting\ncoalesceFindRequests to false.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "coalesceFindRequests",
+          "type": "{boolean}",
+          "class": "DS.Adapter",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Object",
+          "type": "missing",
+          "version": "2.16.0"
+        }
+      },
+      "descendants": {
+        "data": [
+          {
+            "type": "class",
+            "id": "ember-data-2.16.0-DS.RESTAdapter"
+          }
+        ]
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

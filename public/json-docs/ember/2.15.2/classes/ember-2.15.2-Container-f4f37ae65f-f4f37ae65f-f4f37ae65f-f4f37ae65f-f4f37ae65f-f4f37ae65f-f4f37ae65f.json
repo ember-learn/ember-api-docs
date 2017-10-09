@@ -1,0 +1,205 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Container",
+    "type": "class",
+    "attributes": {
+      "name": "Container",
+      "shortname": "Container",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "file": "packages/container/lib/container.js",
+      "line": 19,
+      "description": "<html><head></head><body><p>A container used to instantiate and cache objects.</p>\n<p>Every <code>Container</code> must be associated with a <code>Registry</code>, which is referenced\nto determine the factory and options that should be used to instantiate\nobjects.</p>\n<p>The public API for <code>Container</code> is still in flux and should not be considered\nstable.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 65,
+          "description": "<html><head></head><body><p>Given a fullName return a corresponding instance.\n The default behavior is for lookup to return a singleton instance.\nThe singleton is scoped to the container, allowing multiple containers\nto all have their own locally scoped singletons.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> registry = <span class=\"keyword\">new</span> Registry();\n<span class=\"keyword\">let</span> container = registry.container();\n registry.register(<span class=\"string\">&apos;api:twitter&apos;</span>, Twitter);\n <span class=\"keyword\">let</span> twitter = container.lookup(<span class=\"string\">&apos;api:twitter&apos;</span>);\n twitter <span class=\"keyword\">instanceof</span> Twitter; <span class=\"comment\">// =&gt; true</span>\n <span class=\"comment\">// by default the container will return singletons</span>\n<span class=\"keyword\">let</span> twitter2 = container.lookup(<span class=\"string\">&apos;api:twitter&apos;</span>);\ntwitter2 <span class=\"keyword\">instanceof</span> Twitter; <span class=\"comment\">// =&gt; true</span>\n twitter === twitter2; <span class=\"comment\">//=&gt; true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p> If singletons are not wanted, an optional flag can be provided at lookup.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> <span class=\"attr\">registry</span> = new Registry();\n<span class=\"keyword\">let</span> <span class=\"attr\">container</span> = registry.container();\n registry.register(&apos;api:twitter&apos;, Twitter);\n <span class=\"keyword\">let</span> <span class=\"attr\">twitter</span> = container.lookup(&apos;api:twitter&apos;, { singleton: <span class=\"literal\">false</span> });\n<span class=\"keyword\">let</span> <span class=\"attr\">twitter2</span> = container.lookup(&apos;api:twitter&apos;, { singleton: <span class=\"literal\">false</span> });\n <span class=\"attr\">twitter</span> === twitter2; //=&gt; <span class=\"literal\">false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "lookup",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true,
+              "props": [
+                {
+                  "name": "source",
+                  "description": "The fullname of the request source (used for local lookup)",
+                  "type": "String",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Any"
+          },
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 102,
+          "description": "<html><head></head><body><p>A depth first traversal, destroying the container, its descendant containers and all\ntheir managed objects.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "destroy",
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 113,
+          "description": "<html><head></head><body><p>Clear either the entire cache or just the cache for a particular key.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "reset",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "optional key to reset; if missing, resets everything",
+              "type": "String"
+            }
+          ],
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 128,
+          "description": "<html><head></head><body><p>Returns an object that can be used to provide an owner to a\nmanually created instance.</p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "ownerInjection",
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 143,
+          "description": "<html><head></head><body><p>Given a fullName, return the corresponding factory. The consumer of the factory\nis responsible for the destruction of any factory instances, as there is no\nway for the container to ensure instances are destroyed when it itself is\ndestroyed.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "factoryFor",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true,
+              "props": [
+                {
+                  "name": "source",
+                  "description": "The fullname of the request source (used for local lookup)",
+                  "type": "String",
+                  "optional": true
+                }
+              ]
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Any"
+          },
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 46,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "registry",
+          "type": "Registry",
+          "since": "2.15.2",
+          "class": "Container",
+          "version": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 53,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "cache",
+          "type": "InheritingDict",
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/container/lib/container.js",
+          "line": 59,
+          "access": "private",
+          "tagname": "",
+          "itemtype": "property",
+          "name": "validationCache",
+          "type": "InheritingDict",
+          "class": "Container",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

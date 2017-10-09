@@ -1,0 +1,108 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-IdentityMap",
+    "type": "class",
+    "attributes": {
+      "name": "IdentityMap",
+      "shortname": "IdentityMap",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "",
+      "file": "addon/-private/system/identity-map.js",
+      "line": 4,
+      "description": "<html><head></head><body><p><code>IdentityMap</code> is a custom storage map for records by modelName\nused by <code>DS.Store</code>.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/diff-array.js",
+          "line": 1,
+          "itemtype": "method",
+          "name": "diffArray",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "oldArray",
+              "description": "the old array",
+              "type": "Array"
+            },
+            {
+              "name": "newArray",
+              "description": "the new array",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "{\n    firstChangeIndex: <integer>,  // null if no change\n    addedCount: <integer>,        // 0 if no change\n    removedCount: <integer>       // 0 if no change\n  }",
+            "type": "Hash"
+          },
+          "class": "IdentityMap",
+          "module": "ember-data",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/identity-map.js",
+          "line": 16,
+          "description": "<html><head></head><body><p>Retrieves the <code>InternalModelMap</code> for a given modelName,\ncreating one if one did not already exist. This is\nsimilar to <code>getWithDefault</code> or <code>get</code> on a <code>MapWithDefault</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "retrieve",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "a previously normalized modelName"
+            }
+          ],
+          "return": {
+            "description": "the InternalModelMap for the given modelName",
+            "type": "InternalModelMap"
+          },
+          "class": "IdentityMap",
+          "module": "ember-data",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/identity-map.js",
+          "line": 35,
+          "description": "<html><head></head><body><p>Clears the contents of all known <code>RecordMaps</code>, but does\nnot remove the InternalModelMap instances.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "clear",
+          "class": "IdentityMap",
+          "module": "ember-data",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

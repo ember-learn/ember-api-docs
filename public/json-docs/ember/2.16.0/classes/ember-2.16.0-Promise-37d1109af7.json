@@ -1,0 +1,148 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Promise",
+    "type": "class",
+    "attributes": {
+      "name": "Promise",
+      "shortname": "Promise",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "rsvp",
+      "file": "node_modules/rsvp/lib/rsvp/promise.js",
+      "line": 26,
+      "description": "<html><head></head><body><p>Promise objects represent the eventual result of an asynchronous operation. The\nprimary way of interacting with a promise is through its <code>then</code> method, which\nregisters callbacks to receive either a promise&#x2019;s eventual value or the reason\nwhy the promise cannot be fulfilled.</p>\n<h2 id=\"terminology\">Terminology</h2>\n<ul>\n<li><code>promise</code> is an object or function with a <code>then</code> method whose behavior conforms to this specification.</li>\n<li><code>thenable</code> is an object or function that defines a <code>then</code> method.</li>\n<li><code>value</code> is any legal JavaScript value (including undefined, a thenable, or a promise).</li>\n<li><code>exception</code> is a value that is thrown using the throw statement.</li>\n<li><code>reason</code> is a value that indicates why a promise was rejected.</li>\n<li><code>settled</code> the final resting state of a promise, fulfilled or rejected.</li>\n</ul>\n<p>A promise can be in one of three states: pending, fulfilled, or rejected.</p>\n<p>Promises that are fulfilled have a fulfillment value and are in the fulfilled\nstate.  Promises that are rejected have a rejection reason and are in the\nrejected state.  A fulfillment value is never a thenable.</p>\n<p>Promises can also be said to <em>resolve</em> a value.  If this value is also a\npromise, then the original promise&apos;s settled state will match the value&apos;s\nsettled state.  So a promise that <em>resolves</em> a promise that rejects will\nitself reject, and a promise that <em>resolves</em> a promise that fulfills will\nitself fulfill.</p>\n<h2 id=\"basic-usage-\">Basic Usage:</h2>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise = <span class=\"keyword\">new</span> <span class=\"built_in\">Promise</span>(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>) </span>{\n  <span class=\"comment\">// on success</span>\n  resolve(value);\n\n  <span class=\"comment\">// on failure</span>\n  reject(reason);\n});\n\npromise.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">value</span>) </span>{\n  <span class=\"comment\">// on fulfillment</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>) </span>{\n  <span class=\"comment\">// on rejection</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"advanced-usage-\">Advanced Usage:</h2>\n<p>Promises shine when abstracting away asynchronous interactions such as\n<code>XMLHttpRequest</code>s.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">getJSON</span>(<span class=\"params\">url</span>) </span>{\n  <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> <span class=\"built_in\">Promise</span>(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n    <span class=\"keyword\">let</span> xhr = <span class=\"keyword\">new</span> XMLHttpRequest();\n\n    xhr.open(<span class=\"string\">&apos;GET&apos;</span>, url);\n    xhr.onreadystatechange = handler;\n    xhr.responseType = <span class=\"string\">&apos;json&apos;</span>;\n    xhr.setRequestHeader(<span class=\"string\">&apos;Accept&apos;</span>, <span class=\"string\">&apos;application/json&apos;</span>);\n    xhr.send();\n\n    <span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">handler</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.readyState === <span class=\"keyword\">this</span>.DONE) {\n        <span class=\"keyword\">if</span> (<span class=\"keyword\">this</span>.status === <span class=\"number\">200</span>) {\n          resolve(<span class=\"keyword\">this</span>.response);\n        } <span class=\"keyword\">else</span> {\n          reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;getJSON: `&apos;</span> + url + <span class=\"string\">&apos;` failed with status: [&apos;</span> + <span class=\"keyword\">this</span>.status + <span class=\"string\">&apos;]&apos;</span>));\n        }\n      }\n    };\n  });\n}\n\ngetJSON(<span class=\"string\">&apos;/posts.json&apos;</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">json</span>) </span>{\n  <span class=\"comment\">// on fulfillment</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>) </span>{\n  <span class=\"comment\">// on rejection</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Unlike callbacks, promises are great composable primitives.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">Promise</span>.all([\n  getJSON(<span class=\"string\">&apos;/posts&apos;</span>),\n  getJSON(<span class=\"string\">&apos;/comments&apos;</span>)\n]).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">values</span>)</span>{\n  values[<span class=\"number\">0</span>] <span class=\"comment\">// =&gt; postsJSON</span>\n  values[<span class=\"number\">1</span>] <span class=\"comment\">// =&gt; commentsJSON</span>\n\n  <span class=\"keyword\">return</span> values;\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "params": [
+        {
+          "name": "resolver",
+          "description": "",
+          "type": "Function"
+        },
+        {
+          "name": "label",
+          "description": "optional string for labeling the promise.\nUseful for tooling.",
+          "type": "String"
+        }
+      ],
+      "is_constructor": 1,
+      "access": "public",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise.js",
+          "line": 154,
+          "description": "<html><head></head><body><p><code>catch</code> is simply sugar for <code>then(undefined, onRejection)</code> which makes it the same\nas the catch block of a try/catch statement.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">findAuthor</span>(<span class=\"params\"></span>)</span>{\n  <span class=\"keyword\">throw</span> <span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;couldn\\&apos;t find that author&apos;</span>);\n}\n\n<span class=\"comment\">// synchronous</span>\n<span class=\"keyword\">try</span> {\n  findAuthor();\n} <span class=\"keyword\">catch</span>(reason) {\n  <span class=\"comment\">// something went wrong</span>\n}\n\n<span class=\"comment\">// async with promises</span>\nfindAuthor().catch(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>)</span>{\n  <span class=\"comment\">// something went wrong</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "catch",
+          "params": [
+            {
+              "name": "onRejection",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "class": "Promise",
+          "access": "public",
+          "module": "rsvp",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise.js",
+          "line": 186,
+          "description": "<html><head></head><body><p><code>finally</code> will be invoked regardless of the promise&apos;s fate just as native\ntry/catch/finally behaves</p>\n<p>Synchronous example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre>findAuthor() {\n  <span class=\"keyword\">if</span> (Math.random() &gt; <span class=\"number\">0.5</span>) {\n    <span class=\"keyword\">throw</span> <span class=\"keyword\">new</span> Error();\n  }\n  <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> Author();\n}\n\n<span class=\"keyword\">try</span> {\n  <span class=\"function\"><span class=\"keyword\">return</span> <span class=\"title\">findAuthor</span><span class=\"params\">()</span></span>; <span class=\"comment\">// succeed or fail</span>\n} <span class=\"keyword\">catch</span>(<span class=\"keyword\">error</span>) {\n  <span class=\"function\"><span class=\"keyword\">return</span> <span class=\"title\">findOtherAuthor</span><span class=\"params\">()</span></span>;\n} <span class=\"keyword\">finally</span> {\n  <span class=\"comment\">// always runs</span>\n  <span class=\"comment\">// doesn&apos;t affect the return value</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Asynchronous example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>findAuthor().<span class=\"keyword\">catch</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(reason)</span></span>{\n  <span class=\"keyword\">return</span> findOtherAuthor();\n}).<span class=\"keyword\">finally</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span>{\n  <span class=\"comment\">// author was either found, or not</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "finally",
+          "params": [
+            {
+              "name": "callback",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "class": "Promise",
+          "access": "public",
+          "module": "rsvp",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise.js",
+          "line": 243,
+          "description": "<html><head></head><body><p>The primary way of interacting with a promise is through its <code>then</code> method,\nwhich registers callbacks to receive either a promise&apos;s eventual value or the\nreason why the promise cannot be fulfilled.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>findUser().<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(user)</span>{</span>\n  <span class=\"comment\">// user is available</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(reason)</span>{</span>\n  <span class=\"comment\">// user is unavailable, and you are given the reason why</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"chaining\">Chaining</h2>\n<p>The return value of <code>then</code> is itself a promise.  This second, &apos;downstream&apos;\npromise is resolved with the return value of the first promise&apos;s fulfillment\nor rejection handler, or rejected if the handler throws an exception.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre>findUser().then(<span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">user</span>) </span>{\n  <span class=\"keyword\">return</span> user.name;\n}, <span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">reason</span>) </span>{\n  <span class=\"keyword\">return</span> <span class=\"string\">&apos;default name&apos;</span>;\n}).then(<span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">userName</span>) </span>{\n  <span class=\"comment\">// If `findUser` fulfilled, `userName` will be the user&apos;s name, otherwise it</span>\n  <span class=\"comment\">// will be `&apos;default name&apos;`</span>\n});\n\nfindUser().then(<span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">user</span>) </span>{\n  <span class=\"keyword\">throw</span> <span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;Found user, but still unhappy&apos;</span>);\n}, <span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">reason</span>) </span>{\n  <span class=\"keyword\">throw</span> <span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;`findUser` rejected and we\\&apos;re unhappy&apos;</span>);\n}).then(<span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">value</span>) </span>{\n  <span class=\"comment\">// never reached</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">reason</span>) </span>{\n  <span class=\"comment\">// if `findUser` fulfilled, `reason` will be &apos;Found user, but still unhappy&apos;.</span>\n  <span class=\"comment\">// If `findUser` rejected, `reason` will be &apos;`findUser` rejected and we\\&apos;re unhappy&apos;.</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the downstream promise does not specify a rejection handler, rejection reasons will be propagated further downstream.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>findUser().then(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(user)</span> </span>{\n  <span class=\"keyword\">throw</span> <span class=\"keyword\">new</span> PedagogicalException(<span class=\"string\">&apos;Upstream error&apos;</span>);\n}).then(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(value)</span> </span>{\n  <span class=\"comment\">// never reached</span>\n}).then(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(value)</span> </span>{\n  <span class=\"comment\">// never reached</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(reason)</span> </span>{\n  <span class=\"comment\">// The `PedgagocialException` is propagated all the way down to here</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"assimilation\">Assimilation</h2>\n<p>Sometimes the value you want to propagate to a downstream promise can only be\nretrieved asynchronously. This can be achieved by returning a promise in the\nfulfillment or rejection handler. The downstream promise will then be pending\nuntil the returned promise is settled. This is called <em>assimilation</em>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>findUser().<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(user)</span> {</span>\n  <span class=\"keyword\">return</span> findCommentsByAuthor(user);\n}).<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(comments)</span> {</span>\n  <span class=\"comment\">// The user&apos;s comments are now available</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the assimliated promise rejects, then the downstream promise will also reject.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>findUser().<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(user)</span> {</span>\n  <span class=\"keyword\">return</span> findCommentsByAuthor(user);\n}).<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(comments)</span> {</span>\n  <span class=\"comment\">// If `findCommentsByAuthor` fulfills, we&apos;ll have the value here</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span> <span class=\"params\">(reason)</span> {</span>\n  <span class=\"comment\">// If `findCommentsByAuthor` rejects, we&apos;ll have the reason here</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"simple-example\">Simple Example</h2>\n<p>Synchronous Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> result;\n\n<span class=\"keyword\">try</span> {\n  result = findResult();\n  <span class=\"comment\">// success</span>\n} <span class=\"keyword\">catch</span>(reason) {\n  <span class=\"comment\">// failure</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Errback Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>findResult(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(result, err)</span></span>{\n  <span class=\"keyword\">if</span> (err) {\n    <span class=\"comment\">// failure</span>\n  } <span class=\"keyword\">else</span> {\n    <span class=\"comment\">// success</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Promise Example;</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>findResult().<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(result)</span>{</span>\n  <span class=\"comment\">// success</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(reason)</span>{</span>\n  <span class=\"comment\">// failure</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"advanced-example\">Advanced Example</h2>\n<p>Synchronous Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> author, books;\n\n<span class=\"keyword\">try</span> {\n  author = findAuthor();\n  books  = findBooksByAuthor(author);\n  <span class=\"comment\">// success</span>\n} <span class=\"keyword\">catch</span>(reason) {\n  <span class=\"comment\">// failure</span>\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Errback Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">foundBooks</span><span class=\"params\">(books)</span> {</span>\n\n}\n\n<span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">failure</span><span class=\"params\">(reason)</span> {</span>\n\n}\n\nfindAuthor(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(author, err)</span>{</span>\n  <span class=\"keyword\">if</span> (err) {\n    failure(err);\n    <span class=\"comment\">// failure</span>\n  } <span class=\"keyword\">else</span> {\n    <span class=\"keyword\">try</span> {\n      findBoooksByAuthor(author, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(books, err)</span> {</span>\n        <span class=\"keyword\">if</span> (err) {\n          failure(err);\n        } <span class=\"keyword\">else</span> {\n          <span class=\"keyword\">try</span> {\n            foundBooks(books);\n          } <span class=\"keyword\">catch</span>(reason) {\n            failure(reason);\n          }\n        }\n      });\n    } <span class=\"keyword\">catch</span>(<span class=\"built_in\">error</span>) {\n      failure(err);\n    }\n    <span class=\"comment\">// success</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Promise Example;</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>findAuthor().\n  <span class=\"keyword\">then</span>(findBooksByAuthor).\n  <span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(books)</span>{</span>\n    <span class=\"comment\">// found books</span>\n}).<span class=\"keyword\">catch</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(reason)</span>{</span>\n  <span class=\"comment\">// something went wrong</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "then",
+          "params": [
+            {
+              "name": "onFulfillment",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "onRejection",
+              "description": "",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "class": "Promise",
+          "access": "public",
+          "module": "rsvp",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-rsvp",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

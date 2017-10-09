@@ -1,0 +1,98 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.ActionHandler",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.ActionHandler",
+      "shortname": "Ember.ActionHandler",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Ember.ControllerMixin",
+        "Ember.Route",
+        "Ember.CoreView"
+      ],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+      "line": 9,
+      "description": "<html><head></head><body><p><code>Ember.ActionHandler</code> is available on some familiar classes including\n<code>Ember.Route</code>, <code>Ember.Component</code>, and <code>Ember.Controller</code>.\n(Internally the mixin is used by <code>Ember.CoreView</code>, <code>Ember.ControllerMixin</code>,\nand <code>Ember.Route</code> and available to the above classes through\ninheritance.)</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 144,
+          "description": "<html><head></head><body><p>Triggers a named action on the <code>ActionHandler</code>. Any parameters\nsupplied after the <code>actionName</code> string will be passed as arguments\nto the action target function.</p>\n<p>If the <code>ActionHandler</code> has its <code>target</code> property set, actions may\nbubble to the <code>target</code>. Bubbling happens when an <code>actionName</code> can\nnot be found in the <code>ActionHandler</code>&apos;s <code>actions</code> hash or if the\naction target function returns <code>true</code>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre>App.WelcomeRoute = Ember.Route.extend({\n  actions: {\n    playTheme() {\n       this.send(<span class=\"string\">&apos;playMusic&apos;</span>, <span class=\"string\">&apos;theme.mp3&apos;</span>);\n    },\n    playMusic(track) {\n      // ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "send",
+          "params": [
+            {
+              "name": "actionName",
+              "description": "The action to trigger",
+              "type": "String"
+            },
+            {
+              "name": "context",
+              "description": "a context to send with the action",
+              "type": "*"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ActionHandler",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/action_handler.js",
+          "line": 23,
+          "description": "<html><head></head><body><p>The collection of functions, keyed by name, available on this\n<code>ActionHandler</code> as action targets.</p>\n<p>These functions will be invoked when a matching <code>{{action}}</code> is triggered\nfrom within a template and the application&apos;s current route is this route.</p>\n<p>Actions can also be invoked from other parts of your application\nvia <code>ActionHandler#send</code>.</p>\n<p>The <code>actions</code> hash will inherit action handlers from\nthe <code>actions</code> hash defined on extended parent classes\nor mixins rather than just replace the entire hash, e.g.:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n</pre></td>\n              <td class=\"code\"><pre>App.CanDisplayBanner = Ember.Mixin.create({\n  actions: {\n    displayBanner(msg) {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});\n\nApp.WelcomeRoute = Ember.Route.extend(App.CanDisplayBanner, {\n  actions: {\n    playMusic() {\n      <span class=\"comment\">// ...</span>\n    }\n  }\n});\n\n<span class=\"comment\">// `WelcomeRoute`, when active, will be able to respond</span>\n<span class=\"comment\">// to both actions, since the actions hash is merged rather</span>\n<span class=\"comment\">// then replaced when extending mixins / parent classes.</span>\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;displayBanner&apos;</span>);\n<span class=\"keyword\">this</span>.send(<span class=\"string\">&apos;playMusic&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Within a Controller, Route or Component&apos;s action handler,\nthe value of the <code>this</code> context is the Controller, Route or\nComponent object:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre>App.SongRoute = Ember.Route.extend({\n  actions: {\n    myAction() {\n      <span class=\"keyword\">this</span>.controllerFor(<span class=\"string\">&quot;song&quot;</span>);\n      <span class=\"keyword\">this</span>.transitionTo(<span class=\"string\">&quot;other.route&quot;</span>);\n      ...\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It is also possible to call <code>this._super(...arguments)</code> from within an\naction handler if it overrides a handler defined on a parent\nclass or mixin:</p>\n<p>Take for example the following routes:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">App</span>.DebugRoute = Ember.Mixin.create({\n  actions: {\n    debugRouteInformation() {\n      console.debug(<span class=\"string\">&quot;trololo&quot;</span>);\n    }\n  }\n});\n\n<span class=\"keyword\">App</span>.AnnoyingDebugRoute = Ember.Route.extend(<span class=\"keyword\">App</span>.DebugRoute, {\n  actions: {\n    debugRouteInformation() {\n      <span class=\"comment\">// also call the debugRouteInformation of mixed in App.DebugRoute</span>\n      this._super(...arguments);\n\n      <span class=\"comment\">// show additional annoyance</span>\n      <span class=\"keyword\">window</span>.alert(...);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"bubbling\">Bubbling</h2>\n<p>By default, an action will stop bubbling once a handler defined\non the <code>actions</code> hash handles it. To continue bubbling the action,\nyou must return <code>true</code> from the handler:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n</pre></td>\n              <td class=\"code\"><pre>App.Router.map(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;album&quot;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    <span class=\"keyword\">this</span>.route(<span class=\"string\">&quot;song&quot;</span>);\n  });\n});\n\nApp.AlbumRoute = Ember.Route.extend({\n  actions: {\n    startPlaying: <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n    }\n  }\n});\n\nApp.AlbumSongRoute = Ember.Route.extend({\n  actions: {\n    startPlaying() {\n      <span class=\"comment\">// ...</span>\n\n      <span class=\"keyword\">if</span> (actionShouldAlsoBeTriggeredOnParentRoute) {\n        <span class=\"keyword\">return</span> <span class=\"literal\">true</span>;\n      }\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "actions",
+          "type": "Object",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ActionHandler",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

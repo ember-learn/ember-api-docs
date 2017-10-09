@@ -1,0 +1,48 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Instrumentation",
+    "type": "namespace",
+    "attributes": {
+      "name": "Instrumentation",
+      "shortname": "Instrumentation",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/instrumentation",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/instrumentation.js",
+      "line": 10,
+      "description": "<html><head></head><body><p>The purpose of the Ember Instrumentation module is\nto provide efficient, general-purpose instrumentation\nfor Ember.</p>\n<p>Subscribe to a listener by using <code>subscribe</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> { subscribe } from <span class=\"string\">&apos;@ember/instrumentation&apos;</span>;\n\nsubscribe(<span class=\"string\">&quot;render&quot;</span>, {\n  <span class=\"keyword\">before</span>(name, timestamp, payload) {\n\n  },\n\n  <span class=\"keyword\">after</span>(name, timestamp, payload) {\n\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you return a value from the <code>before</code> callback, that same\nvalue will be passed as a fourth parameter to the <code>after</code>\ncallback.</p>\n<p>Instrument a block of code by using <code>instrument</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> { instrument } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/instrumentation&apos;</span>;\n\ninstrument(<span class=\"string\">&quot;render.handlebars&quot;</span>, payload, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"comment\">// rendering logic</span>\n}, binding);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Event names passed to <code>instrument</code> are namespaced\nby periods, from more general to more specific. Subscribers\ncan listen for events by whatever level of granularity they\nare interested in.</p>\n<p>In the above example, the event is <code>render.handlebars</code>,\nand the subscriber listened for all events beginning with\n<code>render</code>. It would receive callbacks for events named\n<code>render</code>, <code>render.handlebars</code>, <code>render.container</code>, or\neven <code>render.handlebars.layout</code>.</p>\n</body></html>",
+      "static": 1,
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/instrumentation",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

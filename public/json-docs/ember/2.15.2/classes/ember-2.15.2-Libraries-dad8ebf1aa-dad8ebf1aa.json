@@ -1,0 +1,48 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Libraries",
+    "type": "class",
+    "attributes": {
+      "name": "Libraries",
+      "shortname": "Libraries",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/libraries.js",
+      "line": 4,
+      "description": "<html><head></head><body><p>Helper class that allows you to register your library with Ember.</p>\n<p>Singleton created at <code>Ember.libraries</code>.</p>\n</body></html>",
+      "is_constructor": 1,
+      "access": "private",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

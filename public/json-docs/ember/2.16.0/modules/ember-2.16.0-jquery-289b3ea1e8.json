@@ -1,0 +1,51 @@
+{
+  "data": {
+    "id": "ember-2.16.0-jquery",
+    "type": "module",
+    "attributes": {
+      "name": "jquery",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "jquery": 1
+      },
+      "namespaces": {},
+      "tag": "module",
+      "file": "packages/ember/lib/index.js",
+      "line": 618,
+      "parent": null,
+      "publicclasses": [],
+      "privateclasses": [],
+      "staticfunctions": {
+        "jquery": [
+          {
+            "file": "packages/ember/lib/index.js",
+            "line": 623,
+            "description": "Alias for jQuery",
+            "itemtype": "method",
+            "name": "$",
+            "static": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "jquery",
+            "module": "jquery",
+            "version": "2.16.0",
+            "since": "2.16.0"
+          }
+        ]
+      },
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

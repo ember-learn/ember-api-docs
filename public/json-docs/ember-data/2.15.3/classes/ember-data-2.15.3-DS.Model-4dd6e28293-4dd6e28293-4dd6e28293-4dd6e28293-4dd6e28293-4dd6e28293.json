@@ -1,0 +1,1045 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.Model",
+    "type": "class",
+    "attributes": {
+      "name": "DS.Model",
+      "shortname": "DS.Model",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/model/model.js",
+      "line": 71,
+      "description": "<html><head></head><body><p>The model class that all Ember Data records descend from.\n  This is the public API of Ember Data models. If you are using Ember Data\n  in your application, this is the class you should use.\n  If you are working on Ember Data internals, you most likely want to be dealing\n  with <code>InternalModel</code></p>\n</body></html>",
+      "extends": "Ember.Object",
+      "uses": [
+        "Ember.Evented"
+      ],
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 420,
+          "description": "<html><head></head><body><p>Create a JSON representation of the record, using the serialization\nstrategy of the store&apos;s adapter.</p>\n<p>   <code>serialize</code> takes an optional hash as a parameter, currently\nsupported options are:</p>\n<ul>\n<li><code>includeId</code>: <code>true</code> if the record&apos;s ID should be included in the\nJSON representation.</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "an object whose values are primitive JSON values only",
+            "type": "Object"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 438,
+          "description": "<html><head></head><body><p>Use <a href=\"DS.JSONSerializer.html\">DS.JSONSerializer</a> to\nget the JSON representation of a record.</p>\n<p><code>toJSON</code> takes an optional hash as a parameter, currently\nsupported options are:</p>\n<ul>\n<li><code>includeId</code>: <code>true</code> if the record&apos;s ID should be included in the\nJSON representation.</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "toJSON",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "A JSON representation of the object.",
+            "type": "Object"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 518,
+          "itemtype": "method",
+          "name": "send",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "context",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 528,
+          "itemtype": "method",
+          "name": "transitionTo",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 538,
+          "description": "<html><head></head><body><p>Marks the record as deleted but does not save it. You must call\n<code>save</code> afterwards if you want to persist it. You might use this\nmethod if you want to allow the user to still <code>rollbackAttributes()</code>\nafter a delete was made.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/model/delete.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/model/delete.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">softDelete</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"keyword\">this</span>.controller.get(<span class=\"string\">&apos;model&apos;</span>).deleteRecord();\n    },\n    <span class=\"attr\">confirm</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"keyword\">this</span>.controller.get(<span class=\"string\">&apos;model&apos;</span>).save();\n    },\n    <span class=\"attr\">undo</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"keyword\">this</span>.controller.get(<span class=\"string\">&apos;model&apos;</span>).rollbackAttributes();\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "deleteRecord",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 570,
+          "description": "<html><head></head><body><p>Same as <code>deleteRecord</code>, but saves the record immediately.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/model/delete.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/model/delete.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">delete</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"keyword\">let</span> controller = <span class=\"keyword\">this</span>.controller;\n      controller.get(<span class=\"string\">&apos;model&apos;</span>).destroyRecord().then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n        controller.transitionToRoute(<span class=\"string\">&apos;model.index&apos;</span>);\n      });\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you pass an object on the <code>adapterOptions</code> property of the options\nargument it will be passed to your adapter via the snapshot</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">record</span><span class=\"selector-class\">.destroyRecord</span>({ <span class=\"attribute\">adapterOptions</span>: { subscribe: false } });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/adapters/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> MyCustomAdapter <span class=\"keyword\">from</span> <span class=\"string\">&apos;./custom-adapter&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> MyCustomAdapter.extend({\n  <span class=\"attr\">deleteRecord</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">store, type, snapshot</span>) </span>{\n    <span class=\"keyword\">if</span> (snapshot.adapterOptions.subscribe) {\n      <span class=\"comment\">// ...</span>\n    }\n    <span class=\"comment\">// ...</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "destroyRecord",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "a promise that will be resolved when the adapter returns\nsuccessfully or rejected if the adapter returns with an error.",
+            "type": "Promise"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 620,
+          "description": "<html><head></head><body><p>Unloads the record from the store. This will cause the record to be destroyed and freed up for garbage collection.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "unloadRecord",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 630,
+          "itemtype": "method",
+          "name": "_notifyProperties",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 644,
+          "description": "<html><head></head><body><p>Returns an object, whose keys are changed properties, and value is\nan [oldProp, newProp] array.</p>\n<p>The array represents the diff of the canonical state with the local state\nof the model. Note: if the model is created locally, the canonical state is\nempty since the adapter hasn&apos;t acknowledged the attributes yet:</p>\n<p>Example</p>\n<div class=\"highlight app/models/mascot.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/mascot.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  name: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n  isAdmin: DS.attr(<span class=\"string\">&apos;boolean&apos;</span>, {\n    defaultValue: <span class=\"literal\">false</span>\n  })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>let mascot = store.createRecord(<span class=\"string\">&apos;mascot&apos;</span>);\n\nmascot.changedAttributes(); <span class=\"regexp\">//</span> {}\n\nmascot.set(<span class=\"string\">&apos;name&apos;</span>, <span class=\"string\">&apos;Tomster&apos;</span>);\nmascot.changedAttributes(); <span class=\"regexp\">//</span> { <span class=\"symbol\">name:</span> [undefined, <span class=\"string\">&apos;Tomster&apos;</span>] }\n\nmascot.set(<span class=\"string\">&apos;isAdmin&apos;</span>, <span class=\"keyword\">true</span>);\nmascot.changedAttributes(); <span class=\"regexp\">//</span> { <span class=\"symbol\">isAdmin:</span> [undefined, <span class=\"keyword\">true</span>], <span class=\"symbol\">name:</span> [undefined, <span class=\"string\">&apos;Tomster&apos;</span>] }\n\nmascot.save().<span class=\"keyword\">then</span>(function() {\n  mascot.changedAttributes(); <span class=\"regexp\">//</span> {}\n\n  mascot.set(<span class=\"string\">&apos;isAdmin&apos;</span>, <span class=\"keyword\">false</span>);\n  mascot.changedAttributes(); <span class=\"regexp\">//</span> { <span class=\"symbol\">isAdmin:</span> [<span class=\"keyword\">true</span>, <span class=\"keyword\">false</span>] }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "changedAttributes",
+          "return": {
+            "description": "an object, whose keys are changed properties,\n  and value is an [oldProp, newProp] array.",
+            "type": "Object"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 694,
+          "itemtype": "method",
+          "name": "adapterDidDirty",
+          "access": "private",
+          "tagname": "adapterDidDirty: function() {\nthis.send('becomeDirty');\nthis.updateRecordArraysLater();\n  },",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 710,
+          "description": "<html><head></head><body><p>If the model <code>hasDirtyAttributes</code> this function will discard any unsaved\nchanges. If the model <code>isNew</code> it will be removed from the store.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Untitled Document&apos;</span>\n<span class=\"keyword\">record</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;name&apos;</span>, <span class=\"string\">&apos;Doc 1&apos;</span>);\n<span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Doc 1&apos;</span>\n<span class=\"keyword\">record</span>.rollbackAttributes();\n<span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Untitled Document&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "method",
+          "name": "rollbackAttributes",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 743,
+          "description": "<html><head></head><body><p>Save the record and persist any changes to the record to an\nexternal source via the adapter.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>record.set(<span class=\"string\">&apos;name&apos;</span>, <span class=\"string\">&apos;Tomster&apos;</span>);\nrecord.save().<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> {</span>\n  <span class=\"comment\">// Success callback</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> {</span>\n  <span class=\"comment\">// Error callback</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>   If you pass an object using the <code>adapterOptions</code> property of the options\n   argument it will be passed to your adapter via the snapshot.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">record</span><span class=\"selector-class\">.save</span>({ <span class=\"attribute\">adapterOptions</span>: { subscribe: false } });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/adapters/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> MyCustomAdapter <span class=\"keyword\">from</span> <span class=\"string\">&apos;./custom-adapter&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> MyCustomAdapter.extend({\n  <span class=\"attr\">updateRecord</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">store, type, snapshot</span>) </span>{\n    <span class=\"keyword\">if</span> (snapshot.adapterOptions.subscribe) {\n      <span class=\"comment\">// ...</span>\n    }\n    <span class=\"comment\">// ...</span>\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "save",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "a promise that will be resolved when the adapter returns\nsuccessfully or rejected if the adapter returns with an error.",
+            "type": "Promise"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 789,
+          "description": "<html><head></head><body><p>Reload the record from the adapter.</p>\n<p>This will only work if the record has already finished loading.</p>\n<p>Example</p>\n<div class=\"highlight app/routes/model/view.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/routes/model/view.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Ember.Route.extend({\n  <span class=\"attr\">actions</span>: {\n    <span class=\"attr\">reload</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n      <span class=\"keyword\">this</span>.controller.get(<span class=\"string\">&apos;model&apos;</span>).reload().then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">model</span>) </span>{\n        <span class=\"comment\">// do something with the reloaded model</span>\n      });\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "reload",
+          "return": {
+            "description": "a promise that will be resolved with the record when the\nadapter returns successfully or rejected if the adapter returns\nwith an error.",
+            "type": "Promise"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 822,
+          "description": "<html><head></head><body><p>Override the default event firing from Ember.Evented to\nalso call methods with the given name.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "name",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 850,
+          "description": "<html><head></head><body><p>Get the reference for the specified belongsTo relationship.</p>\n<p>Example</p>\n<div class=\"highlight app/models/blog.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/blog.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"builtin-name\">export</span><span class=\"built_in\"> default </span>DS.Model.extend({\n  user: DS.belongsTo({ async: <span class=\"literal\">true</span> })\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> blog = store.push({\n  <span class=\"built_in\">data</span>: {\n    <span class=\"keyword\">type</span>: <span class=\"string\">&apos;blog&apos;</span>,\n    id: <span class=\"number\">1</span>,\n    relationships: {\n      user: {\n        <span class=\"built_in\">data</span>: { <span class=\"keyword\">type</span>: <span class=\"string\">&apos;user&apos;</span>, id: <span class=\"number\">1</span> }\n      }\n    }\n  }\n});\n<span class=\"keyword\">let</span> userRef = blog.belongsTo(<span class=\"string\">&apos;user&apos;</span>);\n\n<span class=\"comment\">// check if the user relationship is loaded</span>\n<span class=\"keyword\">let</span> isLoaded = userRef.value() !== <span class=\"built_in\">null</span>;\n\n<span class=\"comment\">// get the record of the reference (null if not yet available)</span>\n<span class=\"keyword\">let</span> user = userRef.value();\n\n<span class=\"comment\">// get the identifier of the reference</span>\n<span class=\"keyword\">if</span> (userRef.remoteType() === <span class=\"string\">&quot;id&quot;</span>) {\n  <span class=\"keyword\">let</span> id = userRef.id();\n} <span class=\"keyword\">else</span> <span class=\"keyword\">if</span> (userRef.remoteType() === <span class=\"string\">&quot;link&quot;</span>) {\n  <span class=\"keyword\">let</span> <span class=\"keyword\">link</span> = userRef.<span class=\"keyword\">link</span>();\n}\n\n<span class=\"comment\">// load user (via store.findRecord or store.findBelongsTo)</span>\nuserRef.load().then(<span class=\"params\">...</span>)\n\n<span class=\"comment\">// or trigger a reload</span>\nuserRef.reload().then(<span class=\"params\">...</span>)\n\n<span class=\"comment\">// provide data for reference</span>\nuserRef.push({\n  <span class=\"keyword\">type</span>: <span class=\"string\">&apos;user&apos;</span>,\n  id: <span class=\"number\">1</span>,\n  attributes: {\n    username: <span class=\"string\">&quot;@user&quot;</span>\n  }\n}).then(function(user) {\n  userRef.value() === user;\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "belongsTo",
+          "params": [
+            {
+              "name": "name",
+              "description": "of the relationship",
+              "type": "String"
+            }
+          ],
+          "since": "2.15.3",
+          "return": {
+            "description": "reference for this relationship",
+            "type": "BelongsToReference"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 915,
+          "description": "<html><head></head><body><p>Get the reference for the specified hasMany relationship.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// models/blog.js</span>\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  <span class=\"attribute\">comments</span>: DS.hasMany({ <span class=\"attribute\">async</span>: <span class=\"literal\">true</span> })\n});\n\n<span class=\"keyword\">let</span> blog = store.push({\n  <span class=\"attribute\">data</span>: {\n    <span class=\"attribute\">type</span>: <span class=\"string\">&apos;blog&apos;</span>,\n    <span class=\"attribute\">id:</span><span class=\"string\"> 1,\n    relationships</span>: {\n      <span class=\"attribute\">comments</span>: {\n        <span class=\"attribute\">data</span>: [\n          { <span class=\"attribute\">type</span>: <span class=\"string\">&apos;comment&apos;</span>, <span class=\"attribute\">id:</span><span class=\"string\"> 1 },\n          { type</span>: <span class=\"string\">&apos;comment&apos;</span>, <span class=\"attribute\">id:</span><span class=\"string\"> 2 }\n        ]\n      }\n    }\n  }\n});\nlet</span> commentsRef = blog.hasMany(<span class=\"string\">&apos;comments&apos;</span>);\n\n<span class=\"comment\">// check if the comments are loaded already</span>\n<span class=\"keyword\">let</span> isLoaded = commentsRef.value() !== <span class=\"literal\">null</span>;\n\n<span class=\"comment\">// get the records of the reference (null if not yet available)</span>\n<span class=\"keyword\">let</span> comments = commentsRef.value();\n\n<span class=\"comment\">// get the identifier of the reference</span>\n<span class=\"keyword\">if</span> (commentsRef.remoteType() === <span class=\"string\">&quot;ids&quot;</span>) {\n  <span class=\"keyword\">let</span> ids = commentsRef.ids();\n} <span class=\"keyword\">else</span> <span class=\"keyword\">if</span> (commentsRef.remoteType() === <span class=\"string\">&quot;link&quot;</span>) {\n  <span class=\"keyword\">let</span> link = commentsRef.link();\n}\n\n<span class=\"comment\">// load comments (via store.findMany or store.findHasMany)</span>\ncommentsRef.load().then(...)\n\n<span class=\"comment\">// or trigger a reload</span>\ncommentsRef.reload().then(...)\n\n<span class=\"comment\">// provide data for reference</span>\ncommentsRef.push([{ <span class=\"attribute\">type</span>: <span class=\"string\">&apos;comment&apos;</span>, <span class=\"attribute\">id:</span><span class=\"string\"> 1 }, { type</span>: <span class=\"string\">&apos;comment&apos;</span>, <span class=\"attribute\">id:</span><span class=\"string\"> 2 }]).then</span>(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">comments</span>) </span>{\n  commentsRef.value() === comments;\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "hasMany",
+          "params": [
+            {
+              "name": "name",
+              "description": "of the relationship",
+              "type": "String"
+            }
+          ],
+          "since": "2.15.3",
+          "return": {
+            "description": "reference for this relationship",
+            "type": "HasManyReference"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 980,
+          "description": "<html><head></head><body><p>Provides info about the model for debugging purposes\nby grouping the properties into more semantic groups.</p>\n<p>Meant to be used by debugging tools such as the Chrome Ember Extension.</p>\n<ul>\n<li>Groups all attributes in &quot;Attributes&quot; group.</li>\n<li>Groups all belongsTo relationships in &quot;Belongs To&quot; group.</li>\n<li>Groups all hasMany relationships in &quot;Has Many&quot; group.</li>\n<li>Groups all flags in &quot;Flags&quot; group.</li>\n<li>Flags relationship CPs as expensive properties.</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "_debugInfo",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1045,
+          "description": "<html><head></head><body><p>Given a callback, iterates over each of the relationships in the model,\ninvoking the callback with the name of each relationship and its relationship\ndescriptor.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(<span class=\"keyword\">name</span>, descriptor)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>name</code> the name of the current property in the iteration</li>\n<li><code>descriptor</code> the meta object that describes this relationship</li>\n</ul>\n<p>The relationship descriptor argument is an object with the following properties.</p>\n<ul>\n<li><strong>key</strong> <span class=\"type\">String</span> the name of this relationship on the Model</li>\n<li><strong>kind</strong> <span class=\"type\">String</span> &quot;hasMany&quot; or &quot;belongsTo&quot;</li>\n<li><strong>options</strong> <span class=\"type\">Object</span> the original options hash passed when the relationship was declared</li>\n<li><strong>parentType</strong> <span class=\"type\">DS.Model</span> the type of the Model that owns this relationship</li>\n<li><strong>type</strong> <span class=\"type\">String</span> the type name of the related Model</li>\n</ul>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context.</p>\n<p>Example</p>\n<div class=\"highlight app/serializers/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/serializers/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONSerializer.extend({\n <span class=\"attr\">serialize</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">record, options</span>) </span>{\n   <span class=\"keyword\">let</span> json = {};\n\n   record.eachRelationship(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">name, descriptor</span>) </span>{\n     <span class=\"keyword\">if</span> (descriptor.kind === <span class=\"string\">&apos;hasMany&apos;</span>) {\n       <span class=\"keyword\">let</span> serializedHasManyName = name.toUpperCase() + <span class=\"string\">&apos;_IDS&apos;</span>;\n       json[serializedHasManyName] = record.get(name).mapBy(<span class=\"string\">&apos;id&apos;</span>);\n     }\n   });\n\n   <span class=\"keyword\">return</span> json;\n }\n  });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "eachRelationship",
+          "params": [
+            {
+              "name": "callback",
+              "description": "the callback to invoke",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Any"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1149,
+          "description": "<html><head></head><body><p>Override the class&apos; <code>create()</code> method to raise an error. This\nprevents end users from inadvertently calling <code>create()</code> instead\nof <code>createRecord()</code>. The store is still able to create instances\nby calling the <code>_create()</code> method. To create an instance of a\n<code>DS.Model</code> use <a href=\"DS.Store.html#method_createRecord\">store.createRecord</a>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "create",
+          "access": "private",
+          "tagname": "",
+          "static": 1,
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1206,
+          "description": "<html><head></head><body><p>For a given relationship name, returns the model type of the relationship.</p>\n<p>For example, if you define a model like this:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   comments: DS.hasMany(<span class=\"string\">&apos;comment&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Calling <code>store.modelFor(&apos;post&apos;).typeForRelationship(&apos;comments&apos;, store)</code> will return <code>Comment</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "typeForRelationship",
+          "static": 1,
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the relationship",
+              "type": "String"
+            },
+            {
+              "name": "store",
+              "description": "an instance of DS.Store",
+              "type": "Store"
+            }
+          ],
+          "return": {
+            "description": "the type of the relationship, or undefined",
+            "type": "DS.Model"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1236,
+          "description": "<html><head></head><body><p>Find the relationship which is the inverse of the one asked for.</p>\n<p>For example, if you define models like this:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   comments: DS.hasMany(<span class=\"string\">&apos;message&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/message.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/message.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   owner: DS.belongsTo(<span class=\"string\">&apos;post&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>store.modelFor(<span class=\"symbol\">&apos;post</span>&apos;).inverseFor(<span class=\"symbol\">&apos;comments</span>&apos;, store) // { <span class=\"keyword\">type</span>: App.Message, name: <span class=\"symbol\">&apos;owner</span>&apos;, kind: <span class=\"symbol\">&apos;belongsTo</span>&apos; }\nstore.modelFor(<span class=\"symbol\">&apos;message</span>&apos;).inverseFor(<span class=\"symbol\">&apos;owner</span>&apos;, store) // { <span class=\"keyword\">type</span>: App.Post, name: <span class=\"symbol\">&apos;comments</span>&apos;, kind: <span class=\"symbol\">&apos;hasMany</span>&apos; }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "inverseFor",
+          "static": 1,
+          "params": [
+            {
+              "name": "name",
+              "description": "the name of the relationship",
+              "type": "String"
+            },
+            {
+              "name": "store",
+              "description": "",
+              "type": "DS.Store"
+            }
+          ],
+          "return": {
+            "description": "the inverse relationship, or null",
+            "type": "Object"
+          },
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1575,
+          "description": "<html><head></head><body><p>Given a callback, iterates over each of the relationships in the model,\ninvoking the callback with the name of each relationship and its relationship\ndescriptor.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "eachRelationship",
+          "static": 1,
+          "params": [
+            {
+              "name": "callback",
+              "description": "the callback to invoke",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Any"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1591,
+          "description": "<html><head></head><body><p>Given a callback, iterates over each of the types related to a model,\ninvoking the callback with the related type&apos;s class. Each type will be\nreturned just once, regardless of how many different relationships it has\nwith a model.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "eachRelatedType",
+          "static": 1,
+          "params": [
+            {
+              "name": "callback",
+              "description": "the callback to invoke",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Any"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1735,
+          "description": "<html><head></head><body><p>Iterates through the attributes of the model, calling the passed function on each\nattribute.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(<span class=\"keyword\">name</span>, meta)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>name</code> the name of the current property in the iteration</li>\n<li><code>meta</code> the meta object for the attribute property in the iteration</li>\n</ul>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>import DS from <span class=\"string\">&apos;ember-data&apos;</span>;\n\nlet Person = DS.Model.extend({\n   firstName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n   lastName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n   birthday: DS.attr(<span class=\"string\">&apos;date&apos;</span>)\n });\n\nPerson.eachAttribute(function(name, meta) {\n   console.log(name, meta);\n });\n\n// prints:\n// <span class=\"keyword\">firstName</span> {<span class=\"built_in\">type</span>: <span class=\"string\">&quot;string&quot;</span>, isAttribute: <span class=\"keyword\">true</span>, <span class=\"literal\">options</span>: Object, parentType: function, <span class=\"literal\">name</span>: <span class=\"string\">&quot;firstName&quot;</span>}\n// <span class=\"keyword\">lastName</span> {<span class=\"built_in\">type</span>: <span class=\"string\">&quot;string&quot;</span>, isAttribute: <span class=\"keyword\">true</span>, <span class=\"literal\">options</span>: Object, parentType: function, <span class=\"literal\">name</span>: <span class=\"string\">&quot;lastName&quot;</span>}\n// <span class=\"keyword\">birthday</span> {<span class=\"built_in\">type</span>: <span class=\"string\">&quot;date&quot;</span>, isAttribute: <span class=\"keyword\">true</span>, <span class=\"literal\">options</span>: Object, parentType: function, <span class=\"literal\">name</span>: <span class=\"string\">&quot;birthday&quot;</span>}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "eachAttribute",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "static": 1,
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1784,
+          "description": "<html><head></head><body><p>Iterates through the transformedAttributes of the model, calling\nthe passed function on each attribute. Note the callback will not be\ncalled for any attributes that do not have an transformation type.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(<span class=\"keyword\">name</span>, <span class=\"keyword\">type</span>)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>name</code> the name of the current property in the iteration</li>\n<li><code>type</code> a string containing the name of the type of transformed\napplied to the attribute</li>\n</ul>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">let</span> Person = DS.Model.extend({\n   firstName: DS.attr(),\n   lastName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n   birthday: DS.attr(<span class=\"string\">&apos;date&apos;</span>)\n });\n\nPerson.eachTransformedAttribute(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">name, <span class=\"keyword\">type</span></span>) </span>{\n   <span class=\"built_in\">console</span>.log(name, <span class=\"keyword\">type</span>);\n });\n\n<span class=\"comment\">// prints:</span>\n<span class=\"comment\">// lastName string</span>\n<span class=\"comment\">// birthday date</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "eachTransformedAttribute",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "static": 1,
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1856,
+          "description": "<html><head></head><body><p>Discards any unsaved changes to the given attribute. This feature is not enabled by default. You must enable <code>ds-rollback-attribute</code> and be running a canary build.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Untitled Document&apos;</span>\n<span class=\"keyword\">record</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;name&apos;</span>, <span class=\"string\">&apos;Doc 1&apos;</span>);\n<span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Doc 1&apos;</span>\n<span class=\"keyword\">record</span>.rollbackAttribute(<span class=\"string\">&apos;name&apos;</span>);\n<span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;name&apos;</span>); <span class=\"comment\">// &apos;Untitled Document&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "rollbackAttribute",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1889,
+          "description": "<html><head></head><body><p>This Ember.js hook allows an object to be notified when a property\nis defined.</p>\n<p>In this case, we use it to be notified when an Ember Data user defines a\nbelongs-to relationship. In that case, we need to set up observers for\neach one, allowing us to track relationship changes and automatically\nreflect changes in the inverse has-many array.</p>\n<p>This hook passes the class being set up, as well as the key and value\nbeing defined. So, for example, when the user does this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">DS</span><span class=\"selector-class\">.Model</span><span class=\"selector-class\">.extend</span>({\n <span class=\"attribute\">parent</span>: DS.<span class=\"built_in\">belongsTo</span>(<span class=\"string\">&apos;user&apos;</span>)\n    });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This hook would be called with &quot;parent&quot; as the key and the computed\nproperty returned by <code>DS.belongsTo</code> as the value.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "didDefineProperty",
+          "params": [
+            {
+              "name": "proto",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "key",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "",
+              "type": "Ember.ComputedProperty"
+            }
+          ],
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 460,
+          "description": "<html><head></head><body><p>Fired when the record is ready to be interacted with,\nthat is either loaded from the server or created locally.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "ready",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 468,
+          "description": "<html><head></head><body><p>Fired when the record is loaded from the server.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didLoad",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 475,
+          "description": "<html><head></head><body><p>Fired when the record is updated.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didUpdate",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 482,
+          "description": "<html><head></head><body><p>Fired when a new record is commited to the server.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didCreate",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 489,
+          "description": "<html><head></head><body><p>Fired when the record is deleted.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didDelete",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 496,
+          "description": "<html><head></head><body><p>Fired when the record becomes invalid.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "becameInvalid",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 503,
+          "description": "<html><head></head><body><p>Fired when the record enters the error state.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "becameError",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 510,
+          "description": "<html><head></head><body><p>Fired when the record is rolled back.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "rolledBack",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "properties": [
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 91,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>empty</code>\nstate. Empty is the first state all records enter after they have\nbeen created. Most records created by the store will quickly\ntransition to the <code>loading</code> state if data needs to be fetched from\nthe server or the <code>created</code> state if the record is created on the\nclient. A record can also enter the empty state if the adapter is\nunable to locate the record.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isEmpty",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 105,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>loading</code> state. A\nrecord enters this state when the store asks the adapter for its\ndata. It remains in this state until the adapter provides the\nrequested data.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isLoading",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 116,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>loaded</code> state. A\nrecord enters this state when its data is populated. Most of a\nrecord&apos;s lifecycle is spent inside substates of the <code>loaded</code>\nstate.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">record</span> = store.createRecord(<span class=\"symbol\">&apos;model</span>&apos;);\n<span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isLoaded</span>&apos;); // <span class=\"literal\">true</span>\n\nstore.findRecord(<span class=\"symbol\">&apos;model</span>&apos;, <span class=\"number\">1</span>).<span class=\"keyword\">then</span>(<span class=\"keyword\">function</span>(model) {\n  model.get(<span class=\"symbol\">&apos;isLoaded</span>&apos;); // <span class=\"literal\">true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isLoaded",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 138,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>dirty</code> state. The\nrecord has local changes that have not yet been saved by the\nadapter. This includes records that have been created (but not yet\nsaved) or deleted.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>let record = store.createRecord(<span class=\"string\">&apos;model&apos;</span>);\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasDirtyAttributes&apos;</span>); <span class=\"comment\">// true</span>\n\nstore.findRecord(<span class=\"string\">&apos;model&apos;</span>, <span class=\"number\">1</span>).then(<span class=\"function\"><span class=\"keyword\">function</span></span>(model) {\n  model.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasDirtyAttributes&apos;</span>); <span class=\"comment\">// false</span>\n  model.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;some value&apos;</span>);\n  model.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasDirtyAttributes&apos;</span>); <span class=\"comment\">// true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "since": "2.15.3",
+          "itemtype": "property",
+          "name": "hasDirtyAttributes",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 165,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>saving</code> state. A\nrecord enters the saving state when <code>save</code> is called, but the\nadapter has not yet acknowledged that the changes have been\npersisted to the backend.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">record</span> = store.createRecord(<span class=\"symbol\">&apos;model</span>&apos;);\n<span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isSaving</span>&apos;); // <span class=\"literal\">false</span>\nlet promise = <span class=\"keyword\">record</span>.save();\n<span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isSaving</span>&apos;); // <span class=\"literal\">true</span>\npromise.<span class=\"keyword\">then</span>(<span class=\"keyword\">function</span>() {\n  <span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isSaving</span>&apos;); // <span class=\"literal\">false</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isSaving",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 188,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>deleted</code> state\nand has been marked for deletion. When <code>isDeleted</code> is true and\n<code>hasDirtyAttributes</code> is true, the record is deleted locally but the deletion\nwas not yet persisted. When <code>isSaving</code> is true, the change is\nin-flight. When both <code>hasDirtyAttributes</code> and <code>isSaving</code> are false, the\nchange has persisted.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> record = store.createRecord(<span class=\"string\">&apos;model&apos;</span>);\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isDeleted&apos;</span>);    <span class=\"comment\">// false</span>\nrecord.deleteRecord();\n\n<span class=\"comment\">// Locally deleted</span>\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isDeleted&apos;</span>);           <span class=\"comment\">// true</span>\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasDirtyAttributes&apos;</span>);  <span class=\"comment\">// true</span>\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isSaving&apos;</span>);            <span class=\"comment\">// false</span>\n\n<span class=\"comment\">// Persisting the deletion</span>\n<span class=\"keyword\">let</span> promise = record.save();\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isDeleted&apos;</span>);    <span class=\"comment\">// true</span>\nrecord.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isSaving&apos;</span>);     <span class=\"comment\">// true</span>\n\n<span class=\"comment\">// Deletion Persisted</span>\npromise.then(function() {\n  record.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isDeleted&apos;</span>);          <span class=\"comment\">// true</span>\n  record.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;isSaving&apos;</span>);           <span class=\"comment\">// false</span>\n  record.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;hasDirtyAttributes&apos;</span>); <span class=\"comment\">// false</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isDeleted",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 226,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>new</code> state. A\nrecord will be in the <code>new</code> state when it has been created on the\nclient and the adapter has not yet report that it was successfully\nsaved.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">record</span> = store.createRecord(<span class=\"symbol\">&apos;model</span>&apos;);\n<span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isNew</span>&apos;); // <span class=\"literal\">true</span>\n\n<span class=\"keyword\">record</span>.save().<span class=\"keyword\">then</span>(<span class=\"keyword\">function</span>(model) {\n  model.get(<span class=\"symbol\">&apos;isNew</span>&apos;); // <span class=\"literal\">false</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isNew",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 248,
+          "description": "<html><head></head><body><p>If this property is <code>true</code> the record is in the <code>valid</code> state.</p>\n<p>A record will be in the <code>valid</code> state when the adapter did not report any\nserver-side validation failures.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isValid",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 259,
+          "description": "<html><head></head><body><p>If the record is in the dirty state this property will report what\nkind of change has caused it to move into the dirty\nstate. Possible values are:</p>\n<ul>\n<li><code>created</code> The record has been created by the client and not yet saved to the adapter.</li>\n<li><code>updated</code> The record has been updated by the client and not yet saved to the adapter.</li>\n<li><code>deleted</code> The record has been deleted by the client and not yet saved to the adapter.</li>\n</ul>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">record</span> = store.createRecord(<span class=\"symbol\">&apos;model</span>&apos;);\n<span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;dirtyType</span>&apos;); // <span class=\"symbol\">&apos;created</span>&apos;</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "dirtyType",
+          "type": "{String}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 281,
+          "description": "<html><head></head><body><p>If <code>true</code> the adapter reported that it was unable to save local\nchanges to the backend for any reason other than a server-side\nvalidation error.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isError</span>&apos;); // <span class=\"literal\">false</span>\n<span class=\"keyword\">record</span>.set(<span class=\"symbol\">&apos;foo</span>&apos;, <span class=\"symbol\">&apos;valid</span> value&apos;);\n<span class=\"keyword\">record</span>.save().<span class=\"keyword\">then</span>(null, <span class=\"keyword\">function</span>() {\n  <span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isError</span>&apos;); // <span class=\"literal\">true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isError",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 302,
+          "description": "<html><head></head><body><p>If <code>true</code> the store is attempting to reload the record from the adapter.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isReloading</span>&apos;); // <span class=\"literal\">false</span>\n<span class=\"keyword\">record</span>.reload();\n<span class=\"keyword\">record</span>.get(<span class=\"symbol\">&apos;isReloading</span>&apos;); // <span class=\"literal\">true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "isReloading",
+          "type": "{Boolean}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 319,
+          "description": "<html><head></head><body><p>All ember models have an id property. This is an identifier\nmanaged by an external source. These are always coerced to be\nstrings before being used internally. Note when declaring the\nattributes for a model it is an error to declare an id\nattribute.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">record</span> = store.createRecord(<span class=\"string\">&apos;model&apos;</span>);\n<span class=\"keyword\">record</span>.get(<span class=\"string\">&apos;id&apos;</span>); <span class=\"comment\">// null</span>\n\nstore.findRecord(<span class=\"string\">&apos;model&apos;</span>, <span class=\"number\">1</span>).<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(model)</span> <span class=\"comment\">{\n  model.get(&apos;id&apos;); // &apos;1&apos;\n}</span>);</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "id",
+          "type": "{String}",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 340,
+          "itemtype": "property",
+          "name": "currentState",
+          "access": "private",
+          "tagname": "",
+          "type": "{Object}",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 347,
+          "description": "<html><head></head><body><p>When the record is in the <code>invalid</code> state this object will contain\nany errors returned by the adapter. When present the errors hash\ncontains keys corresponding to the invalid property names\nand values which are arrays of Javascript objects with two keys:</p>\n<ul>\n<li><code>message</code> A string containing the error message from the backend</li>\n<li><code>attribute</code> The name of the property associated with this error message</li>\n</ul>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>record.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;errors.length&apos;</span>); <span class=\"comment\">// 0</span>\nrecord.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;foo&apos;</span>, <span class=\"string\">&apos;invalid value&apos;</span>);\nrecord.save().<span class=\"keyword\">catch</span>(<span class=\"function\"><span class=\"keyword\">function</span></span>() {\n  record.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;errors&apos;</span>).<span class=\"keyword\">get</span>(<span class=\"string\">&apos;foo&apos;</span>);\n  <span class=\"comment\">// [{message: &apos;foo should be a number.&apos;, attribute: &apos;foo&apos;}]</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The <code>errors</code> property us useful for displaying error messages to\nthe user.</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"><span class=\"tag\">&lt;<span class=\"name\">label</span>&gt;</span>Username: </span><span class=\"template-variable\">{{<span class=\"built_in\">input</span> value=username}}</span><span class=\"xml\"> <span class=\"tag\">&lt;/<span class=\"name\">label</span>&gt;</span>\n</span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.username <span class=\"keyword\">as</span> |error|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{error.message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\">\n<span class=\"tag\">&lt;<span class=\"name\">label</span>&gt;</span>Email: </span><span class=\"template-variable\">{{<span class=\"built_in\">input</span> value=email}}</span><span class=\"xml\"> <span class=\"tag\">&lt;/<span class=\"name\">label</span>&gt;</span>\n</span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.email <span class=\"keyword\">as</span> |error|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{error.message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also access the special <code>messages</code> property on the error\nobject to get an array of all the error strings.</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"xml\"></span><span class=\"template-tag\">{{#<span class=\"name\"><span class=\"builtin-name\">each</span></span> model.errors.messages <span class=\"keyword\">as</span> |message|}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;<span class=\"name\">div</span> <span class=\"attr\">class</span>=<span class=\"string\">&quot;error&quot;</span>&gt;</span>\n    </span><span class=\"template-variable\">{{message}}</span><span class=\"xml\">\n  <span class=\"tag\">&lt;/<span class=\"name\">div</span>&gt;</span>\n</span><span class=\"template-tag\">{{/<span class=\"name\"><span class=\"builtin-name\">each</span></span>}}</span><span class=\"xml\"></span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "errors",
+          "type": "{DS.Errors}",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 411,
+          "description": "<html><head></head><body><p>This property holds the <code>DS.AdapterError</code> object with which\nlast adapter operation was rejected.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "adapterError",
+          "type": "{DS.AdapterError}",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1123,
+          "itemtype": "property",
+          "name": "data",
+          "access": "private",
+          "tagname": "",
+          "type": "{Object}",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1160,
+          "description": "<html><head></head><body><p>Represents the model&apos;s class name as a string. This can be used to look up the model&apos;s class name through\n<code>DS.Store</code>&apos;s modelFor method.</p>\n<p><code>modelName</code> is generated for you by Ember Data. It will be a lowercased, dasherized string.\nFor example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>store.modelFor(<span class=\"string\">&apos;post&apos;</span>).modelName; <span class=\"regexp\">//</span> <span class=\"string\">&apos;post&apos;</span>\nstore.modelFor(<span class=\"string\">&apos;blog-post&apos;</span>).modelName; <span class=\"regexp\">//</span> <span class=\"string\">&apos;blog-post&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The most common place you&apos;ll want to access <code>modelName</code> is in your serializer&apos;s <code>payloadKeyFromModelName</code> method. For example, to change payload\nkeys to underscore (instead of dasherized), you might use the following code:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"builtin-name\">export</span><span class=\"built_in\"> default </span>const PostSerializer = DS.RESTSerializer.extend({\n  payloadKeyFromModelName: function(modelName) {\n    return Ember.String.underscore(modelName);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "modelName",
+          "type": "String",
+          "readonly": "",
+          "static": 1,
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1355,
+          "description": "<html><head></head><body><p>The model&apos;s relationships as a map, keyed on the type of the\nrelationship. The value of each entry is an array containing a descriptor\nfor each relationship with that type, describing the name of the relationship\nas well as the type.</p>\n<p>For example, given the following model definition:</p>\n<div class=\"highlight app/models/blog.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/blog.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   users: DS.hasMany(<span class=\"string\">&apos;user&apos;</span>),\n   owner: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>),\n   posts: DS.hasMany(<span class=\"string\">&apos;post&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This computed property would return a map describing these\nrelationships, like this:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> Blog <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/blog&apos;</span>;\n<span class=\"keyword\">import</span> User <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/user&apos;</span>;\n<span class=\"keyword\">import</span> Post <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/post&apos;</span>;\n\nlet relationships = Ember.get(Blog, <span class=\"string\">&apos;relationships&apos;</span>);\nrelationships.get(User);\n<span class=\"regexp\">//</span>=&gt; [ { name: <span class=\"string\">&apos;users&apos;</span>, kind: <span class=\"string\">&apos;hasMany&apos;</span> },\n<span class=\"regexp\">//</span>     { name: <span class=\"string\">&apos;owner&apos;</span>, kind: <span class=\"string\">&apos;belongsTo&apos;</span> } ]\nrelationships.get(Post);\n<span class=\"regexp\">//</span>=&gt; [ { name: <span class=\"string\">&apos;posts&apos;</span>, kind: <span class=\"string\">&apos;hasMany&apos;</span> } ]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "relationships",
+          "static": 1,
+          "type": "Ember.Map",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1398,
+          "description": "<html><head></head><body><p>A hash containing lists of the model&apos;s relationships, grouped\nby the relationship kind. For example, given a model with this\ndefinition:</p>\n<div class=\"highlight app/models/blog.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/blog.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   users: DS.hasMany(<span class=\"string\">&apos;user&apos;</span>),\n   owner: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>),\n\n   posts: DS.hasMany(<span class=\"string\">&apos;post&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This property would contain the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> Blog <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/blog&apos;</span>;\n\n<span class=\"keyword\">let</span> relationshipNames = Ember.get(Blog, <span class=\"string\">&apos;relationshipNames&apos;</span>);\nrelationshipNames.hasMany;\n<span class=\"comment\">//=&gt; [&apos;users&apos;, &apos;posts&apos;]</span>\nrelationshipNames.belongsTo;\n<span class=\"comment\">//=&gt; [&apos;owner&apos;]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "relationshipNames",
+          "static": 1,
+          "type": "Object",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1447,
+          "description": "<html><head></head><body><p>An array of types directly related to a model. Each type will be\nincluded once, regardless of the number of relationships it has with\nthe model.</p>\n<p>For example, given a model with this definition:</p>\n<div class=\"highlight app/models/blog.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/blog.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   users: DS.hasMany(<span class=\"string\">&apos;user&apos;</span>),\n   owner: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>),\n\n   posts: DS.hasMany(<span class=\"string\">&apos;post&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This property would contain the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> Blog <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/blog&apos;</span>;\n\n<span class=\"keyword\">let</span> relatedTypes = Ember.get(Blog, <span class=\"string\">&apos;relatedTypes&apos;</span>);\n<span class=\"comment\">//=&gt; [ User, Post ]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "relatedTypes",
+          "static": 1,
+          "type": "Ember.Array",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1482,
+          "description": "<html><head></head><body><p>A map whose keys are the relationships of a model and whose values are\nrelationship descriptors.</p>\n<p>For example, given a model with this\ndefinition:</p>\n<div class=\"highlight app/models/blog.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/blog.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   users: DS.hasMany(<span class=\"string\">&apos;user&apos;</span>),\n   owner: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>),\n\n   posts: DS.hasMany(<span class=\"string\">&apos;post&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This property would contain the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> Blog <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/blog&apos;</span>;\n\nlet relationshipsByName = Ember.get(Blog, <span class=\"string\">&apos;relationshipsByName&apos;</span>);\nrelationshipsByName.get(<span class=\"string\">&apos;users&apos;</span>);\n<span class=\"regexp\">//</span>=&gt; { key: <span class=\"string\">&apos;users&apos;</span>, kind: <span class=\"string\">&apos;hasMany&apos;</span>, type: <span class=\"string\">&apos;user&apos;</span>, options: Object, isRelationship: <span class=\"literal\">true</span> }\nrelationshipsByName.get(<span class=\"string\">&apos;owner&apos;</span>);\n<span class=\"regexp\">//</span>=&gt; { key: <span class=\"string\">&apos;owner&apos;</span>, kind: <span class=\"string\">&apos;belongsTo&apos;</span>, type: <span class=\"string\">&apos;user&apos;</span>, options: Object, isRelationship: <span class=\"literal\">true</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "relationshipsByName",
+          "static": 1,
+          "type": "Ember.Map",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1520,
+          "description": "<html><head></head><body><p>A map whose keys are the fields of the model and whose values are strings\ndescribing the kind of the field. A model&apos;s fields are the union of all of its\nattributes and relationships.</p>\n<p>For example:</p>\n<div class=\"highlight app/models/blog.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/blog.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   users: DS.hasMany(<span class=\"string\">&apos;user&apos;</span>),\n   owner: DS.belongsTo(<span class=\"string\">&apos;user&apos;</span>),\n\n   posts: DS.hasMany(<span class=\"string\">&apos;post&apos;</span>),\n\n   title: DS.attr(<span class=\"string\">&apos;string&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> Blog <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/blog&apos;</span>;\n\n<span class=\"keyword\">let</span> fields = Ember.get(Blog, <span class=\"string\">&apos;fields&apos;</span>);\nfields.forEach(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">kind, field</span>) </span>{\n   <span class=\"built_in\">console</span>.log(field, kind);\n });\n\n<span class=\"comment\">// prints:</span>\n<span class=\"comment\">// users, hasMany</span>\n<span class=\"comment\">// owner, belongsTo</span>\n<span class=\"comment\">// posts, hasMany</span>\n<span class=\"comment\">// title, attribute</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "fields",
+          "static": 1,
+          "type": "Ember.Map",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1632,
+          "description": "<html><head></head><body><p>A map whose keys are the attributes of the model (properties\ndescribed by DS.attr) and whose values are the meta object for the\nproperty.</p>\n<p>Example</p>\n<div class=\"highlight app/models/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   firstName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n   lastName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n   birthday: DS.attr(<span class=\"string\">&apos;date&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre>import Ember from <span class=\"string\">&apos;ember&apos;</span>;\nimport Person from <span class=\"string\">&apos;app/models/person&apos;</span>;\n\nlet attributes = Ember.get(Person, <span class=\"string\">&apos;attributes&apos;</span>)\n\nattributes.forEach(function(meta, name) {\n   console.log(name, meta);\n });\n\n// prints:\n// <span class=\"keyword\">firstName</span> {<span class=\"built_in\">type</span>: <span class=\"string\">&quot;string&quot;</span>, isAttribute: <span class=\"keyword\">true</span>, <span class=\"literal\">options</span>: Object, parentType: function, <span class=\"literal\">name</span>: <span class=\"string\">&quot;firstName&quot;</span>}\n// <span class=\"keyword\">lastName</span> {<span class=\"built_in\">type</span>: <span class=\"string\">&quot;string&quot;</span>, isAttribute: <span class=\"keyword\">true</span>, <span class=\"literal\">options</span>: Object, parentType: function, <span class=\"literal\">name</span>: <span class=\"string\">&quot;lastName&quot;</span>}\n// <span class=\"keyword\">birthday</span> {<span class=\"built_in\">type</span>: <span class=\"string\">&quot;date&quot;</span>, isAttribute: <span class=\"keyword\">true</span>, <span class=\"literal\">options</span>: Object, parentType: function, <span class=\"literal\">name</span>: <span class=\"string\">&quot;birthday&quot;</span>}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "attributes",
+          "static": 1,
+          "type": "{Ember.Map}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/model/model.js",
+          "line": 1685,
+          "description": "<html><head></head><body><p>A map whose keys are the attributes of the model (properties\ndescribed by DS.attr) and whose values are type of transformation\napplied to each attribute. This map does not include any\nattributes that do not have an transformation type.</p>\n<p>Example</p>\n<div class=\"highlight app/models/person.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/person.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n   firstName: DS.attr(),\n   lastName: DS.attr(<span class=\"string\">&apos;string&apos;</span>),\n   birthday: DS.attr(<span class=\"string\">&apos;date&apos;</span>)\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n<span class=\"keyword\">import</span> Person <span class=\"keyword\">from</span> <span class=\"string\">&apos;app/models/person&apos;</span>;\n\n<span class=\"keyword\">let</span> transformedAttributes = Ember.get(Person, <span class=\"string\">&apos;transformedAttributes&apos;</span>)\n\ntransformedAttributes.forEach(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">field, <span class=\"keyword\">type</span></span>) </span>{\n   <span class=\"built_in\">console</span>.log(field, <span class=\"keyword\">type</span>);\n });\n\n<span class=\"comment\">// prints:</span>\n<span class=\"comment\">// lastName string</span>\n<span class=\"comment\">// birthday date</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "transformedAttributes",
+          "static": 1,
+          "type": "{Ember.Map}",
+          "readonly": "",
+          "class": "DS.Model",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Object",
+          "type": "missing",
+          "version": "2.15.3"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

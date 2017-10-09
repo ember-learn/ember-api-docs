@@ -1,0 +1,52 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-routing",
+    "type": "module",
+    "attributes": {
+      "name": "ember-routing",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.ControllerMixin": 1,
+        "Ember": 1,
+        "Ember.Route": 1
+      },
+      "is_submodule": 1,
+      "namespaces": {
+        "Ember": 1
+      },
+      "namespace": "",
+      "file": "packages/ember-routing/lib/system/router.js",
+      "line": 54,
+      "description": "<html><head></head><body><p>Ember.Location returns an instance of the correct implementation of\nthe <code>location</code> API.</p>\n<h2 id=\"implementations\">Implementations</h2>\n<p>You can pass an implementation name (<code>hash</code>, <code>history</code>, <code>none</code>, <code>auto</code>) to force a\nparticular implementation to be used in your application.</p>\n<p>See <a href=\"/api/classes/Ember.Location.HashLocation\">Ember.Location.HashLocation</a>.\nSee <a href=\"/api/classes/Ember.Location.HistoryLocation\">Ember.Location.HistoryLocation</a>.\nSee <a href=\"/api/classes/Ember.Location.NoneLocation\">Ember.Location.NoneLocation</a>.\nSee <a href=\"/api/classes/Ember.Location.AutoLocation\">Ember.Location.AutoLocation</a>.</p>\n<h2 id=\"location-api\">Location API</h2>\n<p>Each location implementation must provide the following methods:</p>\n<ul>\n<li>implementation: returns the string name used to reference the implementation.</li>\n<li>getURL: returns the current URL.</li>\n<li>setURL(path): sets the current URL.</li>\n<li>replaceURL(path): replace the current URL (optional).</li>\n<li>onUpdateURL(callback): triggers the callback when the URL changes.</li>\n<li>formatURL(url): formats <code>url</code> to be placed into <code>href</code> attribute.</li>\n<li>detect() (optional): instructs the location to do any feature detection\n  necessary. If the location needs to redirect to a different URL, it\n  can cancel routing by setting the <code>cancelRouterSetup</code> property on itself\n  to <code>false</code>.</li>\n</ul>\n<p>Calling setURL or replaceURL will not trigger onUpdateURL callbacks.</p>\n<h2 id=\"custom-implementation\">Custom implementation</h2>\n<p>Ember scans <code>app/locations/*</code> for extending the Location API.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">const</span> { HistoryLocation } = Ember;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> <span class=\"class\"><span class=\"keyword\">class</span> <span class=\"title\">MyHistory</span> </span>{\n  implementation: <span class=\"string\">&apos;my-custom-history&apos;</span>,\n  <span class=\"keyword\">constructor</span>() {\n    <span class=\"keyword\">this</span>._history = HistoryLocation.create(...arguments);\n  }\n  create() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> <span class=\"keyword\">this</span>(...arguments);\n  }\n  pushState(path) {\n     <span class=\"keyword\">this</span>._history.pushState(path);\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.HashLocation",
+        "Ember.HistoryLocation",
+        "Ember.NoneLocation",
+        "RouterService",
+        "Ember.Route",
+        "Ember.Router"
+      ],
+      "privateclasses": [
+        "Ember.ControllerMixin",
+        "Ember.Location",
+        "Ember.AutoLocation",
+        "RoutingService"
+      ],
+      "staticfunctions": {},
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

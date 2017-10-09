@@ -1,0 +1,50 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.PromiseManyArray",
+    "type": "class",
+    "attributes": {
+      "name": "DS.PromiseManyArray",
+      "shortname": "DS.PromiseManyArray",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/promise-proxies.js",
+      "line": 80,
+      "description": "<html><head></head><body><p>A PromiseManyArray is a PromiseArray that also proxies certain method calls\nto the underlying manyArray.\nRight now we proxy:</p>\n<ul>\n<li><code>reload()</code></li>\n<li><code>createRecord()</code></li>\n<li><code>on()</code></li>\n<li><code>one()</code></li>\n<li><code>trigger()</code></li>\n<li><code>off()</code></li>\n<li><code>has()</code></li>\n</ul>\n</body></html>",
+      "extends": "Ember.ArrayProxy",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.ArrayProxy",
+          "type": "missing",
+          "version": "2.15.3"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

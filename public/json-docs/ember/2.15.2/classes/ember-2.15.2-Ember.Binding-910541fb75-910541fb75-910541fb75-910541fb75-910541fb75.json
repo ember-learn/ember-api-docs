@@ -1,0 +1,204 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Binding",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Binding",
+      "shortname": "Ember.Binding",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "submodule": "ember-metal",
+      "namespace": "Ember",
+      "file": "packages/ember-metal/lib/binding.js",
+      "line": 352,
+      "deprecated": true,
+      "deprecationMessage": "See https://emberjs.com/deprecations/v2.x#toc_ember-binding",
+      "access": "public",
+      "tagname": "",
+      "description": "<html><head></head><body><p>An <code>Ember.Binding</code> connects the properties of two objects so that whenever\nthe value of one property changes, the other property will be changed also.</p>\n<h2 id=\"automatic-creation-of-bindings-with-binding-named-properties-\">Automatic Creation of Bindings with <code>/^*Binding/</code>-named Properties.</h2>\n<p>You do not usually create Binding objects directly but instead describe\nbindings in your class or object definition using automatic binding\ndetection.</p>\n<p>Properties ending in a <code>Binding</code> suffix will be converted to <code>Ember.Binding</code>\ninstances. The value of this property should be a string representing a path\nto another object or a custom binding instance created using Binding helpers\n(see &quot;One Way Bindings&quot;):</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"symbol\">valueBinding:</span> <span class=\"string\">&quot;MyApp.someController.title&quot;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>This will create a binding from <code>MyApp.someController.title</code> to the <code>value</code>\nproperty of your object instance automatically. Now the two values will be\nkept in sync.</p>\n<h2 id=\"one-way-bindings\">One Way Bindings</h2>\n<p>One especially useful binding customization you can use is the <code>oneWay()</code>\nhelper. This helper tells Ember that you are only interested in\nreceiving changes on the object you are binding from. For example, if you\nare binding to a preference and you want to be notified if the preference\nhas changed, but your object will not be changing the preference itself, you\ncould do:</p>\n<div class=\"highlight \">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">bigTitlesBinding</span>: <span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.Binding</span><span class=\"selector-class\">.oneWay</span>(&quot;<span class=\"selector-tag\">MyApp</span><span class=\"selector-class\">.preferencesController</span><span class=\"selector-class\">.bigTitles</span>&quot;)</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    <p>This way if the value of <code>MyApp.preferencesController.bigTitles</code> changes the\n<code>bigTitles</code> property of your object will change also. However, if you\nchange the value of your <code>bigTitles</code> property, it will not update the\n<code>preferencesController</code>.</p>\n<p>One way bindings are almost twice as fast to setup and twice as fast to\nexecute because the binding only has to worry about changes to one side.</p>\n<p>You should consider using one way bindings anytime you have an object that\nmay be created frequently and you do not intend to change a property; only\nto monitor it for changes (such as in the example above).</p>\n<h2 id=\"adding-bindings-manually\">Adding Bindings Manually</h2>\n<p>All of the examples above show you how to configure a custom binding, but the\nresult of these customizations will be a binding template, not a fully active\nBinding instance. The binding will actually become active only when you\ninstantiate the object the binding belongs to. It is useful, however, to\nunderstand what actually happens when the binding is activated.</p>\n<p>For a binding to function it must have at least a <code>from</code> property and a <code>to</code>\nproperty. The <code>from</code> property path points to the object/key that you want to\nbind from while the <code>to</code> path points to the object/key you want to bind to.</p>\n<p>When you define a custom binding, you are usually describing the property\nyou want to bind from (such as <code>MyApp.someController.value</code> in the examples\nabove). When your object is created, it will automatically assign the value\nyou want to bind <code>to</code> based on the name of your binding key. In the\nexamples above, during init, Ember objects will effectively call\nsomething like this on your binding:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"attribute\">binding</span> = Ember.Binding.from(<span class=\"string\">&quot;valueBinding&quot;</span>).to(<span class=\"string\">&quot;value&quot;</span>)<span class=\"comment\">;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This creates a new binding instance based on the template you provide, and\nsets the to path to the <code>value</code> property of the new object. Now that the\nbinding is fully configured with a <code>from</code> and a <code>to</code>, it simply needs to be\nconnected to become active. This is done through the <code>connect()</code> method:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>binding.<span class=\"built_in\">connect</span>(<span class=\"keyword\">this</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note that when you connect a binding you pass the object you want it to be\nconnected to. This object will be used as the root for both the from and\nto side of the binding when inspecting relative paths. This allows the\nbinding to be automatically inherited by subclassed objects as well.</p>\n<p>This also allows you to bind between objects using the paths you declare in\n<code>from</code> and <code>to</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>// Example <span class=\"number\">1</span>\n<span class=\"attribute\">binding</span> = Ember.Binding.from(<span class=\"string\">&quot;App.someObject.value&quot;</span>).to(<span class=\"string\">&quot;value&quot;</span>)<span class=\"comment\">;</span>\nbinding.connect(this)<span class=\"comment\">;</span>\n\n// Example <span class=\"number\">2</span>\n<span class=\"attribute\">binding</span> = Ember.Binding.from(<span class=\"string\">&quot;parentView.value&quot;</span>).to(<span class=\"string\">&quot;App.someObject.value&quot;</span>)<span class=\"comment\">;</span>\nbinding.connect(this)<span class=\"comment\">;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Now that the binding is connected, it will observe both the from and to side\nand relay changes.</p>\n<p>If you ever needed to do so (you almost never will, but it is useful to\nunderstand this anyway), you could manually create an active binding by\nusing the <code>Ember.bind()</code> helper method. (This is the same method used by\nto setup your bindings on objects):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"selector-tag\">Ember</span><span class=\"selector-class\">.bind</span>(<span class=\"selector-tag\">MyApp</span><span class=\"selector-class\">.anotherObject</span>, &quot;<span class=\"selector-tag\">value</span>&quot;, &quot;<span class=\"selector-tag\">MyApp</span><span class=\"selector-class\">.someController</span><span class=\"selector-class\">.value</span>&quot;);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Both of these code fragments have the same effect as doing the most friendly\nform of binding creation like so:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>MyApp.anotherObject = Ember.<span class=\"built_in\">Object</span>.create({\n  valueBinding: <span class=\"string\">&quot;MyApp.someController.value&quot;</span>,\n\n  <span class=\"comment\">// OTHER CODE FOR THIS OBJECT...</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Ember&apos;s built in binding creation method makes it easy to automatically\ncreate bindings for you. You should always use the highest-level APIs\navailable, even if you understand how it works underneath.</p>\n</body></html>",
+      "since": "2.15.2",
+      "version": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 51,
+          "description": "<html><head></head><body><p>This copies the Binding so it can be connected to another object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "copy",
+          "return": {
+            "description": "`this`",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 68,
+          "description": "<html><head></head><body><p>This will set <code>from</code> property path to the specified value. It will not\nattempt to resolve this property path to an actual object until you\nconnect the binding.</p>\n<p>The binding will search for the property path starting at the root object\nyou pass when you <code>connect()</code> the binding. It follows the same rules as\n<code>get()</code> - see that method for more information.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "from",
+          "params": [
+            {
+              "name": "path",
+              "description": "The property path to connect to.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "`this`",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 87,
+          "description": "<html><head></head><body><p>This will set the <code>to</code> property path to the specified value. It will not\nattempt to resolve this property path to an actual object until you\nconnect the binding.</p>\n<p>The binding will search for the property path starting at the root object\nyou pass when you <code>connect()</code> the binding. It follows the same rules as\n<code>get()</code> - see that method for more information.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "to",
+          "params": [
+            {
+              "name": "path",
+              "description": "A property path or tuple.",
+              "type": "String|Tuple"
+            }
+          ],
+          "return": {
+            "description": "`this`",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 106,
+          "description": "<html><head></head><body><p>Configures the binding as one way. A one-way binding will relay changes\non the <code>from</code> side to the <code>to</code> side, but not the other way around. This\nmeans that if you change the <code>to</code> side directly, the <code>from</code> side may have\na different value.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "oneWay",
+          "return": {
+            "description": "`this`",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 121,
+          "itemtype": "method",
+          "name": "toString",
+          "return": {
+            "description": "string representation of binding",
+            "type": "String"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 135,
+          "description": "<html><head></head><body><p>Attempts to connect this binding instance so that it can receive and relay\nchanges. This method will raise an exception if you have not set the\nfrom/to properties yet.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "connect",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The root object for this binding.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "`this`",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-metal/lib/binding.js",
+          "line": 196,
+          "description": "<html><head></head><body><p>Disconnects the binding instance. Changes will no longer be relayed. You\nwill not usually need to call this method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "disconnect",
+          "return": {
+            "description": "`this`",
+            "type": "Ember.Binding"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Binding",
+          "module": "ember",
+          "submodule": "ember-metal",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

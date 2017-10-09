@@ -1,0 +1,47 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-Ember.Date",
+    "type": "namespace",
+    "attributes": {
+      "name": "Ember.Date",
+      "shortname": "Ember.Date",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "Ember",
+      "file": "addon/transforms/date.js",
+      "line": 7,
+      "description": "<html><head></head><body><p>Date.parse with progressive enhancement for ISO 8601 <a href=\"https://github.com/csnover/js-iso8601\">https://github.com/csnover/js-iso8601</a></p>\n<p>&#xA9; 2011 Colin Snover <a href=\"http://zetafleet.com\">http://zetafleet.com</a></p>\n<p>Released under MIT license.</p>\n</body></html>",
+      "static": 1,
+      "deprecated": true,
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

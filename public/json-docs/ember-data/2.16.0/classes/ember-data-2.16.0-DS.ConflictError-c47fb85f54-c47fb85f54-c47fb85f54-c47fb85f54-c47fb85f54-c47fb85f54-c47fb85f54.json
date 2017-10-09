@@ -1,0 +1,45 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.ConflictError",
+    "type": "class",
+    "attributes": {
+      "name": "DS.ConflictError",
+      "shortname": "DS.ConflictError",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/errors.js",
+      "line": 303,
+      "description": "<html><head></head><body><p>A <code>DS.ConflictError</code> equates to a HTTP <code>409 Conflict</code> response status.\nIt is used by an adapter to indicate that the request could not be processed\nbecause of a conflict in the request. An example scenario would be when\ncreating a record with a client generated id but that id is already known\nto the external API.</p>\n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

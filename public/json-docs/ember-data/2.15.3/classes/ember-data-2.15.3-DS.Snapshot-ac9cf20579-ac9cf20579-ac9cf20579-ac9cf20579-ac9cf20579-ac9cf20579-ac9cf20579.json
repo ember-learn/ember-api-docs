@@ -1,0 +1,307 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.Snapshot",
+    "type": "class",
+    "attributes": {
+      "name": "DS.Snapshot",
+      "shortname": "DS.Snapshot",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/snapshot.js",
+      "line": 11,
+      "access": "private",
+      "tagname": "",
+      "is_constructor": 1,
+      "params": [
+        {
+          "name": "internalModel",
+          "description": "The model to create a snapshot from",
+          "type": "DS.Model"
+        }
+      ],
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 92,
+          "description": "<html><head></head><body><p>Returns the value of an attribute.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, author: <span class=\"string\">&apos;Tomster&apos;</span>, title: <span class=\"string\">&apos;Ember.js rocks&apos;</span> });\npostSnapshot.attr(<span class=\"string\">&apos;author&apos;</span>); <span class=\"regexp\">//</span> =&gt; <span class=\"string\">&apos;Tomster&apos;</span>\npostSnapshot.attr(<span class=\"string\">&apos;title&apos;</span>); <span class=\"regexp\">//</span> =&gt; <span class=\"string\">&apos;Ember.js rocks&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note: Values are loaded eagerly and cached when the snapshot is created.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "attr",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The attribute value or undefined",
+            "type": "Object"
+          },
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 116,
+          "description": "<html><head></head><body><p>Returns all attributes and their corresponding values.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, author: <span class=\"string\">&apos;Tomster&apos;</span>, title: <span class=\"string\">&apos;Ember.js rocks&apos;</span> });\npostSnapshot.attributes(); <span class=\"regexp\">//</span> =&gt; { author: <span class=\"string\">&apos;Tomster&apos;</span>, title: <span class=\"string\">&apos;Ember.js rocks&apos;</span> }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "attributes",
+          "return": {
+            "description": "All attributes of the current snapshot",
+            "type": "Object"
+          },
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 133,
+          "description": "<html><head></head><body><p>Returns all changed attributes and their old and new values.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, author: <span class=\"string\">&apos;Tomster&apos;</span>, title: <span class=\"string\">&apos;Ember.js rocks&apos;</span> });\npostModel.set(<span class=\"string\">&apos;title&apos;</span>, <span class=\"string\">&apos;Ember.js rocks!&apos;</span>);\npostSnapshot.changedAttributes(); <span class=\"regexp\">//</span> =&gt; { title: [<span class=\"string\">&apos;Ember.js rocks&apos;</span>, <span class=\"string\">&apos;Ember.js rocks!&apos;</span>] }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "changedAttributes",
+          "return": {
+            "description": "All changed attributes of the current snapshot",
+            "type": "Object"
+          },
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 159,
+          "description": "<html><head></head><body><p>Returns the current value of a belongsTo relationship.</p>\n<p><code>belongsTo</code> takes an optional hash of options as a second parameter,\ncurrently supported options are:</p>\n<ul>\n<li><code>id</code>: set to <code>true</code> if you only want the ID of the related record to be\nreturned.</li>\n</ul>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, title: <span class=\"string\">&apos;Hello World&apos;</span> });\n<span class=\"regexp\">//</span> store.createRecord(<span class=\"string\">&apos;comment&apos;</span>, { body: <span class=\"string\">&apos;Lorem ipsum&apos;</span>, post: post });\ncommentSnapshot.belongsTo(<span class=\"string\">&apos;post&apos;</span>); <span class=\"regexp\">//</span> =&gt; DS.Snapshot\ncommentSnapshot.belongsTo(<span class=\"string\">&apos;post&apos;</span>, { id: true }); <span class=\"regexp\">//</span> =&gt; <span class=\"string\">&apos;1&apos;</span>\n\n<span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;comment&apos;</span>, { id: <span class=\"number\">1</span>, body: <span class=\"string\">&apos;Lorem ipsum&apos;</span> });\ncommentSnapshot.belongsTo(<span class=\"string\">&apos;post&apos;</span>); <span class=\"regexp\">//</span> =&gt; undefined</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Calling <code>belongsTo</code> will return a new Snapshot as long as there&apos;s any known\ndata for the relationship available, such as an ID. If the relationship is\nknown but unset, <code>belongsTo</code> will return <code>null</code>. If the contents of the\nrelationship is unknown <code>belongsTo</code> will return <code>undefined</code>.</p>\n<p>Note: Relationships are loaded lazily and cached upon first access.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "belongsTo",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "A snapshot or ID of a known\nrelationship or null if the relationship is known but unset. undefined\nwill be returned if the contents of the relationship is unknown.",
+            "type": "(DS.Snapshot|String|null|undefined)"
+          },
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 236,
+          "description": "<html><head></head><body><p>Returns the current value of a hasMany relationship.</p>\n<p><code>hasMany</code> takes an optional hash of options as a second parameter,\ncurrently supported options are:</p>\n<ul>\n<li><code>ids</code>: set to <code>true</code> if you only want the IDs of the related records to be\nreturned.</li>\n</ul>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, title: <span class=\"string\">&apos;Hello World&apos;</span>, comments: [<span class=\"number\">2</span>, <span class=\"number\">3</span>] });\npostSnapshot.hasMany(<span class=\"string\">&apos;comments&apos;</span>); <span class=\"regexp\">//</span> =&gt; [DS.Snapshot, DS.Snapshot]\npostSnapshot.hasMany(<span class=\"string\">&apos;comments&apos;</span>, { ids: true }); <span class=\"regexp\">//</span> =&gt; [<span class=\"string\">&apos;2&apos;</span>, <span class=\"string\">&apos;3&apos;</span>]\n\n<span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, title: <span class=\"string\">&apos;Hello World&apos;</span> });\npostSnapshot.hasMany(<span class=\"string\">&apos;comments&apos;</span>); <span class=\"regexp\">//</span> =&gt; undefined</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Note: Relationships are loaded lazily and cached upon first access.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "hasMany",
+          "params": [
+            {
+              "name": "keyName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "An array of snapshots or IDs of a known\nrelationship or an empty array if the relationship is known but unset.\nundefined will be returned if the contents of the relationship is unknown.",
+            "type": "(Array|undefined)"
+          },
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 308,
+          "description": "<html><head></head><body><p>Iterates through all the attributes of the model, calling the passed\nfunction on each attribute.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>snapshot.eachAttribute(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(name, meta)</span> </span>{\n  <span class=\"comment\">// ...</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "eachAttribute",
+          "params": [
+            {
+              "name": "callback",
+              "description": "the callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 328,
+          "description": "<html><head></head><body><p>Iterates through all the relationships of the model, calling the passed\nfunction on each relationship.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>snapshot.eachRelationship(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(name, relationship)</span> </span>{\n  <span class=\"comment\">// ...</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "eachRelationship",
+          "params": [
+            {
+              "name": "callback",
+              "description": "the callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "binding",
+              "description": "the value to which the callback's `this` should be bound",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 348,
+          "description": "<html><head></head><body><p>Serializes the snapshot using the serializer for the model.</p>\n<p>Example</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend({\n  createRecord(store, <span class=\"keyword\">type</span>, snapshot) {\n    <span class=\"keyword\">var</span> data = snapshot.serialize({ includeId: <span class=\"literal\">true</span> });\n    <span class=\"keyword\">var</span> url = <span class=\"string\">`/<span class=\"subst\">${type.modelName}</span>`</span>;\n\n    <span class=\"keyword\">return</span> fetch(url, {\n      method: <span class=\"string\">&apos;POST&apos;</span>,\n      body: data,\n    }).then(<span class=\"function\">(<span class=\"params\">response</span>) =&gt;</span> response.json())\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "serialize",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "an object whose values are primitive JSON values only",
+            "type": "Object"
+          },
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 29,
+          "description": "<html><head></head><body><p>The underlying record for this snapshot. Can be used to access methods and\nproperties defined on the record.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> json = snapshot.<span class=\"built_in\">record</span>.toJSON();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "record",
+          "type": "{DS.Model}",
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 45,
+          "description": "<html><head></head><body><p>The id of the snapshot&apos;s underlying record</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"regexp\">//</span> store.push(<span class=\"string\">&apos;post&apos;</span>, { id: <span class=\"number\">1</span>, author: <span class=\"string\">&apos;Tomster&apos;</span>, title: <span class=\"string\">&apos;Ember.js rocks&apos;</span> });\npostSnapshot.id; <span class=\"regexp\">//</span> =&gt; <span class=\"string\">&apos;1&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "id",
+          "type": "{String}",
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 60,
+          "description": "<html><head></head><body><p>A hash of adapter options</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "adapterOptions",
+          "type": "{Object}",
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 68,
+          "description": "<html><head></head><body><p>The name of the type of the underlying record for this snapshot, as a string.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "modelName",
+          "type": "{String}",
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/snapshot.js",
+          "line": 79,
+          "description": "<html><head></head><body><p>The type of the underlying record for this snapshot, as a DS.Model.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "type",
+          "type": "{DS.Model}",
+          "class": "DS.Snapshot",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

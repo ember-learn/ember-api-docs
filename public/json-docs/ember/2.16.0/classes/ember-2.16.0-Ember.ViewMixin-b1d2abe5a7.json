@@ -1,0 +1,397 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.ViewMixin",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.ViewMixin",
+      "shortname": "Ember.ViewMixin",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Component"
+      ],
+      "module": "ember",
+      "namespace": "Ember",
+      "file": "packages/ember-views/lib/mixins/view_support.js",
+      "line": 12,
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 81,
+          "description": "<html><head></head><body><p>Return the nearest ancestor that is an instance of the provided\nclass or mixin.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nearestOfType",
+          "params": [
+            {
+              "name": "klass",
+              "description": "Subclass of Ember.View (or Ember.View itself),\n       or an instance of Ember.Mixin.",
+              "type": "Class,Mixin"
+            }
+          ],
+          "return": {
+            "description": "Ember.View"
+          },
+          "deprecated": true,
+          "deprecationMessage": "use `yield` and contextual components for composition instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>Return the nearest ancestor that has a given property.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nearestWithProperty",
+          "params": [
+            {
+              "name": "property",
+              "description": "A property name",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "Ember.View"
+          },
+          "deprecated": true,
+          "deprecationMessage": "use `yield` and contextual components for composition instead.",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 122,
+          "description": "<html><head></head><body><p>Renders the view again. This will work regardless of whether the\nview is already in the DOM or not. If the view is in the DOM, the\nrendering process will be deferred to give bindings a chance\nto synchronize.</p>\n<p>If children were added during the rendering process using <code>appendChild</code>,\n<code>rerender</code> will remove them, because they will be added again\nif needed by the next <code>render</code>.</p>\n<p>In general, if the display of your view changes, you should modify\nthe DOM element directly instead of manually calling <code>rerender</code>, which can\nbe slow.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "rerender",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 162,
+          "description": "<html><head></head><body><p>Returns a jQuery object for this view&apos;s element. If you pass in a selector\nstring, this method will return a jQuery object, using the current element\nas its buffer.</p>\n<p>For example, calling <code>view.$(&apos;li&apos;)</code> will return a jQuery object containing\nall of the <code>li</code> elements inside the DOM element of this view.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "$",
+          "params": [
+            {
+              "name": "selector",
+              "description": "a jQuery-compatible selector string",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "the jQuery object for the DOM node",
+            "type": "JQuery"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 182,
+          "description": "<html><head></head><body><p>Appends the view&apos;s element to the specified parent element.</p>\n<p>Note that this method just schedules the view to be appended; the DOM\nelement will not be appended to the given element until all bindings have\nfinished synchronizing.</p>\n<p>This is not typically a function that you will need to call directly when\nbuilding your application. If you do need to use <code>appendTo</code>, be sure that\nthe target element you are providing is associated with an <code>Ember.Application</code>\nand does not have an ancestor element that is associated with an Ember view.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "appendTo",
+          "params": [
+            {
+              "name": "A",
+              "description": "selector, element, HTML string, or jQuery object",
+              "type": "String|DOMElement|jQuery"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Ember.View"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 232,
+          "description": "<html><head></head><body><p>Appends the view&apos;s element to the document body. If the view does\nnot have an HTML representation yet\nthe element will be generated automatically.</p>\n<p>If your application uses the <code>rootElement</code> property, you must append\nthe view within that element. Rendering views outside of the <code>rootElement</code>\nis not supported.</p>\n<p>Note that this method just schedules the view to be appended; the DOM\nelement will not be appended to the document body until all bindings have\nfinished synchronizing.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "append",
+          "return": {
+            "description": "receiver",
+            "type": "Ember.View"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 286,
+          "description": "<html><head></head><body><p>Attempts to discover the element in the parent element. The default\nimplementation looks for an element with an ID of <code>elementId</code> (or the\nview&apos;s guid if <code>elementId</code> is null). You can override this method to\nprovide your own form of lookup. For example, if you want to discover your\nelement using a CSS class name instead of an ID.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "findElementInParentElement",
+          "params": [
+            {
+              "name": "parentElement",
+              "description": "The parent's DOM element",
+              "type": "DOMElement"
+            }
+          ],
+          "return": {
+            "description": "The discovered element",
+            "type": "DOMElement"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 334,
+          "description": "<html><head></head><body><p>You must call <code>destroy</code> on a view to destroy the view (and all of its\nchild views). This will remove the view from any parent node, then make\nsure that the DOM element managed by the view can be released by the\nmemory manager.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "destroy",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 394,
+          "description": "<html><head></head><body><p>Setup a view, but do not finish waking it up.</p>\n<ul>\n<li>configure <code>childViews</code></li>\n<li>register the view with the global views hash, which is used for event\ndispatch</li>\n</ul>\n</body></html>",
+          "itemtype": "method",
+          "name": "init",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 456,
+          "description": "<html><head></head><body><p>Handle events from <code>EventDispatcher</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "handleEvent",
+          "params": [
+            {
+              "name": "eventName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "evt",
+              "description": "",
+              "type": "Event"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 303,
+          "description": "<html><head></head><body><p>Called when a view is going to insert an element into the DOM.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willInsertElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 311,
+          "description": "<html><head></head><body><p>Called when the element of the view has been inserted into the DOM.\nOverride this function to do any set up that requires an element\nin the document body.</p>\n<p>When a view has children, didInsertElement will be called on the\nchild view(s) first and on itself afterwards.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "didInsertElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 324,
+          "description": "<html><head></head><body><p>Called when the view is about to rerender, but before anything has\nbeen torn down. This is a good opportunity to tear down any manual\nobservers you have installed based on the DOM state</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willClearRender",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 348,
+          "description": "<html><head></head><body><p>Called when the element of the view is going to be destroyed. Override\nthis function to do any teardown that requires an element, like removing\nevent listeners.</p>\n<p>Please note: any property changes made during this event will have no\neffect on object observers.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "willDestroyElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 361,
+          "description": "<html><head></head><body><p>Called when the parentView property has changed.</p>\n</body></html>",
+          "itemtype": "event",
+          "name": "parentViewDidChange",
+          "access": "private",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "properties": [
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 18,
+          "description": "<html><head></head><body><p>A list of properties of the view to apply as attributes. If the property\nis a string value, the value of that string will be applied as the value\nfor an attribute of the property&apos;s name.</p>\n<p>The following example creates a tag like <code>&lt;div priority=&quot;high&quot; /&gt;</code>.</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  attributeBindings: [<span class=\"string\">&apos;priority&apos;</span>],\n  priority: <span class=\"string\">&apos;high&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the value of the property is a Boolean, the attribute is treated as\nan HTML Boolean attribute. It will be present if the property is <code>true</code>\nand omitted if the property is <code>false</code>.</p>\n<p>The following example creates markup like <code>&lt;div visible /&gt;</code>.</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  attributeBindings: [<span class=\"string\">&apos;visible&apos;</span>],\n  visible: <span class=\"literal\">true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you would prefer to use a custom value instead of the property name,\nyou can create the same markup as the last example with a binding like\nthis:</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  attributeBindings: [<span class=\"string\">&apos;isVisible:visible&apos;</span>],\n  isVisible: <span class=\"literal\">true</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This list of attributes is inherited from the component&apos;s superclasses,\nas well.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "attributeBindings",
+          "type": "Array",
+          "default": "[]",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 147,
+          "description": "<html><head></head><body><p>Returns the current DOM element for the view.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "element",
+          "type": "DOMElement",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 253,
+          "description": "<html><head></head><body><p>The HTML <code>id</code> of the view&apos;s element in the DOM. You can provide this\nvalue yourself but it must be unique (just as in HTML):</p>\n<div class=\"highlight handlebars\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>  {{my-component elementId=<span class=\"string\">&quot;a-really-cool-id&quot;</span>}}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If not manually set a default value will be provided by the framework.</p>\n<p>Once rendered an element&apos;s <code>elementId</code> is considered immutable and you\nshould never change it. If you need to compute a dynamic value for the\n<code>elementId</code>, you should do this when the component or element is being\ninstantiated:</p>\n<div class=\"highlight component.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">component.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component from <span class=\"string\">&apos;@ember/component&apos;</span>;\n\nexport <span class=\"keyword\">default</span> Component.extend({\n  init() {\n    <span class=\"keyword\">this</span>._super(...arguments);\n    let index = <span class=\"keyword\">this</span>.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;index&apos;</span>);\n    <span class=\"keyword\">this</span>.<span class=\"keyword\">set</span>(<span class=\"string\">&apos;elementId&apos;</span>, <span class=\"string\">&apos;component-id&apos;</span> + index);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "elementId",
+          "type": "String",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-views/lib/mixins/view_support.js",
+          "line": 373,
+          "description": "<html><head></head><body><p>Tag name for the view&apos;s outer element. The tag name is only used when an\nelement is first created. If you change the <code>tagName</code> for an element, you\nmust destroy and recreate the view element.</p>\n<p>By default, the render buffer will use a <code>&lt;div&gt;</code> tag for views.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "tagName",
+          "type": "String",
+          "default": "null",
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.ViewMixin",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

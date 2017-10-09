@@ -1,0 +1,146 @@
+{
+  "data": {
+    "id": "ember-2.16.0-@ember/application",
+    "type": "class",
+    "attributes": {
+      "name": "@ember/application",
+      "shortname": "@ember/application",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/application",
+      "namespace": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/system/lazy_load.js",
+          "line": 13,
+          "description": "<html><head></head><body><p>Detects when a specific package of Ember (e.g. &apos;Ember.Application&apos;)\nhas fully loaded and is available for extension.</p>\n<p>The provided <code>callback</code> will be called with the <code>name</code> passed\nresolved from a string into the object:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>Ember.onLoad(<span class=\"string\">&apos;Ember.Application&apos;</span> <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(hbars)</span> </span>{\n  hbars.registerHelper(...);\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "onLoad",
+          "static": 1,
+          "params": [
+            {
+              "name": "name",
+              "description": "name of hook",
+              "type": "String"
+            },
+            {
+              "name": "callback",
+              "description": "callback to be called",
+              "type": "Function"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/application",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/system/lazy_load.js",
+          "line": 44,
+          "description": "<html><head></head><body><p>Called when an Ember.js package (e.g Ember.Application) has finished\nloading. Triggers any callbacks registered for this event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "runLoadHooks",
+          "static": 1,
+          "params": [
+            {
+              "name": "name",
+              "description": "name of hook",
+              "type": "String"
+            },
+            {
+              "name": "object",
+              "description": "object to pass to callbacks",
+              "type": "Object"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "class": "@ember/application",
+          "module": "@ember/application",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/owner.js",
+          "line": 9,
+          "description": "<html><head></head><body><p>Framework objects in an Ember application (components, services, routes, etc.)\nare created via a factory and dependency injection system. Each of these\nobjects is the responsibility of an &quot;owner&quot;, which handled its\ninstantiation and manages its lifetime.</p>\n<p><code>getOwner</code> fetches the owner object responsible for an instance. This can\nbe used to lookup or resolve other class instances, or register new factories\ninto the owner.</p>\n<p>For example, this component dynamically looks up a service based on the\n<code>audioType</code> passed as an attribute:</p>\n<div class=\"highlight audio.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">audio.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Component <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/component&apos;</span>;\n<span class=\"keyword\">import</span> { computed } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/object&apos;</span>;\n<span class=\"keyword\">import</span> { getOwner } <span class=\"keyword\">from</span> <span class=\"string\">&apos;@ember/application&apos;</span>;\n\n<span class=\"comment\">// Usage:</span>\n<span class=\"comment\">//</span>\n<span class=\"comment\">//   {{play-audio audioType=model.audioType audioFile=model.file}}</span>\n<span class=\"comment\">//</span>\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> Component.extend({\n  <span class=\"attr\">audioService</span>: computed(<span class=\"string\">&apos;audioType&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"keyword\">let</span> owner = getOwner(<span class=\"keyword\">this</span>);\n    <span class=\"keyword\">return</span> owner.lookup(<span class=\"string\">`service:<span class=\"subst\">${<span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;audioType&apos;</span>)}</span>`</span>);\n  }),\n\n  click() {\n    <span class=\"keyword\">let</span> player = <span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;audioService&apos;</span>);\n    player.play(<span class=\"keyword\">this</span>.get(<span class=\"string\">&apos;audioFile&apos;</span>));\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "getOwner",
+          "static": 1,
+          "params": [
+            {
+              "name": "object",
+              "description": "An object with an owner.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "An owner object.",
+            "type": "Object"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/application",
+          "module": "@ember/application",
+          "version": "2.16.0"
+        },
+        {
+          "file": "packages/ember-utils/lib/owner.js",
+          "line": 56,
+          "description": "<html><head></head><body><p><code>setOwner</code> forces a new owner on a given object instance. This is primarily\nuseful in some testing cases.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "setOwner",
+          "static": 1,
+          "params": [
+            {
+              "name": "object",
+              "description": "An object instance.",
+              "type": "Object"
+            },
+            {
+              "name": "object",
+              "description": "The new owner object of the object instance.",
+              "type": "Object"
+            }
+          ],
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "@ember/application",
+          "module": "@ember/application",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/application",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "data": {
+    "id": "ember-2.15.2-Ember.Evented",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Evented",
+      "shortname": "Ember.Evented",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Ember.Route",
+        "Ember.Router",
+        "Ember.CoreView"
+      ],
+      "module": "ember",
+      "submodule": "ember-runtime",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/evented.js",
+      "line": 14,
+      "description": "<html><head></head><body><p>This mixin allows for Ember objects to subscribe to and emit events.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>App.Person = Ember.Object.extend(Ember.Evented, {\n  <span class=\"attr\">greet</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n    <span class=\"comment\">// ...</span>\n    <span class=\"keyword\">this</span>.trigger(<span class=\"string\">&apos;greet&apos;</span>);\n  }\n});\n\n<span class=\"keyword\">var</span> person = App.Person.create();\n\nperson.on(<span class=\"string\">&apos;greet&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;Our person has greeted&apos;</span>);\n});\n\nperson.greet();\n\n<span class=\"comment\">// outputs: &apos;Our person has greeted&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can also chain multiple event subscriptions:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;greet&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;Our person has greeted&apos;</span>);\n}).one(<span class=\"string\">&apos;greet&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;Offer one-time special&apos;</span>);\n}).off(<span class=\"string\">&apos;event&apos;</span>, <span class=\"keyword\">this</span>, forgetThis);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "access": "public",
+      "tagname": "",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 52,
+          "description": "<html><head></head><body><p>Subscribes to a named event with given function.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didLoad&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span> </span>{\n  <span class=\"comment\">// fired once the person has loaded</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An optional target can be passed in as the 2nd argument that will\nbe set as the &quot;this&quot; for the callback. This is a good way to give your\nfunction access to the object triggering the event. When the target\nparameter is used the callback becomes the third argument.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "on",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Evented",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 78,
+          "description": "<html><head></head><body><p>Subscribes a function to a named event and then cancels the subscription\nafter the first time the event is triggered. It is good to use <code>one</code> when\nyou only care about the first time an event has taken place.</p>\n<p>This function takes an optional 2nd argument that will become the &quot;this&quot;\nvalue for the callback. If this argument is passed then the 3rd argument\nbecomes the function.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "one",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The \"this\" binding for the callback",
+              "type": "Object",
+              "optional": true
+            },
+            {
+              "name": "method",
+              "description": "The callback to execute",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Evented",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>Triggers a named event for the object. Any additional arguments\nwill be passed as parameters to the functions that are subscribed to the\nevent.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>person.on(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">food</span>) </span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;person ate some &apos;</span> + food);\n});\n\nperson.trigger(<span class=\"string\">&apos;didEat&apos;</span>, <span class=\"string\">&apos;broccoli&apos;</span>);\n\n<span class=\"comment\">// outputs: person ate some broccoli</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "trigger",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "Optional arguments to pass on",
+              "type": "Object..."
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Evented",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 127,
+          "description": "<html><head></head><body><p>Cancels subscription for given name, target, and method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "off",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            },
+            {
+              "name": "target",
+              "description": "The target of the subscription",
+              "type": "Object"
+            },
+            {
+              "name": "method",
+              "description": "The function of the subscription",
+              "type": "Function"
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Evented",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/evented.js",
+          "line": 142,
+          "description": "<html><head></head><body><p>Checks to see if object has any subscriptions for named event.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "has",
+          "params": [
+            {
+              "name": "name",
+              "description": "The name of the event",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "does the object have a subscription for event",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.Evented",
+          "module": "ember",
+          "submodule": "ember-runtime",
+          "namespace": "Ember",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,466 @@
+{
+  "data": {
+    "id": "ember-2.15.2-RSVP",
+    "type": "class",
+    "attributes": {
+      "name": "RSVP",
+      "shortname": "RSVP",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember",
+      "version": "2.15.2",
+      "since": "2.15.2",
+      "methods": [
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise/all.js",
+          "line": 4,
+          "description": "<html><head></head><body><p><code>RSVP.Promise.all</code> accepts an array of promises, and returns a new promise which\nis fulfilled with an array of fulfillment values for the passed promises, or\nrejected with the reason of the first passed promise to be rejected. It casts all\nelements of the passed iterable to promises as it runs this algorithm.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>let promise1 = RSVP.resolve(1);\nlet promise2 = RSVP.resolve(2);\nlet promise3 = RSVP.resolve(3);\nlet promises = [ promise1, promise2, promise3 ];\n\nRSVP.Promise.all(promises).then(function(array){\n  // The<span class=\"built_in\"> array </span>here would be [ 1, 2, 3 ];\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If any of the <code>promises</code> given to <code>RSVP.all</code> are rejected, the first promise\nthat is rejected will be given as an argument to the returned promises&apos;s\nrejection handler. For example:</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise1 = RSVP.resolve(<span class=\"number\">1</span>);\n<span class=\"keyword\">let</span> promise2 = RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&quot;2&quot;</span>));\n<span class=\"keyword\">let</span> promise3 = RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&quot;3&quot;</span>));\n<span class=\"keyword\">let</span> promises = [ promise1, promise2, promise3 ];\n\nRSVP.Promise.all(promises).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">array</span>)</span>{\n  <span class=\"comment\">// Code here never runs because there are rejected promises!</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">error</span>) </span>{\n  <span class=\"comment\">// error.message === &quot;2&quot;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "all",
+          "static": 1,
+          "params": [
+            {
+              "name": "entries",
+              "description": "array of promises",
+              "type": "Array"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "promise that is fulfilled when all `promises` have been\nfulfilled, or rejected if any of them become rejected.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise/race.js",
+          "line": 13,
+          "description": "<html><head></head><body><p><code>RSVP.Promise.race</code> returns a new promise which is settled in the same way as the\nfirst passed promise to settle.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise1 = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  setTimeout(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n    resolve(<span class=\"string\">&apos;promise 1&apos;</span>);\n  }, <span class=\"number\">200</span>);\n});\n\n<span class=\"keyword\">let</span> promise2 = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  setTimeout(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n    resolve(<span class=\"string\">&apos;promise 2&apos;</span>);\n  }, <span class=\"number\">100</span>);\n});\n\nRSVP.Promise.race([promise1, promise2]).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">result</span>)</span>{\n  <span class=\"comment\">// result === &apos;promise 2&apos; because it was resolved before promise1</span>\n  <span class=\"comment\">// was resolved.</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p><code>RSVP.Promise.race</code> is deterministic in that only the state of the first\nsettled promise matters. For example, even if other promises given to the\n<code>promises</code> array argument are resolved, but the first settled promise has\nbecome rejected before the other promises became fulfilled, the returned\npromise will become rejected:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise1 = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  setTimeout(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n    resolve(<span class=\"string\">&apos;promise 1&apos;</span>);\n  }, <span class=\"number\">200</span>);\n});\n\n<span class=\"keyword\">let</span> promise2 = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  setTimeout(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n    reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;promise 2&apos;</span>));\n  }, <span class=\"number\">100</span>);\n});\n\nRSVP.Promise.race([promise1, promise2]).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">result</span>)</span>{\n  <span class=\"comment\">// Code here never runs</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>)</span>{\n  <span class=\"comment\">// reason.message === &apos;promise 2&apos; because promise 2 became rejected before</span>\n  <span class=\"comment\">// promise 1 became fulfilled</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An example real-world use case is implementing timeouts:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre>RSVP<span class=\"selector-class\">.Promise</span><span class=\"selector-class\">.race</span>([ajax(<span class=\"string\">&apos;foo.json&apos;</span>), timeout(<span class=\"number\">5000</span>)])</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "race",
+          "static": 1,
+          "params": [
+            {
+              "name": "entries",
+              "description": "array of promises to observe",
+              "type": "Array"
+            },
+            {
+              "name": "label",
+              "description": "optional string for describing the promise returned.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "a promise which settles in the same way as the first passed\npromise to settle.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise/reject.js",
+          "line": 6,
+          "description": "<html><head></head><body><p><code>RSVP.Promise.reject</code> returns a promise rejected with the passed <code>reason</code>.\nIt is shorthand for the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;WHOOPS&apos;</span>));\n});\n\npromise.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">value</span>)</span>{\n  <span class=\"comment\">// Code here doesn&apos;t run because the promise is rejected!</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>)</span>{\n  <span class=\"comment\">// reason.message === &apos;WHOOPS&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Instead of writing the above, your code now simply becomes the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise = RSVP.Promise.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;WHOOPS&apos;</span>));\n\npromise.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">value</span>)</span>{\n  <span class=\"comment\">// Code here doesn&apos;t run because the promise is rejected!</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>)</span>{\n  <span class=\"comment\">// reason.message === &apos;WHOOPS&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "reject",
+          "static": 1,
+          "params": [
+            {
+              "name": "reason",
+              "description": "value that the returned promise will be rejected with.",
+              "type": "*"
+            },
+            {
+              "name": "label",
+              "description": "optional string for identifying the returned promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "a promise rejected with the given `reason`.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/promise/resolve.js",
+          "line": 6,
+          "description": "<html><head></head><body><p><code>RSVP.Promise.resolve</code> returns a promise that will become resolved with the\npassed <code>value</code>. It is shorthand for the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  resolve(<span class=\"number\">1</span>);\n});\n\npromise.then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">value</span>)</span>{\n  <span class=\"comment\">// value === 1</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Instead of writing the above, your code now simply becomes the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise = RSVP.Promise.resolve(<span class=\"number\">1</span>);\n\npromise.<span class=\"keyword\">then</span>(<span class=\"keyword\">function</span>(<span class=\"keyword\">value</span>){\n  <span class=\"comment\">// value === 1</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "resolve",
+          "static": 1,
+          "params": [
+            {
+              "name": "object",
+              "description": "value that the returned promise will be resolved with",
+              "type": "*"
+            },
+            {
+              "name": "label",
+              "description": "optional string for identifying the returned promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "a promise that will become fulfilled with the given\n`value`",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/all-settled.js",
+          "line": 16,
+          "description": "<html><head></head><body><p><code>RSVP.allSettled</code> is similar to <code>RSVP.all</code>, but instead of implementing\na fail-fast method, it waits until all the promises have returned and\nshows you all the results. This is useful if you want to handle multiple\npromises&apos; failure states together as a set.</p>\n<p>Returns a promise that is fulfilled when all the given promises have been\nsettled. The return promise is fulfilled with an array of the states of\nthe promises passed into the <code>promises</code> array argument.</p>\n<p>Each state object will either indicate fulfillment or rejection, and\nprovide the corresponding value or reason. The states will take one of\nthe following formats:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>{ <span class=\"attribute\">state</span>: <span class=\"string\">&apos;fulfilled&apos;</span>, value: value }\n  <span class=\"selector-tag\">or</span>\n{ <span class=\"attribute\">state</span>: <span class=\"string\">&apos;rejected&apos;</span>, reason: reason }</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promise1 = RSVP.Promise.resolve(<span class=\"number\">1</span>);\n<span class=\"keyword\">let</span> promise2 = RSVP.Promise.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;2&apos;</span>));\n<span class=\"keyword\">let</span> promise3 = RSVP.Promise.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;3&apos;</span>));\n<span class=\"keyword\">let</span> promises = [ promise1, promise2, promise3 ];\n\nRSVP.allSettled(promises).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">array</span>)</span>{\n  <span class=\"comment\">// array == [</span>\n  <span class=\"comment\">//   { state: &apos;fulfilled&apos;, value: 1 },</span>\n  <span class=\"comment\">//   { state: &apos;rejected&apos;, reason: Error },</span>\n  <span class=\"comment\">//   { state: &apos;rejected&apos;, reason: Error }</span>\n  <span class=\"comment\">// ]</span>\n  <span class=\"comment\">// Note that for the second item, reason.message will be &apos;2&apos;, and for the</span>\n  <span class=\"comment\">// third item, reason.message will be &apos;3&apos;.</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">error</span>) </span>{\n  <span class=\"comment\">// Not run. (This block would only be called if allSettled had failed,</span>\n  <span class=\"comment\">// for instance if passed an incorrect argument type.)</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "allSettled",
+          "static": 1,
+          "params": [
+            {
+              "name": "entries",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "label",
+              "description": "- optional string that describes the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "promise that is fulfilled with an array of the settled\nstates of the constituent promises.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/all.js",
+          "line": 3,
+          "description": "<html><head></head><body><p>This is a convenient alias for <code>RSVP.Promise.all</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "all",
+          "static": 1,
+          "params": [
+            {
+              "name": "array",
+              "description": "Array of promises.",
+              "type": "Array"
+            },
+            {
+              "name": "label",
+              "description": "An optional label. This is useful\nfor tooling.",
+              "type": "String"
+            }
+          ],
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/defer.js",
+          "line": 3,
+          "description": "<html><head></head><body><p><code>RSVP.defer</code> returns an object similar to jQuery&apos;s <code>$.Deferred</code>.\n<code>RSVP.defer</code> should be used when porting over code reliant on <code>$.Deferred</code>&apos;s\ninterface. New code should use the <code>RSVP.Promise</code> constructor instead.</p>\n<p>The object returned from <code>RSVP.defer</code> is a plain object with three properties:</p>\n<ul>\n<li>promise - an <code>RSVP.Promise</code>.</li>\n<li>reject - a function that causes the <code>promise</code> property on this object to\nbecome rejected</li>\n<li>resolve - a function that causes the <code>promise</code> property on this object to\nbecome fulfilled.</li>\n</ul>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre> let <span class=\"keyword\">deferred</span> = RSVP.defer();\n\n <span class=\"keyword\">deferred</span>.resolve(<span class=\"string\">&quot;Success!&quot;</span>);\n\n <span class=\"keyword\">deferred</span>.promise.<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(value)</span></span>{\n   // <span class=\"keyword\">value</span> here is <span class=\"string\">&quot;Success!&quot;</span>\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "defer",
+          "static": 1,
+          "params": [
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Object"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/filter.js",
+          "line": 8,
+          "description": "<html><head></head><body><p><code>RSVP.filter</code> is similar to JavaScript&apos;s native <code>filter</code> method, except that it\n waits for all promises to become fulfilled before running the <code>filterFn</code> on\n each item in given to <code>promises</code>. <code>RSVP.filter</code> returns a promise that will\n become fulfilled with the result of running <code>filterFn</code> on the values the\n promises become fulfilled with.</p>\n<p> For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> promise1 = RSVP.resolve(<span class=\"number\">1</span>);\n <span class=\"keyword\">let</span> promise2 = RSVP.resolve(<span class=\"number\">2</span>);\n <span class=\"keyword\">let</span> promise3 = RSVP.resolve(<span class=\"number\">3</span>);\n\n <span class=\"keyword\">let</span> promises = [promise1, promise2, promise3];\n\n <span class=\"keyword\">let</span> filterFn = <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">item</span>)</span>{\n   <span class=\"keyword\">return</span> item &gt; <span class=\"number\">1</span>;\n };\n\n RSVP.filter(promises, filterFn).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">result</span>)</span>{\n   <span class=\"comment\">// result is [ 2, 3 ]</span>\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p> If any of the <code>promises</code> given to <code>RSVP.filter</code> are rejected, the first promise\n that is rejected will be given as an argument to the returned promise&apos;s\n rejection handler. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> promise1 = RSVP.resolve(<span class=\"number\">1</span>);\n <span class=\"keyword\">let</span> promise2 = RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;2&apos;</span>));\n <span class=\"keyword\">let</span> promise3 = RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;3&apos;</span>));\n <span class=\"keyword\">let</span> promises = [ promise1, promise2, promise3 ];\n\n <span class=\"keyword\">let</span> filterFn = <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">item</span>)</span>{\n   <span class=\"keyword\">return</span> item &gt; <span class=\"number\">1</span>;\n };\n\n RSVP.filter(promises, filterFn).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">array</span>)</span>{\n   <span class=\"comment\">// Code here never runs because there are rejected promises!</span>\n }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>) </span>{\n   <span class=\"comment\">// reason.message === &apos;2&apos;</span>\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p> <code>RSVP.filter</code> will also wait for any promises returned from <code>filterFn</code>.\n For instance, you may want to fetch a list of users then return a subset\n of those users based on some asynchronous operation:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> alice = { <span class=\"attr\">name</span>: <span class=\"string\">&apos;alice&apos;</span> };\n <span class=\"keyword\">let</span> bob   = { <span class=\"attr\">name</span>: <span class=\"string\">&apos;bob&apos;</span> };\n <span class=\"keyword\">let</span> users = [ alice, bob ];\n\n <span class=\"keyword\">let</span> promises = users.map(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">user</span>)</span>{\n   <span class=\"keyword\">return</span> RSVP.resolve(user);\n });\n\n <span class=\"keyword\">let</span> filterFn = <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">user</span>)</span>{\n   <span class=\"comment\">// Here, Alice has permissions to create a blog post, but Bob does not.</span>\n   <span class=\"keyword\">return</span> getPrivilegesForUser(user).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">privs</span>)</span>{\n     <span class=\"keyword\">return</span> privs.can_create_blog_post === <span class=\"literal\">true</span>;\n   });\n };\n RSVP.filter(promises, filterFn).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">users</span>)</span>{\n   <span class=\"comment\">// true, because the server told us only Alice can create a blog post.</span>\n   users.length === <span class=\"number\">1</span>;\n   <span class=\"comment\">// false, because Alice is the only user present in `users`</span>\n   users[<span class=\"number\">0</span>] === bob;\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "filter",
+          "static": 1,
+          "params": [
+            {
+              "name": "promises",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "filterFn",
+              "description": "- function to be called on each resolved value to\n filter the final results.",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string describing the promise. Useful for\n tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/hash-settled.js",
+          "line": 14,
+          "description": "<html><head></head><body><p><code>RSVP.hashSettled</code> is similar to <code>RSVP.allSettled</code>, but takes an object\ninstead of an array for its <code>promises</code> argument.</p>\n<p>Unlike <code>RSVP.all</code> or <code>RSVP.hash</code>, which implement a fail-fast method,\nbut like <code>RSVP.allSettled</code>, <code>hashSettled</code> waits until all the\nconstituent promises have returned and then shows you all the results\nwith their states and values/reasons. This is useful if you want to\nhandle multiple promises&apos; failure states together as a set.</p>\n<p>Returns a promise that is fulfilled when all the given promises have been\nsettled, or rejected if the passed parameters are invalid.</p>\n<p>The returned promise is fulfilled with a hash that has the same key names as\nthe <code>promises</code> object argument. If any of the values in the object are not\npromises, they will be copied over to the fulfilled object and marked with state\n&apos;fulfilled&apos;.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre>let promises = {\n  myPromise: RSVP.Promise.resolve(<span class=\"number\">1</span>),\n  yourPromise: RSVP.Promise.resolve(<span class=\"number\">2</span>),\n  theirPromise: RSVP.Promise.resolve(<span class=\"number\">3</span>),\n  notAPromise: <span class=\"number\">4</span>\n};\n\nRSVP.hashSettled(promises).then(function(hash){\n  // hash here is an object that looks like:\n  // {\n  //   myPromise: { <span class=\"keyword\">state</span>: &apos;fulfilled&apos;, value: <span class=\"number\">1</span> },\n  //   yourPromise: { <span class=\"keyword\">state</span>: &apos;fulfilled&apos;, value: <span class=\"number\">2</span> },\n  //   theirPromise: { <span class=\"keyword\">state</span>: &apos;fulfilled&apos;, value: <span class=\"number\">3</span> },\n  //   notAPromise: { <span class=\"keyword\">state</span>: &apos;fulfilled&apos;, value: <span class=\"number\">4</span> }\n  // }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If any of the <code>promises</code> given to <code>RSVP.hash</code> are rejected, the state will\nbe set to &apos;rejected&apos; and the reason for rejection provided.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promises = {\n  <span class=\"attr\">myPromise</span>: RSVP.Promise.resolve(<span class=\"number\">1</span>),\n  <span class=\"attr\">rejectedPromise</span>: RSVP.Promise.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;rejection&apos;</span>)),\n  <span class=\"attr\">anotherRejectedPromise</span>: RSVP.Promise.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;more rejection&apos;</span>)),\n};\n\nRSVP.hashSettled(promises).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">hash</span>)</span>{\n  <span class=\"comment\">// hash here is an object that looks like:</span>\n  <span class=\"comment\">// {</span>\n  <span class=\"comment\">//   myPromise:              { state: &apos;fulfilled&apos;, value: 1 },</span>\n  <span class=\"comment\">//   rejectedPromise:        { state: &apos;rejected&apos;, reason: Error },</span>\n  <span class=\"comment\">//   anotherRejectedPromise: { state: &apos;rejected&apos;, reason: Error },</span>\n  <span class=\"comment\">// }</span>\n  <span class=\"comment\">// Note that for rejectedPromise, reason.message == &apos;rejection&apos;,</span>\n  <span class=\"comment\">// and for anotherRejectedPromise, reason.message == &apos;more rejection&apos;.</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An important note: <code>RSVP.hashSettled</code> is intended for plain JavaScript objects that\nare just a set of keys and values. <code>RSVP.hashSettled</code> will NOT preserve prototype\nchains.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">MyConstructor</span>(<span class=\"params\"></span>)</span>{\n  <span class=\"keyword\">this</span>.example = RSVP.Promise.resolve(<span class=\"string\">&apos;Example&apos;</span>);\n}\n\nMyConstructor.prototype = {\n  <span class=\"attr\">protoProperty</span>: RSVP.Promise.resolve(<span class=\"string\">&apos;Proto Property&apos;</span>)\n};\n\n<span class=\"keyword\">let</span> myObject = <span class=\"keyword\">new</span> MyConstructor();\n\nRSVP.hashSettled(myObject).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">hash</span>)</span>{\n  <span class=\"comment\">// protoProperty will not be present, instead you will just have an</span>\n  <span class=\"comment\">// object that looks like:</span>\n  <span class=\"comment\">// {</span>\n  <span class=\"comment\">//   example: { state: &apos;fulfilled&apos;, value: &apos;Example&apos; }</span>\n  <span class=\"comment\">// }</span>\n  <span class=\"comment\">//</span>\n  <span class=\"comment\">// hash.hasOwnProperty(&apos;protoProperty&apos;); // false</span>\n  <span class=\"comment\">// &apos;undefined&apos; === typeof hash.protoProperty</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "hashSettled",
+          "params": [
+            {
+              "name": "object",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "label",
+              "description": "optional string that describes the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "promise that is fulfilled when when all properties of `promises`\nhave been settled.",
+            "type": "Promise"
+          },
+          "static": 1,
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/hash.js",
+          "line": 5,
+          "description": "<html><head></head><body><p><code>RSVP.hash</code> is similar to <code>RSVP.all</code>, but takes an object instead of an array\nfor its <code>promises</code> argument.</p>\n<p>Returns a promise that is fulfilled when all the given promises have been\nfulfilled, or rejected if any of them become rejected. The returned promise\nis fulfilled with a hash that has the same key names as the <code>promises</code> object\nargument. If any of the values in the object are not promises, they will\nsimply be copied over to the fulfilled object.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n</pre></td>\n              <td class=\"code\"><pre>let promises = {\n<span class=\"symbol\">  myPromise:</span> RSVP.resolve(<span class=\"number\">1</span>),\n<span class=\"symbol\">  yourPromise:</span> RSVP.resolve(<span class=\"number\">2</span>),\n<span class=\"symbol\">  theirPromise:</span> RSVP.resolve(<span class=\"number\">3</span>),\n<span class=\"symbol\">  notAPromise:</span> <span class=\"number\">4</span>\n};\n\nRSVP.hash(promises).then(function(hash){\n  <span class=\"comment\">// hash here is an object that looks like:</span>\n  <span class=\"comment\">// {</span>\n  <span class=\"comment\">//   myPromise: 1,</span>\n  <span class=\"comment\">//   yourPromise: 2,</span>\n  <span class=\"comment\">//   theirPromise: 3,</span>\n  <span class=\"comment\">//   notAPromise: 4</span>\n  <span class=\"comment\">// }</span>\n});\n`</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If any of the <code>promises</code> given to <code>RSVP.hash</code> are rejected, the first promise\nthat is rejected will be given as the reason to the rejection handler.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> promises = {\n  <span class=\"attr\">myPromise</span>: RSVP.resolve(<span class=\"number\">1</span>),\n  <span class=\"attr\">rejectedPromise</span>: RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;rejectedPromise&apos;</span>)),\n  <span class=\"attr\">anotherRejectedPromise</span>: RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;anotherRejectedPromise&apos;</span>)),\n};\n\nRSVP.hash(promises).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">hash</span>)</span>{\n  <span class=\"comment\">// Code here never runs because there are rejected promises!</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>) </span>{\n  <span class=\"comment\">// reason.message === &apos;rejectedPromise&apos;</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>An important note: <code>RSVP.hash</code> is intended for plain JavaScript objects that\nare just a set of keys and values. <code>RSVP.hash</code> will NOT preserve prototype\nchains.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">MyConstructor</span>(<span class=\"params\"></span>)</span>{\n  <span class=\"keyword\">this</span>.example = RSVP.resolve(<span class=\"string\">&apos;Example&apos;</span>);\n}\n\nMyConstructor.prototype = {\n  <span class=\"attr\">protoProperty</span>: RSVP.resolve(<span class=\"string\">&apos;Proto Property&apos;</span>)\n};\n\n<span class=\"keyword\">let</span> myObject = <span class=\"keyword\">new</span> MyConstructor();\n\nRSVP.hash(myObject).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">hash</span>)</span>{\n  <span class=\"comment\">// protoProperty will not be present, instead you will just have an</span>\n  <span class=\"comment\">// object that looks like:</span>\n  <span class=\"comment\">// {</span>\n  <span class=\"comment\">//   example: &apos;Example&apos;</span>\n  <span class=\"comment\">// }</span>\n  <span class=\"comment\">//</span>\n  <span class=\"comment\">// hash.hasOwnProperty(&apos;protoProperty&apos;); // false</span>\n  <span class=\"comment\">// &apos;undefined&apos; === typeof hash.protoProperty</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "hash",
+          "static": 1,
+          "params": [
+            {
+              "name": "object",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "label",
+              "description": "optional string that describes the promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "promise that is fulfilled when all properties of `promises`\nhave been fulfilled, or rejected if any of them become rejected.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/map.js",
+          "line": 8,
+          "description": "<html><head></head><body><p><code>RSVP.map</code> is similar to JavaScript&apos;s native <code>map</code> method, except that it\n waits for all promises to become fulfilled before running the <code>mapFn</code> on\n each item in given to <code>promises</code>. <code>RSVP.map</code> returns a promise that will\n become fulfilled with the result of running <code>mapFn</code> on the values the promises\n become fulfilled with.</p>\n<p> For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> promise1 = RSVP.resolve(<span class=\"number\">1</span>);\n <span class=\"keyword\">let</span> promise2 = RSVP.resolve(<span class=\"number\">2</span>);\n <span class=\"keyword\">let</span> promise3 = RSVP.resolve(<span class=\"number\">3</span>);\n <span class=\"keyword\">let</span> promises = [ promise1, promise2, promise3 ];\n\n <span class=\"keyword\">let</span> mapFn = <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">item</span>)</span>{\n   <span class=\"keyword\">return</span> item + <span class=\"number\">1</span>;\n };\n\n RSVP.map(promises, mapFn).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">result</span>)</span>{\n   <span class=\"comment\">// result is [ 2, 3, 4 ]</span>\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p> If any of the <code>promises</code> given to <code>RSVP.map</code> are rejected, the first promise\n that is rejected will be given as an argument to the returned promise&apos;s\n rejection handler. For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre> <span class=\"keyword\">let</span> promise1 = RSVP.resolve(<span class=\"number\">1</span>);\n <span class=\"keyword\">let</span> promise2 = RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;2&apos;</span>));\n <span class=\"keyword\">let</span> promise3 = RSVP.reject(<span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;3&apos;</span>));\n <span class=\"keyword\">let</span> promises = [ promise1, promise2, promise3 ];\n\n <span class=\"keyword\">let</span> mapFn = <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">item</span>)</span>{\n   <span class=\"keyword\">return</span> item + <span class=\"number\">1</span>;\n };\n\n RSVP.map(promises, mapFn).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">array</span>)</span>{\n   <span class=\"comment\">// Code here never runs because there are rejected promises!</span>\n }, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">reason</span>) </span>{\n   <span class=\"comment\">// reason.message === &apos;2&apos;</span>\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p> <code>RSVP.map</code> will also wait if a promise is returned from <code>mapFn</code>. For example,\n say you want to get all comments from a set of blog posts, but you need\n the blog posts first because they contain a url to those comments.</p>\n<div class=\"highlight javscript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre> let mapFn = <span class=\"keyword\">function</span>(blogPost){\n   // getComments does <span class=\"keyword\">some</span> ajax <span class=\"keyword\">and</span> returns an RSVP.Promise that <span class=\"keyword\">is</span> fulfilled\n   // <span class=\"keyword\">with</span> <span class=\"keyword\">some</span> comments data\n   <span class=\"keyword\">return</span> getComments(blogPost.comments_url);\n };\n\n // getBlogPosts does <span class=\"keyword\">some</span> ajax <span class=\"keyword\">and</span> returns an RSVP.Promise that <span class=\"keyword\">is</span> fulfilled\n // <span class=\"keyword\">with</span> <span class=\"keyword\">some</span> blog post data\n RSVP.map(getBlogPosts(), mapFn).<span class=\"keyword\">then</span>(<span class=\"keyword\">function</span>(comments){\n   // comments <span class=\"keyword\">is</span> the result <span class=\"keyword\">of</span> asking the server <span class=\"keyword\">for</span> the comments\n   // <span class=\"keyword\">of</span> <span class=\"keyword\">all</span> blog posts returned from getBlogPosts()\n });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "map",
+          "static": 1,
+          "params": [
+            {
+              "name": "promises",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "mapFn",
+              "description": "function to be called on each fulfilled promise.",
+              "type": "Function"
+            },
+            {
+              "name": "label",
+              "description": "optional string for labeling the promise.\n Useful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "promise that is fulfilled with the result of calling\n `mapFn` on each fulfilled promise or value when they become fulfilled.\n  The promise will be rejected if any of the given `promises` become rejected.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/node.js",
+          "line": 71,
+          "description": "<html><head></head><body><p><code>RSVP.denodeify</code> takes a &apos;node-style&apos; function and returns a function that\nwill return an <code>RSVP.Promise</code>. You can use <code>denodeify</code> in Node.js or the\nbrowser when you&apos;d prefer to use promises over using callbacks. For example,\n<code>denodeify</code> transforms the following:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fs = <span class=\"built_in\">require</span>(<span class=\"string\">&apos;fs&apos;</span>);\n\nfs.readFile(<span class=\"string\">&apos;myfile.txt&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">err, data</span>)</span>{\n  <span class=\"keyword\">if</span> (err) <span class=\"keyword\">return</span> handleError(err);\n  handleData(data);\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>into:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fs = <span class=\"built_in\">require</span>(<span class=\"string\">&apos;fs&apos;</span>);\n<span class=\"keyword\">let</span> readFile = RSVP.denodeify(fs.readFile);\n\nreadFile(<span class=\"string\">&apos;myfile.txt&apos;</span>).<span class=\"keyword\">then</span>(handleData, handleError);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If the node function has multiple success parameters, then <code>denodeify</code>\njust returns the first one:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> request = RSVP.denodeify(<span class=\"built_in\">require</span>(<span class=\"string\">&apos;request&apos;</span>));\n\nrequest(<span class=\"string\">&apos;http://example.com&apos;</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">res</span>) </span>{\n  <span class=\"comment\">// ...</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>However, if you need all success parameters, setting <code>denodeify</code>&apos;s\nsecond parameter to <code>true</code> causes it to return all success parameters\nas an array:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> request = RSVP.denodeify(<span class=\"built_in\">require</span>(<span class=\"string\">&apos;request&apos;</span>), <span class=\"literal\">true</span>);\n\nrequest(<span class=\"string\">&apos;http://example.com&apos;</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">result</span>) </span>{\n  <span class=\"comment\">// result[0] -&gt; res</span>\n  <span class=\"comment\">// result[1] -&gt; body</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Or if you pass it an array with names it returns the parameters as a hash:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> request = RSVP.denodeify(<span class=\"built_in\">require</span>(<span class=\"string\">&apos;request&apos;</span>), [<span class=\"string\">&apos;res&apos;</span>, <span class=\"string\">&apos;body&apos;</span>]);\n\nrequest(<span class=\"string\">&apos;http://example.com&apos;</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">result</span>) </span>{\n  <span class=\"comment\">// result.res</span>\n  <span class=\"comment\">// result.body</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Sometimes you need to retain the <code>this</code>:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"attribute\">let app</span> = require(<span class=\"string\">&apos;express&apos;</span>)();\n<span class=\"attribute\">let render</span> = RSVP.denodeify(app.render.bind(app));</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The denodified function inherits from the original function. It works in all\nenvironments, except IE 10 and below. Consequently all properties of the original\nfunction are available to you. However, any properties you change on the\ndenodeified function won&apos;t be changed on the original function. Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> request = RSVP.denodeify(<span class=\"built_in\">require</span>(<span class=\"string\">&apos;request&apos;</span>)),\n    cookieJar = request.jar(); <span class=\"comment\">// &lt;- Inheritance is used here</span>\n\nrequest(<span class=\"string\">&apos;http://example.com&apos;</span>, {<span class=\"attr\">jar</span>: cookieJar}).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">res</span>) </span>{\n  <span class=\"comment\">// cookieJar.cookies holds now the cookies returned by example.com</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Using <code>denodeify</code> makes it easier to compose asynchronous operations instead\nof using callbacks. For example, instead of:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fs = <span class=\"built_in\">require</span>(<span class=\"string\">&apos;fs&apos;</span>);\n\nfs.readFile(<span class=\"string\">&apos;myfile.txt&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">err, data</span>)</span>{\n  <span class=\"keyword\">if</span> (err) { ... } <span class=\"comment\">// Handle error</span>\n  fs.writeFile(<span class=\"string\">&apos;myfile2.txt&apos;</span>, data, <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">err</span>)</span>{\n    <span class=\"keyword\">if</span> (err) { ... } <span class=\"comment\">// Handle error</span>\n    <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;done&apos;</span>)\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>you can chain the operations together using <code>then</code> from the returned promise:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> fs = <span class=\"built_in\">require</span>(<span class=\"string\">&apos;fs&apos;</span>);\n<span class=\"keyword\">let</span> readFile = RSVP.denodeify(fs.readFile);\n<span class=\"keyword\">let</span> writeFile = RSVP.denodeify(fs.writeFile);\n\nreadFile(<span class=\"string\">&apos;myfile.txt&apos;</span>).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">data</span>)</span>{\n  <span class=\"keyword\">return</span> writeFile(<span class=\"string\">&apos;myfile2.txt&apos;</span>, data);\n}).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n  <span class=\"built_in\">console</span>.log(<span class=\"string\">&apos;done&apos;</span>)\n}).catch(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">error</span>)</span>{\n  <span class=\"comment\">// Handle error</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "denodeify",
+          "static": 1,
+          "params": [
+            {
+              "name": "nodeFunc",
+              "description": "a 'node-style' function that takes a callback as\nits last argument. The callback expects an error to be passed as its first\nargument (if an error occurred, otherwise null), and the value from the\noperation as its second argument ('function(err, value){ }').",
+              "type": "Function"
+            },
+            {
+              "name": "options",
+              "description": "An optional paramter that if set\nto `true` causes the promise to fulfill with the callback's success arguments\nas an array. This is useful if the node function has multiple success\nparamters. If you set this paramter to an array with names, the promise will\nfulfill with a hash with these names as keys and the success parameters as\nvalues.",
+              "type": "Boolean|Array",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "a function that wraps `nodeFunc` to return an\n`RSVP.Promise`",
+            "type": "Function"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/race.js",
+          "line": 3,
+          "description": "<html><head></head><body><p>This is a convenient alias for <code>RSVP.Promise.race</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "race",
+          "static": 1,
+          "params": [
+            {
+              "name": "array",
+              "description": "Array of promises.",
+              "type": "Array"
+            },
+            {
+              "name": "label",
+              "description": "An optional label. This is useful\nfor tooling.",
+              "type": "String"
+            }
+          ],
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/reject.js",
+          "line": 3,
+          "description": "<html><head></head><body><p>This is a convenient alias for <code>RSVP.Promise.reject</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reject",
+          "static": 1,
+          "params": [
+            {
+              "name": "reason",
+              "description": "value that the returned promise will be rejected with.",
+              "type": "*"
+            },
+            {
+              "name": "label",
+              "description": "optional string for identifying the returned promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "a promise rejected with the given `reason`.",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/resolve.js",
+          "line": 3,
+          "description": "<html><head></head><body><p>This is a convenient alias for <code>RSVP.Promise.resolve</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "resolve",
+          "static": 1,
+          "params": [
+            {
+              "name": "value",
+              "description": "value that the returned promise will be resolved with",
+              "type": "*"
+            },
+            {
+              "name": "label",
+              "description": "optional string for identifying the returned promise.\nUseful for tooling.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "a promise that will become fulfilled with the given\n`value`",
+            "type": "Promise"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        },
+        {
+          "file": "node_modules/rsvp/lib/rsvp/rethrow.js",
+          "line": 1,
+          "description": "<html><head></head><body><p><code>RSVP.rethrow</code> will rethrow an error on the next turn of the JavaScript event\nloop in order to aid debugging.</p>\n<p>Promises A+ specifies that any exceptions that occur with a promise must be\ncaught by the promises implementation and bubbled to the last handler. For\nthis reason, it is recommended that you always specify a second rejection\nhandler function to <code>then</code>. However, <code>RSVP.rethrow</code> will throw the exception\noutside of the promise, so it bubbles up to your console if in the browser,\nor domain/cause uncaught exception in Node. <code>rethrow</code> will also throw the\nerror again so the error can be handled by the promise per the spec.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span> <span class=\"title\">throws</span>(<span class=\"params\"></span>)</span>{\n  <span class=\"keyword\">throw</span> <span class=\"keyword\">new</span> <span class=\"built_in\">Error</span>(<span class=\"string\">&apos;Whoops!&apos;</span>);\n}\n\n<span class=\"keyword\">let</span> promise = <span class=\"keyword\">new</span> RSVP.Promise(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">resolve, reject</span>)</span>{\n  throws();\n});\n\npromise.catch(RSVP.rethrow).then(<span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\"></span>)</span>{\n  <span class=\"comment\">// Code here doesn&apos;t run because the promise became rejected due to an</span>\n  <span class=\"comment\">// error!</span>\n}, <span class=\"function\"><span class=\"keyword\">function</span> (<span class=\"params\">err</span>)</span>{\n  <span class=\"comment\">// handle the error here</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>The &apos;Whoops&apos; error will be thrown on the next turn of the event loop\nand you can watch for it in your console. You can also handle it using a\nrejection handler given to <code>.then</code> or <code>.catch</code> on the returned promise.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "rethrow",
+          "static": 1,
+          "params": [
+            {
+              "name": "reason",
+              "description": "reason the promise became rejected.",
+              "type": "Error"
+            }
+          ],
+          "throws": {
+            "description": "Error"
+          },
+          "class": "RSVP",
+          "version": "2.15.2",
+          "since": "2.15.2"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.15.2-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Location",
+    "type": "class",
+    "attributes": {
+      "name": "Location",
+      "shortname": "Location",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/routing",
+      "namespace": "",
+      "file": "packages/ember-routing/lib/location/api.js",
+      "line": 9,
+      "description": "<html><head></head><body><p>Ember.Location returns an instance of the correct implementation of\nthe <code>location</code> API.</p>\n<h2 id=\"implementations\">Implementations</h2>\n<p>You can pass an implementation name (<code>hash</code>, <code>history</code>, <code>none</code>, <code>auto</code>) to force a\nparticular implementation to be used in your application.</p>\n<p>See <a href=\"/api/classes/Ember.Location.HashLocation\">Ember.Location.HashLocation</a>.\nSee <a href=\"/api/classes/Ember.Location.HistoryLocation\">Ember.Location.HistoryLocation</a>.\nSee <a href=\"/api/classes/Ember.Location.NoneLocation\">Ember.Location.NoneLocation</a>.\nSee <a href=\"/api/classes/Ember.Location.AutoLocation\">Ember.Location.AutoLocation</a>.</p>\n<h2 id=\"location-api\">Location API</h2>\n<p>Each location implementation must provide the following methods:</p>\n<ul>\n<li>implementation: returns the string name used to reference the implementation.</li>\n<li>getURL: returns the current URL.</li>\n<li>setURL(path): sets the current URL.</li>\n<li>replaceURL(path): replace the current URL (optional).</li>\n<li>onUpdateURL(callback): triggers the callback when the URL changes.</li>\n<li>formatURL(url): formats <code>url</code> to be placed into <code>href</code> attribute.</li>\n<li>detect() (optional): instructs the location to do any feature detection\n  necessary. If the location needs to redirect to a different URL, it\n  can cancel routing by setting the <code>cancelRouterSetup</code> property on itself\n  to <code>false</code>.</li>\n</ul>\n<p>Calling setURL or replaceURL will not trigger onUpdateURL callbacks.</p>\n<h2 id=\"custom-implementation\">Custom implementation</h2>\n<p>Ember scans <code>app/locations/*</code> for extending the Location API.</p>\n<p>Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> Ember <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember&apos;</span>;\n\n<span class=\"keyword\">const</span> { HistoryLocation } = Ember;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> <span class=\"class\"><span class=\"keyword\">class</span> <span class=\"title\">MyHistory</span> </span>{\n  implementation: <span class=\"string\">&apos;my-custom-history&apos;</span>,\n  <span class=\"keyword\">constructor</span>() {\n    <span class=\"keyword\">this</span>._history = HistoryLocation.create(...arguments);\n  }\n  create() {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">new</span> <span class=\"keyword\">this</span>(...arguments);\n  }\n  pushState(path) {\n     <span class=\"keyword\">this</span>._history.pushState(path);\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-routing/lib/location/api.js",
+          "line": 70,
+          "description": "<html><head></head><body><p>This is deprecated in favor of using the container to lookup the location\nimplementation as desired.</p>\n<p>For example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"comment\">// Given a location registered as follows:</span>\n<span class=\"keyword\">container</span>.register(<span class=\"string\">&apos;location:history-test&apos;</span>, HistoryTestLocation);\n\n<span class=\"comment\">// You could create a new instance via:</span>\n<span class=\"keyword\">container</span>.lookup(<span class=\"string\">&apos;location:history-test&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "create",
+          "params": [
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "an instance of an implementation of the `location` API",
+            "type": "Object"
+          },
+          "deprecated": true,
+          "deprecationMessage": "Use the container to lookup the location implementation that you\n need.",
+          "access": "private",
+          "tagname": "",
+          "class": "Location",
+          "module": "@ember/routing",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-routing/lib/location/api.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>Returns the current <code>location.hash</code> by parsing location.href since browsers\ninconsistently URL-decode <code>location.hash</code>.</p>\n<p><a href=\"https://bugzilla.mozilla.org/show_bug.cgi?id=483304\">https://bugzilla.mozilla.org/show_bug.cgi?id=483304</a></p>\n</body></html>",
+          "access": "private",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "getHash",
+          "since": "2.16.0",
+          "class": "Location",
+          "module": "@ember/routing",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/routing",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

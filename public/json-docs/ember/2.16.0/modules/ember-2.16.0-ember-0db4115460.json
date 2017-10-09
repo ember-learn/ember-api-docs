@@ -1,0 +1,76 @@
+{
+  "data": {
+    "id": "ember-2.16.0-ember",
+    "type": "module",
+    "attributes": {
+      "name": "ember",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.FEATURES": 1,
+        "Ember.Templates.helpers": 1,
+        "Ember": 1,
+        "Ember.Ember": 1,
+        "Ember.ControllerMixin": 1,
+        "Function": 1,
+        "Ember.Test": 1
+      },
+      "namespaces": {
+        "Ember": 1
+      },
+      "tag": "module",
+      "file": "packages/ember/lib/index.js",
+      "line": 52,
+      "access": "public",
+      "tagname": "",
+      "parent": null,
+      "publicclasses": [
+        "Ember.Binding",
+        "RouterService",
+        "ContainerProxyMixin",
+        "Ember.MutableEnumerable",
+        "Ember.Namespace",
+        "Ember.Test",
+        "Ember.Debug"
+      ],
+      "privateclasses": [
+        "Ember.Templates.helpers",
+        "ComponentStateBucket",
+        "Ember.InjectedProperty",
+        "Libraries",
+        "Ember.OrderedSet",
+        "Ember.Map",
+        "Ember.MapWithDefault",
+        "Ember.ControllerMixin",
+        "RoutingService",
+        "BucketCache",
+        "Ember.ProxyMixin",
+        "Ember.ActionHandler",
+        "Ember.Comparable",
+        "Ember.Copyable",
+        "Ember.Freezable",
+        "RegistryProxyMixin",
+        "Ember.TargetActionSupport",
+        "Ember.ActionSupport",
+        "Ember.ClassNamesSupport",
+        "Ember.TextSupport",
+        "Ember.ViewMixin",
+        "Ember.EventDispatcher",
+        "Ember.CoreView"
+      ],
+      "staticfunctions": {},
+      "version": "2.16.0"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

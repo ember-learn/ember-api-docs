@@ -1,0 +1,78 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Descriptor",
+    "type": "class",
+    "attributes": {
+      "name": "Descriptor",
+      "shortname": "Descriptor",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "@ember/object",
+      "namespace": "",
+      "file": "packages/ember-metal/lib/properties.js",
+      "line": 13,
+      "description": "<html><head></head><body><p>Objects of this type can implement an interface to respond to requests to\nget and set. The default implementation handles simple properties.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-metal/lib/deprecate_property.js",
+          "line": 10,
+          "description": "<html><head></head><body><p>Used internally to allow changing properties in a backwards compatible way, and print a helpful\ndeprecation warning.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "deprecateProperty",
+          "params": [
+            {
+              "name": "object",
+              "description": "The object to add the deprecated property to.",
+              "type": "Object"
+            },
+            {
+              "name": "deprecatedKey",
+              "description": "The property to add (and print deprecation warnings upon accessing).",
+              "type": "String"
+            },
+            {
+              "name": "newKey",
+              "description": "The property that will be aliased.",
+              "type": "String"
+            }
+          ],
+          "access": "private",
+          "tagname": "",
+          "since": "2.16.0",
+          "class": "Descriptor",
+          "module": "ember",
+          "version": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/object",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

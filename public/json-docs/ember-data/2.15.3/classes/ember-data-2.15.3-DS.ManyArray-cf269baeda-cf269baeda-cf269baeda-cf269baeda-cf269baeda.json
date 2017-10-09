@@ -1,0 +1,184 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.ManyArray",
+    "type": "class",
+    "attributes": {
+      "name": "DS.ManyArray",
+      "shortname": "DS.ManyArray",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/system/many-array.js",
+      "line": 12,
+      "description": "<html><head></head><body><p>A <code>ManyArray</code> is a <code>MutableArray</code> that represents the contents of a has-many\nrelationship.</p>\n<p>The <code>ManyArray</code> is instantiated lazily the first time the relationship is\nrequested.</p>\n<h3 id=\"inverses\">Inverses</h3>\n<p>Often, the relationships in Ember Data applications will have\nan inverse. For example, imagine the following models are\ndefined:</p>\n<div class=\"highlight app/models/post.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/post.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  comments: DS.hasMany(<span class=\"string\">&apos;comment&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<div class=\"highlight app/models/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/models/comment.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Model.extend({\n  post: DS.belongsTo(<span class=\"string\">&apos;post&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you created a new instance of <code>App.Post</code> and added\na <code>App.Comment</code> record to its <code>comments</code> has-many\nrelationship, you would expect the comment&apos;s <code>post</code>\nproperty to be set to the post that contained\nthe has-many.</p>\n<p>We call the record to which a relationship belongs the\nrelationship&apos;s <em>owner</em>.</p>\n</body></html>",
+      "extends": "Ember.Object",
+      "uses": [
+        "Ember.Evented",
+        "Ember.MutableArray"
+      ],
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 214,
+          "description": "<html><head></head><body><p>Reloads all of the records in the manyArray. If the manyArray\nholds a relationship that was originally fetched using a links url\nEmber Data will revisit the original links url to repopulate the\nrelationship.</p>\n<p>If the manyArray holds the result of a <code>store.query()</code> reload will\nre-run the original query.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>var user = store.peekRecord(<span class=\"string\">&apos;user&apos;</span>, <span class=\"number\">1</span>)\nuser.login().<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span> {\n  user.get(<span class=\"string\">&apos;permissions&apos;</span>).<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(permissions)</span></span> {\n    <span class=\"keyword\">return</span> permissions.reload();\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "reload",
+          "access": "public",
+          "tagname": "",
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 241,
+          "description": "<html><head></head><body><p>Saves all of the records in the <code>ManyArray</code>.</p>\n<p>Example</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>store.findRecord(<span class=\"string\">&apos;inbox&apos;</span>, <span class=\"number\">1</span>).<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(inbox)</span></span> {\n  inbox.get(<span class=\"string\">&apos;messages&apos;</span>).<span class=\"keyword\">then</span>(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(messages)</span></span> {\n    messages.forEach(<span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(message)</span></span> {\n      message.set(<span class=\"string\">&apos;isRead&apos;</span>, <span class=\"literal\">true</span>);\n    });\n    messages.save()\n  });\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "save",
+          "return": {
+            "description": "promise",
+            "type": "DS.PromiseArray"
+          },
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 269,
+          "description": "<html><head></head><body><p>Create a child record within the owner</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "createRecord",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "hash",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "record",
+            "type": "DS.Model"
+          },
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 59,
+          "description": "<html><head></head><body><p>The loading state of this array</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isLoaded",
+          "type": "Boolean",
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 67,
+          "description": "<html><head></head><body><p>Used for async <code>hasMany</code> arrays\nto keep track of when they will resolve.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "promise",
+          "type": "Ember.RSVP.Promise",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 76,
+          "description": "<html><head></head><body><p>Metadata associated with the request for async hasMany relationships.</p>\n<p>Example</p>\n<p>Given that the server returns the following JSON payload when fetching a\nhasMany relationship:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre>{\n  <span class=\"string\">&quot;comments&quot;</span>: [{\n    <span class=\"string\">&quot;id&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"string\">&quot;comment&quot;</span>: <span class=\"string\">&quot;This is the first comment&quot;</span>,\n  }, {\n// ...\n  }],\n\n  <span class=\"string\">&quot;meta&quot;</span>: {\n    <span class=\"string\">&quot;page&quot;</span>: <span class=\"number\">1</span>,\n    <span class=\"string\">&quot;total&quot;</span>: <span class=\"number\">5</span>\n  }\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>You can then access the metadata via the <code>meta</code> property:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>post.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;comments&apos;</span>).then(<span class=\"function\"><span class=\"keyword\">function</span></span>(comments) {\n  <span class=\"keyword\">var</span> meta = comments.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;meta&apos;</span>);\n\n<span class=\"comment\">// meta.page =&gt; 1</span>\n<span class=\"comment\">// meta.total =&gt; 5</span>\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "meta",
+          "type": "Object",
+          "access": "public",
+          "tagname": "",
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 116,
+          "description": "<html><head></head><body><p><code>true</code> if the relationship is polymorphic, <code>false</code> otherwise.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "isPolymorphic",
+          "type": "Boolean",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        },
+        {
+          "file": "addon/-private/system/many-array.js",
+          "line": 124,
+          "description": "<html><head></head><body><p>The relationship which manages this array.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "relationship",
+          "type": "ManyRelationship",
+          "access": "private",
+          "tagname": "",
+          "class": "DS.ManyArray",
+          "module": "ember-data",
+          "namespace": "DS",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": {
+          "id": "Ember.Object",
+          "type": "missing",
+          "version": "2.15.3"
+        }
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

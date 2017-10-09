@@ -1,0 +1,468 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-DS.BuildURLMixin",
+    "type": "class",
+    "attributes": {
+      "name": "DS.BuildURLMixin",
+      "shortname": "DS.BuildURLMixin",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "DS.RESTAdapter"
+      ],
+      "module": "ember-data",
+      "namespace": "DS",
+      "file": "addon/-private/adapters/build-url-mixin.js",
+      "line": 6,
+      "description": "<html><head></head><body><p>WARNING: This interface is likely to change in order to accomodate <a href=\"https://github.com/emberjs/rfcs/pull/4\">https://github.com/emberjs/rfcs/pull/4</a></p>\n<h2 id=\"using-buildurlmixin\">Using BuildURLMixin</h2>\n<p>To use url building, include the mixin when extending an adapter, and call <code>buildURL</code> where needed.\n  The default behaviour is designed for RESTAdapter.</p>\n<h3 id=\"example\">Example</h3>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n</pre></td>\n              <td class=\"code\"><pre>  <span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.Adapter.extend(BuildURLMixin, {\n    <span class=\"attribute\">findRecord</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">store, type, id, snapshot</span>) </span>{\n      <span class=\"keyword\">var</span> <span class=\"built_in\">url</span> = <span class=\"keyword\">this</span>.buildURL(type.modelName, id, snapshot, <span class=\"string\">&apos;findRecord&apos;</span>);\n      <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>.ajax(<span class=\"built_in\">url</span>, <span class=\"string\">&apos;GET&apos;</span>);\n    }\n  });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h3 id=\"attributes\">Attributes</h3>\n<p>The <code>host</code> and <code>namespace</code> attributes will be used if defined, and are optional.</p>\n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 34,
+          "description": "<html><head></head><body><p>Builds a URL for a given type and optional ID.</p>\n<p>By default, it pluralizes the type&apos;s name (for example, &apos;post&apos;\nbecomes &apos;posts&apos; and &apos;person&apos; becomes &apos;people&apos;). To override the\npluralization see <a href=\"#method_pathForType\">pathForType</a>.</p>\n<p>If an ID is specified, it adds the ID to the path generated\nfor the type, separated by a <code>/</code>.</p>\n<p>When called by RESTAdapter.findMany() the <code>id</code> and <code>snapshot</code> parameters\nwill be arrays of ids and snapshots.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "buildURL",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "id",
+              "description": "single id or array of ids or query",
+              "type": "(String|Array|Object)"
+            },
+            {
+              "name": "snapshot",
+              "description": "single snapshot or array of snapshots",
+              "type": "(DS.Snapshot|Array)"
+            },
+            {
+              "name": "requestType",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "query",
+              "description": "object of query parameters to send for query requests.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 82,
+          "itemtype": "method",
+          "name": "_buildURL",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 111,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.findRecord(type, id)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/user.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/user.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindRecord(id, modelName, snapshot) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL();\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/users/<span class=\"subst\">${snapshot.adapterOptions.user_id}</span>/playlists/<span class=\"subst\">${id}</span>`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindRecord",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 138,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.findAll(type)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/comment.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/comment.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindAll(modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"string\">&apos;data/comments.json&apos;</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindAll",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.SnapshotRecordArray"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 162,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.query(type, query)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"attr\">host</span>: <span class=\"string\">&apos;https://api.github.com&apos;</span>,\n  urlForQuery (query, modelName) {\n    <span class=\"keyword\">switch</span>(modelName) {\n      <span class=\"keyword\">case</span> <span class=\"string\">&apos;repo&apos;</span>:\n        <span class=\"keyword\">return</span> <span class=\"string\">`https://api.github.com/orgs/<span class=\"subst\">${query.orgId}</span>/repos`</span>;\n      <span class=\"keyword\">default</span>:\n        <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments);\n    }\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForQuery",
+          "params": [
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 192,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>store.queryRecord(type, query)</code> call.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForQueryRecord({ slug }, modelName) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL();\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/<span class=\"subst\">${<span class=\"built_in\">encodeURIComponent</span>(slug)}</span>`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForQueryRecord",
+          "params": [
+            {
+              "name": "query",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 217,
+          "description": "<html><head></head><body><p>Builds a URL for coalesceing multiple <code>store.findRecord(type, id)</code>\nrecords into 1 request when the adapter&apos;s <code>coalesceFindRequests</code>\nproperty is true.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForFindMany(ids, modelName) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL();\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/coalesce`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindMany",
+          "params": [
+            {
+              "name": "ids",
+              "description": "",
+              "type": "Array"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshots",
+              "description": "",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 245,
+          "description": "<html><head></head><body><p>Builds a URL for fetching a async hasMany relationship when a url\nis not provided by the server.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindHasMany(id, modelName, snapshot) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL(id, modelName);\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/relationships`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindHasMany",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 272,
+          "description": "<html><head></head><body><p>Builds a URL for fetching a async belongsTo relationship when a url\nis not provided by the server.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.JSONAPIAdapter.extend({\n  urlForFindBelongsTo(id, modelName, snapshot) {\n    <span class=\"keyword\">let</span> baseUrl = <span class=\"keyword\">this</span>.buildURL(id, modelName);\n    <span class=\"keyword\">return</span> <span class=\"string\">`<span class=\"subst\">${baseUrl}</span>/relationships`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForFindBelongsTo",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 299,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>record.save()</code> call when the record was created\nlocally using <code>store.createRecord()</code>.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForCreateRecord(modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments) + <span class=\"string\">&apos;/new&apos;</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForCreateRecord",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 324,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>record.save()</code> call when the record has been update locally.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForUpdateRecord(id, modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"string\">`/<span class=\"subst\">${id}</span>/feed?access_token=<span class=\"subst\">${snapshot.adapterOptions.token}</span>`</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForUpdateRecord",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 349,
+          "description": "<html><head></head><body><p>Builds a URL for a <code>record.save()</code> call when the record has been deleted locally.</p>\n<p>Example:</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  urlForDeleteRecord(id, modelName, snapshot) {\n    <span class=\"keyword\">return</span> <span class=\"keyword\">this</span>._super(...arguments) + <span class=\"string\">&apos;/destroy&apos;</span>;\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "urlForDeleteRecord",
+          "params": [
+            {
+              "name": "id",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "snapshot",
+              "description": "",
+              "type": "DS.Snapshot"
+            }
+          ],
+          "return": {
+            "description": "url",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 374,
+          "itemtype": "method",
+          "name": "urlPrefix",
+          "access": "private",
+          "tagname": "",
+          "params": [
+            {
+              "name": "path",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "parentURL",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "urlPrefix",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "addon/-private/adapters/build-url-mixin.js",
+          "line": 411,
+          "description": "<html><head></head><body><p>Determines the pathname for a given type.</p>\n<p>By default, it pluralizes the type&apos;s name (for example,\n&apos;post&apos; becomes &apos;posts&apos; and &apos;person&apos; becomes &apos;people&apos;).</p>\n<h3 id=\"pathname-customization\">Pathname customization</h3>\n<p>For example if you have an object LineItem with an\nendpoint of &quot;/line_items/&quot;.</p>\n<div class=\"highlight app/adapters/application.js\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <thead>\n            <tr>\n              <td colspan=\"2\">app/adapters/application.js</td>\n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">import</span> DS <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-data&apos;</span>;\n<span class=\"keyword\">import</span> { pluralize } <span class=\"keyword\">from</span> <span class=\"string\">&apos;ember-inflector&apos;</span>;\n\n<span class=\"keyword\">export</span> <span class=\"keyword\">default</span> DS.RESTAdapter.extend({\n  <span class=\"attr\">pathForType</span>: <span class=\"function\"><span class=\"keyword\">function</span>(<span class=\"params\">modelName</span>) </span>{\n    <span class=\"keyword\">var</span> decamelized = Ember.String.decamelize(modelName);\n    <span class=\"keyword\">return</span> pluralize(decamelized);\n  }\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "pathForType",
+          "params": [
+            {
+              "name": "modelName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "path",
+            "type": "String"
+          },
+          "class": "DS.BuildURLMixin",
+          "namespace": "DS",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

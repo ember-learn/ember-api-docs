@@ -1,0 +1,306 @@
+{
+  "data": {
+    "id": "ember-2.16.0-RegistryProxyMixin",
+    "type": "class",
+    "attributes": {
+      "name": "RegistryProxyMixin",
+      "shortname": "RegistryProxyMixin",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "Application",
+        "EngineInstance"
+      ],
+      "module": "ember",
+      "namespace": "",
+      "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+      "line": 10,
+      "description": "<html><head></head><body><p>RegistryProxyMixin is used to provide public access to specific\nregistry functionality.</p>\n</body></html>",
+      "access": "private",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 20,
+          "description": "<html><head></head><body><p>Given a fullName return the corresponding factory.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "resolveRegistration",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "fullName's factory",
+            "type": "Function"
+          },
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 30,
+          "description": "<html><head></head><body><p>Registers a factory that can be used for dependency injection (with\n<code>inject</code>) or for service lookup. Each factory is registered with\na full name including two parts: <code>type:name</code>.</p>\n<p>A simple example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">App</span> = Ember.Application.create();\n\n<span class=\"keyword\">App</span>.Orange = Ember.Object.extend();\n<span class=\"keyword\">App</span>.register(&apos;fruit:favorite&apos;, <span class=\"keyword\">App</span>.Orange);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Ember will resolve factories from the <code>App</code> namespace automatically.\nFor example <code>App.CarsController</code> will be discovered and returned if\nan application requests <code>controller:cars</code>.</p>\n<p>An example of registering a controller with a non-standard name:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> App = Ember.Application.create();\n<span class=\"keyword\">let</span> Session = Ember.Controller.extend();\n\nApp.register(<span class=\"string\">&apos;controller:session&apos;</span>, Session);\n\n<span class=\"comment\">// The Session controller can now be treated like a normal controller,</span>\n<span class=\"comment\">// despite its non-standard name.</span>\nApp.ApplicationController = Ember.Controller.extend({\n  needs: [<span class=\"string\">&apos;session&apos;</span>]\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Registered factories are <strong>instantiated</strong> by having <code>create</code>\ncalled on them. Additionally they are <strong>singletons</strong>, each time\nthey are looked up they return the same instance.</p>\n<p>Some examples modifying that default behavior:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n</pre></td>\n              <td class=\"code\"><pre>let <span class=\"keyword\">App</span> = Ember.Application.create();\n\n<span class=\"keyword\">App</span>.Person = Ember.Object.extend();\n<span class=\"keyword\">App</span>.Orange = Ember.Object.extend();\n<span class=\"keyword\">App</span>.Email = Ember.Object.extend();\n<span class=\"keyword\">App</span>.session = Ember.Object.create();\n\n<span class=\"keyword\">App</span>.register(&apos;model:user&apos;, <span class=\"keyword\">App</span>.Person, { singleton: false });\n<span class=\"keyword\">App</span>.register(&apos;fruit:favorite&apos;, <span class=\"keyword\">App</span>.Orange);\n<span class=\"keyword\">App</span>.register(&apos;communication:main&apos;, <span class=\"keyword\">App</span>.Email, { singleton: false });\n<span class=\"keyword\">App</span>.register(&apos;session&apos;, <span class=\"keyword\">App</span>.session, { instantiate: false });</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "register",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "type:name (e.g., 'model:user')",
+              "type": "String"
+            },
+            {
+              "name": "factory",
+              "description": "(e.g., App.Person)",
+              "type": "Function"
+            },
+            {
+              "name": "options",
+              "description": "(optional) disable instantiation or singleton usage",
+              "type": "Object"
+            }
+          ],
+          "access": "public",
+          "tagname": "",
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 91,
+          "description": "<html><head></head><body><p>Unregister a factory.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> App = Ember.Application.create();\n<span class=\"keyword\">let</span> User = Ember.Object.extend();\nApp.register(<span class=\"string\">&apos;model:user&apos;</span>, User);\n\nApp.resolveRegistration(<span class=\"string\">&apos;model:user&apos;</span>).create() <span class=\"keyword\">instanceof</span> User <span class=\"comment\">//=&gt; true</span>\n\nApp.unregister(<span class=\"string\">&apos;model:user&apos;</span>)\nApp.resolveRegistration(<span class=\"string\">&apos;model:user&apos;</span>) === <span class=\"literal\">undefined</span> <span class=\"comment\">//=&gt; true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "unregister",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 111,
+          "description": "<html><head></head><body><p>Check if a factory is registered.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "hasRegistration",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 121,
+          "description": "<html><head></head><body><p>Return a specific registered option for a particular factory.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "registeredOption",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "optionName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "options",
+            "type": "Object"
+          },
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 132,
+          "description": "<html><head></head><body><p>Register options for a particular factory.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "registerOptions",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 142,
+          "description": "<html><head></head><body><p>Return registered options for a particular factory.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "registeredOptions",
+          "params": [
+            {
+              "name": "fullName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "options",
+            "type": "Object"
+          },
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 152,
+          "description": "<html><head></head><body><p>Allow registering options for all factories of a type.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n</pre></td>\n              <td class=\"code\"><pre><span class=\"built_in\">let</span> App = Ember.Application.create();\n<span class=\"built_in\">let</span> appInstance = App.buildInstance();\n\n// <span class=\"keyword\">if</span> all of <span class=\"built_in\">type</span> `connection` must not be singletons\nappInstance.registerOptionsForType(<span class=\"string\">&apos;connection&apos;</span>, { singleton: <span class=\"literal\">false</span> });\n\nappInstance.register(<span class=\"string\">&apos;connection:twitter&apos;</span>, TwitterConnection);\nappInstance.register(<span class=\"string\">&apos;connection:facebook&apos;</span>, FacebookConnection);\n\n<span class=\"built_in\">let</span> twitter = appInstance.lookup(<span class=\"string\">&apos;connection:twitter&apos;</span>);\n<span class=\"built_in\">let</span> twitter2 = appInstance.lookup(<span class=\"string\">&apos;connection:twitter&apos;</span>);\n\ntwitter === twitter2; // =&gt; <span class=\"literal\">false</span>\n\n<span class=\"built_in\">let</span> facebook = appInstance.lookup(<span class=\"string\">&apos;connection:facebook&apos;</span>);\n<span class=\"built_in\">let</span> facebook2 = appInstance.lookup(<span class=\"string\">&apos;connection:facebook&apos;</span>);\n\nfacebook === facebook2; // =&gt; <span class=\"literal\">false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "registerOptionsForType",
+          "params": [
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 183,
+          "description": "<html><head></head><body><p>Return the registered options for all factories of a type.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "registeredOptionsForType",
+          "params": [
+            {
+              "name": "type",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "options",
+            "type": "Object"
+          },
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/registry_proxy.js",
+          "line": 193,
+          "description": "<html><head></head><body><p>Define a dependency injection onto a specific factory or all factories\nof a type.</p>\n<p>When Ember instantiates a controller, view, or other framework component\nit can attach a dependency to that component. This is often used to\nprovide services to a set of framework components.</p>\n<p>An example of providing a session object to all controllers:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> App = Ember.Application.create();\n<span class=\"keyword\">let</span> Session = Ember.Object.extend({ isAuthenticated: <span class=\"literal\">false</span> });\n\n<span class=\"comment\">// A factory must be registered before it can be injected</span>\nApp.register(<span class=\"string\">&apos;session:main&apos;</span>, Session);\n\n<span class=\"comment\">// Inject &apos;session:main&apos; onto all factories of the type &apos;controller&apos;</span>\n<span class=\"comment\">// with the name &apos;session&apos;</span>\nApp.inject(<span class=\"string\">&apos;controller&apos;</span>, <span class=\"string\">&apos;session&apos;</span>, <span class=\"string\">&apos;session:main&apos;</span>);\n\nApp.IndexController = Ember.Controller.extend({\n  isLoggedIn: Ember.computed.<span class=\"keyword\">alias</span>(<span class=\"string\">&apos;session.isAuthenticated&apos;</span>)\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Injections can also be performed on specific factories.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>App.inject(&lt;full_name <span class=\"keyword\">or</span> <span class=\"keyword\">type</span>&gt;, &lt;<span class=\"keyword\">property</span> <span class=\"keyword\">name</span>&gt;, &lt;full_name&gt;)\nApp.inject(<span class=\"string\">&apos;route&apos;</span>, <span class=\"string\">&apos;source&apos;</span>, <span class=\"string\">&apos;source:main&apos;</span>)\nApp.inject(<span class=\"string\">&apos;route:application&apos;</span>, <span class=\"string\">&apos;email&apos;</span>, <span class=\"string\">&apos;model:email&apos;</span>)</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>It is important to note that injections can only be performed on\nclasses that are instantiated by Ember itself. Instantiating a class\ndirectly (via <code>create</code> or <code>new</code>) bypasses the dependency injection\nsystem.</p>\n</body></html>",
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "inject",
+          "params": [
+            {
+              "name": "factoryNameOrType",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "property",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "injectionName",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "RegistryProxyMixin",
+          "module": "ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

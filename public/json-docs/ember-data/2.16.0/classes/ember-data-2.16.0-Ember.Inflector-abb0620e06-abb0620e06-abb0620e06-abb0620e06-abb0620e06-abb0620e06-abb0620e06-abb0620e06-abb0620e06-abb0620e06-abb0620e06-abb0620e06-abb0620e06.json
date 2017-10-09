@@ -1,0 +1,238 @@
+{
+  "data": {
+    "id": "ember-data-2.16.0-Ember.Inflector",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.Inflector",
+      "shortname": "Ember.Inflector",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "Ember",
+      "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+      "line": 32,
+      "description": "<html><head></head><body><p>Inflector.Ember provides a mechanism for supplying inflection rules for your\napplication. Ember includes a default set of inflection rules, and provides an\nAPI for providing additional rules.</p>\n<p>Examples:</p>\n<p>Creating an inflector with no rules.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> inflector = <span class=\"keyword\">new</span> <span class=\"type\">Ember</span>.Inflector();</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Creating an inflector with the default ember ruleset.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> inflector = <span class=\"keyword\">new</span> <span class=\"type\">Ember</span>.Inflector(Ember.Inflector.defaultRules);\n\ninflector.pluralize(<span class=\"string\">&apos;cow&apos;</span>); <span class=\"comment\">//=&gt; &apos;kine&apos;</span>\ninflector.singularize(<span class=\"string\">&apos;kine&apos;</span>); <span class=\"comment\">//=&gt; &apos;cow&apos;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Creating an inflector and adding rules later.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">var</span> inflector = Ember.Inflector.inflector;\n\ninflector.pluralize(<span class=\"string\">&apos;advice&apos;</span>); <span class=\"comment\">// =&gt; &apos;advices&apos;</span>\ninflector.uncountable(<span class=\"string\">&apos;advice&apos;</span>);\ninflector.pluralize(<span class=\"string\">&apos;advice&apos;</span>); <span class=\"comment\">// =&gt; &apos;advice&apos;</span>\n\ninflector.pluralize(<span class=\"string\">&apos;formula&apos;</span>); <span class=\"comment\">// =&gt; &apos;formulas&apos;</span>\ninflector.irregular(<span class=\"string\">&apos;formula&apos;</span>, <span class=\"string\">&apos;formulae&apos;</span>);\ninflector.pluralize(<span class=\"string\">&apos;formula&apos;</span>); <span class=\"comment\">// =&gt; &apos;formulae&apos;</span>\n\n<span class=\"comment\">// you would not need to add these as they are the default rules</span>\ninflector.plural(<span class=\"regexp\">/$/</span>, <span class=\"string\">&apos;s&apos;</span>);\ninflector.singular(<span class=\"regexp\">/s$/i</span>, <span class=\"string\">&apos;&apos;</span>);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>Creating an inflector with a nondefault ruleset.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n</pre></td>\n              <td class=\"code\"><pre>var rules = {\n  plurals:  [\n    [ /$/, <span class=\"string\">&apos;s&apos;</span> ]\n  ],\n  singular: [\n    [ /\\s$/, <span class=\"string\">&apos;&apos;</span> ]\n  ],\n  irregularPairs: [\n    [ <span class=\"string\">&apos;cow&apos;</span>, <span class=\"string\">&apos;kine&apos;</span> ]\n  ],\n  uncountable: [ <span class=\"string\">&apos;fish&apos;</span> ]\n};\n\nvar inflector = new <span class=\"symbol\">Ember</span>.<span class=\"symbol\">Inflector</span>(rules);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 125,
+          "access": "public",
+          "tagname": "As inflections can be costly, and commonly the same subset of words are repeatedly\ninflected an optional cache is provided.",
+          "itemtype": "method",
+          "name": "enableCache",
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 147,
+          "access": "public",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "purgedCache",
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 158,
+          "access": "public",
+          "tagname": "disable caching",
+          "itemtype": "method",
+          "name": "disableCache;",
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 176,
+          "itemtype": "method",
+          "name": "plural",
+          "params": [
+            {
+              "name": "regex",
+              "description": "",
+              "type": "RegExp"
+            },
+            {
+              "name": "string",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 186,
+          "itemtype": "method",
+          "name": "singular",
+          "params": [
+            {
+              "name": "regex",
+              "description": "",
+              "type": "RegExp"
+            },
+            {
+              "name": "string",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 196,
+          "itemtype": "method",
+          "name": "uncountable",
+          "params": [
+            {
+              "name": "regex",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 205,
+          "itemtype": "method",
+          "name": "irregular",
+          "params": [
+            {
+              "name": "singular",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "plural",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 215,
+          "itemtype": "method",
+          "name": "pluralize",
+          "params": [
+            {
+              "name": "word",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 226,
+          "itemtype": "method",
+          "name": "singularize",
+          "params": [
+            {
+              "name": "word",
+              "description": "",
+              "type": "String"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "node_modules/ember-inflector/addon/lib/system/inflector.js",
+          "line": 238,
+          "access": "protected",
+          "tagname": "",
+          "itemtype": "method",
+          "name": "inflect",
+          "params": [
+            {
+              "name": "word",
+              "description": "",
+              "type": "String"
+            },
+            {
+              "name": "typeRules",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "irregular",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "class": "Ember.Inflector",
+          "module": "ember-data",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.16.0-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "data": {
+    "id": "ember-2.16.0-Ember.MutableEnumerable",
+    "type": "class",
+    "attributes": {
+      "name": "Ember.MutableEnumerable",
+      "shortname": "Ember.MutableEnumerable",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "MutableArray"
+      ],
+      "module": "ember",
+      "namespace": "Ember",
+      "file": "packages/ember-runtime/lib/mixins/mutable_enumerable.js",
+      "line": 12,
+      "description": "<html><head></head><body><p>This mixin defines the API for modifying generic enumerables. These methods\ncan be applied to an object regardless of whether it is ordered or\nunordered.</p>\n<p>Note that an Enumerable can change even if it does not implement this mixin.\nFor example, a MappedEnumerable cannot be directly modified but if its\nunderlying enumerable changes, it will change also.</p>\n<h2 id=\"adding-objects\">Adding Objects</h2>\n<p>To add an object to an enumerable, use the <code>addObject()</code> method. This\nmethod will only add the object to the enumerable if the object is not\nalready present and is of a type supported by the enumerable.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">set</span>.addObject(contact);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"removing-objects\">Removing Objects</h2>\n<p>To remove an object from an enumerable, use the <code>removeObject()</code> method. This\nwill only remove the object if it is present in the enumerable, otherwise\nthis method has no effect.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">set</span>.removeObject(contact);</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<h2 id=\"implementing-in-your-own-code\">Implementing In Your Own Code</h2>\n<p>If you are implementing an object and want to support this API, just include\nthis mixin in your class and implement the required methods. In your unit\ntests, be sure to apply the Ember.MutableEnumerableTests to your object.</p>\n</body></html>",
+      "uses": [
+        "Ember.Enumerable"
+      ],
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "since": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/mutable_enumerable.js",
+          "line": 54,
+          "description": "<html><head></head><body><p><strong>Required.</strong> You must implement this method to apply this mixin.</p>\n<p>Attempts to add the passed object to the receiver if the object is not\nalready present in the collection. If the object is present, this method\nhas no effect.</p>\n<p>If the passed object is of a type not supported by the receiver,\nthen this method should raise an exception.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addObject",
+          "params": [
+            {
+              "name": "object",
+              "description": "The object to add to the enumerable.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the passed object",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.MutableEnumerable",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/mutable_enumerable.js",
+          "line": 71,
+          "description": "<html><head></head><body><p>Adds each object in the passed enumerable to the receiver.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addObjects",
+          "params": [
+            {
+              "name": "objects",
+              "description": "the objects to add.",
+              "type": "Ember.Enumerable"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.MutableEnumerable",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/mutable_enumerable.js",
+          "line": 86,
+          "description": "<html><head></head><body><p><strong>Required.</strong> You must implement this method to apply this mixin.</p>\n<p>Attempts to remove the passed object from the receiver collection if the\nobject is present in the collection. If the object is not present,\nthis method has no effect.</p>\n<p>If the passed object is of a type not supported by the receiver,\nthen this method should raise an exception.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeObject",
+          "params": [
+            {
+              "name": "object",
+              "description": "The object to remove from the enumerable.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the passed object",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.MutableEnumerable",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/mutable_enumerable.js",
+          "line": 104,
+          "description": "<html><head></head><body><p>Removes each object in the passed enumerable from the receiver.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeObjects",
+          "params": [
+            {
+              "name": "objects",
+              "description": "the objects to remove",
+              "type": "Ember.Enumerable"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "Ember.MutableEnumerable",
+          "module": "ember",
+          "namespace": "Ember",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-ember",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

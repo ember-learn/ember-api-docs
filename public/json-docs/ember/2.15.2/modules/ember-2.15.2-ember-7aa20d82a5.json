@@ -1,0 +1,343 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember",
+    "type": "module",
+    "attributes": {
+      "name": "ember",
+      "submodules": {
+        "ember-application": 1,
+        "ember-debug": 1,
+        "ember-extension-support": 1,
+        "ember-glimmer": 1,
+        "ember-views": 1,
+        "ember-metal": 1,
+        "ember-routing": 1,
+        "ember-runtime": 1,
+        "ember-testing": 1
+      },
+      "elements": {},
+      "fors": {
+        "Ember": 1,
+        "Ember.Debug": 1,
+        "Ember.FEATURES": 1,
+        "Ember.Templates.helpers": 1,
+        "Ember.String": 1,
+        "Ember.ControllerMixin": 1,
+        "Ember.Route": 1,
+        "Ember.computed": 1,
+        "Ember.inject": 1,
+        "Function": 1,
+        "String": 1,
+        "Ember.Test": 1
+      },
+      "namespaces": {
+        "Ember.ApplicationInstance": 1,
+        "Ember": 1,
+        "Ember.Instrumentation": 1,
+        "Ember.Test": 1
+      },
+      "tag": "module",
+      "file": "packages/ember-views/lib/views/core_view.js",
+      "line": 10,
+      "parent": null,
+      "publicclasses": [
+        "Ember.ApplicationInstance",
+        "Ember.ApplicationInstance.BootOptions",
+        "Ember.Application",
+        "Ember.EngineInstance",
+        "Ember.Engine",
+        "Ember.DefaultResolver",
+        "Ember.Debug",
+        "Ember.Error",
+        "Ember.ContainerDebugAdapter",
+        "Ember.DataAdapter",
+        "Ember.Checkbox",
+        "Ember.LinkComponent",
+        "Ember.TextArea",
+        "Ember.TextField",
+        "Ember.Component",
+        "Ember.Helper",
+        "Ember.Binding",
+        "Ember.ComputedProperty",
+        "Ember.Mixin",
+        "Ember.HashLocation",
+        "Ember.HistoryLocation",
+        "Ember.NoneLocation",
+        "RouterService",
+        "Ember.Route",
+        "Ember.Router",
+        "Ember.Controller",
+        "Ember.Array",
+        "ContainerProxyMixin",
+        "Ember.Evented",
+        "Ember.MutableArray",
+        "Ember.MutableEnumerable",
+        "Ember.Observable",
+        "Ember.PromiseProxyMixin",
+        "Ember.ArrayProxy",
+        "Ember.CoreObject",
+        "Ember.Namespace",
+        "Ember.NativeArray",
+        "Ember.Object",
+        "Ember.ObjectProxy",
+        "Ember.Service",
+        "Ember.Test.Adapter",
+        "Ember.Test.QUnitAdapter",
+        "Ember.Test"
+      ],
+      "privateclasses": [
+        "Transition",
+        "RSVP.EventTarget",
+        "RSVP.Promise",
+        "Container",
+        "Registry",
+        "ComponentStateBucket",
+        "Ember.InjectedProperty",
+        "Libraries",
+        "Ember.OrderedSet",
+        "Ember.Map",
+        "Ember.MapWithDefault",
+        "Ember.ControllerMixin",
+        "RoutingService",
+        "BucketCache",
+        "Ember.ProxyMixin",
+        "Ember.ActionHandler",
+        "Ember.EachProxy",
+        "Ember.Comparable",
+        "Ember.Copyable",
+        "Ember.Enumerable",
+        "Ember.Freezable",
+        "RegistryProxyMixin",
+        "Ember.TargetActionSupport",
+        "Ember.ActionSupport",
+        "Ember.ClassNamesSupport",
+        "Ember.TextSupport",
+        "Ember.ViewMixin",
+        "Ember.EventDispatcher",
+        "Ember.CoreView"
+      ],
+      "staticfunctions": {
+        "Ember.Test": [
+          {
+            "file": "packages/ember-testing/lib/test/waiters.js",
+            "line": 76,
+            "description": "Iterates through each registered test waiter, and invokes\nits callback. If any waiter returns false, this method will return\ntrue indicating that the waiters have not settled yet.\n\nThis is generally used internally from the acceptance/integration test\ninfrastructure.",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "itemtype": "method",
+            "name": "checkWaiters",
+            "class": "Ember.Test",
+            "module": "ember",
+            "version": "2.15.2",
+            "since": "2.15.2"
+          }
+        ],
+        "Ember.Mixin": [
+          {
+            "file": "packages/ember-metal/lib/mixin.js",
+            "line": 501,
+            "itemtype": "method",
+            "name": "create",
+            "static": 1,
+            "params": [
+              {
+                "name": "arguments",
+                "description": "",
+                "multiple": true
+              }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Ember.Mixin",
+            "module": "ember",
+            "submodule": "ember-metal",
+            "namespace": "Ember",
+            "version": "2.15.2",
+            "since": "2.15.2"
+          }
+        ],
+        "Ember.CoreObject": [
+          {
+            "file": "packages/ember-runtime/lib/system/core_object.js",
+            "line": 669,
+            "description": "Creates an instance of a class. Accepts either no arguments, or an object\ncontaining values to initialize the newly instantiated object with.\n\n```javascript\nconst Person = Ember.Object.extend({\n  helloWorld() {\n    alert(`Hi, my name is ${this.get('name')}`);\n  }\n});\n\nlet tom = Person.create({\n  name: 'Tom Dale'\n});\n\ntom.helloWorld(); // alerts \"Hi, my name is Tom Dale\".\n```\n\n`create` will call the `init` function if defined during\n`Ember.AnyObject.extend`\n\nIf no arguments are passed to `create`, it will not set values to the new\ninstance during initialization:\n\n```javascript\nlet noName = Person.create();\nnoName.helloWorld(); // alerts undefined\n```\n\nNOTE: For performance reasons, you cannot declare methods or computed\nproperties during `create`. You should instead declare methods and computed\nproperties when using `extend`.",
+            "itemtype": "method",
+            "name": "create",
+            "static": 1,
+            "params": [
+              {
+                "name": "arguments",
+                "description": "",
+                "optional": true,
+                "multiple": true
+              }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Ember.CoreObject",
+            "module": "ember",
+            "submodule": "ember-runtime",
+            "namespace": "Ember",
+            "version": "2.15.2",
+            "since": "2.15.2"
+          },
+          {
+            "file": "packages/ember-runtime/lib/system/core_object.js",
+            "line": 561,
+            "description": "Creates a new subclass.\n\n```javascript\nconst Person = Ember.Object.extend({\n  say(thing) {\n    alert(thing);\n   }\n});\n```\n\nThis defines a new subclass of Ember.Object: `Person`. It contains one method: `say()`.\n\nYou can also create a subclass from any existing class by calling its `extend()` method.\nFor example, you might want to create a subclass of Ember's built-in `Ember.Component` class:\n\n```javascript\nconst PersonComponent = Ember.Component.extend({\n  tagName: 'li',\n  classNameBindings: ['isAdministrator']\n});\n```\n\nWhen defining a subclass, you can override methods but still access the\nimplementation of your parent class by calling the special `_super()` method:\n\n```javascript\nconst Person = Ember.Object.extend({\n  say(thing) {\n    let name = this.get('name');\n    alert(`${name} says: ${thing}`);\n  }\n});\n\nconst Soldier = Person.extend({\n  say(thing) {\n    this._super(`${thing}, sir!`);\n  },\n  march(numberOfHours) {\n    alert(`${this.get('name')} marches for ${numberOfHours} hours.`);\n  }\n});\n\nlet yehuda = Soldier.create({\n  name: 'Yehuda Katz'\n});\n\nyehuda.say('Yes');  // alerts \"Yehuda Katz says: Yes, sir!\"\n```\n\nThe `create()` on line #17 creates an *instance* of the `Soldier` class.\nThe `extend()` on line #8 creates a *subclass* of `Person`. Any instance\nof the `Person` class will *not* have the `march()` method.\n\nYou can also pass `Mixin` classes to add additional properties to the subclass.\n\n```javascript\nconst Person = Ember.Object.extend({\n  say(thing) {\n    alert(`${this.get('name')} says: ${thing}`);\n  }\n});\n\nconst SingingMixin = Mixin.create({\n  sing(thing){\n    alert(`${this.get('name')} sings: la la la ${thing}`);\n  }\n});\n\nconst BroadwayStar = Person.extend(SingingMixin, {\n  dance() {\n    alert(`${this.get('name')} dances: tap tap tap tap `);\n  }\n});\n```\n\nThe `BroadwayStar` class contains three methods: `say()`, `sing()`, and `dance()`.",
+            "itemtype": "method",
+            "name": "extend",
+            "static": 1,
+            "params": [
+              {
+                "name": "mixins",
+                "description": "One or more Mixin classes",
+                "type": "Mixin",
+                "optional": true,
+                "multiple": true
+              },
+              {
+                "name": "arguments",
+                "description": "Object containing values to use within the new class",
+                "type": "Object",
+                "optional": true,
+                "multiple": true
+              }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Ember.CoreObject",
+            "module": "ember",
+            "submodule": "ember-runtime",
+            "namespace": "Ember",
+            "version": "2.15.2",
+            "since": "2.15.2"
+          }
+        ],
+        "Ember.Helper": [
+          {
+            "file": "packages/ember-glimmer/lib/helper.js",
+            "line": 103,
+            "description": "In many cases, the ceremony of a full `Ember.Helper` class is not required.\nThe `helper` method create pure-function helpers without instances. For\nexample:\n\n```js\n// app/helpers/format-currency.js\nexport default Ember.Helper.helper(function(params, hash) {\n  let cents = params[0];\n  let currency = hash.currency;\n  return `${currency}${cents * 0.01}`;\n});\n```",
+            "static": 1,
+            "params": [
+              {
+                "name": "helper",
+                "description": "The helper function",
+                "type": "Function"
+              }
+            ],
+            "itemtype": "method",
+            "name": "helper",
+            "access": "public",
+            "tagname": "",
+            "since": "2.15.2",
+            "class": "Ember.Helper",
+            "module": "ember",
+            "submodule": "ember-glimmer",
+            "version": "2.15.2"
+          }
+        ],
+        "Ember.String": [
+          {
+            "file": "packages/ember-glimmer/lib/utils/string.js",
+            "line": 76,
+            "description": "Mark a string as safe for unescaped output with Ember templates. If you\nreturn HTML from a helper, use this function to\nensure Ember's rendering layer does not escape the HTML.\n\n```javascript\nEmber.String.htmlSafe('<div>someString</div>')\n```",
+            "itemtype": "method",
+            "name": "htmlSafe",
+            "static": 1,
+            "return": {
+              "description": "A string that will not be HTML escaped by Handlebars.",
+              "type": "Handlebars.SafeString"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "Ember.String",
+            "module": "ember",
+            "submodule": "ember-glimmer",
+            "version": "2.15.2",
+            "since": "2.15.2"
+          },
+          {
+            "file": "packages/ember-glimmer/lib/utils/string.js",
+            "line": 100,
+            "description": "Detects if a string was decorated using `Ember.String.htmlSafe`.\n\n```javascript\nvar plainString = 'plain string',\n    safeString = Ember.String.htmlSafe('<div>someValue</div>');\n\nEmber.String.isHTMLSafe(plainString); // false\nEmber.String.isHTMLSafe(safeString);  // true\n```",
+            "itemtype": "method",
+            "name": "isHTMLSafe",
+            "static": 1,
+            "return": {
+              "description": "`true` if the string was decorated with `htmlSafe`, `false` otherwise.",
+              "type": "Boolean"
+            },
+            "access": "public",
+            "tagname": "",
+            "class": "Ember.String",
+            "module": "ember",
+            "submodule": "ember-glimmer",
+            "version": "2.15.2",
+            "since": "2.15.2"
+          }
+        ],
+        "Ember.Debug": [
+          {
+            "file": "packages/ember-debug/lib/deprecate.js",
+            "line": 16,
+            "description": "Allows for runtime registration of handler functions that override the default deprecation behavior.\nDeprecations are invoked by calls to [Ember.deprecate](https://emberjs.com/api/classes/Ember.html#method_deprecate).\nThe following example demonstrates its usage by registering a handler that throws an error if the\nmessage contains the word \"should\", otherwise defers to the default handler.\n\n```javascript\nEmber.Debug.registerDeprecationHandler((message, options, next) => {\n  if (message.indexOf('should') !== -1) {\n    throw new Error(`Deprecation message with should: ${message}`);\n  } else {\n    // defer to whatever handler was registered before this one\n    next(message, options);\n  }\n});\n```\n\nThe handler function takes the following arguments:\n\n<ul>\n  <li> <code>message</code> - The message received from the deprecation call.</li>\n  <li> <code>options</code> - An object passed in with the deprecation call containing additional information including:</li>\n    <ul>\n      <li> <code>id</code> - An id of the deprecation in the form of <code>package-name.specific-deprecation</code>.</li>\n      <li> <code>until</code> - The Ember version number the feature and deprecation will be removed in.</li>\n    </ul>\n  <li> <code>next</code> - A function that calls into the previously registered handler.</li>\n</ul>",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "itemtype": "method",
+            "name": "registerDeprecationHandler",
+            "params": [
+              {
+                "name": "handler",
+                "description": "A function to handle deprecation calls.",
+                "type": "Function"
+              }
+            ],
+            "since": "2.15.2",
+            "class": "Ember.Debug",
+            "module": "ember",
+            "submodule": "ember-debug",
+            "version": "2.15.2"
+          },
+          {
+            "file": "packages/ember-debug/lib/warn.js",
+            "line": 17,
+            "description": "Allows for runtime registration of handler functions that override the default warning behavior.\nWarnings are invoked by calls made to [Ember.warn](https://emberjs.com/api/classes/Ember.html#method_warn).\nThe following example demonstrates its usage by registering a handler that does nothing overriding Ember's\ndefault warning behavior.\n\n```javascript\n// next is not called, so no warnings get the default behavior\nEmber.Debug.registerWarnHandler(() => {});\n```\n\nThe handler function takes the following arguments:\n\n<ul>\n  <li> <code>message</code> - The message received from the warn call. </li>\n  <li> <code>options</code> - An object passed in with the warn call containing additional information including:</li>\n    <ul>\n      <li> <code>id</code> - An id of the warning in the form of <code>package-name.specific-warning</code>.</li>\n    </ul>\n  <li> <code>next</code> - A function that calls into the previously registered handler.</li>\n</ul>",
+            "access": "public",
+            "tagname": "",
+            "static": 1,
+            "itemtype": "method",
+            "name": "registerWarnHandler",
+            "params": [
+              {
+                "name": "handler",
+                "description": "A function to handle warnings.",
+                "type": "Function"
+              }
+            ],
+            "since": "2.15.2",
+            "class": "Ember.Debug",
+            "module": "ember",
+            "submodule": "ember-debug",
+            "version": "2.15.2"
+          }
+        ]
+      },
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,436 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3",
+    "type": "project-version",
+    "attributes": {
+      "version": "2.15.3"
+    },
+    "relationships": {
+      "classes": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-DS.BuildURLMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.AdapterError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.InvalidError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.TimeoutError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.AbortError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.UnauthorizedError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ForbiddenError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.NotFoundError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ConflictError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ServerError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Errors",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Model",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RootState",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.AdapterPopulatedRecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.FilteredRecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.BelongsToReference",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.HasManyReference",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RecordReference",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-RelationshipPayloadsManager",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-RelationshipPayloads",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-IdentityMap",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-InternalModelMap",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ManyArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.PromiseArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.PromiseObject",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.PromiseManyArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RecordArrayManager",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.SnapshotRecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Snapshot",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Store",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.JSONAPIAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RESTAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.EmbeddedRecordsMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.JSONAPISerializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.JSONSerializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RESTSerializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.BooleanTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.DateTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.NumberTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.StringTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Transform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Adapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Serializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-Ember.Inflector",
+            "type": "class"
+          }
+        ]
+      },
+      "namespaces": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-DS",
+            "type": "namespace"
+          },
+          {
+            "id": "ember-data-2.15.3-Ember.Date",
+            "type": "namespace"
+          }
+        ]
+      },
+      "modules": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-ember-data",
+            "type": "module"
+          }
+        ]
+      },
+      "project": {
+        "data": {
+          "id": "ember-data",
+          "type": "project"
+        }
+      },
+      "private-classes": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-RelationshipPayloadsManager",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-RelationshipPayloads",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-IdentityMap",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-InternalModelMap",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RecordArrayManager",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.SnapshotRecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Snapshot",
+            "type": "class"
+          }
+        ]
+      },
+      "public-classes": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-DS.BuildURLMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.AdapterError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.InvalidError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.TimeoutError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.AbortError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.UnauthorizedError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ForbiddenError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.NotFoundError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ConflictError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ServerError",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Errors",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Model",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RootState",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.AdapterPopulatedRecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.FilteredRecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RecordArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.BelongsToReference",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.HasManyReference",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RecordReference",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.ManyArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.PromiseArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.PromiseObject",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.PromiseManyArray",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Store",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.JSONAPIAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RESTAdapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.EmbeddedRecordsMixin",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.JSONAPISerializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.JSONSerializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.RESTSerializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.BooleanTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.DateTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.NumberTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.StringTransform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Transform",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Adapter",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-DS.Serializer",
+            "type": "class"
+          },
+          {
+            "id": "ember-data-2.15.3-Ember.Inflector",
+            "type": "class"
+          }
+        ]
+      },
+      "private-namespaces": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-Ember.Date",
+            "type": "namespace"
+          }
+        ]
+      },
+      "public-namespaces": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-DS",
+            "type": "namespace"
+          }
+        ]
+      },
+      "private-modules": {
+        "data": []
+      },
+      "public-modules": {
+        "data": [
+          {
+            "id": "ember-data-2.15.3-ember-data",
+            "type": "module"
+          }
+        ]
+      }
+    }
+  }
+}

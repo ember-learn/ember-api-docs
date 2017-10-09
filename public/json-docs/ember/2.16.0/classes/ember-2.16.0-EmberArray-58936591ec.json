@@ -1,0 +1,1346 @@
+{
+  "data": {
+    "id": "ember-2.16.0-EmberArray",
+    "type": "class",
+    "attributes": {
+      "name": "EmberArray",
+      "shortname": "EmberArray",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [
+        "MutableArray"
+      ],
+      "module": "@ember/array",
+      "namespace": "",
+      "file": "packages/ember-runtime/lib/system/native_array.js",
+      "line": 25,
+      "description": "<html><head></head><body><p>The NativeArray mixin contains the properties needed to make the native\nArray support Ember.MutableArray and all of its dependent APIs. Unless you\nhave <code>EmberENV.EXTEND_PROTOTYPES</code> or <code>EmberENV.EXTEND_PROTOTYPES.Array</code> set to\nfalse, this will be applied automatically. Otherwise you can apply the mixin\nat anytime by calling <code>Ember.NativeArray.apply(Array.prototype)</code>.</p>\n</body></html>",
+      "uses": [
+        "Enumerable"
+      ],
+      "since": "2.16.0",
+      "access": "public",
+      "tagname": "",
+      "version": "2.16.0",
+      "methods": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 224,
+          "description": "<html><head></head><body><p>Returns the object at the given <code>index</code>. If the given <code>index</code> is negative\nor is greater or equal than the array length, returns <code>undefined</code>.</p>\n<p>This is one of the primitives you must implement to support <code>@ember/array</code>.\nIf your object supports retrieving the value of an array item using <code>get()</code>\n(i.e. <code>myArray.get(0)</code>), then you do not need to implement this method\nyourself.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n</pre></td>\n              <td class=\"code\"><pre>let arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>, <span class=\"string\">&apos;d&apos;</span>];\n\narr.objectAt<span class=\"comment\">(0)</span>;   <span class=\"comment\">// &apos;a&apos;</span>\narr.objectAt<span class=\"comment\">(3)</span>;   <span class=\"comment\">// &apos;d&apos;</span>\narr.objectAt<span class=\"comment\">(-1)</span>;  <span class=\"comment\">// undefined</span>\narr.objectAt<span class=\"comment\">(4)</span>;   <span class=\"comment\">// undefined</span>\narr.objectAt<span class=\"comment\">(5)</span>;   <span class=\"comment\">// undefined</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "objectAt",
+          "params": [
+            {
+              "name": "idx",
+              "description": "The index of the item to return.",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "item at index or undefined",
+            "type": "*"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 256,
+          "description": "<html><head></head><body><p>This returns the objects at the specified indexes, using <code>objectAt</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>let arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>, <span class=\"string\">&apos;d&apos;</span>];\n\narr.objectsAt([<span class=\"number\">0</span>, <span class=\"number\">1</span>, <span class=\"number\">2</span>]);  // [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>]\narr.objectsAt([<span class=\"number\">2</span>, <span class=\"number\">3</span>, <span class=\"number\">4</span>]);  // [<span class=\"string\">&apos;c&apos;</span>, <span class=\"string\">&apos;d&apos;</span>, undefined]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "objectsAt",
+          "params": [
+            {
+              "name": "indexes",
+              "description": "An array of indexes of items to return.",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 321,
+          "description": "<html><head></head><body><p>Returns a new array that is a slice of the receiver. This implementation\nuses the observable array methods to retrieve the objects for the new\nslice.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>let arr = [<span class=\"string\">&apos;red&apos;</span>, <span class=\"string\">&apos;green&apos;</span>, <span class=\"string\">&apos;blue&apos;</span>];\n\narr.slice(<span class=\"number\">0</span>);       // [<span class=\"string\">&apos;red&apos;</span>, <span class=\"string\">&apos;green&apos;</span>, <span class=\"string\">&apos;blue&apos;</span>]\narr.slice(<span class=\"number\">0</span>, <span class=\"number\">2</span>);    // [<span class=\"string\">&apos;red&apos;</span>, <span class=\"string\">&apos;green&apos;</span>]\narr.slice(<span class=\"number\">1</span>, <span class=\"number\">100</span>);  // [<span class=\"string\">&apos;green&apos;</span>, <span class=\"string\">&apos;blue&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "slice",
+          "params": [
+            {
+              "name": "beginIndex",
+              "description": "(Optional) index to begin slicing from.",
+              "type": "Number"
+            },
+            {
+              "name": "endIndex",
+              "description": "(Optional) index to end the slice at (but not included).",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "New array with specified slice",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 363,
+          "description": "<html><head></head><body><p>Returns the index of the given object&apos;s first occurrence.\nIf no <code>startAt</code> argument is given, the starting location to\nsearch is 0. If it&apos;s negative, will count backward from\nthe end of the array. Returns -1 if no match is found.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>, <span class=\"string\">&apos;d&apos;</span>, <span class=\"string\">&apos;a&apos;</span>];\n\narr.indexOf(<span class=\"string\">&apos;a&apos;</span>);       <span class=\"comment\">//  0</span>\narr.indexOf(<span class=\"string\">&apos;z&apos;</span>);       <span class=\"comment\">// -1</span>\narr.indexOf(<span class=\"string\">&apos;a&apos;</span>, <span class=\"number\">2</span>);    <span class=\"comment\">//  4</span>\narr.indexOf(<span class=\"string\">&apos;a&apos;</span>, -<span class=\"number\">1</span>);   <span class=\"comment\">//  4</span>\narr.indexOf(<span class=\"string\">&apos;b&apos;</span>, <span class=\"number\">3</span>);    <span class=\"comment\">// -1</span>\narr.indexOf(<span class=\"string\">&apos;a&apos;</span>, <span class=\"number\">100</span>);  <span class=\"comment\">// -1</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "indexOf",
+          "params": [
+            {
+              "name": "object",
+              "description": "the item to search for",
+              "type": "Object"
+            },
+            {
+              "name": "startAt",
+              "description": "optional starting location to search, default 0",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "index or -1 if not found",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 406,
+          "description": "<html><head></head><body><p>Returns the index of the given object&apos;s last occurrence.\nIf no <code>startAt</code> argument is given, the search starts from\nthe last position. If it&apos;s negative, will count backward\nfrom the end of the array. Returns -1 if no match is found.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>, <span class=\"string\">&apos;d&apos;</span>, <span class=\"string\">&apos;a&apos;</span>];\n\narr.lastIndexOf(<span class=\"string\">&apos;a&apos;</span>);       <span class=\"comment\">//  4</span>\narr.lastIndexOf(<span class=\"string\">&apos;z&apos;</span>);       <span class=\"comment\">// -1</span>\narr.lastIndexOf(<span class=\"string\">&apos;a&apos;</span>, <span class=\"number\">2</span>);    <span class=\"comment\">//  0</span>\narr.lastIndexOf(<span class=\"string\">&apos;a&apos;</span>, -<span class=\"number\">1</span>);   <span class=\"comment\">//  4</span>\narr.lastIndexOf(<span class=\"string\">&apos;b&apos;</span>, <span class=\"number\">3</span>);    <span class=\"comment\">//  1</span>\narr.lastIndexOf(<span class=\"string\">&apos;a&apos;</span>, <span class=\"number\">100</span>);  <span class=\"comment\">//  4</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "lastIndexOf",
+          "params": [
+            {
+              "name": "object",
+              "description": "the item to search for",
+              "type": "Object"
+            },
+            {
+              "name": "startAt",
+              "description": "optional starting location to search, default 0",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "index or -1 if not found",
+            "type": "Number"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 453,
+          "description": "<html><head></head><body><p>Adds an array observer to the receiving array. The array observer object\nnormally must implement two methods:</p>\n<ul>\n<li><code>arrayWillChange(observedObj, start, removeCount, addCount)</code> - This method will be\ncalled just before the array is modified.</li>\n<li><code>arrayDidChange(observedObj, start, removeCount, addCount)</code> - This method will be\ncalled just after the array is modified.</li>\n</ul>\n<p>Both callbacks will be passed the observed object, starting index of the\nchange as well as a count of the items to be removed and added. You can use\nthese callbacks to optionally inspect the array during the change, clear\ncaches, or do any other bookkeeping necessary.</p>\n<p>In addition to passing a target, you can also include an options hash\nwhich you can use to override the method names that will be invoked on the\ntarget.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addArrayObserver",
+          "params": [
+            {
+              "name": "target",
+              "description": "The observer object.",
+              "type": "Object"
+            },
+            {
+              "name": "opts",
+              "description": "Optional hash of configuration options including\n  `willChange` and `didChange` option.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "EmberArray"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 483,
+          "description": "<html><head></head><body><p>Removes an array observer from the object if the observer is current\nregistered. Calling this method multiple times with the same object will\nhave no effect.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeArrayObserver",
+          "params": [
+            {
+              "name": "target",
+              "description": "The object observing the array.",
+              "type": "Object"
+            },
+            {
+              "name": "opts",
+              "description": "Optional hash of configuration options including\n  `willChange` and `didChange` option.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "EmberArray"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 510,
+          "description": "<html><head></head><body><p>If you are implementing an object that supports <code>@ember/array</code>, call this\nmethod just before the array content changes to notify any observers and\ninvalidate any related properties. Pass the starting index of the change\nas well as a delta of the amounts to change.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "arrayContentWillChange",
+          "params": [
+            {
+              "name": "startIdx",
+              "description": "The starting index in the array that will change.",
+              "type": "Number"
+            },
+            {
+              "name": "removeAmt",
+              "description": "The number of items that will be removed. If you\n  pass `null` assumes 0",
+              "type": "Number"
+            },
+            {
+              "name": "addAmt",
+              "description": "The number of items that will be added. If you\n  pass `null` assumes 0.",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "EmberArray"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 529,
+          "description": "<html><head></head><body><p>If you are implementing an object that supports <code>@ember/array</code>, call this\nmethod just after the array content changes to notify any observers and\ninvalidate any related properties. Pass the starting index of the change\nas well as a delta of the amounts to change.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "arrayContentDidChange",
+          "params": [
+            {
+              "name": "startIdx",
+              "description": "The starting index in the array that did change.",
+              "type": "Number"
+            },
+            {
+              "name": "removeAmt",
+              "description": "The number of items that were removed. If you\n  pass `null` assumes 0",
+              "type": "Number"
+            },
+            {
+              "name": "addAmt",
+              "description": "The number of items that were added. If you\n  pass `null` assumes 0.",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "EmberArray"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 548,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed object can be found in the array.\nThis method is a Polyfill for ES 2016 Array.includes.\nIf no <code>startAt</code> argument is given, the starting location to\nsearch is 0. If it&apos;s negative, searches from the index of\n<code>this.length + startAt</code> by asc.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n6\n7\n8\n</pre></td>\n              <td class=\"code\"><pre>[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">2</span>);     <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">4</span>);     <span class=\"comment\">// false</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">3</span>, <span class=\"number\">2</span>);  <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">3</span>, <span class=\"number\">3</span>);  <span class=\"comment\">// false</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">3</span>, <span class=\"number\">-1</span>); <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">1</span>, <span class=\"number\">-1</span>); <span class=\"comment\">// false</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">1</span>, <span class=\"number\">-4</span>); <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, NaN].includes(NaN); <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "includes",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to search for.",
+              "type": "Object"
+            },
+            {
+              "name": "startAt",
+              "description": "optional starting location to search, default 0",
+              "type": "Number"
+            }
+          ],
+          "return": {
+            "description": "`true` if object is found in the array.",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 95,
+          "description": "<html><head></head><body><p><strong>Required.</strong> You must implement this method to apply this mixin.</p>\n<p>Implement this method to make your class enumerable.</p>\n<p>This method will be called repeatedly during enumeration. The index value\nwill always begin with 0 and increment monotonically. You don&apos;t have to\nrely on the index value to determine what object to return, but you should\nalways check the value and start from the beginning when you see the\nrequested index is 0.</p>\n<p>The <code>previousObject</code> is the object that was returned from the last call\nto <code>nextObject</code> for the current iteration. This is a useful way to\nmanage iteration if you are tracing a linked list, for example.</p>\n<p>Finally the context parameter will always contain a hash you can use as\na &quot;scratchpad&quot; to maintain any other state you need in order to iterate\nproperly. The context object is reused and is not reset between\niterations so make sure you setup the context with a fresh state whenever\nthe index parameter is 0.</p>\n<p>Generally iterators will continue to call <code>nextObject</code> until the index\nreaches the current length-1. If you run out of data before this\ntime for some reason, you should simply return undefined.</p>\n<p>The default implementation of this method simply looks up the index.\nThis works great on any Array-like objects.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "nextObject",
+          "params": [
+            {
+              "name": "index",
+              "description": "the current index of the iteration",
+              "type": "Number"
+            },
+            {
+              "name": "previousObject",
+              "description": "the value returned by the last call to\n  `nextObject`.",
+              "type": "Object"
+            },
+            {
+              "name": "context",
+              "description": "a context object you can use to maintain state.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "the next object in the iteration or undefined",
+            "type": "Object"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 210,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed object can be found in the receiver. The\ndefault version will iterate through the enumerable until the object\nis found. You may want to override this with a more efficient version.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n</pre></td>\n              <td class=\"code\"><pre>let arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>];\n\narr.contains(<span class=\"string\">&apos;a&apos;</span>); <span class=\"regexp\">//</span> <span class=\"keyword\">true</span>\narr.contains(<span class=\"string\">&apos;z&apos;</span>); <span class=\"regexp\">//</span> <span class=\"keyword\">false</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "contains",
+          "deprecated": true,
+          "deprecationMessage": "Use `Enumerable#includes` instead. See https://emberjs.com/deprecations/v2.x#toc_enumerable-contains",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to search for.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "`true` if object is found in enumerable.",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 240,
+          "description": "<html><head></head><body><p>Iterates through the enumerable, calling the passed function on each\nitem. This method corresponds to the <code>forEach()</code> method defined in\nJavaScript 1.6.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context. This is a good way\nto give your iterator function access to the current object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "forEach",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 289,
+          "description": "<html><head></head><body><p>Alias for <code>mapBy</code></p>\n</body></html>",
+          "itemtype": "method",
+          "name": "getEach",
+          "params": [
+            {
+              "name": "key",
+              "description": "name of the property",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The mapped array.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 299,
+          "description": "<html><head></head><body><p>Sets the value on the named property for each member. This is more\nergonomic than using other methods defined on this helper. If the object\nimplements Ember.Observable, the value will be changed to <code>set(),</code> otherwise\nit will be set directly. <code>null</code> objects are skipped.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "setEach",
+          "params": [
+            {
+              "name": "key",
+              "description": "The key to set",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "The object to set",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "receiver",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 315,
+          "description": "<html><head></head><body><p>Maps all of the items in the enumeration to another value, returning\na new array. This method corresponds to <code>map()</code> defined in JavaScript 1.6.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>It should return the mapped value.</p>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context. This is a good way\nto give your iterator function access to the current object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "map",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "The mapped array.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 352,
+          "description": "<html><head></head><body><p>Similar to map, this specialized function returns the value of the named\nproperty on all items in the enumeration.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "mapBy",
+          "params": [
+            {
+              "name": "key",
+              "description": "name of the property",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The mapped array.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 365,
+          "description": "<html><head></head><body><p>Returns an array with all of the items in the enumeration that the passed\nfunction returns true for. This method corresponds to <code>filter()</code> defined in\nJavaScript 1.6.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>It should return <code>true</code> to include the item in the results, <code>false</code>\notherwise.</p>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context. This is a good way\nto give your iterator function access to the current object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "filter",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "A filtered array.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 408,
+          "description": "<html><head></head><body><p>Returns an array with all of the items in the enumeration where the passed\nfunction returns false. This method is the inverse of filter().</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><em>item</em> is the current item in the iteration.</li>\n<li><em>index</em> is the current index in the iteration</li>\n<li><em>enumerable</em> is the enumerable object itself.</li>\n</ul>\n<p>It should return a falsey value to include the item in the results.</p>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as &quot;this&quot; on the context. This is a good way\nto give your iterator function access to the current object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reject",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "A rejected array.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 443,
+          "description": "<html><head></head><body><p>Returns an array with just the items with the matched property. You\ncan pass an optional second argument with the target value. Otherwise\nthis will match any property that evaluates to <code>true</code>.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "filterBy",
+          "params": [
+            {
+              "name": "key",
+              "description": "the property to test",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "optional value to test against.",
+              "type": "*",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "filtered array",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 458,
+          "description": "<html><head></head><body><p>Returns an array with the items that do not have truthy values for\nkey.  You can pass an optional second argument with the target value.  Otherwise\nthis will match any property that evaluates to false.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "rejectBy",
+          "params": [
+            {
+              "name": "key",
+              "description": "the property to test",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "optional value to test against.",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "rejected array",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 477,
+          "description": "<html><head></head><body><p>Returns the first item in the array for which the callback returns true.\nThis method works similar to the <code>filter()</code> method defined in JavaScript 1.6\nexcept that it will stop working on the array once a match is found.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>It should return the <code>true</code> to include the item in the results, <code>false</code>\notherwise.</p>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context. This is a good way\nto give your iterator function access to the current object.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "find",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "Found item or `undefined`.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 537,
+          "description": "<html><head></head><body><p>Returns the first item with a property matching the passed value. You\ncan pass an optional second argument with the target value. Otherwise\nthis will match any property that evaluates to <code>true</code>.</p>\n<p>This method works much like the more generic <code>find()</code> method.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "findBy",
+          "params": [
+            {
+              "name": "key",
+              "description": "the property to test",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "optional value to test against.",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "found item or `undefined`",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 554,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed function returns true for every item in the\nenumeration. This corresponds with the <code>every()</code> method in JavaScript 1.6.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>It should return the <code>true</code> or <code>false</code>.</p>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context. This is a good way\nto give your iterator function access to the current object.</p>\n<p>Example Usage:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">if</span> (people.<span class=\"keyword\">every</span>(isEngineer)) {\n  Paychecks.addBigBonus();\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "every",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 595,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed property resolves to the value of the second\nargument for all items in the enumerable. This method is often simpler/faster\nthan using a callback.</p>\n<p>Note that like the native <code>Array.every</code>, <code>isEvery</code> will return true when called\non any empty enumerable.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "isEvery",
+          "params": [
+            {
+              "name": "key",
+              "description": "the property to test",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "optional value to test against. Defaults to `true`",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 614,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed function returns true for any item in the\nenumeration.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>It must return a truthy value (i.e. <code>true</code>) to include an item in the\nresults. Any non-truthy return value will discard the item from the\nresults.</p>\n<p>Note that in addition to a callback, you can also pass an optional target\nobject that will be set as <code>this</code> on the context. This is a good way\nto give your iterator function access to the current object.</p>\n<p>Usage Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">if</span> (people.<span class=\"built_in\">any</span>(isManager)) {\n  Paychecks.addBiggerBonus();\n}</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "any",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "target",
+              "description": "The target object to use",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "`true` if the passed function returns `true` for any item",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 675,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed property resolves to the value of the second\nargument for any item in the enumerable. This method is often simpler/faster\nthan using a callback.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "isAny",
+          "params": [
+            {
+              "name": "key",
+              "description": "the property to test",
+              "type": "String"
+            },
+            {
+              "name": "value",
+              "description": "optional value to test against. Defaults to `true`",
+              "type": "String",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Boolean"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 691,
+          "description": "<html><head></head><body><p>This will combine the values of the enumerator into a single value. It\nis a useful way to collect a summary value from an enumeration. This\ncorresponds to the <code>reduce()</code> method defined in JavaScript 1.8.</p>\n<p>The callback method you provide should have the following signature (all\nparameters are optional):</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n</pre></td>\n              <td class=\"code\"><pre><span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">(previousValue, item, <span class=\"keyword\">index</span>, enumerable)</span>;</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<ul>\n<li><code>previousValue</code> is the value returned by the last call to the iterator.</li>\n<li><code>item</code> is the current item in the iteration.</li>\n<li><code>index</code> is the current index in the iteration.</li>\n<li><code>enumerable</code> is the enumerable object itself.</li>\n</ul>\n<p>Return the new cumulative value.</p>\n<p>In addition to the callback you can also pass an <code>initialValue</code>. An error\nwill be raised if you do not pass an initial value and the enumerator is\nempty.</p>\n<p>Note that unlike the other methods, this method does not allow you to\npass a target object to set as this for the callback. It&apos;s part of the\nspec. Sorry.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "reduce",
+          "params": [
+            {
+              "name": "callback",
+              "description": "The callback to execute",
+              "type": "Function"
+            },
+            {
+              "name": "initialValue",
+              "description": "Initial value for the reduce",
+              "type": "Object"
+            },
+            {
+              "name": "reducerProperty",
+              "description": "internal use only.",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The reduced value.",
+            "type": "Object"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 737,
+          "description": "<html><head></head><body><p>Invokes the named method on every object in the receiver that\nimplements it. This method corresponds to the implementation in\nPrototype 1.6.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "invoke",
+          "params": [
+            {
+              "name": "methodName",
+              "description": "the name of the method",
+              "type": "String"
+            },
+            {
+              "name": "args",
+              "description": "optional arguments to pass as well.",
+              "type": "Object..."
+            }
+          ],
+          "return": {
+            "description": "return values from calling invoke.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 762,
+          "description": "<html><head></head><body><p>Simply converts the enumerable into a genuine array. The order is not\nguaranteed. Corresponds to the method implemented by Prototype.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "toArray",
+          "return": {
+            "description": "the enumerable as an array.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 778,
+          "description": "<html><head></head><body><p>Returns a copy of the array with all <code>null</code> and <code>undefined</code> elements removed.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"literal\">null</span>, <span class=\"string\">&apos;c&apos;</span>, <span class=\"literal\">undefined</span>];\narr.compact();  <span class=\"comment\">// [&apos;a&apos;, &apos;c&apos;]</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "compact",
+          "return": {
+            "description": "the array without null and undefined elements.",
+            "type": "Array"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 794,
+          "description": "<html><head></head><body><p>Returns a new enumerable that excludes the passed value. The default\nimplementation returns an array regardless of the receiver type.\nIf the receiver does not contain the value it returns the original enumerable.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>let arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;c&apos;</span>];\narr.without(<span class=\"string\">&apos;a&apos;</span>);  // [<span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "without",
+          "params": [
+            {
+              "name": "value",
+              "description": "",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "",
+            "type": "Ember.Enumerable"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 826,
+          "description": "<html><head></head><body><p>Returns a new enumerable that contains only unique values. The default\nimplementation returns an array regardless of the receiver type.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre>let arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;b&apos;</span>];\narr.uni<span class=\"string\">q()</span>;  <span class=\"regexp\">//</span> [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>This only works on primitive data types, e.g. Strings, Numbers, etc.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "uniq",
+          "return": {
+            "description": "",
+            "type": "Ember.Enumerable"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 874,
+          "description": "<html><head></head><body><p>Registers an enumerable observer. Must implement <code>Ember.EnumerableObserver</code>\nmixin.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "addEnumerableObserver",
+          "params": [
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "opts",
+              "description": "",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 903,
+          "description": "<html><head></head><body><p>Removes a registered enumerable observer.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "removeEnumerableObserver",
+          "params": [
+            {
+              "name": "target",
+              "description": "",
+              "type": "Object"
+            },
+            {
+              "name": "opts",
+              "description": "",
+              "type": "Object",
+              "optional": true
+            }
+          ],
+          "return": {
+            "description": "this"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 944,
+          "description": "<html><head></head><body><p>Invoke this method just before the contents of your enumerable will\nchange. You can either omit the parameters completely or pass the objects\nto be removed or added if available or just a count.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "enumerableContentWillChange",
+          "params": [
+            {
+              "name": "removing",
+              "description": "An enumerable of the objects to\n  be removed or the number of items to be removed.",
+              "type": "Ember.Enumerable|Number"
+            },
+            {
+              "name": "adding",
+              "description": "An enumerable of the objects to be\n  added or the number of items to be added.",
+              "type": "Ember.Enumerable|Number"
+            }
+          ],
+          "chainable": 1,
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 997,
+          "description": "<html><head></head><body><p>Invoke this method when the contents of your enumerable has changed.\nThis will notify any observers watching for content changes. If you are\nimplementing an ordered enumerable (such as an array), also pass the\nstart and end values where the content changed so that it can be used to\nnotify range observers.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "enumerableContentDidChange",
+          "params": [
+            {
+              "name": "removing",
+              "description": "An enumerable of the objects to\n  be removed or the number of items to be removed.",
+              "type": "Ember.Enumerable|Number"
+            },
+            {
+              "name": "adding",
+              "description": "An enumerable of the objects to\n  be added or the number of items to be added.",
+              "type": "Ember.Enumerable|Number"
+            }
+          ],
+          "chainable": 1,
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 1052,
+          "description": "<html><head></head><body><p>Converts the enumerable into an array and sorts by the keys\nspecified in the argument.</p>\n<p>You may provide multiple arguments to sort by multiple properties.</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "sortBy",
+          "params": [
+            {
+              "name": "property",
+              "description": "name(s) to sort on",
+              "type": "String"
+            }
+          ],
+          "return": {
+            "description": "The sorted array.",
+            "type": "Array"
+          },
+          "since": "2.16.0",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 1083,
+          "description": "<html><head></head><body><p>Returns a new enumerable that contains only items containing a unique property value.\nThe default implementation returns an array regardless of the receiver type.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> arr = [{ value: <span class=\"string\">&apos;a&apos;</span> }, { value: <span class=\"string\">&apos;a&apos;</span> }, { value: <span class=\"string\">&apos;b&apos;</span> }, { value: <span class=\"string\">&apos;b&apos;</span> }];\narr.uniqBy(<span class=\"string\">&apos;value&apos;</span>);  // [{ value: <span class=\"string\">&apos;a&apos;</span> }, { value: <span class=\"string\">&apos;b&apos;</span> }]</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "uniqBy",
+          "return": {
+            "description": "",
+            "type": "Ember.Enumerable"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 1112,
+          "description": "<html><head></head><body><p>Returns <code>true</code> if the passed object can be found in the enumerable.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre>[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">2</span>);                     <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, <span class=\"number\">3</span>].includes(<span class=\"number\">4</span>);                     <span class=\"comment\">// false</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, undefined].includes(undefined);     <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, null].includes(null);               <span class=\"comment\">// true</span>\n[<span class=\"number\">1</span>, <span class=\"number\">2</span>, NaN].includes(NaN);                 <span class=\"comment\">// true</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "method",
+          "name": "includes",
+          "params": [
+            {
+              "name": "obj",
+              "description": "The object to search for.",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "description": "`true` if object is found in the enumerable.",
+            "type": "Boolean"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        }
+      ],
+      "events": [],
+      "properties": [
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 213,
+          "description": "<html><head></head><body><p><strong>Required.</strong> You must implement this method to apply this mixin.</p>\n<p>Your array must support the <code>length</code> property. Your replace methods should\nset this property whenever it changes.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "length",
+          "type": "Number",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 280,
+          "description": "<html><head></head><body><p>This is the handler for the special array content property. If you get\nthis property, it will return this. If you set this property to a new\narray, it will replace the current content.</p>\n<p>This property overrides the default property defined in <code>Ember.Enumerable</code>.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "[]",
+          "return": {
+            "description": "this"
+          },
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 499,
+          "description": "<html><head></head><body><p>Becomes true whenever the array currently has observers watching changes\non the array.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "hasArrayObservers",
+          "type": "Boolean",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/array.js",
+          "line": 595,
+          "description": "<html><head></head><body><p>Returns a special object that can be used to observe individual properties\non the array. Just get an equivalent property on this object and it will\nreturn an enumerable that maps automatically to the named key on the\nmember objects.</p>\n<p><code>@each</code> should only be used in a non-terminal context. Example:</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>myMethod: computed(<span class=\"string\">&apos;posts.@each.author&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span>{\n  ...\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n<p>If you merely want to watch for the array being changed, like an object being\nreplaced, added or removed, use <code>[]</code> instead of <code>@each</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n</pre></td>\n              <td class=\"code\"><pre>myMethod: computed(<span class=\"string\">&apos;posts.[]&apos;</span>, <span class=\"function\"><span class=\"keyword\">function</span><span class=\"params\">()</span></span>{\n  ...\n});</pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "@each",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/array",
+          "version": "2.16.0",
+          "since": "2.16.0"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 133,
+          "description": "<html><head></head><body><p>Helper method returns the first object from a collection. This is usually\nused by bindings and other parts of the framework to extract a single\nobject if the enumerable contains only one item.</p>\n<p>If you override this method, you should implement it so that it will\nalways return the same value each time it is called. If your enumerable\ncontains only one object, this method should always return that object.\nIf your enumerable is empty, this method should return <code>undefined</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>];\narr.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstObject&apos;</span>);  <span class=\"comment\">// &apos;a&apos;</span>\n\n<span class=\"keyword\">let</span> arr = [];\narr.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;firstObject&apos;</span>);  <span class=\"comment\">// undefined</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "firstObject",
+          "return": {
+            "description": "the object or undefined",
+            "type": "Object"
+          },
+          "readonly": "",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 170,
+          "description": "<html><head></head><body><p>Helper method returns the last object from a collection. If your enumerable\ncontains only one object, this method should always return that object.\nIf your enumerable is empty, this method should return <code>undefined</code>.</p>\n<div class=\"highlight javascript\">\n      <div class=\"ribbon\"></div>\n      <div class=\"scroller\">\n        <table class=\"CodeRay\">\n          <tbody>\n            <tr>\n              <td class=\"line-numbers\"><pre>1\n2\n3\n4\n5\n</pre></td>\n              <td class=\"code\"><pre><span class=\"keyword\">let</span> arr = [<span class=\"string\">&apos;a&apos;</span>, <span class=\"string\">&apos;b&apos;</span>, <span class=\"string\">&apos;c&apos;</span>];\narr.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastObject&apos;</span>);  <span class=\"comment\">// &apos;c&apos;</span>\n\n<span class=\"keyword\">let</span> arr = [];\narr.<span class=\"keyword\">get</span>(<span class=\"string\">&apos;lastObject&apos;</span>);  <span class=\"comment\">// undefined</span></pre></td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n    \n</body></html>",
+          "itemtype": "property",
+          "name": "lastObject",
+          "return": {
+            "description": "the last object or undefined",
+            "type": "Object"
+          },
+          "readonly": "",
+          "access": "public",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 853,
+          "description": "<html><head></head><body><p>This property will trigger anytime the enumerable&apos;s content changes.\nYou can observe this property to be notified of changes to the enumerable&apos;s\ncontent.</p>\n<p>For plain enumerables, this property is read only. <code>Array</code> overrides\nthis method.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "[]",
+          "type": "Array",
+          "return": {
+            "description": "this"
+          },
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        },
+        {
+          "file": "packages/ember-runtime/lib/mixins/enumerable.js",
+          "line": 931,
+          "description": "<html><head></head><body><p>Becomes true whenever the array currently has observers watching changes\non the array.</p>\n</body></html>",
+          "itemtype": "property",
+          "name": "hasEnumerableObservers",
+          "type": "Boolean",
+          "access": "private",
+          "tagname": "",
+          "class": "EmberArray",
+          "module": "@ember/enumerable",
+          "version": "2.16.0",
+          "since": "2.16.0",
+          "inherited": true,
+          "inheritedFrom": "Enumerable"
+        }
+      ]
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-2.16.0-@ember/array",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.16.0",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

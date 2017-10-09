@@ -1,0 +1,38 @@
+{
+  "data": {
+    "id": "ember-2.15.2-ember-debug",
+    "type": "module",
+    "attributes": {
+      "name": "ember-debug",
+      "submodules": {},
+      "elements": {},
+      "fors": {
+        "Ember.Debug": 1,
+        "Ember": 1
+      },
+      "is_submodule": 1,
+      "namespaces": {},
+      "namespace": "",
+      "file": "packages/ember/lib/index.js",
+      "line": 52,
+      "parent": "ember",
+      "publicclasses": [
+        "Ember.Debug"
+      ],
+      "privateclasses": [],
+      "staticfunctions": {},
+      "version": "2.15.2"
+    },
+    "relationships": {
+      "classes": {
+        "data": []
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-2.15.2",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}

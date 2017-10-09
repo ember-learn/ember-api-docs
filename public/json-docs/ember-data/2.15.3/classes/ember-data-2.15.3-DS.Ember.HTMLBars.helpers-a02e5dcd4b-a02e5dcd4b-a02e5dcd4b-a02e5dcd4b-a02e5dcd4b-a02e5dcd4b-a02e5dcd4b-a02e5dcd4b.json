@@ -1,0 +1,67 @@
+{
+  "data": {
+    "id": "ember-data-2.15.3-DS.Ember.HTMLBars.helpers",
+    "type": "class",
+    "attributes": {
+      "name": "DS.Ember.HTMLBars.helpers",
+      "shortname": "Ember.HTMLBars.helpers",
+      "classitems": [],
+      "plugins": [],
+      "extensions": [],
+      "plugin_for": [],
+      "extension_for": [],
+      "module": "ember-data",
+      "namespace": "DS",
+      "version": "2.15.3",
+      "since": "2.15.3",
+      "methods": [
+        {
+          "file": "node_modules/ember-inflector/addon/lib/helpers/pluralize.js",
+          "line": 4,
+          "description": "<html><head></head><body><p>If you have Ember Inflector (such as if Ember Data is present),\n pluralize a word. For example, turn &quot;ox&quot; into &quot;oxen&quot;.\nExample:\n{{pluralize count myProperty}}\n {{pluralize 1 &quot;oxen&quot;}}\n {{pluralize myProperty}}\n {{pluralize &quot;ox&quot;}}</p>\n</body></html>",
+          "itemtype": "method",
+          "name": "pluralize",
+          "params": [
+            {
+              "name": "count",
+              "description": "count of objects",
+              "type": "Number|Property",
+              "optional": true
+            },
+            {
+              "name": "word",
+              "description": "word to pluralize",
+              "type": "String|Property"
+            }
+          ],
+          "class": "DS.Ember.HTMLBars.helpers",
+          "module": "ember-data",
+          "version": "2.15.3",
+          "since": "2.15.3"
+        }
+      ],
+      "events": [],
+      "properties": []
+    },
+    "relationships": {
+      "parent-class": {
+        "data": null
+      },
+      "descendants": {
+        "data": []
+      },
+      "module": {
+        "data": {
+          "id": "ember-data-2.15.3-ember-data",
+          "type": "module"
+        }
+      },
+      "project-version": {
+        "data": {
+          "id": "ember-data-2.15.3",
+          "type": "project-version"
+        }
+      }
+    }
+  }
+}
