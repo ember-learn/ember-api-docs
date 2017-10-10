@@ -1,4 +1,4 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { moduleForComponent, skip } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import { findAll } from 'ember-native-dom-helpers';
 
@@ -6,7 +6,7 @@ moduleForComponent('table-of-contents', 'Integration | Component | table of cont
   integration: true
 });
 
-test('it renders', function(assert) {
+skip('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   this.set('projectId', 'Ember');
   this.set('emberVersion', '2.4.3');
