@@ -28,7 +28,12 @@ export default Route.extend({
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
       const modules = model.hasMany('modules').ids().sort();
-      const module = last(modules[0].split("-"));
+      let module = modules[0].split('-').reduce((result, val, index, arry) => {
+        if (val === this.get('projectService.version')) {
+          return arry.slice(index+1).join('-');
+        }
+        return result;
+      })
       return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
     }
   },

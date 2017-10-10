@@ -43,7 +43,7 @@
     </section>
   {{/if}}
 
-  {{#if (gt functionHeadings.length 0) }}
+  {{#if (and functionHeadings (gt functionHeadings.length 0)) }}
 
     <h2>Functions</h2>
     {{#each functionHeadings as |funcHeading|}}
