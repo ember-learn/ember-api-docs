@@ -1,5 +1,5 @@
 <article class="chapter">
-  <h1 class="module-name">{{model.name}}</h1>
+  <h1 class="module-name">Package {{model.name}}</h1>
   {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
 
   <p class="attributes">
@@ -30,7 +30,7 @@
 
   {{#if classesAndNamespaces}}
     <section>
-      <h2>Classes and Namespaces</h2>
+      <h2>Classes</h2>
       <ul class="spec-property-list">
         {{#each classesAndNamespaces as |klass|}}
           <li>
@@ -43,6 +43,29 @@
     </section>
   {{/if}}
 
+  {{#if (and functionHeadings (gt functionHeadings.length 0)) }}
+
+    <h2>Functions</h2>
+    {{#each functionHeadings as |funcHeading|}}
+      <h4>{{funcHeading}}</h4>
+      <ul class="spec-method-list">
+        {{#each (better-get model.staticfunctions funcHeading) as |method|}}
+          <li>
+            {{#link-to 'project-version.classes.class.methods.method'
+               model.project.id
+               model.projectVersion.compactVersion
+               method.class
+               method.name
+               (query-params anchor=method.name)
+            }}
+              {{method.name}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    {{/each}}
+
+  {{/if}}
   {{outlet}}
 
 </article>

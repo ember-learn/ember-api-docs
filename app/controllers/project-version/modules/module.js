@@ -25,6 +25,13 @@ export default ClassController.extend({
 
   classesAndNamespaces: computed('classes', 'namespaces', function () {
     return uniq(union(this.get('namespaces'), this.get('classes')).sort(), true);
+  }),
+
+  functionHeadings: computed('model', function () {
+    if (this.get('model.staticfunctinos')) {
+      return Object.keys(this.get('model.staticfunctions')).sort();
+    }
+    return {};
   })
 
 });

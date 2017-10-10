@@ -1,7 +1,5 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import last from 'npm:lodash.last';
-
 
 export default Route.extend({
 
@@ -27,9 +25,14 @@ export default Route.extend({
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
-      const namespaces = model.hasMany('namespaces').ids().sort();
-      const namespace = last(namespaces[0].split("-"));
-      return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('compactVersion'), namespace);
+      const modules = model.hasMany('modules').ids().sort();
+      let module = modules[0].split('-').reduce((result, val, index, arry) => {
+        if (val === this.get('projectService.version')) {
+          return arry.slice(index+1).join('-');
+        }
+        return result;
+      })
+      return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
     }
   },
 
@@ -44,7 +47,6 @@ export default Route.extend({
     updateProject(project, ver /*, component */) {
       const projectVersionID = ver.compactVersion;
       let endingRoute, routeName;
-
       switch (routeName = this.router.currentRouteName) {
         case 'project-version.classes.class': {
           const className = this.modelFor(routeName).get('name');
@@ -69,6 +71,12 @@ export default Route.extend({
         default:
           break;
       }
+      // if the user is navigating to/from api versions >= 2.16, take them
+      // to the home page instead of trying to translate the url
+      let shouldConvertPackages = this.shouldConvertPackages(ver, this.modelFor(routeName).get('id'))
+      if (shouldConvertPackages) {
+        endingRoute = null;
+      }
 
       if (endingRoute) {
         this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
@@ -76,5 +84,15 @@ export default Route.extend({
         this.transitionTo(`/${project}/${projectVersionID}`);
       }
     }
+  },
+  // Input some version info, returns a boolean based on
+  // whether the user is switching versions for a 2.16 docs release or later.
+  // The urls for pre-2.16 classes and later packages are quite different
+  shouldConvertPackages(targetVer, previousVer) {
+    let targetVerNumbers = targetVer.id.split('.')
+    let targetVersion = Number(targetVerNumbers[0] + '.' + targetVerNumbers[1])
+    let prevVerNumbers = previousVer.split('-')[1].split('.')
+    let previousVersion = Number(prevVerNumbers[0] + '.' + prevVerNumbers[1])
+    return (previousVersion >= 2.16 || targetVersion >= 2.16)
   }
 });

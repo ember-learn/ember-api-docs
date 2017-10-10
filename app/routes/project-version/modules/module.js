@@ -13,7 +13,7 @@ export default ClassRoute.extend(ScrollTracker, {
     const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
 
     let klass = params[typeName];
-    if (!~klass.indexOf(projectID)) {
+    if (!~klass.indexOf(projectID) && klass !== 'rsvp' && klass !== 'jquery') {
       klass = `${projectID}-${klass}`;
     }
     return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);

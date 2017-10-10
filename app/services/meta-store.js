@@ -20,7 +20,8 @@ export default Service.extend({
   },
 
   getRevId(project, version, type, id) {
-    return this.get('projectRevMap')[`${project}-${version}`][type][id];
+    let encodedId = encodeURIComponent(id);
+    return this.get('projectRevMap')[`${project}-${version}`][type][encodedId];
   },
 
   initializeStore(availableProjectVersions, projectRevMap) {
