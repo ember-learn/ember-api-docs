@@ -1,7 +1,5 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import last from 'npm:lodash.last';
-
 
 export default Route.extend({
 
