@@ -32,7 +32,6 @@ export default Route.extend({
         }
         return result;
       })
-      console.log('route:project-version: transitioning to module', model.get('project.id'), model.get('compactVersion'), module);
       return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
     }
   },
