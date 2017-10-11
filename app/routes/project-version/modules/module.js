@@ -16,10 +16,12 @@ export default ClassRoute.extend(ScrollTracker, {
     if (!~klass.indexOf(projectID) && klass !== 'rsvp' && klass !== 'jquery') {
       klass = `${projectID}-${klass}`;
     }
+    console.log('routes:project-version/modules/module: finding', typeName, `${projectID}-${projectVersion}-${klass}`);
     return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);
   },
 
   serialize(model) {
+    console.log('routes:project-version/modules/module: serializing', model.get('name'));
     return {
       module: model.get('name')
     };
