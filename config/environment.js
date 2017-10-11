@@ -89,8 +89,6 @@ module.exports = function(environment) {
      */
     ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api/';
     ENV.gaTrackingId = 'UA-27675533-1';
-    ENV.APP.LOG_TRANSITIONS = true;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
 
   }
 
