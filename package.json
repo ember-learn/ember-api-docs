@@ -85,7 +85,8 @@
     "fastboot-app-server": "^1.0.1",
     "loader.js": "^4.6.0",
     "minimist": "^1.2.0",
-    "normalize.css": "^7.0.0"
+    "normalize.css": "^7.0.0",
+    "qunit-dom": "^0.3.2"
   },
   "engines": {
     "node": "8",
