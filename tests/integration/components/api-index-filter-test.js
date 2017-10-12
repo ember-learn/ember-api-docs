@@ -110,9 +110,9 @@ test('clicking inherited shows inherited methods', async function(assert) {
   `);
 
   await click('#inherited-toggle');
-  assert.equal(findAll('.method-name').length, 2, 'should display 2 methods total');
-  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(findAll('.method-name')[1].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
+  assert.dom('.method-name').exists({ count: 2 }, 'should display 2 methods total');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+  assert.dom(findAll('.method-name')[1]).hasText('parentDoSomething', 'should display 1 inherited method');
 });
 
 test('clicking private shows private methods', async function(assert) {
@@ -169,9 +169,9 @@ test('clicking private shows private methods', async function(assert) {
   `);
 
   await click('#private-toggle');
-  assert.equal(findAll('.method-name').length, 2, 'should display 2 methods total');
-  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
+  assert.dom('.method-name').exists({ count: 2 }, 'should display 2 methods total');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+  assert.dom(findAll('.method-name')[1]).hasText('doSomethingPrivate', 'should display 1 private method');
 });
 
 test('clicking private and inherited shows both methods', async function(assert) {
@@ -229,10 +229,10 @@ test('clicking private and inherited shows both methods', async function(assert)
 
   await click('#private-toggle');
   await click('#inherited-toggle');
-  assert.equal(findAll('.method-name').length, 3, 'should display 3 methods total');
-  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(findAll('.method-name')[2].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
+  assert.dom('.method-name').exists({ count: 3 }, 'should display 3 methods total');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+  assert.dom(findAll('.method-name')[1]).hasText('doSomethingPrivate', 'should display 1 private method');
+  assert.dom(findAll('.method-name')[2]).hasText('parentDoSomething', 'should display 1 inherited method');
 });
 
 
@@ -293,12 +293,12 @@ test('clicking all toggles shows all methods', async function(assert) {
   await click('#inherited-toggle');
   await click('#protected-toggle');
   await click('#deprecated-toggle');
-  assert.equal(findAll('.method-name').length, 5, 'should display all methods');
-  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingDeprecated', 'should display 1 deprecated method');
-  assert.equal(findAll('.method-name')[2].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(findAll('.method-name')[3].textContent.trim(), 'doSomethingProtected', 'should display 1 protected method');
-  assert.equal(findAll('.method-name')[4].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
+  assert.dom('.method-name').exists({ count: 5 }, 'should display all methods');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+  assert.dom(findAll('.method-name')[1]).hasText('doSomethingDeprecated', 'should display 1 deprecated method');
+  assert.dom(findAll('.method-name')[2]).hasText('doSomethingPrivate', 'should display 1 private method');
+  assert.dom(findAll('.method-name')[3]).hasText('doSomethingProtected', 'should display 1 protected method');
+  assert.dom(findAll('.method-name')[4]).hasText('parentDoSomething', 'should display 1 inherited method');
 });
 
 
@@ -355,19 +355,19 @@ test('clicking all toggles off should only show public', async function(assert) 
     {{/api-index-filter}}
   `);
 
-  assert.equal(findAll('.method-name').length, 5, 'should display all methods');
-  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
-  assert.equal(findAll('.method-name')[1].textContent.trim(), 'doSomethingDeprecated', 'should display 1 deprecated method');
-  assert.equal(findAll('.method-name')[2].textContent.trim(), 'doSomethingPrivate', 'should display 1 private method');
-  assert.equal(findAll('.method-name')[3].textContent.trim(), 'doSomethingProtected', 'should display 1 protected method');
-  assert.equal(findAll('.method-name')[4].textContent.trim(), 'parentDoSomething', 'should display 1 inherited method');
+  assert.dom('.method-name').exists({ count: 5 }, 'should display all methods');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+  assert.dom(findAll('.method-name')[1]).hasText('doSomethingDeprecated', 'should display 1 deprecated method');
+  assert.dom(findAll('.method-name')[2]).hasText('doSomethingPrivate', 'should display 1 private method');
+  assert.dom(findAll('.method-name')[3]).hasText('doSomethingProtected', 'should display 1 protected method');
+  assert.dom(findAll('.method-name')[4]).hasText('parentDoSomething', 'should display 1 inherited method');
 
   await click('#private-toggle');
   await click('#inherited-toggle');
   await click('#protected-toggle');
   await click('#deprecated-toggle');
 
-  assert.equal(findAll('.method-name').length, 1, 'should display all methods');
-  assert.equal(findAll('.method-name')[0].textContent.trim(), 'doSomething', 'should display 1 public method');
+  assert.dom('.method-name').exists({ count: 1 }, 'should display all methods');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
 
 });
