@@ -14,7 +14,7 @@ skip('Can switch projects back and forth', async function(assert) {
   async function ensureVersionsExist() {
     await selectSearch('.select-container', '2');
 
-    assert.equal(findAll('.ember-power-select-options').length, 1);
+    assert.dom('.ember-power-select-options').exists({ count: 1 });
     assert.ok(findAll('.ember-power-select-options')[0].children.length > 1);
   }
 
