@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "ember build",
-    "postinstall": "npm rebuild node-sass && node fastly-purge.js",
+    "postinstall": "npm rebuild node-sass",
     "start": "ember server",
     "test": "ember exam"
   },
