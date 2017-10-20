@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const ServiceKey = process.env['FASTLY_SERVICE_ID'];
 const FastlyPurgeKey = process.env['FASTLY_PURGE_KEY'];
-const Fastly = require('fastly');
+const Fastly = require('./node_modules/fastly');
 
 
 if (!ServiceKey || !FastlyPurgeKey) {
@@ -13,7 +13,7 @@ if (!ServiceKey || !FastlyPurgeKey) {
 const fastly = Fastly(FastlyPurgeKey);
 
 fastly.purgeAll(ServiceKey,  (err, fastlyResponseBody) => {
-  const prettyjson = require('prettyjson');
+  const prettyjson = require('./node_modules/prettyjson');
   if (err) {
     return console.log(prettyjson.render(err, {}));
   }
