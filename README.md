@@ -39,4 +39,4 @@ and [guides](https://github.com/emberjs/guides) repositories.
 To run a11y tests, run `test_a11y=yes ember serve`
 
 ## Staging Environment
-Latest changes from master can be seen on https://ember-api-docs-staging-herokuapp-com.global.ssl.fastly.net
+Latest changes from master can be seen on https://ember-api-docs-frontend-staging.global.ssl.fastly.net/
