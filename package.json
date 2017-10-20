@@ -83,11 +83,9 @@
     "ember-truth-helpers": "^1.3.0",
     "ember-web-app": "^2.0.0",
     "fastboot-app-server": "^1.0.1",
-    "fastly": "^2.2.0",
     "loader.js": "^4.6.0",
     "minimist": "^1.2.0",
     "normalize.css": "^7.0.0",
-    "prettyjson": "^1.2.1",
     "qunit-dom": "^0.3.2"
   },
   "engines": {
