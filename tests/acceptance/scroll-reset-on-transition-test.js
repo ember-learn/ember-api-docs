@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { skip } from 'qunit';
+import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import { visit } from 'ember-native-dom-helpers';
 import config from 'ember-api-docs/config/environment';
@@ -8,7 +8,7 @@ const { scrollContainerSelector } = config.APP;
 
 moduleForAcceptance('Acceptance | scroll reset on transition');
 
-skip('reset scroll on transitions', async function(assert) {
+test('reset scroll on transitions', async function(assert) {
   await visit('/');
 
   $(scrollContainerSelector).scrollTop(1000);
