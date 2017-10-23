@@ -51,9 +51,10 @@ export default Route.extend({
   },
 
   redirect(model) {
+    let compactVersion = model.version.split('.').slice(0,2).join('.');
     return this.transitionTo(`project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
       model.project.id,
-      model.version,
+      compactVersion,
       model.classData.data.get('name'));
   },
 
