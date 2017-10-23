@@ -43,7 +43,11 @@ export default Route.extend(ScrollTracker, {
         transition.params['project-version'].project,
         transition.params['project-version'].project_version,
         transition.params['project-version.classes.class'].class,
-        transition.queryParams.anchor);
+        transition.queryParams.anchor,
+        { queryParams: {
+          anchor: transition.queryParams.anchor,
+          show: 'inherited,private,public,deprecated'
+        }});
     }
     if (model.isError) {
       this.transitionTo('404');
