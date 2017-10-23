@@ -68,17 +68,19 @@ export default Route.extend({
           endingRoute = `namespaces/${namespaceName}`;
           break;
         }
+        case 'project-version.classes.class.methods.method': {
+          const className = this.modelFor('project-version.classes.class').get('name');
+          let methodName = this.paramsFor('project-version.classes.class.methods.method').method;
+          endingRoute = `classes/${className}/methods/${methodName}?anchor=${methodName}`;
+          break;
+        }
         default:
           break;
       }
       // if the user is navigating to/from api versions >= 2.16, take them
       // to the home page instead of trying to translate the url
-      let shouldConvertPackages = this.shouldConvertPackages(ver, this.modelFor(routeName).get('id'))
-      if (shouldConvertPackages) {
-        endingRoute = null;
-      }
-
-      if (endingRoute) {
+      let shouldConvertPackages = this.shouldConvertPackages(ver, this.get('projectService.version'));
+      if (!shouldConvertPackages) {
         this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
       } else {
         this.transitionTo(`/${project}/${projectVersionID}`);
@@ -91,7 +93,7 @@ export default Route.extend({
   shouldConvertPackages(targetVer, previousVer) {
     let targetVerNumbers = targetVer.id.split('.')
     let targetVersion = Number(targetVerNumbers[0] + '.' + targetVerNumbers[1])
-    let prevVerNumbers = previousVer.split('-')[1].split('.')
+    let prevVerNumbers = previousVer.split('.')
     let previousVersion = Number(prevVerNumbers[0] + '.' + prevVerNumbers[1])
     return (previousVersion >= 2.16 || targetVersion >= 2.16)
   }
