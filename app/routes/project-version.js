@@ -45,36 +45,64 @@ export default Route.extend({
 
   actions: {
     updateProject(project, ver /*, component */) {
-      const projectVersionID = ver.compactVersion;
+      let projectVersionID = ver.compactVersion;
       let endingRoute, routeName;
       switch (routeName = this.router.currentRouteName) {
         case 'project-version.classes.class': {
-          const className = this.modelFor(routeName).get('name');
+          let className = this.modelFor(routeName).get('name');
           endingRoute = `classes/${className}`;
           break;
         }
         case 'project-version.classes.class.index': {
-          const className = this.modelFor('project-version.classes.class').get('name');
+          let className = this.modelFor('project-version.classes.class').get('name');
           endingRoute = `classes/${className}`;
           break;
         }
         case 'project-version.modules.module.index': {
-          const moduleName = this.paramsFor('project-version.modules.module').module;
+          let moduleName = this.paramsFor('project-version.modules.module').module;
           endingRoute = `modules/${moduleName}`;
           break;
         }
         case 'project-version.namespaces.namespace.index': {
-          const namespaceName = this.paramsFor('project-version.namespaces.namespace').namespace;
+          let namespaceName = this.paramsFor('project-version.namespaces.namespace').namespace;
           endingRoute = `namespaces/${namespaceName}`;
           break;
         }
+        case 'project-version.classes.class.methods.index': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/methods`;
+          break;
+        }
+        case 'project-version.classes.class.events.index': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/events`;
+          break;
+        }
+        case 'project-version.classes.class.properties.index': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/properties`;
+          break;
+        }
         case 'project-version.classes.class.methods.method': {
-          const className = this.modelFor('project-version.classes.class').get('name');
+          let className = this.modelFor('project-version.classes.class').get('name');
           let methodName = this.paramsFor('project-version.classes.class.methods.method').method;
           endingRoute = `classes/${className}/methods/${methodName}?anchor=${methodName}`;
           break;
         }
+        case 'project-version.classes.class.events.event': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          let eventName = this.paramsFor('project-version.classes.class.events.event').event;
+          endingRoute = `classes/${className}/methods/${eventName}?anchor=${eventName}`;
+          break;
+        }
+        case 'project-version.classes.class.properties.property': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          let propertyName = this.paramsFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/methods/${propertyName}?anchor=${propertyName}`;
+          break;
+        }
         default:
+          endingRoute = '';
           break;
       }
       // if the user is navigating to/from api versions >= 2.16, take them
