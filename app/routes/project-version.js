@@ -1,5 +1,6 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
+import semverCompare from 'npm:semver-compare';
 
 export default Route.extend({
 
@@ -92,13 +93,13 @@ export default Route.extend({
         case 'project-version.classes.class.events.event': {
           let className = this.modelFor('project-version.classes.class').get('name');
           let eventName = this.paramsFor('project-version.classes.class.events.event').event;
-          endingRoute = `classes/${className}/methods/${eventName}?anchor=${eventName}`;
+          endingRoute = `classes/${className}/events/${eventName}?anchor=${eventName}`;
           break;
         }
         case 'project-version.classes.class.properties.property': {
           let className = this.modelFor('project-version.classes.class').get('name');
-          let propertyName = this.paramsFor('project-version.classes.class').get('name');
-          endingRoute = `classes/${className}/methods/${propertyName}?anchor=${propertyName}`;
+          let propertyName = this.paramsFor('project-version.classes.class.properties.property').property;
+          endingRoute = `classes/${className}/properties/${propertyName}?anchor=${propertyName}`;
           break;
         }
         default:
@@ -119,10 +120,10 @@ export default Route.extend({
   // whether the user is switching versions for a 2.16 docs release or later.
   // The urls for pre-2.16 classes and later packages are quite different
   shouldConvertPackages(targetVer, previousVer) {
-    let targetVerNumbers = targetVer.id.split('.')
-    let targetVersion = Number(targetVerNumbers[0] + '.' + targetVerNumbers[1])
-    let prevVerNumbers = previousVer.split('.')
-    let previousVersion = Number(prevVerNumbers[0] + '.' + prevVerNumbers[1])
-    return (previousVersion >= 2.16 || targetVersion >= 2.16)
+    let targetVersion = targetVer.id.split('.').slice(0, 2).join('.');
+    let previousVersion = previousVer.split('.').slice(0,2).join('.');
+    let previousComparison = semverCompare(previousVersion, '2.16');
+    let targetComparison = semverCompare(targetVersion, '2.16');
+    return (previousComparison < 0 && targetComparison >=0) || (previousComparison >=0 && targetComparison < 0);
   }
 });
