@@ -65,7 +65,7 @@ test('it should return correct fullVersion from compact', function(assert) {
   let service = this.subject();
   service.initializeStore(availableProjectVersions, projectRevMap);
   assert.equal(service.getFullVersion('ember', '2.14'), '2.14.1');
-  assert.equal(service.getFullVersion('ember', '2.1'), '2.14.1');
+  assert.equal(service.getFullVersion('ember', '2.1'), '2.1.2');
   assert.equal(service.getFullVersion('ember', '2.14.'), '2.14.1');
   assert.equal(service.getFullVersion('ember', '1.14'), undefined);
 });
