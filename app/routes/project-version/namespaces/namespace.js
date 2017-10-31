@@ -1,6 +1,7 @@
 import ClassRoute from '../classes/class';
+import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 
-export default ClassRoute.extend({
+export default ClassRoute.extend(ScrollTracker, {
   templateName: 'project-version/classes/class',
 
   model(params, transition) {
