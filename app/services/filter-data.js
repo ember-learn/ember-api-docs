@@ -1,7 +1,7 @@
 import Service from '@ember/service';
 
 export default Service.extend({
-  showInherited: true,
+  showInherited: false,
   showProtected: false,
   showPrivate: false,
   showDeprecated: false,
