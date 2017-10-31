@@ -1,7 +1,7 @@
 import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import { find, findAll, triggerEvent } from 'ember-native-dom-helpers';
+import { findAll, triggerEvent } from 'ember-native-dom-helpers';
 
 moduleForComponent('class-field-description', 'Integration | Component | class field description', {
   integration: true
@@ -19,10 +19,10 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{class-field-description type=type field=field}}`);
 
-  assert.equal(find('.method-name').textContent.trim(), 'concat');
-  assert.equal(findAll('.access')[0].textContent.trim(), 'public');
-  assert.equal(findAll('.access')[1].textContent.trim(), 'deprecated');
-  assert.equal(findAll('.args')[0].textContent.trim(), '(param1, param2, param3)');
+  assert.dom('.method-name').hasText('concat');
+  assert.dom(findAll('.access')[0]).hasText('public');
+  assert.dom(findAll('.access')[1]).hasText('deprecated');
+  assert.dom(findAll('.args')[0]).hasText('(param1, param2, param3)');
 });
 
 
@@ -39,5 +39,5 @@ test('On hover -- the link icon shows up', async function(assert) {
   this.render(hbs`{{class-field-description type=type field=field}}`);
 
   await triggerEvent('.class-field-description--link', 'mouseenter');
-  assert.ok(find('.class-field-description--link-hover'), 'The link icon appears when hovering on the method text');
+  assert.dom('.class-field-description--link-hover').exists('The link icon appears when hovering on the method text');
 });

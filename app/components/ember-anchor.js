@@ -10,10 +10,9 @@ export default AnchorComponent.extend({
     let qp = this.get('anchorQueryParam');
     let qpVal = this.get(get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
     let elem = $(`[data-${qp}="${qpVal}"]`);
-    let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
+    let offset = elem.offset() ? elem.offset().top : 0;
     if (offset) {
-      const navMenuHeight = $('header').outerHeight();
-      $(config.APP.scrollContainerSelector).scrollTop(offset - navMenuHeight - 10);
+      $(config.APP.scrollContainerSelector).scrollTop(offset);
     }
   }
 });

@@ -26,3 +26,4 @@ yarn-error.log
 testem.log
 
 public/json-docs/
+public/rev-index/

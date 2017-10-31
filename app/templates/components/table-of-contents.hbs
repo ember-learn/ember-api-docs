@@ -1,6 +1,6 @@
 <ol class="toc-level-0">
   <li class="toc-level-0">
-    <a {{action 'toggle' 'modules'}} href="#">Modules</a>
+    <a {{action 'toggle' 'modules'}} href="#">Packages</a>
     <ol class="toc-level-1 modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
         <li class="toc-level-1" data-test-module={{moduleID}}>
@@ -9,16 +9,20 @@
       {{/each}}
     </ol>
   </li>
-  <li class="toc-level-0">
-    <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
-    <ol class="toc-level-1 namespaces" style="display: block">
-      {{#each namespaceIDs as |namespaceID|}}
-        <li class="toc-level-1" data-test-namespace={{namespaceID}}>
-          {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
-        </li>
-      {{/each}}
-    </ol>
-  </li>
+
+  {{#if isShowingNamespaces}}
+    <li class="toc-level-0">
+      <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
+      <ol class="toc-level-1 namespaces" style="display: block">
+        {{#each namespaceIDs as |namespaceID|}}
+          <li class="toc-level-1" data-test-namespace={{namespaceID}}>
+            {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
+          </li>
+        {{/each}}
+      </ol>
+    </li>
+  {{/if}}
+
   <li class="toc-level-0">
     <a {{action 'toggle' 'classes'}} href="#">Classes</a>
     <ol class="toc-level-1 classes" style="display: block">

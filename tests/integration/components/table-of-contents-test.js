@@ -20,10 +20,11 @@ test('it renders', function(assert) {
                                       projectid=projectId
                                       version=emberVersion
                                       classesIDs=classesIDs
+                                      isShowingNamespaces=true
                   }}`);
 
-  assert.equal(findAll('.toc-level-0 > a')[2].textContent.trim(), 'Classes');
-  assert.equal(findAll('.toc-level-1 li').length, 2, 'We have two items to display');
-  assert.equal(findAll('.toc-level-1 li')[0].textContent.trim(), 'Descriptor');
-  assert.equal(findAll('.toc-level-1 li')[1].textContent.trim(), 'Ember');
+  assert.dom(findAll('.toc-level-0 > a')[2]).hasText('Classes');
+  assert.dom('.toc-level-1 li').exists({ count: 2 }, 'We have two items to display');
+  assert.dom(findAll('.toc-level-1 li')[0]).hasText('Descriptor');
+  assert.dom(findAll('.toc-level-1 li')[1]).hasText('Ember');
 });

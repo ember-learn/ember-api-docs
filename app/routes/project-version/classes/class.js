@@ -3,6 +3,7 @@ import Route from '@ember/routing/route';
 import { set, get } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
+import { pluralize } from 'ember-inflector';
 
 export default Route.extend(ScrollTracker, {
 
@@ -36,6 +37,14 @@ export default Route.extend(ScrollTracker, {
   },
 
   redirect(model, transition) {
+    if (transition.queryParams.anchor && transition.queryParams.type) {
+      let type = transition.queryParams.type;
+      this.transitionTo(`project-version.classes.class.${pluralize(type)}.${type}`,
+        transition.params['project-version'].project,
+        transition.params['project-version'].project_version,
+        transition.params['project-version.classes.class'].class,
+        transition.queryParams.anchor);
+    }
     if (model.isError) {
       this.transitionTo('404');
     }

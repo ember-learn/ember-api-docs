@@ -9,7 +9,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: 'https://ember-api-docs.global.ssl.fastly.net',
+    API_HOST: process.env.API_HOST || 'https://ember-api-docs.global.ssl.fastly.net',
     gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
       EXTEND_PROTOTYPES: false,

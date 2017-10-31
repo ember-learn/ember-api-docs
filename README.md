@@ -1,6 +1,7 @@
-# [Ember-api-docs](https://emberjs.com/api/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
+# [Ember API Docs](https://emberjs.com/api/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
 
-This app is used to produce versioned [Ember api docs](https://emberjs.com/api).  To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
+This project is the versioned API documentation viewer built with Emberjs used at [Ember api docs](https://emberjs.com/api).
+To view the data generator producing its data, please visit https://github.com/ember-learn/ember-jsonapi-docs
 
 ## Want to help out?
 
@@ -38,4 +39,4 @@ and [guides](https://github.com/emberjs/guides) repositories.
 To run a11y tests, run `test_a11y=yes ember serve`
 
 ## Staging Environment
-Latest changes from master can be seen on https://ember-api-docs-staging-herokuapp-com.global.ssl.fastly.net
+Latest changes from master can be seen on https://ember-api-docs-frontend-staging.global.ssl.fastly.net/

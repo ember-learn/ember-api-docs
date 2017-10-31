@@ -23,12 +23,14 @@
     {{/power-select}}
   </div>
 
-  {{table-of-contents projectId=model.project.id
-                      version=model.compactVersion
-                      classesIDs=shownClassesIDs
-                      moduleIDs=shownModuleIDs
-                      namespaceIDs=shownNamespaceIDs
-                      showPrivateClasses=showPrivateClasses
+  {{table-of-contents
+    projectId=model.project.id
+    version=model.compactVersion
+    classesIDs=shownClassesIDs
+    moduleIDs=shownModuleIDs
+    namespaceIDs=shownNamespaceIDs
+    showPrivateClasses=showPrivateClasses
+    isShowingNamespaces=(version-lt selectedProjectVersion.compactVersion '2.16')
   }}
 </aside>
 <section class="content">
