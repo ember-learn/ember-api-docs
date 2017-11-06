@@ -12,7 +12,7 @@ export default Route.extend(ScrollTracker, {
   metaStore: service(),
 
   titleToken: function(model) {
-    return get(model, 'name');
+    return model.get('name');
   },
 
   model(params, transition) {
