@@ -57,7 +57,7 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      set(this, 'headData.description', get(klass, 'ogDescription'));
+      set(this, 'headData.description', klass.get('ogDescription'));
       const relationships = get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
