@@ -69,7 +69,7 @@ export default Route.extend(ScrollTracker, {
 
   serialize(model) {
     return {
-      class: get(model, 'name')
+      class: model.get('name')
     };
   }
 
