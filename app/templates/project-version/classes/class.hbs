@@ -36,7 +36,9 @@
       </div>
     {{/if}}
   </div>
-
+  {{#if (not (eq static 1))}}
+    {{import-example item=model.name package=model.module}}
+  {{/if}}
   <p class="description">{{html-safe model.description}}</p>
 
   {{#if (or model.methods model.properties model.events)}}

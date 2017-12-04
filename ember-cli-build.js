@@ -33,8 +33,8 @@ module.exports = function(defaults) {
       prepend
     },
     svgJar: {
-      sourceDirs: ['public/assets/images'],
-    },
+      sourceDirs: ['public/assets/images']
+    }
   });
 
   var docsSlug = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
@@ -51,6 +51,8 @@ module.exports = function(defaults) {
       `${app.env.API_HOST}/rev-index/(.+)`
     ]
   };
+
+  app.import('node_modules/ember-rfc176-data/mappings.json');
 
   return app.toTree();
 };
