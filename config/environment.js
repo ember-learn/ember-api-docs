@@ -1,7 +1,7 @@
 /* eslint-env node */
 module.exports = function(environment) {
-  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'N4SO04CV0R';
-  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '0b28a7a3adf986fa5d402567d9d8b850';
+  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'Y1OMR4C7MF';
+  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
 
   let ENV = {
     modulePrefix: 'ember-api-docs',
