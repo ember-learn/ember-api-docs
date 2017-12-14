@@ -19,7 +19,7 @@ export default Component.extend({
   // Private API
   classNames: ['search-input'],
   _projectService: service('project'),
-  _projectVersion: alias('_projectService.standardisedVersion'),
+  _projectVersion: alias('_projectService.version'),
   _results: A(),
   _focused: false,
   _resultTetherConstraints: [
@@ -43,12 +43,16 @@ export default Component.extend({
 
     const params = {
       hitsPerPage: 15,
-      restrictSearchableAttributes: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2', 'hierarchy.lvl3', 'hierarchy.lvl4'],
-      facetFilters: [[`version:${projectVersion}`,'tags:api']]
+      restrictSearchableAttributes: [
+        'hierarchy.lvl0',
+        'hierarchy.lvl1',
+        'hierarchy.lvl2'
+      ],
+      tagFilters: [`version:${projectVersion}`]
     };
 
     const searchObj = {
-      indexName: 'emberjs_versions_new',
+      indexName: 'methods',
       query
     };
 
