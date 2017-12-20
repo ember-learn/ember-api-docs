@@ -4,6 +4,8 @@ import { set, get } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
+import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Route.extend(ScrollTracker, {
 
@@ -15,17 +17,23 @@ export default Route.extend(ScrollTracker, {
     return model.get('name');
   },
 
-  model(params, transition) {
-    return this.getModel('class', params, transition);
+  async model(params, transition) {
+    let projectID = transition.params['project-version'].project;
+    let projectObj = await this.store.findRecord('project', projectID);
+    let compactVersion = transition.params['project-version'].project_version;
+    let projectVersion;
+    if (compactVersion === 'release') {
+      let versions = projectObj.get('projectVersions').toArray();
+      projectVersion = getLastVersion(versions);
+      compactVersion = getCompactVersion(projectVersion);
+    } else {
+      projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
+    }
+    const klass = params['class'];
+    return this.find('class', `${projectID}-${projectVersion}-${klass}`);
   },
 
   getModel(typeName, params, transition) {
-    const projectID = transition.params['project-version'].project;
-    let compactVersion = transition.params['project-version'].project_version;
-    const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
-
-    const klass = params[typeName];
-    return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);
   },
 
   find(typeName, param) {

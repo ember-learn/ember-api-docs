@@ -1,6 +1,7 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import semverCompare from 'npm:semver-compare';
+import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 export default Route.extend({
 
@@ -13,9 +14,15 @@ export default Route.extend({
   },
 
   async model({project, project_version}) {
-    await this.store.findRecord('project', project);
-    const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
-    const id = `${project}-${projectVersion}`;
+    let projectObj = await this.store.findRecord('project', project);
+    let projectVersion;
+    if (project_version === 'release') {
+      let versions = projectObj.get('projectVersions').toArray();
+      projectVersion = getLastVersion(versions);
+    } else {
+      projectVersion = this.get('metaStore').getFullVersion(project, project_version);
+    }
+    let id = `${project}-${projectVersion}`;
     this.get('projectService').setVersion(projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
