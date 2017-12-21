@@ -6,6 +6,9 @@ import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
+import Ember from 'ember';
+
+const { Logger } = Ember;
 
 export default Route.extend(ScrollTracker, {
 
@@ -17,28 +20,28 @@ export default Route.extend(ScrollTracker, {
     return model.get('name');
   },
 
-  async model(params, transition) {
+  model(params, transition) {
     let projectID = transition.params['project-version'].project;
-    let projectObj = await this.store.findRecord('project', projectID);
-    let compactVersion = transition.params['project-version'].project_version;
-    let projectVersion;
-    if (compactVersion === 'release') {
-      let versions = projectObj.get('projectVersions').toArray();
-      projectVersion = getLastVersion(versions);
-      compactVersion = getCompactVersion(projectVersion);
-    } else {
-      projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
-    }
-    const klass = params['class'];
-    return this.find('class', `${projectID}-${projectVersion}-${klass}`);
+    return this.store.findRecord('project', projectID).then((projectObj) => {
+      let compactVersion = transition.params['project-version'].project_version;
+      let projectVersion;
+      if (compactVersion === 'release') {
+        let versions = projectObj.get('projectVersions').toArray();
+        projectVersion = this.get('metaStore').getFullVersion(projectID, getCompactVersion(getLastVersion(versions)));
+      } else {
+        projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
+      }
+      const klass = params['class'];
+      return this.find('class', `${projectID}-${projectVersion}-${klass}`);
+    });
   },
 
-  getModel(typeName, params, transition) {
-  },
 
   find(typeName, param) {
-    return this.store.find(typeName, param).catch(() => {
-      return this.store.find('namespace', param).catch(() => {
+    return this.store.find(typeName, param).catch((e1) => {
+      Logger.warn(e1, 'fetching by class or module failed, retrying as namespace');
+      return this.store.find('namespace', param).catch((e2) => {
+        Logger.error(e2);
         return resolve({ isError: true });
       });
     });

@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import semverCompare from 'npm:semver-compare';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Route.extend({
 
@@ -13,18 +14,19 @@ export default Route.extend({
     return model.get('version');
   },
 
-  async model({project, project_version}) {
-    let projectObj = await this.store.findRecord('project', project);
-    let projectVersion;
-    if (project_version === 'release') {
-      let versions = projectObj.get('projectVersions').toArray();
-      projectVersion = getLastVersion(versions);
-    } else {
-      projectVersion = this.get('metaStore').getFullVersion(project, project_version);
-    }
-    let id = `${project}-${projectVersion}`;
-    this.get('projectService').setVersion(projectVersion);
-    return this.store.findRecord('project-version', id, { includes: 'project' });
+  model({project, project_version}) {
+    return this.store.findRecord('project', project).then((projectObj) => {
+      let projectVersion;
+      if (project_version === 'release') {
+        let versions = projectObj.get('projectVersions').toArray();
+        projectVersion = this.get('metaStore').getFullVersion(project, getCompactVersion(getLastVersion(versions)));
+      } else {
+        projectVersion = this.get('metaStore').getFullVersion(project, project_version);
+      }
+      let id = `${project}-${projectVersion}`;
+      this.get('projectService').setVersion(projectVersion);
+      return this.store.findRecord('project-version', id, { includes: 'project' });
+    });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
@@ -33,13 +35,8 @@ export default Route.extend({
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
-      const modules = model.hasMany('modules').ids().sort();
-      let module = modules[0].split('-').reduce((result, val, index, arry) => {
-        if (val === this.get('projectService.version')) {
-          return arry.slice(index+1).join('-');
-        }
-        return result;
-      })
+      let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
+      let module = this.getFirstModule(moduleRevs);
       return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
     }
   },
@@ -127,10 +124,24 @@ export default Route.extend({
   // whether the user is switching versions for a 2.16 docs release or later.
   // The urls for pre-2.16 classes and later packages are quite different
   shouldConvertPackages(targetVer, previousVer) {
-    let targetVersion = targetVer.id.split('.').slice(0, 2).join('.');
-    let previousVersion = previousVer.split('.').slice(0,2).join('.');
+    let targetVersion = getCompactVersion(targetVer.id);
+    let previousVersion = getCompactVersion(previousVer);
     let previousComparison = semverCompare(previousVersion, '2.16');
     let targetComparison = semverCompare(targetVersion, '2.16');
     return (previousComparison < 0 && targetComparison >=0) || (previousComparison >=0 && targetComparison < 0);
+  },
+
+  /**
+     splits the first encoded revision string in the list and takes the string after the version (which is the encoded name), then decodes the result.
+     */
+  getFirstModule(moduleRevs) {
+    let encodedModule = moduleRevs[0].split('-').reduce((result, val, index, arry) => {
+      if (val === this.get('projectService.version')) {
+        return arry.slice(index+1).join('-');
+      }
+      return result;
+    });
+    return decodeURIComponent(encodedModule);
   }
+
 });

@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 import { A } from '@ember/array';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Service.extend({
 
@@ -24,6 +25,10 @@ export default Service.extend({
     return this.get('projectRevMap')[`${project}-${version}`][type][encodedId];
   },
 
+  getEncodedModulesFromProjectRev(id) {
+    return Object.keys(this.get('projectRevMap')[id].module).sort();
+  },
+
   initializeStore(availableProjectVersions, projectRevMap) {
     this.setProperties({
       availableProjectVersions: {
@@ -38,8 +43,8 @@ export default Service.extend({
     const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
     let filtered = availProjVersions.filter(function(v, index) {
       // shorten versions to 2 digits and compare them. 2.15.0 becomes 2.15
-      let vTrimmed = v.split('.').slice(0,2).join('.')
-      let compactProjTrimmed = compactProjVersion.split('.').slice(0,2).join('.')
+      let vTrimmed = getCompactVersion(v);
+      let compactProjTrimmed = getCompactVersion(compactProjVersion);
       return vTrimmed === compactProjTrimmed
     })
     // return the full version number, like 2.15.2

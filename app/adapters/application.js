@@ -17,7 +17,7 @@ export default JSONAPIAdapter.extend({
   metaStore: service(),
   projectService: service('project'),
 
-  async findRecord(store, {modelName}, id) {
+  findRecord(store, {modelName}, id) {
     let url;
     let host = this.get('host');
     let projectName = this.get('currentProject');
@@ -42,9 +42,7 @@ export default JSONAPIAdapter.extend({
 
     url = `${host}/${url}.json`;
 
-    let response = await fetch(url);
-    return response.json();
+    return fetch(url).then((response) => response.json());
   }
 
 });
-
