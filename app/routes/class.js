@@ -1,6 +1,6 @@
 import { hash, resolve } from 'rsvp';
 import Route from '@ember/routing/route';
-import getCompactVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import { pluralize } from 'ember-inflector';
 
 export default Route.extend({

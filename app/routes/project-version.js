@@ -1,8 +1,8 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import semverCompare from 'npm:semver-compare';
-import getLastVersion from 'ember-api-docs/utils/get-last-version';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
 export default Route.extend({
 
@@ -14,19 +14,12 @@ export default Route.extend({
     return model.get('version');
   },
 
-  model({project, project_version}) {
-    return this.store.findRecord('project', project).then((projectObj) => {
-      let projectVersion;
-      if (project_version === 'release') {
-        let versions = projectObj.get('projectVersions').toArray();
-        projectVersion = this.get('metaStore').getFullVersion(project, getCompactVersion(getLastVersion(versions)));
-      } else {
-        projectVersion = this.get('metaStore').getFullVersion(project, project_version);
-      }
-      let id = `${project}-${projectVersion}`;
-      this.get('projectService').setVersion(projectVersion);
-      return this.store.findRecord('project-version', id, { includes: 'project' });
-    });
+  async model({project, project_version}) {
+    let projectObj = await this.store.findRecord('project', project);
+    let projectVersion = getFullVersion(project_version, project, projectObj, this.get('metaStore'));
+    let id = `${project}-${projectVersion}`;
+    this.get('projectService').setVersion(projectVersion);
+    return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
