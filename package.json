@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.5.0",
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^0.4.3",
     "ember-algolia": "^0.0.6",
     "ember-anchor": "~0.1.8",
