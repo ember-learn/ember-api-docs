@@ -39,11 +39,10 @@ module.exports = function(defaults) {
     }
   });
 
-  let mappingsTree = new Funnel('node_modules', {
-    srcDir: 'ember-rfc176-data',
-    include: ['*.json'],
-    destDir: '/assets/rfc176'
+  let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
+    srcDir: '/',
+    include: ['mappings.json'],
+    destDir: '/assets/'
   });
-
   return mergeTrees([app.toTree(), mappingsTree]);
 };
