@@ -32,8 +32,10 @@
       </a>
     {{/if}}
   </p>
-  {{#if (and (eq field.static 1) (eq field.itemtype "method"))}}
-    {{import-example item=(concat "{ " field.name " }") package=field.class}}
+  {{#if legacyModuleMappings.initMappings.isIdle}}
+    {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
+      {{import-example item=(concat "{ " field.name " }") package=field.class}}
+    {{/if}}
   {{/if}}
   <dl class="parameters">
     {{#each field.params as |param|}}

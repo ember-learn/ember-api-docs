@@ -8,7 +8,6 @@ import { pluralize } from 'ember-inflector';
 export default Route.extend(ScrollTracker, {
 
   headData: service(),
-
   metaStore: service(),
 
   titleToken: function(model) {
