@@ -36,7 +36,11 @@
       </div>
     {{/if}}
   </div>
-
+  {{#if (and (not (eq static 1)) legacyModuleMappings.initMappings.isIdle)}}
+    {{#if hasImportExample}}
+      {{import-example item=model.name package=model.module}}
+    {{/if}}
+  {{/if}}
   <p class="description">{{html-safe model.description}}</p>
 
   {{#if (or model.methods model.properties model.events)}}

@@ -2,6 +2,8 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const Funnel = require('broccoli-funnel');
+const mergeTrees  = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   let prepend = '';
@@ -33,24 +35,14 @@ module.exports = function(defaults) {
       prepend
     },
     svgJar: {
-      sourceDirs: ['public/assets/images'],
-    },
+      sourceDirs: ['public/assets/images']
+    }
   });
 
-  var docsSlug = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
-
-  //TODO move the proxying main site to a variable for testing & dev
-  app.options['ember-service-worker'] = {
-    rootUrl: app.env.environment === 'production' ? 'https://emberjs.com' + docsSlug : '/'
-  };
-
-
-  app.options['esw-cache-first'] = {
-    patterns: [
-      `${app.env.API_HOST}/json-docs/(.+)`,
-      `${app.env.API_HOST}/rev-index/(.+)`
-    ]
-  };
-
-  return app.toTree();
+  let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
+    srcDir: '/',
+    include: ['mappings.json'],
+    destDir: '/assets/'
+  });
+  return mergeTrees([app.toTree(), mappingsTree]);
 };
