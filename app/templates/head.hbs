@@ -1,7 +1,6 @@
 <title>{{model.title}}</title>
 
-<link rel="dns-prefetch" href="{{cdnDomain}}" >
-
+<link rel="dns-prefetch" href="{{model.cdnDomain}}" >
 <meta property="og:title" content={{model.title}} >
 <meta property="og:image" content="assets/images/ember-logo.png" >
 <meta property="og:image:width" content="1200" >
@@ -9,4 +8,7 @@
 
 {{#if model.description}}
   <meta property="og:description" content={{model.description}} >
+{{/if}}
+{{#if model.isRelease}}
+  <link rel="canonical" href={{model.canonicalUrl}}>
 {{/if}}

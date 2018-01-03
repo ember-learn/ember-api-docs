@@ -11,14 +11,15 @@ export default Route.extend({
     const [version, entity] = tokens;
     if (version) {
       const compactVersion = getCompactVersion(version);
-
       const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
-
       set(this, 'headData.title', title);
-      set(this, 'headData.cdnDomain', ENV.API_HOST);
       return title;
     }
     return '';
+  },
+  afterModel(resolvedModel, transition) {
+    set(this, 'headData.cdnDomain', ENV.API_HOST);
+    return this._super(...arguments);
   }
 
 });

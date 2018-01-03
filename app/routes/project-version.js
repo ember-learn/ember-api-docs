@@ -5,9 +5,9 @@ import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
 export default Route.extend({
-
+  fastboot: service(),
+  headData: service(),
   metaStore: service(),
-
   projectService: service('project'),
 
   titleToken: function(model) {
@@ -25,6 +25,7 @@ export default Route.extend({
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
   redirect(model, transition) {
+    this._gatherHeadDataFromVersion(model, transition.params['project-version'].project_version);
     let classParams = transition.params['project-version.classes.class'];
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
@@ -32,6 +33,17 @@ export default Route.extend({
       let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
       let module = this.getFirstModule(moduleRevs);
       return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
+    }
+  },
+
+  _gatherHeadDataFromVersion(model, projectVersion) {
+    this.set('headData.isRelease', projectVersion === 'release');
+    this.set('headData.compactVersion', model.get('compactVersion'));
+    this.set('headData.urlVersion', projectVersion);
+    if (this.get('headData.isRelease')) {
+      let request = this.get('fastboot.request');
+      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//${request.host}${request.path}` : window.location.href;
+      this.set('headData.canonicalUrl', href.replace(/release/, model.get('compactVersion')));
     }
   },
 
