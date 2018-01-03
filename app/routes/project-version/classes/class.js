@@ -4,6 +4,10 @@ import { set, get } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import Ember from 'ember';
+
+const { Logger } = Ember;
 
 export default Route.extend(ScrollTracker, {
 
@@ -14,22 +18,21 @@ export default Route.extend(ScrollTracker, {
     return model.get('name');
   },
 
-  model(params, transition) {
-    return this.getModel('class', params, transition);
-  },
-
-  getModel(typeName, params, transition) {
-    const projectID = transition.params['project-version'].project;
+  async model(params, transition) {
+    let projectID = transition.params['project-version'].project;
+    let projectObj = await this.store.findRecord('project', projectID);
     let compactVersion = transition.params['project-version'].project_version;
-    const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
-
-    const klass = params[typeName];
-    return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);
+    let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.get('metaStore'));
+    const klass = params['class'];
+    return this.find('class', `${projectID}-${projectVersion}-${klass}`);
   },
+
 
   find(typeName, param) {
-    return this.store.find(typeName, param).catch(() => {
-      return this.store.find('namespace', param).catch(() => {
+    return this.store.find(typeName, param).catch((e1) => {
+      Logger.warn(e1, 'fetching by class or module failed, retrying as namespace');
+      return this.store.find('namespace', param).catch((e2) => {
+        Logger.error(e2);
         return resolve({ isError: true });
       });
     });

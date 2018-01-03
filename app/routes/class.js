@@ -1,6 +1,6 @@
 import { hash, resolve } from 'rsvp';
 import Route from '@ember/routing/route';
-//import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import { pluralize } from 'ember-inflector';
 
 export default Route.extend({
@@ -51,7 +51,7 @@ export default Route.extend({
   },
 
   redirect(model) {
-    let compactVersion = model.version.split('.').slice(0,2).join('.');
+    let compactVersion = getCompactVersion(model.version);
     return this.transitionTo(`project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
       model.project.id,
       compactVersion,

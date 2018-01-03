@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import DS from 'ember-data';
+import getCompactVersion from '../utils/get-compact-version';
 
 export default DS.Model.extend({
   version: DS.attr(),
@@ -14,6 +15,6 @@ export default DS.Model.extend({
   'private-namespaces': DS.hasMany('namespace', {async: true}),
   project: DS.belongsTo('project'),
   compactVersion: computed('version', function() {
-    return this.get('version').split('.').slice(0, 2).join('.');
+    return getCompactVersion(this.get('version'));
   })
 });

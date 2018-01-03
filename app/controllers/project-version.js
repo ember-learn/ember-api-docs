@@ -6,6 +6,7 @@ import values from 'npm:lodash.values';
 import groupBy from 'npm:lodash.groupby';
 import semverCompare from 'npm:semver-compare';
 import FilterParams from '../mixins/filter-params';
+import getCompactVersion from '../utils/get-compact-version';
 
 export default Controller.extend(FilterParams, {
 
@@ -74,7 +75,7 @@ export default Controller.extend(FilterParams, {
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
-      const compactVersion = version.split('.').slice(0, 2).join('.');
+      const compactVersion = getCompactVersion(version);
       return { id: version, compactVersion };
     });
     let groupedVersions = groupBy(versions, version => version.compactVersion);

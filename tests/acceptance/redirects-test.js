@@ -1,6 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import { visit } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | redirects');
@@ -10,7 +11,7 @@ test('visiting /', async function(assert) {
 
   const store = this.application.__container__.lookup('service:store');
   let versions = store.peekAll('project-version').toArray();
-  const last = getLastVersion(versions).split('.').slice(0, 2).join('.');
+  const last = getCompactVersion(getLastVersion(versions));
   assert.equal(
     currentURL(),
     `/ember/${last}/modules/@ember%2Fapplication`,
