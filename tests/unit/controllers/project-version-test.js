@@ -29,7 +29,7 @@ const expectedModuleNames = [
 ];
 
 moduleFor('controller:project-version', 'Unit | Controller | project version', {
-  needs: ['service:filterData', 'service:metaStore', 'service:analytics']
+  needs: ['service:filterData', 'service:metaStore', 'service:analytics', 'service:project']
 });
 
 test('should render module names', function(assert) {
