@@ -18,6 +18,7 @@ export default Route.extend({
     let projectObj = await this.store.findRecord('project', project);
     let projectVersion = getFullVersion(project_version, project, projectObj, this.get('metaStore'));
     let id = `${project}-${projectVersion}`;
+    this.get('projectService').setUrlVersion(project_version);
     this.get('projectService').setVersion(projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },

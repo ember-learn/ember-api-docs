@@ -13,5 +13,13 @@ export default Service.extend({
 
   setVersion(version) {
     this.set('version', version);
+  },
+
+  setUrlVersion(version) {
+    this.set('urlVersion', version);
+  },
+
+  getUrlVersion() {
+    return this.get('urlVersion');
   }
 });
