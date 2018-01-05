@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import fetch from 'fetch';
 import { task } from 'ember-concurrency';
+import ENV from 'ember-api-docs/config/environment';
 
 export default Ember.Service.extend({
 
@@ -9,9 +10,13 @@ export default Ember.Service.extend({
   },
 
   initMappings: task(function * () {
-    let response = yield fetch('/assets/mappings.json');
-    let mappings = yield response.json();
-    this.set('mappings', mappings);
+    try {
+      let response = yield fetch(`${ENV.API_HOST}/assets/mappings.json`);
+      let mappings = yield response.json();
+      this.set('mappings', mappings);
+    } catch (e) {
+      this.set('mappings', []);
+    }
   }),
 
   hasFunctionMapping(name, module) {
