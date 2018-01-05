@@ -23,7 +23,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      scrollContainerSelector: 'body, html'
+      scrollContainerSelector: 'body, html',
+      cdnUrl: process.env.FASTLY_CDN_URL ? process.env.FASTLY_CDN_URL : ''
     },
 
     fastboot: {

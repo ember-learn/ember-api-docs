@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import fetch from 'fetch';
 import { task } from 'ember-concurrency';
-import ENV from 'ember-api-docs/config/environment';
+import config from 'ember-api-docs/config/environment';
 
 export default Ember.Service.extend({
 
@@ -11,7 +11,7 @@ export default Ember.Service.extend({
 
   initMappings: task(function * () {
     try {
-      let response = yield fetch(`${ENV.routerRootURL}assets/mappings.json`);
+      let response = yield fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
       let mappings = yield response.json();
       this.set('mappings', mappings);
     } catch (e) {
