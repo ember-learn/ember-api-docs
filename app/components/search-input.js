@@ -1,4 +1,3 @@
-import { later } from '@ember/runloop';
 import { denodeify } from 'rsvp';
 import { A } from '@ember/array';
 import { alias } from '@ember/object/computed';
@@ -9,6 +8,7 @@ import set from 'ember-metal/set';
 import { task, timeout } from 'ember-concurrency';
 
 const SEARCH_DEBOUNCE_PERIOD = 300;
+const SEARCH_CLOSE_PERIOD = 200;
 
 export default Component.extend({
   // Public API
@@ -41,6 +41,9 @@ export default Component.extend({
       return set(this, '_focused', false);
     }
 
+    // ensure search results are visible if the menu was previously closed above
+    set(this, '_focused', true);
+
     const params = {
       hitsPerPage: 15,
       restrictSearchableAttributes: [
@@ -65,6 +68,12 @@ export default Component.extend({
       .addObjects(results);
   }).restartable(),
 
+  closeMenu: task(function * () {
+    yield timeout(SEARCH_CLOSE_PERIOD);
+
+    set(this, '_focused', false);
+  }),
+
   actions: {
 
     onfocus() {
@@ -72,9 +81,7 @@ export default Component.extend({
     },
 
     onblur() {
-      later(this, function () {
-        set(this, '_focused', false);
-      }, 200);
+      this.get('closeMenu').perform();
     }
 
   }
