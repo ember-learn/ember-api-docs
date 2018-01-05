@@ -74,7 +74,7 @@ module.exports = function(environment) {
   ENV.contentSecurityPolicy = {
     "default-src": "'self' *.fastly.net",
     "connect-src": "'self' *.algolia.net *.algolianet.com *.fastly.net",
-    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-lKBtcUDKd1YsXApz3zgfFp4g7TuIVPSsYg/ic+77Ljo=' *.fastly.net https://www.google-analytics.com",
+    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.fastly.net https://www.google-analytics.com",
     "font-src": "'self' data://* https://fonts.gstatic.com  *.fastly.net",
     "img-src": "'self' data://*  *.fastly.net https://www.google-analytics.com",
     "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com  *.fastly.net"
