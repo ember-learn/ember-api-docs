@@ -11,7 +11,7 @@ export default Ember.Service.extend({
 
   initMappings: task(function * () {
     try {
-      let response = yield fetch(`${ENV.API_HOST}/assets/mappings.json`);
+      let response = yield fetch(`${ENV.routerRootURL}assets/mappings.json`);
       let mappings = yield response.json();
       this.set('mappings', mappings);
     } catch (e) {
