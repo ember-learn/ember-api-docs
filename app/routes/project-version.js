@@ -1,11 +1,13 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import semverCompare from 'npm:semver-compare';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
 export default Route.extend({
-
+  fastboot: service(),
+  headData: service(),
   metaStore: service(),
-
   projectService: service('project'),
 
   titleToken: function(model) {
@@ -13,27 +15,35 @@ export default Route.extend({
   },
 
   async model({project, project_version}) {
-    await this.store.findRecord('project', project);
-    const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
-    const id = `${project}-${projectVersion}`;
+    let projectObj = await this.store.findRecord('project', project);
+    let projectVersion = getFullVersion(project_version, project, projectObj, this.get('metaStore'));
+    let id = `${project}-${projectVersion}`;
+    this.get('projectService').setUrlVersion(project_version);
     this.get('projectService').setVersion(projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
   redirect(model, transition) {
+    this._gatherHeadDataFromVersion(model, transition.params['project-version'].project_version);
     let classParams = transition.params['project-version.classes.class'];
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
-      const modules = model.hasMany('modules').ids().sort();
-      let module = modules[0].split('-').reduce((result, val, index, arry) => {
-        if (val === this.get('projectService.version')) {
-          return arry.slice(index+1).join('-');
-        }
-        return result;
-      })
+      let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
+      let module = this.getFirstModule(moduleRevs);
       return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
+    }
+  },
+
+  _gatherHeadDataFromVersion(model, projectVersion) {
+    this.set('headData.isRelease', projectVersion === 'release');
+    this.set('headData.compactVersion', model.get('compactVersion'));
+    this.set('headData.urlVersion', projectVersion);
+    if (this.get('headData.isRelease')) {
+      let request = this.get('fastboot.request');
+      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//${request.host}${request.path}` : window.location.href;
+      this.set('headData.canonicalUrl', href.replace(/release/, model.get('compactVersion')));
     }
   },
 
@@ -120,10 +130,24 @@ export default Route.extend({
   // whether the user is switching versions for a 2.16 docs release or later.
   // The urls for pre-2.16 classes and later packages are quite different
   shouldConvertPackages(targetVer, previousVer) {
-    let targetVersion = targetVer.id.split('.').slice(0, 2).join('.');
-    let previousVersion = previousVer.split('.').slice(0,2).join('.');
+    let targetVersion = getCompactVersion(targetVer.id);
+    let previousVersion = getCompactVersion(previousVer);
     let previousComparison = semverCompare(previousVersion, '2.16');
     let targetComparison = semverCompare(targetVersion, '2.16');
     return (previousComparison < 0 && targetComparison >=0) || (previousComparison >=0 && targetComparison < 0);
+  },
+
+  /**
+     splits the first encoded revision string in the list and takes the string after the version (which is the encoded name), then decodes the result.
+     */
+  getFirstModule(moduleRevs) {
+    let encodedModule = moduleRevs[0].split('-').reduce((result, val, index, arry) => {
+      if (val === this.get('projectService.version')) {
+        return arry.slice(index+1).join('-');
+      }
+      return result;
+    });
+    return decodeURIComponent(encodedModule);
   }
+
 });

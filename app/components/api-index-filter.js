@@ -1,6 +1,5 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import uniq from 'npm:lodash.uniq';
 import sortBy from 'npm:lodash.sortby';
 
 const filterDataComputedParams = 'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
@@ -38,8 +37,8 @@ export default Component.extend({
       items = items.filter(item => item.deprecated !== true);
     }
 
-    let sortedUniqueItems = uniq(sortBy(items, 'name'), true, (item => item.name));
-    return this.filterMultipleInheritance(sortedUniqueItems);
+    let sortedItems = sortBy(items, (item => item.name));
+    return this.filterMultipleInheritance(sortedItems);
   },
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
