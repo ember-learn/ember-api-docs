@@ -3,6 +3,7 @@ node_js:
 - '6'
 dist: trusty
 sudo: required
+group: deprecated-2017Q4
 addons:
   apt:
     sources:
