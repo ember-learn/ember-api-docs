@@ -1,14 +1,15 @@
-/* eslint-env node: true */
-
+/* eslint-env node */
 module.exports = function(environment) {
-  var ENV = {
+  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'Y1OMR4C7MF';
+  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
+
+  let ENV = {
     modulePrefix: 'ember-api-docs',
-    environment: environment,
+    environment,
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: 'https://ead-sk.global.ssl.fastly.net',
-    IS_FASTBOOT: !!process.env.EMBER_CLI_FASTBOOT,
+    API_HOST: process.env.API_HOST || 'https://ember-api-docs.global.ssl.fastly.net',
     gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
@@ -22,15 +23,18 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      scrollContainerSelector: 'body, html',
+      cdnUrl: process.env.FASTLY_CDN_URL ? `https://${process.env.FASTLY_CDN_URL}` : ''
     },
 
     fastboot: {
       hostWhitelist: [/^[\w\-]+\.herokuapp\.com$/, /^localhost:\d+$/]
+    },
+    'ember-algolia': {
+      algoliaId: ALGOLIA_APP_ID,
+      algoliaKey: ALGOLIA_API_KEY
     }
   };
-
-  ENV.ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
-  ENV.ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -55,12 +59,23 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.scrollContainerSelector = '#ember-testing-container';
+
+    ENV.percy = {
+      breakpointsConfig: {
+        mobile: 375,
+        tablet: 768,
+        desktop: 1280
+      },
+      defaultBreakpoints: ['mobile', 'desktop']
+    };
+
   }
 
   ENV.contentSecurityPolicy = {
     "default-src": "'self' *.fastly.net",
-    "connect-src": "'self' https://s3.amazonaws.com *.algolia.net *.algolianet.com *.fastly.net",
-    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-36n/xkZHEzq3lo4O+0jXMYbl+dWu3C8orOFHtcAH6HU=' *.fastly.net https://www.google-analytics.com",
+    "connect-src": "'self' *.algolia.net *.algolianet.com *.fastly.net",
+    "script-src": "'self' 'unsafe-inline' use.typekit.net 'sha256-lKBtcUDKd1YsXApz3zgfFp4g7TuIVPSsYg/ic+77Ljo=' *.fastly.net https://www.google-analytics.com",
     "font-src": "'self' data://* https://fonts.gstatic.com  *.fastly.net",
     "img-src": "'self' data://*  *.fastly.net https://www.google-analytics.com",
     "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com  *.fastly.net"
@@ -73,13 +88,9 @@ module.exports = function(environment) {
      * https://github.com/ember-fastboot/ember-cli-fastboot/issues/254 to be
      * solved for that
      */
-    ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
+    ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api/';
     ENV.gaTrackingId = 'UA-27675533-1';
 
-  }
-
-  if ('FASTLY_CDN_URL' in process.env) {
-    ENV.CDN_URL = process.env.FASTLY_CDN_URL;
   }
 
   return ENV;

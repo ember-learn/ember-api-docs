@@ -1,15 +1,20 @@
-import Ember from 'ember';
+import Service from '@ember/service';
+import $ from 'jquery';
+import config from 'ember-api-docs/config/environment';
 
-const {$} = Ember;
+const { scrollContainerSelector } = config.APP;
 
-export default Ember.Service.extend({
+
+export default Service.extend({
 
   _isChangingTab(transition) {
     const currentRouteParams = transition.router.state.params;
     const newParams = transition.state.params;
 
-    const currentThirdParamName = Object.keys(currentRouteParams)[2];
-    const newThirdParamName = Object.keys(newParams)[2];
+    const dynamicSlugLocation = 3;
+
+    const currentThirdParamName = Object.keys(currentRouteParams)[dynamicSlugLocation];
+    const newThirdParamName = Object.keys(newParams)[dynamicSlugLocation];
 
     return currentRouteParams[currentThirdParamName] === newParams[newThirdParamName];
   },
@@ -22,7 +27,7 @@ export default Ember.Service.extend({
 
   doReset() {
     if (this.get('_shouldResetScroll')) {
-      $('section.content').scrollTop(0);
+      $(scrollContainerSelector).scrollTop(0);
       this.set('_shouldResetScroll', false);
     }
   }

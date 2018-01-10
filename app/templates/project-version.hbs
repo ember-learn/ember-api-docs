@@ -16,19 +16,21 @@
       selected=selectedProjectVersion
       ariaLabel="Select a version"
       required=true
-      searchField="minorVersion"
+      searchField="compactVersion"
       as |ver|
     }}
-      {{ver.minorVersion}}
+      {{ver.compactVersion}}
     {{/power-select}}
   </div>
 
-  {{table-of-contents projectId=model.project.id
-                      version=model.version
-                      classesIDs=shownClassesIDs
-                      moduleIDs=shownModuleIDs
-                      namespaceIDs=shownNamespaceIDs
-                      showPrivateClasses=showPrivateClasses
+  {{table-of-contents
+    projectId=model.project.id
+    version=urlVersion
+    classesIDs=shownClassesIDs
+    moduleIDs=shownModuleIDs
+    namespaceIDs=shownNamespaceIDs
+    showPrivateClasses=showPrivateClasses
+    isShowingNamespaces=(version-lt selectedProjectVersion.compactVersion '2.16')
   }}
 </aside>
 <section class="content">

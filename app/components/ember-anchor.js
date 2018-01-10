@@ -1,7 +1,7 @@
+import $ from 'jquery';
+import { get } from '@ember/object';
 import AnchorComponent from 'ember-anchor/components/ember-anchor';
-import Ember from 'ember';
-
-const { $, get } = Ember;
+import config from 'ember-api-docs/config/environment';
 
 export default AnchorComponent.extend({
 
@@ -10,10 +10,9 @@ export default AnchorComponent.extend({
     let qp = this.get('anchorQueryParam');
     let qpVal = this.get(get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
     let elem = $(`[data-${qp}="${qpVal}"]`);
-    let offset = (elem && elem.offset && elem.offset()) ? elem.offset().top : null;
+    let offset = elem.offset() ? elem.offset().top : 0;
     if (offset) {
-      let scrollOffset = this.$().scrollParent().offset().top - this.$().scrollParent().scrollTop();
-      this.$().scrollParent().scrollTop(offset - scrollOffset);
+      $(config.APP.scrollContainerSelector).scrollTop(offset);
     }
   }
 });

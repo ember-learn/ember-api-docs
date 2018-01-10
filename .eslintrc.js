@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parserOptions: {
-    ecmaVersion: 6,
+    ecmaVersion: 2017,
     sourceType: 'module'
   },
   extends: 'eslint:recommended',
@@ -9,7 +9,8 @@ module.exports = {
     'browser': true
   },
   globals: {
-    'heimdall': true
+    'heimdall': true,
+    'FastBoot': true
   },
   rules: {
     'no-unused-vars': ['error', {

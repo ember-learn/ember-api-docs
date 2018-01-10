@@ -1,24 +1,28 @@
 language: node_js
 node_js:
-- '6'
+- '8'
+
 dist: trusty
 sudo: required
 group: deprecated-2017Q4
 addons:
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
+  chrome: stable
+
+cache:
+  yarn: true
+
 before_install:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- npm config set spin false
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.0.1
+  - export PATH=$HOME/.yarn/bin:$PATH
+  - yarn global add bower
+
 install:
-- npm install
-- bower install
+  - yarn install
+  - bower install
+
 script:
-- npm test
+  - yarn test
+
 deploy:
   provider: heroku
   buildpack: https://codon-buildpacks.s3.amazonaws.com/buildpacks/hone/emberjs.tgz

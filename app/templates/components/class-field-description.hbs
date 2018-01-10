@@ -1,5 +1,8 @@
 <section class="{{type}}">
-  <h3 data-anchor="{{field.name}}">
+  <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
+    <a class="anchor">
+      {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
+    </a>
     <span class="{{type}}-name">{{field.name}}</span>
     {{#if field.params}}
       <span class="args">
@@ -16,7 +19,7 @@
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
-  <p class="github-link">
+  <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
       <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
@@ -24,23 +27,28 @@
       </a>
     {{else}}
       Defined in
-      <a href="{{github-link model.project.id model.projectVersion.version model.file field.line}}" target="_blank" rel="noopener">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
         {{field.file}}:{{field.line}}
       </a>
     {{/if}}
   </p>
+  {{#if legacyModuleMappings.initMappings.isIdle}}
+    {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
+      {{import-example item=(concat "{ " field.name " }") package=field.class}}
+    {{/if}}
+  {{/if}}
   <dl class="parameters">
     {{#each field.params as |param|}}
       <div class="parameter">
         <dt>{{param.name}}</dt>
-        <dd>{{param.type}}</dd>
+        <dd class="parameter-type">{{param.type}}</dd>
         <dd>{{param.description}}</dd>
       </div>
     {{/each}}
     {{#if field.return}}
       <div class="return">
         <dt>returns</dt>
-        <dd>{{field.return.type}}</dd>
+        <dd class="return-type">{{field.return.type}}</dd>
         <dd>{{field.return.description}}</dd>
       </div>
     {{/if}}

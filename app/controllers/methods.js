@@ -1,7 +1,12 @@
-import Ember from "ember";
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import AnchorControllerSupport from "ember-anchor/mixins/controller-support";
 
-export default Ember.Controller.extend(AnchorControllerSupport, {
-  filterData: Ember.inject.service(),
-  queryParams: ['anchor']
+export default Controller.extend(AnchorControllerSupport, {
+  filterData: service(),
+  queryParams: ['anchor'],
+
+  updateAnchor(fieldName) {
+    this.set('anchor', fieldName);
+  }
 });

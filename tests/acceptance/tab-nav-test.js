@@ -1,4 +1,6 @@
 import { test } from 'qunit';
+import { visit, click } from 'ember-native-dom-helpers';
+import $ from 'jquery';
 
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 
@@ -8,35 +10,26 @@ function currentURLNoParams() {
 
 moduleForAcceptance('Acceptance | tab navigation');
 
+test('switching tabs', async function(assert) {
+  await visit('/ember/1.0/classes/Ember.Component');
+  await click('[data-test-checkbox="inherited"]');
+  await click(`.tabbed-layout__menu ${'[data-test-tab="methods"]'}`);
 
-test('switching tabs', function(assert) {
-  visit('/ember/1.0.0/classes/Ember.Component');
-  click('.access-checkbox:contains(Inherited)');
-  click('.tabbed-layout__menu li:contains(Methods)');
+  assert.equal(currentURLNoParams(), '/ember/1.0/classes/Ember.Component/methods', 'navigated to methods');
+  assert.ok($(`.tabbed-layout__menu ${'[data-test-tab="methods"]'}`).hasClass('tabbed-layout__menu__item_selected'), 'methods tab selected');
 
-  andThen(() => {
-    assert.equal(currentURLNoParams(), '/ember/1.0.0/classes/Ember.Component/methods', 'navigated to methods');
-    assert.ok(find('.tabbed-layout__menu li:contains(Methods)').hasClass('tabbed-layout__menu__item_selected'), 'methods tab selected');
-  });
+  await click(`.tabbed-layout__menu ${'[data-test-tab="properties"]'}`);
 
-  click('.tabbed-layout__menu li:contains(Properties)');
+  assert.equal(currentURLNoParams(), '/ember/1.0/classes/Ember.Component/properties', 'navigated to properties');
+  assert.ok($(`.tabbed-layout__menu ${'[data-test-tab="properties"]'}`).hasClass('tabbed-layout__menu__item_selected'), 'properties tab selected');
 
-  andThen(() => {
-    assert.equal(currentURLNoParams(), '/ember/1.0.0/classes/Ember.Component/properties', 'navigated to properties');
-    assert.ok(find('.tabbed-layout__menu li:contains(Properties)').hasClass('tabbed-layout__menu__item_selected'), 'properties tab selected');
-  });
+  await click(`.tabbed-layout__menu ${'[data-test-tab="events"]'}`);
 
-  click('.tabbed-layout__menu li:contains(Events)');
+  assert.equal(currentURLNoParams(), '/ember/1.0/classes/Ember.Component/events', 'navigated to events');
+  assert.ok($(`.tabbed-layout__menu ${'[data-test-tab="events"]'}`).hasClass('tabbed-layout__menu__item_selected'), 'events tab selected');
 
-  andThen(() => {
-    assert.equal(currentURLNoParams(), '/ember/1.0.0/classes/Ember.Component/events', 'navigated to events');
-    assert.ok(find('.tabbed-layout__menu li:contains(Events)').hasClass('tabbed-layout__menu__item_selected'), 'events tab selected');
-  });
+  await click(`.tabbed-layout__menu ${'[data-test-tab="index"]'}`);
 
-  click('.tabbed-layout__menu li:contains(Index)');
-
-  andThen(() => {
-    assert.equal(currentURLNoParams(), '/ember/1.0.0/classes/Ember.Component', 'navigated to index');
-    assert.ok(find('.tabbed-layout__menu li:contains(Index)').hasClass('tabbed-layout__menu__item_selected'), 'index tab selected');
-  });
+  assert.equal(currentURLNoParams(), '/ember/1.0/classes/Ember.Component', 'navigated to index');
+  assert.ok($(`.tabbed-layout__menu ${'[data-test-tab="index"]'}`).hasClass('tabbed-layout__menu__item_selected'), 'index tab selected');
 });

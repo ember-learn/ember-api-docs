@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import Router from '@ember/routing/router';
+import { on } from '@ember/object/evented';
 import config from './config/environment';
+import { inject as service } from '@ember/service';
 
-const { on } = Ember;
+const AppRouter = Router.extend({
 
-const Router = Ember.Router.extend({
+  analytics: service(),
+
   location: config.locationType,
   rootURL: config.routerRootURL,
 
@@ -11,20 +14,43 @@ const Router = Ember.Router.extend({
     if (typeof FastBoot === 'undefined') {
       page = page ? page : this.get('url');
       title = title ? title : this.get('url');
-      const analyticsService = Ember.getOwner(this).lookup('service:analytics');
-      analyticsService.trackPage(page, title);
+      this.get('analytics').trackPage(page, title);
     }
   })
 });
 
-Router.map(function() {
+AppRouter.map(function() {
+  this.route('404');
   this.route('project', {path: '/:project'});
-  this.route('project-version', {path: '/:project/:project_version'}, function() {
-    this.route('classes-redirect', {path: '/classes'});
-    this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
-    this.route('module', {path: '/modules/:module'}, itemRoutes);
-    this.route('class', {path: '/classes/:class'}, itemRoutes);
 
+  this.route('project-version', {path: '/:project/:project_version'}, function() {
+    // this.route('classes-redirect', {path: '/classes'});
+
+    // project-version.classes-redirect => project-version.classes.index
+    // project-version.class => project-version.classes.class
+    this.route('classes', function() {
+      this.route('class', { path: '/:class' }, itemRoutes);
+    });
+    // this.route('class', {path: '/classes/:class'}, itemRoutes);
+
+    // Namespace routes
+    // project-version.namespace => project-version.namespaces.namespace
+    //    routes/project-version/namespace   =>  routes/project-version/namespaces/namespace
+    this.route('namespaces', function() {
+      this.route('namespace', {path: '/:namespace'}, itemRoutes)
+    });
+    // this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
+
+    // Module routes
+    // project-version.module => project-version.modules.module
+    //    routes/project-version/module   =>  routes/project-version/modules/module
+    //    routes/project-version/module/* =>  routes/project-version/modules/module/*
+    this.route('modules', function() {
+      this.route('module', {path: '/:module'}, itemRoutes);
+    });
+    // this.route('module', {path: '/modules/:module'}, itemRoutes);
+
+    // Common sub-routes
     function itemRoutes() {
       this.route('methods', function() {
         this.route('method', {path: '/:method'});
@@ -37,6 +63,10 @@ Router.map(function() {
       });
     }
   });
+  this.route('class', {path: '/classes/:class'});
+  this.route('module', {path: '/modules/:module'});
+  this.route('data-class', {path: '/data/classes/:class'});
+  this.route('data-module', {path: '/data/modules/:module'});
 });
 
-export default Router;
+export default AppRouter;

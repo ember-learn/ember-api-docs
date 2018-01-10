@@ -5,7 +5,7 @@
       <span class="algolia-docsearch-suggestion--subcategory-column-text">{{_primaryColumn}}</span>
     </div>
     <div class="algolia-docsearch-suggestion--content">
-      <a href={{result.url}}>
+      <a href={{url}}>
         <div class="algolia-docsearch-suggestion--subcategory-inline">
           {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
           {{#if result._highlightResult.hierarchy.lvl1}}

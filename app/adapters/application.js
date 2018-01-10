@@ -1,12 +1,8 @@
+import { inject as service } from '@ember/service';
 import DS from 'ember-data';
-import Ember from 'ember';
-import fetch from 'ember-network/fetch';
+import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
-
-const {
-  Inflector: { inflector },
-  inject: { service }
-} = Ember;
+import { pluralize } from 'ember-inflector';
 
 const { JSONAPIAdapter } = DS;
 
@@ -19,8 +15,9 @@ export default JSONAPIAdapter.extend({
   currentProjectVersion: '',
 
   metaStore: service(),
+  projectService: service('project'),
 
-  findRecord(store, {modelName}, id) {
+  async findRecord(store, {modelName}, id) {
     let url;
     let host = this.get('host');
     let projectName = this.get('currentProject');
@@ -28,11 +25,12 @@ export default JSONAPIAdapter.extend({
     if (['namespace', 'class', 'module'].includes(modelName)) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
-      url = `json-docs-1/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
+      let encodedRevId = encodeURIComponent(revId);
+      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${encodedRevId}`;
     } else if (modelName === 'missing') {
-      let version = Ember.getOwner(this).lookup('controller:project-version').get('model.version');
+      let version = this.get('projectService.version');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
-      url = `json-docs-1/${projectName}/${version}/${inflector.pluralize(modelName)}/${revId}`;
+      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
       this.set('currentProject', id);
       url = `rev-index/${id}`;
@@ -44,8 +42,8 @@ export default JSONAPIAdapter.extend({
 
     url = `${host}/${url}.json`;
 
-    return fetch(url).then(response => response.json());
+    let response = await fetch(url);
+    return response.json();
   }
 
 });
-

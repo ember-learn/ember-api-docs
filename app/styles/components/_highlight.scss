@@ -42,6 +42,7 @@
     margin: 0;
     table-layout: auto;
     width: 100%;
+    z-index: auto;
 
     tr,
     th,
@@ -99,6 +100,7 @@
     @include size(52px 20px);
     background: 0 0 no-repeat;
     background-size: 52px 20px;
+    z-index: 1000;
   }
 
   &.javascript .ribbon,
@@ -167,4 +169,11 @@ a code {
 
 .CodeRay thead {
   background-color: #292929;
+}
+
+.CodeRay .line-numbers {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
 }

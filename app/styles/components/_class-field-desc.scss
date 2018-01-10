@@ -1,10 +1,11 @@
 .chapter li {
   margin: $small-spacing 0;
 
-  @media (max-width: $mobile-portrait-screen){
+  @media (max-width: $mobile-portrait-screen) {
     margin: 0;
   }
 }
+
 .chapter ul + .highlight {
   margin-top: $base-spacing;
 }
@@ -16,19 +17,27 @@
   font-size: $base-font-size;
 }
 
-.return-type {
+.class-field-description--link .return-type,
+.return .return-type,
+.parameter .parameter-type {
   color: $medium-gray;
   font-style: italic;
   font-weight: normal;
   font-size: $base-font-size;
+  margin-right: 5px;
 }
 
 .access {
   color: white;
   background-color: gray;
   padding: 2px 7px;
-  font-size: smaller;
+  font-size: 1.6em;
+  font-weight: 600;
   border-radius: 3px;
+}
+
+h3 .access{
+  font-size: smaller;
 }
 
 .parameters {
@@ -54,4 +63,22 @@
 p.github-link {
   margin: -12px 0 0;
   font-size: $small-font-size;
+}
+
+.class-field-description--link {
+  cursor: pointer;
+
+  .anchor {
+    float: left;
+    margin-left: -28px;
+    padding: 4px 0 0 4px;
+  }
+
+  .class-field-description--link-hover {
+    visibility: hidden;
+  }
+
+  &:hover .class-field-description--link-hover {
+    visibility: visible;
+  }
 }

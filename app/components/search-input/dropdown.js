@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { capitalize } from '@ember/string';
+import Component from '@ember/component';
+import { get, computed } from '@ember/object';
+import { A } from '@ember/array';
 
-const { get, A } = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   // Public API
   role: 'listbox',
   results: A(),
@@ -13,7 +14,6 @@ export default Ember.Component.extend({
   classNames: ['ds-dropdown-menu','ds-with-1'],
   attributeBindings: ['role'],
 
-
   // Massage data to make it easier for displaying on the template
   // Returned object:
   /**
@@ -23,17 +23,17 @@ export default Ember.Component.extend({
    *    }
    *  }
    */
-  _groupedResults: Ember.computed('results.[]', function () {
+  _groupedResults: computed('results.[]', function () {
     if (!get(this, 'results.length')) {
       return {};
     }
 
     const lvl0Group = get(this, 'results').reduce((previous, current) => {
       // Remap all lowercase usages of 'guides' to 'Guides'
-      let lvl0 = Ember.String.capitalize(get(current, 'hierarchy.lvl0'));
+      let lvl0 = capitalize(get(current, 'hierarchy.lvl0'));
       // If lvl0 doesn't exist in the resulting object, create the array
       if (!previous[lvl0]) {
-        previous[lvl0] = Ember.A();
+        previous[lvl0] = A();
       }
       // Insert the current item into the resulting object.
       previous[lvl0].addObject(current);
@@ -55,7 +55,7 @@ export default Ember.Component.extend({
         const lvl1Key = lvl1Value? lvl1Value : lvl0Key;
 
         if (!lvl1Result[lvl1Key]) {
-          lvl1Result[lvl1Key] = Ember.A();
+          lvl1Result[lvl1Key] = A();
         }
 
         lvl1Result[lvl1Key].addObject(lvl1Item);

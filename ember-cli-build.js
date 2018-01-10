@@ -1,5 +1,9 @@
-/* eslint-env node: true */
-let EmberApp = require('ember-cli/lib/broccoli/ember-app');
+/* eslint-env node */
+'use strict';
+
+const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const Funnel = require('broccoli-funnel');
+const mergeTrees  = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   let prepend = '';
@@ -8,10 +12,9 @@ module.exports = function(defaults) {
   }
 
   let app = new EmberApp(defaults, {
-
     fingerprint: {
-      extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg'],
-      prepend: prepend,
+      extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg', 'webmanifest'],
+      prepend,
       generateAssetMap: true
     },
     sassOptions: {
@@ -31,27 +34,15 @@ module.exports = function(defaults) {
       version: '4', //Might have to change this with the app build,
       prepend
     },
+    svgJar: {
+      sourceDirs: ['public/assets/images']
+    }
   });
 
-  var docsSlug = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api-new/';
-
-  //TODO move the proxying main site to a variable for testing & dev
-  app.options['ember-service-worker'] = {
-    rootUrl: app.env.environment === 'production' ? 'https://emberjs.com' + docsSlug : '/'
-  };
-
-
-  app.options['esw-cache-first'] = {
-    patterns: [
-      `${app.env.API_HOST}/json-docs-1/(.+)`,
-      `${app.env.API_HOST}/rev-index/(.+)`
-    ]
-  };
-
-
-  if (!process.env.EMBER_CLI_FASTBOOT) {
-    app.import(app.bowerDirectory + '/jquery-scrollparent/jquery.scrollparent.js');
-  }
-
-  return app.toTree();
+  let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
+    srcDir: '/',
+    include: ['mappings.json'],
+    destDir: '/assets/'
+  });
+  return mergeTrees([app.toTree(), mappingsTree]);
 };

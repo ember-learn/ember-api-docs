@@ -1,5 +1,6 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import { findAll } from 'ember-native-dom-helpers';
 
 moduleForComponent('table-of-contents', 'Integration | Component | table of contents', {
   integration: true
@@ -19,10 +20,11 @@ test('it renders', function(assert) {
                                       projectid=projectId
                                       version=emberVersion
                                       classesIDs=classesIDs
+                                      isShowingNamespaces=true
                   }}`);
 
-  assert.equal(this.$('.toc-level-0 > a').last().text().trim(), 'Classes');
-  assert.equal(this.$('.toc-level-1 li').length, 2, 'We have two items to display');
-  assert.equal(this.$('.toc-level-1 li').eq(0).text(), 'Descriptor');
-  assert.equal(this.$('.toc-level-1 li').eq(1).text(), 'Ember');
+  assert.dom(findAll('.toc-level-0 > a')[2]).hasText('Classes');
+  assert.dom('.toc-level-1 li').exists({ count: 2 }, 'We have two items to display');
+  assert.dom(findAll('.toc-level-1 li')[0]).hasText('Descriptor');
+  assert.dom(findAll('.toc-level-1 li')[1]).hasText('Ember');
 });

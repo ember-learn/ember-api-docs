@@ -1,5 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+/concat-stats-for
+
 # Terraform
 terraform.tfstate
 terraform.tfstate.backup
@@ -20,6 +22,8 @@ terraform.tfstate.backup
 /coverage/*
 /libpeerconnection.log
 npm-debug.log*
+yarn-error.log
 testem.log
 
 public/json-docs/
+public/rev-index/

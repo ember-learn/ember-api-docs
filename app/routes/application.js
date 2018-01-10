@@ -1,15 +1,25 @@
-import Ember from 'ember';
+import Route from '@ember/routing/route';
+import { set } from '@ember/object';
+import { inject as service } from '@ember/service';
 import ENV from 'ember-api-docs/config/environment';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
-const { set, inject } = Ember;
+export default Route.extend({
+  headData: service(),
 
-export default Ember.Route.extend({
-  headData: inject.service(),
-  title: function(tokens) {
-    const reversed = Ember.makeArray(tokens).reverse();
-    const title = `${reversed.join(' - ')} - Ember API Documentation`;
-    set(this, 'headData.title', title);
+  title(tokens) {
+    const [version, entity] = tokens;
+    if (version) {
+      const compactVersion = getCompactVersion(version);
+      const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
+      set(this, 'headData.title', title);
+      return title;
+    }
+    return '';
+  },
+  afterModel(resolvedModel, transition) {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
-    return title;
+    return this._super(...arguments);
   }
+
 });

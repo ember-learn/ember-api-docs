@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
 
-  sections: Ember.computed('itemData.methods', 'itemData.properties', 'itemData.events', function () {
+  sections: computed('itemData.methods', 'itemData.properties', 'itemData.events', function () {
     return [
       {
         title: 'Methods',

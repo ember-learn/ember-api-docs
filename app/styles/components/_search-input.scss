@@ -41,6 +41,9 @@ $dropdown-min-width-large: 600px;
     font-size: 0.9rem;
     color: #fff;
   }
+  input::-webkit-search-cancel-button {
+    margin-right: 10px;
+  }
 }
 
 .ds-dropdown-results {

@@ -1,49 +1,48 @@
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import {test} from 'qunit';
+import { test } from 'qunit';
+import { visit, click, findAll} from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | ItemRoutes');
 
-test('Can navigate to method from class', function(assert) {
-  visit('/ember/1.0.0/classes/Container');
-  click('.spec-method-list a:contains(child)');
+test('Can navigate to method from class', async function(assert) {
+  await visit('/ember/1.0/classes/Container');
+  await click(`.spec-method-list ${'[data-test-item="child"]'} a`);
 
-  andThen(function() {
-    assert.equal(currentURL(), '/ember/1.0.0/classes/Container/methods/child?anchor=child', 'navigated to method');
-  });
+  assert.equal(currentURL(), '/ember/1.0/classes/Container/methods/child?anchor=child', 'navigated to method');
 });
 
-test('Can navigate to property from class', function(assert) {
-  visit('/ember/1.0.0/classes/Container');
-  click('.spec-property-list a:contains(cache)');
+test('Can navigate to method from method name', async function(assert) {
+  await visit('ember/1.0/classes/Container/methods/child?anchor=child');
+  const newAnchor = findAll('.class-field-description--link')[10];
+  await click(newAnchor);
 
-  andThen(function() {
-    assert.equal(currentURL(), '/ember/1.0.0/classes/Container/properties/cache?anchor=cache', 'navigated to property');
-  });
+  assert.equal(currentURL(), '/ember/1.0/classes/Container/methods/child?anchor=register', 'navigated to method from method name');
 });
 
-test('Can navigate to method from namespace', function(assert) {
-  visit('/ember/1.0.0/namespaces/Ember');
-  click('.spec-method-list a:contains(A)');
+test('Can navigate to property from class', async function(assert) {
+  await visit('/ember/1.0/classes/Container');
+  await click(`.spec-property-list ${'[data-test-item="cache"]'} a`);
 
-  andThen(function() {
-    assert.equal(currentURL(), '/ember/1.0.0/namespaces/Ember/methods/A?anchor=A', 'navigated to method');
-  });
+  assert.equal(currentURL(), '/ember/1.0/classes/Container/properties/cache?anchor=cache', 'navigated to property');
 });
 
-test('Can navigate to property from namespace', function(assert) {
-  visit('/ember/1.0.0/namespaces/Ember');
-  click('.spec-property-list a:contains(ENV)');
+test('Can navigate to method from namespace', async function(assert) {
+  await visit('/ember/1.0/namespaces/Ember');
+  await click(`.spec-method-list ${'[data-test-item="A"]'} a`);
 
-  andThen(function() {
-    assert.equal(currentURL(), '/ember/1.0.0/namespaces/Ember/properties/ENV?anchor=ENV', 'navigated to property');
-  });
+  assert.equal(currentURL(), '/ember/1.0/namespaces/Ember/methods/A?anchor=A', 'navigated to method');
 });
 
-test('Can navigate to event from namespace', function(assert) {
-  visit('/ember/1.0.0/namespaces/Ember');
-  click('.spec-event-list a:contains(onerror)');
+test('Can navigate to property from namespace', async function(assert) {
+  await visit('/ember/1.0/namespaces/Ember');
+  await click(`.spec-property-list ${'[data-test-item="ENV"]'} a`);
 
-  andThen(function() {
-    assert.equal(currentURL(), '/ember/1.0.0/namespaces/Ember/events/onerror?anchor=onerror', 'navigated to event');
-  });
+  assert.equal(currentURL(), '/ember/1.0/namespaces/Ember/properties/ENV?anchor=ENV', 'navigated to property');
+});
+
+test('Can navigate to event from namespace', async function(assert) {
+  await visit('/ember/1.0/namespaces/Ember');
+  await click(`.spec-event-list ${'[data-test-item="onerror"]'} a`);
+
+  assert.equal(currentURL(), '/ember/1.0/namespaces/Ember/events/onerror?anchor=onerror', 'navigated to event');
 });

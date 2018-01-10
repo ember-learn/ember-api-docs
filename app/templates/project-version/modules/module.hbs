@@ -1,0 +1,71 @@
+<article class="chapter">
+  <h1 class="module-name">Package {{model.name}}</h1>
+  {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
+
+  <p class="attributes">
+    {{#if model.parent}}
+      <div class="attribute">
+        <span class="attribute-label">Parent:</span>
+        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.parent}}{{model.parent}}{{/link-to}}</span>
+      </div>
+    {{/if}}
+  </p>
+
+  <p class="description">{{html-safe model.description}}</p>
+
+  {{#if submodules}}
+    <section>
+      <h2>Submodules</h2>
+      <ul class="spec-method-list">
+        {{#each submodules as |module|}}
+          <li>
+            {{#link-to 'project-version.modules.module' module}}
+              {{module}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+
+  {{#if classesAndNamespaces}}
+    <section>
+      <h2>Classes</h2>
+      <ul class="spec-property-list">
+        {{#each classesAndNamespaces as |klass|}}
+          <li>
+            {{#link-to 'project-version.classes.class' klass}}
+              {{klass}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    </section>
+  {{/if}}
+
+  {{#if (and functionHeadings (gt functionHeadings.length 0)) }}
+
+    <h2>Functions</h2>
+    {{#each functionHeadings as |funcHeading|}}
+      <h4>{{funcHeading}}</h4>
+      <ul class="spec-method-list">
+        {{#each (better-get functions funcHeading) as |method|}}
+          <li>
+            {{#link-to 'project-version.classes.class.methods.method'
+               model.project.id
+               model.projectVersion.compactVersion
+               method.class
+               method.name
+               (query-params anchor=method.name)
+            }}
+              {{method.name}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ul>
+    {{/each}}
+
+  {{/if}}
+  {{outlet}}
+
+</article>

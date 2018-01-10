@@ -1,16 +1,21 @@
-import Ember from 'ember';
-import _ from 'lodash';
+import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { A } from '@ember/array';
+import { inject as service } from '@ember/service';
+import values from 'npm:lodash.values';
+import groupBy from 'npm:lodash.groupby';
 import semverCompare from 'npm:semver-compare';
-import getMinorVersion from "../utils/get-minor-version";
 import FilterParams from '../mixins/filter-params';
-
-const { Controller, computed, A, inject: {service} } = Ember;
+import getCompactVersion from '../utils/get-compact-version';
 
 export default Controller.extend(FilterParams, {
 
   filterData: service(),
 
   metaStore: service(),
+
+  project: service(),
 
   showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
 
@@ -48,9 +53,12 @@ export default Controller.extend(FilterParams, {
   },
 
   getRelationshipIDs(relationship) {
+    const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
     const classes = this.get('model').hasMany(relationship);
     const sorted = A(classes.ids()).sort();
-    return A(sorted).toArray().map(id => id.split('-').pop());
+    //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin
+    //so we take the string after the 2nd '-'
+    return A(sorted).toArray().map(id => id.split('-').slice(splitPoint).join('-'));
   },
 
   shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
@@ -70,13 +78,15 @@ export default Controller.extend(FilterParams, {
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
-      const minorVersion = getMinorVersion(version);
-      return { id: version, minorVersion };
+      const compactVersion = getCompactVersion(version);
+      return { id: version, compactVersion };
     });
-    let groupedVersions = _.groupBy(versions, version => version.minorVersion);
+    let groupedVersions = groupBy(versions, version => version.compactVersion);
 
-    return _.values(groupedVersions).map(groupedVersion => groupedVersion[0]);
+    return values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
+
+  urlVersion: alias('project.urlVersion'),
 
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {
     return this.get('projectVersions').filter(pV => pV.id === this.get('model.version'))[0];

@@ -1,11 +1,12 @@
 import { test } from 'qunit';
 import $ from 'jquery';
+import { visit } from 'ember-native-dom-helpers';
 
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | open graph tags', {
   beforeEach() {
-    return visit('/ember/1.0.0/classes/Container');
+    return visit('/ember/1.0/classes/Container');
   }
 });
 
@@ -16,7 +17,7 @@ function findOpenGraphContent (propertyName) {
 
 test('assigns title property', function (assert) {
   const title = findOpenGraphContent('title');
-  assert.equal(title, 'Container - 1.0.0 - Ember API Documentation');
+  assert.equal(title, 'Container - 1.0 - Ember API Documentation');
 });
 
 test('assigns image property and width/height', function (assert) {

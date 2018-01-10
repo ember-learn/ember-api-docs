@@ -1,40 +1,29 @@
-import Ember from 'ember';
-import _ from 'lodash';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
+import sortBy from 'npm:lodash.sortby';
 
-const { computed, Component } = Ember;
+const filterDataComputedParams = 'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 
 export default Component.extend({
   classNames: ['api-index-filter'],
 
-  filteredMethods: computed('model.methods.[]',
-                            'filterData.showInherited',
-                            'filterData.showProtected',
-                            'filterData.showPrivate',
-                            'filterData.showDeprecated',
-                            function() {
-                              return this.filterItems('methods');
-                            }),
+  filteredMethods: computed('model.methods.[]', filterDataComputedParams,
+    function() {
+      return this.filterItems('methods');
+    }),
 
-  filteredEvents: computed('model.events.[]',
-                           'filterData.showInherited',
-                           'filterData.showProtected',
-                           'filterData.showPrivate',
-                           'filterData.showDeprecated',
-                           function() {
-                             return this.filterItems('events');
-                           }),
+  filteredEvents: computed('model.events.[]', filterDataComputedParams,
+    function() {
+      return this.filterItems('events');
+    }),
 
-  filteredProperties: computed('model.properties.[]',
-                               'filterData.showInherited',
-                               'filterData.showProtected',
-                               'filterData.showPrivate',
-                               'filterData.showDeprecated',
-                               function() {
-                                 return this.filterItems('properties');
-                               }),
+  filteredProperties: computed('model.properties.[]', filterDataComputedParams,
+    function() {
+      return this.filterItems('properties');
+    }),
 
   filterItems(itemType) {
-    let items = this.get('model.' + itemType);
+    let items = this.getWithDefault(`model.${itemType}`, []);
     if (!this.get('filterData.showInherited')) {
       items = items.filter(item => item.inherited !== true);
     }
@@ -47,7 +36,9 @@ export default Component.extend({
     if (!this.get('filterData.showDeprecated')) {
       items = items.filter(item => item.deprecated !== true);
     }
-    return _.uniq(_.sortBy(items, 'name'), true, (item => item.name));
+
+    let sortedItems = sortBy(items, (item => item.name));
+    return this.filterMultipleInheritance(sortedItems);
   },
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
@@ -56,6 +47,54 @@ export default Component.extend({
       properties: this.get('filteredProperties'),
       events: this.get('filteredEvents')
     };
-  })
+  }),
 
-});
+  /**
+  * Returns an array where duplicate methods (by name) are removed.
+  * The docs for the nearest inheritance are typically more helpful to users,
+  * so in cases of duplicates, "more local" is preferred.
+  * Without this, multiple entries for some methods will show up.
+  * @method filterMultipleInheritance
+  */
+  filterMultipleInheritance(items) {
+    let dedupedArray = [];
+    for (let i = 0; i < items.length; i++) {
+      let currentItem = items[i];
+      if (i === items.length - 1) {
+        // if it's the last item, keep it
+        dedupedArray.push(currentItem);
+      } else {
+        let nextItem = items[i + 1];
+        if (currentItem.name === nextItem.name) {
+          // if the method would be listed twice, find the more local documentation
+          let mostLocal = this.findMostLocal(currentItem, nextItem)
+          dedupedArray.push(mostLocal);
+          i += 1; // skip the next item with duplicate name
+        } else {
+          dedupedArray.push(currentItem);
+        }
+      }
+    }
+    return dedupedArray;
+  },
+  /**
+  * Returns whichever item is most local.
+  * What is "most local" is determined by looking at the file path for the
+  * method, the file path for the class being viewed, and the parent if needed.
+  * @method findMostLocal
+  */
+  findMostLocal(currentItem, nextItem) {
+    let currentScope = this.get('model.file');
+    let parentClassScope = this.get('model.parentClass.file');
+    if (currentScope === currentItem.file) {
+      // if the item belongs to the class, keep it
+      return currentItem;
+    } else if (parentClassScope === currentItem.file) {
+      // or if the item belongs to the parent class, keep it
+      return currentItem;
+    } else {
+      // otherwise, the next item must be "more local"
+      return nextItem;
+    }
+  }
+})
