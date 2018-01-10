@@ -19,6 +19,14 @@ export default Ember.Service.extend({
     }
   }),
 
+  getModule(name, documentedModule) {
+    if (!this.get('initMappings.isIdle')) {
+      return '';
+    }
+    let matches = this.mappings.filter(element => element.localName === name);
+    return matches.length > 0 ? matches[0].module : documentedModule;
+  },
+
   hasFunctionMapping(name, module) {
     if (!this.get('initMappings.isIdle')) {
       return false;

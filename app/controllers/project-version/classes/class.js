@@ -11,6 +11,10 @@ export default Controller.extend(ParentNameMixin, {
     return this.get('legacyModuleMappings').hasClassMapping(this.get('model.name'), this.get('model.module'));
   }),
 
+  module: computed('model.name', 'legacyModulemappings.mappings', function () {
+    return this.get('legacyModuleMappings').getModule(this.get('model.name'), this.get('model.module'));
+  }),
+
   actions: {
     updateFilter(filter) {
       this.toggleProperty(`filterData.${filter}`);
