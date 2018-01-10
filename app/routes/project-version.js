@@ -70,7 +70,7 @@ export default Route.extend({
           break;
         }
         case 'project-version.modules.module.index': {
-          let moduleName = this.paramsFor('project-version.modules.module').module;
+          let moduleName = encodeURIComponent(this.paramsFor('project-version.modules.module').module);
           endingRoute = `modules/${moduleName}`;
           break;
         }
