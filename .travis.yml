@@ -5,6 +5,7 @@ node_js:
 dist: trusty
 sudo: required
 group: deprecated-2017Q4
+
 addons:
   chrome: stable
 
