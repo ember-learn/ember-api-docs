@@ -40,6 +40,7 @@ export default DS.Model.extend({
   ogDescription: attr(),
   extends: attr(),
   uses: attr(),
+  since: attr(),
   file: attr(),
   line: attr(),
   module: attr(),

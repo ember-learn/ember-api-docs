@@ -35,6 +35,12 @@
         <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.module}}{{model.module}}{{/link-to}}</span>
       </div>
     {{/if}}
+    {{#if model.since}}
+      <div class="attribute">
+        <span class="attribute-label">Since:</span>
+        <span class="attribute-value">v{{model.since}}</span>
+      </div>
+    {{/if}}
   </div>
   {{#if (and (not (eq static 1)) legacyModuleMappings.initMappings.isIdle)}}
     {{#if hasImportExample}}
