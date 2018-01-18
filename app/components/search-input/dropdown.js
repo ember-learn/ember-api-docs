@@ -14,7 +14,6 @@ export default Component.extend({
   classNames: ['ds-dropdown-menu','ds-with-1'],
   attributeBindings: ['role'],
 
-
   // Massage data to make it easier for displaying on the template
   // Returned object:
   /**
