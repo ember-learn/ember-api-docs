@@ -5,7 +5,12 @@
       <span class="algolia-docsearch-suggestion--subcategory-column-text">{{_primaryColumn}}</span>
     </div>
     <div class="algolia-docsearch-suggestion--content">
-      <a href={{url}}>
+      {{#link-to "project-version.classes.class.methods.method"
+           (or result.project "ember")
+           version
+           result.class
+           result.name
+           (query-params anchor=result.name)}}
         <div class="algolia-docsearch-suggestion--subcategory-inline">
           {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
           {{#if result._highlightResult.hierarchy.lvl1}}
@@ -25,7 +30,7 @@
             {{html-safe result._highlightResult.hierarchy.lvl4.value}}
           {{/if}}
         </div>
-      </a>
+      {{/link-to}}
     </div>
   </div>
 </div>
