@@ -51,7 +51,8 @@ export default Component.extend({
         'hierarchy.lvl1',
         'hierarchy.lvl2'
       ],
-      tagFilters: [`version:${projectVersion}`]
+      tagFilters: [`version:${projectVersion}`],
+      facetFilters: ['access:public']
     };
 
     const searchObj = {
