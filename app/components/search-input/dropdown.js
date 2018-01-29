@@ -1,4 +1,3 @@
-import { capitalize } from '@ember/string';
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import { A } from '@ember/array';
@@ -30,7 +29,7 @@ export default Component.extend({
 
     const lvl0Group = get(this, 'results').reduce((previous, current) => {
       // Remap all lowercase usages of 'guides' to 'Guides'
-      let lvl0 = capitalize(get(current, 'hierarchy.lvl0'));
+      let lvl0 = get(current, 'hierarchy.lvl0');
       // If lvl0 doesn't exist in the resulting object, create the array
       if (!previous[lvl0]) {
         previous[lvl0] = A();
