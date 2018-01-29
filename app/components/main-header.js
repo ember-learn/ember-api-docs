@@ -45,7 +45,7 @@ export default Component.extend({
     }
 
     Collapse.prototype.show = function() {
-      // if (this.transitioning || this.$element.hasClass('in')) return
+      if (this.transitioning || this.$element.hasClass('in')) return
 
       var activesData
       var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
@@ -242,7 +242,7 @@ export default Component.extend({
       return false // explicit for ie8 (  ._.)
     }
 
-    http://blog.alexmaccaw.com/css-transitions
+    //http://blog.alexmaccaw.com/css-transitions
     $.fn.emulateTransitionEnd = function(duration) {
       var called = false
       var $el = this
