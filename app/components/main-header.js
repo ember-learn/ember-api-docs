@@ -2,12 +2,17 @@ import Component from '@ember/component';
 import Ember from 'ember'
 
 export default Component.extend({
+  init() {
+    this.bootstrapDropDown(Ember.$)
+    this.collapsePlugin(Ember.$)
+    this._super(...arguments);
+  },
   didRender() {
     this._super(...arguments);
-    this.collapsePlugin(Ember.$)
-    this.bootstrapDropDown(Ember.$)
     this.$('.dropdown-toggle').dropdown()
-    this.$('.collapse').collapse()
+    Ember.run.next(() => {
+      this.$('.navbar-collapse').collapse('hide')
+    })
   },
   collapsePlugin($) {
     var Collapse = function(element, options) {
@@ -40,7 +45,7 @@ export default Component.extend({
     }
 
     Collapse.prototype.show = function() {
-      if (this.transitioning || this.$element.hasClass('in')) return
+      // if (this.transitioning || this.$element.hasClass('in')) return
 
       var activesData
       var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
@@ -91,7 +96,7 @@ export default Component.extend({
     }
 
     Collapse.prototype.hide = function() {
-      if (this.transitioning || !this.$element.hasClass('in')) return
+      // if (this.transitioning || !this.$element.hasClass('in')) return
 
       var startEvent = $.Event('hide.bs.collapse')
       this.$element.trigger(startEvent)
@@ -237,7 +242,7 @@ export default Component.extend({
       return false // explicit for ie8 (  ._.)
     }
 
-    // http://blog.alexmaccaw.com/css-transitions
+    http://blog.alexmaccaw.com/css-transitions
     $.fn.emulateTransitionEnd = function(duration) {
       var called = false
       var $el = this
