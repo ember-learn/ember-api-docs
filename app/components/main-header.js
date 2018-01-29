@@ -7,17 +7,14 @@ export default Component.extend({
     this.collapsePlugin(Ember.$)
     this.bootstrapDropDown(Ember.$)
     this.$('.dropdown-toggle').dropdown()
-    Ember.run.next(() => {
-      console.log(this.$('.collapse'))
-      this.$('.collapse').collapse()
-    })
+    this.$('.collapse').collapse()
   },
   collapsePlugin($) {
-    var Collapse = function (element, options) {
-      this.$element      = $(element)
-      this.options       = $.extend({}, Collapse.DEFAULTS, options)
-      this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
-                             '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    var Collapse = function(element, options) {
+      this.$element = $(element)
+      this.options = $.extend({}, Collapse.DEFAULTS, options)
+      this.$trigger = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+        '[data-toggle="collapse"][data-target="#' + element.id + '"]')
       this.transitioning = null
 
       if (this.options.parent) {
@@ -29,7 +26,7 @@ export default Component.extend({
       if (this.options.toggle) this.toggle()
     }
 
-    Collapse.VERSION  = '3.3.7'
+    Collapse.VERSION = '3.3.7'
 
     Collapse.TRANSITION_DURATION = 350
 
@@ -37,12 +34,12 @@ export default Component.extend({
       toggle: true
     }
 
-    Collapse.prototype.dimension = function () {
+    Collapse.prototype.dimension = function() {
       var hasWidth = this.$element.hasClass('width')
       return hasWidth ? 'width' : 'height'
     }
 
-    Collapse.prototype.show = function () {
+    Collapse.prototype.show = function() {
       if (this.transitioning || this.$element.hasClass('in')) return
 
       var activesData
@@ -75,7 +72,7 @@ export default Component.extend({
 
       this.transitioning = 1
 
-      var complete = function () {
+      var complete = function() {
         this.$element
           .removeClass('collapsing')
           .addClass('collapse in')[dimension]('')
@@ -93,7 +90,7 @@ export default Component.extend({
         .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
     }
 
-    Collapse.prototype.hide = function () {
+    Collapse.prototype.hide = function() {
       if (this.transitioning || !this.$element.hasClass('in')) return
 
       var startEvent = $.Event('hide.bs.collapse')
@@ -115,7 +112,7 @@ export default Component.extend({
 
       this.transitioning = 1
 
-      var complete = function () {
+      var complete = function() {
         this.transitioning = 0
         this.$element
           .removeClass('collapsing')
@@ -125,27 +122,26 @@ export default Component.extend({
 
       if (!$.support.transition) return complete.call(this)
 
-      this.$element
-        [dimension](0)
+      this.$element[dimension](0)
         .one('bsTransitionEnd', $.proxy(complete, this))
         .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
     }
 
-    Collapse.prototype.toggle = function () {
+    Collapse.prototype.toggle = function() {
       this[this.$element.hasClass('in') ? 'hide' : 'show']()
     }
 
-    Collapse.prototype.getParent = function () {
+    Collapse.prototype.getParent = function() {
       return $(this.options.parent)
         .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
-        .each($.proxy(function (i, element) {
+        .each($.proxy(function(i, element) {
           var $element = $(element)
           this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
         }, this))
         .end()
     }
 
-    Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    Collapse.prototype.addAriaAndCollapsedClass = function($element, $trigger) {
       var isOpen = $element.hasClass('in')
 
       $element.attr('aria-expanded', isOpen)
@@ -156,8 +152,8 @@ export default Component.extend({
 
     function getTargetFromTrigger($trigger) {
       var href
-      var target = $trigger.attr('data-target')
-        || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+      var target = $trigger.attr('data-target') ||
+        (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
 
       return $(target)
     }
@@ -167,9 +163,9 @@ export default Component.extend({
     // ==========================
 
     function Plugin(option) {
-      return this.each(function () {
-        var $this   = $(this)
-        var data    = $this.data('bs.collapse')
+      return this.each(function() {
+        var $this = $(this)
+        var data = $this.data('bs.collapse')
         var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
         if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
@@ -180,14 +176,14 @@ export default Component.extend({
 
     var old = $.fn.collapse
 
-    $.fn.collapse             = Plugin
+    $.fn.collapse = Plugin
     $.fn.collapse.Constructor = Collapse
 
 
     // COLLAPSE NO CONFLICT
     // ====================
 
-    $.fn.collapse.noConflict = function () {
+    $.fn.collapse.noConflict = function() {
       $.fn.collapse = old
       return this
     }
@@ -196,25 +192,25 @@ export default Component.extend({
     // COLLAPSE DATA-API
     // =================
 
-    $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
-      var $this   = $(this)
+    $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function(e) {
+      var $this = $(this)
 
       if (!$this.attr('data-target')) e.preventDefault()
 
       var $target = getTargetFromTrigger($this)
-      var data    = $target.data('bs.collapse')
-      var option  = data ? 'toggle' : $this.data()
+      var data = $target.data('bs.collapse')
+      var option = data ? 'toggle' : $this.data()
 
       Plugin.call($target, option)
     })
 
-  /* ========================================================================
-   * Bootstrap: transition.js v3.3.7
-   * http://getbootstrap.com/javascript/#transitions
-   * ========================================================================
-   * Copyright 2011-2016 Twitter, Inc.
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * ======================================================================== */
+    /* ========================================================================
+     * Bootstrap: transition.js v3.3.7
+     * http://getbootstrap.com/javascript/#transitions
+     * ========================================================================
+     * Copyright 2011-2016 Twitter, Inc.
+     * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+     * ======================================================================== */
 
 
     // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
@@ -224,15 +220,17 @@ export default Component.extend({
       var el = document.createElement('bootstrap')
 
       var transEndEventNames = {
-        WebkitTransition : 'webkitTransitionEnd',
-        MozTransition    : 'transitionend',
-        OTransition      : 'oTransitionEnd otransitionend',
-        transition       : 'transitionend'
+        WebkitTransition: 'webkitTransitionEnd',
+        MozTransition: 'transitionend',
+        OTransition: 'oTransitionEnd otransitionend',
+        transition: 'transitionend'
       }
 
       for (var name in transEndEventNames) {
         if (el.style[name] !== undefined) {
-          return { end: transEndEventNames[name] }
+          return {
+            end: transEndEventNames[name]
+          }
         }
       }
 
@@ -240,16 +238,20 @@ export default Component.extend({
     }
 
     // http://blog.alexmaccaw.com/css-transitions
-    $.fn.emulateTransitionEnd = function (duration) {
+    $.fn.emulateTransitionEnd = function(duration) {
       var called = false
       var $el = this
-      $(this).one('bsTransitionEnd', function () { called = true })
-      var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+      $(this).one('bsTransitionEnd', function() {
+        called = true
+      })
+      var callback = function() {
+        if (!called) $($el).trigger($.support.transition.end)
+      }
       setTimeout(callback, duration)
       return this
     }
 
-    $(function () {
+    $(function() {
       $.support.transition = transitionEnd()
 
       if (!$.support.transition) return
@@ -257,7 +259,7 @@ export default Component.extend({
       $.event.special.bsTransitionEnd = {
         bindType: $.support.transition.end,
         delegateType: $.support.transition.end,
-        handle: function (e) {
+        handle: function(e) {
           if ($(e.target).is(this)) return e.handleObj.handler.apply(this, arguments)
         }
       }
@@ -267,8 +269,8 @@ export default Component.extend({
     // DROPDOWN CLASS DEFINITION
     // =========================
     var backdrop = '.dropdown-backdrop'
-    var toggle   = '[data-toggle="dropdown"]'
-    var Dropdown = function (element) {
+    var toggle = '[data-toggle="dropdown"]'
+    var Dropdown = function(element) {
       $(element).on('click.bs.dropdown', this.toggle)
     }
 
@@ -290,10 +292,12 @@ export default Component.extend({
     function clearMenus(e) {
       if (e && e.which === 3) return
       $(backdrop).remove()
-      $(toggle).each(function () {
-        var $this         = $(this)
-        var $parent       = getParent($this)
-        var relatedTarget = { relatedTarget: this }
+      $(toggle).each(function() {
+        var $this = $(this)
+        var $parent = getParent($this)
+        var relatedTarget = {
+          relatedTarget: this
+        }
 
         if (!$parent.hasClass('open')) return
 
@@ -308,12 +312,12 @@ export default Component.extend({
       })
     }
 
-    Dropdown.prototype.toggle = function (e) {
+    Dropdown.prototype.toggle = function(e) {
       var $this = $(this)
 
       if ($this.is('.disabled, :disabled')) return
 
-      var $parent  = getParent($this)
+      var $parent = getParent($this)
       var isActive = $parent.hasClass('open')
 
       clearMenus()
@@ -327,7 +331,9 @@ export default Component.extend({
             .on('click', clearMenus)
         }
 
-        var relatedTarget = { relatedTarget: this }
+        var relatedTarget = {
+          relatedTarget: this
+        }
         $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
 
         if (e.isDefaultPrevented()) return
@@ -344,7 +350,7 @@ export default Component.extend({
       return false
     }
 
-    Dropdown.prototype.keydown = function (e) {
+    Dropdown.prototype.keydown = function(e) {
       if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
 
       var $this = $(this)
@@ -354,7 +360,7 @@ export default Component.extend({
 
       if ($this.is('.disabled, :disabled')) return
 
-      var $parent  = getParent($this)
+      var $parent = getParent($this)
       var isActive = $parent.hasClass('open')
 
       if (!isActive && e.which != 27 || isActive && e.which == 27) {
@@ -369,9 +375,9 @@ export default Component.extend({
 
       var index = $items.index(e.target)
 
-      if (e.which == 38 && index > 0)                 index--         // up
-      if (e.which == 40 && index < $items.length - 1) index++         // down
-      if (!~index)                                    index = 0
+      if (e.which == 38 && index > 0) index-- // up
+        if (e.which == 40 && index < $items.length - 1) index++ // down
+          if (!~index) index = 0
 
       $items.eq(index).trigger('focus')
     }
@@ -381,9 +387,9 @@ export default Component.extend({
     // ==========================
 
     function Plugin(option) {
-      return this.each(function () {
+      return this.each(function() {
         var $this = $(this)
-        var data  = $this.data('bs.dropdown')
+        var data = $this.data('bs.dropdown')
 
         if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
         if (typeof option == 'string') data[option].call($this)
@@ -392,14 +398,14 @@ export default Component.extend({
 
     var old = $.fn.dropdown
 
-    $.fn.dropdown             = Plugin
+    $.fn.dropdown = Plugin
     $.fn.dropdown.Constructor = Dropdown
 
 
     // DROPDOWN NO CONFLICT
     // ====================
 
-    $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown.noConflict = function() {
       $.fn.dropdown = old
       return this
     }
@@ -410,7 +416,9 @@ export default Component.extend({
 
     $(document)
       .on('click.bs.dropdown.data-api', clearMenus)
-      .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+      .on('click.bs.dropdown.data-api', '.dropdown form', function(e) {
+        e.stopPropagation()
+      })
       .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
       .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
       .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
