@@ -368,8 +368,8 @@ export default Component.extend({
       var $parent = getParent($this)
       var isActive = $parent.hasClass('open')
 
-      if (!isActive && e.which != 27 || isActive && e.which == 27) {
-        if (e.which == 27) {$parent.find(toggle).trigger('focus')}
+      if (!isActive && e.which!==27 || isActive && e.which === 27) {
+        if (e.which === 27) {$parent.find(toggle).trigger('focus')}
         return $this.trigger('click')
       }
 
