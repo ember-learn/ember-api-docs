@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import Ember from 'ember'
+import ENV from '../config/environment'
 
 export default Component.extend({
   init() {
@@ -10,9 +11,11 @@ export default Component.extend({
   didRender() {
     this._super(...arguments);
     this.$('.dropdown-toggle').dropdown()
-    Ember.run.next(() => {
-      this.$('.navbar-collapse').collapse('hide')
-    })
+    if (ENV.environment !== 'test') {
+      Ember.run.next(() => {
+        this.$('.navbar-collapse').collapse('hide')
+      })
+    }
   },
   collapsePlugin($) {
     var Collapse = function(element, options) {
