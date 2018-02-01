@@ -1,5 +1,12 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
+const { run: { later }, Component } = Ember;
 
+export default Component.extend({
+  actions: {
+    showSuccess() {
+      this.toggleProperty('showClipboardSuccessIcon');
+      later(this, () => this.toggleProperty('showClipboardSuccessIcon'), 950);
+    }
+  }
 });

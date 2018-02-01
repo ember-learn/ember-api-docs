@@ -177,3 +177,14 @@ a code {
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */
 }
+
+.import-copy {
+  position: absolute;
+  right: 60px;
+  padding: 2px 0 0 0 !important;
+  cursor: pointer;
+  button {
+    background-color: transparent;
+    padding: 0;
+  }
+}
