@@ -30,9 +30,8 @@ export default Route.extend({
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     if (!classParams && !moduleParams && !namespaceParams) {
-      let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
-      let module = this.getFirstModule(moduleRevs);
-      return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
+      // if there is no class, module, or namespace specified, show the landing page
+      return this.transitionTo('project-version.index')
     }
   },
 
