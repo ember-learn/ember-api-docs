@@ -1,11 +1,16 @@
 import Component from '@ember/component';
 import Ember from 'ember'
 import ENV from '../config/environment'
+import { inject } from '@ember/service'
 
 export default Component.extend({
+  fastboot: inject(),
+  isFastBoot: Ember.computed.reads('fastboot.isFastBoot'),
   init() {
-    this.bootstrapDropDown(Ember.$)
-    this.collapsePlugin(Ember.$)
+    if (!this.get('isFastBoot')) {
+      this.bootstrapDropDown(Ember.$)
+      this.collapsePlugin(Ember.$)
+    }
     this._super(...arguments);
   },
   didRender() {
