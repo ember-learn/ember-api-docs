@@ -18,13 +18,12 @@ branch," and select the branch you wish to deploy to staging.
 
 ### Deploying to production
 
-Never click the "promote to production" button on Heroku.
+First, deploy the `master` branch to staging following the steps above, and check it over thoroughly. Get a second person to look it over too. There are many variables that could affect how an app displays in production compared to locally, particularly for this app.
 
-First, deploy the `master` branch to staging and check it over thoroughly. Get a second person 
-to look it over too. There are many variables that could affect how an app displays in production compared to locally, particularly for this app.
+Never click the "promote to production" button on Heroku. We shouldn't promote from staging with this button because Heroku uses the same build from staging in the production container. This would mean that the variables set during ember builds get reused. Some of these variables have different values between staging and production, which leads to issues.
 
-Next, click on the arrows for the `ember-api-docs` instance under Production,
-choose "Deploy a branch" and choose the branch name. 
+To deploy properly to production, click on the arrows for the `ember-api-docs` instance under Production,
+choose "Deploy a branch" and choose the branch name.
 
 ### Rolling back to an earlier version
 
