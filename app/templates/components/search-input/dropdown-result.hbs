@@ -5,32 +5,61 @@
       <span class="algolia-docsearch-suggestion--subcategory-column-text">{{_primaryColumn}}</span>
     </div>
     <div class="algolia-docsearch-suggestion--content">
-      {{#link-to "project-version.classes.class.methods.method"
-           (or result.project "ember")
-           version
-           result.class
-           result.name
-           (query-params anchor=result.name)}}
-        <div class="algolia-docsearch-suggestion--subcategory-inline">
-          {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
-          {{#if result._highlightResult.hierarchy.lvl1}}
-            {{html-safe result._highlightResult.hierarchy.lvl1.value}}
-          {{else}}
-            {{html-safe result._highlightResult.hierarchy.lvl0.value}}
-          {{/if}}
-        </div>
-        <div class="algolia-docsearch-suggestion--title">
-          {{html-safe result._highlightResult.hierarchy.lvl2.value}}
-          {{#if result._highlightResult.hierarchy.lvl3}}
-            <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-            {{html-safe result._highlightResult.hierarchy.lvl3.value}}
-          {{/if}}
-          {{#if result._highlightResult.hierarchy.lvl4}}
-            <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-            {{html-safe result._highlightResult.hierarchy.lvl4.value}}
-          {{/if}}
-        </div>
-      {{/link-to}}
+      {{#if result.static}}
+        {{#link-to "project-version.functions.function"
+             (or result.project "ember")
+             version
+             result.class
+             result.name
+        }}
+          <div class="algolia-docsearch-suggestion--subcategory-inline">
+            {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
+            {{#if result._highlightResult.hierarchy.lvl1}}
+              {{html-safe result._highlightResult.hierarchy.lvl1.value}}
+            {{else}}
+              {{html-safe result._highlightResult.hierarchy.lvl0.value}}
+            {{/if}}
+          </div>
+          <div class="algolia-docsearch-suggestion--title">
+            {{html-safe result._highlightResult.hierarchy.lvl2.value}}
+            {{#if result._highlightResult.hierarchy.lvl3}}
+              <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+              {{html-safe result._highlightResult.hierarchy.lvl3.value}}
+            {{/if}}
+            {{#if result._highlightResult.hierarchy.lvl4}}
+              <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+              {{html-safe result._highlightResult.hierarchy.lvl4.value}}
+            {{/if}}
+          </div>
+        {{/link-to}}
+      {{else}}
+        {{#link-to "project-version.classes.class.methods.method"
+             (or result.project "ember")
+             version
+             result.class
+             result.name
+             (query-params anchor=result.name)}}
+          <div class="algolia-docsearch-suggestion--subcategory-inline">
+            {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
+            {{#if result._highlightResult.hierarchy.lvl1}}
+              {{html-safe result._highlightResult.hierarchy.lvl1.value}}
+            {{else}}
+              {{html-safe result._highlightResult.hierarchy.lvl0.value}}
+            {{/if}}
+          </div>
+          <div class="algolia-docsearch-suggestion--title">
+            {{html-safe result._highlightResult.hierarchy.lvl2.value}}
+            {{#if result._highlightResult.hierarchy.lvl3}}
+              <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+              {{html-safe result._highlightResult.hierarchy.lvl3.value}}
+            {{/if}}
+            {{#if result._highlightResult.hierarchy.lvl4}}
+              <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
+              {{html-safe result._highlightResult.hierarchy.lvl4.value}}
+            {{/if}}
+          </div>
+        {{/link-to}}
+      {{/if}}
     </div>
   </div>
 </div>

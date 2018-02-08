@@ -51,12 +51,11 @@
       <ul class="spec-method-list">
         {{#each (better-get functions funcHeading) as |method|}}
           <li>
-            {{#link-to 'project-version.classes.class.methods.method'
-               model.project.id
-               model.projectVersion.compactVersion
-               method.class
-               method.name
-               (query-params anchor=method.name)
+            {{#link-to 'project-version.functions.function'
+                 model.project.id
+                 model.projectVersion.compactVersion
+                 funcHeading
+                 method.name
             }}
               {{method.name}}
             {{/link-to}}

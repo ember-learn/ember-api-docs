@@ -33,6 +33,10 @@ AppRouter.map(function() {
     });
     // this.route('class', {path: '/classes/:class'}, itemRoutes);
 
+    this.route('functions', function() {
+      this.route('function', {path: '/:module/:fn'});
+    });
+
     // Namespace routes
     // project-version.namespace => project-version.namespaces.namespace
     //    routes/project-version/namespace   =>  routes/project-version/namespaces/namespace

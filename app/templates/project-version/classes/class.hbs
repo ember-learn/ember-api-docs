@@ -1,6 +1,6 @@
 <article class="chapter">
   <a data-tooltip="View on Github" class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{svg-jar "fa-pencil"}}</a>
-  <h1 class="module-name">{{model.name}}</h1>
+  <h1 class="module-name">Class {{model.name}}</h1>
   {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
 
   <div class="attributes">
