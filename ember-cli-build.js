@@ -4,6 +4,8 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
 const mergeTrees  = require('broccoli-merge-trees');
+const fetch = require('node-fetch')
+const _ = require('lodash');
 
 module.exports = function(defaults) {
   let prepend = '';
@@ -12,6 +14,23 @@ module.exports = function(defaults) {
   }
 
   let app = new EmberApp(defaults, {
+    prember: {
+      urls() {
+        return fetch('https://ember-api-docs.global.ssl.fastly.net/rev-index/ember-2.18.0.json')
+          .then(res => res.json())
+          .then(json => {
+            return _.chain(json)
+              .get('data.relationships.classes.data')
+              .map('id')
+              .map(id => {
+                const parts = id.split('-');
+
+                return `${parts[0]}/${parts[1]}/classes/${parts[2]}`;
+              })
+              .value();
+          });
+      }
+    },
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg', 'webmanifest'],
       prepend,

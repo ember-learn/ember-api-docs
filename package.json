@@ -84,8 +84,11 @@
     "ember-web-app": "^2.0.0",
     "fastboot-app-server": "^1.0.1",
     "loader.js": "^4.6.0",
+    "lodash": "^4.17.5",
     "minimist": "^1.2.0",
+    "node-fetch": "^2.0.0",
     "normalize.css": "^7.0.0",
+    "prember": "^0.2.2",
     "qunit-dom": "^0.3.2"
   },
   "engines": {
