@@ -40,10 +40,12 @@ export default Route.extend({
     this.set('headData.isRelease', projectVersion === 'release');
     this.set('headData.compactVersion', model.get('compactVersion'));
     this.set('headData.urlVersion', projectVersion);
-    if (this.get('headData.isRelease')) {
+    if (!this.get('headData.isRelease')) {
       let request = this.get('fastboot.request');
       let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//${request.host}${request.path}` : window.location.href;
-      this.set('headData.canonicalUrl', href.replace(/release/, model.get('compactVersion')));
+      let version = new RegExp(model.get('compactVersion'), 'g')
+      let canonicalUrl =href.replace(version, 'release');
+      this.set('headData.canonicalUrl', canonicalUrl);
     }
   },
 
