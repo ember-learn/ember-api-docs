@@ -9,6 +9,6 @@
 {{#if model.description}}
   <meta property="og:description" content={{model.description}} >
 {{/if}}
-{{#if model.isRelease}}
+{{#if (not model.isRelease)}}
   <link rel="canonical" href={{model.canonicalUrl}}>
 {{/if}}
