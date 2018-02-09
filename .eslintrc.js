@@ -14,7 +14,7 @@ module.exports = {
     'FastBoot': true
   },
   rules: {
-    'ember/no-jquery': 'error',
+    'ember/no-jquery': 'off',
     'no-unused-vars': ['error', {
       'args': 'none',
     }],
