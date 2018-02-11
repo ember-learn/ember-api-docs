@@ -36,6 +36,11 @@ module.exports = function(defaults) {
     },
     svgJar: {
       sourceDirs: ['public/assets/images']
+    },
+    'ember-prism': {
+      'theme': 'okaidia',
+      'components': ['scss', 'javascript', 'handlebars', 'http', 'json'],
+      'plugins': ['line-numbers', 'normalize-whitespace']
     }
   });
 
