@@ -4,6 +4,7 @@ module.exports = {
     ecmaVersion: 2017,
     sourceType: 'module'
   },
+  plugins: ['ember'],
   extends: 'eslint:recommended',
   env: {
     'browser': true
@@ -13,6 +14,7 @@ module.exports = {
     'FastBoot': true
   },
   rules: {
+    'ember/no-jquery': 'off',
     'no-unused-vars': ['error', {
       'args': 'none',
     }],
