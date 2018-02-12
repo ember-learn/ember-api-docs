@@ -23,12 +23,3 @@ install:
 
 script:
   - yarn test
-
-deploy:
-  provider: heroku
-  buildpack: https://codon-buildpacks.s3.amazonaws.com/buildpacks/hone/emberjs.tgz
-  app:
-    master: ember-api-docs-staging
-    production: ember-api-docs
-  api_key:
-    secure: Gkx9aZ9FrLnuWuaedWCND8Wg7PoYeFO4kIzuIjXp8b3MJTGpUszSGqC6nMBNqpzsACKdDXERPwsRoXTDLgKPCjngpnc67BedJfZJ2X7ruu1SsjNjs0GuWZ3EX0ppw6vgCWvcL2dkn6cs7w9AzYdUsi4l4zMoSTHYXG1VxFXR7TqVJ3Aw/Cx7UoOrrB0eZw1DhoPqfnLjwZ6sl6K7ol4a5413MYcMTIZq3ZzwdnfQF8iBC1uQT6TkDP640pZdLvt3fKTmoG/3WgFuw9Ijy+IjDzJbiVIaOcYrhc2Sev1PDy1EKybZ/xYbqFkSUk7ehCzPCLJwKVrpW+8b3bqNZXXq7XhbLGrK7yQnTEu49KepkAxOMUPOdnEd0Iy4nbDtCkBI19BfJKcP5rqYL/p//Qv/iXO1zzuBWevRZFF7thk+vgXljpSmPEBlKFjsMiUV3E6HIqZIw4n5GNkq8BuRHq2EjLp+IVHl5KFDvnwL+D9zv0Aigq5bYmGH7tyLQ4bTIa1EfZSSWHCu+g6+X/7tCaeoncjTT0gJgYGJgYhQ/LD5GmVCLvSwCXcY5q7rS5lHRDP6FuKzvyScGCjJixo6PA1NN32xIfUVA8cj6VdIHatqSZ0dpfm9sHHnE3gwJ2F3yw3Bdl5ZtV0uNDubrA0Q+RiqzMxHyW9kUl3BWBhmCXlKg1M=
