@@ -32,7 +32,8 @@ export default Route.extend({
     if (!classParams && !moduleParams && !namespaceParams) {
       let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
       let module = this.getFirstModule(moduleRevs);
-      return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
+      let transitionVersion = this.get('projectService').getUrlVersion();
+      return this.transitionTo('project-version.modules.module', model.get('project.id'), transitionVersion, module);
     }
   },
 
