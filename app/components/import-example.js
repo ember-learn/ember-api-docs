@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { run: { later }, Component } = Ember;
+import Component from '@ember/component';
+import { later } from '@ember/runloop';
 
 export default Component.extend({
   actions: {
