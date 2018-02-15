@@ -15,9 +15,9 @@ test('shows link rel=canonical for version url', async function (assert) {
   assert.ok($('head link[rel=canonical]').attr('href'));
 });
 
-test('shows link rel=canonical when root url visited', async function (assert) {
+test('no link rel=canonical when root url visited', async function (assert) {
   await visit('/');
-  assert.ok($('head link[rel=canonical]').attr('href'));
+  assert.notOk($('head link[rel=canonical]').attr('href'));
 })
 
 test('dns prefetch should be populated', async function (assert) {
