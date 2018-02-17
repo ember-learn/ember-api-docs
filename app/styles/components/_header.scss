@@ -1,209 +1,181 @@
-$white: white;
+/* Colors */
+@import "base/base";
+@import "base/bootstrap-navbar";
+$orange: #E04E39;
+$orange-darker: darken($orange, 10);
+$orange-darkest: darken($orange, 20);
+$orange-lighter: lighten($orange, 20);
+$orange-lightest: #f9e7e4; // aka "linen"
 
-.header-nav.container {
-  width: 980px;
-  padding: 0 1rem;
-  list-style-type: none;
-  margin: auto;
-}
+$white: #fdfdfd;
+$black: #212121;
 
-.responsive .header-nav.container {
-  max-width: 980px;
-  width: auto;
-}
+$blue: #1e719b; //used for tiny accents like the "job board" graphic
+$blue-lighter: #74b0ce;
+$gray: #454545;
+$gray-lighter: #999999;
+$gray-lightest: #eeeeee;
+$gray-darker: darken($gray, 10%);
+$gray-darkest: darken($gray, 15%);
 
-.not-responsive .header {
-  min-width: 980px; //do we need this
-}
-
-.header a:hover {
-  border-bottom: none;
-}
-
-// The styles bellow were ported from the compiled sass from
-// https://guides.emberjs.com/v2.3.0/
-
-// Ideally we will install bourbon / bittters / neat
-// and reuse the same _base_ stylesheets as the guides.
-// Since that will affect many default styles hence
-// the overall visual aesthetics of the site, this is an intentional
-// intermediate step to quickly port the responsive header.
-
-.header {
-  background-color: rgb(228, 112, 81);
-  background: #dd6a58 url("/assets/images/header.svg") top center no-repeat;
-  background-size: cover;
-  color: #fff;
-  padding: 1rem 0;
-  font-family: 'Source Sans Pro';
-}
-
-.header .container {
-  display: flex;
-  display: -webkit-flex;
-}
-
-@media screen and (max-width: $large-screen) {
-  .responsive.header .container {
-    display: block;
-  }
-}
-
-.header .header-nav {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  height: 2.8rem;
-}
-@media screen and (max-width: $large-screen) {
-  .responsive.header .header-nav {
-    height: auto;
-  }
-}
-
-.header a {
-  color: #fff;
-  display: inline;
-  font-size: 1.1em;
-  text-align: center;
-  width: 100%;
-}
-
-@media screen and (max-width: $large-screen) {
-  .responsive.header a {
-    line-height: 24px; //do we need this
-  }
-}
-
-// Desktop
-.header-nav li {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1 0 0;
-  -moz-flex: 1 0 0;
-  -ms-flex: 1 0 0;
-  flex: 1 0 0;
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-@media screen and (max-width: $large-screen) {
-  .responsive .header-nav li {
-    display: inherit;
-  }
-}
-@media screen and (max-width: $large-screen) {
-  .responsive .header-nav li:not(.header-logo):not(.header-search) {
-    width: 32%;
-    display: inline-block;
-  }
-}
+$page-width: 960px;
+$col-width: 40px;
+$col-spacing: 20px;
+$sidebar-width: $col-width * 4 + $col-spacing * 3;
+$content-width: $page-width - $sidebar-width - $col-spacing * 2;
 
 
-.header-nav li:not(.header-logo):not(.header-search) {
-  width: auto;
-}
-
-.header-nav .header-logo {
-  -webkit-box-flex: 1.5;
-  -moz-box-flex: 1.5;
-  box-flex: 1.5;
-  -webkit-flex: 1.5 0 0;
-  -moz-flex: 1.5 0 0;
-  -ms-flex: 1.5 0 0;
-  flex: 1.5 0 0;
-}
-
-@media screen and (min-width: $large-screen) {
-}
-
-.header-nav .header-search {
-  -webkit-box-flex: 2;
-  -moz-box-flex: 2;
-  box-flex: 2;
-  -webkit-flex: 2 0 0;
-  -moz-flex: 2 0 0;
-  -ms-flex: 2 0 0;
-  flex: 2 0 0;
-}
-
-@media screen and (max-width: $large-screen) {
-  .responsive .header-nav .header-search {
-    display: block;
-  }
-}
-
-.header-logo a {
-  padding: 0.5rem;
-  margin-right: 0;
-  height: 40px;
-  width: 100px;
-  background: url("/assets/images/ember-logo.svg") no-repeat;
-  display: block;
-}
-
-@media screen and (max-width: $large-screen) {
-  .responsive .header-logo a {
-    margin: 0 auto;
-  }
-}
-
-
-.header-search {
-  margin-left: 4%;
-
-  .algolia-autocomplete {
-    display: block !important; // beats `inline-block` added by DocSearch script
-  }
-  .st-search-input {
-    width: 100%;
-    height: 35px;
+/**
+  Header
+**/
+header {
+	.navbar {
     margin-bottom: 0;
-    padding-left: 2.5em;
-    border: none;
-    border-radius: 35px;
-    outline: none;
-    appearance: none;
-    background: url("/assets/images/search-icon.svg") rgba(white, 0.1) 10px 10px no-repeat;
-    box-shadow: none;
-    font-size: 0.9rem;
-    line-height: 35px;
-    color: $white;
-
-    // @include placeholder {
-    //   color: $white;
-    // }
-  }
-
-  .st-search-input::-webkit-input-placeholder {
-  color: white;
-  }
-  .st-search-input:-moz-placeholder {
-    color: white;
-  }
-  .st-search-input::-moz-placeholder {
-    color: white;
-  }
-  .st-search-input:-ms-input-placeholder {
-    color: white;
-  }
+		&.navbar-inverse {
+			background-color: $orange;
+			border-radius: 0;
+			border-color: transparent;
+			.navbar-collapse, .navbar-form {
+				border-color: $orange-darkest;
+			}
+			.navbar-toggle {
+				border-color: white;
+				&:hover {
+					background-color: $orange-darker;
+				}
+			}
+			.navbar-brand {
+				img {
+				  margin-top: -10px;
+					@media screen and (min-width: 768px) {
+						margin-top: -10px;
+						margin-bottom: 0;
+						padding-bottom: 0;
+						margin-right: 10px;
+					}
+				}
+			}
+			.navbar-nav {
+				li {
+					a {
+            color: white;
+            &:focus {
+              outline: 5px auto -webkit-focus-ring-color;
+            }
+					}
+					&.active {
+						a {
+							background-color: white;
+							color: $orange-darkest;
+						}
+					}
+					&.open {
+						a {
+							background-color: white;
+							color: $orange-darkest;
+						}
+						.dropdown-menu {
+							background-color: white;
+							border-radius: 0;
+							@media screen and (min-width:768px){
+								border-radius: 0 0 4px 4px;
+								border-color-top: white;
+							}
+							li {
+								a {
+									&:hover,
+									:focus {
+										background-color: $orange-lightest;
+                    color: $orange-darkest;
+                    outline: 0 !important;
+									}
+								}
+								&.divider {
+									background-color: $orange-lightest;
+								}
+							}
+						}
+					}
+				}
+			}
+			form.navbar-right.navbar-form {
+				@media screen and (min-width: 768px) {
+					margin-bottom: 0;
+				}
+        .input-group {
+					min-width: 100%;
+        }
+				.form-control {
+					background: url(/images/search-icon.svg) rgba(255, 255, 255, 0.1) 10px 8px no-repeat;
+					border-color: transparent;
+					border-right: 0;
+					box-shadow: none;
+					border-radius: 35px;
+					color: white;
+					padding-left: 2.5em;
+					&::-ms-input-placeholder {
+						color: $orange-lightest !important;
+					}
+					&:-ms-input-placeholder{
+						color: $orange-lightest !important;
+					}
+					&::placeholder{
+						color: $orange-lightest !important;
+					}
+					&:placeholder {
+						color: $orange-lightest !important;
+					}
+        }
+			}
+		}
+	}
 }
-@media screen and (max-width: $large-screen) {
-  .responsive .header-search {
-    margin-left: 0;
-  }
-}
 
-.visually-hidden {
-  border: 0 !important;
-  clip: rect(0 0 0 0) !important;
-  height: 1px !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
-  width: 1px !important;
+// Algolia overrides
+.ds-dataset-1 {
+	span.ds-suggestions {
+		@media screen and (min-width:0px) and (max-width:768px) {
+			z-index:1000 !important;
+		}
+	}
+}
+.algolia-docsearch-footer {
+  border-top-color: $orange-lighter;
+}
+.algolia-docsearch-suggestion {
+  border-bottom-color: $orange-lighter;
+}
+.algolia-docsearch-suggestion--highlight {
+  color: $orange-darker;
+}
+.algolia-docsearch-suggestion--subcategory-column {
+  border-right-color: $orange-lighter;
+  color: $gray-darkest;
+  background-color: $orange-lightest;
+}
+.algolia-autocomplete {
+	width: 100%;
+}
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+	width: 100%;
+}
+.algolia-autocomplete .aa-hint {
+	color: #999;
+}
+.algolia-autocomplete .aa-dropdown-menu {
+	width: 100%;
+	background-color: #fff;
+	border: 1px solid #999;
+	border-top: none;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+	cursor: pointer;
+	padding: 5px 4px;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+	background-color: #B2D7FF;
+}
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+	font-weight: bold;
+	font-style: normal;
 }
