@@ -36,7 +36,7 @@ export default Route.extend({
       // if there is no class, module, or namespace specified...
       let latestVersion = getCompactVersion(getLastVersion(model.get('project.projectVersions')))
       let transitionParams = transition.params['project-version'].project_version
-      if (transitionVersion === latestVersion && transitionParams === latestVersion) {
+      if (transitionVersion === latestVersion || transitionVersion === 'release') {
         // ... and the transition version is current, show the landing page
         return this.transitionTo('project-version.index')
       } else {
