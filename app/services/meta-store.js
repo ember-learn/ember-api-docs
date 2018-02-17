@@ -47,7 +47,8 @@ export default Service.extend({
       let compactProjTrimmed = getCompactVersion(compactProjVersion);
       return vTrimmed === compactProjTrimmed
     })
-    // return the full version number, like 2.15.2
-    return filtered[0]
+    // since there can be multiple full versions that match the compact version,
+    // use the most recent one.
+    return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
   }
 });
