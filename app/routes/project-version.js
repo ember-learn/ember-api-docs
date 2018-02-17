@@ -34,12 +34,13 @@ export default Route.extend({
     let transitionVersion = this.get('projectService').getUrlVersion();
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
-      let latestVersion = getCompactVersion(getLastVersion(model.get('project.projectVersions')))
+      let latestVersion = getLastVersion(model.get('project.projectVersions'))
       let transitionParams = transition.params['project-version'].project_version
       if (transitionVersion === latestVersion || transitionVersion === 'release') {
         // ... and the transition version is current, show the landing page
         return this.transitionTo('project-version.index')
       } else {
+        console.log(transitionVersion)
         // else go to the version specified
         let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
         let module = this.getFirstModule(moduleRevs);
