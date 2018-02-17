@@ -3,6 +3,7 @@ import Route from '@ember/routing/route';
 import semverCompare from 'npm:semver-compare';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 export default Route.extend({
   fastboot: service(),
@@ -29,9 +30,21 @@ export default Route.extend({
     let classParams = transition.params['project-version.classes.class'];
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
-    if (!classParams && !moduleParams && !namespaceParams) {
-      // if there is no class, module, or namespace specified, show the landing page
-      return this.transitionTo('project-version.index')
+    let functionParams = transition.params['project-version.functions.function'];
+    let transitionVersion = this.get('projectService').getUrlVersion();
+    if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
+      // if there is no class, module, or namespace specified...
+      let latestVersion = getCompactVersion(getLastVersion(model.get('project.projectVersions')))
+      let transitionParams = transition.params['project-version'].project_version
+      if (transitionVersion === latestVersion && transitionParams === latestVersion) {
+        // ... and the transition version is current, show the landing page
+        return this.transitionTo('project-version.index')
+      } else {
+        // else go to the version specified
+        let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
+        let module = this.getFirstModule(moduleRevs);
+        return this.transitionTo('project-version.modules.module', model.get('project.id'), transitionVersion, module);
+      }
     }
   },
 
