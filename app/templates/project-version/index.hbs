@@ -1,19 +1,24 @@
 <article class="chapter">
   <h1>Ember.js API Documentation</h1>
   <p>
-    To get started exploring Ember, choose a version from the dropdown menu and a project (Ember or Ember Data). Ember has core methods used in any app, while Ember Data has documentation of the built-in library for making requests to a back end. If you're looking for documentation of the command line tool used to generate files, build your app, and more, visit ember-cli docs.
+    To get started, choose a project (Ember or Ember Data) and a version 
+    from the dropdown menu. Ember has core methods used in any app, while Ember Data has 
+    documentation of the built-in library for making requests to a back end. If you're 
+    looking for documentation of the command line tool used to generate files, build your 
+    app, and more, visit <a href="https://ember-cli.com/">ember-cli docs</a>.
   </p>
   <h2>Commonly searched-for documentation</h2>
   <ul class="spec-method-list">
-    <li>{{#link-to 'project-version.classes.class' 'EmberObject'}}EmberObject{{/link-to}} is the main base class for all Ember objects and includes the {{#link-to 'project-version.classes.class.methods.method' 'EmberObject' 'get' (query-params anchor='get')}}get{{/link-to}} and {{#link-to 'project-version.classes.class.methods.method' 'EmberObject' 'get' (query-params anchor='set')}}set{{/link-to}} methods</li>
-    <li>{{#link-to 'project-version.classes.class' 'Component'}}Component{{/link-to}} a view that is completely isolated</li>
-    <li>{{#link-to 'project-version.classes.class' 'Route'}}Route{{/link-to}} is used to define individual routes</li>
-    <li>{{#link-to 'project-version.classes.class' 'Router'}}Router{{/link-to}} manages the application state and URLs</li>
-    <li>{{#link-to 'project-version.classes.class' 'ComputedProperty'}}Computed Properties{{/link-to}} let you declare functions as properties</li>
-    <li>{{#link-to 'project-version.classes.class' '@ember/object/computed'}}Computed Macros{{/link-to}} are shorter ways of expressing certain types of computed property</li>
-    <li>{{#link-to 'project-version.classes.class' 'Helper'}}Helpers{{/link-to}} are functions that can compute values, and are used in templates</li>
-    <li>{{#link-to 'project-version.classes.class' 'Controller'}}Controller{{/link-to}} a specialized type of Component that is rendered by the router when entering a Route</li>
-    <li>{{#link-to 'project-version.classes.class' 'Service'}}Service{{/link-to}} an Ember object that lives for the duration of the application, and can be made available in different parts of your application</li>
+    <li>{{#link-to 'project-version.classes.class' 'Component'}}Component{{/link-to}} - a view that is completely isolated</li>
+    <li>{{#link-to 'project-version.classes.class' 'ComputedProperty'}}Computed Properties{{/link-to}} - declare functions as properties</li>
+    <li>{{#link-to 'project-version.classes.class' '@ember/object/computed'}}Computed Macros{{/link-to}} - shorter ways of expressing certain types of computed properties</li>
+    <li>{{#link-to 'project-version.classes.class' 'Controller'}}Controller{{/link-to}} - a specialized type of Component that is rendered by the router when entering a Route</li>
+    <li>{{#link-to 'project-version.classes.class' 'EmberArray'}}EmberArray{{/link-to}} - contains methods like {{#link-to 'project-version.classes.class.methods.method' 'EmberArray' 'forEach' (query-params anchor='forEach')}}forEach{{/link-to}} and {{#link-to 'project-version.classes.class.methods.method' 'EmberArray' 'mapBy' (query-params anchor='mapBy')}}mapBy{{/link-to}} that help you iterate over Ember Objects</li>
+    <li>{{#link-to 'project-version.classes.class' 'EmberObject'}}EmberObject{{/link-to}} - the main base class for all Ember objects and includes the {{#link-to 'project-version.classes.class.methods.method' 'EmberObject' 'get' (query-params anchor='get')}}get{{/link-to}} and {{#link-to 'project-version.classes.class.methods.method' 'EmberObject' 'set' (query-params anchor='set')}}set{{/link-to}} methods</li>
+    <li>{{#link-to 'project-version.classes.class' 'Ember.Templates.helpers'}}Ember.Templates.helpers{{/link-to}} - built-in functions that can be used in templates, such as the {{#link-to 'project-version.classes.class.methods.method' 'Ember.Templates.helpers' 'each' (query-params anchor='each')}}each{{/link-to}} helper</li>
+    <li>{{#link-to 'project-version.classes.class' 'Helper'}}Helpers{{/link-to}} - a way to define custom display functions that are used in templates</li>
+    <li>{{#link-to 'project-version.classes.class' 'Route'}}Route{{/link-to}} - used to define individual routes, including the {{#link-to 'project-version.classes.class.methods.method' 'Route' 'model' (query-params anchor='model')}}model{{/link-to}} hook for loading data</li>
+    <li>{{#link-to 'project-version.classes.class' 'Service'}}Service{{/link-to}} - an Ember object that lives for the duration of the application, and can be made available in different parts of your application</li>
   </ul>
   <h2>How to import and use packages</h2>
   <p>
@@ -22,9 +27,9 @@
   <div class="highlight javascript">
     <div class="ribbon"></div>
     {{#code-block language='javascript' class="line-numbers"}}
-      import Ember from 'ember';
+     import Ember from 'ember';
       export default Ember.Component.extend({
-            // ...
+            // this is the old way
       });
     {{/code-block}}
   </div>
@@ -34,9 +39,9 @@
   <div class="highlight javascript">
     <div class="ribbon"></div>
     {{#code-block language='javascript' class="line-numbers"}}
-      import Component from '@ember/component';
+     import Component from '@ember/component';
       export default Component.extend({
-            // ...
+            // this is the current way
       });
     {{/code-block}}
   </div>
