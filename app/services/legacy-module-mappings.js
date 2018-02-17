@@ -3,6 +3,12 @@ import fetch from 'fetch';
 import { task } from 'ember-concurrency';
 import config from 'ember-api-docs/config/environment';
 
+const LOCALNAME_CONVERSIONS = {
+  Object: 'EmberObject',
+  Array: 'EmberArray',
+  Error: 'EmberError'
+};
+
 export default Ember.Service.extend({
 
   init() {
@@ -13,7 +19,14 @@ export default Ember.Service.extend({
     try {
       let response = yield fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
       let mappings = yield response.json();
-      this.set('mappings', mappings);
+      let newMappings = mappings.map(item => {
+        let newItem = Object.assign({}, item);
+        if (LOCALNAME_CONVERSIONS[newItem.localName]) {
+          newItem.localName = LOCALNAME_CONVERSIONS[newItem.localName];
+        }
+        return newItem;
+      });
+      this.set('mappings', newMappings);
     } catch (e) {
       this.set('mappings', []);
     }

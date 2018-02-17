@@ -1,19 +1,14 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import getLastVersion from 'ember-api-docs/utils/get-last-version';
 import { visit } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | redirects');
 
 test('visiting /', async function(assert) {
   await visit('/');
-
-  const store = this.application.__container__.lookup('service:store');
-  let versions = store.peekAll('project-version').toArray();
-  const last = getLastVersion(versions);
   assert.equal(
     currentURL(),
-    `/ember/${last}`,
+    `/ember/release`,
     'routes to the latest version of the project'
   );
 });
