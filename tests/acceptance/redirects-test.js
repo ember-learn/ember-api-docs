@@ -11,10 +11,10 @@ test('visiting /', async function(assert) {
 
   const store = this.application.__container__.lookup('service:store');
   let versions = store.peekAll('project-version').toArray();
-  const last = getCompactVersion(getLastVersion(versions));
+  const last = getLastVersion(versions);
   assert.equal(
     currentURL(),
-    `/ember/${last}/modules/@ember%2Fapplication`,
+    `/ember/${last}`,
     'routes to the latest version of the project'
   );
 });
