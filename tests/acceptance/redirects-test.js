@@ -1,7 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
-import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import { visit } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | redirects');
