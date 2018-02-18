@@ -25,24 +25,52 @@
   </p>
   <div class="highlight javascript">
     <div class="ribbon"></div>
-    {{#code-block language='javascript' class="line-numbers"}}
-      import Ember from 'ember';
-      export default Ember.Component.extend({
-            // this is the old way
-      });
-    {{/code-block}}
+    <div class="scroller">
+      <table class="CodeRay">
+        <tbody>
+          <tr>
+            <td class="line-numbers"><pre>1
+2
+3
+4
+</pre>
+            </td>
+            <td class="code"><pre><span class="keyword">import</span> Ember <span class="keyword">from</span> <span class="string">&apos;ember&apos;</span>;
+<span class="keyword">export</span> <span class="keyword">default</span> Component.extend({
+  <span class="comment">// this is the old way</span>
+});
+</pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <p>
     With the introduction of the Ember JavaScript Modules API, specific Ember modules may now be imported directly through the use of scoped packages. For example module import and exports can now look like this:
   </p>
   <div class="highlight javascript">
     <div class="ribbon"></div>
-    {{#code-block language='javascript' class="line-numbers"}}
-      import Component from '@ember/component';
-      export default Component.extend({
-            // this is the current way
-      });
-    {{/code-block}}
+    <div class="scroller">
+      <table class="CodeRay">
+        <tbody>
+          <tr>
+            <td class="line-numbers"><pre>1
+2
+3
+4
+</pre>
+            </td>
+            <td class="code"><pre><span class="keyword">import</span> Component <span class="keyword">from</span> <span class="string">&apos;@ember/component&apos;</span>;
+<span class="keyword">export</span> <span class="keyword">default</span> Component.extend({
+  <span class="comment">// this is the current way</span>
+});
+</pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <p>
     Making use of the JavaScript Modules API allows the building of smaller packages based on chunks of functionality and importing only parts of the Ember framework that are needed.
