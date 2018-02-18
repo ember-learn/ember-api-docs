@@ -1,9 +1,17 @@
 import Route from '@ember/routing/route';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { inject as service } from '@ember/service';
+import { get } from '@ember/object';
+
 export default Route.extend({
+
+  headData: service(),
   metaStore: service(),
   scrollPositionReset: service(),
+
+  titleToken(model) {
+    return get(model, 'fn.name');
+  },
 
   async model(params, transition) {
     let projectID = transition.params['project-version'].project;
@@ -28,4 +36,5 @@ export default Route.extend({
   activate() {
     this.get('scrollPositionReset').doReset();
   }
+
 });
