@@ -1,6 +1,6 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import { visit } from 'ember-native-dom-helpers';
+import { visit, find } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | redirects');
 
@@ -11,6 +11,7 @@ test('visiting /', async function(assert) {
     `/ember/release`,
     'routes to the latest version of the project'
   );
+  assert.equal(find('h1').textContent, 'Ember.js API Documentation');
 });
 
 test('visiting pre-2.16 version', async function(assert) {
