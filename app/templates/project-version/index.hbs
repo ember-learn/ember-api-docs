@@ -23,27 +23,11 @@
   <p>
     ECMAScript 2015 (also known as ES2015 or ES6) introduced a syntax for importing and exporting values from modules. Ember has made use of ES6 modules for quite a while now. However, the entire Ember framework was previously imported as a single package. Rather than importing specific parts of the framework directly, a very common pattern in Ember applications was to import this package as the Ember global object and subclass from there as needed:
   </p>
-  <div class="highlight javascript">
-    <div class="ribbon"></div>
-    {{#code-block language='javascript' class="line-numbers"}}
-      import Ember from 'ember';
-      export default Ember.Component.extend({
-            // this is the old way
-      });
-    {{/code-block}}
-  </div>
+  {{oldPackageImportSyntax}}
   <p>
     With the introduction of the Ember JavaScript Modules API, specific Ember modules may now be imported directly through the use of scoped packages. For example module import and exports can now look like this:
   </p>
-  <div class="highlight javascript">
-    <div class="ribbon"></div>
-    {{#code-block language='javascript' class="line-numbers"}}
-      import Component from '@ember/component';
-      export default Component.extend({
-            // this is the current way
-      });
-    {{/code-block}}
-  </div>
+  {{newPackageImportSyntax}}
   <p>
     Making use of the JavaScript Modules API allows the building of smaller packages based on chunks of functionality and importing only parts of the Ember framework that are needed.
   </p>
