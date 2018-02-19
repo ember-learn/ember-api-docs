@@ -23,55 +23,11 @@
   <p>
     ECMAScript 2015 (also known as ES2015 or ES6) introduced a syntax for importing and exporting values from modules. Ember has made use of ES6 modules for quite a while now. However, the entire Ember framework was previously imported as a single package. Rather than importing specific parts of the framework directly, a very common pattern in Ember applications was to import this package as the Ember global object and subclass from there as needed:
   </p>
-  <div class="highlight javascript">
-    <div class="ribbon"></div>
-    <div class="scroller">
-      <table class="CodeRay">
-        <tbody>
-          <tr>
-            <td class="line-numbers"><pre>1
-2
-3
-4
-</pre>
-            </td>
-            <td class="code"><pre><span class="keyword">import</span> Ember <span class="keyword">from</span> <span class="string">&apos;ember&apos;</span>;
-<span class="keyword">export</span> <span class="keyword">default</span> Component.extend({
-  <span class="comment">// this is the old way</span>
-});
-</pre>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  {{oldPackageImportSyntax}}
   <p>
     With the introduction of the Ember JavaScript Modules API, specific Ember modules may now be imported directly through the use of scoped packages. For example module import and exports can now look like this:
   </p>
-  <div class="highlight javascript">
-    <div class="ribbon"></div>
-    <div class="scroller">
-      <table class="CodeRay">
-        <tbody>
-          <tr>
-            <td class="line-numbers"><pre>1
-2
-3
-4
-</pre>
-            </td>
-            <td class="code"><pre><span class="keyword">import</span> Component <span class="keyword">from</span> <span class="string">&apos;@ember/component&apos;</span>;
-<span class="keyword">export</span> <span class="keyword">default</span> Component.extend({
-  <span class="comment">// this is the current way</span>
-});
-</pre>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  {{newPackageImportSyntax}}
   <p>
     Making use of the JavaScript Modules API allows the building of smaller packages based on chunks of functionality and importing only parts of the Ember framework that are needed.
   </p>
