@@ -9,7 +9,9 @@ export default Route.extend({
 
   title(tokens) {
     let [version, entity] = tokens;
-    if (!entity) entity = 'Ember';
+    if (!entity) {
+      entity = 'Ember';
+    }
     if (version) {
       const compactVersion = getCompactVersion(version);
       const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
