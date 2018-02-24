@@ -25,3 +25,10 @@ test('can navigate to class from sidebar', async function(assert) {
 
   assert.equal(currentURL(), '/ember/1.0/classes/Ember.Component', 'navigated to class');
 });
+
+test('can navigate to home landing page', async function (assert) {
+  await visit('/ember-data/2.12');
+  await click('[data-test-home]');
+
+  assert.equal(currentURL(), '/ember/release', 'navigated to landing page');
+});

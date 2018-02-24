@@ -14,6 +14,16 @@ test('visiting /', async function(assert) {
   assert.equal(find('h1').textContent, 'Ember.js API Documentation');
 });
 
+test('visiting /ember-data', async function (assert) {
+  await visit('/ember-data');
+  assert.equal(
+    currentURL(),
+    `/ember-data/release/modules/ember-data`,
+    'routes to the first page of ember data'
+  );
+  assert.equal(find('h1').textContent, 'Package ember-data');
+});
+
 test('visiting pre-2.16 version', async function(assert) {
   await visit('/ember/1.0');
 
