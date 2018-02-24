@@ -1,0 +1,39 @@
+<article class="chapter">
+  <h1>Ember.js API Documentation</h1>
+  <p>
+    To get started, choose a project (Ember or Ember Data) and a version 
+    from the dropdown menu. Ember has core methods used in any app, while Ember Data has 
+    documentation of the built-in library for making requests to a back end.
+    If you're looking for documentation of the command line tool used to generate files, build your 
+    app, and more, visit <a href="https://ember-cli.com/">ember-cli</a>. The latest
+    testing API is available at 
+    <a href="https://github.com/emberjs/ember-test-helpers/blob/master/API.md">ember-test-helpers</a>.
+  </p>
+  <h2>Commonly searched-for documentation</h2>
+  <ul class="spec-method-list">
+    <li>{{#link-to 'project-version.classes.class' 'Component'}}Component{{/link-to}} - a view that is completely isolated</li>
+    <li>{{#link-to 'project-version.classes.class' 'ComputedProperty'}}Computed Properties{{/link-to}} - declare functions as properties</li>
+    <li>{{#link-to 'project-version.classes.class' '@ember/object/computed'}}Computed Macros{{/link-to}} - shorter ways of expressing certain types of computed properties</li>
+    <li>{{#link-to 'project-version.classes.class' 'EmberArray'}}EmberArray{{/link-to}} - contains methods like {{#link-to 'project-version.classes.class.methods.method' 'EmberArray' 'forEach' (query-params anchor='forEach')}}forEach{{/link-to}} and {{#link-to 'project-version.classes.class.methods.method' 'EmberArray' 'mapBy' (query-params anchor='mapBy')}}mapBy{{/link-to}} that help you iterate over Ember Objects</li>
+    <li>{{#link-to 'project-version.classes.class' 'EmberObject'}}EmberObject{{/link-to}} - the main base class for all Ember objects, including the {{#link-to 'project-version.classes.class.methods.method' 'EmberObject' 'get' (query-params anchor='get')}}get{{/link-to}} and {{#link-to 'project-version.classes.class.methods.method' 'EmberObject' 'set' (query-params anchor='set')}}set{{/link-to}} methods</li>
+    <li>{{#link-to 'project-version.classes.class' 'Ember.Templates.helpers'}}Ember.Templates.helpers{{/link-to}} - built-in functions that can be used in templates, such as the {{#link-to 'project-version.classes.class.methods.method' 'Ember.Templates.helpers' 'each' (query-params anchor='each')}}each{{/link-to}} helper</li>
+    <li>{{#link-to 'project-version.classes.class' 'Helper'}}Helpers{{/link-to}} - a way to define custom display functions that are used in templates</li>
+    <li>{{#link-to 'project-version.classes.class' 'Route'}}Route{{/link-to}} - used to define individual routes, including the {{#link-to 'project-version.classes.class.methods.method' 'Route' 'model' (query-params anchor='model')}}model{{/link-to}} hook for loading data</li>
+    <li>{{#link-to 'project-version.classes.class' 'Service'}}Service{{/link-to}} - an Ember object that lives for the duration of the application, and can be made available in different parts of your application</li>
+  </ul>
+  <h2>How to import and use packages</h2>
+  <p>
+    ECMAScript 2015 (also known as ES2015 or ES6) introduced a syntax for importing and exporting values from modules. Ember has made use of ES6 modules for quite a while now. However, the entire Ember framework was previously imported as a single package. Rather than importing specific parts of the framework directly, a very common pattern in Ember applications was to import this package as the Ember global object and subclass from there as needed:
+  </p>
+  {{oldPackageImportSyntax}}
+  <p>
+    With the introduction of the Ember JavaScript Modules API, specific Ember modules may now be imported directly through the use of scoped packages. For example module import and exports can now look like this:
+  </p>
+  {{newPackageImportSyntax}}
+  <p>
+    Making use of the JavaScript Modules API allows the building of smaller packages based on chunks of functionality and importing only parts of the Ember framework that are needed.
+  </p>
+  <p>
+    The most up-to-date and complete mappings between the previous API and the new JavaScript Modules API can be found at the <a href='https://github.com/ember-cli/ember-rfc176-data'>ember-rfc176-data</a> repository.  <a href='https://github.com/tomdale/ember-modules-codemod'>Codemod tooling</a> is also available to help migrate existing Ember projects to the new JavaScript Modules API syntax.
+  </p>
+</article>

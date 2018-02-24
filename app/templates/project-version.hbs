@@ -1,6 +1,9 @@
 <aside class="sidebar">
   <ol class="toc-level-0">
     <li class="toc-level-0">
+      {{#link-to 'project' 'ember' data-test-home}}Home{{/link-to}}
+    </li>
+    <li class="toc-level-0">
       Projects
       <ol class="toc-level-1 selected" style="display: block;">
         <li class="toc-level-1">{{#link-to 'project' 'ember' active=(eq activeProject 'ember') class="spec-ember"}}Ember{{/link-to}}</li>

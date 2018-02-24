@@ -9,7 +9,7 @@ const { scrollContainerSelector } = config.APP;
 moduleForAcceptance('Acceptance | scroll reset on transition');
 
 test('reset scroll on transitions', async function(assert) {
-  await visit('/');
+  await visit('/ember/2.16');
 
   $(scrollContainerSelector).scrollTop(1000);
   assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
