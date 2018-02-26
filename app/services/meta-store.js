@@ -41,14 +41,8 @@ export default Service.extend({
 
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
-    let filtered = availProjVersions.filter(function(v, index) {
-      // shorten versions to 2 digits and compare them. 2.15.0 becomes 2.15
-      let vTrimmed = getCompactVersion(v);
-      let compactProjTrimmed = getCompactVersion(compactProjVersion);
-      return vTrimmed === compactProjTrimmed
-    })
-    // since there can be multiple full versions that match the compact version,
-    // use the most recent one.
+    let filtered = availProjVersions.filter((v, index) => getCompactVersion(v) === getCompactVersion(compactProjVersion));
+    // since there can be multiple full versions that match the compact version, use the most recent one.
     return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
   }
 });
