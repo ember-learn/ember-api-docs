@@ -76,6 +76,7 @@
     "ember-power-select": "^1.9.2",
     "ember-resolver": "^4.3.0",
     "ember-route-action-helper": "^2.0.5",
+    "ember-scroll-to-mk2": "^2.0.0",
     "ember-source": "^2.14.1",
     "ember-svg-jar": "^0.11.1",
     "ember-test-selectors": "^0.3.6",
