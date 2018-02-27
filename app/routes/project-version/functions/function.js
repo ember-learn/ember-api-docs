@@ -20,10 +20,15 @@ export default Route.extend({
     let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.get('metaStore'));
     let className = params['module'];
     let functionName = params['fn'];
-    let classObj = await this.store.find('class', `${projectID}-${projectVersion}-${className}`)
+    let fnModule;
+    try {
+      fnModule = await this.store.find('class', `${projectID}-${projectVersion}-${className}`);
+    } catch (e) {
+      fnModule = await this.store.find('namespace', `${projectID}-${projectVersion}-${className}`);
+    }
     return {
-      fnModule: classObj,
-      fn: this.getFunctionObjFromList(classObj, functionName)
+      fnModule,
+      fn: this.getFunctionObjFromList(fnModule, functionName)
     };
   },
 
