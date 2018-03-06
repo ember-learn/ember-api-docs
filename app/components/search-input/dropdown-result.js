@@ -3,8 +3,12 @@ import { computed } from '@ember/object';
 import Component from '@ember/component';
 
 export default Component.extend({
+  init() {
+    this._super(...arguments);
+    this.set("result", {});
+  },
   // Public API
-  result: {},
+  result: null,
   role: 'option',
   groupName: '',
   groupPosition: 0, // Index of this result in the grouped results

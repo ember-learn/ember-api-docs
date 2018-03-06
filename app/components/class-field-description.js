@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
   legacyModuleMappings: service(),
 
-  hasImportExample: computed('field.name', 'field.class', function () {
+  hasImportExample: computed('field.{name,class}', function () {
     return this.get('legacyModuleMappings').hasFunctionMapping(this.get('field.name'), this.get('field.class'));
   }),
 

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Service from '@ember/service';
 import fetch from 'fetch';
 import { task } from 'ember-concurrency';
 import config from 'ember-api-docs/config/environment';
@@ -9,7 +9,7 @@ const LOCALNAME_CONVERSIONS = {
   Error: 'EmberError'
 };
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   init() {
     this.get('initMappings').perform();

@@ -4,13 +4,17 @@ import { A } from '@ember/array';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Service.extend({
-
-  availableProjectVersions: {
-    'ember': A(),
-    'ember-data':A()
+  init() {
+    this._super(...arguments);
+    this.set("availableProjectVersions", {
+      'ember': A(),
+      'ember-data':A()
+    });
+    this.set("projectRevMap", {})
   },
+  availableProjectVersions: null,
 
-  projectRevMap: {},
+  projectRevMap: null,
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
     let projectRevMap = this.get('projectRevMap');
