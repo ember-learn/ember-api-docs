@@ -14,8 +14,9 @@
   "scripts": {
     "build": "ember build",
     "postinstall": "npm rebuild node-sass",
-    "start": "ember server",
+    "start": "ember serve",
     "test": "ember exam",
+    "lint:js": "eslint ./*.js app config lib server tests",
     "test:browserstack": "node bin/run-browserstack-tests.js",
     "test:ci": "bash bin/run-ci-tests.sh"
   },

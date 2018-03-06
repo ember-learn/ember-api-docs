@@ -28,7 +28,7 @@ module.exports = function(environment) {
     },
 
     fastboot: {
-      hostWhitelist: [/^[\w\-]+\.herokuapp\.com$/, /^localhost:\d+$/]
+      hostWhitelist: [/^[\w-]+\.herokuapp\.com$/, /^localhost:\d+$/]
     },
     'ember-algolia': {
       algoliaId: ALGOLIA_APP_ID,
@@ -59,6 +59,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
     ENV.APP.scrollContainerSelector = '#ember-testing-container';
 
     ENV.percy = {

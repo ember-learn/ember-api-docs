@@ -1,5 +1,4 @@
-import Ember from 'ember';
-
+import { helper } from '@ember/component/helper';
 /**
  * Converts a compact version string like '2.16' into an int array [2, 16]
  */
@@ -24,5 +23,5 @@ export function versionLt(params/*, hash*/) {
      minor(currentVersionArray) < minor(compareToVersionArray));
 }
 
-export default Ember.Helper.helper(versionLt);
+export default helper(versionLt);
 
