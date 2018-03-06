@@ -6,7 +6,7 @@ article {
   }
 
   .edit-page {
-    @include size(24px 18px);
+    @include size(24px, 18px);
     color: $brown;
     display: inline-block;
     float: right;
