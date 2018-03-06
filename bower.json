@@ -2,7 +2,7 @@
   "name": "ember-api-docs",
   "dependencies": {
     "bitters": "^1.5.0",
-    "bourbon": "^4.2.7",
+    "bourbon": "^5.0.0",
     "highlightjs": "^9.8.0",
     "neat": "^1.8.0",
     "remarkable": "^1.7.1"
