@@ -2966,7 +2966,7 @@ ember-cli-autoprefixer@^0.7.0:
     broccoli-autoprefixer "^4.1.0"
     lodash "^4.0.0"
 
-ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.6:
+ember-cli-babel@^5.1.6:
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.4.tgz#5ce4f46b08ed6f6d21e878619fb689719d6e8e13"
   dependencies:
@@ -3471,12 +3471,6 @@ ember-data@~2.18.0:
     npm-git-info "^1.0.0"
     semver "^5.1.0"
     silent-error "^1.0.0"
-
-ember-disable-proxy-controllers@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/ember-disable-proxy-controllers/-/ember-disable-proxy-controllers-1.0.1.tgz#1254eeec0ba025c24eb9e8da611afa7b38754281"
-  dependencies:
-    ember-cli-babel "^5.0.0"
 
 ember-exam@^1.0.0:
   version "1.0.0"
