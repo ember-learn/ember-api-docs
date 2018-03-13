@@ -25,7 +25,7 @@
     "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^0.5.1",
     "ember-algolia": "^0.0.10",
-    "ember-anchor": "~0.1.8",
+    "ember-anchor": "Alonski/ember-anchor#new-cli",
     "ember-browserify": "^1.2.1",
     "ember-cli": "~2.18.2",
     "ember-cli-app-version": "^3.0.0",
