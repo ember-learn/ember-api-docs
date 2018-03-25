@@ -5,13 +5,17 @@ import { A } from '@ember/array';
 export default Component.extend({
   // Public API
   role: 'listbox',
-  results: A(),
   isVisible: false,
 
   // Private API
   tagName: 'span',
   classNames: ['ds-dropdown-menu','ds-with-1'],
   attributeBindings: ['role'],
+
+  init() {
+    this._super(...arguments);
+    this.results = A();
+  },
 
   // Massage data to make it easier for displaying on the template
   // Returned object:
