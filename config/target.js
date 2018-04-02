@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 let browsers = [
-  'ie 9',
+  'ie 9-11',
   'last 1 Chrome versions',
   'last 1 Firefox versions',
   'last 1 Safari versions'
