@@ -41,7 +41,18 @@ body {
     max-width: 100%;
     margin: 0 auto;
   }
+
 }
 
+.container .chapter .project-links {
+  .ember-project-link {
+    background-image: url('/assets/images/ember-logo-landing.png');
+  }
+
+  .ember-data-project-link {
+    background-image: url('/assets/images/ember-data-landing.png');
+  }
+
+}
 
 @import "ember-power-select";
