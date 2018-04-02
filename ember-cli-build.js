@@ -36,7 +36,10 @@ module.exports = function(defaults) {
     },
     svgJar: {
       sourceDirs: ['public/assets/images']
-    }
+    },
+    'ember-cli-babel': {
+      includePolyfill: true,
+    },
   });
 
   let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
