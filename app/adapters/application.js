@@ -22,7 +22,7 @@ export default JSONAPIAdapter.extend({
     let host = this.get('host');
     let projectName = this.get('currentProject');
 
-    if (['namespace', 'class', 'module'].includes(modelName)) {
+    if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
       let encodedRevId = encodeURIComponent(revId);
