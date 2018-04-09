@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { alias } from '@ember/object/computed';
+import { alias, readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import values from 'npm:lodash.values';
@@ -17,7 +17,7 @@ export default Controller.extend(FilterParams, {
 
   project: service(),
 
-  showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
+  showPrivateClasses: alias('filterData.sideNav.showPrivate'),
 
   classesIDs: computed('model', function() {
     return this.getRelationshipIDs('classes');
@@ -92,5 +92,5 @@ export default Controller.extend(FilterParams, {
     return this.get('projectVersions').filter(pV => pV.id === this.get('model.version'))[0];
   }),
 
-  activeProject: computed.readOnly('model.project.id')
+  activeProject: readOnly('model.project.id')
 });
