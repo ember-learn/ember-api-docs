@@ -44,15 +44,20 @@ body {
 
 }
 
-.container .chapter .project-links {
-  .ember-project-link {
-    background-image: url('/assets/images/ember-logo-landing.png');
-  }
+.container .chapter {
+  .api-reference-list {
+    display: flex;
+    flex-direction: column;
+    li {
+      flex:1;
+      list-style: none;
+      text-align: center;
+    }
+    .project-logo {
+      height: 50px;
+    }
 
-  .ember-data-project-link {
-    background-image: url('/assets/images/ember-data-landing.png');
   }
-
 }
 
 @import "ember-power-select";
