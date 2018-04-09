@@ -17,7 +17,7 @@ test('Can switch projects back and forth', async function(assert) {
     assert.ok(findAll('.ember-power-select-options')[0].children.length > 1);
   }
 
-  await visit('/');
+  await visit('/ember/release');
 
   await click('.spec-ember-data');
   await ensureVersionsExist();

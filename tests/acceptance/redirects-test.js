@@ -4,13 +4,8 @@ import { visit, find } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | redirects');
 
-test('visiting /', async function(assert) {
+test('visiting / goes to landing page', async function(assert) {
   await visit('/');
-  assert.equal(
-    currentURL(),
-    `/ember/release`,
-    'routes to the latest version of the project'
-  );
   assert.equal(find('h1').textContent, 'Ember.js API Documentation');
 });
 
