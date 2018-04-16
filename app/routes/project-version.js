@@ -56,7 +56,7 @@ export default Route.extend({
     this.set('headData.urlVersion', projectVersion);
     if (!this.get('headData.isRelease')) {
       let request = this.get('fastboot.request');
-      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//${request.get('host')}${request.path}` : window.location.href;
+      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//emberjs.com/api${request.path}` : window.location.href;
       let version = new RegExp(model.get('compactVersion'), 'g')
       let canonicalUrl = href.replace(version, 'release');
       this.set('headData.canonicalUrl', canonicalUrl);
