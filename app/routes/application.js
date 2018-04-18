@@ -18,6 +18,16 @@ export default Route.extend({
       return title;
     }
     return '';
+  },
+
+  actions: {
+    error(e) {
+      if (e.name === 'SyntaxError') {
+        this.transitionTo('404', 'not-found');
+      } else {
+        return true;
+      }
+    }
   }
 
 });
