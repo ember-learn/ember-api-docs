@@ -100,7 +100,7 @@
     @include size(52px 20px);
     background: 0 0 no-repeat;
     background-size: 52px 20px;
-    z-index: 1000;
+    z-index: 9;
   }
 
   &.javascript .ribbon,
@@ -159,7 +159,7 @@ code {
   border-radius: $base-border-radius;
   font-family: $monospace-font-family;
   font-size: 0.9em;
-  padding: 0.2em 0.5em;
+  padding: 0.2em 0;
   margin: 0 0.1em;
 }
 
@@ -176,4 +176,15 @@ a code {
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */
+}
+
+.import-copy {
+  position: absolute;
+  right: 60px;
+  padding: 2px 0 0 0 !important;
+  cursor: pointer;
+  button {
+    background-color: transparent;
+    padding: 0;
+  }
 }

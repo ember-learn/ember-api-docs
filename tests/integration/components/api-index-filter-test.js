@@ -15,10 +15,20 @@ const model = EmberObject.create({
     version: '2.9'
   },
   name: 'hai',
+  file: 'my-class',
+  parentClass: {
+    file: 'my-class'
+  },
   methods: [
     {
       name: 'doSomething',
-      route: 'do-something'
+      route: 'do-something',
+      file: 'my-class'
+    },
+    {
+      name: 'doSomething',
+      route: 'do-something',
+      file: 'my-parent-class'
     },
     {
       name: 'parentDoSomething',
@@ -369,5 +379,31 @@ test('clicking all toggles off should only show public', async function(assert) 
 
   assert.dom('.method-name').exists({ count: 1 }, 'should display all methods');
   assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+
+});
+
+
+test('should show only local method implementation when duplicates', async function (assert) {
+  let filterData = EmberObject.create({
+    showInherited: true,
+    showProtected: false,
+    showPrivate: false,
+    showDeprecated: false
+  });
+
+  this.set('model', model);
+  this.set('filterData', filterData);
+
+  this.render(hbs`
+    {{#api-index-filter model=model filterData=filterData as |myModel|}}
+        <h2>Methods</h2>
+        {{#each myModel.methods as |method|}}
+          <p class=\"method-name\">{{method.name}}</p>
+        {{/each}}
+    {{/api-index-filter}}
+  `);
+  assert.equal(findAll('.method-name').length, 2, 'should display only the local method and the parent method with a different name');
+  assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
+  assert.dom(findAll('.method-name')[1]).hasText('parentDoSomething', 'should display 1 inherited method');
 
 });

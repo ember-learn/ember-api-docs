@@ -1,6 +1,6 @@
 import { hash, resolve } from 'rsvp';
 import Route from '@ember/routing/route';
-//import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import { pluralize } from 'ember-inflector';
 
 export default Route.extend({
@@ -8,8 +8,6 @@ export default Route.extend({
   model(params) {
     return this.get('store').findRecord('project', 'ember', { includes: 'project-version' })
       .then((project) => {
-        //let versions = project.get('projectVersions').toArray();
-        //let lastVersion = getLastVersion(versions);
         // Currently redirecting to last 2.15 version until we can map old
         // Ember.* apis with rfc 176 items
         let lastVersion = '2.15.3';
@@ -40,18 +38,16 @@ export default Route.extend({
                 };
               });
             })
-            .catch((e) => {
-              return this.transitionTo('project-version');
-            })
         });
 
-      }).catch((e) => {
-        return this.transitionTo('project-version');
-      });
+      }).catch(e => resolve({ isError: true}));
   },
 
   redirect(model) {
-    let compactVersion = model.version.split('.').slice(0,2).join('.');
+    if (model.isError) {
+      return this.transitionTo('404');
+    }
+    let compactVersion = getCompactVersion(model.version);
     return this.transitionTo(`project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
       model.project.id,
       compactVersion,

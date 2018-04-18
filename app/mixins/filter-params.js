@@ -32,7 +32,7 @@ export default Mixin.create({
       set(key, value = '') {
         let filters = A(value.split(','));
         filterTypes.forEach(filter => {
-          let enabled = filters.includes(filter);
+          let enabled = filters.indexOf(filter) > -1;
           set(this, `filterData.show${capitalize(filter)}`, enabled);
         });
         return value;

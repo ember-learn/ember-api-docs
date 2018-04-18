@@ -6,7 +6,6 @@ import {
   findAll,
   findWithAssert
 } from 'ember-native-dom-helpers';
-import $ from 'jquery';
 
 moduleForAcceptance('Acceptance | Switch Project');
 
@@ -22,13 +21,13 @@ test('Can switch projects back and forth', async function(assert) {
 
   await click('.spec-ember-data');
   await ensureVersionsExist();
-  assert.ok($(findWithAssert('.spec-ember-data')).hasClass('active'));
+  assert.ok(findWithAssert('.spec-ember-data').classList.contains('active'));
 
   await click('.spec-ember');
   await ensureVersionsExist();
-  assert.ok($(findWithAssert('.spec-ember')).hasClass('active'));
+  assert.ok(findWithAssert('.spec-ember').classList.contains('active'));
 
   await click('.spec-ember-data');
   await ensureVersionsExist();
-  assert.ok($(findWithAssert('.spec-ember-data')).hasClass('active'));
+  assert.ok(findWithAssert('.spec-ember-data').classList.contains('active'));
 });

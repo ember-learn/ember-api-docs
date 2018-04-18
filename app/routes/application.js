@@ -2,24 +2,28 @@ import Route from '@ember/routing/route';
 import { set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ENV from 'ember-api-docs/config/environment';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Route.extend({
   headData: service(),
 
   title(tokens) {
-    const [version, entity] = tokens;
+    let [version, entity] = tokens;
+    if (!entity) {
+      entity = 'Ember';
+    }
     if (version) {
-      const compactVersion = version.split('.').slice(0, 2).join('.');
-
+      const compactVersion = getCompactVersion(version);
       const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
-
       set(this, 'headData.title', title);
-      set(this, 'headData.cdnDomain', ENV.API_HOST);
       return title;
     }
     return '';
   },
-
+  afterModel(resolvedModel, transition) {
+    set(this, 'headData.cdnDomain', ENV.API_HOST);
+    return this._super(...arguments);
+  },
   actions: {
     error(e) {
       if (e.name === 'SyntaxError') {
@@ -29,5 +33,4 @@ export default Route.extend({
       }
     }
   }
-
 });

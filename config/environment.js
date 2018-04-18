@@ -1,7 +1,7 @@
 /* eslint-env node */
 module.exports = function(environment) {
-  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
-  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
+  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'Y1OMR4C7MF';
+  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
 
   let ENV = {
     modulePrefix: 'ember-api-docs',
@@ -23,7 +23,8 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      scrollContainerSelector: 'body, html'
+      scrollContainerSelector: 'body, html',
+      cdnUrl: process.env.FASTLY_CDN_URL ? `https://${process.env.FASTLY_CDN_URL}` : ''
     },
 
     fastboot: {
@@ -74,7 +75,7 @@ module.exports = function(environment) {
   ENV.contentSecurityPolicy = {
     "default-src": "'self' *.fastly.net",
     "connect-src": "'self' *.algolia.net *.algolianet.com *.fastly.net",
-    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-lKBtcUDKd1YsXApz3zgfFp4g7TuIVPSsYg/ic+77Ljo=' *.fastly.net https://www.google-analytics.com",
+    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.fastly.net https://www.google-analytics.com",
     "font-src": "'self' data://* https://fonts.gstatic.com  *.fastly.net",
     "img-src": "'self' data://*  *.fastly.net https://www.google-analytics.com",
     "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com  *.fastly.net"
