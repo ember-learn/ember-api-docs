@@ -15,7 +15,10 @@
 
   {{#if submodules}}
     <section>
-      <h2>Submodules</h2>
+      <h2 id="submodules" class="anchorable-toc">
+        <a href="#submodules" class="toc-anchor"></a>
+        Submodules
+      </h2>
       <ul class="spec-method-list">
         {{#each submodules as |module|}}
           <li>
@@ -30,7 +33,10 @@
 
   {{#if classesAndNamespaces}}
     <section>
-      <h2>Classes</h2>
+      <h2 id="classes" class="anchorable-toc">
+        <a href="#classes" class="toc-anchor"></a>
+        Classes
+      </h2>
       <ul class="spec-property-list">
         {{#each classesAndNamespaces as |klass|}}
           <li>
@@ -45,9 +51,15 @@
 
   {{#if (and functionHeadings (gt functionHeadings.length 0)) }}
 
-    <h2>Functions</h2>
+    <h2 id="functions" class="anchorable-toc">
+      <a href="#functions" class="toc-anchor"></a>
+      Functions
+    </h2>
     {{#each functionHeadings as |funcHeading|}}
-      <h4>{{funcHeading}}</h4>
+      <h4 id="{{function-heading-id funcHeading}}" class="anchorable-toc">
+        <a href="#{{function-heading-id funcHeading}}" class="toc-anchor"></a>
+        {{funcHeading}}
+      </h4>
       <ul class="spec-method-list">
         {{#each (better-get functions funcHeading) as |method|}}
           <li>
