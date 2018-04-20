@@ -26,7 +26,7 @@ export default Service.extend({
   },
 
   doReset() {
-    if (this.get('_shouldResetScroll')) {
+    if (this._shouldResetScroll) {
       $(scrollContainerSelector).scrollTop(0);
       this.set('_shouldResetScroll', false);
     }

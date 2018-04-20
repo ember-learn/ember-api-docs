@@ -49,12 +49,12 @@ export default Controller.extend(FilterParams, {
   },
 
   getRelations(relationship) {
-    return this.get('model').hasMany(relationship).ids().sort();
+    return this.model.hasMany(relationship).ids().sort();
   },
 
   getRelationshipIDs(relationship) {
     const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
-    const classes = this.get('model').hasMany(relationship);
+    const classes = this.model.hasMany(relationship);
     const sorted = A(classes.ids()).sort();
     //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin
     //so we take the string after the 2nd '-'
@@ -62,15 +62,15 @@ export default Controller.extend(FilterParams, {
   },
 
   shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
-    return this.get('showPrivateClasses') ? this.get('classesIDs') : this.get('publicClassesIDs');
+    return this.showPrivateClasses ? this.classesIDs : this.publicClassesIDs;
   }),
 
   shownModuleIDs: computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs', function() {
-    return this.get('showPrivateClasses') ? this.get('moduleIDs') : this.get('publicModuleIDs');
+    return this.showPrivateClasses ? this.moduleIDs : this.publicModuleIDs;
   }),
 
   shownNamespaceIDs: computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {
-    return this.get('showPrivateClasses') ? this.get('namespaceIDs') : this.get('publicNamespaceIDs');
+    return this.showPrivateClasses ? this.namespaceIDs : this.publicNamespaceIDs;
   }),
 
   projectVersions: computed('metaStore.availableProjectVersions', 'model.project.id', function() {
@@ -89,7 +89,7 @@ export default Controller.extend(FilterParams, {
   urlVersion: alias('project.urlVersion'),
 
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {
-    return this.get('projectVersions').filter(pV => pV.id === this.get('model.version'))[0];
+    return this.projectVersions.filter(pV => pV.id === this.get('model.version'))[0];
   }),
 
   activeProject: readOnly('model.project.id')

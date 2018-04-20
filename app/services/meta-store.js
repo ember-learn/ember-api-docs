@@ -17,7 +17,7 @@ export default Service.extend({
   projectRevMap: null,
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
-    let projectRevMap = this.get('projectRevMap');
+    let projectRevMap = this.projectRevMap;
     if (!isPresent(projectRevMap[projectVersionKey])) {
       projectRevMap[projectVersionKey] =  projectRevDoc;
       this.set('projectRevMap', projectRevMap);
@@ -26,11 +26,11 @@ export default Service.extend({
 
   getRevId(project, version, type, id) {
     let encodedId = encodeURIComponent(id);
-    return this.get('projectRevMap')[`${project}-${version}`][type][encodedId];
+    return this.projectRevMap[`${project}-${version}`][type][encodedId];
   },
 
   getEncodedModulesFromProjectRev(id) {
-    return Object.keys(this.get('projectRevMap')[id].module).sort();
+    return Object.keys(this.projectRevMap[id].module).sort();
   },
 
   initializeStore(availableProjectVersions, projectRevMap) {

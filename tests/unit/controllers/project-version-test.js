@@ -1,4 +1,5 @@
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
 
 const moduleIds = [
   "ember-2.10.0-ember",
@@ -28,17 +29,17 @@ const expectedModuleNames = [
   "ember-views"
 ];
 
-moduleFor('controller:project-version', 'Unit | Controller | project version', {
-  needs: ['service:filterData', 'service:metaStore', 'service:analytics', 'service:project']
-});
+module('Unit | Controller | project version', function(hooks) {
+  setupTest(hooks);
 
-test('should render module names', function(assert) {
-  let controller = this.subject({
-    getRelations(relationship) {
-      return moduleIds;
-    }
+  test('should render module names', function(assert) {
+    let controller = this.owner.factoryFor('controller:project-version').create({
+      getRelations(relationship) {
+        return moduleIds;
+      }
+    });
+
+    let moduleNames = controller.getModuleRelationships('ember-2.10.1');
+    assert.deepEqual(moduleNames, expectedModuleNames);
   });
-
-  let moduleNames = controller.getModuleRelationships('ember-2.10.1');
-  assert.deepEqual(moduleNames, expectedModuleNames);
 });

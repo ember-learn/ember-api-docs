@@ -12,7 +12,7 @@ const LOCALNAME_CONVERSIONS = {
 export default Service.extend({
 
   init() {
-    this.get('initMappings').perform();
+    this.initMappings.perform();
   },
 
   initMappings: task(function * () {

@@ -33,8 +33,8 @@ export default Component.extend({
 
     yield timeout(SEARCH_DEBOUNCE_PERIOD);
 
-    const client = get(this, '_searchClient');
-    const projectVersion = get(this, '_projectVersion');
+    const client = this._searchClient;
+    const projectVersion = this._projectVersion;
 
     // Hide and don't run query if there's no search query
     if (!query) {
@@ -64,7 +64,7 @@ export default Component.extend({
     let res = yield searchFn(searchObj, params);
 
     const results = get(res, 'hits');
-    return get(this, '_results')
+    return this._results
       .clear()
       .addObjects(results);
   }).restartable(),
@@ -82,7 +82,7 @@ export default Component.extend({
     },
 
     onblur() {
-      this.get('closeMenu').perform();
+      this.closeMenu.perform();
     }
 
   }

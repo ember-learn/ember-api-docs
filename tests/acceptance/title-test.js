@@ -1,12 +1,14 @@
-import { test } from 'qunit';
+import { visit } from '@ember/test-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 import { visit } from 'ember-native-dom-helpers';
 
-import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
+module('Acceptance | document title', function(hooks) {
+  setupApplicationTest(hooks);
 
-moduleForAcceptance('Acceptance | document title');
-
-test('is of format className - version - Ember API Docs', async function(assert) {
-  await visit('/ember/1.0/classes/Container');
-  assert.equal(document.title, 'Container - 1.0 - Ember API Documentation');
+  test('is of format className - version - Ember API Docs', async function(assert) {
+    await visit('/ember/1.0/classes/Container');
+    assert.equal(document.title, 'Container - 1.0 - Ember API Documentation');
+  });
 });
 

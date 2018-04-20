@@ -17,7 +17,7 @@ export default Service.extend({
       return;
     }
 
-    await this.get('googleAnalytics');
+    await this.googleAnalytics;
     await requestIdlePromise({timeout: 1000});
 
     window.ga('send', {

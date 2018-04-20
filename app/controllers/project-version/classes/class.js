@@ -8,11 +8,11 @@ export default Controller.extend(ParentNameMixin, {
   legacyModuleMappings: service(),
 
   hasImportExample: computed('model.name', 'legacyModuleMappings.mappings', function () {
-    return this.get('legacyModuleMappings').hasClassMapping(this.get('model.name'), this.get('model.module'));
+    return this.legacyModuleMappings.hasClassMapping(this.get('model.name'), this.get('model.module'));
   }),
 
   module: computed('model.name', 'legacyModulemappings.mappings', function () {
-    return this.get('legacyModuleMappings').getModule(this.get('model.name'), this.get('model.module'));
+    return this.legacyModuleMappings.getModule(this.get('model.name'), this.get('model.module'));
   }),
 
   actions: {

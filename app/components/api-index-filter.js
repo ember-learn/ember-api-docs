@@ -43,9 +43,9 @@ export default Component.extend({
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
     return {
-      methods: this.get('filteredMethods'),
-      properties: this.get('filteredProperties'),
-      events: this.get('filteredEvents')
+      methods: this.filteredMethods,
+      properties: this.filteredProperties,
+      events: this.filteredEvents
     };
   }),
 

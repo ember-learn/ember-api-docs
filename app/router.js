@@ -12,9 +12,9 @@ const AppRouter = Router.extend({
 
   sendPageViewToGA: on('didTransition', function(page, title) {
     if (typeof FastBoot === 'undefined') {
-      page = page ? page : this.get('url');
-      title = title ? title : this.get('url');
-      this.get('analytics').trackPage(page, title);
+      page = page ? page : this.url;
+      title = title ? title : this.url;
+      this.analytics.trackPage(page, title);
     }
   })
 });

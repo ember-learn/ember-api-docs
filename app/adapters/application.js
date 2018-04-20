@@ -19,17 +19,17 @@ export default JSONAPIAdapter.extend({
 
   async findRecord(store, {modelName}, id) {
     let url;
-    let host = this.get('host');
-    let projectName = this.get('currentProject');
+    let host = this.host;
+    let projectName = this.currentProject;
 
     if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
-      let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
+      let revId = this.metaStore.getRevId(projectName, version, modelName, id);
       let encodedRevId = encodeURIComponent(revId);
       url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${encodedRevId}`;
     } else if (modelName === 'missing') {
       let version = this.get('projectService.version');
-      let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
+      let revId = this.metaStore.getRevId(projectName, version, modelName, id);
       url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
       this.set('currentProject', id);

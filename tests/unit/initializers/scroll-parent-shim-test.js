@@ -4,22 +4,23 @@ import { initialize } from 'ember-api-docs/initializers/scroll-parent-shim';
 import { module, test } from 'qunit';
 import destroyApp from '../../helpers/destroy-app';
 
-module('Unit | Initializer | scroll parent shim', {
-  beforeEach() {
+module('Unit | Initializer | scroll parent shim', function(hooks) {
+  hooks.beforeEach(function() {
     run(() => {
       this.application = Application.create();
       this.application.deferReadiness();
     });
-  },
-  afterEach() {
+  });
+
+  hooks.afterEach(function() {
     destroyApp(this.application);
-  }
-});
+  });
 
-// Replace this with your real tests.
-test('it works', function(assert) {
-  initialize(this.application);
+  // Replace this with your real tests.
+  test('it works', function(assert) {
+    initialize(this.application);
 
-  // you would normally confirm the results of the initializer here
-  assert.ok(true);
+    // you would normally confirm the results of the initializer here
+    assert.ok(true);
+  });
 });

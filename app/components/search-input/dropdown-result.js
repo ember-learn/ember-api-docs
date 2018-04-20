@@ -23,7 +23,7 @@ export default Component.extend({
   }),
   // Left sidebar should only be displayed for the first result in the group
   _primaryColumn: computed('groupPosition,groupName', function () {
-    const { groupName, groupPosition } = this.getProperties('groupName', 'groupPosition');
+    const { groupName, groupPosition } = this;
     return groupPosition === 0? groupName : '';
   }),
   isSecondary: gt('groupPosition', 0)
