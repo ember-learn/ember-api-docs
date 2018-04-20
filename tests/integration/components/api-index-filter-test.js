@@ -70,7 +70,6 @@ module('Integration | Component | api index filter', function(hooks) {
     ]
   });
 
-
   test('clicking inherited shows inherited methods', async function(assert) {
     let filterData = EmberObject.create({
       showInherited: false,
@@ -81,7 +80,7 @@ module('Integration | Component | api index filter', function(hooks) {
 
     this.set('model', model);
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
+    this.actions.updateFilter = function(field) {
       filterData.set(field, !filterData.get(field));
     };
 
@@ -127,7 +126,9 @@ module('Integration | Component | api index filter', function(hooks) {
     await click('#inherited-toggle');
     assert.dom('.method-name').exists({ count: 2 }, 'should display 2 methods total');
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.method-name')[1]).hasText('parentDoSomething', 'should display 1 inherited method');
+    assert
+      .dom(findAll('.method-name')[1])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
   });
 
   test('clicking private shows private methods', async function(assert) {
@@ -140,7 +141,7 @@ module('Integration | Component | api index filter', function(hooks) {
 
     this.set('model', model);
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
+    this.actions.updateFilter = function(field) {
       filterData.set(field, !filterData.get(field));
     };
 
@@ -186,7 +187,9 @@ module('Integration | Component | api index filter', function(hooks) {
     await click('#private-toggle');
     assert.dom('.method-name').exists({ count: 2 }, 'should display 2 methods total');
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.method-name')[1]).hasText('doSomethingPrivate', 'should display 1 private method');
+    assert
+      .dom(findAll('.method-name')[1])
+      .hasText('doSomethingPrivate', 'should display 1 private method');
   });
 
   test('clicking private and inherited shows both methods', async function(assert) {
@@ -199,7 +202,7 @@ module('Integration | Component | api index filter', function(hooks) {
 
     this.set('model', model);
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field, value) {
+    this.actions.updateFilter = function(field, value) {
       filterData.set(field, value);
     };
 
@@ -246,10 +249,13 @@ module('Integration | Component | api index filter', function(hooks) {
     await click('#inherited-toggle');
     assert.dom('.method-name').exists({ count: 3 }, 'should display 3 methods total');
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.method-name')[1]).hasText('doSomethingPrivate', 'should display 1 private method');
-    assert.dom(findAll('.method-name')[2]).hasText('parentDoSomething', 'should display 1 inherited method');
+    assert
+      .dom(findAll('.method-name')[1])
+      .hasText('doSomethingPrivate', 'should display 1 private method');
+    assert
+      .dom(findAll('.method-name')[2])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
   });
-
 
   test('clicking all toggles shows all methods', async function(assert) {
     let filterData = EmberObject.create({
@@ -261,7 +267,7 @@ module('Integration | Component | api index filter', function(hooks) {
 
     this.set('model', model);
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
+    this.actions.updateFilter = function(field) {
       filterData.set(field, !filterData.get(field));
     };
 
@@ -310,12 +316,19 @@ module('Integration | Component | api index filter', function(hooks) {
     await click('#deprecated-toggle');
     assert.dom('.method-name').exists({ count: 5 }, 'should display all methods');
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.method-name')[1]).hasText('doSomethingDeprecated', 'should display 1 deprecated method');
-    assert.dom(findAll('.method-name')[2]).hasText('doSomethingPrivate', 'should display 1 private method');
-    assert.dom(findAll('.method-name')[3]).hasText('doSomethingProtected', 'should display 1 protected method');
-    assert.dom(findAll('.method-name')[4]).hasText('parentDoSomething', 'should display 1 inherited method');
+    assert
+      .dom(findAll('.method-name')[1])
+      .hasText('doSomethingDeprecated', 'should display 1 deprecated method');
+    assert
+      .dom(findAll('.method-name')[2])
+      .hasText('doSomethingPrivate', 'should display 1 private method');
+    assert
+      .dom(findAll('.method-name')[3])
+      .hasText('doSomethingProtected', 'should display 1 protected method');
+    assert
+      .dom(findAll('.method-name')[4])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
   });
-
 
   test('clicking all toggles off should only show public', async function(assert) {
     let filterData = EmberObject.create({
@@ -327,7 +340,7 @@ module('Integration | Component | api index filter', function(hooks) {
 
     this.set('model', model);
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
+    this.actions.updateFilter = function(field) {
       filterData.set(field, !filterData.get(field));
     };
 
@@ -372,10 +385,18 @@ module('Integration | Component | api index filter', function(hooks) {
 
     assert.dom('.method-name').exists({ count: 5 }, 'should display all methods');
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.method-name')[1]).hasText('doSomethingDeprecated', 'should display 1 deprecated method');
-    assert.dom(findAll('.method-name')[2]).hasText('doSomethingPrivate', 'should display 1 private method');
-    assert.dom(findAll('.method-name')[3]).hasText('doSomethingProtected', 'should display 1 protected method');
-    assert.dom(findAll('.method-name')[4]).hasText('parentDoSomething', 'should display 1 inherited method');
+    assert
+      .dom(findAll('.method-name')[1])
+      .hasText('doSomethingDeprecated', 'should display 1 deprecated method');
+    assert
+      .dom(findAll('.method-name')[2])
+      .hasText('doSomethingPrivate', 'should display 1 private method');
+    assert
+      .dom(findAll('.method-name')[3])
+      .hasText('doSomethingProtected', 'should display 1 protected method');
+    assert
+      .dom(findAll('.method-name')[4])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
 
     await click('#private-toggle');
     await click('#inherited-toggle');
@@ -384,11 +405,9 @@ module('Integration | Component | api index filter', function(hooks) {
 
     assert.dom('.method-name').exists({ count: 1 }, 'should display all methods');
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-
   });
 
-
-  test('should show only local method implementation when duplicates', async function (assert) {
+  test('should show only local method implementation when duplicates', async function(assert) {
     let filterData = EmberObject.create({
       showInherited: true,
       showProtected: false,
@@ -407,9 +426,14 @@ module('Integration | Component | api index filter', function(hooks) {
           {{/each}}
       {{/api-index-filter}}
     `);
-    assert.equal(findAll('.method-name').length, 2, 'should display only the local method and the parent method with a different name');
+    assert.equal(
+      findAll('.method-name').length,
+      2,
+      'should display only the local method and the parent method with a different name'
+    );
     assert.dom(findAll('.method-name')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.method-name')[1]).hasText('parentDoSomething', 'should display 1 inherited method');
-
+    assert
+      .dom(findAll('.method-name')[1])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
   });
 });

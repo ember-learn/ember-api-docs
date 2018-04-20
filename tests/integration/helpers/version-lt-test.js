@@ -31,4 +31,3 @@ module('helper:version-lt', function(hooks) {
     assert.equal(this.element.textContent.trim(), 'false');
   });
 });
-

@@ -69,9 +69,15 @@ module('Integration | Component | api index', function(hooks) {
         {{/api-index}}
     `);
     assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
     assert.dom('.spec-method-list>li>a').hasText('doSomething', 'should display 1 method');
     assert.dom('.spec-property-list>li>a').hasText('isSomething', 'should display 1 property');
     assert.dom('.spec-event-list>li>a').hasText('didSomething', 'should display 1 event');
@@ -129,9 +135,15 @@ module('Integration | Component | api index', function(hooks) {
         {{/api-index}}
     `);
     assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
     assert.dom('.spec-method-list').hasText('No documented items', 'should display no items text');
     assert.dom('.spec-property-list').hasText('isSomething', 'should display 1 property');
     assert.dom('.spec-event-list').hasText('didSomething', 'should display 1 event');
@@ -194,10 +206,9 @@ module('Integration | Component | api index', function(hooks) {
     });
 
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field, value) {
+    this.actions.updateFilter = function(field, value) {
       filterData.set(field, value);
     };
-
 
     // Template block usage:
     await render(hbs`
@@ -259,14 +270,19 @@ module('Integration | Component | api index', function(hooks) {
       {{/api-index-filter}}
     `);
     assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
     assert.dom('.spec-method-list').hasText('doSomething', 'should display 1 method');
     assert.dom('.spec-property-list').hasText('isSomething', 'should display 1 property');
     assert.dom('.spec-event-list').hasText('didSomething', 'should display 1 event');
   });
-
 
   test('should display inherited method when show inherited toggled on', async function(assert) {
     let model = EmberObject.create({
@@ -325,7 +341,7 @@ module('Integration | Component | api index', function(hooks) {
     });
 
     this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
+    this.actions.updateFilter = function(field) {
       filterData.set(field, !filterData.get(field));
     };
 
@@ -388,9 +404,15 @@ module('Integration | Component | api index', function(hooks) {
       {{/api-index-filter}}
     `);
     assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
     assert.dom('.spec-method-list>li>a').hasText('doSomething', 'should display 1 method');
     assert.dom('.spec-property-list>li>a').hasText('isSomething', 'should display 1 property');
     assert.dom('.spec-event-list>li>a').hasText('didSomething', 'should display 1 event');
@@ -398,7 +420,11 @@ module('Integration | Component | api index', function(hooks) {
     await click('#inherited-toggle');
 
     assert.dom('.spec-method-list>li>a').exists({ count: 2 }, 'should display 2 methods total');
-    assert.dom(findAll('.spec-method-list>li>a')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.spec-method-list>li>a')[1]).hasText('parentDoSomething', 'should display 1 inherited method');
+    assert
+      .dom(findAll('.spec-method-list>li>a')[0])
+      .hasText('doSomething', 'should display 1 public method');
+    assert
+      .dom(findAll('.spec-method-list>li>a')[1])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
   });
 });

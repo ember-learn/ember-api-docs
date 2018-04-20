@@ -3,7 +3,6 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import $ from 'jquery';
 
-
 module('Acceptance | open graph tags', function(hooks) {
   setupApplicationTest(hooks);
 
@@ -11,17 +10,17 @@ module('Acceptance | open graph tags', function(hooks) {
     return await visit('/ember/1.0/classes/Container');
   });
 
-  function findOpenGraphContent (propertyName) {
+  function findOpenGraphContent(propertyName) {
     const el = $(`meta[property="og:${propertyName}"]`);
     return el.attr('content');
   }
 
-  test('assigns title property', function (assert) {
+  test('assigns title property', function(assert) {
     const title = findOpenGraphContent('title');
     assert.equal(title, 'Container - 1.0 - Ember API Documentation');
   });
 
-  test('assigns image property and width/height', function (assert) {
+  test('assigns image property and width/height', function(assert) {
     const image = findOpenGraphContent('image');
     assert.equal(image, 'assets/images/ember-logo.png');
 

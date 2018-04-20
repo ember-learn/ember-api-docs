@@ -1,4 +1,4 @@
-import { click,findAll, findWithAssert, visit } from '@ember/test-helpers';
+import { click, findAll, findWithAssert, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { selectSearch } from 'ember-power-select/test-support';

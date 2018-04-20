@@ -28,19 +28,21 @@ if (!distPath) {
 
 const serverOptions = {
   distPath,
-  gzip: false, // Let Fastly take care of compression, reducing load on the fastboot
+  gzip: false // Let Fastly take care of compression, reducing load on the fastboot
 };
 
 const httpServer = new ExpressHTTPServer(serverOptions);
 
 const app = httpServer.app;
 
-app.use(express.static(distPath, {
-  setHeaders(res, path, stat) {
-    res.setHeader('Cache-Control', 'public, max-age=365000000, immutable');
-    res.removeHeader('X-Powered-By');
-  }
-}));
+app.use(
+  express.static(distPath, {
+    setHeaders(res, path, stat) {
+      res.setHeader('Cache-Control', 'public, max-age=365000000, immutable');
+      res.removeHeader('X-Powered-By');
+    }
+  })
+);
 
 /** We rewrite the 307 location header into a relativeURL so that our special setup is handled */
 app.use(function(req, res, next) {
@@ -60,7 +62,7 @@ app.use(function(req, res, next) {
       try {
         relativeURL = new URL(originalLocation).pathname;
       } catch (e) {
-        console.log(`Original location value: ${originalLocation}`)
+        console.log(`Original location value: ${originalLocation}`);
         console.log(e);
       }
 
@@ -68,7 +70,7 @@ app.use(function(req, res, next) {
       arguments[0] = arguments[0].replace(new RegExp(originalLocation, 'g'), relativeURL);
     }
     originalSendFn.apply(res, arguments);
-  }
+  };
 
   res.removeHeader('X-Powered-By');
   next();

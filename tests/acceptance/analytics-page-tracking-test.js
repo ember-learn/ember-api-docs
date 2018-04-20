@@ -8,8 +8,11 @@ module('Acceptance | analytics page tracking', function(hooks) {
   setupApplicationTest(hooks);
 
   test('checking that trackPage gets called on transitions', async function(assert) {
-
-    const pages = ['/ember/2.11/namespaces/Ember', '/ember/2.11/modules/ember-metal', '/ember/2.11/classes/Ember.Application'];
+    const pages = [
+      '/ember/2.11/namespaces/Ember',
+      '/ember/2.11/modules/ember-metal',
+      '/ember/2.11/classes/Ember.Application'
+    ];
     const pagesClone = pages.slice(0);
     const analyticsService = this.owner.lookup('service:analytics');
     assert.expect(pages.length);
@@ -17,9 +20,11 @@ module('Acceptance | analytics page tracking', function(hooks) {
     // extend the method to add assertion in it
     let oldTrackPage = analyticsService.trackPage;
     analyticsService.trackPage = (page, title) => {
-      run(() => {
-        oldTrackPage.apply(analyticsService, ...arguments).then(() => assert.equal(page, pagesClone.shift()));
-      });
+      run(() =>
+        oldTrackPage
+          .apply(analyticsService, ...arguments)
+          .then(() => assert.equal(page, pagesClone.shift()))
+      );
     };
 
     await visit(pages[0]);

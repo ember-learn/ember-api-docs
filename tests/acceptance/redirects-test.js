@@ -7,15 +7,11 @@ module('Acceptance | redirects', function(hooks) {
 
   test('visiting /', async function(assert) {
     await visit('/');
-    assert.equal(
-      currentURL(),
-      `/ember/release`,
-      'routes to the latest version of the project'
-    );
+    assert.equal(currentURL(), `/ember/release`, 'routes to the latest version of the project');
     assert.equal(find('h1').textContent, 'Ember.js API Documentation');
   });
 
-  test('visiting /ember-data', async function (assert) {
+  test('visiting /ember-data', async function(assert) {
     await visit('/ember-data');
     assert.equal(
       currentURL(),

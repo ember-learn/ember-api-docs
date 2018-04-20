@@ -15,7 +15,7 @@ module('Unit | Utility | get full version', function() {
       }
     });
     let projectVersions = ArrayProxy.create({
-      content: A([{ id: 'ember-2.17.1'}, { id: 'ember-2.16.1' }])
+      content: A([{ id: 'ember-2.17.1' }, { id: 'ember-2.16.1' }])
     });
     let projectObj = Object.create({ projectVersions });
     let result = getFullVersion('release', 'ember', projectObj, metaStore);

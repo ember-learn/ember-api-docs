@@ -2,7 +2,7 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
-const mergeTrees  = require('broccoli-merge-trees');
+const mergeTrees = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
   let prepend = '';
@@ -48,23 +48,15 @@ module.exports = function(defaults) {
     destDir: '/assets/'
   });
 
-  let modulesToImport = [
-    "groupby",
-    "sortby",
-    "union",
-    "uniq",
-    "values",
-  ];
-  modulesToImport.forEach(mod => app.import(`node_modules/lodash.${mod}/index.js`, {
-    using: [
-      { transformation: 'cjs', as: `lodash.${mod}` }
-    ]
-  }));
+  let modulesToImport = ['groupby', 'sortby', 'union', 'uniq', 'values'];
+  modulesToImport.forEach(mod =>
+    app.import(`node_modules/lodash.${mod}/index.js`, {
+      using: [{ transformation: 'cjs', as: `lodash.${mod}` }]
+    })
+  );
 
   app.import('node_modules/semver-compare/index.js', {
-    using: [
-      { transformation: 'cjs', as: 'semver-compare' }
-    ]
+    using: [{ transformation: 'cjs', as: 'semver-compare' }]
   });
 
   return mergeTrees([app.toTree(), mappingsTree]);

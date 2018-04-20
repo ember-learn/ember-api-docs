@@ -1,4 +1,3 @@
-
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
@@ -32,4 +31,3 @@ module('helper:better-get', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'hello');
   });
 });
-

@@ -11,10 +11,7 @@ module('Integration | Component | table of contents', function(hooks) {
     this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
 
-    this.set('classesIDs', [
-      'Descriptor',
-      'Ember'
-    ]);
+    this.set('classesIDs', ['Descriptor', 'Ember']);
 
     await render(hbs`{{table-of-contents showPrivateClasses=true
                                         projectid=projectId
