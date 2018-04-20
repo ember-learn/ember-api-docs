@@ -1,7 +1,6 @@
-import { click, currentURL, visit } from '@ember/test-helpers';
+import { click, currentURL, findAll, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, findAll } from 'ember-native-dom-helpers';
 
 module('Acceptance | Class', function(hooks) {
   setupApplicationTest(hooks);
@@ -15,7 +14,7 @@ module('Acceptance | Class', function(hooks) {
   });
 
   test('lists all the methods on the class page', async function (assert) {
-    const store = this.application.__container__.lookup('service:store');
+    const store = this.owner.lookup('service:store');
     const container = store.peekRecord('class', 'ember-1.0.0-Container');
     assert.equal(findAll('.spec-method-list li').length, container.get('methods.length'));
 
@@ -26,13 +25,13 @@ module('Acceptance | Class', function(hooks) {
   });
 
   test('lists all the properties on the class page', function (assert) {
-    const store = this.application.__container__.lookup('service:store');
+    const store = this.owner.lookup('service:store');
     const container = store.peekRecord('class', 'ember-1.0.0-Container');
     assert.equal(findAll('.spec-property-list li').length, container.get('properties.length'));
   });
 
   test('lists all the events on the class page', function (assert) {
-    const store = this.application.__container__.lookup('service:store');
+    const store = this.owner.lookup('service:store');
     const container = store.peekRecord('class', 'ember-1.0.0-Container');
     assert.equal(findAll('.spec-event-list li').length, container.get('events.length'));
   });

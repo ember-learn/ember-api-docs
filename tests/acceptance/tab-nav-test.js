@@ -1,11 +1,8 @@
-import { click, currentURL, visit } from '@ember/test-helpers';
+import { click, currentURL, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, find } from 'ember-native-dom-helpers';
 
-function currentURLNoParams() {
-  return currentURL().replace(/\?.*$/, '');
-}
+let currentURLNoParams = () => currentURL().replace(/\?.*$/, '');
 
 module('Acceptance | tab navigation', function(hooks) {
   setupApplicationTest(hooks);

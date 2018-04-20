@@ -2,7 +2,7 @@ import { visit } from '@ember/test-helpers';
 import $ from 'jquery';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from 'ember-native-dom-helpers';
+
 import config from 'ember-api-docs/config/environment';
 
 const { scrollContainerSelector } = config.APP;

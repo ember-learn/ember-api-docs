@@ -1,7 +1,8 @@
 import { currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from 'ember-native-dom-helpers';
+import { selectChoose } from 'ember-power-select/test-support';
+
 
 module('Acceptance | version navigation', function(hooks) {
   setupApplicationTest(hooks);

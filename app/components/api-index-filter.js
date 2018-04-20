@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import sortBy from 'npm:lodash.sortby';
+import sortBy from 'lodash.sortby';
 
 const filterDataComputedParams = 'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 

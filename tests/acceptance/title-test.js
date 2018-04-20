@@ -1,7 +1,7 @@
 import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from 'ember-native-dom-helpers';
+
 
 module('Acceptance | document title', function(hooks) {
   setupApplicationTest(hooks);

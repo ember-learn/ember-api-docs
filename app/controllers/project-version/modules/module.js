@@ -2,8 +2,8 @@ import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ClassController from '../classes/class';
-import uniq from 'npm:lodash.uniq';
-import union from 'npm:lodash.union';
+import uniq from 'lodash.uniq';
+import union from 'lodash.union';
 
 export default ClassController.extend({
   filterData: service(),

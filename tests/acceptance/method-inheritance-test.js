@@ -1,7 +1,6 @@
 import { click, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, findWithAssert } from 'ember-native-dom-helpers';
 
 module('Acceptance | method inheritance', function(hooks) {
   setupApplicationTest(hooks);
@@ -14,6 +13,6 @@ module('Acceptance | method inheritance', function(hooks) {
   test('most local inherited method is shown', async function (assert) {
     await visit('/ember-data/2.14/classes/DS.JSONAPIAdapter');
     await click(`${'[data-test-item="createRecord"]'} a`)
-    assert.ok(findWithAssert("[data-test-file='addon/adapters/rest.js']"));
+    assert.dom("[data-test-file='addon/adapters/rest.js']").exists();
   });
 });

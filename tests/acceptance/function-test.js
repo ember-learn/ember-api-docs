@@ -1,7 +1,6 @@
-import { visit } from '@ember/test-helpers';
+import { visit, find, findAll } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, find, findAll } from 'ember-native-dom-helpers';
 
 module('Acceptance | Function', function(hooks) {
   setupApplicationTest(hooks);

@@ -1,12 +1,7 @@
-import { click, visit } from '@ember/test-helpers';
+import { click,findAll, findWithAssert, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import {
-  visit,
-  click,
-  findAll,
-  findWithAssert
-} from 'ember-native-dom-helpers';
+import { selectSearch } from 'ember-power-select/test-support';
 
 module('Acceptance | Switch Project', function(hooks) {
   setupApplicationTest(hooks);

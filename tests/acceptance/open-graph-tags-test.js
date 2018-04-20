@@ -2,7 +2,7 @@ import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import $ from 'jquery';
-import { visit } from 'ember-native-dom-helpers';
+
 
 module('Acceptance | open graph tags', function(hooks) {
   setupApplicationTest(hooks);

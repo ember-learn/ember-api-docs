@@ -28,3 +28,4 @@ testem.log
 public/json-docs/
 public/rev-index/
 jsconfig.json
+package-lock.json

@@ -12,6 +12,7 @@ const LOCALNAME_CONVERSIONS = {
 export default Service.extend({
 
   init() {
+    this._super(...arguments);
     this.initMappings.perform();
   },
 

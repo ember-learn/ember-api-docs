@@ -1,7 +1,6 @@
 import { click, findAll, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click } from 'ember-native-dom-helpers';
 
 module('Acceptance | Module', function(hooks) {
   setupApplicationTest(hooks);
@@ -9,7 +8,7 @@ module('Acceptance | Module', function(hooks) {
   test('lists all public/private classes and namespaces on the module page', async function(assert) {
     await visit('ember/1.0/modules/ember-handlebars');
 
-    const store = this.application.__container__.lookup('service:store');
+    const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
 
     let numberNameSpaces = Object.keys(container.get('namespaces')).length;
@@ -25,7 +24,7 @@ module('Acceptance | Module', function(hooks) {
   test('lists all submodules on the module page', async function(assert) {
     await visit('ember/1.0/modules/ember');
 
-    const store = this.application.__container__.lookup('service:store');
+    const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember');
 
     let numberSubModules = Object.keys(container.get('submodules')).length;
@@ -36,7 +35,7 @@ module('Acceptance | Module', function(hooks) {
   test('display submodule parent', async function(assert) {
     await visit('ember/1.0/modules/ember-application');
 
-    const store = this.application.__container__.lookup('service:store');
+    const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
 
     assert.ok(findAll(`.attribute-value:contains(${container.get('parent')})`).length);

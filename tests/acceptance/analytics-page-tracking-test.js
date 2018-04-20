@@ -2,7 +2,6 @@ import { visit } from '@ember/test-helpers';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit } from 'ember-native-dom-helpers';
 import { requestIdlePromise } from 'ember-api-docs/utils/request-idle-callback';
 
 module('Acceptance | analytics page tracking', function(hooks) {
@@ -12,7 +11,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
 
     const pages = ['/ember/2.11/namespaces/Ember', '/ember/2.11/modules/ember-metal', '/ember/2.11/classes/Ember.Application'];
     const pagesClone = pages.slice(0);
-    const analyticsService = this.application.__container__.lookup('service:analytics');
+    const analyticsService = this.owner.lookup('service:analytics');
     assert.expect(pages.length);
 
     // extend the method to add assertion in it

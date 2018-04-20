@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import semverCompare from 'npm:semver-compare';
+import semverCompare from 'semver-compare';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';

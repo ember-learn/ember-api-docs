@@ -1,7 +1,6 @@
-import { click, currentURL, visit } from '@ember/test-helpers';
+import { click, currentURL, findAll, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, findAll } from 'ember-native-dom-helpers';
 
 module('Acceptance | ItemRoutes', function(hooks) {
   setupApplicationTest(hooks);

@@ -1,7 +1,6 @@
-import { currentURL, visit } from '@ember/test-helpers';
+import { currentURL, find, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, find } from 'ember-native-dom-helpers';
 
 module('Acceptance | redirects', function(hooks) {
   setupApplicationTest(hooks);

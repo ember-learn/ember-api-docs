@@ -47,5 +47,25 @@ module.exports = function(defaults) {
     include: ['mappings.json'],
     destDir: '/assets/'
   });
+
+  let modulesToImport = [
+    "groupby",
+    "sortby",
+    "union",
+    "uniq",
+    "values",
+  ];
+  modulesToImport.forEach(mod => app.import(`node_modules/lodash.${mod}/index.js`, {
+    using: [
+      { transformation: 'cjs', as: `lodash.${mod}` }
+    ]
+  }));
+
+  app.import('node_modules/semver-compare/index.js', {
+    using: [
+      { transformation: 'cjs', as: 'semver-compare' }
+    ]
+  });
+
   return mergeTrees([app.toTree(), mappingsTree]);
 };

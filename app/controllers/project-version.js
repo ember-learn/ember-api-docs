@@ -3,9 +3,9 @@ import { computed } from '@ember/object';
 import { alias, readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-import values from 'npm:lodash.values';
-import groupBy from 'npm:lodash.groupby';
-import semverCompare from 'npm:semver-compare';
+import values from 'lodash.values';
+import groupBy from 'lodash.groupby';
+import semverCompare from 'semver-compare';
 import FilterParams from '../mixins/filter-params';
 import getCompactVersion from '../utils/get-compact-version';
 
