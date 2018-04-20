@@ -33,7 +33,7 @@ const titleText = `Ack! 404 friend, you're in the wrong place`;
 
 test("Single segment url should return Application page", async function(assert) {
   await visit(getRandomPath(1));
-  assert.equal(find('.module-name').textContent.trim(), 'Package @ember/application');
+  assert.equal(find('h1').textContent.trim(), 'Ember.js API Documentation');
 });
 
 test("Random non-handled route should return 404 page, 2 lvl", async function(assert) {
