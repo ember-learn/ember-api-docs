@@ -2,10 +2,10 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 2017,
-    sourceType: "module"
+    sourceType: 'module'
   },
-  plugins: ["ember"],
-  extends: ["eslint:recommended", "plugin:ember/recommended"],
+  plugins: ['ember'],
+  extends: ['eslint:recommended', 'plugin:ember/recommended'],
   env: {
     browser: true
   },
@@ -14,55 +14,55 @@ module.exports = {
     FastBoot: true
   },
   rules: {
-    "ember/no-jquery": "off",
-    "no-unused-vars": [
-      "error",
+    'ember/no-jquery': 'off',
+    'no-unused-vars': [
+      'error',
       {
-        args: "none"
+        args: 'none'
       }
     ],
 
     // from JSHint
-    "no-cond-assign": ["error", "except-parens"],
-    eqeqeq: "error",
-    "no-eval": "error",
-    "new-cap": [
-      "error",
+    'no-cond-assign': ['error', 'except-parens'],
+    eqeqeq: 'error',
+    'no-eval': 'error',
+    'new-cap': [
+      'error',
       {
         capIsNew: false
       }
     ],
-    "no-caller": "error",
-    "no-irregular-whitespace": "error",
-    "no-undef": "error",
-    "no-eq-null": "error",
+    'no-caller': 'error',
+    'no-irregular-whitespace': 'error',
+    'no-undef': 'error',
+    'no-eq-null': 'error',
 
     // from JSCS
-    "array-bracket-spacing": ["error", "never"],
-    "comma-style": ["error", "last"],
-    "brace-style": [
-      "error",
-      "1tbs",
+    'array-bracket-spacing': ['error', 'never'],
+    'comma-style': ['error', 'last'],
+    'brace-style': [
+      'error',
+      '1tbs',
       {
         allowSingleLine: true
       }
     ],
-    "no-spaced-func": "error",
-    "no-empty": "error",
-    curly: ["error", "all"],
-    "eol-last": "error",
-    "no-trailing-spaces": "error",
-    "comma-dangle": ["error", "never"],
-    "space-before-blocks": ["error", "always"],
+    'no-spaced-func': 'error',
+    'no-empty': 'error',
+    curly: ['error', 'all'],
+    'eol-last': 'error',
+    'no-trailing-spaces': 'error',
+    'comma-dangle': ['error', 'never'],
+    'space-before-blocks': ['error', 'always'],
     indent: [
-      "error",
+      'error',
       2,
       {
         SwitchCase: 1
       }
     ],
-    "keyword-spacing": [
-      "error",
+    'keyword-spacing': [
+      'error',
       {
         overrides: {
           else: {
@@ -82,13 +82,13 @@ module.exports = {
     // node files
     {
       files: [
-        "testem.js",
-        "ember-cli-build.js",
-        "config/**/*.js",
-        "lib/*/index.js"
+        'config/**/*.js',
+        'ember-cli-build.js',
+        'lib/*/index.js',
+        'testem.js',
       ],
       parserOptions: {
-        sourceType: "script",
+        sourceType: 'script',
         ecmaVersion: 2015
       },
       env: {
@@ -99,8 +99,8 @@ module.exports = {
 
     // test files
     {
-      files: ["tests/**/*.js"],
-      excludedFiles: ["tests/dummy/**/*.js"],
+      files: ['tests/**/*.js'],
+      excludedFiles: ['tests/dummy/**/*.js'],
       env: {
         embertest: true
       }
