@@ -49,3 +49,9 @@ To run a11y tests, run `test_a11y=yes ember serve`
 
 ## Staging Environment
 Latest changes from master can be seen on https://ember-api-docs-frontend-staging.global.ssl.fastly.net/
+
+---
+
+Cross-browser testing provided by:
+
+<a href="http://browserstack.com" target="browserstack"><img height="70" src="/public/assets/images/browserstack-logo.png" alt="BrowserStack"></a>
