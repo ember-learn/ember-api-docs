@@ -22,4 +22,4 @@ install:
   - bower install
 
 script:
-  - yarn test
+  - yarn test:ci
