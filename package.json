@@ -15,10 +15,13 @@
     "build": "ember build",
     "postinstall": "npm rebuild node-sass",
     "start": "ember server",
-    "test": "ember exam"
+    "test": "ember exam",
+    "test:browserstack": "node bin/run-browserstack-tests.js",
+    "test:ci": "bash bin/run-ci-tests.sh"
   },
   "dependencies": {
     "algoliasearch": "^3.24.3",
+    "ember-cli-browserstack": "^0.0.6",
     "ember-rfc176-data": "^0.3.1",
     "lodash.groupby": "^4.6.0",
     "lodash.last": "^3.0.0",
@@ -26,7 +29,8 @@
     "lodash.union": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
-    "semver-compare": "^1.0.0"
+    "semver-compare": "^1.0.0",
+    "testem": "^2.2.1"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.5.0",
