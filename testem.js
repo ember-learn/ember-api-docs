@@ -3,7 +3,7 @@ var isMasterBuild = process.env.TRAVIS_BRANCH === 'master';
 var allBrowsers = [
   'Chrome', 'Firefox', 'BS_Safari_Current', 'BS_Safari_Last', 'BS_MS_Edge', 'BS_IE_11'
 ];
-var localBrowsers = ['Chrome', 'Firefox'];
+var localBrowsers = ['Chrome'];
 var ciBrowsers = isMasterBuild ? allBrowsers : localBrowsers;
 
 module.exports = {
