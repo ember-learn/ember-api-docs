@@ -12,6 +12,6 @@ module('Acceptance | Application Layout', function(hooks) {
     await selectSearch('.select-container', '2');
 
     assert.dom('.ember-power-select-options').exists({ count: 1 });
-    assert.ok(find('.ember-power-select-options')[0].children.length > 1);
+    assert.dom('.ember-power-select-option').exists({ count: 21 });
   });
 });
