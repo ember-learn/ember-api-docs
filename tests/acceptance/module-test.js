@@ -1,4 +1,4 @@
-import { click, findAll, visit } from '@ember/test-helpers';
+import { click, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
@@ -15,13 +15,15 @@ module('Acceptance | Module', function(hooks) {
     let numberPublicClasses = Object.keys(container.get('publicclasses')).length;
     let numberPrivateClasses = Object.keys(container.get('privateclasses')).length;
 
-    assert.equal(findAll('.spec-property-list li').length, numberPublicClasses + numberNameSpaces);
+    let count = numberPublicClasses + numberNameSpaces;
+
+    assert.dom('.spec-property-list li').exists({ count });
 
     await click('.sidebar .private-deprecated-toggle');
-    assert.equal(
-      findAll('.spec-property-list li').length,
-      numberPublicClasses + numberNameSpaces + numberPrivateClasses
-    );
+
+    count += numberPrivateClasses;
+
+    assert.dom('.spec-property-list li').exists({ count });
   });
 
   test('lists all submodules on the module page', async function(assert) {
@@ -30,9 +32,9 @@ module('Acceptance | Module', function(hooks) {
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember');
 
-    let numberSubModules = Object.keys(container.get('submodules')).length;
+    let count = Object.keys(container.get('submodules')).length;
 
-    assert.equal(findAll('.spec-method-list li').length, numberSubModules);
+    assert.dom('.spec-method-list li').exists({ count });
   });
 
   test('display submodule parent', async function(assert) {
@@ -41,6 +43,6 @@ module('Acceptance | Module', function(hooks) {
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
 
-    assert.ok(findAll(`.attribute-value:contains(${container.get('parent')})`).length);
+    assert.dom('.attribute-value').includesText(container.get('parent'));
   });
 });
