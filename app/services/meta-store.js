@@ -6,11 +6,11 @@ import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 export default Service.extend({
   init() {
     this._super(...arguments);
-    this.set("availableProjectVersions", {
-      'ember': A(),
-      'ember-data':A()
+    this.set('availableProjectVersions', {
+      ember: A(),
+      'ember-data': A()
     });
-    this.set("projectRevMap", {})
+    this.set('projectRevMap', {});
   },
   availableProjectVersions: null,
 
@@ -19,7 +19,7 @@ export default Service.extend({
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
     let projectRevMap = this.projectRevMap;
     if (!isPresent(projectRevMap[projectVersionKey])) {
-      projectRevMap[projectVersionKey] =  projectRevDoc;
+      projectRevMap[projectVersionKey] = projectRevDoc;
       this.set('projectRevMap', projectRevMap);
     }
   },
@@ -36,17 +36,22 @@ export default Service.extend({
   initializeStore(availableProjectVersions, projectRevMap) {
     this.setProperties({
       availableProjectVersions: {
-        'ember': A(availableProjectVersions['ember']),
+        ember: A(availableProjectVersions['ember']),
         'ember-data': A(availableProjectVersions['ember-data'])
       },
       projectRevMap: projectRevMap
-    })
+    });
   },
 
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
-    let filtered = availProjVersions.filter((v, index) => getCompactVersion(v) === getCompactVersion(compactProjVersion));
+    let filtered = availProjVersions.filter(
+      v => getCompactVersion(v) === getCompactVersion(compactProjVersion)
+    );
     // since there can be multiple full versions that match the compact version, use the most recent one.
-    return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
+    return filtered.reduce(
+      (accumulator, current) =>
+        accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator
+    );
   }
 });

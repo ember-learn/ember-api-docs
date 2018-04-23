@@ -20,7 +20,8 @@ export default Route.extend({
     }
     return '';
   },
-  afterModel(resolvedModel, transition) {
+
+  afterModel() {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     return this._super(...arguments);
   }

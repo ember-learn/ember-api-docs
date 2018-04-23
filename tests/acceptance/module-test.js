@@ -6,7 +6,7 @@ module('Acceptance | Module', function(hooks) {
   setupApplicationTest(hooks);
 
   test('lists all public/private classes and namespaces on the module page', async function(assert) {
-    await visit('ember/1.0/modules/ember-handlebars');
+    await visit('/ember/1.0/modules/ember-handlebars');
 
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-handlebars');
@@ -25,7 +25,7 @@ module('Acceptance | Module', function(hooks) {
   });
 
   test('lists all submodules on the module page', async function(assert) {
-    await visit('ember/1.0/modules/ember');
+    await visit('/ember/1.0/modules/ember');
 
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember');
@@ -36,7 +36,7 @@ module('Acceptance | Module', function(hooks) {
   });
 
   test('display submodule parent', async function(assert) {
-    await visit('ember/1.0/modules/ember-application');
+    await visit('/ember/1.0/modules/ember-application');
 
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-application');

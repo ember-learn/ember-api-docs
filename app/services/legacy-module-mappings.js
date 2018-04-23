@@ -10,13 +10,12 @@ const LOCALNAME_CONVERSIONS = {
 };
 
 export default Service.extend({
-
   init() {
     this._super(...arguments);
     this.initMappings.perform();
   },
 
-  initMappings: task(function * () {
+  initMappings: task(function*() {
     try {
       let response = yield fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
       let mappings = yield response.json();
@@ -45,15 +44,16 @@ export default Service.extend({
     if (!this.get('initMappings.isIdle')) {
       return false;
     }
-    let filtered = this.mappings.filter(element => element.export === name && element.module === module);
+    let filtered = this.mappings.filter(
+      element => element.export === name && element.module === module
+    );
     return filtered.length > 0;
   },
 
-  hasClassMapping(name, module) {
+  hasClassMapping(name) {
     if (!this.get('initMappings.isIdle')) {
       return false;
     }
     return this.mappings.filter(element => element.localName === name).length > 0;
   }
-
 });

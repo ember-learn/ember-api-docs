@@ -3,14 +3,16 @@ import Route from '@ember/routing/route';
 import { pluralize } from 'ember-inflector';
 
 export default Route.extend({
-
   model(params) {
-    return this.store.findRecord('project', 'ember-data', { includes: 'project-version' })
-      .then((project) => {
+    return this.store
+      .findRecord('project', 'ember-data', { includes: 'project-version' })
+      .then(() => {
         let lastVersion = '2.15.3';
-        return this.store.findRecord('project-version', `ember-data-${lastVersion}`, { includes: 'project' });
+        return this.store.findRecord('project-version', `ember-data-${lastVersion}`, {
+          includes: 'project'
+        });
       })
-      .then((projectVersion) => {
+      .then(projectVersion => {
         let project = projectVersion.get('project');
         let lastVersion = projectVersion.get('version');
         let className = params['class'].substr(0, params['class'].lastIndexOf('.'));
@@ -18,22 +20,23 @@ export default Route.extend({
         return hash({
           project: resolve(project),
           version: resolve(lastVersion),
-          classData: this.store.find('class', id)
-            .then((classData) => {
+          classData: this.store
+            .find('class', id)
+            .then(classData => {
               return {
                 type: 'class',
                 data: classData
               };
             })
             .catch(() => {
-              return this.store.find('namespace', id).then((classData) => {
+              return this.store.find('namespace', id).then(classData => {
                 return {
                   type: 'namespace',
                   data: classData
                 };
               });
             })
-        }).catch(e => resolve({isError: true}));
+        }).catch(() => resolve({ isError: true }));
       });
   },
 
@@ -41,16 +44,17 @@ export default Route.extend({
     if (model.isError) {
       return this.transitionTo('404');
     }
-    return this.transitionTo(`project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
+    return this.transitionTo(
+      `project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
       model.project.id,
       model.version,
-      model.classData.data.get('name'));
+      model.classData.data.get('name')
+    );
   },
 
   serialize(model) {
     return {
       namespace: model.classData.get('name')
-    }
+    };
   }
-
 });

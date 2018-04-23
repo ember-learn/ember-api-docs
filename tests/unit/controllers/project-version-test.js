@@ -34,7 +34,7 @@ module('Unit | Controller | project version', function(hooks) {
 
   test('should render module names', function(assert) {
     let controller = this.owner.factoryFor('controller:project-version').create({
-      getRelations(relationship) {
+      getRelations() {
         return moduleIds;
       }
     });

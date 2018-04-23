@@ -38,7 +38,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/modules/ember');
+    await visit('/ember/1.0/modules/ember');
 
     assert.equal(
       $(scrollContainerSelector).scrollTop(),
@@ -47,7 +47,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/modules/runtime');
+    await visit('/ember/1.0/modules/runtime');
 
     assert.equal(
       $(scrollContainerSelector).scrollTop(),
@@ -56,7 +56,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/namespaces/Ember');
+    await visit('/ember/1.0/namespaces/Ember');
 
     assert.equal(
       $(scrollContainerSelector).scrollTop(),
@@ -65,7 +65,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/namespaces/Ember.run');
+    await visit('/ember/1.0/namespaces/Ember.run');
 
     assert.equal(
       $(scrollContainerSelector).scrollTop(),
@@ -74,7 +74,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/classes/Ember.RenderBuffer/');
+    await visit('/ember/1.0/classes/Ember.RenderBuffer/');
 
     assert.equal(
       $(scrollContainerSelector).scrollTop(),
@@ -83,7 +83,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/classes/Ember.RenderBuffer/properties');
+    await visit('/ember/1.0/classes/Ember.RenderBuffer/properties');
 
     assert.notEqual(
       $(scrollContainerSelector).scrollTop(),
@@ -92,7 +92,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/classes/Ember.RenderBuffer/methods');
+    await visit('/ember/1.0/classes/Ember.RenderBuffer/methods');
 
     assert.notEqual(
       $(scrollContainerSelector).scrollTop(),
@@ -101,7 +101,7 @@ module('Acceptance | scroll reset on transition', function(hooks) {
     );
     $(scrollContainerSelector).scrollTop(1000);
 
-    await visit('ember/1.0/classes/Ember.Route/methods');
+    await visit('/ember/1.0/classes/Ember.Route/methods');
 
     assert.equal(
       $(scrollContainerSelector).scrollTop(),

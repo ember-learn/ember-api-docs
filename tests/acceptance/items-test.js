@@ -17,7 +17,7 @@ module('Acceptance | ItemRoutes', function(hooks) {
   });
 
   test('Can navigate to method from method name', async function(assert) {
-    await visit('ember/1.0/classes/Container/methods/child?anchor=child');
+    await visit('/ember/1.0/classes/Container/methods/child?anchor=child');
     const newAnchor = findAll('.class-field-description--link')[10];
     await click(newAnchor);
 

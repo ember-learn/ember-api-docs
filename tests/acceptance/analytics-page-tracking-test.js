@@ -19,7 +19,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
 
     // extend the method to add assertion in it
     let oldTrackPage = analyticsService.trackPage;
-    analyticsService.trackPage = (page, title) => {
+    analyticsService.trackPage = page => {
       run(() =>
         oldTrackPage
           .apply(analyticsService, ...arguments)

@@ -3050,9 +3050,9 @@ ember-cli-deploy@^1.0.1:
     rsvp "^3.3.3"
     silent-error "^1.0.0"
 
-ember-cli-document-title@^0.4.0:
+ember-cli-document-title@btecu/ember-cli-document-title:
   version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-document-title/-/ember-cli-document-title-0.4.0.tgz#1d0321c443d16b104eca16a8eb42839ecd6737f2"
+  resolved "https://codeload.github.com/btecu/ember-cli-document-title/tar.gz/4140632239d7c44959eea2c3968364ddbb98a6cd"
   dependencies:
     ember-cli-babel "^6.6.0"
 
