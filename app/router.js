@@ -20,6 +20,7 @@ const AppRouter = Router.extend({
 });
 
 AppRouter.map(function() {
+  this.route('404');
   this.route('project', {path: '/:project'});
 
   this.route('project-version', {path: '/:project/:project_version'}, function() {
@@ -70,7 +71,6 @@ AppRouter.map(function() {
   this.route('module', {path: '/modules/:module'});
   this.route('data-class', {path: '/data/classes/:class'});
   this.route('data-module', {path: '/data/modules/:module'});
-  this.route('404', { path: '/*wildcard' });
 });
 
 export default AppRouter;

@@ -23,14 +23,6 @@ export default Route.extend({
   afterModel(resolvedModel, transition) {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     return this._super(...arguments);
-  },
-  actions: {
-    error(e) {
-      if (e.name === 'SyntaxError') {
-        this.transitionTo('404', 'not-found');
-      } else {
-        return true;
-      }
-    }
   }
+
 });
