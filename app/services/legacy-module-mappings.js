@@ -17,28 +17,20 @@ export default Ember.Service.extend({
 
   initMappings: task(function * () {
     try {
-      let response = yield this.fetch();
+      let response = yield fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
       let mappings = yield response.json();
-      let newMappings = this.buildMappings(mappings);
+      let newMappings = mappings.map(item => {
+        let newItem = Object.assign({}, item);
+        if (LOCALNAME_CONVERSIONS[newItem.localName]) {
+          newItem.localName = LOCALNAME_CONVERSIONS[newItem.localName];
+        }
+        return newItem;
+      });
       this.set('mappings', newMappings);
     } catch (e) {
       this.set('mappings', []);
     }
   }),
-
-  buildMappings(mappings) {
-    return mappings.map(item => {
-      let newItem = Object.assign({}, item);
-      if (LOCALNAME_CONVERSIONS[newItem.localName]) {
-        newItem.localName = LOCALNAME_CONVERSIONS[newItem.localName];
-      }
-      return newItem;
-    });
-  },
-
-  fetch() {
-    return fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
-  },
 
   getModule(name, documentedModule) {
     if (!this.get('initMappings.isIdle')) {
@@ -47,17 +39,6 @@ export default Ember.Service.extend({
     let matches = this.mappings.filter(element => element.localName === name);
     return matches.length > 0 ? matches[0].module : documentedModule;
   },
-
-  getNewClassFromOld(oldClassName, mappings) {
-    let matches = mappings.filter(element => element.global === oldClassName);
-    return matches.length > 0 ? matches[0].localName : oldClassName;
-  },
-
-  getNewModuleFromOld(oldModuleName, mappings) {
-    let matches = mappings.filter(element => element.module === oldModuleName);
-    return matches.length > 0 ? matches[0].replacement.module : oldModuleName;
-  },
-
 
   hasFunctionMapping(name, module) {
     if (!this.get('initMappings.isIdle')) {
