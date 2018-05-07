@@ -1,48 +1,30 @@
-import { hash, resolve } from 'rsvp';
 import Route from '@ember/routing/route';
-import { pluralize } from 'ember-inflector';
+import { inject as service } from '@ember/service';
 
 export default Route.extend({
 
+  legacyModuleMappings: service(),
+
   model(params) {
-    return this.get('store').findRecord('project', 'ember-data', { includes: 'project-version' })
-      .then((project) => {
-        let lastVersion = '2.15.3';
-        return this.get('store').findRecord('project-version', `ember-data-${lastVersion}`, { includes: 'project' });
-      })
-      .then((projectVersion) => {
-        let project = projectVersion.get('project');
-        let lastVersion = projectVersion.get('version');
-        let className = params['module'].substr(0, params['module'].lastIndexOf('.'));
-        let id = `ember-data-${lastVersion}-${className}`;
-        return hash({
-          project: resolve(project),
-          version: resolve(lastVersion),
-          classData: this.store.find('module', id)
-            .then((classData) => {
-              return {
-                type: 'module',
-                data: classData
-              };
-            })
-        }).catch(e => resolve({isError: true}));
-      }).catch(e => resolve({isError: true}));
+    return this.get('legacyModuleMappings').fetch()
+      .then((response) => response.json())
+      .then((mappings) => {
+        return {
+          moduleName: params.module.substr(0, params.module.lastIndexOf('.')),
+          mappings: this.get('legacyModuleMappings').buildMappings(mappings)
+        }
+      });
   },
 
   redirect(model) {
-    if (model.isError) {
-      return this.transitionTo('404');
+    let name = this.get('legacyModuleMappings').getNewModuleFromOld(model.moduleName, model.mappings);
+    if (name !== model.moduleName) {
+      return this.transitionTo(`project-version.modules.module`,
+        'ember-data',
+        'release',
+        name);
     }
-    return this.transitionTo(`project-version.${pluralize(model.classData.type)}.${model.classData.type}`,
-      model.project.id,
-      model.version,
-      model.classData.data.get('name'));
-  },
-
-  serialize(model) {
-    return {
-      namespace: model.classData.get('name')
-    }
+    return this.transitionTo(`project-version`, 'ember-data', 'release');
   }
 
 });
