@@ -36,7 +36,7 @@ module.exports = {
         '--b',
         'Safari',
         '--bv',
-        '11.0',
+        'latest',
         '-t',
         '1200',
         '--u',
