@@ -33,7 +33,8 @@ moduleFor('controller:project-version', 'Unit | Controller | project version', {
   needs: [
     'service:filterData',
     'service:metaStore',
-    'service:analytics',
+    'service:metrics',
+    'service:fastboot',
     'service:project'
   ]
 });
