@@ -50,12 +50,40 @@ export default Ember.Service.extend({
 
   getNewClassFromOld(oldClassName, mappings) {
     let matches = mappings.filter(element => element.global === oldClassName);
-    return matches.length > 0 ? matches[0].localName : oldClassName;
+    if (matches.length > 0) {
+      if (matches[0].localName) {
+        return {
+          itemType: 'class',
+          newModule: matches[0].module,
+          newName: matches[0].localName
+        }
+      } else {
+        return {
+          itemType: 'function',
+          newModule: matches[0].module,
+          newName: matches[0].export
+        }
+      }
+
+    } else {
+      return {
+        itemType: 'class',
+        newName: oldClassName
+      }
+    }
   },
 
   getNewModuleFromOld(oldModuleName, mappings) {
     let matches = mappings.filter(element => element.module === oldModuleName);
-    return matches.length > 0 ? matches[0].replacement.module : oldModuleName;
+    if (matches.length > 0) {
+      return {
+        module: matches[0].replacement.module
+      };
+    } else {
+      return {
+        module: oldModuleName
+      };
+    }
   },
 
 

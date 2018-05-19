@@ -9,6 +9,11 @@ test('should convert url for legacy Ember class', async function(assert) {
   assert.equal(currentURL(), '/ember/release/classes/Application');
 });
 
+test('should convert url for legacy Ember class to function', async function(assert) {
+  await visit('/classes/Ember.computed.html');
+  assert.equal(currentURL(), '/ember/release/functions/@ember%2Fobject/computed');
+});
+
 test('should convert url for legacy ember data class', async function (assert) {
   await visit('/data/classes/DS.Adapter.html');
   assert.equal(currentURL(), '/ember-data/release/classes/DS.Adapter');

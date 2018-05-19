@@ -17,12 +17,12 @@ export default Route.extend({
   },
 
   redirect(model) {
-    let name = this.get('legacyModuleMappings').getNewModuleFromOld(model.moduleName, model.mappings);
-    if (name !== model.moduleName) {
+    let mappingInfo = this.get('legacyModuleMappings').getNewModuleFromOld(model.moduleName, model.mappings);
+    if (!mappingInfo.error && model.moduleName !== mappingInfo.module) {
       return this.transitionTo(`project-version.modules.module`,
         'ember',
         'release',
-        name);
+        mappingInfo.module);
     }
     return this.transitionTo('project-version', 'ember', 'release');
   }
