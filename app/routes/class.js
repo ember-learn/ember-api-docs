@@ -17,12 +17,22 @@ export default Route.extend({
   },
 
   redirect(model) {
-    let name = this.get('legacyModuleMappings').getNewClassFromOld(model.className, model.mappings)
-    if (name !== model.className) {
-      return this.transitionTo(`project-version.classes.class`,
-        'ember',
-        'release',
-        name);
+    let mappedInfo = this.get('legacyModuleMappings').getNewClassFromOld(model.className, model.mappings);
+    if (!mappedInfo.error && model.className !== mappedInfo.newName) {
+      let { itemType, newName, newModule } = mappedInfo;
+      if (itemType === 'class') {
+        return this.transitionTo(`project-version.classes.class`,
+          'ember',
+          'release',
+          newName);
+      } else {
+        return this.transitionTo(`project-version.functions.function`,
+          'ember',
+          'release',
+          newModule,
+          newName)
+      }
+
     }
     return this.transitionTo('project-version', 'ember', 'release')
 

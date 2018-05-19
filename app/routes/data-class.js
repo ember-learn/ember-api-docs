@@ -17,12 +17,19 @@ export default Route.extend({
   },
 
   redirect(model) {
-    let name = this.get('legacyModuleMappings').getNewClassFromOld(model.className, model.mappings)
+    let mappingInfo = this.get('legacyModuleMappings').getNewClassFromOld(model.className, model.mappings)
+    let { newName } = mappingInfo;
+    if (!mappingInfo.error) {
+      return this.transitionTo(`project-version.classes.class`,
+        'ember-data',
+        'release',
+        newName);
+    } else {
+      return this.transitionTo('project-version',
+        'ember',
+        'release');
+    }
 
-    return this.transitionTo(`project-version.classes.class`,
-      'ember-data',
-      'release',
-      name);
   }
 
 });

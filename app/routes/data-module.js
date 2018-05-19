@@ -17,11 +17,11 @@ export default Route.extend({
   },
 
   redirect(model) {
-    let name = this.get('legacyModuleMappings').getNewModuleFromOld(model.moduleName, model.mappings);
+    let mappingInfo = this.get('legacyModuleMappings').getNewModuleFromOld(model.moduleName, model.mappings);
     return this.transitionTo(`project-version.modules.module`,
       'ember-data',
       'release',
-      name);
+      mappingInfo.module);
   }
 
 });
