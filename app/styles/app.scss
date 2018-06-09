@@ -20,6 +20,7 @@ body {
 
   main.container {
     width: 100%;
+    min-height: calc(100vh - 18rem);
   }
 
   main.container .content {
