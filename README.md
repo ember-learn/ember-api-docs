@@ -8,7 +8,7 @@ There are four pieces that together create the Ember API docs:
 - The app in this repository, which fetches and displays the API docs data. It is what you see at 
 [https://emberjs.com/api](https://emberjs.com/api)
 - The YUIdoc code comments found in the 
-[Ember.js codebase](https://github.com/ember.js), where the informational content of the API documentation can be edited
+[Ember.js codebase](https://github.com/emberjs/ember.js), where the informational content of the API documentation can be edited
 - The data generator that serializes code comments into JSONAPI and
 deploys the result,
 [ember-jsonapi-docs](https://github.com/ember-learn/ember-jsonapi-docs)
