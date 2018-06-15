@@ -81,6 +81,7 @@
     "ember-resolver": "^4.3.0",
     "ember-route-action-helper": "^2.0.5",
     "ember-source": "^2.14.1",
+    "ember-styleguide": "^1.1.0",
     "ember-svg-jar": "^0.11.1",
     "ember-test-selectors": "^0.3.6",
     "ember-tether": "1.0.0-beta.0",
