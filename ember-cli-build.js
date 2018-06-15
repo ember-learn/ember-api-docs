@@ -40,6 +40,11 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
+    "ember-bootstrap": {
+      bootstrapVersion: 4,
+      importBootstrapFont: false,
+      importBootstrapCSS: false
+    }
   });
 
   let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
