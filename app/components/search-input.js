@@ -3,8 +3,8 @@ import { A } from '@ember/array';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import { get } from '@ember/object';
+import { set } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
 const SEARCH_DEBOUNCE_PERIOD = 300;
