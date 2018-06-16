@@ -1,10 +1,17 @@
-/* eslint-env node */
-var isMasterBuild = process.env.TRAVIS_BRANCH === 'master' && `${process.env.TRAVIS_PULL_REQUEST}` !== "false" ;
-var allBrowsers = [
+const userName = process.env['BROWSERSTACK_USERNAME']
+const accessKey = process.env['BROWSERSTACK_ACCESS_KEY']
+
+const canConnectToBrowserStack =  (
+  userName && userName.trim().length !== 0
+  &&
+  accessKey && accessKey.trim().length !== 0
+);
+
+let allBrowsers = [
   'Chrome', 'Firefox', 'BS_Safari_Current', 'BS_Safari_Last', 'BS_MS_Edge', 'BS_IE_11'
 ];
-var localBrowsers = ['Chrome'];
-var ciBrowsers = isMasterBuild ? allBrowsers : localBrowsers;
+let localBrowsers = ['Chrome'];
+let ciBrowsers = canConnectToBrowserStack ? allBrowsers : localBrowsers;
 
 module.exports = {
   'test_page': 'tests/index.html?hidepassed',
