@@ -28,7 +28,7 @@ module.exports = function(environment) {
     },
 
     fastboot: {
-      hostWhitelist: [/^[\w\-]+\.herokuapp\.com$/, /^localhost:\d+$/, /^127\.0\.0\.1:\d+$/, /^[\w\-]+\.fastly\.net$/]
+      hostWhitelist: [/^[\w-]+\.herokuapp\.com$/, /^localhost:\d+$/, /^127\.0\.0\.1:\d+$/, /^[\w-]+\.fastly\.net$/]
     },
     'ember-algolia': {
       algoliaId: ALGOLIA_APP_ID,

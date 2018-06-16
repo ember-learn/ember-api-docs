@@ -34,7 +34,7 @@ moduleFor('controller:project-version', 'Unit | Controller | project version', {
 
 test('should render module names', function(assert) {
   let controller = this.subject({
-    getRelations(relationship) {
+    getRelations() {
       return moduleIds;
     }
   });

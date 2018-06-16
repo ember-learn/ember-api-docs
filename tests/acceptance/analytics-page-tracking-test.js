@@ -15,7 +15,7 @@ test('checking that trackPage gets called on transitions', async function(assert
 
   // extend the method to add assertion in it
   let oldTrackPage = analyticsService.trackPage;
-  analyticsService.trackPage = (page, title) => {
+  analyticsService.trackPage = (page) => {
     run(() => {
       oldTrackPage.apply(analyticsService, ...arguments).then(() => assert.equal(page, pagesClone.shift()));
     });

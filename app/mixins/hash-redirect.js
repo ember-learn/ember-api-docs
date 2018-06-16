@@ -3,7 +3,7 @@ import { hasRedirectableHash, hashToUrl } from '../utils/hash-to-url';
 
 export default Mixin.create({
 
-  afterModel(model, transition) {
+  afterModel() {
     this._super(...arguments);
     if (hasRedirectableHash(window)) {
       this.transitionTo(hashToUrl(window));
