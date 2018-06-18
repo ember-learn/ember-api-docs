@@ -1,7 +1,7 @@
-import Ember from 'ember';
 import fetch from 'fetch';
 import { task } from 'ember-concurrency';
 import config from 'ember-api-docs/config/environment';
+import Service from '@ember/service';
 
 const LOCALNAME_CONVERSIONS = {
   Object: 'EmberObject',
@@ -9,7 +9,7 @@ const LOCALNAME_CONVERSIONS = {
   Error: 'EmberError'
 };
 
-export default Ember.Service.extend({
+export default Service.extend({
 
   init() {
     this.get('initMappings').perform();
@@ -95,7 +95,7 @@ export default Ember.Service.extend({
     return filtered.length > 0;
   },
 
-  hasClassMapping(name, module) {
+  hasClassMapping(name) {
     if (!this.get('initMappings.isIdle')) {
       return false;
     }

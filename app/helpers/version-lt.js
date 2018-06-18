@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
-/**
- * Converts a compact version string like '2.16' into an int array [2, 16]
- */
+/** Converts a compact version string like '2.16' into an int array [2, 16] */
 function toIntArray(versionStr) {
   let versionStrArray = versionStr.split('.');
   return versionStrArray.map(item => parseInt(item))
@@ -24,5 +22,5 @@ export function versionLt(params/*, hash*/) {
      minor(currentVersionArray) < minor(compareToVersionArray));
 }
 
-export default Ember.Helper.helper(versionLt);
+export default helper(versionLt);
 

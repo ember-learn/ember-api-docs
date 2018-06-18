@@ -31,7 +31,7 @@ export default Route.extend({
     this._super(controller, model);
   },
 
-  afterModel(resolvedModel, transition) {
+  afterModel() {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     return this._super(...arguments);
   }

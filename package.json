@@ -15,9 +15,7 @@
     "build": "ember build",
     "postinstall": "npm rebuild node-sass",
     "start": "ember server",
-    "test": "ember exam",
-    "test:browserstack": "node bin/run-browserstack-tests.js",
-    "test:ci": "bash bin/run-ci-tests.sh"
+    "test": "node run-tests.js"
   },
   "dependencies": {
     "algoliasearch": "^3.24.3",
@@ -92,7 +90,8 @@
     "loader.js": "^4.6.0",
     "minimist": "^1.2.0",
     "normalize.css": "^7.0.0",
-    "qunit-dom": "^0.3.2"
+    "qunit-dom": "^0.3.2",
+    "spawndamnit": "2.0.0"
   },
   "engines": {
     "node": ">= 8",
