@@ -37,6 +37,7 @@ locally yourself.
 
 ```
 git clone https://github.com/ember-learn/ember-api-docs.git
+cd ember-api-docs
 yarn install
 bower install
 ember serve
