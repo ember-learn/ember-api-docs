@@ -6,11 +6,18 @@ import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import Ember from 'ember';
+import sanitizeHtml from 'npm:sanitize-html';
 
 const { Logger } = Ember;
 
-export default Route.extend(ScrollTracker, {
+function createDescription(klass) {
+  let description = klass.get('ogDescription') || klass.get('description')
+  return sanitizeHtml(description, {
+    allowedTags: []
+  }).slice(0, 300) + '...'
+}
 
+export default Route.extend(ScrollTracker, {
   headData: service(),
   metaStore: service(),
 
@@ -26,7 +33,6 @@ export default Route.extend(ScrollTracker, {
     const klass = params['class'];
     return this.find('class', `${projectID}-${projectVersion}-${klass}`);
   },
-
 
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
@@ -54,7 +60,7 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      set(this, 'headData.description', klass.get('ogDescription'));
+      set(this, 'headData.description', createDescription(klass));
       const relationships = get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
