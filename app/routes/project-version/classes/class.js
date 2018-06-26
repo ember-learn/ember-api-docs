@@ -10,11 +10,10 @@ import sanitizeHtml from 'npm:sanitize-html';
 
 const { Logger } = Ember;
 
-function createDescription(klass) {
-  let description = klass.get('ogDescription') || klass.get('description')
+function sanitizeDescription(klass) {
   return sanitizeHtml(description, {
     allowedTags: []
-  }).slice(0, 300) + '...'
+  }).slice(0, 300) + '…'
 }
 
 export default Route.extend(ScrollTracker, {
@@ -60,7 +59,10 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      set(this, 'headData.description', createDescription(klass));
+      let description = klass.get('ogDescription') || klass.get('description')
+      if (description) {
+        set(this, 'headData.description', sanitizeDescription(description));
+      }
       const relationships = get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
