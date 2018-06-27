@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object';
+import { get, set } from '@ember/object';
+import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
 export default Route.extend({
 
@@ -30,6 +31,13 @@ export default Route.extend({
       fnModule,
       fn: this.getFunctionObjFromList(fnModule, functionName)
     };
+  },
+
+  afterModel(model) {
+    let description = model.fn.description
+    if (description) {
+      set(this, 'headData.description', createExcerpt(description));
+    }
   },
 
   getFunctionObjFromList(classObj, functionName) {
