@@ -7,7 +7,9 @@ const testString = "<html><head></head><body><p><code>HashLocation</code> implem
 
 test('it works', function(assert) {
   let result = createExcerpt(testString);
-  assert.ok(result.includes('/\n') === false, 'does not include line breaks');
+  assert.ok(result.includes('/\n') === false, 'does not include tabs');
+  assert.ok(result.includes('<table') === false, 'does not include table code example');
+  assert.ok(result.includes('/\t') === false, 'does not include line breaks');
   assert.ok(result.length <= 300, 'length is maximum 300 characters');
 });
 
