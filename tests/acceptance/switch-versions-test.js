@@ -84,11 +84,18 @@ test('switching class properties tab less than 2.16 should retain', async functi
   assert.equal(currentURL(), '/ember/2.11/classes/Ember.Component/properties', 'navigated to v2.11 properties');
 });
 
-test('switching from class version less than 2.16 to class version 2.16 should reset to first module page', async function(assert) {
+test('switching from class version less than 2.16 to class version 2.16 should reset to landing page', async function(assert) {
   await visit('/ember/2.7/classes/Ember.Component');
   assert.equal(currentURL(), '/ember/2.7/classes/Ember.Component', 'navigated to v2.7 class');
   await selectChoose('.select-container', '2.16');
-  assert.equal(currentURL(), '/ember/2.16/modules/@ember%2Fapplication', 'navigated to v2.16 application module');
+  assert.equal(currentURL(), '/ember/2.16', 'navigated to v2.16 landing page');
+});
+
+test('switching from class version less than 2.16 to class version 2.16 should retain if project is ember-data', async function(assert) {
+  await visit('/ember-data/2.7/classes/DS.Adapter');
+  assert.equal(currentURL(), '/ember-data/2.7/classes/DS.Adapter', 'navigated to v2.7 class');
+  await selectChoose('.select-container', '2.16');
+  assert.equal(currentURL(), '/ember-data/2.16/classes/DS.Adapter', 'navigated to v2.16 landing page');
 });
 
 test('switching from class version 2.16 to class version less then 2.16 should reset to first module page', async function (assert) {
@@ -96,4 +103,11 @@ test('switching from class version 2.16 to class version less then 2.16 should r
   assert.equal(currentURL(), '/ember/2.16/classes/Component', 'navigated to v2.16 class');
   await selectChoose('.select-container', '2.11');
   assert.equal(currentURL(), '/ember/2.11/modules/ember', 'navigated to v2.11 ember module');
+});
+
+test('switching from class version 2.16 to class version less then 2.16 should retain if project is ember-data', async function(assert) {
+  await visit('/ember-data/2.16/classes/DS.Adapter');
+  assert.equal(currentURL(), '/ember-data/2.16/classes/DS.Adapter', 'navigated to v2.7 class');
+  await selectChoose('.select-container', '2.11');
+  assert.equal(currentURL(), '/ember-data/2.11/classes/DS.Adapter', 'navigated to v2.16 landing page');
 });
