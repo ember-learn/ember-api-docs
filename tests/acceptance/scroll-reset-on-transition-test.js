@@ -64,3 +64,14 @@ test('reset scroll on transitions', async function(assert) {
 
   assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after visiting route with same tab but different model');
 });
+
+test('reset scroll on transitions when transition between >=2.16 and <=2.15', async function(assert) {
+  await visit('/ember/2.16');
+
+  $(scrollContainerSelector).scrollTop(1000);
+  assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
+
+  await visit('/ember/2.15/classes/Ember.View');
+
+  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is zero after transition to different route');
+});
