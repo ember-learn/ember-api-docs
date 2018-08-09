@@ -34,10 +34,11 @@ export default Route.extend({
     let transitionVersion = this.get('projectService').getUrlVersion();
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
-      let latestVersion = getLastVersion(model.get('project.projectVersions'))
-      let isLatestVersion = (transitionVersion === latestVersion || transitionVersion === 'release')
-      let isEmberProject = (model.get('project.id') === "ember")
-      if (isLatestVersion && isEmberProject) {
+      let latestVersion = getLastVersion(model.get('project.projectVersions'));
+      let isLatestVersion = (transitionVersion === latestVersion || transitionVersion === 'release');
+      let isEmberProject = (model.get('project.id') === "ember");
+      let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
+      if ((!shouldConvertPackages || isLatestVersion) && isEmberProject) {
         // ... and the transition version is the latest release, and the selected docs are
         // ember (not Ember Data), then show the landing page
         return this.transitionTo('project-version.index')
@@ -135,7 +136,8 @@ export default Route.extend({
       // if the user is navigating to/from api versions >= 2.16, take them
       // to the home page instead of trying to translate the url
       let shouldConvertPackages = this.shouldConvertPackages(ver, this.get('projectService.version'));
-      if (!shouldConvertPackages) {
+      let isEmberProject = project === 'ember';
+      if (!isEmberProject || !shouldConvertPackages) {
         this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
       } else {
         this.transitionTo(`/${project}/${projectVersionID}`);
