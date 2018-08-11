@@ -4,7 +4,7 @@ This project contains only the [API docs](https://emberjs.com/api) portion of [E
 see the [website](https://github.com/emberjs/website)
 and [guides](https://github.com/emberjs/guides) repositories.
 
-There are four pieces that together create the Ember API docs:
+There are five pieces that together create the Ember API docs site:
 - The app in this repository, which fetches and displays the API docs data. It is what you see at 
 [https://emberjs.com/api](https://emberjs.com/api)
 - The YUIdoc code comments found in the 
@@ -14,6 +14,7 @@ deploys the result,
 [ember-jsonapi-docs](https://github.com/ember-learn/ember-jsonapi-docs)
 - [ember-styleguide](https://github.com/ember-learn/ember-styleguide),
 a component and styling library shared across apps.
+- [algolia-index-update-scripts](https://github.com/ember-learn/algolia-index-update-scripts) for managing the search feature of the api docs site
 
 ## Contributing
 
