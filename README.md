@@ -4,7 +4,7 @@ This project contains only the [API docs](https://emberjs.com/api) portion of [E
 see the [website](https://github.com/emberjs/website)
 and [guides](https://github.com/emberjs/guides) repositories.
 
-There are five pieces that together create the Ember API docs site:
+There are many pieces that together create the Ember API docs site:
 - The app in this repository, which fetches and displays the API docs data. It is what you see at 
 [https://emberjs.com/api](https://emberjs.com/api)
 - The YUIdoc code comments found in the 
