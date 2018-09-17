@@ -52,7 +52,7 @@ export default Component.extend({
         'hierarchy.lvl2'
       ],
       tagFilters: [`version:${projectVersion}`],
-      facetFilters: ['access:public']
+      facetFilters: ['access:-private']
     };
 
     const searchObj = {
