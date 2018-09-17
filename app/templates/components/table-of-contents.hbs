@@ -3,13 +3,9 @@
     <a {{action 'toggle' 'modules'}} href="#">Packages</a>
     <ol class="toc-level-1 modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
-
-        {{#if (not-eq moduleID "@ember/object/computed")}}
-          <li class="toc-level-1" data-test-module={{moduleID}}>
-            {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
-          </li>
-        {{/if}}
-
+        <li class="toc-level-1" data-test-module={{moduleID}}>
+          {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
+        </li>
       {{/each}}
     </ol>
   </li>
