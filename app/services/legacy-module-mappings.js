@@ -1,5 +1,4 @@
 import fetch from 'fetch';
-import { task } from 'ember-concurrency';
 import config from 'ember-api-docs/config/environment';
 import Service from '@ember/service';
 
@@ -11,20 +10,16 @@ const LOCALNAME_CONVERSIONS = {
 
 export default Service.extend({
 
-  init() {
-    this.get('initMappings').perform();
-  },
-
-  initMappings: task(function * () {
+  async initMappings() {
     try {
-      let response = yield this.fetch();
-      let mappings = yield response.json();
+      let response = await this.fetch();
+      let mappings = await response.json();
       let newMappings = this.buildMappings(mappings);
       this.set('mappings', newMappings);
     } catch (e) {
       this.set('mappings', []);
     }
-  }),
+  },
 
   buildMappings(mappings) {
     return mappings.map(item => {
@@ -41,7 +36,7 @@ export default Service.extend({
   },
 
   getModule(name, documentedModule) {
-    if (!this.get('initMappings.isIdle')) {
+    if (!this.mappings) {
       return '';
     }
     let matches = this.mappings.filter(element => element.localName === name);
@@ -88,7 +83,7 @@ export default Service.extend({
 
 
   hasFunctionMapping(name, module) {
-    if (!this.get('initMappings.isIdle')) {
+    if (!this.mappings) {
       return false;
     }
     let filtered = this.mappings.filter(element => element.export === name && element.module === module);
@@ -96,7 +91,7 @@ export default Service.extend({
   },
 
   hasClassMapping(name) {
-    if (!this.get('initMappings.isIdle')) {
+    if (!this.mappings) {
       return false;
     }
     return this.mappings.filter(element => element.localName === name).length > 0;
