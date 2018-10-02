@@ -6,6 +6,7 @@ import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Route.extend({
   headData: service(),
+  legacyModuleMappings: service(),
 
   title(tokens) {
     let [version, entity] = tokens;
@@ -20,8 +21,9 @@ export default Route.extend({
     }
     return '';
   },
-  afterModel() {
+  async afterModel() {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
+    await this.get('legacyModuleMappings').initMappings();
     return this._super(...arguments);
   }
 
