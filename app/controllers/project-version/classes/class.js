@@ -2,8 +2,9 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import ParentNameMixin from 'ember-api-docs/mixins/parent-name';
+import FilterParams from 'ember-api-docs/mixins/filter-params';
 
-export default Controller.extend(ParentNameMixin, {
+export default Controller.extend(ParentNameMixin, FilterParams, {
   filterData: service(),
   legacyModuleMappings: service(),
 
