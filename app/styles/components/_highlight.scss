@@ -28,19 +28,22 @@
     }
   }
 
-  .scroller {
-    overflow: auto;
-  }
-
   pre {
     margin: 0;
     font-size: 1.2em;
+    .wrapper {
+      padding-right: 60px;
+    }
+  }
+
+  .import-copy ~ table .wrapper {
+    padding-right: 92px;
   }
 
   table {
     border: none;
     margin: 0;
-    table-layout: auto;
+    overflow: auto;
     width: 100%;
     z-index: auto;
 
@@ -67,6 +70,7 @@
 
       &.code {
         background-color: $code-background;
+        overflow: auto;
         vertical-align: top;
         padding: 0.4em 0 0.4em 0.4em;
       }
@@ -96,10 +100,11 @@
   }
 
   .ribbon {
-    @include position(absolute, 0.33em -1px null null);
+    @include position(absolute, 0.33em 0px null null);
     @include size(52px 20px);
     background: 0 0 no-repeat;
     background-size: 52px 20px;
+    background-color: $code-background;
     z-index: 9;
   }
 
@@ -180,8 +185,12 @@ a code {
 
 .import-copy {
   position: absolute;
-  right: 60px;
-  padding: 2px 0 0 0 !important;
+  right: 52px;
+  top: 2px;
+  background-color: $code-background;
+  line-height: 1;
+  padding: 0px 8px;
+  z-index: 9;
   cursor: pointer;
   button {
     background-color: transparent;
