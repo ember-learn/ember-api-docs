@@ -33,11 +33,13 @@
       <h2>Classes</h2>
       <ul class="spec-property-list">
         {{#each classesAndNamespaces as |klass|}}
-          <li>
-            {{#link-to 'project-version.classes.class' klass}}
-              {{klass}}
-            {{/link-to}}
-          </li>
+          {{#if (not (and (eq model.name "ember-data") (eq klass "Ember")))}}
+            <li>
+              {{#link-to 'project-version.classes.class' klass}}
+                {{klass}}
+              {{/link-to}}
+            </li>
+          {{/if}}
         {{/each}}
       </ul>
     </section>
