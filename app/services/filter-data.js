@@ -5,7 +5,12 @@ export default Service.extend({
   showProtected: false,
   showPrivate: false,
   showDeprecated: false,
-  sideNav: {
-    showPrivate: false
+  sideNav: null,
+
+  init() {
+    this.sideNav = {
+      showPrivate: false
+    }
+    this._super(...arguments);
   }
 });
