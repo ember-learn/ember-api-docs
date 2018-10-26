@@ -22,12 +22,17 @@ export default Component.extend({
   _projectVersion: alias('_projectService.version'),
   _results: A(),
   _focused: false,
-  _resultTetherConstraints: [
-    {
-      to: 'window',
-      pin: ['left','right']
-    }
-  ],
+  _resultTetherConstraints: null,
+
+  init() {
+    this._resultTetherConstraints = [
+      {
+        to: 'window',
+        pin: ['left','right']
+      }
+    ];
+    this._super(...arguments);
+  },
 
   search: task(function * (query) {
 
