@@ -1,3 +1,4 @@
+import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ClassController from '../classes/class';
@@ -6,7 +7,7 @@ import union from 'npm:lodash.union';
 
 export default ClassController.extend({
   filterData: service(),
-  showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
+  showPrivateClasses: alias('filterData.sideNav.showPrivate'),
 
   submodules: computed('model', function() {
     return Object.keys(this.get('model.submodules'));
