@@ -17,6 +17,7 @@ terraform.tfstate.backup
 /bower_components
 
 # misc
+/.projectile
 /.sass-cache
 /connect.lock
 /coverage/*
