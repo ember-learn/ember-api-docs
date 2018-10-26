@@ -4,7 +4,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   // Public API
-  result: null,
+  result: Object.freeze({}),
   role: 'option',
   groupName: '',
   groupPosition: 0, // Index of this result in the grouped results
@@ -23,10 +23,5 @@ export default Component.extend({
     return groupPosition === 0? groupName : '';
   }),
   isSecondary: gt('groupPosition', 0),
-
-  init() {
-    this.result = {};
-    this._super(...arguments);
-  }
 
 });
