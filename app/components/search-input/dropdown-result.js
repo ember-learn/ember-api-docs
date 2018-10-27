@@ -22,6 +22,7 @@ export default Component.extend({
     const { groupName, groupPosition } = this.getProperties('groupName', 'groupPosition');
     return groupPosition === 0? groupName : '';
   }),
-  isSecondary: gt('groupPosition', 0),
+  isSecondary: gt('groupPosition', 0)
+
 
 });

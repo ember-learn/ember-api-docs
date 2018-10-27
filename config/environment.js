@@ -1,4 +1,6 @@
 /* eslint-env node */
+'use strict';
+
 module.exports = function(environment) {
   let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'Y1OMR4C7MF';
   let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
@@ -70,6 +72,7 @@ module.exports = function(environment) {
       defaultBreakpoints: ['mobile', 'desktop']
     };
 
+    ENV.APP.autoboot = false;
   }
 
   ENV.contentSecurityPolicy = {
