@@ -5,7 +5,6 @@ module('Unit | Helper | project name from class name');
 
 test('it should find ember project name', function(assert) {
   const result = projectNameFromClassName(['Ember.SomeClass', 'fallback']);
-    console.log(result);
   assert.equal(result, 'ember');
 });
 
