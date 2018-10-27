@@ -9,7 +9,7 @@ const projectNameFromClassName = key => {
       return 'ember';
     }
 
-    if (value.indexOf('DS.') > 1) {
+    if (value.indexOf('DS.') > -1) {
       return 'ember-data';
     }
 
