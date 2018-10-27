@@ -51,7 +51,6 @@ export default DS.Model.extend({
 
   extendedClassProjectName: projectNameFromClassName('extends'),
   extendedClassVersion: guessVersionFor('extends'),
-  usedClassProjectName: projectNameFromClassName('uses'),
   usedClassVersion: guessVersionFor('uses')
 
 });
