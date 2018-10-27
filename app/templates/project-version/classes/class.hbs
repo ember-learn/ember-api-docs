@@ -18,7 +18,7 @@
         <span class="attribute-value">
           {{#each model.uses as |parentClass idx|}}
             {{#if (not-eq idx 0)}}<span class="comma">,</span>{{/if}}
-            {{#link-to 'project-version.classes.class' model.usedClassProjectName model.projectVersion.compactVersion (remove-ember-prefix parentClass)}}{{parentClass}}{{/link-to}}
+              {{#link-to 'project-version.classes.class' (project-name-from-class-name parentClass model.project.id) model.projectVersion.compactVersion (remove-ember-prefix parentClass)}}{{parentClass}}{{/link-to}}
           {{/each}}
         </span>
       </div>
