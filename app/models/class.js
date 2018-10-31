@@ -5,7 +5,7 @@ const {attr, belongsTo} = DS;
 const projectNameFromClassName = key => {
   return computed(key, function() {
     const value = this.get(key) || "";
-    if (value.indexOf('Ember.') > -1) {
+    if (value.indexOf('Ember') > -1) {
       return 'ember';
     }
 
