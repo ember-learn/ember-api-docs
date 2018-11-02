@@ -2,7 +2,7 @@ import { helper } from '@ember/component/helper';
 
 export function projectNameFromClassName([className, fallback]) {
     className = className || "";
-    if (className.indexOf('Ember.') > -1) {
+    if (className.indexOf('Ember') > -1) {
       return 'ember';
     }
 
