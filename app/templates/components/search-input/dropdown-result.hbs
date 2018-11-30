@@ -7,7 +7,7 @@
     <div class="algolia-docsearch-suggestion--content">
       {{#if result.static}}
         {{#link-to "project-version.functions.function"
-             (or result.project "ember")
+             module
              version
              result.class
              result.name
@@ -34,7 +34,7 @@
         {{/link-to}}
       {{else}}
         {{#link-to "project-version.classes.class.methods.method"
-             (or result.project "ember")
+             module
              version
              result.class
              result.name
