@@ -9,6 +9,12 @@ export default Component.extend({
   groupName: '',
   groupPosition: 0, // Index of this result in the grouped results
 
+  module: computed('result.{project,module}', function () {
+    if (this.get('result.project')) {
+      return this.get('result.project');
+    }
+    return this.get('result.module') === 'ember-data' ? 'ember-data' : 'ember'
+  }),
   // Private API
   classNames: ['ds-suggestion'],
   attributeBindings: ['role'],
