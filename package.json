@@ -79,7 +79,7 @@
     "loader.js": "^4.6.0",
     "minimist": "^1.2.0",
     "normalize.css": "^7.0.0",
-    "qunit-dom": "^0.3.2",
+    "qunit-dom": "^0.8.2",
     "sass": "^1.14.3",
     "spawndamnit": "2.0.0"
   },
