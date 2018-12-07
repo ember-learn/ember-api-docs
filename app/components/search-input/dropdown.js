@@ -17,6 +17,7 @@ export default Component.extend({
     this.results = A();
   },
 
+  // show
   // Massage data to make it easier for displaying on the template
   // Returned object:
   /**

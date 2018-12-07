@@ -73,6 +73,10 @@ module.exports = function(environment) {
     };
 
     ENV.APP.autoboot = false;
+
+    ENV['ember-tether'] = {
+      bodyElementId: 'ember-testing'
+    };
   }
 
   ENV.contentSecurityPolicy = {

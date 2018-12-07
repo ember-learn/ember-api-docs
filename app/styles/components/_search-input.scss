@@ -139,6 +139,15 @@ $dropdown-min-width-large: 600px;
   display: inline;
 }
 
+// No Results
+.algolia-docsearch-suggestion--noresults {
+  padding: 0 5px 10px 10px;
+  a {
+    color: $ember-orange;
+    text-decoration: none;
+  }
+}
+
 // Footer
 
 .algolia-docsearch-footer {
