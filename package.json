@@ -22,7 +22,6 @@
   "dependencies": {
     "algoliasearch": "^3.31.0",
     "bourbon": "5.1.0",
-    "compression": "^1.7.3",
     "ember-cli-browserstack": "^0.0.6",
     "ember-rfc176-data": "^0.3.5",
     "lodash.groupby": "^4.6.0",
