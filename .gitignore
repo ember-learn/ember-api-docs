@@ -35,3 +35,4 @@ package-lock.json
 
 browserstack-local.pid
 local.log
+.vscode/
