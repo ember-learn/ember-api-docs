@@ -3,32 +3,48 @@
   "version": "0.1.0",
   "private": true,
   "description": "Small description for ember-api-docs goes here",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ember-learn/ember-api-docs.git"
+  },
   "license": "MIT",
   "author": "Ember Learning Team and contributors",
   "directories": {
     "test": "tests"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ember-learn/ember-api-docs.git"
-  },
   "scripts": {
     "build": "ember build",
     "postinstall": "npm rebuild node-sass",
-    "lint:js": "eslint ./*.js app config lib server tests",
+    "lint:hbs": "ember-template-lint .",
+    "lint:js": "eslint .",
     "start": "ember serve",
     "test": "node run-tests.js"
   },
+  "dependencies": {
+    "algoliasearch": "^3.31.0",
+    "bourbon": "5.1.0",
+    "ember-cli-browserstack": "^0.0.6",
+    "ember-rfc176-data": "^0.3.5",
+    "lodash.groupby": "^4.6.0",
+    "lodash.last": "^3.0.0",
+    "lodash.sortby": "^4.7.0",
+    "lodash.union": "^4.6.0",
+    "lodash.uniq": "^4.5.0",
+    "lodash.values": "^4.3.0",
+    "sanitize-html": "^1.19.3",
+    "semver-compare": "^1.0.0",
+    "testem": "^2.14.0"
+  },
   "devDependencies": {
-    "broccoli-asset-rev": "^2.5.0",
+    "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^0.5.4",
     "ember-algolia": "0.0.10",
     "ember-anchor": "~0.2.0",
-    "ember-browserify": "^1.2.0",
+    "ember-browserify": "^1.2.2",
     "ember-cli": "~2.18.1",
-    "ember-cli-app-version": "^3.0.0",
+    "ember-cli-app-version": "^3.2.0",
     "ember-cli-autoprefixer": "^0.7.0",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-bourbon": "^2.0.1",
@@ -40,18 +56,18 @@
     "ember-cli-deploy-gzip": "^1.0.0",
     "ember-cli-document-title": "^0.4.0",
     "ember-cli-eslint": "^4.2.1",
-    "ember-cli-fastboot": "^1.0.1",
+    "ember-cli-fastboot": "^2.0.0",
     "ember-cli-htmlbars": "^2.0.2",
     "ember-cli-htmlbars-inline-precompile": "^1.0.0",
     "ember-cli-inject-live-reload": "^1.7.0",
-    "ember-cli-meta-tags": "^5.0.0",
-    "ember-cli-qunit": "^4.3.0",
+    "ember-cli-meta-tags": "^5.1.0",
+    "ember-cli-qunit": "^4.4.0",
     "ember-cli-sass": "^8.0.1",
     "ember-cli-shims": "^1.2.0",
-    "ember-cli-template-lint": "^0.7.1",
+    "ember-cli-template-lint": "^1.0.0-beta.2",
     "ember-cli-uglify": "^2.0.0",
-    "ember-composable-helpers": "^2.0.3",
-    "ember-concurrency": "0.8.18",
+    "ember-composable-helpers": "^2.1.0",
+    "ember-concurrency": "0.8.23",
     "ember-data": "~2.18.0",
     "ember-data-fastboot": "^0.1.2",
     "ember-disable-proxy-controllers": "^1.0.2",
@@ -63,55 +79,33 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-native-dom-helpers": "^0.5.2",
     "ember-normalize": "^1.0.0",
-    "ember-percy": "^1.2.13",
+    "ember-percy": "^1.5.0",
     "ember-power-select": "^1.9.2",
     "ember-resolver": "^4.3.0",
     "ember-route-action-helper": "^2.0.5",
     "ember-source": "~2.18.0",
     "ember-styleguide": "^2.3.1",
     "ember-svg-jar": "^1.2.2",
-    "ember-test-selectors": "^0.3.6",
-    "ember-tether": "1.0.0-beta.0",
-    "ember-truth-helpers": "^1.3.0",
+    "ember-test-selectors": "^2.0.0",
+    "ember-tether": "1.0.0",
+    "ember-truth-helpers": "^2.1.0",
     "ember-web-app": "^2.0.0",
-    "eslint-plugin-ember": "^5.0.3",
-    "fastboot-app-server": "^1.0.1",
-    "loader.js": "^4.6.0",
+    "eslint-plugin-ember": "^6.0.1",
+    "fastboot-app-server": "^1.1.2-beta.1",
+    "loader.js": "^4.7.0",
     "minimist": "^1.2.0",
-    "normalize.css": "^7.0.0",
-    "sass": "^1.14.3",
+    "normalize.css": "^8.0.1",
     "qunit-dom": "^0.8.2",
+    "sass": "^1.14.3",
     "spawndamnit": "2.0.0"
   },
   "engines": {
     "node": ">= 8",
     "npm": "5"
   },
-  "dependencies": {
-    "algoliasearch": "^3.24.3",
-    "bourbon": "5.1.0",
-    "ember-cli-browserstack": "^0.0.6",
-    "ember-rfc176-data": "^0.3.1",
-    "lodash.groupby": "^4.6.0",
-    "lodash.last": "^3.0.0",
-    "lodash.sortby": "^4.7.0",
-    "lodash.union": "^4.6.0",
-    "lodash.uniq": "^4.5.0",
-    "lodash.values": "^4.3.0",
-    "sanitize-html": "^1.18.2",
-    "semver-compare": "^1.0.0",
-    "testem": "^2.2.1"
-  },
-  "cacheDirectories": [
-    "bower_components",
-    "node_modules"
-  ],
+  "cacheDirectories": ["bower_components", "node_modules"],
   "ember-addon": {
-    "paths": [
-      "lib/hash-to-query"
-    ]
+    "paths": ["lib/hash-to-query"]
   },
-  "fastbootDependencies": [
-    "algoliasearch"
-  ]
+  "fastbootDependencies": ["algoliasearch"]
 }
