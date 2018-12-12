@@ -1,22 +1,35 @@
 import Router from '@ember/routing/router';
-import { on } from '@ember/object/evented';
+import { scheduleOnce } from '@ember/runloop';
 import config from './config/environment';
 import { inject as service } from '@ember/service';
 
 const AppRouter = Router.extend({
-
-  analytics: service(),
-
   location: config.locationType,
   rootURL: config.routerRootURL,
 
-  sendPageViewToGA: on('didTransition', function(page, title) {
-    if (typeof FastBoot === 'undefined') {
-      page = page ? page : this.get('url');
-      title = title ? title : this.get('url');
-      this.get('analytics').trackPage(page, title);
+  metrics: service(),
+  fastboot: service(),
+
+  didTransition() {
+    this._super(...arguments);
+    this._trackPage();
+  },
+
+  _trackPage() {
+    if (this.get('fastboot.isFastBoot')) {
+      return;
     }
-  })
+
+    scheduleOnce('afterRender', this, () => {
+      const page = this.get('url');
+      const title = this.getWithDefault('currentRouteName', 'unknown');
+
+      // this is constant for this app and is only used to identify page views in the GA dashboard
+      const hostname = 'api.emberjs.com';
+
+      this.get('metrics').trackPage({ page, title, hostname });
+    });
+  }
 });
 
 AppRouter.map(function() {

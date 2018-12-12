@@ -12,7 +12,6 @@ module.exports = function(environment) {
     routerRootURL: '/',
     locationType: 'auto',
     API_HOST: process.env.API_HOST || 'https://ember-api-docs.global.ssl.fastly.net',
-    gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
@@ -35,7 +34,16 @@ module.exports = function(environment) {
     'ember-algolia': {
       algoliaId: ALGOLIA_APP_ID,
       algoliaKey: ALGOLIA_API_KEY
-    }
+    },
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production'],
+        config: {
+          id: 'UA-27675533-1'
+        }
+      }
+    ]
   };
 
   if (environment === 'development') {
@@ -96,7 +104,6 @@ module.exports = function(environment) {
      * solved for that
      */
     ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api/';
-    ENV.gaTrackingId = 'UA-27675533-1';
 
   }
 
