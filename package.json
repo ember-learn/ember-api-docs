@@ -106,8 +106,5 @@
     "npm": "5"
   },
   "cacheDirectories": ["bower_components", "node_modules"],
-  "ember-addon": {
-    "paths": ["lib/hash-to-query"]
-  },
   "fastbootDependencies": ["algoliasearch"]
 }
