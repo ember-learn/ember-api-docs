@@ -5,15 +5,9 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees  = require('broccoli-merge-trees');
 
 module.exports = function(defaults) {
-  let prepend = '';
-  if ('FASTLY_CDN_URL' in process.env) {
-    prepend = `https://${process.env.FASTLY_CDN_URL}/`;
-  }
-
   let app = new EmberApp(defaults, {
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg', 'webmanifest'],
-      prepend,
       generateAssetMap: true
     },
     sassOptions: {
@@ -31,7 +25,6 @@ module.exports = function(defaults) {
     },
     'asset-cache': {
       version: '4', //Might have to change this with the app build,
-      prepend
     },
     svgJar: {
       sourceDirs: ['public/assets/images']
