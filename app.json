@@ -3,10 +3,6 @@
   "scripts": {
   },
   "env": {
-    "DOCS_SLUG": {
-      "required": false,
-      "value": "/api/"
-    },
     "FASTLY_API_KEY": {
       "required": false
     },

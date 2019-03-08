@@ -96,16 +96,7 @@ module.exports = function(environment) {
     "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com  *.fastly.net"
   };
 
-  if (environment === 'production') {
-
-    /**
-     * Ideally we want this to be only for fast boot. But we have to wait for
-     * https://github.com/ember-fastboot/ember-cli-fastboot/issues/254 to be
-     * solved for that
-     */
-    ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api/';
-
-  }
+  // if (environment === 'production') {}
 
   return ENV;
 };
