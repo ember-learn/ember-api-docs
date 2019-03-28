@@ -11,7 +11,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: process.env.API_HOST || 'https://ember-api-docs.global.ssl.fastly.net',
+    API_HOST: process.env.API_HOST || 'https://api-store.emberjs.com',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
@@ -25,10 +25,17 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       scrollContainerSelector: 'body, html',
+      domain: 'http://localhost:4200'
     },
 
     fastboot: {
-      hostWhitelist: [/^[\w-]+\.herokuapp\.com$/, /^localhost:\d+$/, /^127\.0\.0\.1:\d+$/, /^[\w-]+\.fastly\.net$/]
+      hostWhitelist: [
+        /^[\w-]+\.herokuapp\.com$/,
+        /^localhost:\d+$/,
+        /^127\.0\.0\.1:\d+$/,
+        /^[\w-]+\.fastly\.net$/,
+        /^[\w-]+\.emberjs\.com$/
+      ]
     },
     'ember-algolia': {
       algoliaId: ALGOLIA_APP_ID,
@@ -87,15 +94,18 @@ module.exports = function(environment) {
   }
 
   ENV.contentSecurityPolicy = {
-    "default-src": "'self' *.fastly.net",
-    "connect-src": "'self' *.algolia.net *.algolianet.com *.fastly.net",
-    "script-src": "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.fastly.net https://www.google-analytics.com",
-    "font-src": "'self' data://* https://fonts.gstatic.com  *.fastly.net",
-    "img-src": "'self' data://*  *.fastly.net https://www.google-analytics.com",
-    "style-src": "'self' 'unsafe-inline' https://fonts.googleapis.com  *.fastly.net"
+    'default-src': "'self' *.emberjs.com",
+    'connect-src': "'self' *.algolia.net *.algolianet.com *.emberjs.com",
+    'script-src':
+      "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.emberjs.com https://www.google-analytics.com",
+    'font-src': "'self' data://* https://fonts.gstatic.com  *.emberjs.com",
+    'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
+    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
   };
 
-  // if (environment === 'production') {}
+  if (environment === 'production') {
+    ENV.APP.domain = process.env.APP_DOMAIN_URL ? process.env.APP_DOMAIN_URL : 'https://api.emberjs.com';
+  }
 
   return ENV;
 };
