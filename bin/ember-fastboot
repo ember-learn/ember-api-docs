@@ -37,7 +37,12 @@ const httpServer = new ExpressHTTPServer(serverOptions);
 
 const app = httpServer.app;
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(
+  enforce.HTTPS({
+    trustProtoHeader: true,
+    trustXForwardedHostHeader: true
+  })
+);
 
 app.use(
   express.static(distPath, {
@@ -52,6 +57,8 @@ app.use(
 
 /** We rewrite the 307 location header into a relativeURL so that our special setup is handled */
 app.use(function(req, res, next) {
+  console.log(req.headers['x-forwarded-host'], req.headers.host);
+
   const originalSendFn = res.send;
 
   res.send = function() {
