@@ -3,14 +3,7 @@
   "scripts": {
   },
   "env": {
-    "DOCS_SLUG": {
-      "required": false,
-      "value": "/api/"
-    },
     "FASTLY_API_KEY": {
-      "required": false
-    },
-    "FASTLY_CDN_URL": {
       "required": false
     },
     "FASTLY_SERVICE_ID": {

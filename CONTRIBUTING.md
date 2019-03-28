@@ -1,6 +1,6 @@
 # Questions
 
-This is the issue tracker for [Ember.js API](https://emberjs.com/api/). 
+This is the issue tracker for [Ember.js API](https://api.emberjs.com/).
 
 # Issue Labeling
 
@@ -15,8 +15,8 @@ Think you've found a bug or have a new feature to suggest? Let us know!
 1. Search for similar issues. It's possible somebody has encountered
 this bug already.
 
-2. Please make sure you provide very specific steps to reproduce the error. 
-If we cannot reproduce it, we will close the ticket. Screenshots or [recorded gifs](https://www.cockos.com/licecap/) of 
+2. Please make sure you provide very specific steps to reproduce the error.
+If we cannot reproduce it, we will close the ticket. Screenshots or [recorded gifs](https://www.cockos.com/licecap/) of
 the issue that you are experiencing will help towards reproducing and solving issues sooner.
 
 4. Your issue will be verified. The provided example will be tested for
@@ -109,11 +109,11 @@ to know that you have a clean slate: `yarn install && bower install && yarn test
 
 3. Add a test for your change. Only refactoring and documentation changes
 require no new tests. If you are adding functionality or fixing a bug, we need
-a test! 
+a test!
 
 4. Make the test pass.
 
-5. Commit your changes. If your pull request fixes an issue specify it in the commit message. 
+5. Commit your changes. If your pull request fixes an issue specify it in the commit message.
 
 6. Push to your fork and submit a pull request. Please provide us with some
 explanation of why you made the changes you made. For new features make sure to
@@ -123,7 +123,7 @@ We try to be quick about responding to tickets but sometimes we get a bit
 backlogged. If the response is slow, try to find someone on slack (#team-learning) to
 give the ticket a review.
 
-Including tests that fail without your code, and making it pass will increase the chance 
+Including tests that fail without your code, and making it pass will increase the chance
 that your pull request is accepted.
 
 And in case we didn't emphasize it enough: we love tests!

@@ -8,7 +8,7 @@ const links = [{
     name: 'Ember.js Guides',
     type: 'link'
   }, {
-    href: 'https://emberjs.com/api',
+    href: 'https://api.emberjs.com',
     name: 'API Reference',
     type: 'link'
   }, {

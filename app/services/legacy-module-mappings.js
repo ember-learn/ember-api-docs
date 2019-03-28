@@ -32,7 +32,7 @@ export default Service.extend({
   },
 
   fetch() {
-    return fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
+    return fetch('/assets/mappings.json');
   },
 
   getModule(name, documentedModule) {

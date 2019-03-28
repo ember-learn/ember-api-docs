@@ -55,7 +55,7 @@ app.use(function(req, res, next) {
         originalLocation = `http:${originalLocation}`;
       }
 
-      let relativeURL = '/api/ember/2.14/namespaces/Ember';
+      let relativeURL = '/ember/2.14/namespaces/Ember';
 
       try {
         relativeURL = new URL(originalLocation).pathname;
