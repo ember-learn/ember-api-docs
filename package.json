@@ -25,6 +25,7 @@
     "bourbon": "5.1.0",
     "ember-cli-browserstack": "^0.0.6",
     "ember-rfc176-data": "^0.3.5",
+    "express-sslify": "^1.2.0",
     "lodash.groupby": "^4.6.0",
     "lodash.last": "^3.0.0",
     "lodash.sortby": "^4.7.0",
