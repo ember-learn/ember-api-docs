@@ -34,8 +34,12 @@ export default JSONAPIAdapter.extend({
         modelNameToUse = 'namespace';
       }
 
-      let encodedRevId = encodeURIComponent(revId);
-      url = `json-docs/${projectName}/${version}/${pluralize(modelNameToUse)}/${encodedRevId}`;
+      if (typeof revId != 'undefined') {
+        let encodedRevId = encodeURIComponent(revId);
+        url = `json-docs/${projectName}/${version}/${pluralize(modelNameToUse)}/${encodedRevId}`;
+      } else {
+        throw new Error('Documentation item not found');
+      }
     } else if (modelName === 'missing') {
       let version = this.get('projectService.version');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);

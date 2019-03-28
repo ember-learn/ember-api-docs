@@ -29,10 +29,20 @@ export default Route.extend(ScrollTracker, {
 
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
-      Logger.warn(e1, 'fetching by class or module failed, retrying as namespace');
-      return this.store.find('namespace', param).catch((e2) => {
-        Logger.error(e2);
-        return resolve({ isError: true });
+      if (typeName != 'namespace') {
+        Logger.warn(e1, 'fetching by class or module failed, retrying as namespace');
+        return this.store.find('namespace', param).catch((e2) => {
+          Logger.error(e2);
+          return resolve({
+            isError: true,
+            status: 404
+          });
+        });
+      }
+      Logger.error(e1);
+      return resolve({
+        isError: true,
+        status: 404
       });
     });
   },
