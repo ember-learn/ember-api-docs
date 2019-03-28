@@ -1,22 +1,19 @@
 import ClassRoute from '../classes/class';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
 export default ClassRoute.extend(ScrollTracker, {
 
-  model(params, transition) {
-    return this.getModel('module', params, transition);
-  },
-
-  getModel(typeName, params, transition) {
-    const projectID = transition.params['project-version'].project;
-    const compactVersion = transition.params['project-version'].project_version;
-    const projectVersion = this.get('metaStore').getFullVersion(projectID, compactVersion);
-
-    let klass = params[typeName];
+  async model(params, transition) {
+    let projectID = transition.params['project-version'].project;
+    let projectObj = await this.store.findRecord('project', projectID);
+    let compactVersion = transition.params['project-version'].project_version;
+    let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.get('metaStore'));
+    let klass = params['module'];
     if (!~klass.indexOf(projectID) && klass !== 'rsvp' && klass !== 'jquery') {
       klass = `${projectID}-${klass}`;
     }
-    return this.find(typeName, `${projectID}-${projectVersion}-${klass}`);
+    return this.find('module', `${projectID}-${projectVersion}-${klass}`);
   },
 
   serialize(model) {

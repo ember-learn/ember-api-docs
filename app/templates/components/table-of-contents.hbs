@@ -3,9 +3,13 @@
     <a {{action 'toggle' 'modules'}} href="#">Packages</a>
     <ol class="toc-level-1 modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
-        <li class="toc-level-1" data-test-module={{moduleID}}>
-          {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
-        </li>
+
+        {{#if (not-eq moduleID "@ember/object/computed")}}
+          <li class="toc-level-1" data-test-module={{moduleID}}>
+            {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
+          </li>
+        {{/if}}
+
       {{/each}}
     </ol>
   </li>
@@ -38,4 +42,3 @@
   {{input type="checkbox" checked=showPrivateClasses class='private-deprecated-toggle'}}
   Show Private / Deprecated
 </label>
-

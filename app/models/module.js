@@ -10,5 +10,6 @@ export default ClassModel.extend({
   namespaces: attr(),
   parent: attr(),
   staticfunctions: attr(),
+  allstaticfunctions: attr(),
   projectVersion: belongsTo('project-version', {inverse: 'modules'})
 });

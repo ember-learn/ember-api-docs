@@ -1,4 +1,3 @@
-import { capitalize } from '@ember/string';
 import Component from '@ember/component';
 import { get, computed } from '@ember/object';
 import { A } from '@ember/array';
@@ -6,7 +5,6 @@ import { A } from '@ember/array';
 export default Component.extend({
   // Public API
   role: 'listbox',
-  results: A(),
   isVisible: false,
 
   // Private API
@@ -14,7 +12,12 @@ export default Component.extend({
   classNames: ['ds-dropdown-menu','ds-with-1'],
   attributeBindings: ['role'],
 
+  init() {
+    this._super(...arguments);
+    this.results = A();
+  },
 
+  // show
   // Massage data to make it easier for displaying on the template
   // Returned object:
   /**
@@ -31,7 +34,7 @@ export default Component.extend({
 
     const lvl0Group = get(this, 'results').reduce((previous, current) => {
       // Remap all lowercase usages of 'guides' to 'Guides'
-      let lvl0 = capitalize(get(current, 'hierarchy.lvl0'));
+      let lvl0 = get(current, 'hierarchy.lvl0');
       // If lvl0 doesn't exist in the resulting object, create the array
       if (!previous[lvl0]) {
         previous[lvl0] = A();

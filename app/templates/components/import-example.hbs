@@ -1,0 +1,21 @@
+<div class="highlight javascript">
+  <div class="ribbon"></div>
+  {{#if (is-clipboard-supported)}}
+    <div class="import-copy">
+      {{#if showClipboardSuccessIcon}}
+        {{svg-jar "success" width="24px" height="24px"}}
+      {{else}}
+        {{#copy-button clipboardText=(concat "import " item " from '" package "';") title="Copy to clipboard" success=(action "showSuccess")}}
+          {{svg-jar "copy" width="24px" height="24px"}}
+        {{/copy-button}}
+      {{/if}}
+    </div>
+  {{/if}}
+  <table class="CodeRay">
+    <tbody>
+      <tr>
+        <td class="code"><pre><span class="wrapper"><span class="keyword">import</span> {{item}} <span class="keyword">from</span> <span class="string">'{{package}}'</span>;</span></pre></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

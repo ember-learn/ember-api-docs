@@ -17,6 +17,7 @@ terraform.tfstate.backup
 /bower_components
 
 # misc
+/.projectile
 /.sass-cache
 /connect.lock
 /coverage/*
@@ -27,3 +28,11 @@ testem.log
 
 public/json-docs/
 public/rev-index/
+jsconfig.json
+
+package-lock.json
+
+
+browserstack-local.pid
+local.log
+.vscode/

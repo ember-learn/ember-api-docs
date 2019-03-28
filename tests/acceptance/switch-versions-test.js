@@ -32,6 +32,16 @@ test('switching module versions less than 2.16 should retain module page', async
   assert.equal(currentURL(), '/ember/1.4/modules/ember-metal', 'navigated to v2.7 module');
 });
 
+
+test('switching module versions greater than 2.16 should retain module page', async function(assert) {
+  await visit('/ember/2.18/modules/@ember%2Fapplication');
+  assert.equal(currentURL(), '/ember/2.18/modules/@ember%2Fapplication', 'navigated to v2.18 module');
+  await selectChoose('.select-container', '2.17');
+  assert.equal(currentURL(), '/ember/2.17/modules/@ember%2Fapplication', 'navigated to v2.17 module');
+  await selectChoose('.select-container', '2.16');
+  assert.equal(currentURL(), '/ember/2.16/modules/@ember%2Fapplication', 'navigated to v2.16 module');
+});
+
 test('switching specific method less than 2.16 should retain method', async function (assert) {
   await visit('/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs')
   assert.equal(currentURL(), '/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs', 'navigated to v2.8 method');
@@ -74,11 +84,18 @@ test('switching class properties tab less than 2.16 should retain', async functi
   assert.equal(currentURL(), '/ember/2.11/classes/Ember.Component/properties', 'navigated to v2.11 properties');
 });
 
-test('switching from class version less than 2.16 to class version 2.16 should reset to first module page', async function(assert) {
+test('switching from class version less than 2.16 to class version 2.16 should reset to landing page', async function(assert) {
   await visit('/ember/2.7/classes/Ember.Component');
   assert.equal(currentURL(), '/ember/2.7/classes/Ember.Component', 'navigated to v2.7 class');
   await selectChoose('.select-container', '2.16');
-  assert.equal(currentURL(), '/ember/2.16/modules/@ember%2Fapplication', 'navigated to v2.16 application module');
+  assert.equal(currentURL(), '/ember/2.16', 'navigated to v2.16 landing page');
+});
+
+test('switching from class version less than 2.16 to class version 2.16 should retain if project is ember-data', async function(assert) {
+  await visit('/ember-data/2.7/classes/DS.Adapter');
+  assert.equal(currentURL(), '/ember-data/2.7/classes/DS.Adapter', 'navigated to v2.7 class');
+  await selectChoose('.select-container', '2.16');
+  assert.equal(currentURL(), '/ember-data/2.16/classes/DS.Adapter', 'navigated to v2.16 landing page');
 });
 
 test('switching from class version 2.16 to class version less then 2.16 should reset to first module page', async function (assert) {
@@ -88,5 +105,9 @@ test('switching from class version 2.16 to class version less then 2.16 should r
   assert.equal(currentURL(), '/ember/2.11/modules/ember', 'navigated to v2.11 ember module');
 });
 
-
-
+test('switching from class version 2.16 to class version less then 2.16 should retain if project is ember-data', async function(assert) {
+  await visit('/ember-data/2.16/classes/DS.Adapter');
+  assert.equal(currentURL(), '/ember-data/2.16/classes/DS.Adapter', 'navigated to v2.7 class');
+  await selectChoose('.select-container', '2.11');
+  assert.equal(currentURL(), '/ember-data/2.11/classes/DS.Adapter', 'navigated to v2.16 landing page');
+});

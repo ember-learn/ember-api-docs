@@ -1,19 +1,22 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { alias, readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import values from 'npm:lodash.values';
 import groupBy from 'npm:lodash.groupby';
 import semverCompare from 'npm:semver-compare';
-import FilterParams from '../mixins/filter-params';
+import getCompactVersion from '../utils/get-compact-version';
 
-export default Controller.extend(FilterParams, {
+export default Controller.extend({
 
   filterData: service(),
 
   metaStore: service(),
 
-  showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
+  project: service(),
+
+  showPrivateClasses: alias('filterData.sideNav.showPrivate'),
 
   classesIDs: computed('model', function() {
     return this.getRelationshipIDs('classes');
@@ -74,7 +77,7 @@ export default Controller.extend(FilterParams, {
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
-      const compactVersion = version ? version.split('.').slice(0, 2).join('.') : '';
+      const compactVersion = getCompactVersion(version);
       return { id: version, compactVersion };
     });
     let groupedVersions = groupBy(versions, version => version.compactVersion);
@@ -82,9 +85,11 @@ export default Controller.extend(FilterParams, {
     return values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
 
+  urlVersion: alias('project.urlVersion'),
+
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {
     return this.get('projectVersions').filter(pV => pV.id === this.get('model.version'))[0];
   }),
 
-  activeProject: computed.readOnly('model.project.id')
+  activeProject: readOnly('model.project.id')
 });

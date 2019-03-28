@@ -5,9 +5,8 @@
   oninput={{perform search value='target.value'}}
   onfocus={{action 'onfocus'}}
   onblur={{action 'onblur'}}
-  placeholder="Search the guides"
+  placeholder="Search"
   >
-
 {{!-- Search results dropdown --}}
   {{#ember-tether
     target='#search-input'
@@ -18,6 +17,7 @@
   }}
     {{search-input/dropdown
       isVisible=_focused
-      results=_results
+      results=searchService.results
+      noResults=noResults
     }}
   {{/ember-tether}}

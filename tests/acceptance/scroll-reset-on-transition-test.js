@@ -9,7 +9,7 @@ const { scrollContainerSelector } = config.APP;
 moduleForAcceptance('Acceptance | scroll reset on transition');
 
 test('reset scroll on transitions', async function(assert) {
-  await visit('/');
+  await visit('/ember/2.15');
 
   $(scrollContainerSelector).scrollTop(1000);
   assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
@@ -63,4 +63,12 @@ test('reset scroll on transitions', async function(assert) {
   await visit('ember/1.0/classes/Ember.Route/methods');
 
   assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after visiting route with same tab but different model');
+
+  await visit('/ember/2.16');
+  $(scrollContainerSelector).scrollTop(1000);
+  assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
+
+  await visit('/ember/2.15/classes/Ember.Error');
+
+  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is zero after transition to different route');
 });

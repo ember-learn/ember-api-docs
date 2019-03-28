@@ -1,21 +1,27 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import getLastVersion from 'ember-api-docs/utils/get-last-version';
-import { visit } from 'ember-native-dom-helpers';
+import { visit, find } from 'ember-native-dom-helpers';
 
 moduleForAcceptance('Acceptance | redirects');
 
 test('visiting /', async function(assert) {
   await visit('/');
-
-  const store = this.application.__container__.lookup('service:store');
-  let versions = store.peekAll('project-version').toArray();
-  const last = getLastVersion(versions).split('.').slice(0, 2).join('.');
   assert.equal(
     currentURL(),
-    `/ember/${last}/modules/@ember%2Fapplication`,
+    `/ember/release`,
     'routes to the latest version of the project'
   );
+  assert.equal(find('h1').textContent, 'Ember.js API Documentation');
+});
+
+test('visiting /ember-data', async function (assert) {
+  await visit('/ember-data');
+  assert.equal(
+    currentURL(),
+    `/ember-data/release/modules/ember-data`,
+    'routes to the first page of ember data'
+  );
+  assert.equal(find('h1').textContent, 'Package ember-data');
 });
 
 test('visiting pre-2.16 version', async function(assert) {
