@@ -37,27 +37,31 @@ test('checking that trackPage gets called on transitions', async function(assert
     } times`
   );
 
-  const hostname = config.APP.domain;
+  const hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
+
   assert.ok(
     serviceTrackPageSpy.calledWith({
       page: '/ember/2.11/namespaces/Ember',
       title: 'project-version.namespaces.namespace.index',
       hostname
-    })
+    }),
+    'service was called with expected arguments for ember namespace page'
   );
   assert.ok(
     serviceTrackPageSpy.calledWith({
       page: '/ember/2.11/modules/ember-metal',
       title: 'project-version.modules.module.index',
       hostname
-    })
+    }),
+    'service was called with expected arguments for ember metal module'
   );
   assert.ok(
     serviceTrackPageSpy.calledWith({
       page: '/ember/2.11/classes/Ember.Application',
       title: 'project-version.classes.class.index',
       hostname
-    })
+    }),
+    'service was called with expected arguments for ember application class'
   );
 
   // make sure the test runner waits for last idle callback
