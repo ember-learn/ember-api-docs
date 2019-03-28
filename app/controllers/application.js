@@ -90,7 +90,7 @@ const links = [
         type: 'link'
       },
       {
-        href: 'http://github.com/emberjs/',
+        href: 'https://github.com/emberjs/',
         name: 'Contribute (Github)',
         type: 'link'
       },
@@ -103,7 +103,7 @@ const links = [
         type: 'link'
       },
       {
-        href: 'http://jobs.emberjs.com/',
+        href: 'https://jobs.emberjs.com/',
         name: 'Job Board',
         type: 'link'
       },
@@ -111,7 +111,7 @@ const links = [
         type: 'divider'
       },
       {
-        href: 'http://emberconf.com/',
+        href: 'https://emberconf.com/',
         name: 'Ember Conf',
         type: 'link'
       }
