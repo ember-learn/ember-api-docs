@@ -6,5 +6,5 @@ moduleForAcceptance('Acceptance | release URL');
 
 test('specifying release instead of specific version in URL should go to the latest release', async function (assert) {
   await visit('ember/release/classes/Application');
-  assert.equal(find('h1.module-name').text().trim(), 'Application')
+  assert.equal(find('h1.module-name').text().trim(), 'Class Application')
 });

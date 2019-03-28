@@ -68,7 +68,6 @@ $dropdown-min-width-large: 600px;
 // Each suggestion
 .algolia-docsearch-suggestion {
   color: #333;
-  cursor: pointer;
   overflow: hidden;
   border-bottom: 1px solid $color-border;
 }
@@ -126,6 +125,7 @@ $dropdown-min-width-large: 600px;
 
 .algolia-docsearch-suggestion--content {
   padding: 3px 5px;
+  cursor: pointer;
 }
 
 .algolia-docsearch-suggestion--subcategory-inline {
@@ -137,6 +137,15 @@ $dropdown-min-width-large: 600px;
 }
 .algolia-docsearch-suggestion--title {
   display: inline;
+}
+
+// No Results
+.algolia-docsearch-suggestion--noresults {
+  padding: 0 5px 10px 10px;
+  a {
+    color: $ember-orange;
+    text-decoration: none;
+  }
 }
 
 // Footer

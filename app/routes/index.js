@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
 
-  beforeModel() {
+  redirect() {
     return this.transitionTo('project', 'ember');
   }
 

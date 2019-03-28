@@ -1,7 +1,9 @@
 /* eslint-env node */
+'use strict';
+
 module.exports = function(environment) {
-  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'BH4D9OD16A';
-  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || '760969ef081fcadc7e0e60faefdb0907';
+  let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'Y1OMR4C7MF';
+  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
 
   let ENV = {
     modulePrefix: 'ember-api-docs',
@@ -10,7 +12,6 @@ module.exports = function(environment) {
     routerRootURL: '/',
     locationType: 'auto',
     API_HOST: process.env.API_HOST || 'https://ember-api-docs.global.ssl.fastly.net',
-    gaTrackingId: 'UA-XXXXX-Y',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
@@ -24,16 +25,25 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       scrollContainerSelector: 'body, html',
-      cdnUrl: process.env.FASTLY_CDN_URL ? `https://${process.env.FASTLY_CDN_URL}` : ''
+      cdnUrl: process.env.FASTLY_CDN_URL ? `https://${process.env.FASTLY_CDN_URL}` : 'https://ember-api-docs-frontend.global.ssl.fastly.net'
     },
 
     fastboot: {
-      hostWhitelist: [/^[\w\-]+\.herokuapp\.com$/, /^localhost:\d+$/]
+      hostWhitelist: [/^[\w-]+\.herokuapp\.com$/, /^localhost:\d+$/, /^127\.0\.0\.1:\d+$/, /^[\w-]+\.fastly\.net$/]
     },
     'ember-algolia': {
       algoliaId: ALGOLIA_APP_ID,
       algoliaKey: ALGOLIA_API_KEY
-    }
+    },
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production'],
+        config: {
+          id: 'UA-27675533-1'
+        }
+      }
+    ]
   };
 
   if (environment === 'development') {
@@ -70,6 +80,11 @@ module.exports = function(environment) {
       defaultBreakpoints: ['mobile', 'desktop']
     };
 
+    ENV.APP.autoboot = false;
+
+    ENV['ember-tether'] = {
+      bodyElementId: 'ember-testing'
+    };
   }
 
   ENV.contentSecurityPolicy = {
@@ -89,7 +104,6 @@ module.exports = function(environment) {
      * solved for that
      */
     ENV.routerRootURL = process.env.DOCS_SLUG ? process.env.DOCS_SLUG : '/api/';
-    ENV.gaTrackingId = 'UA-27675533-1';
 
   }
 

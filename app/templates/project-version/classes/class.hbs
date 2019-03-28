@@ -1,6 +1,8 @@
 <article class="chapter">
-  <a data-tooltip="View on Github" class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line}}" target="_blank" rel="noopener">{{svg-jar "fa-pencil"}}</a>
-  <h1 class="module-name">{{model.name}}</h1>
+  {{#if (is-latest version=model.projectVersion.version allVersions=model.project.projectVersions)}}
+    <a data-tooltip="Edit on Github" class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line isEdit=true}}" target="_blank" rel="noopener">{{svg-jar "fa-pencil"}}</a>
+  {{/if}}
+  <h1 class="module-name">Class {{model.name}}</h1>
   {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
 
   <div class="attributes">
@@ -42,10 +44,8 @@
       </div>
     {{/if}}
   </div>
-  {{#if (and (not (eq static 1)) legacyModuleMappings.initMappings.isIdle)}}
-    {{#if hasImportExample}}
-      {{import-example item=model.name package=module}}
-    {{/if}}
+  {{#if (and (not (eq static 1)) hasImportExample)}}
+    {{import-example item=model.name package=module}}
   {{/if}}
   <p class="description">{{html-safe model.description}}</p>
 

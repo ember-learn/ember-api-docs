@@ -4,13 +4,13 @@ import { set, get } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
-import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import Ember from 'ember';
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
 const { Logger } = Ember;
 
 export default Route.extend(ScrollTracker, {
-
   headData: service(),
   metaStore: service(),
 
@@ -26,7 +26,6 @@ export default Route.extend(ScrollTracker, {
     const klass = params['class'];
     return this.find('class', `${projectID}-${projectVersion}-${klass}`);
   },
-
 
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
@@ -54,7 +53,11 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      set(this, 'headData.description', klass.get('ogDescription'));
+      let description = klass.get('ogDescription') || klass.get('description')
+      if (description) {
+        set(this, 'headData.description', createExcerpt(description));
+      }
+
       const relationships = get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
         const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));

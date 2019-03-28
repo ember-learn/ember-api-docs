@@ -3,6 +3,7 @@ import Route from '@ember/routing/route';
 import semverCompare from 'npm:semver-compare';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 export default Route.extend({
   fastboot: service(),
@@ -29,10 +30,24 @@ export default Route.extend({
     let classParams = transition.params['project-version.classes.class'];
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
-    if (!classParams && !moduleParams && !namespaceParams) {
-      let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
-      let module = this.getFirstModule(moduleRevs);
-      return this.transitionTo('project-version.modules.module', model.get('project.id'), model.get('compactVersion'), module);
+    let functionParams = transition.params['project-version.functions.function'];
+    let transitionVersion = this.get('projectService').getUrlVersion();
+    if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
+      // if there is no class, module, or namespace specified...
+      let latestVersion = getLastVersion(model.get('project.projectVersions'));
+      let isLatestVersion = (transitionVersion === latestVersion || transitionVersion === 'release');
+      let isEmberProject = (model.get('project.id') === "ember");
+      let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
+      if ((!shouldConvertPackages || isLatestVersion) && isEmberProject) {
+        // ... and the transition version is the latest release, and the selected docs are
+        // ember (not Ember Data), then show the landing page
+        return this.transitionTo('project-version.index')
+      } else {
+        // else go to the version specified
+        let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
+        let module = this.getFirstModule(moduleRevs);
+        return this.transitionTo('project-version.modules.module', model.get('project.id'), transitionVersion, module);
+      }
     }
   },
 
@@ -40,10 +55,12 @@ export default Route.extend({
     this.set('headData.isRelease', projectVersion === 'release');
     this.set('headData.compactVersion', model.get('compactVersion'));
     this.set('headData.urlVersion', projectVersion);
-    if (this.get('headData.isRelease')) {
+    if (!this.get('headData.isRelease')) {
       let request = this.get('fastboot.request');
-      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//${request.host}${request.path}` : window.location.href;
-      this.set('headData.canonicalUrl', href.replace(/release/, model.get('compactVersion')));
+      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//emberjs.com/api${request.path}` : window.location.href;
+      let version = new RegExp(model.get('compactVersion'), 'g')
+      let canonicalUrl = href.replace(version, 'release');
+      this.set('headData.canonicalUrl', canonicalUrl);
     }
   },
 
@@ -119,7 +136,8 @@ export default Route.extend({
       // if the user is navigating to/from api versions >= 2.16, take them
       // to the home page instead of trying to translate the url
       let shouldConvertPackages = this.shouldConvertPackages(ver, this.get('projectService.version'));
-      if (!shouldConvertPackages) {
+      let isEmberProject = project === 'ember';
+      if (!isEmberProject || !shouldConvertPackages) {
         this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
       } else {
         this.transitionTo(`/${project}/${projectVersionID}`);

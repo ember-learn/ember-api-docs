@@ -6,9 +6,13 @@ import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Route.extend({
   headData: service(),
+  legacyModuleMappings: service(),
 
   title(tokens) {
-    const [version, entity] = tokens;
+    let [version, entity] = tokens;
+    if (!entity) {
+      entity = 'Ember';
+    }
     if (version) {
       const compactVersion = getCompactVersion(version);
       const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
@@ -17,8 +21,9 @@ export default Route.extend({
     }
     return '';
   },
-  afterModel(resolvedModel, transition) {
+  async afterModel() {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
+    await this.get('legacyModuleMappings').initMappings();
     return this._super(...arguments);
   }
 

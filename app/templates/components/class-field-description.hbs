@@ -19,6 +19,14 @@
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
+  {{#if model.module}}
+    <div class="attributes">
+      <div class="attribute">
+        <span class="attribute-label">Module:</span>
+        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.module}}{{model.module}}{{/link-to}}</span>
+      </div>
+    </div>
+  {{/if}}
   <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
@@ -37,10 +45,8 @@
       Available since v{{field.since}}
     </p>
   {{/if}}
-  {{#if legacyModuleMappings.initMappings.isIdle}}
-    {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
-      {{import-example item=(concat "{ " field.name " }") package=field.class}}
-    {{/if}}
+  {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
+    {{import-example item=(concat "{ " field.name " }") package=field.class}}
   {{/if}}
   <dl class="parameters">
     {{#each field.params as |param|}}

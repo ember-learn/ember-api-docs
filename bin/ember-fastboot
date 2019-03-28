@@ -36,7 +36,7 @@ const httpServer = new ExpressHTTPServer(serverOptions);
 const app = httpServer.app;
 
 app.use(express.static(distPath, {
-  setHeaders(res, path, stat) {
+  setHeaders(res) {
     res.setHeader('Cache-Control', 'public, max-age=365000000, immutable');
     res.removeHeader('X-Powered-By');
   }
@@ -46,7 +46,7 @@ app.use(express.static(distPath, {
 app.use(function(req, res, next) {
   const originalSendFn = res.send;
 
-  res.send = function(data) {
+  res.send = function() {
     if (res.hasHeader('location')) {
       let originalLocation = res.getHeader('location');
 

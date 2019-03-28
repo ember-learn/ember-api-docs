@@ -4,5 +4,11 @@ import AnchorControllerSupport from "ember-anchor/mixins/controller-support";
 
 export default Controller.extend(AnchorControllerSupport, {
   filterData: service(),
-  queryParams: ['anchor']
+  queryParams: ['anchor'],
+
+  actions: {
+    updateAnchor(fieldName) {
+      this.set('anchor', fieldName);
+    }
+  }
 });
