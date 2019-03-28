@@ -21,7 +21,7 @@ module.exports = function(environment, appConfig) {
         type: 'image/png'
       }, {
         src: '/assets/images/launch-icon-3x.png',
-        sizes: '144x144',
+        sizes: '144x122',
         type: 'image/png'
       }, {
         src: '/assets/images/launch-icon-2x.png',

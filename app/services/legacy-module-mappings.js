@@ -1,5 +1,4 @@
 import fetch from 'fetch';
-import config from 'ember-api-docs/config/environment';
 import Service from '@ember/service';
 
 const LOCALNAME_CONVERSIONS = {
