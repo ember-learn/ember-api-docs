@@ -4,6 +4,9 @@
 module.exports = {
   extends: 'recommended',
   rules: {
-    'bare-strings': false
+    'attribute-indentation': false,
+    'no-unnecessary-concat': false,
+    'no-inline-styles': false,
+    quotes: false
   }
 };

@@ -1,6 +1,9 @@
 <aside class="sidebar">
   <ol class="toc-level-0">
     <li class="toc-level-0">
+      {{#link-to 'project' 'ember' data-test-home}}Home{{/link-to}}
+    </li>
+    <li class="toc-level-0">
       Projects
       <ol class="toc-level-1 selected" style="display: block;">
         <li class="toc-level-1">{{#link-to 'project' 'ember' active=(eq activeProject 'ember') class="spec-ember"}}Ember{{/link-to}}</li>
@@ -23,12 +26,14 @@
     {{/power-select}}
   </div>
 
-  {{table-of-contents projectId=model.project.id
-                      version=model.compactVersion
-                      classesIDs=shownClassesIDs
-                      moduleIDs=shownModuleIDs
-                      namespaceIDs=shownNamespaceIDs
-                      showPrivateClasses=showPrivateClasses
+  {{table-of-contents
+    projectId=model.project.id
+    version=urlVersion
+    classesIDs=shownClassesIDs
+    moduleIDs=shownModuleIDs
+    namespaceIDs=shownNamespaceIDs
+    showPrivateClasses=showPrivateClasses
+    isShowingNamespaces=(version-lt selectedProjectVersion.compactVersion '2.16')
   }}
 </aside>
 <section class="content">

@@ -1,27 +1,34 @@
 <section class="{{type}}">
   {{#sticky-element top=0 bottom=0}}
-    <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
-      <a class="anchor">
-        {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
-      </a>
-      <span class="{{type}}-name">{{field.name}}</span>
-      {{#if field.params}}
-        <span class="args">
-          ({{join ", " (map-by "name" field.params)}})
-        </span>
-      {{/if}}
-      {{#if field.return}}
-        <span class="return-type">{{field.return.type}}</span>
-      {{/if}}
-      {{#if field.access}}
-        <span class="access">{{field.access}}</span>
-      {{/if}}
-      {{#if field.deprecated}}
-        <span class="access">deprecated</span>
-      {{/if}}
-    </h3>
+  <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
+    <a class="anchor">
+      {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
+    </a>
+    <span class="{{type}}-name">{{field.name}}</span>
+    {{#if field.params}}
+      <span class="args">
+        ({{join ", " (map-by "name" field.params)}})
+      </span>
+    {{/if}}
+    {{#if field.return}}
+      <span class="return-type">{{field.return.type}}</span>
+    {{/if}}
+    {{#if field.access}}
+      <span class="access">{{field.access}}</span>
+    {{/if}}
+    {{#if field.deprecated}}
+      <span class="access">deprecated</span>
+    {{/if}}
+  </h3>
   {{/sticky-element}}
-
+  {{#if model.module}}
+    <div class="attributes">
+      <div class="attribute">
+        <span class="attribute-label">Module:</span>
+        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.module}}{{model.module}}{{/link-to}}</span>
+      </div>
+    </div>
+  {{/if}}
   <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
@@ -35,6 +42,9 @@
       </a>
     {{/if}}
   </p>
+  {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
+    {{import-example item=(concat "{ " field.name " }") package=field.class}}
+  {{/if}}
   <dl class="parameters">
     {{#each field.params as |param|}}
       <div class="parameter">

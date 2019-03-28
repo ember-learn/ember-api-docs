@@ -3,6 +3,7 @@ import DS from 'ember-data';
 import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 import { pluralize } from 'ember-inflector';
+import { isBlank } from '@ember/utils';
 
 const { JSONAPIAdapter } = DS;
 
@@ -22,10 +23,19 @@ export default JSONAPIAdapter.extend({
     let host = this.get('host');
     let projectName = this.get('currentProject');
 
-    if (['namespace', 'class', 'module'].includes(modelName)) {
+    if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
       let [version] = id.replace(`${projectName}-`, '').split('-');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
-      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
+
+      let modelNameToUse = modelName;
+      // To account for namespaces that are also classes but not defined properly in yuidocs
+      if (isBlank(revId) && modelNameToUse === 'class') {
+        revId = this.get('metaStore').getRevId(projectName, version, 'namespace', id);
+        modelNameToUse = 'namespace';
+      }
+
+      let encodedRevId = encodeURIComponent(revId);
+      url = `json-docs/${projectName}/${version}/${pluralize(modelNameToUse)}/${encodedRevId}`;
     } else if (modelName === 'missing') {
       let version = this.get('projectService.version');
       let revId = this.get('metaStore').getRevId(projectName, version, modelName, id);
@@ -46,4 +56,3 @@ export default JSONAPIAdapter.extend({
   }
 
 });
-

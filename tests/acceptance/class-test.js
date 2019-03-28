@@ -1,15 +1,14 @@
 import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
 import { test } from 'qunit';
 import { visit, click, findAll } from 'ember-native-dom-helpers';
-import testSelector from 'ember-test-selectors';
 
 moduleForAcceptance('Acceptance | Class', {
   async beforeEach() {
     await visit('/ember/1.0/classes/Container');
-    await click(testSelector('checkbox', 'inherited'));
-    await click(testSelector('checkbox', 'protected'));
-    await click(testSelector('checkbox', 'private'));
-    await click(testSelector('checkbox', 'deprecated'));
+    await click('[data-test-checkbox="inherited"]');
+    await click('[data-test-checkbox="protected"]');
+    await click('[data-test-checkbox="private"]');
+    await click('[data-test-checkbox="deprecated"]');
   }
 });
 
@@ -18,7 +17,7 @@ test('lists all the methods on the class page', async function (assert) {
   const container = store.peekRecord('class', 'ember-1.0.0-Container');
   assert.equal(findAll('.spec-method-list li').length, container.get('methods.length'));
 
-  await click(testSelector('checkbox', 'private')); // turn private back off
+  await click('[data-test-checkbox="private"]'); // turn private back off
 
   assert.equal(findAll('.spec-method-list li').length,
     container.get('methods').filter(method => method.access !== 'private').length);

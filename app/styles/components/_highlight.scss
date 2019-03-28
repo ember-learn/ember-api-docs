@@ -29,19 +29,23 @@
     }
   }
 
-  .scroller {
-    overflow: auto;
-  }
-
   pre {
     margin: 0;
     font-size: 1.2em;
+    .wrapper {
+      padding-right: 60px;
+    }
+  }
+
+  .import-copy ~ table .wrapper {
+    padding-right: 92px;
   }
 
   table {
     border: none;
     margin: 0;
     table-layout: auto;
+    overflow: auto;
     width: 100%;
     z-index: auto;
 
@@ -68,6 +72,7 @@
 
       &.code {
         background-color: $code-background;
+        overflow: auto;
         vertical-align: top;
         padding: 0.4em 0 0.4em 0.4em;
       }
@@ -97,11 +102,11 @@
   }
 
   .ribbon {
-    @include position(absolute, 0.33em -1px null null);
-    @include size(52px 20px);
+    @include position(absolute, 0.33em 0px null null);
+    @include size(52px, 20px);
     background: 0 0 no-repeat;
     background-size: 52px 20px;
-    z-index: 1000;
+    z-index: 9;
   }
 
   &.javascript .ribbon,
@@ -160,7 +165,7 @@ code {
   border-radius: $base-border-radius;
   font-family: $monospace-font-family;
   font-size: 0.9em;
-  padding: 0.2em 0.5em;
+  padding: 0.2em 0;
   margin: 0 0.1em;
 }
 
@@ -177,4 +182,19 @@ a code {
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */
+}
+
+.import-copy {
+  position: absolute;
+  right: 52px;
+  top: 2px;
+  background-color: $code-background;
+  line-height: 1;
+  padding: 0px 8px;
+  z-index: 9;
+  cursor: pointer;
+  button {
+    background-color: transparent;
+    padding: 0;
+  }
 }

@@ -9,6 +9,7 @@ export default ClassModel.extend({
   privateclasses: attr(),
   namespaces: attr(),
   parent: attr(),
-
+  staticfunctions: attr(),
+  allstaticfunctions: attr(),
   projectVersion: belongsTo('project-version', {inverse: 'modules'})
 });

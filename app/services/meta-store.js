@@ -1,15 +1,21 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 import { A } from '@ember/array';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 export default Service.extend({
 
-  availableProjectVersions: {
-    'ember': A(),
-    'ember-data':A()
-  },
+  availableProjectVersions: null,
+  projectRevMap: null,
 
-  projectRevMap: {},
+  init() {
+    this.availableProjectVersions = {
+      'ember': A(),
+      'ember-data':A()
+    };
+    this.projectRevMap = {};
+    this._super(...arguments);
+  },
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
     let projectRevMap = this.get('projectRevMap');
@@ -20,7 +26,12 @@ export default Service.extend({
   },
 
   getRevId(project, version, type, id) {
-    return this.get('projectRevMap')[`${project}-${version}`][type][id];
+    let encodedId = encodeURIComponent(id);
+    return this.get('projectRevMap')[`${project}-${version}`][type][encodedId];
+  },
+
+  getEncodedModulesFromProjectRev(id) {
+    return Object.keys(this.get('projectRevMap')[id].module).sort();
   },
 
   initializeStore(availableProjectVersions, projectRevMap) {
@@ -35,7 +46,8 @@ export default Service.extend({
 
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
-    return availProjVersions.filter(v => v.includes(compactProjVersion))[0];
+    let filtered = availProjVersions.filter((v) => getCompactVersion(v) === getCompactVersion(compactProjVersion));
+    // since there can be multiple full versions that match the compact version, use the most recent one.
+    return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
   }
-
 });

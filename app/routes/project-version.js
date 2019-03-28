@@ -1,12 +1,14 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import last from 'npm:lodash.last';
-
+import semverCompare from 'npm:semver-compare';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 export default Route.extend({
-
+  fastboot: service(),
+  headData: service(),
   metaStore: service(),
-
   projectService: service('project'),
 
   titleToken: function(model) {
@@ -14,22 +16,51 @@ export default Route.extend({
   },
 
   async model({project, project_version}) {
-    await this.store.findRecord('project', project);
-    const projectVersion = this.get('metaStore').getFullVersion(project, project_version);
-    const id = `${project}-${projectVersion}`;
+    let projectObj = await this.store.findRecord('project', project);
+    let projectVersion = getFullVersion(project_version, project, projectObj, this.get('metaStore'));
+    let id = `${project}-${projectVersion}`;
+    this.get('projectService').setUrlVersion(project_version);
     this.get('projectService').setVersion(projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
   redirect(model, transition) {
+    this._gatherHeadDataFromVersion(model, transition.params['project-version'].project_version);
     let classParams = transition.params['project-version.classes.class'];
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
-    if (!classParams && !moduleParams && !namespaceParams) {
-      const namespaces = model.hasMany('namespaces').ids().sort();
-      const namespace = last(namespaces[0].split("-"));
-      return this.transitionTo('project-version.namespaces.namespace', model.get('project.id'), model.get('compactVersion'), namespace);
+    let functionParams = transition.params['project-version.functions.function'];
+    let transitionVersion = this.get('projectService').getUrlVersion();
+    if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
+      // if there is no class, module, or namespace specified...
+      let latestVersion = getLastVersion(model.get('project.projectVersions'));
+      let isLatestVersion = (transitionVersion === latestVersion || transitionVersion === 'release');
+      let isEmberProject = (model.get('project.id') === "ember");
+      let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
+      if ((!shouldConvertPackages || isLatestVersion) && isEmberProject) {
+        // ... and the transition version is the latest release, and the selected docs are
+        // ember (not Ember Data), then show the landing page
+        return this.transitionTo('project-version.index')
+      } else {
+        // else go to the version specified
+        let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
+        let module = this.getFirstModule(moduleRevs);
+        return this.transitionTo('project-version.modules.module', model.get('project.id'), transitionVersion, module);
+      }
+    }
+  },
+
+  _gatherHeadDataFromVersion(model, projectVersion) {
+    this.set('headData.isRelease', projectVersion === 'release');
+    this.set('headData.compactVersion', model.get('compactVersion'));
+    this.set('headData.urlVersion', projectVersion);
+    if (!this.get('headData.isRelease')) {
+      let request = this.get('fastboot.request');
+      let href = this.get('fastboot.isFastBoot') ? `${request.protocol}//emberjs.com/api${request.path}` : window.location.href;
+      let version = new RegExp(model.get('compactVersion'), 'g')
+      let canonicalUrl = href.replace(version, 'release');
+      this.set('headData.canonicalUrl', canonicalUrl);
     }
   },
 
@@ -42,39 +73,99 @@ export default Route.extend({
 
   actions: {
     updateProject(project, ver /*, component */) {
-      const projectVersionID = ver.compactVersion;
+      let projectVersionID = ver.compactVersion;
       let endingRoute, routeName;
-
       switch (routeName = this.router.currentRouteName) {
         case 'project-version.classes.class': {
-          const className = this.modelFor(routeName).get('name');
+          let className = this.modelFor(routeName).get('name');
           endingRoute = `classes/${className}`;
           break;
         }
         case 'project-version.classes.class.index': {
-          const className = this.modelFor('project-version.classes.class').get('name');
+          let className = this.modelFor('project-version.classes.class').get('name');
           endingRoute = `classes/${className}`;
           break;
         }
         case 'project-version.modules.module.index': {
-          const moduleName = this.paramsFor('project-version.modules.module').module;
+          let moduleName = encodeURIComponent(this.paramsFor('project-version.modules.module').module);
           endingRoute = `modules/${moduleName}`;
           break;
         }
         case 'project-version.namespaces.namespace.index': {
-          const namespaceName = this.paramsFor('project-version.namespaces.namespace').namespace;
+          let namespaceName = this.paramsFor('project-version.namespaces.namespace').namespace;
           endingRoute = `namespaces/${namespaceName}`;
           break;
         }
+        case 'project-version.classes.class.methods.index': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/methods`;
+          break;
+        }
+        case 'project-version.classes.class.events.index': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/events`;
+          break;
+        }
+        case 'project-version.classes.class.properties.index': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          endingRoute = `classes/${className}/properties`;
+          break;
+        }
+        case 'project-version.classes.class.methods.method': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          let methodName = this.paramsFor('project-version.classes.class.methods.method').method;
+          endingRoute = `classes/${className}/methods/${methodName}?anchor=${methodName}`;
+          break;
+        }
+        case 'project-version.classes.class.events.event': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          let eventName = this.paramsFor('project-version.classes.class.events.event').event;
+          endingRoute = `classes/${className}/events/${eventName}?anchor=${eventName}`;
+          break;
+        }
+        case 'project-version.classes.class.properties.property': {
+          let className = this.modelFor('project-version.classes.class').get('name');
+          let propertyName = this.paramsFor('project-version.classes.class.properties.property').property;
+          endingRoute = `classes/${className}/properties/${propertyName}?anchor=${propertyName}`;
+          break;
+        }
         default:
+          endingRoute = '';
           break;
       }
-
-      if (endingRoute) {
+      // if the user is navigating to/from api versions >= 2.16, take them
+      // to the home page instead of trying to translate the url
+      let shouldConvertPackages = this.shouldConvertPackages(ver, this.get('projectService.version'));
+      let isEmberProject = project === 'ember';
+      if (!isEmberProject || !shouldConvertPackages) {
         this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
       } else {
         this.transitionTo(`/${project}/${projectVersionID}`);
       }
     }
+  },
+  // Input some version info, returns a boolean based on
+  // whether the user is switching versions for a 2.16 docs release or later.
+  // The urls for pre-2.16 classes and later packages are quite different
+  shouldConvertPackages(targetVer, previousVer) {
+    let targetVersion = getCompactVersion(targetVer.id);
+    let previousVersion = getCompactVersion(previousVer);
+    let previousComparison = semverCompare(previousVersion, '2.16');
+    let targetComparison = semverCompare(targetVersion, '2.16');
+    return (previousComparison < 0 && targetComparison >=0) || (previousComparison >=0 && targetComparison < 0);
+  },
+
+  /**
+     splits the first encoded revision string in the list and takes the string after the version (which is the encoded name), then decodes the result.
+     */
+  getFirstModule(moduleRevs) {
+    let encodedModule = moduleRevs[0].split('-').reduce((result, val, index, arry) => {
+      if (val === this.get('projectService.version')) {
+        return arry.slice(index+1).join('-');
+      }
+      return result;
+    });
+    return decodeURIComponent(encodedModule);
   }
+
 });

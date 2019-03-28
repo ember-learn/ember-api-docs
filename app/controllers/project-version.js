@@ -1,19 +1,22 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
+import { alias, readOnly } from '@ember/object/computed';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import values from 'npm:lodash.values';
 import groupBy from 'npm:lodash.groupby';
 import semverCompare from 'npm:semver-compare';
-import FilterParams from '../mixins/filter-params';
+import getCompactVersion from '../utils/get-compact-version';
 
-export default Controller.extend(FilterParams, {
+export default Controller.extend({
 
   filterData: service(),
 
   metaStore: service(),
 
-  showPrivateClasses: computed.alias('filterData.sideNav.showPrivate'),
+  project: service(),
+
+  showPrivateClasses: alias('filterData.sideNav.showPrivate'),
 
   classesIDs: computed('model', function() {
     return this.getRelationshipIDs('classes');
@@ -49,9 +52,12 @@ export default Controller.extend(FilterParams, {
   },
 
   getRelationshipIDs(relationship) {
+    const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
     const classes = this.get('model').hasMany(relationship);
     const sorted = A(classes.ids()).sort();
-    return A(sorted).toArray().map(id => id.split('-').pop());
+    //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin
+    //so we take the string after the 2nd '-'
+    return A(sorted).toArray().map(id => id.split('-').slice(splitPoint).join('-'));
   },
 
   shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
@@ -71,7 +77,7 @@ export default Controller.extend(FilterParams, {
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
-      const compactVersion = version.split('.').slice(0, 2).join('.');
+      const compactVersion = getCompactVersion(version);
       return { id: version, compactVersion };
     });
     let groupedVersions = groupBy(versions, version => version.compactVersion);
@@ -79,9 +85,11 @@ export default Controller.extend(FilterParams, {
     return values(groupedVersions).map(groupedVersion => groupedVersion[0]);
   }),
 
+  urlVersion: alias('project.urlVersion'),
+
   selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {
     return this.get('projectVersions').filter(pV => pV.id === this.get('model.version'))[0];
   }),
 
-  activeProject: computed.readOnly('model.project.id')
+  activeProject: readOnly('model.project.id')
 });
