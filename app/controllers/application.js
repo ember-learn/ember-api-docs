@@ -170,10 +170,5 @@ const links = [
 ];
 
 export default Controller.extend({
-  links: null,
-
-  init() {
-    this._super(...arguments);
-    this.links = links;
-  }
+  links,
 });
