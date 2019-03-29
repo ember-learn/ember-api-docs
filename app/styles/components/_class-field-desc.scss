@@ -17,6 +17,14 @@
   font-size: $base-font-size;
 }
 
+.sticky-element--sticky .class-field-description--link {
+  margin: 0 -1.45em;
+  background-color: #FDFDFD;
+  padding: 0.4em 1.4em;
+  box-shadow: rgba(0, 0, 0, 0.4) 0 1px 4px -1px;
+  transition: 0.3s top, 0.3s box-shadow, 0.3s padding;
+}
+
 .class-field-description--link .return-type,
 .return .return-type,
 .parameter .parameter-type {
@@ -54,6 +62,7 @@ h3 .access{
 
 .method, .property, .event {
   border-bottom: $base-border;
+  position: relative;
 
   .method-name, .property-name, .event-name {
     font-family: $monospace-font-family;
