@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
+import { get, set } from '@ember/object';
 import { A } from '@ember/array';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
@@ -18,10 +19,10 @@ export default Service.extend({
   },
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
-    let projectRevMap = this.get('projectRevMap');
+    let projectRevMap = get(this, 'projectRevMap');
     if (!isPresent(projectRevMap[projectVersionKey])) {
       projectRevMap[projectVersionKey] =  projectRevDoc;
-      this.set('projectRevMap', projectRevMap);
+      set(this, 'projectRevMap', projectRevMap);
     }
   },
 
@@ -47,6 +48,9 @@ export default Service.extend({
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
     let filtered = availProjVersions.filter((v) => getCompactVersion(v) === getCompactVersion(compactProjVersion));
+    if (filtered.length === 0) {
+      return;
+    }
     // since there can be multiple full versions that match the compact version, use the most recent one.
     return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
   }
