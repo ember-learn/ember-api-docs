@@ -1,5 +1,5 @@
 <section class="{{type}}">
-  {{#sticky-element top=0 bottom=0}}
+  {{#sticky-element top=0 bottom=0 enabled=this.stickyEnabled}}
     <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
       <a class="anchor">
         {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
