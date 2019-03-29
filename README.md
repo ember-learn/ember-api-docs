@@ -1,13 +1,13 @@
-# [Ember API Docs](https://emberjs.com/api/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
+# [Ember API Docs](https://api.emberjs.com/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
 
-This project contains only the [API docs](https://emberjs.com/api) portion of [Emberjs.com](https://emberjs.com/). If you're looking for the rest of the site,
+This project contains only the [API docs](https://api.emberjs.com/) portion of [Emberjs.com](https://emberjs.com/). If you're looking for the rest of the site,
 see the [website](https://github.com/emberjs/website)
 and [guides](https://github.com/emberjs/guides) repositories.
 
 There are many pieces that together create the Ember API docs site:
-- The app in this repository, which fetches and displays the API docs data. It is what you see at 
-[https://emberjs.com/api](https://emberjs.com/api)
-- The YUIdoc code comments found in the 
+- The app in this repository, which fetches and displays the API docs data. It is what you see at
+[https://api.emberjs.com/](https://api.emberjs.com/)
+- The YUIdoc code comments found in the
 [Ember.js codebase](https://github.com/emberjs/ember.js), where the informational content of the API documentation can be edited
 - The data generator that serializes code comments into JSONAPI and
 deploys the result,
@@ -18,10 +18,10 @@ a component and styling library shared across apps.
 
 ## Contributing
 
-New contributors are welcome! This project is is maintained by an all-volunteer team, 
+New contributors are welcome! This project is is maintained by an all-volunteer team,
 and we are thankful for your help.
 
-The best way to get started is to find issue labeled "good first issue" or "help wanted." If you have questions or want a buddy to pair with, drop by the #-team-learning channel on the 
+The best way to get started is to find issue labeled "good first issue" or "help wanted." If you have questions or want a buddy to pair with, drop by the #-team-learning channel on the
 [Ember Community Slack](https://ember-community-slackin.herokuapp.com/).
 Like most open source projects, contributors are encouraged to open an issue
 to propose changes and iterate on ideas before investing time in coding.
@@ -33,7 +33,7 @@ Please also see [CONTRIBUTING.md](CONTRIBUTING.md).
 ## Quickstart to run semi-locally
 
 Follow these instructions to run the app using publically available online data.
-You do not need to run [ember-jsonapi-docs](https://github.com/ember-learn/ember-jsonapi-docs) 
+You do not need to run [ember-jsonapi-docs](https://github.com/ember-learn/ember-jsonapi-docs)
 locally yourself.
 
 ```

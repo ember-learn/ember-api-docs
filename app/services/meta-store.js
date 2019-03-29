@@ -48,6 +48,9 @@ export default Service.extend({
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.get(`availableProjectVersions.${projectName}`);
     let filtered = availProjVersions.filter((v) => getCompactVersion(v) === getCompactVersion(compactProjVersion));
+    if (filtered.length === 0) {
+      return;
+    }
     // since there can be multiple full versions that match the compact version, use the most recent one.
     return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
   }

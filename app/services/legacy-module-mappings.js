@@ -1,5 +1,4 @@
 import fetch from 'fetch';
-import config from 'ember-api-docs/config/environment';
 import Service from '@ember/service';
 
 const LOCALNAME_CONVERSIONS = {
@@ -32,7 +31,7 @@ export default Service.extend({
   },
 
   fetch() {
-    return fetch(`${config.APP.cdnUrl}/assets/mappings.json`);
+    return fetch('/assets/mappings.json');
   },
 
   getModule(name, documentedModule) {
