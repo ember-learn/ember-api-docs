@@ -118,3 +118,16 @@ test('switching versions works if class name includes slashes', async function(a
   await selectChoose('.select-container', '3.7');
   assert.equal(currentURL(), '/ember/3.7/classes/@ember%2Fobject%2Fcomputed', 'navigated to v3.7 class');
 });
+
+test(`switching versions works if we've previously switched for a different class`, async function(assert) {
+  await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
+  assert.equal(currentURL(), '/ember/3.4/classes/@ember%2Fobject%2Fcomputed', 'navigated to v3.4 class');
+  await selectChoose('.select-container', '3.7');
+  assert.equal(currentURL(), '/ember/3.7/classes/@ember%2Fobject%2Fcomputed', 'navigated to v3.7 class');
+  // debugger;
+  // await click('[data-test-class="Component"]');
+  await visit('/ember/3.7/classes/Component');
+  assert.equal(currentURL(), '/ember/3.7/classes/Component', 'navigated to new class');
+  await selectChoose('.select-container', '2.18');
+  assert.equal(currentURL(), '/ember/2.18/classes/Component', 'navigated to v2.18 for new class');
+});
