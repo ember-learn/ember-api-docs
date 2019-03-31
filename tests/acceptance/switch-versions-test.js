@@ -112,9 +112,9 @@ test('switching from class version 2.16 to class version less then 2.16 should r
   assert.equal(currentURL(), '/ember-data/2.11/classes/DS.Adapter', 'navigated to v2.16 landing page');
 });
 
-test('switching versions from class works if path contains encoded slashes', async function(assert) {
-  await visit('ember/3.4/classes/@ember%2Fobject%2Fcomputed/');
-  assert.equal(currentURL(), 'ember/3.4/classes/@ember%2Fobject%2Fcomputed/', 'navigated to v3.4 class');
+test('switching versions works if class name includes slashes', async function(assert) {
+  await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
+  assert.equal(currentURL(), '/ember/3.4/classes/@ember%2Fobject%2Fcomputed', 'navigated to v3.4 class');
   await selectChoose('.select-container', '3.7');
-  assert.equal(currentURL(), 'ember/3.7/classes/@ember%2Fobject%2Fcomputed/', 'navigated to v3.7 class');
+  assert.equal(currentURL(), '/ember/3.7/classes/@ember%2Fobject%2Fcomputed', 'navigated to v3.7 class');
 });
