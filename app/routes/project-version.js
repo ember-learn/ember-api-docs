@@ -77,6 +77,11 @@ export default Route.extend({
     }
   },
 
+  _getEncodedNameForCurrentClass() {
+    // escape any reserved characters for url, like slashes
+    return encodeURIComponent(this.modelFor('project-version.classes.class').get('name'));
+  },
+
   serialize(model) {
     return {
       project: model.get('project.id'),
@@ -87,15 +92,15 @@ export default Route.extend({
   actions: {
     updateProject(project, ver /*, component */) {
       let projectVersionID = ver.compactVersion;
-      let endingRoute, routeName;
-      switch ((routeName = this.router.currentRouteName)) {
+      let endingRoute;
+      switch ((this.router.currentRouteName)) {
         case 'project-version.classes.class': {
-          let className = this.modelFor(routeName).get('name');
+          let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}`;
           break;
         }
         case 'project-version.classes.class.index': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}`;
           break;
         }
@@ -112,34 +117,34 @@ export default Route.extend({
           break;
         }
         case 'project-version.classes.class.methods.index': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}/methods`;
           break;
         }
         case 'project-version.classes.class.events.index': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}/events`;
           break;
         }
         case 'project-version.classes.class.properties.index': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}/properties`;
           break;
         }
         case 'project-version.classes.class.methods.method': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           let methodName = this.paramsFor('project-version.classes.class.methods.method').method;
           endingRoute = `classes/${className}/methods/${methodName}?anchor=${methodName}`;
           break;
         }
         case 'project-version.classes.class.events.event': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           let eventName = this.paramsFor('project-version.classes.class.events.event').event;
           endingRoute = `classes/${className}/events/${eventName}?anchor=${eventName}`;
           break;
         }
         case 'project-version.classes.class.properties.property': {
-          let className = this.modelFor('project-version.classes.class').get('name');
+          let className = this._getEncodedNameForCurrentClass();
           let propertyName = this.paramsFor('project-version.classes.class.properties.property')
             .property;
           endingRoute = `classes/${className}/properties/${propertyName}?anchor=${propertyName}`;
