@@ -21,7 +21,7 @@ const projectNameFromClassName = key => {
 const guessVersionFor = key => {
   return computed(key, 'project.id', function() {
 
-    if (this.get('extendedClassProjectName') === this.get('project.id')) {
+    if (this.extendedClassProjectName === this.get('project.id')) {
       return this.get('projectVersion.version');
     }
 
@@ -46,7 +46,7 @@ export default DS.Model.extend({
   parentClass: belongsTo('class', {async: true, inverse: null}),
   projectVersion: belongsTo('project-version', {inverse: 'classes'}),
   project: computed('projectVersion.id', function() {
-    return this.get('projectVersion').get('project');
+    return this.projectVersion.get('project');
   }),
 
   extendedClassProjectName: projectNameFromClassName('extends'),

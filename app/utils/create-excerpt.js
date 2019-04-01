@@ -1,4 +1,4 @@
-import sanitizeHtml from 'npm:sanitize-html'
+import sanitizeHtml from 'sanitize-html'
 
 export default function createExcerpt(string, maxLength = 300) {
   // Stop at first code example

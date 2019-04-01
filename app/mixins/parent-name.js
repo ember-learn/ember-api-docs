@@ -8,7 +8,7 @@ export default Mixin.create({
 
   routeName: readOnly('router.currentRouteName'),
   parentName: computed('routeName', function() {
-    const routeName = this.get('routeName');
+    const routeName = this.routeName;
     const routes = routeName.split('.');
     return routes.slice(0, 3).join('.');
   })

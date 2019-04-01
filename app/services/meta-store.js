@@ -1,6 +1,6 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
-import { get, set } from '@ember/object';
+import { set } from '@ember/object';
 import { A } from '@ember/array';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
@@ -19,7 +19,7 @@ export default Service.extend({
   },
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
-    let projectRevMap = get(this, 'projectRevMap');
+    let projectRevMap = this.projectRevMap;
     if (!isPresent(projectRevMap[projectVersionKey])) {
       projectRevMap[projectVersionKey] =  projectRevDoc;
       set(this, 'projectRevMap', projectRevMap);
@@ -28,11 +28,11 @@ export default Service.extend({
 
   getRevId(project, version, type, id) {
     let encodedId = encodeURIComponent(id);
-    return this.get('projectRevMap')[`${project}-${version}`][type][encodedId];
+    return this.projectRevMap[`${project}-${version}`][type][encodedId];
   },
 
   getEncodedModulesFromProjectRev(id) {
-    return Object.keys(this.get('projectRevMap')[id].module).sort();
+    return Object.keys(this.projectRevMap[id].module).sort();
   },
 
   initializeStore(availableProjectVersions, projectRevMap) {

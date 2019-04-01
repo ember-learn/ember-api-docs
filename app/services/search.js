@@ -15,7 +15,7 @@ export default Service.extend({
   results: emberArray(),
 
   search: task(function * (query) {
-    const projectVersion = get(this, '_projectVersion');
+    const projectVersion = this._projectVersion;
 
     const params = {
       hitsPerPage: 15,
@@ -33,12 +33,12 @@ export default Service.extend({
       query
     };
 
-    return set(this, 'results', yield this.doSearch(searchObj, params));
+    return set(this, 'results', (yield this.doSearch(searchObj, params)));
 
   }).restartable(),
 
   doSearch(searchObj, params) {
-    const client = get(this, '_searchClient');
+    const client = this._searchClient;
     const searchFn = denodeify(client.search.bind(client));
     return searchFn(searchObj, params).then((results) => {
       return get(results, 'hits');

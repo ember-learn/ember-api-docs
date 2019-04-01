@@ -1,33 +1,33 @@
-
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('better-get', 'helper:better-get', {
-  integration: true
+module('helper:better-get', function(hooks) {
+  setupRenderingTest(hooks);
+
+  // Replace this with your real tests.
+  test('should get dot separated', async function(assert) {
+    let obj = {
+      'Ember.Object': 'hello'
+    };
+    this.set('dataStructure', obj);
+    this.set('key', 'Ember.Object');
+
+    await render(hbs`{{better-get dataStructure key}}`);
+
+    assert.dom('*').hasText('hello');
+  });
+
+  test('should get rfc 176 module', async function(assert) {
+    let obj = {
+      '@ember/object': 'hello'
+    };
+    this.set('dataStructure', obj);
+    this.set('key', '@ember/object');
+
+    await render(hbs`{{better-get dataStructure key}}`);
+
+    assert.dom('*').hasText('hello');
+  });
 });
-
-// Replace this with your real tests.
-test('should get dot separated', function(assert) {
-  let obj = {
-    'Ember.Object': 'hello'
-  };
-  this.set('dataStructure', obj);
-  this.set('key', 'Ember.Object');
-
-  this.render(hbs`{{better-get dataStructure key}}`);
-
-  assert.equal(this.$().text().trim(), 'hello');
-});
-
-test('should get rfc 176 module', function (assert) {
-  let obj = {
-    '@ember/object': 'hello'
-  };
-  this.set('dataStructure', obj);
-  this.set('key', '@ember/object');
-
-  this.render(hbs`{{better-get dataStructure key}}`);
-
-  assert.equal(this.$().text().trim(), 'hello');
-});
-

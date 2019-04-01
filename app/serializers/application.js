@@ -12,7 +12,7 @@ export default DS.JSONAPISerializer.extend({
     if (primaryModelClass.modelName === 'project') {
       this.get('metaStore.availableProjectVersions')[id] = normalizedDocument.meta.availableVersions;
     } else if (primaryModelClass.modelName === 'project-version') {
-      this.get('metaStore').addToProjectRevMap(id, normalizedDocument.meta)
+      this.metaStore.addToProjectRevMap(id, normalizedDocument.meta)
     }
 
     return normalizedDocument;

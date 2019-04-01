@@ -2,8 +2,8 @@ import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ClassController from '../classes/class';
-import uniq from 'npm:lodash.uniq';
-import union from 'npm:lodash.union';
+import uniq from 'lodash.uniq';
+import union from 'lodash.union';
 
 export default ClassController.extend({
   filterData: service(),
@@ -18,18 +18,18 @@ export default ClassController.extend({
   }),
 
   classes: computed('model', 'showPrivateClasses', function() {
-    if (this.get('showPrivateClasses')) {
+    if (this.showPrivateClasses) {
       return this.get('model.publicclasses').concat(this.get('model.privateclasses'));
     }
     return this.get('model.publicclasses');
   }),
 
   classesAndNamespaces: computed('classes', 'namespaces', function () {
-    return uniq(union(this.get('namespaces'), this.get('classes')).sort(), true);
+    return uniq(union(this.namespaces, this.classes).sort(), true);
   }),
 
   functionHeadings: computed('model', 'showPrivateClasses', function () {
-    if (this.get('model.allstaticfunctions') && this.get('showPrivateClasses')) {
+    if (this.get('model.allstaticfunctions') && this.showPrivateClasses) {
       return Object.keys(this.get('model.allstaticfunctions')).sort();
     } else if (this.get('model.staticfunctions')) {
       return Object.keys(this.get('model.staticfunctions')).sort();
@@ -38,7 +38,7 @@ export default ClassController.extend({
   }),
 
   functions: computed('model', 'showPrivateClasses', function () {
-    if (this.get('showPrivateClasses') && this.get('model.allstaticfunctions')) {
+    if (this.showPrivateClasses && this.get('model.allstaticfunctions')) {
       return this.get('model.allstaticfunctions');
     }
     return this.get('model.staticfunctions');

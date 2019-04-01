@@ -23,6 +23,7 @@ module.exports = {
     // node files
     {
       files: [
+        '.template-lintrc.js',
         'ember-cli-build.js',
         'testem.js',
         'blueprints/*/index.js',
@@ -37,15 +38,6 @@ module.exports = {
       env: {
         browser: false,
         node: true
-      }
-    },
-
-    // test files
-    {
-      files: ['tests/**/*.js'],
-      excludedFiles: ['tests/dummy/**/*.js'],
-      env: {
-        embertest: true
       }
     }
   ]

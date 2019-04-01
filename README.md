@@ -52,7 +52,13 @@ To run a11y tests, run `test_a11y=yes ember serve`
 ## Staging Environment
 Latest changes from master can be seen on https://ember-api-docs-frontend-staging.global.ssl.fastly.net/
 
----
+### Linting
+
+* `yarn run lint:hbs`
+* `yarn run lint:js`
+* `yarn run lint:js -- --fix`
+
+### Building
 
 Cross-browser testing provided by:
 
