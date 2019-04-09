@@ -9,7 +9,7 @@ export default Mixin.create({
 
   actions: {
     willTransition(transition) {
-      this.get('scrollPositionReset').scheduleReset(transition);
+      this.scrollPositionReset.scheduleReset(transition);
     },
 
     didTransition() {
@@ -22,7 +22,7 @@ export default Mixin.create({
           return;
         }
       }
-      this.get('scrollPositionReset').doReset();
+      this.scrollPositionReset.doReset();
     }
   }
 });

@@ -14,7 +14,8 @@ module.exports = function(defaults) {
       includePaths: [
         'app/styles',
         'bower_components/neat/app/assets/stylesheets',
-        'bower_components/bitters/core'
+        'bower_components/bitters/core',
+        'node_modules/normalize.css'
       ]
     },
     autoprefixer: {

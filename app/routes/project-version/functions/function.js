@@ -18,7 +18,7 @@ export default Route.extend({
     let projectID = transition.params['project-version'].project;
     let projectObj = await this.store.findRecord('project', projectID);
     let compactVersion = transition.params['project-version'].project_version;
-    let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.get('metaStore'));
+    let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.metaStore);
     let className = params['module'];
     let functionName = params['fn'];
     let fnModule;
@@ -47,7 +47,7 @@ export default Route.extend({
   },
 
   activate() {
-    this.get('scrollPositionReset').doReset();
+    this.scrollPositionReset.doReset();
   }
 
 });

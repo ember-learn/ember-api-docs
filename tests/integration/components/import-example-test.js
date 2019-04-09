@@ -1,16 +1,18 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('import-example', 'Integration | Component | import example', {
-  integration: true
-});
+module('Integration | Component | import example', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders a class import example', function(assert) {
-  this.render(hbs`{{import-example item='Application' package='@ember/application'}}`);
-  assert.equal(this.$().text().trim(), "import Application from '@ember/application';");
-});
+  test('it renders a class import example', async function(assert) {
+    await render(hbs`{{import-example item='Application' package='@ember/application'}}`);
+    assert.dom('*').hasText('import Application from \'@ember/application\';');
+  });
 
-test('it renders a function import example', function (assert) {
-  this.render(hbs`{{import-example item='{ uniqBy }' package='@ember/object/computed'}}`);
-  assert.equal(this.$().text().trim(), "import { uniqBy } from '@ember/object/computed';");
+  test('it renders a function import example', async function(assert) {
+    await render(hbs`{{import-example item='{ uniqBy }' package='@ember/object/computed'}}`);
+    assert.dom('*').hasText('import { uniqBy } from \'@ember/object/computed\';');
+  });
 });

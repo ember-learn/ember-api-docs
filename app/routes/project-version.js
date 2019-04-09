@@ -1,6 +1,6 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
-import semverCompare from 'npm:semver-compare';
+import semverCompare from 'semver-compare';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
@@ -22,11 +22,11 @@ export default Route.extend({
       project_version,
       project,
       projectObj,
-      this.get('metaStore')
+      this.metaStore
     );
     let id = `${project}-${projectVersion}`;
-    this.get('projectService').setUrlVersion(project_version);
-    this.get('projectService').setVersion(projectVersion);
+    this.projectService.setUrlVersion(project_version);
+    this.projectService.setVersion(projectVersion);
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
@@ -37,7 +37,7 @@ export default Route.extend({
     let moduleParams = transition.params['project-version.modules.module'];
     let namespaceParams = transition.params['project-version.namespaces.namespace'];
     let functionParams = transition.params['project-version.functions.function'];
-    let transitionVersion = this.get('projectService').getUrlVersion();
+    let transitionVersion = this.projectService.getUrlVersion();
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
       let latestVersion = getLastVersion(model.get('project.projectVersions'));
@@ -50,7 +50,7 @@ export default Route.extend({
         return this.transitionTo('project-version.index');
       } else {
         // else go to the version specified
-        let moduleRevs = this.get('metaStore').getEncodedModulesFromProjectRev(model.get('id'));
+        let moduleRevs = this.metaStore.getEncodedModulesFromProjectRev(model.get('id'));
         let module = this.getFirstModule(moduleRevs);
         return this.transitionTo(
           'project-version.modules.module',

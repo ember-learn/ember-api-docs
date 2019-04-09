@@ -1,12 +1,14 @@
-import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import { test } from 'qunit';
-import { visit, find, findAll } from 'ember-native-dom-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
+import { visit, find } from '@ember/test-helpers';
 
-moduleForAcceptance('Acceptance | Function');
+module('Acceptance | Function', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('shows function when loaded from url', async function (assert) {
-  await visit('ember/2.18/functions/@ember%2Fapplication/getOwner');
+  test('shows function when loaded from url', async function (assert) {
+    await visit('ember/2.18/functions/@ember%2Fapplication/getOwner');
 
-  assert.equal(findAll('.method').length, 1, 'Single function per page');
-  assert.equal(find('.method .method-name').innerText, 'getOwner', 'Correct function is shown');
-})
+    assert.dom('.method').exists({ count: 1 }, 'Single function per page');
+    assert.equal(find('.method .method-name').innerText, 'getOwner', 'Correct function is shown');
+  })
+});

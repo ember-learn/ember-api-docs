@@ -23,7 +23,7 @@ module('helper:is-latest', function (hooks) {
   {{/if}}
   `);
 
-    assert.equal(this.element.textContent.trim(), 'Hello World');
+    assert.dom(this.element).hasText('Hello World');
   });
 
   test('should resolve false if not latest', async function (assert) {

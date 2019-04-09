@@ -32,7 +32,7 @@ export default Component.extend({
     if (get(this, 'searchService.search.isRunning')) {
       return false;
     }
-    return isPresent(get(this, 'query')) && isEmpty(get(this, 'searchService.results'));
+    return isPresent(this.query) && isEmpty(get(this, 'searchService.results'));
   }),
 
   search: task(function * (query) {
@@ -66,7 +66,7 @@ export default Component.extend({
     },
 
     onblur() {
-      this.get('closeMenu').perform();
+      this.closeMenu.perform();
     }
 
   }

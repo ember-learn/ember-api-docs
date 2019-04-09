@@ -15,6 +15,6 @@ export default DS.Model.extend({
   'private-namespaces': DS.hasMany('namespace', {async: true}),
   project: DS.belongsTo('project'),
   compactVersion: computed('version', function() {
-    return getCompactVersion(this.get('version'));
+    return getCompactVersion(this.version);
   })
 });

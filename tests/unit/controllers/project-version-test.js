@@ -1,5 +1,6 @@
+import { module, test } from 'qunit';
 /* eslint-disable ember/no-restricted-resolver-tests */
-import { moduleFor, test } from 'ember-qunit';
+import { setupTest } from 'ember-qunit';
 
 const moduleIds = [
   'ember-2.10.0-ember',
@@ -29,24 +30,17 @@ const expectedModuleNames = [
   'ember-views'
 ];
 
-moduleFor('controller:project-version', 'Unit | Controller | project version', {
-  needs: [
-    'service:filterData',
-    'service:metaStore',
-    'service:head-tags',
-    'service:metrics',
-    'service:fastboot',
-    'service:project'
-  ]
-});
+module('Unit | Controller | project version', function(hooks) {
+  setupTest(hooks);
 
-test('should render module names', function(assert) {
-  let controller = this.subject({
-    getRelations() {
-      return moduleIds;
-    }
+  test('should render module names', function(assert) {
+    let controller = this.owner.factoryFor('controller:project-version').create({
+      getRelations() {
+        return moduleIds;
+      }
+    });
+
+    let moduleNames = controller.getModuleRelationships('ember-2.10.1');
+    assert.deepEqual(moduleNames, expectedModuleNames);
   });
-
-  let moduleNames = controller.getModuleRelationships('ember-2.10.1');
-  assert.deepEqual(moduleNames, expectedModuleNames);
 });

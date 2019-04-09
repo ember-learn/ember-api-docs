@@ -23,7 +23,7 @@ export default Route.extend({
   },
   async afterModel() {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
-    await this.get('legacyModuleMappings').initMappings();
+    await this.legacyModuleMappings.initMappings();
     return this._super(...arguments);
   }
 

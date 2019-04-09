@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
-import sortBy from 'npm:lodash.sortby';
+import sortBy from 'lodash.sortby';
 
 const filterDataComputedParams = 'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 
@@ -43,9 +43,9 @@ export default Component.extend({
 
   filteredData: computed('filteredMethods', 'filteredProperties', 'filteredEvents', function() {
     return {
-      methods: this.get('filteredMethods'),
-      properties: this.get('filteredProperties'),
-      events: this.get('filteredEvents')
+      methods: this.filteredMethods,
+      properties: this.filteredProperties,
+      events: this.filteredEvents
     };
   }),
 

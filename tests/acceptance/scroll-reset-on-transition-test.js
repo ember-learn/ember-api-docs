@@ -1,74 +1,76 @@
+import { visit } from '@ember/test-helpers';
 import $ from 'jquery';
-import { test } from 'qunit';
-import moduleForAcceptance from 'ember-api-docs/tests/helpers/module-for-acceptance';
-import { visit } from 'ember-native-dom-helpers';
+import { module, test } from 'qunit';
+import { setupApplicationTest } from 'ember-qunit';
 import config from 'ember-api-docs/config/environment';
 
 const { scrollContainerSelector } = config.APP;
 
-moduleForAcceptance('Acceptance | scroll reset on transition');
+module('Acceptance | scroll reset on transition', function(hooks) {
+  setupApplicationTest(hooks);
 
-test('reset scroll on transitions', async function(assert) {
-  await visit('/ember/2.15');
+  test('reset scroll on transitions', async function(assert) {
+    await visit('/ember/2.15');
 
-  $(scrollContainerSelector).scrollTop(1000);
-  assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
+    $(scrollContainerSelector).scrollTop(1000);
+    assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
 
-  await visit('/ember/1.0/classes/Ember.View');
+    await visit('/ember/1.0/classes/Ember.View');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is zero after transition to different route');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is zero after transition to different route');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('/ember/1.0/classes/Ember.Component');
+    await visit('/ember/1.0/classes/Ember.Component');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project.version.class.index to project-version.class.index (same route different model)');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project.version.class.index to project-version.class.index (same route different model)');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/modules/ember');
+    await visit('ember/1.0/modules/ember');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.class.index to project-version.module.index');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.class.index to project-version.module.index');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/modules/runtime');
+    await visit('ember/1.0/modules/runtime');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.module.index to project-version.module.index (same route different model)');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.module.index to project-version.module.index (same route different model)');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/namespaces/Ember');
+    await visit('ember/1.0/namespaces/Ember');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.module.index to project-version.namespace.index');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.module.index to project-version.namespace.index');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/namespaces/Ember.run');
+    await visit('ember/1.0/namespaces/Ember.run');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.namespace.index to project-version.namespace.index (same route different model)');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.namespace.index to project-version.namespace.index (same route different model)');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/classes/Ember.RenderBuffer/');
+    await visit('ember/1.0/classes/Ember.RenderBuffer/');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.namespace.index to project-version.class.index');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after transition: project-version.namespace.index to project-version.class.index');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/classes/Ember.RenderBuffer/properties');
+    await visit('ember/1.0/classes/Ember.RenderBuffer/properties');
 
 
-  assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT resetted after changing tab in project-version.class (properties)');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT resetted after changing tab in project-version.class (properties)');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/classes/Ember.RenderBuffer/methods');
+    await visit('ember/1.0/classes/Ember.RenderBuffer/methods');
 
-  assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT resetted after changing tab in project-version.class (methods)');
-  $(scrollContainerSelector).scrollTop(1000);
+    assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT resetted after changing tab in project-version.class (methods)');
+    $(scrollContainerSelector).scrollTop(1000);
 
-  await visit('ember/1.0/classes/Ember.Route/methods');
+    await visit('ember/1.0/classes/Ember.Route/methods');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after visiting route with same tab but different model');
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is resetted after visiting route with same tab but different model');
 
-  await visit('/ember/2.16');
-  $(scrollContainerSelector).scrollTop(1000);
-  assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
+    await visit('/ember/2.16');
+    $(scrollContainerSelector).scrollTop(1000);
+    assert.notEqual($(scrollContainerSelector).scrollTop(), 0, 'scroll position is NOT zero after scroll on fresh visit');
 
-  await visit('/ember/2.15/classes/Ember.Error');
+    await visit('/ember/2.15/classes/Ember.Error');
 
-  assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is zero after transition to different route');
+    assert.equal($(scrollContainerSelector).scrollTop(), 0, 'scroll position is zero after transition to different route');
+  });
 });
