@@ -1,7 +1,6 @@
 import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import $ from 'jquery';
 
 module('Acceptance | open graph tags', function(hooks) {
   setupApplicationTest(hooks);
@@ -11,8 +10,8 @@ module('Acceptance | open graph tags', function(hooks) {
   });
 
   function findOpenGraphContent (propertyName) {
-    const el = $(`meta[property="og:${propertyName}"]`);
-    return el.attr('content');
+    const el = document.querySelector(`head meta[property="og:${propertyName}"]`);
+    return el.content;
   }
 
   test('assigns title property', function (assert) {
