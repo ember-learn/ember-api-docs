@@ -4,11 +4,9 @@ import { get, set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import { denodeify } from 'rsvp';
 
 export default Service.extend({
-
-  _searchClient: service('algolia'),
+  _algoliaService: service('algolia'),
   _projectService: service('project'),
   _projectVersion: alias('_projectService.version'),
 
@@ -34,14 +32,10 @@ export default Service.extend({
     };
 
     return set(this, 'results', (yield this.doSearch(searchObj, params)));
-
   }).restartable(),
 
   doSearch(searchObj, params) {
-    const client = this._searchClient;
-    const searchFn = denodeify(client.search.bind(client));
-    return searchFn(searchObj, params).then((results) => {
-      return get(results, 'hits');
-    });
+    return this._algoliaService.search(searchObj, params)
+      .then(results => get(results, 'hits'));
   }
 });
