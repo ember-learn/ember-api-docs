@@ -66,7 +66,7 @@
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-meta-tags": "^5.1.0",
     "ember-cli-qunit": "^4.4.0",
-    "ember-cli-sass": "^8.0.1",
+    "ember-cli-sass": "^10.0.0",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-template-lint": "^1.0.0-beta.2",
     "ember-cli-uglify": "^2.1.0",
@@ -101,7 +101,7 @@
     "minimist": "^1.2.0",
     "normalize.css": "^8.0.1",
     "qunit-dom": "^0.8.2",
-    "sass": "^1.14.3",
+    "sass": "^1.20.1",
     "spawndamnit": "2.0.0"
   },
   "engines": {

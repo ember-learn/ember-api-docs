@@ -5095,6 +5095,16 @@ ember-cli-qunit@^4.4.0:
     ember-cli-babel "^6.11.0"
     ember-qunit "^3.5.0"
 
+ember-cli-sass@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-sass/-/ember-cli-sass-10.0.0.tgz#700094ebaf348896111756c2644f1e444b05323c"
+  integrity sha512-gAMh3sHRExk/gOpbJ+OKKLPd8vCT8Bs8UU0cdNwBUOVwQ0UJ3iKyQY6GS1bMMXYtiyK2ieUPsrDGf14LUcC7bw==
+  dependencies:
+    broccoli-funnel "^2.0.1"
+    broccoli-merge-trees "^3.0.1"
+    broccoli-sass-source-maps "^4.0.0"
+    ember-cli-version-checker "^2.1.0"
+
 ember-cli-sass@^8.0.1:
   version "8.0.1"
   resolved "https://registry.yarnpkg.com/ember-cli-sass/-/ember-cli-sass-8.0.1.tgz#22730bb8eee1eedc6ddd0cf2e51f5405a09b9139"
@@ -11255,10 +11265,10 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass@^1.14.3:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.15.2.tgz#539f464a61e29a9e4f560ec9dc2ccc5236db8474"
-  integrity sha512-YFncPpx3ewKEhMg9sWdCxKUpPN/jwVLa0Q9iO2tcV5Y5Z/YAlFV6k6JaQwq3tmbN6FXKjUYElXRHcG0g4D1zkQ==
+sass@^1.20.1:
+  version "1.20.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.20.1.tgz#737b901fe072336da540b6d00ec155e2267420da"
+  integrity sha512-BnCawee/L5kVG3B/5Jg6BFwASqUwFVE6fj2lnkVuSXDgQ7gMAhY9a2yPeqsKhJMCN+Wgx0r2mAW7XF/aTF5qtA==
   dependencies:
     chokidar "^2.0.0"
 
