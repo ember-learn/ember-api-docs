@@ -37,7 +37,7 @@ module.exports = function(environment) {
         /^[\w-]+\.emberjs\.com$/
       ]
     },
-    'ember-algolia': {
+    algolia: {
       algoliaId: ALGOLIA_APP_ID,
       algoliaKey: ALGOLIA_API_KEY
     },
