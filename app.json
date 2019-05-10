@@ -14,6 +14,9 @@
     },
     "WORKER_COUNT": {
       "required": false
+    },
+    "ENVIRONMENT": {
+      "required": false
     }
   },
   "formation": {
