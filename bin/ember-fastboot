@@ -50,13 +50,20 @@ app.use(
       if (!path.endsWith('index.html')) {
         res.setHeader('Cache-Control', 'public, max-age=365000000, immutable');
       }
-      res.removeHeader('X-Powered-By');
     }
   })
 );
 
 /** We rewrite the 307 location header into a relativeURL so that our special setup is handled */
 app.use(function(req, res, next) {
+  // Old source code contains hardcoded links to the /api path urls.
+  // This handles them on the new subdomain world
+  if (req.url.includes('/api/')) {
+    const newUrl = req.url.replace('/api/', '/');
+    res.removeHeader('X-Powered-By');
+    res.redirect(301, newUrl);
+    return next();
+  }
 
   const originalSendFn = res.send;
 
