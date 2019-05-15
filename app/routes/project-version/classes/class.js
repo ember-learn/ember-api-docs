@@ -8,7 +8,6 @@ import Ember from 'ember';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
-const { Logger } = Ember;
 
 export default Route.extend(ScrollTracker, {
   headData: service(),
@@ -30,16 +29,16 @@ export default Route.extend(ScrollTracker, {
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
       if (typeName != 'namespace') {
-        Logger.warn(e1, 'fetching by class or module failed, retrying as namespace');
+        console.warn(e1, 'fetching by class or module failed, retrying as namespace');
         return this.store.find('namespace', param).catch((e2) => {
-          Logger.error(e2);
+          console.error(e2);
           return resolve({
             isError: true,
             status: 404
           });
         });
       }
-      Logger.error(e1);
+      console.error(e1);
       return resolve({
         isError: true,
         status: 404

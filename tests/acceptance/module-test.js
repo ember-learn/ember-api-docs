@@ -37,6 +37,6 @@ module('Acceptance | Module', function(hooks) {
 
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
-    assert.equal(find(`.attribute-value`).textContent, container.get('parent'));
+    assert.dom(`.attribute-value`).hasText(container.get('parent'));
   });
 });
