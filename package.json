@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "bourbon": "5.1.0",
-    "ember-cli-browserstack": "^0.0.6",
+    "ember-cli-browserstack": "^0.0.7",
     "ember-rfc176-data": "^0.3.5",
     "express-sslify": "^1.2.0",
     "lodash.groupby": "^4.6.0",
@@ -33,7 +33,7 @@
     "lodash.values": "^4.3.0",
     "sanitize-html": "^1.19.3",
     "semver-compare": "^1.0.0",
-    "testem": "^2.14.0"
+    "testem": "^2.16.0"
   },
   "devDependencies": {
     "algoliasearch": "^3.32.1",

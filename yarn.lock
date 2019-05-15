@@ -4577,13 +4577,13 @@ ember-cli-broccoli-sane-watcher@^2.1.1:
     rsvp "^3.0.18"
     sane "^2.4.1"
 
-ember-cli-browserstack@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/ember-cli-browserstack/-/ember-cli-browserstack-0.0.6.tgz#a58d0fe4fe0eb9ada85c18b18aba4f8b3729ee3a"
+ember-cli-browserstack@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/ember-cli-browserstack/-/ember-cli-browserstack-0.0.7.tgz#79327eff1d2330f8baadada440413d5c7af22862"
+  integrity sha512-7uWk0hdqCVKpjT2CG5CAKl/NCnL3bE1ITMoNGixx2QNzRUfq4TWQ+1geLpvObzmMLTY0PWlG1Rx152fXRxtTAw==
   dependencies:
     browserstack "^1.5.0"
     browserstack-local "^1.3.0"
-    ember-cli-babel "^6.6.0"
     rsvp "^4.7.0"
     yargs "^10.0.3"
 
@@ -11611,7 +11611,41 @@ terser@^3.7.5:
     source-map "~0.6.1"
     source-map-support "~0.5.6"
 
-testem@^2.14.0, testem@^2.9.2:
+testem@^2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/testem/-/testem-2.16.0.tgz#da2682f3e02459212b8670b88f9d7cd4d4b0aebb"
+  integrity sha512-yDuRp2f1wP1/1kCtSNzowHxPvtHBhJpSPQUy1py9LtFrZUliJQfUHU8402Ac6C4l9KOb5I+heMMVWRyYdPOu4g==
+  dependencies:
+    backbone "^1.1.2"
+    bluebird "^3.4.6"
+    charm "^1.0.0"
+    commander "^2.6.0"
+    consolidate "^0.15.1"
+    execa "^1.0.0"
+    express "^4.10.7"
+    fireworm "^0.7.0"
+    glob "^7.0.4"
+    http-proxy "^1.13.1"
+    js-yaml "^3.2.5"
+    lodash.assignin "^4.1.0"
+    lodash.castarray "^4.4.0"
+    lodash.clonedeep "^4.4.1"
+    lodash.find "^4.5.1"
+    lodash.uniqby "^4.7.0"
+    mkdirp "^0.5.1"
+    mustache "^3.0.0"
+    node-notifier "^5.0.1"
+    npmlog "^4.0.0"
+    printf "^0.5.1"
+    rimraf "^2.4.4"
+    socket.io "^2.1.0"
+    spawn-args "^0.2.0"
+    styled_string "0.0.1"
+    tap-parser "^7.0.0"
+    tmp "0.0.33"
+    xmldom "^0.1.19"
+
+testem@^2.9.2:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/testem/-/testem-2.14.0.tgz#418a9a15843f68381659c6a486abb4ea48d06c29"
   integrity sha512-tldpNPCzXfibmxOoTMGOfr8ztUiHf9292zSXCu7SitBx9dCK83k7vEoa77qJBS9t3RGCQCRF+GNMUuiFw//Mbw==
