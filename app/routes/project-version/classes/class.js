@@ -1,13 +1,11 @@
-import { resolve, all } from 'rsvp';
+import { get, set } from '@ember/object';
 import Route from '@ember/routing/route';
-import { set, get } from '@ember/object';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
-import { pluralize } from 'ember-inflector';
-import Ember from 'ember';
-import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
-
+import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import { pluralize } from 'ember-inflector';
+import { all, resolve } from 'rsvp';
 
 export default Route.extend(ScrollTracker, {
   headData: service(),
@@ -49,11 +47,13 @@ export default Route.extend(ScrollTracker, {
   redirect(model, transition) {
     if (transition.queryParams.anchor && transition.queryParams.type) {
       let type = transition.queryParams.type;
-      this.transitionTo(`project-version.classes.class.${pluralize(type)}.${type}`,
+      this.transitionTo(
+        `project-version.classes.class.${pluralize(type)}.${type}`,
         transition.params['project-version'].project,
         transition.params['project-version'].project_version,
         transition.params['project-version.classes.class'].class,
-        transition.queryParams.anchor);
+        transition.queryParams.anchor
+      );
     }
     if (model.isError) {
       this.transitionTo('404');
@@ -62,14 +62,14 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      let description = klass.get('ogDescription') || klass.get('description')
+      let description = klass.get('ogDescription') || klass.get('description');
       if (description) {
         set(this, 'headData.description', createExcerpt(description));
       }
 
       const relationships = get(klass.constructor, 'relationshipNames');
       const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
-        const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
+        const relationshipPromises = relationships[relationshipType].map((name) => klass.get(name));
         return memo.concat(relationshipPromises);
       }, []);
       return all(promises);
@@ -81,5 +81,4 @@ export default Route.extend(ScrollTracker, {
       class: get(model, 'name')
     };
   }
-
 });

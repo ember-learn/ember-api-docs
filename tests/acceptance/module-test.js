@@ -1,6 +1,6 @@
-import { module, test } from 'qunit';
+import { click, findAll, visit } from '@ember/test-helpers';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, find, findAll } from '@ember/test-helpers';
+import { module, test } from 'qunit';
 
 module('Acceptance | Module', function(hooks) {
   setupApplicationTest(hooks);
@@ -18,7 +18,10 @@ module('Acceptance | Module', function(hooks) {
     assert.equal(findAll('.spec-property-list li').length, numberPublicClasses + numberNameSpaces);
 
     await click('.sidebar .private-deprecated-toggle');
-    assert.equal(findAll('.spec-property-list li').length, numberPublicClasses + numberNameSpaces + numberPrivateClasses);
+    assert.equal(
+      findAll('.spec-property-list li').length,
+      numberPublicClasses + numberNameSpaces + numberPrivateClasses
+    );
   });
 
   test('lists all submodules on the module page', async function(assert) {
