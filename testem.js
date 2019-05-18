@@ -1,36 +1,43 @@
-const userName = process.env['BROWSERSTACK_USERNAME']
-const accessKey = process.env['BROWSERSTACK_ACCESS_KEY']
+const userName = process.env['BROWSERSTACK_USERNAME'];
+const accessKey = process.env['BROWSERSTACK_ACCESS_KEY'];
 
-const canConnectToBrowserStack =  (
-  userName && userName.trim().length !== 0
-  &&
-  accessKey && accessKey.trim().length !== 0
-);
+const canConnectToBrowserStack =
+  userName && userName.trim().length !== 0 && accessKey && accessKey.trim().length !== 0;
 
 let allBrowsers = [
-  'Chrome', 'Firefox', 'BS_Safari_Current', 'BS_Safari_Last', 'BS_MS_Edge', 'BS_IE_11'
+  'Chrome',
+  'Firefox',
+  'BS_Safari_Current',
+  'BS_Safari_Last',
+  'BS_MS_Edge',
+  'BS_IE_11'
 ];
 let localBrowsers = ['Chrome'];
 let ciBrowsers = canConnectToBrowserStack ? allBrowsers : localBrowsers;
 
 module.exports = {
-  'test_page': 'tests/index.html?hidepassed',
-  'disable_watching': true,
+  test_page: 'tests/index.html?hidepassed',
+  disable_watching: true,
   timeout: 1200,
   browser_start_timeout: 2000,
   parallel: 4,
-  'launch_in_ci': ciBrowsers,
-  'launch_in_dev': localBrowsers,
-  'browser_args': {
-    'Chrome': [
-      '--disable-gpu',
-      '--headless',
-      '--remote-debugging-port=9222',
-      '--window-size=1440,900'
-    ],
-    'Firefox': [
-      '-headless'
-    ]
+  launch_in_ci: ciBrowsers,
+  launch_in_dev: localBrowsers,
+  browser_args: {
+    Chrome: {
+      ci: [
+        // --no-sandbox is needed when running Chrome inside a container
+        process.env.CI ? '--no-sandbox' : null,
+        '--headless',
+        '--disable-gpu',
+        '--disable-dev-shm-usage',
+        '--disable-software-rasterizer',
+        '--mute-audio',
+        '--remote-debugging-port=0',
+        '--window-size=1440,900'
+      ].filter(Boolean)
+    },
+    Firefox: ['-headless']
   },
   launchers: {
     BS_Safari_Current: {
