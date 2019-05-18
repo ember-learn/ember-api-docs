@@ -1,7 +1,6 @@
 {
   "name": "ember-api-docs",
-  "scripts": {
-  },
+  "scripts": {},
   "env": {
     "FASTLY_API_KEY": {
       "required": false
@@ -14,12 +13,13 @@
     },
     "WORKER_COUNT": {
       "required": false
+    },
+    "ENVIRONMENT": {
+      "required": false
     }
   },
-  "formation": {
-  },
-  "addons": [
-  ],
+  "formation": {},
+  "addons": [],
   "buildpacks": [
     {
       "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
