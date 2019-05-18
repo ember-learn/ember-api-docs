@@ -8,5 +8,6 @@ module.exports = {
     'no-unnecessary-concat': false,
     'no-inline-styles': false,
     quotes: false
+    // 'no-implicit-this': true,
   }
 };
