@@ -1,5 +1,5 @@
-import { get, set } from '@ember/object';
 import Route from '@ember/routing/route';
+import { get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
@@ -16,9 +16,17 @@ export default Route.extend(ScrollTracker, {
   },
 
   async model(params, transition) {
-    let projectID = transition.params['project-version'].project;
+    const lookupParams = (routeName) => {
+      let route = transition.routeInfos.find(({name}) => name === routeName);
+      return route ? route.params : {}
+    };
+
+    let {
+      project: projectID,
+      project_version: compactVersion
+    } = lookupParams('project-version');
+
     let projectObj = await this.store.findRecord('project', projectID);
-    let compactVersion = transition.params['project-version'].project_version;
     let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.metaStore);
     const klass = params['class'];
     return this.find('class', `${projectID}-${projectVersion}-${klass}`);
@@ -45,14 +53,21 @@ export default Route.extend(ScrollTracker, {
   },
 
   redirect(model, transition) {
-    if (transition.queryParams.anchor && transition.queryParams.type) {
-      let type = transition.queryParams.type;
+    const lookupParams = (routeName) => {
+      let route = transition.routeInfos.find(({name}) => name === routeName);
+      return route ? route.params : {}
+    }
+
+    let { to: { queryParams } } = transition;
+
+    if (queryParams.anchor && queryParams.type) {
+      let type = queryParams.type;
       this.transitionTo(
         `project-version.classes.class.${pluralize(type)}.${type}`,
-        transition.params['project-version'].project,
-        transition.params['project-version'].project_version,
-        transition.params['project-version.classes.class'].class,
-        transition.queryParams.anchor
+        lookupParams('project-version').project,
+        lookupParams('project-version').project_version,
+        lookupParams('project-version.classes.class').class,
+        queryParams.anchor
       );
     }
     if (model.isError) {
