@@ -101,7 +101,7 @@ module.exports = function(environment) {
     'script-src':
       "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.emberjs.com https://www.google-analytics.com",
     'font-src': "'self' data://* https://fonts.gstatic.com  *.emberjs.com",
-    'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
+    'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com *.fastly.net",
     'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
   };
 
