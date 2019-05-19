@@ -16,9 +16,9 @@ module.exports = {
     browser: true
   },
   rules: {
-    'ember/no-jquery': 'off',
+    // 'ember/no-jquery': 'off',
     'no-console': 'off',
-    'ember/avoid-leaking-state-in-ember-objects': 1
+    // 'ember/avoid-leaking-state-in-ember-objects': 1
   },
   overrides: [
     // node files
@@ -32,7 +32,8 @@ module.exports = {
         'config/**/*.js',
         'lib/**/*.js',
         'bin/*',
-        'server/**/*.js'
+        'server/**/*.js',
+        'run-tests.js'
       ],
       excludedFiles: ['app/**'],
       parserOptions: {
@@ -46,6 +47,7 @@ module.exports = {
       plugins: ['node'],
       rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
         // add your custom rules and overrides for node files here
+        "node/no-unpublished-require": "off"
       })
     }
   ]

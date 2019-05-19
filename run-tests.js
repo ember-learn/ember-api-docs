@@ -20,7 +20,7 @@ const execEmberProcess = async (cmd) => {
   try {
     await proc;
   } catch (e) {
-    return process.exit(1);
+    throw new Error("Error spawning ember process");
   }
 };
 
