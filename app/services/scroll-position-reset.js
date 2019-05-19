@@ -8,15 +8,16 @@ const { scrollContainerSelector } = config.APP;
 export default Service.extend({
 
   _isChangingTab(transition) {
-    const currentRouteParams = transition.router.state.params;
-    const newParams = transition.state.params;
-
     const dynamicSlugLocation = 3;
 
-    const currentThirdParamName = Object.keys(currentRouteParams)[dynamicSlugLocation];
-    const newThirdParamName = Object.keys(newParams)[dynamicSlugLocation];
+    let fromRoutePathParts = transition.from.name.split('.');
+    let toRoutePathParts = transition.to.name.split('.');
 
-    return currentRouteParams[currentThirdParamName] === newParams[newThirdParamName];
+    let fromSubPath = fromRoutePathParts.splice(dynamicSlugLocation, fromRoutePathParts.length).join('.');
+    let toSubPath = toRoutePathParts.splice(dynamicSlugLocation, toRoutePathParts.length).join('.');
+
+    return fromSubPath !==toSubPath &&
+      fromRoutePathParts.join('.') === toRoutePathParts.join('.')
   },
 
   scheduleReset(transition) {
