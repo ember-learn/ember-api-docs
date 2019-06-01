@@ -52,6 +52,18 @@ module.exports = function(environment) {
     ]
   };
 
+
+  ENV.contentSecurityPolicy = {
+    'default-src': "'self' *.emberjs.com",
+    'connect-src': "'self' *.algolia.net *.algolianet.com *.emberjs.com",
+    'script-src':
+      "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.emberjs.com https://www.google-analytics.com",
+    'font-src': "'self' data://* https://fonts.gstatic.com  *.emberjs.com",
+    'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
+    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
+  };
+
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -63,6 +75,8 @@ module.exports = function(environment) {
         turnAuditOff: process.env.test_a11y !== 'yes'
       }
     };
+
+    ENV.contentSecurityPolicy['connect-src'] += " localhost:5050"
   }
 
   if (environment === 'test') {
@@ -92,16 +106,6 @@ module.exports = function(environment) {
       bodyElementId: 'ember-testing'
     };
   }
-
-  ENV.contentSecurityPolicy = {
-    'default-src': "'self' *.emberjs.com",
-    'connect-src': "'self' *.algolia.net *.algolianet.com *.emberjs.com",
-    'script-src':
-      "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.emberjs.com https://www.google-analytics.com",
-    'font-src': "'self' data://* https://fonts.gstatic.com  *.emberjs.com",
-    'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
-    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
-  };
 
   if (environment === 'production') {
     ENV.APP.domain = process.env.APP_DOMAIN_URL ? process.env.APP_DOMAIN_URL : 'https://api.emberjs.com';
