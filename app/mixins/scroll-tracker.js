@@ -16,9 +16,8 @@ export default Mixin.create({
       this._super();
       if ((typeof FastBoot === 'undefined') && window.location.search === '?anchor=' ) {
         let elem = document.querySelector('#methods');
-        let offsetTop = elem.offsetHeight;
 
-        if (offsetTop) {
+        if (elem && elem.offsetHeight) {
           const offsetToScroll = getOffset(elem, config.APP.scrollContainerSelector)
           document.querySelector(config.APP.scrollContainerSelector).scrollTo(0, offsetToScroll - 10);
           return;

@@ -9,9 +9,8 @@ export default AnchorComponent.extend({
     let qp = this.anchorQueryParam;
     let qpVal = this.get(get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
     let elem = document.querySelector(`[data-${qp}="${qpVal}"]`);
-    const offsetTop = elem.offsetHeight;
 
-    if (offsetTop) {
+    if (elem && elem.offsetHeight) {
       const offsetToScroll = getOffset(elem, config.APP.scrollContainerSelector)
       document.querySelector(config.APP.scrollContainerSelector).scrollTo(0, offsetToScroll);
     }
