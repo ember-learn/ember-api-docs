@@ -17,6 +17,7 @@
     "postinstall": "npm rebuild node-sass",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
+    "start:local": "API_HOST=http://localhost:5050 ember serve",
     "start": "ember serve",
     "test": "node run-tests.js"
   },
