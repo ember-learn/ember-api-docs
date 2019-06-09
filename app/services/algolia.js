@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import algoliasearch from 'algoliasearch';
+import algoliasearch from 'algoliasearch/dist/algoliasearch.min';
 import config from 'ember-api-docs/config/environment';
 import { denodeify } from 'rsvp';
 
