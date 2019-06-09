@@ -36,6 +36,20 @@ $dropdown-min-width-large: 600px;
     font-size: 0.9rem;
     color: #fff;
   }
+
+  @media (min-width: $breakpoint-large) {
+    input {
+      margin-top: 10px;
+    }
+  }
+
+  @media (max-width: $breakpoint-large) {
+    input {
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+  }
+
   input,
   input::placeholder {
     font-size: 0.9rem;
@@ -234,4 +248,3 @@ $dropdown-min-width-large: 600px;
     padding: 2px;
   }
 }
-
