@@ -1,9 +1,6 @@
 import Component from '@ember/component';
+import fade from 'ember-animated/transitions/fade';
 
 export default Component.extend({
-  actions: {
-    toggle(type) {
-      this.$('ol.toc-level-1.' + type).slideToggle(200);
-    }
-  }
+  fade,
 });

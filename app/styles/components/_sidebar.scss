@@ -122,13 +122,8 @@ ol.toc-level-1 {
   border-left: $base-border;
   font-size: $base-font-size * 0.9;
 
-  &:not(.selected) {
-    display: none;
-  }
-
   li {
     border-left: 3px solid transparent;
-    transition: border-width $duration, margin-right $duration;
 
     &.selected,
     &:hover {

@@ -22,7 +22,7 @@ module.exports = function(defaults) {
       browsers: ['last 2 versions']
     },
     'ember-composable-helpers': {
-      only: ['join', 'map-by']
+      only: ['join', 'map-by', 'toggle']
     },
     'asset-cache': {
       version: '4', //Might have to change this with the app build,

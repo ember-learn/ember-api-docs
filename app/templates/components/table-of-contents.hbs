@@ -1,41 +1,54 @@
 <ol class="toc-level-0">
   <li class="toc-level-0">
-    <a {{action 'toggle' 'modules'}} href="#">Packages</a>
-    <ol class="toc-level-1 modules" style="display: block">
-      {{#each moduleIDs as |moduleID|}}
-
-        {{#if (not-eq moduleID "@ember/object/computed")}}
-          <li class="toc-level-1" data-test-module={{moduleID}}>
-            {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
-          </li>
-        {{/if}}
-
-      {{/each}}
-    </ol>
+    <a {{action (toggle "showModules" this)}} href="#">Packages</a>
+    
+    {{#animated-if showModules use=fade duration=200}}
+      <ol class="toc-level-1">
+        {{#each moduleIDs as |moduleID|}}
+          {{#if (not-eq moduleID "@ember/object/computed")}}
+            <li class="toc-level-1" data-test-module={{moduleID}}>
+              {{#link-to 'project-version.modules.module' version moduleID}}
+                {{moduleID}}
+              {{/link-to}}
+            </li>
+          {{/if}}
+        {{/each}}
+      </ol>
+    {{/animated-if}}
   </li>
 
   {{#if isShowingNamespaces}}
     <li class="toc-level-0">
-      <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
-      <ol class="toc-level-1 namespaces" style="display: block">
-        {{#each namespaceIDs as |namespaceID|}}
-          <li class="toc-level-1" data-test-namespace={{namespaceID}}>
-            {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
-          </li>
-        {{/each}}
-      </ol>
+      <a {{action (toggle "showNamespaces" this)}} href="#">Namespaces</a>
+      
+      {{#animated-if showNamespaces use=fade duration=200}}
+        <ol class="toc-level-1">
+          {{#each namespaceIDs as |namespaceID|}}
+            <li class="toc-level-1" data-test-namespace={{namespaceID}}>
+              {{#link-to 'project-version.namespaces.namespace' version namespaceID}}
+                {{namespaceID}}
+              {{/link-to}}
+            </li>
+          {{/each}}
+        </ol>
+      {{/animated-if}}
     </li>
   {{/if}}
 
   <li class="toc-level-0">
-    <a {{action 'toggle' 'classes'}} href="#">Classes</a>
-    <ol class="toc-level-1 classes" style="display: block">
-      {{#each classesIDs as |classID|}}
-        <li class="toc-level-1" data-test-class={{classID}}>
-          {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
-        </li>
-      {{/each}}
-    </ol>
+    <a {{action (toggle "showClasses" this)}} href="#">Classes</a>
+    
+    {{#animated-if showClasses use=fade duration=200}}
+      <ol class="toc-level-1">
+        {{#each classesIDs as |classID|}}
+          <li class="toc-level-1" data-test-class={{classID}}>
+            {{#link-to 'project-version.classes.class' version classID}}
+              {{classID}}
+            {{/link-to}}
+          </li>
+        {{/each}}
+      </ol>
+    {{/animated-if}}
   </li>
 </ol>
 <label class="toc-private-toggle">
