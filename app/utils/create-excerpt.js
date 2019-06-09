@@ -1,10 +1,10 @@
-import sanitizeHtml from 'sanitize-html'
+import dompurify from 'dompurify'
 
 export default function createExcerpt(string, maxLength = 300) {
   // Stop at first code example
   string = string.split('<table')[0]
 
-  let excerpt = sanitizeHtml(string, {allowedTags: []})
+  let excerpt = dompurify.sanitize(string, {allowedTags: []})
     // Remove tabs and line breaks
     .replace(/\t/g, '')
     .replace(/\n/g, ' ')
