@@ -64,7 +64,7 @@ you're at all able, start writing some code. We always have more work to do
 than time to do it. If you can write some code then that will speed the process
 along.
 
-If you have a question please reach out to us on the #team-learning channel on ember slack
+If you have a question please reach out to us on the #dev-ember-learning channel on ember Discord
 
 # Building Ember.js API Docs
 
@@ -120,7 +120,7 @@ explanation of why you made the changes you made. For new features make sure to
 explain a standard use case to us.
 
 We try to be quick about responding to tickets but sometimes we get a bit
-backlogged. If the response is slow, try to find someone on slack (#team-learning) to
+backlogged. If the response is slow, try to find someone on Discord (#dev-ember-learning) to
 give the ticket a review.
 
 Including tests that fail without your code, and making it pass will increase the chance
