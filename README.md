@@ -1,8 +1,8 @@
 # [Ember API Docs](https://api.emberjs.com/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
 
 This project contains only the [API docs](https://api.emberjs.com/) portion of [Emberjs.com](https://emberjs.com/). If you're looking for the rest of the site,
-see the [website](https://github.com/emberjs/website)
-and [guides](https://github.com/emberjs/guides) repositories.
+see the [website](https://github.com/ember-learn/ember-website)
+and [guides](https://github.com/ember-learn/guides-source) repositories.
 
 There are many pieces that together create the Ember API docs site:
 - The app in this repository, which fetches and displays the API docs data. It is what you see at
