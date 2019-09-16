@@ -12,17 +12,17 @@ module('Acceptance | redirects', function(hooks) {
       `/ember/release`,
       'routes to the latest version of the project'
     );
-    assert.dom('h1').hasText('Ember.js API Documentation');
+    assert.dom('h1').hasText('Ember API Documentation');
   });
 
   test('visiting /ember-data', async function (assert) {
     await visit('/ember-data');
     assert.equal(
       currentURL(),
-      `/ember-data/release/modules/ember-data`,
-      'routes to the first page of ember data'
+      `/ember-data/release`,
+      'routes to the landing page'
     );
-    assert.dom('h1').hasText('Package ember-data');
+    assert.dom('h1').hasText('Ember API Documentation');
   });
 
   test('visiting pre-2.16 version', async function(assert) {
