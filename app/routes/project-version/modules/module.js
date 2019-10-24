@@ -10,7 +10,7 @@ export default ClassRoute.extend(ScrollTracker, {
     let compactVersion = transition.params['project-version'].project_version;
     let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.metaStore);
     let klass = params['module'];
-    if (!~klass.indexOf(projectID) && klass !== 'rsvp' && klass !== 'jquery') {
+    if (!~klass.indexOf(projectID) && klass !== 'rsvp' && klass !== 'jquery' && klass !== '@glimmer/component' && klass !== '@glimmer/tracking') {
       klass = `${projectID}-${klass}`;
     }
     return this.find('module', `${projectID}-${projectVersion}-${klass}`);
