@@ -1,16 +1,11 @@
-body {
-  background-color: $base-background-color;
-  margin: 0;
-}
-
 main {
-  @include media($large-screen) {
+  @media screen and (min-width: $large-screen) {
     display: flex;
   }
 }
 
 .container {
-  @include outer-container;
+  margin: 0 auto;
   padding: 0 1em;
   &::after {
   	clear: both;

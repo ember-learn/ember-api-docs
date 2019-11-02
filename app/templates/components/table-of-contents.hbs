@@ -1,0 +1,46 @@
+<ol class="toc-level-0">
+  <li class="toc-level-0 large list-unstyled">
+    <a {{action 'toggle' 'modules'}} href="#">Packages</a>
+    <ol class="toc-level-1 medium regular modules" style="display: block">
+      {{#each moduleIDs as |moduleID|}}
+
+        {{#if (not-eq moduleID "@ember/object/computed")}}
+          <li class="toc-level-1 medium regular padding-left-small list-unstyled" data-test-module={{moduleID}}>
+            {{#link-to 'project-version.modules.module' version moduleID}}
+              {{moduleID}}
+            {{/link-to}}
+          </li>
+        {{/if}}
+
+      {{/each}}
+    </ol>
+  </li>
+
+  {{#if isShowingNamespaces}}
+    <li class="toc-level-0 large list-unstyled">
+      <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
+      <ol class="toc-level-1 medium regular namespaces" style="display: block">
+        {{#each namespaceIDs as |namespaceID|}}
+          <li class="toc-level-1 medium regular padding-left-small list-unstyled" data-test-namespace={{namespaceID}}>
+            {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
+          </li>
+        {{/each}}
+      </ol>
+    </li>
+  {{/if}}
+
+  <li class="toc-level-0 large list-unstyled">
+    <a {{action 'toggle' 'classes'}} href="#">Classes</a>
+    <ol class="toc-level-1 medium regular classes" style="display: block">
+      {{#each classesIDs as |classID|}}
+        <li class="toc-level-1 medium regular padding-left-small list-unstyled" data-test-class={{classID}}>
+          {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
+        </li>
+      {{/each}}
+    </ol>
+  </li>
+</ol>
+<label class="toc-private-toggle regular padding-top-small">
+  {{input type="checkbox" checked=showPrivateClasses class='private-deprecated-toggle'}}
+  Show Private / Deprecated
+</label>

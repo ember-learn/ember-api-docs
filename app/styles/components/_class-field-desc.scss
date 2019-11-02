@@ -11,10 +11,8 @@
 }
 
 .args {
-  color: $light-brown;
   font-style: italic;
   font-weight: normal;
-  font-size: $base-font-size;
 }
 
 .class-field-description--link .return-type,
@@ -23,7 +21,6 @@
   color: $medium-gray;
   font-style: italic;
   font-weight: normal;
-  font-size: $base-font-size;
   margin-right: 5px;
 }
 
@@ -31,13 +28,8 @@
   color: white;
   background-color: gray;
   padding: 2px 7px;
-  font-size: 1.6em;
   font-weight: 600;
   border-radius: 3px;
-}
-
-h3 .access{
-  font-size: smaller;
 }
 
 .parameters {
@@ -66,12 +58,10 @@ h3 .access{
 
 p.github-link {
   margin: -12px 0 0;
-  font-size: $small-font-size;
 }
 
 p.field-since {
   margin: 0;
-  font-size: $small-font-size;
 }
 
 .class-field-description--link {

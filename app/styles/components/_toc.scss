@@ -23,10 +23,9 @@ a.toc-anchor {
   margin-top: -5px;
 }
 
-.toc-private-toggle {
-  font-size: $small-font-size;
-}
-
-.toc-level-0 > a {
+.toc-level-0 > a, .toc-spacing  {
   transition: color 0.1s linear;
+  margin-bottom: 0.5em;
+  margin-top:0.5em;
+  display: block;
 }

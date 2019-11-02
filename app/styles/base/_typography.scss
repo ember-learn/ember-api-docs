@@ -1,54 +1,18 @@
 @import "mixins/hidpi";
 @import "mixins/text-adjust";
 
-body {
-  font-feature-settings: "kern", "liga", "pnum";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: $base-font-color;
-  font-family: $base-font-family;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
-}
-
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: $heading-font-family;
-  font-size: $base-font-size;
-  line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
-  font-weight: bold;
-
   code {
     text-transform: none;
   }
 }
 
-@each $i in 0, 1, 2, 3, 4 {
-  h#{$i + 1} {
-    font-size: modular-scale(-$i, 2em, 1.2);
-  }
-}
-
-h1 {
-  color: $ember-orange;
-}
-
-h2 {
-  color: $brown;
-}
-
-p {
-  margin: 1.5em 0 $small-spacing;
-  line-height: 1.5em;
-}
-
 a {
-  color: $action-color;
   text-decoration: none;
   transition: color 0.1s linear;
 
@@ -64,7 +28,7 @@ a {
 }
 
 hr {
-  border-bottom: $base-border;
+  border-bottom: 1px solid #e6e4e3;
   border-left: none;
   border-right: none;
   border-top: none;

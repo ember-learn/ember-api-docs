@@ -7,10 +7,8 @@ article {
 
   .edit-page {
     @include size(24px, 18px);
-    color: $brown;
     display: inline-block;
     float: right;
-    font-size: 1rem;
     margin: 0.5em 0 0 0;
     opacity: 0.4;
     overflow: hidden;

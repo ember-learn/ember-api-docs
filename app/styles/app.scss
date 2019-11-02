@@ -1,47 +1,7 @@
 @charset "utf-8";
-
 @import "normalize";
 @import "bourbon";
 @import "./base/base";
-@import "neat";
 @import "./components/all";
 @import "class";
-
-body {
-  margin: 0;
-  width: 100%;
-}
-
-@include media($large-screen-up) {
-  .header {
-    top: 0;
-    width: 100%;
-  }
-
-  main.container {
-    width: 100%;
-    min-height: calc(100vh - 18rem);
-  }
-
-  main.container .content {
-    position: relative;
-    margin-right: 0;
-    margin-bottom: 0;
-    overflow:auto;
-    padding: $base-spacing;
-    min-width: auto;
-    &::after {
-      clear: both;
-      display: table;
-    }
-
-  }
-
-  main.container .content .chapter {
-    width: 800px;
-    max-width: 100%;
-  }
-}
-
-
 @import "ember-power-select";

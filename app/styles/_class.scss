@@ -90,9 +90,6 @@ article.chapter {
   .attribute-label {
     display: inline-block;
     width: 120px;
-    color: $black;
-    font-weight: bold;
-    text-transform: uppercase;
 
     @media (max-width: $mobile-portrait-screen){
       display: block;

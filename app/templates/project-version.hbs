@@ -1,14 +1,14 @@
-<aside class="sidebar">
+<aside class="sidebar col-1-large col-6">
   <ol class="toc-level-0">
-    <li class="toc-level-0" data-test-home>
+    <li class="toc-level-0 large margin-bottom-small list-unstyled" data-test-home>
       <LinkTo @route="project" @model="ember">Home</LinkTo>
     </li>
-    <li class="toc-level-0">
-      Projects
+    <li class="toc-level-0 large margin-vertical-small  list-unstyled">
+      <span class="toc-spacing">Projects</span>
       <ol class="toc-level-1 selected" style="display: block;">
-        <li class="toc-level-1"><LinkTo @route="project" @model="ember" @current-when={{eq this.activeProject "ember"}} class="spec-ember">Ember</LinkTo></li>
-        <li class="toc-level-1"><LinkTo @route="project" @model="ember-data" @current-when={{eq this.activeProject "ember-data"}} class="spec-ember-data">Ember Data</LinkTo></li>
-        <li class="toc-level-1"><LinkTo @route="project" @model="ember-cli" @current-when={{eq this.activeProject "ember-cli"}} class="spec-ember">Ember CLI</LinkTo></li>
+        <li class="toc-level-1 medium regular padding-left-small list-unstyled"><LinkTo @route="project" @model="ember" @current-when={{eq this.activeProject "ember"}} class="spec-ember">Ember</LinkTo></li>
+        <li class="toc-level-1 medium regular padding-left-small list-unstyled"><LinkTo @route="project" @model="ember-data" @current-when={{eq this.activeProject "ember-data"}} class="spec-ember-data">Ember Data</LinkTo></li>
+        <li class="toc-level-1 medium regular padding-left-small list-unstyled"><LinkTo @route="project" @model="ember-cli" @current-when={{eq this.activeProject "ember-cli"}} class="spec-ember">Ember CLI</LinkTo></li>
       </ol>
     </li>
   </ol>
@@ -37,6 +37,6 @@
     @isShowingNamespaces={{version-lt this.selectedProjectVersion.compactVersion "2.16"}}
   />
 </aside>
-<section class="content">
+<section class="content col-6 col-5-large">
   {{outlet}}
 </section>
