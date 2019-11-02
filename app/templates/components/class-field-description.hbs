@@ -1,5 +1,5 @@
 <section class="{{type}}">
-  <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
+  <h2 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
     <a class="anchor">
       {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
     </a>
@@ -18,7 +18,7 @@
     {{#if field.deprecated}}
       <span class="access">deprecated</span>
     {{/if}}
-  </h3>
+  </h2>
   {{#if model.module}}
     <div class="attributes">
       <div class="attribute">
@@ -51,14 +51,14 @@
   <dl class="parameters">
     {{#each field.params as |param|}}
       <div class="parameter">
-        <dt>{{param.name}}</dt>
+        <dt><strong>{{param.name}}</strong></dt>
         <dd class="parameter-type">{{param.type}}</dd>
         <dd>{{param.description}}</dd>
       </div>
     {{/each}}
     {{#if field.return}}
       <div class="return">
-        <dt>returns</dt>
+        <dt><strong>returns</strong></dt>
         <dd class="return-type">{{field.return.type}}</dd>
         <dd>{{field.return.description}}</dd>
       </div>

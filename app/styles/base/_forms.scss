@@ -9,7 +9,6 @@ input,
 label,
 select {
   display: block;
-  font-size: $base-font-size;
 }
 
 .ember-power-select-trigger {
@@ -18,7 +17,6 @@ select {
   max-width: 100%;
   width: auto;
   display: block;
-  font-size: $base-font-size;
   background-color: $base-background-color;
   transition: border-color;
   appearance: none;
@@ -44,7 +42,6 @@ textarea {
   border-radius: $base-border-radius;
   box-shadow: $form-box-shadow;
   box-sizing: border-box;
-  font-size: $base-font-size;
   margin-bottom: $base-spacing / 2;
   padding: $base-spacing / 3;
   transition: border-color;

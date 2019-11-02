@@ -32,7 +32,6 @@ ol {
         border: 2px solid $base-border-color;
         border-radius: 50%;
         float: left;
-        font-size: $small-font-size;
         line-height: calc(2em - 4px);
         overflow: hidden;
         text-align: center;
@@ -49,7 +48,6 @@ dl {
   margin-bottom: $small-spacing;
 
   dt {
-    font-weight: bold;
     margin-top: $small-spacing;
   }
 
