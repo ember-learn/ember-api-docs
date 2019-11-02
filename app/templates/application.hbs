@@ -1,12 +1,10 @@
 {{#es-header}}
-  {{#es-navbar links=links}}
-    {{search-input}}
-  {{/es-navbar}}
+  {{search-input}}
 {{/es-header}}
-<main class="container">
+<main class="container margin-vertical-medium">
   {{outlet}}
 </main>
-{{main-footer}}
+{{es-footer}}
 
 {{!-- required by ember-cli-meta-tags --}}
 {{head-layout}}
