@@ -1,27 +1,9 @@
 .sidebar {
-  position: relative;
-  z-index: 1;
-  padding: $small-spacing 0;
 
   @include media($large-screen-up) {
-    // fixed sidebar, full height
-    @include span-columns(3.5);
     margin-right: 0;
-    width: 19em;
     border-bottom: 0;
     padding: $small-spacing $base-spacing $base-spacing * 1.5;
-
-    &::before {
-      @include position(absolute, 0 0 0 -100vw);
-      content: "";
-      display: block;
-      z-index: -1;
-    }
-
-    &::after {
-      clear: both;
-      display: block;
-    }
   }
 
   @media (min-width: 1200px) {

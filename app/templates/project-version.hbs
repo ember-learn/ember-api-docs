@@ -1,4 +1,4 @@
-<aside class="sidebar">
+<aside class="sidebar col-1-large col-6">
   <ol class="toc-level-0">
     <li class="toc-level-0 large margin-bottom-small  list-unstyled" data-test-home>
       {{#link-to 'project' 'ember'}}Home{{/link-to}}
@@ -37,6 +37,6 @@
     isShowingNamespaces=(version-lt selectedProjectVersion.compactVersion '2.16')
   }}
 </aside>
-<section class="content">
+<section class="content col-6 col-5-large">
   {{outlet}}
 </section>
