@@ -5,7 +5,7 @@
       {{#each moduleIDs as |moduleID|}}
 
         {{#if (not-eq moduleID "@ember/object/computed")}}
-          <li class="toc-level-1 medium regular padding-left-small" data-test-module={{moduleID}}>
+          <li class="toc-level-1 medium regular padding-left-small list-unstyled" data-test-module={{moduleID}}>
             {{#link-to 'project-version.modules.module' version moduleID}}
               {{moduleID}}
             {{/link-to}}
@@ -21,7 +21,7 @@
       <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
       <ol class="toc-level-1 medium regular namespaces" style="display: block">
         {{#each namespaceIDs as |namespaceID|}}
-          <li class="toc-level-1 medium regular padding-left-small" data-test-namespace={{namespaceID}}>
+          <li class="toc-level-1 medium regular padding-left-small list-unstyled" data-test-namespace={{namespaceID}}>
             {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
           </li>
         {{/each}}
@@ -33,7 +33,7 @@
     <a {{action 'toggle' 'classes'}} href="#">Classes</a>
     <ol class="toc-level-1 medium regular classes" style="display: block">
       {{#each classesIDs as |classID|}}
-        <li class="toc-level-1 medium regular padding-left-small" data-test-class={{classID}}>
+        <li class="toc-level-1 medium regular padding-left-small list-unstyled" data-test-class={{classID}}>
           {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
         </li>
       {{/each}}
