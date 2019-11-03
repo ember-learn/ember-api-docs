@@ -1,5 +1,5 @@
 <ol class="toc-level-0">
-  <li class="toc-level-0 large">
+  <li class="toc-level-0 large list-unstyled">
     <a {{action 'toggle' 'modules'}} href="#">Packages</a>
     <ol class="toc-level-1 medium regular modules" style="display: block">
       {{#each moduleIDs as |moduleID|}}
@@ -17,7 +17,7 @@
   </li>
 
   {{#if isShowingNamespaces}}
-    <li class="toc-level-0 large">
+    <li class="toc-level-0 large list-unstyled">
       <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
       <ol class="toc-level-1 medium regular namespaces" style="display: block">
         {{#each namespaceIDs as |namespaceID|}}
@@ -29,7 +29,7 @@
     </li>
   {{/if}}
 
-  <li class="toc-level-0 large">
+  <li class="toc-level-0 large list-unstyled">
     <a {{action 'toggle' 'classes'}} href="#">Classes</a>
     <ol class="toc-level-1 medium regular classes" style="display: block">
       {{#each classesIDs as |classID|}}
@@ -40,7 +40,7 @@
     </ol>
   </li>
 </ol>
-<label class="toc-private-toggle">
+<label class="toc-private-toggle regular padding-top-small">
   {{input type="checkbox" checked=showPrivateClasses class='private-deprecated-toggle'}}
   Show Private / Deprecated
 </label>

@@ -19,7 +19,6 @@ ol {
     margin-bottom: $base-spacing;
 
     > li {
-      counter-increment: customlistcounter;
       clear: both;
       padding: $small-spacing 0 $small-spacing 2em;
       position: relative;
@@ -28,8 +27,7 @@ ol {
       &::before {
         @include position(absolute, ($small-spacing + 0.5em) null null 0);
         @include size(2em);
-        content: counter(customlistcounter) " ";
-        border: 2px solid $base-border-color;
+        border: 2px solid #74B0CE;
         border-radius: 50%;
         float: left;
         line-height: calc(2em - 4px);
@@ -37,21 +35,9 @@ ol {
         text-align: center;
       }
     }
-
-    &:first-child {
-      counter-reset: customlistcounter;
-    }
   }
 }
 
-dl {
-  margin-bottom: $small-spacing;
-
-  dt {
-    margin-top: $small-spacing;
-  }
-
-  dd {
-    margin: 0;
-  }
+dd {
+  margin: 0;
 }

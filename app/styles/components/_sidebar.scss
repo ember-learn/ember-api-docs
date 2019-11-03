@@ -88,7 +88,12 @@ label[for="toc-toggle"] {
 }
 
 ol.toc-level-1 {
-  border-left: $base-border;
+  border-left: 1px solid #74B0CE;
+
+  // override ember-styleguide link color
+  a {
+    color: #42474f;
+  }
 
   &:not(.selected) {
     display: none;
@@ -97,10 +102,12 @@ ol.toc-level-1 {
   li {
     border-left: 3px solid transparent;
     transition: border-width $duration, margin-right $duration;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
 
     &.selected,
     &:hover {
-      border-left-color: $base-border-color;
+      border-left-color: #74B0CE;
     }
 
     &:hover {
