@@ -103,7 +103,7 @@
     "spawndamnit": "2.0.0"
   },
   "engines": {
-    "node": "10.* || 11.*",
+    "node": "10.* || 12.*",
     "npm": "5"
   },
   "cacheDirectories": [
