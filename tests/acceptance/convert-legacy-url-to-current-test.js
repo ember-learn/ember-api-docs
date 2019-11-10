@@ -17,7 +17,7 @@ module('Acceptance | convert legacy url to current', function(hooks) {
 
   test('should convert url for legacy ember data class', async function (assert) {
     await visit('/data/classes/DS.Adapter.html');
-    assert.equal(currentURL(), '/ember-data/release/classes/DS.Adapter');
+    assert.equal(currentURL(), '/ember-data/release/classes/Adapter');
   });
 
   test('should convert url for legacy ember module', async function (assert) {
@@ -27,7 +27,7 @@ module('Acceptance | convert legacy url to current', function(hooks) {
 
   test('should convert url for legacy ember data module', async function (assert) {
     await visit('/data/modules/ember-data.html');
-    assert.equal(currentURL(), '/ember-data/release/modules/ember-data');
+    assert.equal(currentURL(), '/ember-data/release/modules/@ember-data');
   });
 
   test('should convert unknown legacy modules url to landing page', async function (assert) {

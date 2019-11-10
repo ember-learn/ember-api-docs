@@ -17,7 +17,11 @@ export default Route.extend({
   },
 
   redirect(model) {
-    let mappingInfo = this.legacyModuleMappings.getNewModuleFromOld(model.moduleName, model.mappings);
+    let { moduleName, mappings } = model;
+    if (moduleName.indexOf('ember-data') === 0) {
+      moduleName = '@' + moduleName;
+    }
+    let mappingInfo = this.legacyModuleMappings.getNewModuleFromOld(moduleName, mappings);
     return this.transitionTo(`project-version.modules.module`,
       'ember-data',
       'release',

@@ -19,6 +19,9 @@ export default Route.extend({
   redirect(model) {
     let mappingInfo = this.legacyModuleMappings.getNewClassFromOld(model.className, model.mappings)
     let { newName } = mappingInfo;
+    if (newName.substr(0, 3) === "DS.") {
+      newName = newName.substr(3);
+    }
     if (!mappingInfo.error) {
       return this.transitionTo(`project-version.classes.class`,
         'ember-data',
