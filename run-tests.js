@@ -18,7 +18,10 @@ const execEmberProcess = async (cmd) => {
   let proc = spawn(ember, [cmd]);
   hookupLoggers(proc);
   try {
-    await proc;
+    let { code } = await proc;
+    if (code !== 0) {
+      throw Error();
+    }
   } catch (e) {
     return process.exit(1);
   }
