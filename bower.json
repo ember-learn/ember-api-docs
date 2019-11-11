@@ -1,7 +1,0 @@
-{
-  "name": "ember-api-docs",
-  "dependencies": {
-    "bitters": "^1.5.0",
-    "neat": "^1.8.0"
-  }
-}

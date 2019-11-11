@@ -75,11 +75,10 @@ clone the latest ember.js api docs from github
 cd to the cloned ember-api-docs directory
  - cd ember-api-docs
 
-ensure Node.js, bower and yarn are installed
+ensure Node.js and yarn are installed
 
 follow these commands to build ember.js
  - yarn install
- - bower install
  - yarn run build
 ```
 
