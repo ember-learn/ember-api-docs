@@ -10,6 +10,7 @@ export default Route.extend({
   fastboot: service(),
   headData: service(),
   metaStore: service(),
+  router: service(),
   projectService: service('project'),
 
   titleToken: function(model) {
@@ -45,7 +46,7 @@ export default Route.extend({
       let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
       if (!shouldConvertPackages || isLatestVersion) {
         // ... and the transition version is the latest release,
-        // display the landing page at 
+        // display the landing page at
         return this.transitionTo('project-version.index');
       } else {
         // else go to the version specified
