@@ -53,6 +53,23 @@ export default DS.Model.extend({
   extendedClassProjectName: projectNameFromClassName('extends'),
   extendedClassVersion: guessVersionFor('extends'),
   usedClassProjectName: projectNameFromClassName('uses'),
-  usedClassVersion: guessVersionFor('uses')
+  usedClassVersion: guessVersionFor('uses'),
+
+  extendedClassShortName: computed('extends', function() {
+    let extendedClassName = this.get('extends');
+    if (extendedClassName.substr(0, 6) === 'Ember.') {
+      return extendedClassName.substr(6);
+    }
+    return extendedClassName;
+  }),
+
+  usesObjects: computed('uses', function() {
+    return this.get('uses').map(className => ({
+      name: className,
+      shortName: className.substr(0, 6) === 'Ember.' ? className.substr(6) : className,
+      projectId: className.substr(0, 6) === 'Ember.' ? 'ember' :
+        className.substr(0, 3) === 'DS' ? 'ember-data' : this.get('project.id')
+    }));
+  })
 
 });

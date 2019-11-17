@@ -32,6 +32,7 @@ module.exports = {
         'lib/**/*.js',
         'bin/*',
       ],
+      excludedFiles: ['config/deprecation-workflow.js'],
       parserOptions: {
         sourceType: 'script',
         ecmaVersion: 2017

@@ -9,16 +9,16 @@
     {{#if model.extends}}
       <div class="attribute">
         <span class="attribute-label">Extends:</span>
-        <span class="attribute-value">{{#link-to 'project-version.classes.class' model.extendedClassProjectName model.projectVersion.compactVersion model.extends}}{{model.extends}}{{/link-to}}</span>
+        <span class="attribute-value">{{#link-to data-test-extends-link 'project-version.classes.class' model.extendedClassProjectName model.projectVersion.compactVersion model.extendedClassShortName}}{{model.extends}}{{/link-to}}</span>
       </div>
     {{/if}}
     {{#if model.uses}}
       <div class="attribute">
         <span class="attribute-label">Uses:</span>
         <span class="attribute-value">
-          {{#each model.uses as |parentClass idx|}}
+          {{#each model.usesObjects as |parentClass idx|}}
             {{#if (not-eq idx 0)}}<span class="comma">,</span>{{/if}}
-            {{#link-to 'project-version.classes.class' model.usedClassProjectName model.projectVersion.compactVersion parentClass}}{{parentClass}}{{/link-to}}
+            {{#link-to data-test-uses-link 'project-version.classes.class' parentClass.projectId model.projectVersion.compactVersion parentClass.shortName}}{{parentClass.name}}{{/link-to}}
           {{/each}}
         </span>
       </div>
