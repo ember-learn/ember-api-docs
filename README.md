@@ -18,15 +18,15 @@ a component and styling library shared across apps.
 
 ## Contributing
 
-New contributors are welcome! This project is is maintained by an all-volunteer team,
+New contributors are welcome! This project is maintained by an all-volunteer team,
 and we are thankful for your help.
 
-The best way to get started is to find issue labeled "good first issue" or "help wanted." If you have questions or want a buddy to pair with, drop by the #dev-ember-learning channel on the
+The best way to get started is to find an issue labeled "good first issue" or "help wanted." If you have questions or want a buddy to pair with, drop by the #dev-ember-learning channel on the
 [Ember Community Discord](https://discordapp.com/invite/emberjs).
-Like most open source projects, contributors are encouraged to open an issue
+Like most open-source projects, contributors are encouraged to open an issue
 to propose changes and iterate on ideas before investing time in coding.
 Some tips for working with git/GitHub can be found in
-[Making your first pull request](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md#making-your-first-pull-request) in the Guides respository.
+[Making your first pull request](https://github.com/emberjs/guides/blob/master/CONTRIBUTING.md#making-your-first-pull-request) in the Guides repository.
 
 Please also see [CONTRIBUTING.md](CONTRIBUTING.md).
 
