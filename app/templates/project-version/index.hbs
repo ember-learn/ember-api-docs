@@ -23,15 +23,15 @@
   </ul>
   <h2>How to import and use packages</h2>
   <p>
-    ECMAScript 2015 (also known as ES2015 or ES6) introduced a syntax for importing and exporting values from modules. Ember has made use of ES6 modules for quite a while now. However, the entire Ember framework was previously imported as a single package. Rather than importing specific parts of the framework directly, a very common pattern in Ember applications was to import this package as the Ember global object and subclass from there as needed:
-  </p>
-  {{oldPackageImportSyntax}}
-  <p>
-    With the introduction of the Ember JavaScript Modules API, specific Ember modules may now be imported directly through the use of scoped packages. For example module import and exports can now look like this:
+    Ember has a modern ECMAScript 2015 (also known as ES2015 or ES6) modules API. Each major class and its supporting functions live in a dedicated module, which you can import like this:
   </p>
   {{newPackageImportSyntax}}
   <p>
-    Making use of the JavaScript Modules API allows the building of smaller packages based on chunks of functionality and importing only parts of the Ember framework that are needed.
+    When working with older Ember codebases, you may see a different set of imports. Before the Ember JavaScript Modules API design, developers had to import the entire Ember framework as a single package. That package was an object which contained <em>all</em> the Ember classes and functions, so you will see code that pulls the classes or functions off that object, like this:
+  </p>
+  {{oldPackageImportSyntax}}
+  <p>
+    For new apps, you should always prefer the the JavaScript Modules API, and old apps should migrate to it over time: it allows the building of smaller packages based on chunks of functionality and importing only parts of the Ember framework that are needed.
   </p>
   <p>
     The most up-to-date and complete mappings between the previous API and the new JavaScript Modules API can be found at the <a href='https://github.com/ember-cli/ember-rfc176-data'>ember-rfc176-data</a> repository.  <a href='https://github.com/tomdale/ember-modules-codemod'>Codemod tooling</a> is also available to help migrate existing Ember projects to the new JavaScript Modules API syntax.
