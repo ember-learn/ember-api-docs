@@ -14,7 +14,6 @@
   },
   "scripts": {
     "build": "ember build",
-    "postinstall": "npm rebuild node-sass",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start:local": "API_HOST=http://localhost:5050 ember serve",
@@ -67,7 +66,7 @@
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-meta-tags": "^5.1.0",
     "ember-cli-qunit": "^4.4.0",
-    "ember-cli-sass": "^10.0.0",
+    "ember-cli-sass": "^10.0.1",
     "ember-cli-shims": "^1.2.0",
     "ember-cli-template-lint": "^1.0.0-beta.2",
     "ember-cli-uglify": "^2.1.0",
@@ -101,14 +100,14 @@
     "minimist": "^1.2.0",
     "normalize.css": "^8.0.1",
     "qunit-dom": "^0.8.2",
-    "sass": "^1.20.1",
+    "sass": "^1.25.0",
     "spawndamnit": "2.0.0"
   },
   "resolutions": {
     "browserslist": "2.11.3"
   },
   "engines": {
-    "node": "10.* || 11.* || 12.*",
+    "node": "10.* || 11.*",
     "npm": "5"
   },
   "cacheDirectories": [
@@ -116,5 +115,9 @@
   ],
   "fastbootDependencies": [
     "algoliasearch"
-  ]
+  ],
+  "volta": {
+    "node": "11.15.0",
+    "yarn": "1.22.0"
+  }
 }
