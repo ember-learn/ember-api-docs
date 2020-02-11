@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  titleToken() {
-    return 'Ember CLI';
+  title() {
+    return 'Ember CLI - Ember API Documentation';
   }
 });
