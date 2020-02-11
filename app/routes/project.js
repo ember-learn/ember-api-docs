@@ -11,6 +11,10 @@ export default Route.extend(ScrollTracker, {
       projectNameToLookUp = 'ember-data';
     }
 
+    if (projectName.indexOf('cli') !== -1) {
+      return this.transitionTo('ember-cli');
+    }
+
     return this.store.findRecord('project', projectNameToLookUp, { includes: 'project-version' });
   },
 
@@ -18,5 +22,4 @@ export default Route.extend(ScrollTracker, {
   redirect(project /*, transition */) {
     return this.transitionTo('project-version', project.get('id'), 'release');
   }
-
 });

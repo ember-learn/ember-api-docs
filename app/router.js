@@ -34,6 +34,7 @@ const AppRouter = Router.extend({
 
 AppRouter.map(function() {
   this.route('404');
+  this.route('ember-cli');
   this.route('project', { path: '/:project' });
 
   this.route('project-version', { path: '/:project/:project_version' }, function() {
