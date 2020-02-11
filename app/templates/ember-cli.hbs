@@ -1,3 +1,4 @@
+{{!-- Template is copied from project-version.hbs --}}
 <aside class="sidebar">
   <ol class="toc-level-0">
     <li class="toc-level-0" data-test-home>
@@ -12,31 +13,10 @@
       </ol>
     </li>
   </ol>
-
-  <div class="select-container">
-    {{#power-select
-      onchange=(route-action "updateProject" activeProject)
-      options=projectVersions
-      selected=selectedProjectVersion
-      ariaLabel="Select a version"
-      required=true
-      searchField="compactVersion"
-      as |ver|
-    }}
-      {{ver.compactVersion}}
-    {{/power-select}}
-  </div>
-
-  {{table-of-contents
-    projectId=model.project.id
-    version=urlVersion
-    classesIDs=shownClassesIDs
-    moduleIDs=shownModuleIDs
-    namespaceIDs=shownNamespaceIDs
-    showPrivateClasses=showPrivateClasses
-    isShowingNamespaces=(version-lt selectedProjectVersion.compactVersion '2.16')
-  }}
 </aside>
 <section class="content">
-  {{outlet}}
+  <article class="chapter">
+    <h1>Ember CLI API Documentation</h1>
+    <p>Ember CLI API documentation is available on <a href="https://ember-cli.com/api">ember-cli.com/api</a>.</p>
+  </article>
 </section>
