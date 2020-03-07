@@ -13,7 +13,6 @@ module.exports = function(defaults) {
     sassOptions: {
       includePaths: [
         'app/styles',
-        'node_modules/bourbon-neat/app/assets/stylesheets',
         'node_modules/normalize.css'
       ]
     },
