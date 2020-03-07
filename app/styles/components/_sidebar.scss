@@ -1,6 +1,6 @@
 .sidebar {
 
-  @include media($large-screen-up) {
+  @media (min-width: $large-screen-up) {
     margin-right: 0;
     border-bottom: 0;
     padding: $small-spacing $base-spacing $base-spacing * 1.5;
@@ -46,7 +46,7 @@ label[for="toc-toggle"] {
     border-width: 0 4px 5px 4px;
   }
 
-  @include media($large-screen) {
+  @media screen and (min-width: $large-screen) {
     display: none;
   }
 }
@@ -59,7 +59,7 @@ label[for="toc-toggle"] {
   .toc-toggle:checked ~ & {
     display: block;
   }
-  @include media($large-screen) {
+  @media screen and (min-width: $large-screen) {
     display: block;
 
     // ensure toc-toggle can not cause toc-container to be hidden on large screen
