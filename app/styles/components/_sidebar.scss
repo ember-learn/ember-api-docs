@@ -5,9 +5,16 @@
   z-index: 1;
   padding: $small-spacing 0;
 
-  @include media($large-screen-up) {
-    // fixed sidebar, full height
-    @include span-columns(3.5);
+  @media (min-width: $large-screen-up) {
+    float: left;
+    display: block;
+    margin-right: 1.9355953897%;
+    width: 27.7956199323%;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
     margin-right: 0;
     width: 19em;
     border-bottom: 0;
@@ -45,16 +52,19 @@ label[for="toc-toggle"] {
   &:hover {
     color: $ember-orange;
     &:after {
-      border-color: $ember-orange rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+      border-color: $ember-orange rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+        rgba(0, 0, 0, 0);
     }
     .toc-toggle:checked ~ &:after {
-      border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) $ember-orange rgba(0, 0, 0, 0);
+      border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) $ember-orange
+        rgba(0, 0, 0, 0);
     }
   }
 
   &:after {
-    content: '';
-    border-color: $light-brown rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+    content: "";
+    border-color: $light-brown rgba(0, 0, 0, 0) rgba(0, 0, 0, 0)
+      rgba(0, 0, 0, 0);
     border-style: solid;
     border-width: 5px 4px 0 4px;
     height: 0;
@@ -67,11 +77,12 @@ label[for="toc-toggle"] {
   }
 
   .toc-toggle:checked ~ &:after {
-    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) $light-brown rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) $light-brown
+      rgba(0, 0, 0, 0);
     border-width: 0 4px 5px 4px;
   }
 
-  @include media($large-screen) {
+  @media screen and (min-width: $large-screen) {
     display: none;
   }
 }
@@ -84,7 +95,7 @@ label[for="toc-toggle"] {
   .toc-toggle:checked ~ & {
     display: block;
   }
-  @include media($large-screen) {
+  @media screen and (min-width: $large-screen) {
     display: block;
 
     // ensure toc-toggle can not cause toc-container to be hidden on large screen

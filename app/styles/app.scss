@@ -3,7 +3,6 @@
 @import "normalize";
 @import "bourbon";
 @import "./base/base";
-@import "neat";
 @import "./components/all";
 @import "class";
 
@@ -12,7 +11,7 @@ body {
   width: 100%;
 }
 
-@include media($large-screen-up) {
+@media (min-width: $large-screen-up) {
   .header {
     top: 0;
     width: 100%;
@@ -27,14 +26,13 @@ body {
     position: relative;
     margin-right: 0;
     margin-bottom: 0;
-    overflow:auto;
+    overflow: auto;
     padding: $base-spacing;
     min-width: auto;
     &::after {
       clear: both;
       display: table;
     }
-
   }
 
   main.container .content .chapter {
@@ -42,6 +40,5 @@ body {
     max-width: 100%;
   }
 }
-
 
 @import "ember-power-select";

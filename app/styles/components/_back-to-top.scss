@@ -5,12 +5,12 @@
   margin-left: 1em;
   text-align: center;
 
-  @include media(max-width 89em) {
+  @media (max-width: 89em) {
     @include size(1.5em);
     overflow: hidden;
   }
 
-  @include media(max-width 78em) {
+  @media (max-width: 78em) {
     height: 0;
   }
 }
