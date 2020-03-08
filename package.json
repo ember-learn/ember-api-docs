@@ -23,7 +23,7 @@
   "dependencies": {
     "bourbon": "5.1.0",
     "ember-cli-browserstack": "^1.0.1",
-    "ember-rfc176-data": "^0.3.5",
+    "ember-rfc176-data": "^0.3.12",
     "express-sslify": "^1.2.0",
     "lodash.groupby": "^4.6.0",
     "lodash.last": "^3.0.0",
@@ -40,8 +40,6 @@
     "@ember/optional-features": "^0.6.3",
     "algoliasearch": "^3.32.1",
     "broccoli-asset-rev": "^3.0.0",
-    "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^0.5.4",
     "ember-anchor": "~0.2.0",
     "ember-auto-import": "^1.2.21",
