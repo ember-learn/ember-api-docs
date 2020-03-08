@@ -12,16 +12,12 @@ export default Service.extend({
 
   results: emberArray(),
 
-  search: task(function * (query) {
+  search: task(function*(query) {
     const projectVersion = this._projectVersion;
 
     const params = {
       hitsPerPage: 15,
-      restrictSearchableAttributes: [
-        'hierarchy.lvl0',
-        'hierarchy.lvl1',
-        'hierarchy.lvl2'
-      ],
+      restrictSearchableAttributes: ['hierarchy.lvl0', 'hierarchy.lvl1', 'hierarchy.lvl2'],
       tagFilters: [`version:${projectVersion}`],
       facetFilters: ['access:-private']
     };
@@ -31,11 +27,11 @@ export default Service.extend({
       query
     };
 
-    return set(this, 'results', (yield this.doSearch(searchObj, params)));
+    const results = yield this.doSearch(searchObj, params);
+    return set(this, 'results', results);
   }).restartable(),
 
   doSearch(searchObj, params) {
-    return this._algoliaService.search(searchObj, params)
-      .then(results => get(results, 'hits'));
+    return this._algoliaService.search(searchObj, params).then(results => get(results, 'hits'));
   }
 });
