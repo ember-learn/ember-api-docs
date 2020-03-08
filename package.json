@@ -41,7 +41,7 @@
     "algoliasearch": "^3.32.1",
     "broccoli-asset-rev": "^3.0.0",
     "ember-a11y-testing": "^0.5.4",
-    "ember-anchor": "~0.2.0",
+    "ember-anchor": "^1.0.3",
     "ember-auto-import": "^1.5.3",
     "ember-cli": "~3.4.4",
     "ember-cli-app-version": "^3.2.0",
