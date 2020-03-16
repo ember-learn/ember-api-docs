@@ -97,7 +97,7 @@
     "eslint-plugin-ember": "^6.0.1",
     "fastboot-app-server": "^1.1.2-beta.1",
     "loader.js": "^4.7.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.2",
     "normalize.css": "^8.0.1",
     "qunit-dom": "^0.8.2",
     "sass": "^1.25.0",
