@@ -1,36 +1,37 @@
-import Router from '@ember/routing/router';
+import EmberRouter from '@ember/routing/router';
 import { scheduleOnce } from '@ember/runloop';
 import config from './config/environment';
 import { inject as service } from '@ember/service';
 
-const AppRouter = Router.extend({
-  location: config.locationType,
-  rootURL: config.routerRootURL,
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.routerRootURL;
 
-  metrics: service(),
-  fastboot: service(),
+  @service
+  metrics;
+
+  @service
+  fastboot;
 
   // this is constant for this app and is only used to identify page views in the GA dashboard
-  hostname: config.APP.domain.replace(/(http|https)?:?\/\//g, ''),
+  hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
 
-    if (!this.get('fastboot.isFastBoot')) {
-      this.on('routeDidChange', () => {
-        scheduleOnce('afterRender', this, this.trackPage);
-      });
+    if (!this.fastboot.isFastBoot) {
+      this.on('routeDidChange', () => scheduleOnce('afterRender', this, this.trackPage));
     }
-  },
+  }
 
   trackPage() {
     const page = this.url;
     const title = this.getWithDefault('currentRouteName', 'unknown');
     this.metrics.trackPage({ page, title, hostname: this.hostname });
   }
-});
+}
 
-AppRouter.map(function() {
+Router.map(function() {
   this.route('404');
   this.route('ember-cli');
   this.route('project', { path: '/:project' });
@@ -84,5 +85,3 @@ AppRouter.map(function() {
   this.route('data-class', { path: '/data/classes/:class' });
   this.route('data-module', { path: '/data/modules/:module' });
 });
-
-export default AppRouter;

@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const nodeSass = require('node-sass');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
@@ -9,6 +10,7 @@ module.exports = function(defaults) {
       generateAssetMap: true
     },
     sassOptions: {
+      implementation: nodeSass,
       includePaths: ['app/styles', 'node_modules/normalize.css']
     },
     autoprefixer: {

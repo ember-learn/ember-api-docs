@@ -13,11 +13,13 @@ module.exports = function(environment) {
     locationType: 'auto',
     API_HOST: process.env.API_HOST || 'https://api-store.emberjs.com',
     EmberENV: {
-      EXTEND_PROTOTYPES: false,
       FEATURES: {
-        //'ember-glimmer': true
         // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
+        // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
+      },
+      EXTEND_PROTOTYPES: {
+        // Prevent Ember Data from overriding Date.parse.
+        Date: false
       }
     },
 
@@ -52,7 +54,6 @@ module.exports = function(environment) {
     ]
   };
 
-
   ENV.contentSecurityPolicy = {
     'default-src': "'self' *.emberjs.com",
     'connect-src': "'self' *.algolia.net *.algolianet.com *.emberjs.com",
@@ -62,7 +63,6 @@ module.exports = function(environment) {
     'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
     'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
   };
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -76,19 +76,19 @@ module.exports = function(environment) {
       }
     };
 
-    ENV.contentSecurityPolicy['connect-src'] += " localhost:5050"
+    ENV.contentSecurityPolicy['connect-src'] += ' localhost:5050';
   }
 
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
-    ENV.testing = true;
 
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
+    ENV.APP.autoboot = false;
     ENV.APP.scrollContainerSelector = '#ember-testing-container';
 
     ENV.percy = {
@@ -108,7 +108,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.domain = process.env.APP_DOMAIN_URL ? process.env.APP_DOMAIN_URL : 'https://api.emberjs.com';
+    ENV.APP.domain = process.env.APP_DOMAIN_URL
+      ? process.env.APP_DOMAIN_URL
+      : 'https://api.emberjs.com';
   }
 
   return ENV;
