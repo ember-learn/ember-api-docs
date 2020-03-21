@@ -30,12 +30,12 @@
   <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener noreferrer">
         {{field.inheritedFrom}} {{field.file}}:{{field.line}}
       </a>
     {{else}}
       Defined in
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener noreferrer">
         {{field.file}}:{{field.line}}
       </a>
     {{/if}}
