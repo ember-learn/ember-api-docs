@@ -32,7 +32,7 @@ module.exports = {
         'blueprints/*/index.js',
         'config/**/*.js',
         'lib/**/*.js',
-        'bin/*'
+        'bin/ember-fastboot'
       ],
       parserOptions: {
         sourceType: 'script'
