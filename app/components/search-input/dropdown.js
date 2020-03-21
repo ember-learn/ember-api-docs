@@ -5,11 +5,11 @@ import { A } from '@ember/array';
 export default Component.extend({
   // Public API
   role: 'listbox',
-  isVisible: false,
+  isDropdownVisible: false,
 
   // Private API
   tagName: 'span',
-  classNames: ['ds-dropdown-menu','ds-with-1'],
+  classNames: ['ds-dropdown-menu', 'ds-with-1'],
   attributeBindings: ['role'],
 
   init() {
@@ -27,7 +27,7 @@ export default Component.extend({
    *    }
    *  }
    */
-  _groupedResults: computed('results.[]', function () {
+  _groupedResults: computed('results.[]', function() {
     if (!get(this, 'results.length')) {
       return {};
     }
@@ -56,7 +56,7 @@ export default Component.extend({
       lvl0Result[lvl0Key] = lvl0Group[lvl0Key].reduce((lvl1Result, lvl1Item) => {
         // lvl1 is sometimes null. Normalise to a string.
         const lvl1Value = get(lvl1Item, 'hierarchy.lvl1');
-        const lvl1Key = lvl1Value? lvl1Value : lvl0Key;
+        const lvl1Key = lvl1Value ? lvl1Value : lvl0Key;
 
         if (!lvl1Result[lvl1Key]) {
           lvl1Result[lvl1Key] = A();
