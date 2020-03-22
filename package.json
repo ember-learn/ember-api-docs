@@ -26,6 +26,7 @@
   "dependencies": {
     "algoliasearch": "^4.1.0",
     "bourbon": "5.1.0",
+    "dompurify": "^2.0.8",
     "ember-cli-browserstack": "^1.0.1",
     "ember-rfc176-data": "^0.3.12",
     "express-sslify": "^1.2.0",
@@ -35,7 +36,6 @@
     "lodash.union": "^4.6.0",
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
-    "sanitize-html": "^1.22.1",
     "semver-compare": "^1.0.0",
     "testem": "^3.0.3"
   },
