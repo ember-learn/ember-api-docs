@@ -74,6 +74,7 @@
     "ember-concurrency": "1.1.6",
     "ember-data": "~3.17",
     "ember-data-fastboot": "^0.1.2",
+    "ember-event-helpers": "^0.1.0",
     "ember-exam": "^5.0.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^7.0.1",
