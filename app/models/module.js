@@ -1,7 +1,5 @@
 import ClassModel from './class';
-import DS from 'ember-data';
-
-const { attr, belongsTo } = DS;
+import { attr, belongsTo } from '@ember-data/model';
 
 export default ClassModel.extend({
   submodules: attr(),
@@ -11,5 +9,5 @@ export default ClassModel.extend({
   parent: attr(),
   staticfunctions: attr(),
   allstaticfunctions: attr(),
-  projectVersion: belongsTo('project-version', {inverse: 'modules'})
+  projectVersion: belongsTo('project-version', { inverse: 'modules' })
 });

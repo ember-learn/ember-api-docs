@@ -1,8 +1,6 @@
 import ClassModel from './class';
-import DS from 'ember-data';
-
-const { belongsTo } = DS;
+import { belongsTo } from '@ember-data/model';
 
 export default ClassModel.extend({
-  projectVersion: belongsTo('project-version', {inverse: 'namespaces'})
+  projectVersion: belongsTo('project-version', { inverse: 'namespaces' })
 });

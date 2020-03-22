@@ -1,10 +1,9 @@
 import { computed } from '@ember/object';
-import DS from 'ember-data';
-const {attr, belongsTo} = DS;
+import Model, { attr, belongsTo } from '@ember-data/model';
 
 const projectNameFromClassName = key => {
   return computed(key, function() {
-    const value = this.get(key) || "";
+    const value = this.get(key) || '';
     if (value.indexOf('Ember.') > -1) {
       return 'ember';
     }
@@ -20,7 +19,6 @@ const projectNameFromClassName = key => {
 // ideally this computed property would not be needed and we'd have extendsVersion, extendsProject attrs from json-api-docs
 const guessVersionFor = key => {
   return computed(key, 'project.id', function() {
-
     if (this.extendedClassProjectName === this.get('project.id')) {
       return this.get('projectVersion.version');
     }
@@ -30,7 +28,7 @@ const guessVersionFor = key => {
   });
 };
 
-export default DS.Model.extend({
+export default Model.extend({
   name: attr(),
   methods: attr(),
   properties: attr(),
@@ -44,8 +42,8 @@ export default DS.Model.extend({
   file: attr(),
   line: attr(),
   module: attr(),
-  parentClass: belongsTo('class', {async: true, inverse: null}),
-  projectVersion: belongsTo('project-version', {inverse: 'classes'}),
+  parentClass: belongsTo('class', { async: true, inverse: null }),
+  projectVersion: belongsTo('project-version', { inverse: 'classes' }),
   project: computed('projectVersion.id', function() {
     return this.projectVersion.get('project');
   }),
@@ -67,9 +65,12 @@ export default DS.Model.extend({
     return this.get('uses').map(className => ({
       name: className,
       shortName: className.substr(0, 6) === 'Ember.' ? className.substr(6) : className,
-      projectId: className.substr(0, 6) === 'Ember.' ? 'ember' :
-        className.substr(0, 3) === 'DS' ? 'ember-data' : this.get('project.id')
+      projectId:
+        className.substr(0, 6) === 'Ember.'
+          ? 'ember'
+          : className.substr(0, 3) === 'DS'
+          ? 'ember-data'
+          : this.get('project.id')
     }));
   })
-
 });

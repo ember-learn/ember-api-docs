@@ -1,14 +1,11 @@
 import { inject as service } from '@ember/service';
-import DS from 'ember-data';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 
-const { JSONAPIAdapter } = DS;
-
 export default JSONAPIAdapter.extend({
-
   host: ENV.API_HOST,
 
   currentProject: '',
@@ -18,7 +15,7 @@ export default JSONAPIAdapter.extend({
   metaStore: service(),
   projectService: service('project'),
 
-  async findRecord(store, {modelName}, id) {
+  async findRecord(store, { modelName }, id) {
     let url;
     let host = this.host;
     let projectName = this.currentProject;
@@ -58,5 +55,4 @@ export default JSONAPIAdapter.extend({
     let response = await fetch(url);
     return response.json();
   }
-
 });
