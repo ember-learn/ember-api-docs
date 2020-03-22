@@ -1,10 +1,10 @@
 @charset "utf-8";
 
-@import "normalize";
-@import "bourbon";
-@import "./base/base";
-@import "./components/all";
-@import "class";
+@import 'normalize';
+@import 'bourbon';
+@import './base/base';
+@import './components/all';
+@import 'class';
 
 body {
   margin: 0;
@@ -41,4 +41,9 @@ body {
   }
 }
 
-@import "ember-power-select";
+@import 'ember-power-select';
+
+section.content {
+  padding-left: 1em;
+  min-width: 80%;
+}
