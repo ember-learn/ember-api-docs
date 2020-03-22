@@ -19,12 +19,7 @@ export default Route.extend({
 
   async model({ project, project_version }) {
     let projectObj = await this.store.findRecord('project', project);
-    let projectVersion = getFullVersion(
-      project_version,
-      project,
-      projectObj,
-      this.metaStore
-    );
+    let projectVersion = getFullVersion(project_version, project, projectObj, this.metaStore);
     let id = `${project}-${projectVersion}`;
     this.projectService.setUrlVersion(project_version);
     this.projectService.setVersion(projectVersion);
@@ -33,11 +28,18 @@ export default Route.extend({
 
   // Using redirect instead of afterModel so transition succeeds and returns 30
   redirect(model, transition) {
-    this._gatherHeadDataFromVersion(model, transition.params['project-version'].project_version);
-    let classParams = transition.params['project-version.classes.class'];
-    let moduleParams = transition.params['project-version.modules.module'];
-    let namespaceParams = transition.params['project-version.namespaces.namespace'];
-    let functionParams = transition.params['project-version.functions.function'];
+    const lookupParams = routeName => {
+      let route = transition.routeInfos.find(({ name }) => name === routeName);
+      return route ? route.params : {};
+    };
+
+    this._gatherHeadDataFromVersion(model, lookupParams('project-version').project_version);
+
+    let classParams = lookupParams('project-version.classes.class');
+    let moduleParams = lookupParams('project-version.modules.module');
+    let namespaceParams = lookupParams('project-version.namespaces.namespace');
+    let functionParams = lookupParams('project-version.functions.function');
+
     let transitionVersion = this.projectService.getUrlVersion();
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
@@ -93,7 +95,7 @@ export default Route.extend({
     updateProject(project, ver /*, component */) {
       let projectVersionID = ver.compactVersion;
       let endingRoute;
-      switch ((this.router.currentRouteName)) {
+      switch (this.router.currentRouteName) {
         case 'project-version.classes.class': {
           let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}`;

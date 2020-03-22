@@ -1,9 +1,8 @@
 import Route from '@ember/routing/route';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
+import { inject as service } from '@ember/service';
 
-export default Route.extend(ScrollTracker, {
-
-  model({project: projectName}) {
+export default Route.extend({
+  model({ project: projectName }) {
     let projectNameToLookUp = 'ember';
 
     // Accounts for old references to ember-data API docs
@@ -21,5 +20,18 @@ export default Route.extend(ScrollTracker, {
   // Using redirect instead of afterModel so transition succeeds and returns 307 in fastboot
   redirect(project /*, transition */) {
     return this.transitionTo('project-version', project.get('id'), 'release');
+  },
+
+  scrollPositionReset: service(),
+
+  actions: {
+    willTransition(transition) {
+      this.scrollPositionReset.scheduleReset(transition);
+    },
+
+    didTransition() {
+      this._super(...arguments);
+      this.scrollPositionReset.handleScrollPosition();
+    }
   }
 });

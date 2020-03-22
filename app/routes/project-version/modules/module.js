@@ -1,25 +1,39 @@
 import ClassRoute from '../classes/class';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
+import { inject as service } from '@ember/service';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
-export default ClassRoute.extend(ScrollTracker, {
+export default ClassRoute.extend({
+  async model(params) {
+    const { project, project_version: compactVersion } = this.paramsFor('project-version');
 
-  async model(params, transition) {
-    let projectID = transition.params['project-version'].project;
-    let projectObj = await this.store.findRecord('project', projectID);
-    let compactVersion = transition.params['project-version'].project_version;
-    let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.metaStore);
+    let projectObj = await this.store.findRecord('project', project);
+    let projectVersion = getFullVersion(compactVersion, project, projectObj, this.metaStore);
     let klass = params['module'];
-    if (!~klass.indexOf(projectID) && klass !== 'rsvp' && klass !== 'jquery' && klass !== '@glimmer/component' && klass !== '@glimmer/tracking') {
-      klass = `${projectID}-${klass}`;
+
+    if (
+      !~klass.indexOf(project) &&
+      !['rsvp', 'jquery', '@glimmer/component', '@glimmer/tracking'].includes(klass)
+    ) {
+      klass = `${project}-${klass}`;
     }
-    return this.find('module', `${projectID}-${projectVersion}-${klass}`);
+
+    return this.find('module', `${project}-${projectVersion}-${klass}`);
   },
 
   serialize(model) {
-    return {
-      module: model.get('name')
-    };
-  }
+    return { module: model.get('name') };
+  },
 
+  scrollPositionReset: service(),
+
+  actions: {
+    willTransition(transition) {
+      this.scrollPositionReset.scheduleReset(transition);
+    },
+
+    didTransition() {
+      this._super(...arguments);
+      this.scrollPositionReset.handleScrollPosition();
+    }
+  }
 });
