@@ -34,7 +34,7 @@
     {{#if model.module}}
       <div class="attribute">
         <span class="attribute-label">Module:</span>
-        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.module}}{{model.module}}{{/link-to}}</span>
+        <span class="attribute-value"><LinkTo @route="project-version.modules.module" @models={{array model.projectVersion.compactVersion model.module}}>{{model.module}}</LinkTo></span>
       </div>
     {{/if}}
     {{#if model.since}}
@@ -45,67 +45,30 @@
     {{/if}}
   </div>
   {{#if (and (not (eq static 1)) hasImportExample)}}
-    {{import-example item=model.name package=module}}
+    <ImportExample @item={{model.name}} @package={{module}} />
   {{/if}}
   <p class="description">{{html-safe model.description}}</p>
 
   {{#if (or model.methods model.properties model.events)}}
     <div class="tabbed-layout">
       <nav class="tabbed-layout__menu">
-        {{#link-to (concat parentName ".index")
-           model.project.id
-           model.projectVersion.compactVersion
-           model.name
-           (query-params anchor=undefined)
-           class="tabbed-layout__menu__item"
-           activeClass="tabbed-layout__menu__item_selected"
-           current-when=(concat parentName ".index")
-           data-test-tab="index"
-        }}
+        <LinkTo @route={{concat parentName ".index" }} @models={{array model.project.id model.projectVersion.compactVersion}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat parentName ".index"}} data-test-tab="index">
           <span>Index</span>
-        {{/link-to}}
+        </LinkTo>
         {{#if model.methods}}
-          {{#link-to (concat parentName ".methods")
-             model.project.id
-             model.projectVersion.compactVersion
-             model.name
-             (query-params anchor=undefined)
-             class="tabbed-layout__menu__item"
-             activeClass="tabbed-layout__menu__item_selected"
-             id="methods"
-             current-when=(concat parentName ".methods")
-             data-test-tab="methods"
-          }}
+          <LinkTo @route={{concat parentName ".methods" }} @models={{array model.project.id model.projectVersion.compactVersion}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @id="methods" @current-when={{concat parentName ".methods"}} data-test-tab="methods">
             <span>Methods</span>
-          {{/link-to}}
+          </LinkTo>
         {{/if}}
         {{#if model.properties}}
-          {{#link-to (concat parentName ".properties")
-             model.project.id
-             model.projectVersion.compactVersion
-             model.name
-             (query-params anchor=undefined)
-             class="tabbed-layout__menu__item"
-             activeClass="tabbed-layout__menu__item_selected"
-             current-when=(concat parentName ".properties")
-             data-test-tab="properties"
-          }}
+          <LinkTo @route={{concat parentName ".properties" }} @models={{array model.project.id model.projectVersion.compactVersion}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat parentName ".properties"}} data-test-tab="properties">
             <span>Properties</span>
-          {{/link-to}}
+          </LinkTo>
         {{/if}}
         {{#if model.events}}
-          {{#link-to (concat parentName ".events")
-             model.project.id
-             model.projectVersion.compactVersion
-             model.name
-             (query-params anchor=undefined)
-             class="tabbed-layout__menu__item"
-             activeClass="tabbed-layout__menu__item_selected"
-             current-when=(concat parentName ".events")
-             data-test-tab="events"
-          }}
+          <LinkTo @route={{concat parentName ".events" }} @models={{array model.project.id model.projectVersion.compactVersion}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat parentName ".events"}} data-test-tab="events">
             <span>Events</span>
-          {{/link-to}}
+          </LinkTo>
         {{/if}}
       </nav>
       <section>

@@ -36,7 +36,7 @@ module('Acceptance | sidebar navigation', function(hooks) {
     assert.equal(currentURL(), '/ember/1.0/classes/Ember.Component', 'navigated to class');
   });
 
-  test('can navigate to home landing page', async function (assert) {
+  test('can navigate to home landing page', async function(assert) {
     await visit('/ember-data/2.12');
     await click('[data-test-home] a');
     await settled();

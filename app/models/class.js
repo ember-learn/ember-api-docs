@@ -54,7 +54,7 @@ export default Model.extend({
   usedClassVersion: guessVersionFor('uses'),
 
   extendedClassShortName: computed('extends', function() {
-    let extendedClassName = this.get('extends');
+    let extendedClassName = this['extends'];
     if (extendedClassName.substr(0, 6) === 'Ember.') {
       return extendedClassName.substr(6);
     }
@@ -62,7 +62,7 @@ export default Model.extend({
   }),
 
   usesObjects: computed('uses', function() {
-    return this.get('uses').map(className => ({
+    return this.uses.map(className => ({
       name: className,
       shortName: className.substr(0, 6) === 'Ember.' ? className.substr(6) : className,
       projectId:
