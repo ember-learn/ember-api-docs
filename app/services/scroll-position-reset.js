@@ -27,7 +27,13 @@ export default Service.extend({
   doReset() {
     if (this._shouldResetScroll) {
       const selector = document.querySelector(scrollContainerSelector);
-      selector.scrollTo(0,0);
+      if (selector.scrollTo) {
+        selector.scrollTo(0,0);
+      } else {
+        // fallback for IE11
+        selector.scrollLeft = 0;
+        selector.scrollTop = 0;
+      }
       this.set('_shouldResetScroll', false);
     }
   }
