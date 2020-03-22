@@ -23,6 +23,7 @@ module.exports = {
     // node files
     {
       files: [
+        '.eslintrc.js',
         '.template-lintrc.js',
         'ember-cli-build.js',
         'testem.js',
@@ -31,6 +32,7 @@ module.exports = {
         'config/**/*.js',
         'lib/**/*.js',
         'bin/*',
+        'server/**/*.js',
       ],
       excludedFiles: ['config/deprecation-workflow.js'],
       parserOptions: {

@@ -16,6 +16,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching class versions less than 2.16 should retain class page', async function(assert) {
     await visit('/ember/2.7/classes/Ember.Component');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.7/classes/Ember.Component', 'navigated to v2.7 namespace');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -27,6 +28,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching namespace versions less than 2.16 should retain namespace page', async function (assert) {
     await visit('/ember/2.7/namespaces/Ember');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.7/namespaces/Ember');
     await selectChoose('.ember-power-select-trigger', '2.7');
     await waitForSettled();
@@ -38,6 +40,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching module versions less than 2.16 should retain module page', async function(assert) {
     await visit('/ember/2.8/modules/ember-metal');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.8/modules/ember-metal', 'navigated to v2.8 module');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -50,6 +53,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching module versions greater than 2.16 should retain module page', async function(assert) {
     await visit('/ember/2.18/modules/@ember%2Fapplication');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.18/modules/@ember%2Fapplication', 'navigated to v2.18 module');
     await selectChoose('.ember-power-select-trigger', '2.17');
     await waitForSettled();
@@ -60,7 +64,8 @@ module('Acceptance | version navigation', function(hooks) {
   });
 
   test('switching specific method less than 2.16 should retain method', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs')
+    await visit('/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs', 'navigated to v2.8 method');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -68,7 +73,8 @@ module('Acceptance | version navigation', function(hooks) {
   });
 
   test('switching specific event less than 2.16 should retain event', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/events/didReceiveAttrs?anchor=didReceiveAttrs')
+    await visit('/ember/2.8/classes/Ember.Component/events/didReceiveAttrs?anchor=didReceiveAttrs');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.8/classes/Ember.Component/events/didReceiveAttrs?anchor=didReceiveAttrs', 'navigated to v2.8 method');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -76,7 +82,8 @@ module('Acceptance | version navigation', function(hooks) {
   });
 
   test('switching specific property less than 2.16 should retain property', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/properties/isDestroyed?anchor=isDestroyed')
+    await visit('/ember/2.8/classes/Ember.Component/properties/isDestroyed?anchor=isDestroyed');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.8/classes/Ember.Component/properties/isDestroyed?anchor=isDestroyed', 'navigated to v2.8 property');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -84,7 +91,8 @@ module('Acceptance | version navigation', function(hooks) {
   });
 
   test('switching class methods tab less than 2.16 should retain', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/methods')
+    await visit('/ember/2.8/classes/Ember.Component/methods');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.8/classes/Ember.Component/methods', 'navigated to v2.8 methods');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -100,7 +108,8 @@ module('Acceptance | version navigation', function(hooks) {
   });
 
   test('switching class properties tab less than 2.16 should retain', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/properties')
+    await visit('/ember/2.8/classes/Ember.Component/properties');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.8/classes/Ember.Component/properties', 'navigated to v2.8 properties');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
@@ -109,6 +118,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching from class version less than 2.16 to class version 2.16 should reset to landing page', async function(assert) {
     await visit('/ember/2.7/classes/Ember.Component');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.7/classes/Ember.Component', 'navigated to v2.7 class');
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
@@ -117,6 +127,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching from class version less than 2.16 to class version 2.16 should retain if project is ember-data', async function(assert) {
     await visit('/ember-data/2.7/classes/DS.Adapter');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember-data/2.7/classes/DS.Adapter', 'navigated to v2.7 class');
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
@@ -125,6 +136,7 @@ module('Acceptance | version navigation', function(hooks) {
 
   test('switching from class version 2.16 to class version less then 2.16 should reset to first module page', async function (assert) {
     await visit('/ember/2.16/classes/Component');
+    await waitForSettled();
     assert.equal(currentURL(), '/ember/2.16/classes/Component', 'navigated to v2.16 class');
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
