@@ -1,10 +1,10 @@
 <ol class="toc-level-0">
   <li class="toc-level-0">
-    <a href="#" {{on "click" (fn this.toggle "showModules")}}>
+    <a href="#" {{on "click" (prevent-default (fn this.toggle "showModules"))}}>
       Packages
     </a>
 
-    {{#animated-if this.showModules use=this.transition duration=200}}
+    {{#animated-if this.showModules}}
       <ol class="toc-level-1">
         {{#each @moduleIDs as |moduleID|}}
           {{#if (not-eq moduleID '@ember/object/computed')}}
@@ -21,11 +21,11 @@
 
   {{#if @isShowingNamespaces}}
     <li class="toc-level-0">
-      <a href="#" {{on "click" (fn this.toggle "showNamespaces")}}>
+      <a href="#" {{on "click" (prevent-default (fn this.toggle "showNamespaces"))}}>
         Namespaces
       </a>
 
-      {{#animated-if this.showNamespaces use=fade duration=200}}
+      {{#animated-if this.showNamespaces}}
         <ol class="toc-level-1">
           {{#each @namespaceIDs as |namespaceID|}}
             <li class="toc-level-1" data-test-namespace={{namespaceID}}>
@@ -43,11 +43,11 @@
   {{/if}}
 
   <li class="toc-level-0">
-    <a href="#" {{on "click" (fn this.toggle "showClasses")}}>
+    <a href="#" {{on "click" (prevent-default (fn this.toggle "showClasses"))}}>
       Classes
     </a>
 
-    {{#animated-if this.showClasses use=fade duration=200}}
+    {{#animated-if this.showClasses}}
       <ol class="toc-level-1">
         {{#each @classesIDs as |classID|}}
           <li class="toc-level-1" data-test-class={{classID}}>
