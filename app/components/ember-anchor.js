@@ -11,8 +11,14 @@ export default AnchorComponent.extend({
     let elem = document.querySelector(`[data-${qp}="${qpVal}"]`);
 
     if (elem && elem.offsetHeight) {
-      const offsetToScroll = getOffset(elem, config.APP.scrollContainerSelector)
-      document.querySelector(config.APP.scrollContainerSelector).scrollTo(0, offsetToScroll);
+      const offsetToScroll = getOffset(elem, config.APP.scrollContainerSelector);
+      const scrollContainer = document.querySelector(config.APP.scrollContainerSelector);
+      if (scrollContainer.scrollTo) {
+        scrollContainer.scrollTo(0, offsetToScroll);
+      } else {
+        // fallback for IE11
+        scrollContainer.scrollTop = offsetToScroll;
+      }
     }
   }
 });
