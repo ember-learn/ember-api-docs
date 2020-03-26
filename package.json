@@ -62,7 +62,7 @@
     "ember-data-fastboot": "^0.1.2",
     "ember-exam": "^1.0.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-fetch": "5.1.3",
+    "ember-fetch": "^5.1.3",
     "ember-inflector": "^3.0.0",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
@@ -112,7 +112,8 @@
     "node_modules"
   ],
   "fastbootDependencies": [
-    "algoliasearch"
+    "algoliasearch",
+    "abortcontroller-polyfill"
   ],
   "volta": {
     "node": "11.15.0",
