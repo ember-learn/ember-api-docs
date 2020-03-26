@@ -3,6 +3,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
 const mergeTrees  = require('broccoli-merge-trees');
+const envIsProduction = (process.env.EMBER_ENV === 'production');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
@@ -11,6 +12,7 @@ module.exports = function(defaults) {
       generateAssetMap: true
     },
     sassOptions: {
+      sourceMapEmbed: !envIsProduction,
       includePaths: [
         'app/styles',
         'node_modules/bourbon-neat/app/assets/stylesheets',
@@ -18,6 +20,9 @@ module.exports = function(defaults) {
       ]
     },
     autoprefixer: {
+      enabled: true,
+      cascade: true,
+      sourcemap: !envIsProduction,
       overrideBrowsersList: ['default']
     },
     'ember-composable-helpers': {
@@ -32,6 +37,9 @@ module.exports = function(defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
+    'ember-fetch': {
+      preferNative: true
+    }
   });
 
   let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
