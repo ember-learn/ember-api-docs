@@ -31,7 +31,7 @@ export default Route.extend({
     return this.store.findRecord('project-version', id, { includes: 'project' });
   },
 
-  // Using redirect instead of afterModel so transition succeeds and returns 30
+  // Using redirect instead of afterModel so transition succeeds and returns 307
   redirect(model, transition) {
     this._gatherHeadDataFromVersion(model, transition.params['project-version'].project_version);
     let classParams = transition.params['project-version.classes.class'];
@@ -41,7 +41,7 @@ export default Route.extend({
     let transitionVersion = this.projectService.getUrlVersion();
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
-      let latestVersion = getLastVersion(model.get('project.projectVersions'));
+      let latestVersion = getLastVersion(model.get('project.content').hasMany('projectVersions').ids());
       let isLatestVersion = transitionVersion === latestVersion || transitionVersion === 'release';
       let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
       if (!shouldConvertPackages || isLatestVersion) {
