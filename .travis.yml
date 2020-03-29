@@ -3,7 +3,7 @@ language: node_js
 node_js:
   - "10"
 
-dist: trusty
+dist: bionic
 
 addons:
   chrome: stable
@@ -24,5 +24,6 @@ install:
   - yarn install
 
 script:
+  - yarn lint:hbs
   - yarn lint:js
   - yarn test
