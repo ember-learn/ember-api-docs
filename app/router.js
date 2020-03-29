@@ -10,23 +10,22 @@ const AppRouter = Router.extend({
   metrics: service(),
   fastboot: service(),
 
-  didTransition() {
+  init() {
     this._super(...arguments);
-    this._trackPage();
+
+    if (!this.get('fastboot.isFastBoot')) {
+      this.on('routeDidChange', () => this._trackPage());
+    }
   },
 
   _trackPage() {
-    if (this.get('fastboot.isFastBoot')) {
-      return;
-    }
-
     scheduleOnce('afterRender', this, () => {
-      const page = this.url;
-      const title = this.getWithDefault('currentRouteName', 'unknown');
 
       // this is constant for this app and is only used to identify page views in the GA dashboard
       const hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
 
+      const page = this.url;
+      const title = this.getWithDefault('currentRouteName', 'unknown');
       this.metrics.trackPage({ page, title, hostname });
     });
   }
