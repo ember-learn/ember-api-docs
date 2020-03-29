@@ -100,11 +100,8 @@
     "spawndamnit": "2.0.0",
     "testem": "^2.14.0"
   },
-  "resolutions": {
-    "browserslist": "2.11.3"
-  },
   "engines": {
-    "node": "10.* || 11.*",
+    "node": "10.* || 12.*",
     "npm": "5"
   },
   "cacheDirectories": [
@@ -117,7 +114,7 @@
     "abortcontroller-polyfill/dist/cjs-ponyfill"
   ],
   "volta": {
-    "node": "11.15.0",
+    "node": "12.16.1",
     "yarn": "1.22.4"
   }
 }
