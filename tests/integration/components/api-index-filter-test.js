@@ -1,9 +1,8 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, click, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { click, findAll } from 'ember-native-dom-helpers';
 
 module('Integration | Component | api index filter', function(hooks) {
   setupRenderingTest(hooks);

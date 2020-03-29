@@ -1,8 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
-import { findAll } from 'ember-native-dom-helpers';
 
 module('Integration | Component | table of contents', function(hooks) {
   setupRenderingTest(hooks);
