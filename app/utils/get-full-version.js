@@ -1,14 +1,12 @@
-import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
-import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import { get } from '@ember/object';
+import getCompactVersion from './get-compact-version';
 
-export default function getFullVersion(urlVersion, project, projectObj, metaStore) {
-  let projectVersion;
+export default function getFullVersion(projectObj, urlVersion) {
+  const availableVersions = get(projectObj, 'availableVersions');
+
   if (urlVersion === 'release') {
-    let versions = projectObj.hasMany('projectVersions').ids();
-    projectVersion = metaStore.getFullVersion(project, getCompactVersion(getLastVersion(versions)));
-  } else {
-    projectVersion = metaStore.getFullVersion(project, urlVersion);
+    return availableVersions[0];
   }
 
-  return projectVersion;
+  return availableVersions.find(v => getCompactVersion(v) === getCompactVersion(urlVersion));
 }

@@ -1,15 +1,15 @@
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import semverCompare from 'semver-compare';
-import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
-import getFullVersion from 'ember-api-docs/utils/get-full-version';
-import getLastVersion from 'ember-api-docs/utils/get-last-version';
-import config from 'ember-api-docs/config/environment';
+import getCompactVersion from '../utils/get-compact-version';
+import getFullVersion from '../utils/get-full-version';
+import getLastVersion from '../utils/get-last-version';
+import config from '../config/environment';
 
 export default Route.extend({
   fastboot: service(),
   headData: service(),
-  metaStore: service(),
+
   router: service(),
   projectService: service('project'),
 
@@ -19,12 +19,7 @@ export default Route.extend({
 
   async model({ project, project_version }) {
     let projectObj = await this.store.findRecord('project', project);
-    let projectVersion = getFullVersion(
-      project_version,
-      project,
-      projectObj,
-      this.metaStore
-    );
+    let projectVersion = getFullVersion(projectObj, project_version);
     let id = `${project}-${projectVersion}`;
     this.projectService.setUrlVersion(project_version);
     this.projectService.setVersion(projectVersion);
@@ -41,7 +36,12 @@ export default Route.extend({
     let transitionVersion = this.projectService.getUrlVersion();
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
-      let latestVersion = getLastVersion(model.get('project.content').hasMany('projectVersions').ids());
+      let latestVersion = getLastVersion(
+        model
+          .get('project.content')
+          .hasMany('projectVersions')
+          .ids()
+      );
       let isLatestVersion = transitionVersion === latestVersion || transitionVersion === 'release';
       let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
       if (!shouldConvertPackages || isLatestVersion) {
@@ -50,7 +50,9 @@ export default Route.extend({
         return this.transitionTo('project-version.index');
       } else {
         // else go to the version specified
-        let moduleRevs = this.metaStore.getEncodedModulesFromProjectRev(model.get('id'));
+        // let moduleRevs = this.metaStore.getEncodedModulesFromProjectRev(model.get('id'));
+        debugger; //eslint-disable-line
+        let moduleRevs = {};
         let module = this.getFirstModule(moduleRevs);
         return this.transitionTo(
           'project-version.modules.module',
@@ -93,7 +95,7 @@ export default Route.extend({
     updateProject(project, ver /*, component */) {
       let projectVersionID = ver.compactVersion;
       let endingRoute;
-      switch ((this.router.currentRouteName)) {
+      switch (this.router.currentRouteName) {
         case 'project-version.classes.class': {
           let className = this._getEncodedNameForCurrentClass();
           endingRoute = `classes/${className}`;

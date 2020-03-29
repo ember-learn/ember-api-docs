@@ -1,7 +1,8 @@
 <article class="chapter">
-  {{#if (is-latest version=model.projectVersion.version allVersions=allVersions)}}
+  {{#if (eq model.projectVersion.version model.project.availableVersions.first)}}
     <a data-tooltip="Edit on Github" class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line isEdit=true}}" target="_blank" rel="noopener">{{svg-jar "fa-pencil"}}</a>
   {{/if}}
+
   <h1 class="module-name">Class {{model.name}}</h1>
   {{#if model.access}}<span class="access">{{model.access}}</span>{{/if}}
 
