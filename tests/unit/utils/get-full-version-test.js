@@ -15,6 +15,10 @@ module('Unit | Utility | get full version', function() {
         return '2.17.1';
       }
     });
+
+    // mock the project object hasMany relationship
+    // hasMany('projectVersions') returns a DS.ManyArray
+    // and getFullVersion() calls ids() on it
     let projectVersions = ManyArray.create({
       content: A([{ id: 'ember-2.17.1'}, { id: 'ember-2.16.1' }]),
       flushCanonical() {},
@@ -27,6 +31,7 @@ module('Unit | Utility | get full version', function() {
         return projectVersions;
       }
     };
+
     let result = getFullVersion('release', 'ember', projectObj, metaStore);
     assert.equal(result, '2.17.1');
   });
