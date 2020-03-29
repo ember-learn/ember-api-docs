@@ -23,7 +23,7 @@ const execEmberProcess = async (cmd) => {
       throw Error();
     }
   } catch (e) {
-    return process.exit(1);
+    return process.exit(1); // eslint-disable-line no-process-exit
   }
 };
 
