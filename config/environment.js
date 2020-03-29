@@ -11,7 +11,7 @@ module.exports = function(environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'auto',
-    API_HOST: process.env.API_HOST || 'https://api-store.emberjs.com',
+    API_HOST: process.env.API_HOST || 'https://api-store.emberjs.com/next-gen',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
@@ -52,7 +52,6 @@ module.exports = function(environment) {
     ]
   };
 
-
   ENV.contentSecurityPolicy = {
     'default-src': "'self' *.emberjs.com",
     'connect-src': "'self' *.algolia.net *.algolianet.com *.emberjs.com",
@@ -62,7 +61,6 @@ module.exports = function(environment) {
     'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
     'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
   };
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -76,7 +74,7 @@ module.exports = function(environment) {
       }
     };
 
-    ENV.contentSecurityPolicy['connect-src'] += " localhost:5050"
+    ENV.contentSecurityPolicy['connect-src'] += ' localhost:5050';
   }
 
   if (environment === 'test') {
@@ -108,7 +106,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.domain = process.env.APP_DOMAIN_URL ? process.env.APP_DOMAIN_URL : 'https://api.emberjs.com';
+    ENV.APP.domain = process.env.APP_DOMAIN_URL
+      ? process.env.APP_DOMAIN_URL
+      : 'https://api.emberjs.com';
   }
 
   return ENV;
