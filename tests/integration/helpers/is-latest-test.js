@@ -5,9 +5,9 @@ import hbs from 'htmlbars-inline-precompile';
 import { A } from '@ember/array';
 
 const versions = A([
-  { id: 'ember-1.13.0' },
-  { id: 'ember-3.5.0' },
-  { id: 'ember-2.1.10' }
+  'ember-1.13.0',
+  'ember-3.5.0',
+  'ember-2.1.10'
 ]);
 
 module('helper:is-latest', function (hooks) {

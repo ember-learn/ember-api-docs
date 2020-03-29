@@ -7,6 +7,7 @@ import FilterParams from 'ember-api-docs/mixins/filter-params';
 export default Controller.extend(ParentNameMixin, FilterParams, {
   filterData: service(),
   legacyModuleMappings: service(),
+  metaStore: service(),
 
   hasImportExample: computed('model.name', 'legacyModuleMappings.mappings', function () {
     return this.legacyModuleMappings.hasClassMapping(this.get('model.name'), this.get('model.module'));
@@ -14,6 +15,10 @@ export default Controller.extend(ParentNameMixin, FilterParams, {
 
   module: computed('model.name', 'legacyModulemappings.mappings', function () {
     return this.legacyModuleMappings.getModule(this.get('model.name'), this.get('model.module'));
+  }),
+
+  allVersions: computed('model.project.id', function() {
+    return this.get('metaStore.availableProjectVersions')[this.get('model.project.id')];
   }),
 
   actions: {
