@@ -50,6 +50,15 @@
   {{/if}}
   <p class="description">{{html-safe model.description}}</p>
 
+  {{#if model.example}}
+    <div class="example">
+      <span class="example-header">Example:</span>
+      {{#each model.example as |example|}}
+        {{html-safe example}}
+      {{/each}}
+    </div>
+  {{/if}}
+
   {{#if (or model.methods model.properties model.events)}}
     <div class="tabbed-layout">
       <nav class="tabbed-layout__menu">

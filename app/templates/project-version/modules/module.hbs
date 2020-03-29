@@ -13,6 +13,15 @@
 
   <p class="description">{{html-safe model.description}}</p>
 
+  {{#if model.example}}
+    <div class="example">
+      <span class="example-header">Example:</span>
+      {{#each model.example as |example|}}
+        {{html-safe example}}
+      {{/each}}
+    </div>
+  {{/if}}
+
   {{#if submodules}}
     <section>
       <h2 id="submodules" class="anchorable-toc">

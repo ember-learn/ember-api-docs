@@ -65,4 +65,13 @@
     {{/if}}
   </dl>
   {{html-safe field.description}}
+
+  {{#if field.example}}
+    <div class="example">
+      <span class="example-header">Example:</span>
+      {{#each field.example as |example|}}
+        {{html-safe example}}
+      {{/each}}
+    </div>
+  {{/if}}
 </section>
