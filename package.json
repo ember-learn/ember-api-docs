@@ -105,7 +105,7 @@
     "browserslist": "2.11.3"
   },
   "engines": {
-    "node": "8.* || >= 10.*",
+    "node": "10.* || 12.*",
     "npm": "5"
   },
   "cacheDirectories": [
