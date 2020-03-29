@@ -15,13 +15,12 @@ export default Route.extend(ScrollTracker, {
     return get(model, 'name');
   },
 
-  async model(params, transition) {
-    let projectID = transition.params['project-version'].project;
-    let projectObj = await this.store.findRecord('project', projectID);
-    let compactVersion = transition.params['project-version'].project_version;
-    let projectVersion = getFullVersion(compactVersion, projectID, projectObj, this.metaStore);
+  async model(params) {
+    const { project, project_version: compactVersion } = this.paramsFor('project-version');
+    let projectObj = await this.store.findRecord('project', project);
+    let projectVersion = getFullVersion(compactVersion, project, projectObj, this.metaStore);
     const klass = params['class'];
-    return this.find('class', `${projectID}-${projectVersion}-${klass}`);
+    return this.find('class', `${project}-${projectVersion}-${klass}`);
   },
 
   find(typeName, param) {
@@ -45,14 +44,26 @@ export default Route.extend(ScrollTracker, {
   },
 
   redirect(model, transition) {
-    if (transition.queryParams.anchor && transition.queryParams.type) {
-      let type = transition.queryParams.type;
-      this.transitionTo(`project-version.classes.class.${pluralize(type)}.${type}`,
-        transition.params['project-version'].project,
-        transition.params['project-version'].project_version,
-        transition.params['project-version.classes.class'].class,
-        transition.queryParams.anchor);
+    const lookupParams = routeName => {
+      let route = transition.routeInfos.find(({ name }) => name === routeName);
+      return route ? route.params : {};
+    };
+
+    let {
+      to: { queryParams }
+    } = transition;
+
+    if (queryParams.anchor && queryParams.type) {
+      let type = queryParams.type;
+      this.transitionTo(
+        `project-version.classes.class.${pluralize(type)}.${type}`,
+        lookupParams('project-version').project,
+        lookupParams('project-version').project_version,
+        lookupParams('project-version.classes.class').class,
+        queryParams.anchor
+      );
     }
+
     if (model.isError) {
       this.transitionTo('404');
     }
