@@ -32,3 +32,26 @@
   box-shadow: inset var(--grvsc-line-highlighted-border-width, 4px) 0 0 0
     var(--grvsc-line-highlighted-border-color, transparent);
 }
+
+.grvsc-container {
+  counter-reset: line;
+
+  code,
+  pre {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+  }
+}
+
+.grvsc-line::before {
+  font-size: 14px;
+  counter-increment: line;
+  content: counter(line);
+  margin-right: 16px;
+  margin-left: -8px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/**
+<pre class="grvsc-container ayu-mirage-bordered grvsc-mm-tDQ80T grvsc-ps-tDQ80T grvsc-ps-trt07a" data-language="js" data-index="0"><code class="grvsc-code"><span class="grvsc-line"><span class="grvsc-tDQ80T-6 grvsc-trt07a-6">import</span><span class="grvsc-tDQ80T-1 grvsc-trt07a-1"> Route </span><span class="grvsc-tDQ80T-6 grvsc-trt07a-6">from</span><span class="grvsc-tDQ80T-1 grvsc-trt07a-1"> </span><span class="grvsc-tDQ80T-7 grvsc-trt07a-7">'@ember/routing/route'</span><span class="grvsc-tDQ80T-23 grvsc-trt07a-23">;</span><span class="grvsc-tDQ80T-7 grvsc-trt07a-7"></span></span></code></pre>
+ */
