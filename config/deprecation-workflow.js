@@ -1,6 +1,7 @@
 self.deprecationWorkflow = self.deprecationWorkflow || {};
 self.deprecationWorkflow.config = {
   workflow: [
-    { handler: "throw", matchId: "computed-property.override" }
+    { handler: "silence", matchId: "ember.globals-resolver" },
+    { handler: "silence", matchId: "ember-component.is-visible" }
   ]
 };
