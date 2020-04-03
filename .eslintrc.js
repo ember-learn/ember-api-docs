@@ -23,7 +23,7 @@ module.exports = {
   rules: {
     'ember/no-jquery': 'off',
     'no-console': 'off',
-    'ember/avoid-leaking-state-in-ember-objects': 1
+    'ember/no-new-mixins': 'off'
   },
   overrides: [
     // node files

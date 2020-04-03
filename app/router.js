@@ -10,26 +10,28 @@ class AppRouter extends Router {
   @service metrics;
   @service fastboot;
 
-  init() {
-    this._super(...arguments);
+  constructor() {
+    super(...arguments);
 
     if (!this.get('fastboot.isFastBoot')) {
-      this.on('routeDidChange', () => this._trackPage());
+      this.on('routeDidChange', this, this._trackPage);
     }
-  },
+  }
 
   _trackPage() {
-    scheduleOnce('afterRender', this, () => {
-
-      // this is constant for this app and is only used to identify page views in the GA dashboard
-      const hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
-
-      const page = this.url;
-      const title = this.getWithDefault('currentRouteName', 'unknown');
-      this.metrics.trackPage({ page, title, hostname });
-    });
+    scheduleOnce('afterRender', this, this.__trackPage);
   }
-});
+
+  __trackPage() {
+
+    // this is constant for this app and is only used to identify page views in the GA dashboard
+    const hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
+
+    const page = this.url;
+    const title = this.getWithDefault('currentRouteName', 'unknown');
+    this.metrics.trackPage({ page, title, hostname });
+  }
+}
 
 AppRouter.map(function() {
   this.route('404');

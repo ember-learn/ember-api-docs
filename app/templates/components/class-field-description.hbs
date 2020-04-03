@@ -1,6 +1,7 @@
 <section class="{{type}}">
+  {{!-- TODO: Fix this link for a11y --}}
   <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
-    <a class="anchor">
+    <a class="anchor" {{!-- template-lint-disable link-href-attributes --}}>
       {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
     </a>
     <span class="{{type}}-name">{{field.name}}</span>
@@ -30,12 +31,12 @@
   <p class="github-link" data-test-file={{field.file}}>
     {{#if field.inherited}}
       Inherited from
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener noreferrer">
         {{field.inheritedFrom}} {{field.file}}:{{field.line}}
       </a>
     {{else}}
       Defined in
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener">
+      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener noreferrer">
         {{field.file}}:{{field.line}}
       </a>
     {{/if}}
