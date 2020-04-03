@@ -3,12 +3,12 @@ import { scheduleOnce } from '@ember/runloop';
 import config from './config/environment';
 import { inject as service } from '@ember/service';
 
-const AppRouter = Router.extend({
-  location: config.locationType,
-  rootURL: config.routerRootURL,
+class AppRouter extends Router {
+  location = config.locationType;
+  rootURL = config.routerRootURL;
 
-  metrics: service(),
-  fastboot: service(),
+  @service metrics;
+  @service fastboot;
 
   init() {
     this._super(...arguments);
