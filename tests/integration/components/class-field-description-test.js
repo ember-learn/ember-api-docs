@@ -1,7 +1,12 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, findAll, triggerEvent } from '@ember/test-helpers';
+import {
+  render,
+  click,
+  findAll,
+  triggerEvent
+} from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | class field description', function(hooks) {
