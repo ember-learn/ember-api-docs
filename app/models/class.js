@@ -1,6 +1,5 @@
+import Model, { belongsTo, attr } from '@ember-data/model';
 import { computed } from '@ember/object';
-import DS from 'ember-data';
-const {attr, belongsTo} = DS;
 
 const projectNameFromClassName = key => {
   return computed(key, function() {
@@ -30,7 +29,7 @@ const guessVersionFor = key => {
   });
 };
 
-export default DS.Model.extend({
+export default Model.extend({
   name: attr(),
   methods: attr(),
   properties: attr(),

@@ -1,7 +1,7 @@
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 import { inject as service } from '@ember/service';
-import DS from 'ember-data';
 
-export default DS.JSONAPISerializer.extend({
+export default JSONAPISerializer.extend({
 
   metaStore: service(),
 
