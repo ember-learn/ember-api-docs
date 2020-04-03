@@ -1,11 +1,9 @@
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { inject as service } from '@ember/service';
-import DS from 'ember-data';
 import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
-
-const { JSONAPIAdapter } = DS;
 
 export default JSONAPIAdapter.extend({
 

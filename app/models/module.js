@@ -1,7 +1,5 @@
+import { belongsTo, attr } from '@ember-data/model';
 import ClassModel from './class';
-import DS from 'ember-data';
-
-const { attr, belongsTo } = DS;
 
 export default ClassModel.extend({
   submodules: attr(),

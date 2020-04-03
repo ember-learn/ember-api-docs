@@ -1,19 +1,19 @@
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 import { computed } from '@ember/object';
-import DS from 'ember-data';
 import getCompactVersion from '../utils/get-compact-version';
 
-export default DS.Model.extend({
-  version: DS.attr(),
-  classes: DS.hasMany('class', {async: true}),
-  modules: DS.hasMany('module', {async: true}),
-  namespaces: DS.hasMany('namespace', {async: true}),
-  'public-classes': DS.hasMany('class', {async: true}),
-  'private-classes': DS.hasMany('class', {async: true}),
-  'public-modules': DS.hasMany('module', {async: true}),
-  'private-modules': DS.hasMany('module', {async: true}),
-  'public-namespaces': DS.hasMany('namespace', {async: true}),
-  'private-namespaces': DS.hasMany('namespace', {async: true}),
-  project: DS.belongsTo('project'),
+export default Model.extend({
+  version: attr(),
+  classes: hasMany('class', {async: true}),
+  modules: hasMany('module', {async: true}),
+  namespaces: hasMany('namespace', {async: true}),
+  'public-classes': hasMany('class', {async: true}),
+  'private-classes': hasMany('class', {async: true}),
+  'public-modules': hasMany('module', {async: true}),
+  'private-modules': hasMany('module', {async: true}),
+  'public-namespaces': hasMany('namespace', {async: true}),
+  'private-namespaces': hasMany('namespace', {async: true}),
+  project: belongsTo('project'),
   compactVersion: computed('version', function() {
     return getCompactVersion(this.version);
   })

@@ -1,9 +1,8 @@
-import Service from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { get, set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
 import { alias } from '@ember/object/computed';
-import { inject as service } from '@ember/service';
 
 export default Service.extend({
   _algoliaService: service('algolia'),
