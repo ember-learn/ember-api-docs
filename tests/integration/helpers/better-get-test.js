@@ -6,7 +6,6 @@ import hbs from 'htmlbars-inline-precompile';
 module('helper:better-get', function(hooks) {
   setupRenderingTest(hooks);
 
-  // Replace this with your real tests.
   test('should get dot separated', async function(assert) {
     let obj = {
       'Ember.Object': 'hello'
@@ -16,7 +15,7 @@ module('helper:better-get', function(hooks) {
 
     await render(hbs`{{better-get dataStructure key}}`);
 
-    assert.dom('*').hasText('hello');
+    assert.dom(this.element).hasText('hello');
   });
 
   test('should get rfc 176 module', async function(assert) {
@@ -28,6 +27,6 @@ module('helper:better-get', function(hooks) {
 
     await render(hbs`{{better-get dataStructure key}}`);
 
-    assert.dom('*').hasText('hello');
+    assert.dom(this.element).hasText('hello');
   });
 });

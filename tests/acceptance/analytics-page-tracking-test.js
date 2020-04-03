@@ -18,7 +18,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
     const applicationRouter = this.owner.lookup('router:main');
     const metricsService = this.owner.lookup('service:metrics');
 
-    const routerTrackPageSpy = sinon.spy(applicationRouter, '_trackPage');
+    const routerTrackPageSpy = sinon.spy(applicationRouter, '__trackPage');
     const serviceTrackPageSpy = sinon.spy(metricsService, 'trackPage');
 
     await visit(pages[0]);
@@ -29,7 +29,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
 
     assert.ok(
       routerTrackPageSpy.calledThrice,
-      `_trackPage() was not called 3 times it was called ${routerTrackPageSpy.callCount} times`
+      `__trackPage() was not called 3 times it was called ${routerTrackPageSpy.callCount} times`
     );
     assert.ok(
       serviceTrackPageSpy.calledThrice,

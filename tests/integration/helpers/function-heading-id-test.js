@@ -11,6 +11,6 @@ module('helper:function-heading-id', function(hooks) {
 
     await render(hbs`{{function-heading-id inputValue}}`);
 
-    assert.dom('*').hasText('functions-computed');
+    assert.dom(this.element).hasText('functions-computed');
   });
 });
