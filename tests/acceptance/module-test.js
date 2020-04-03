@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, find, findAll } from '@ember/test-helpers';
+import { visit, click, findAll } from '@ember/test-helpers';
 
 module('Acceptance | Module', function(hooks) {
   setupApplicationTest(hooks);
@@ -37,6 +37,6 @@ module('Acceptance | Module', function(hooks) {
 
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord('module', 'ember-1.0.0-ember-application');
-    assert.equal(find(`.attribute-value`).textContent, container.get('parent'));
+    assert.dom(`.attribute-value`).hasText(container.get('parent'));
   });
 });

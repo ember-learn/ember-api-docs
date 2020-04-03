@@ -1,6 +1,12 @@
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
-import { visit, click, currentURL, find, settled } from '@ember/test-helpers';
+import {
+  visit,
+  click,
+  currentURL,
+  find,
+  settled
+} from '@ember/test-helpers';
 import { timeout } from 'ember-concurrency';
 
 module('Acceptance | sidebar navigation', function(hooks) {
