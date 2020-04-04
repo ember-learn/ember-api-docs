@@ -103,9 +103,6 @@
     "spawndamnit": "2.0.0",
     "testem": "^2.14.0"
   },
-  "resolutions": {
-    "browserslist": "2.11.3"
-  },
   "engines": {
     "node": "10.* || >= 12",
     "npm": "5"
