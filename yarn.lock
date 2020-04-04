@@ -2690,7 +2690,7 @@ bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
 
-body-parser@1.19.0, body-parser@^1.12.3, body-parser@^1.15.0:
+body-parser@1.19.0, body-parser@^1.15.0:
   version "1.19.0"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.19.0.tgz#96b2709e57c9c4e09a6fd66a8fd979844f69f08a"
   integrity sha512-dhEPs72UPbDnAQJ9ZKMNTP6ptJaionhP5cBb541nXPlW60Jepo9RV/a4fX4XWW9CuFNK22krhrj1+rgzifNCsw==
@@ -5077,14 +5077,6 @@ ember-cli-clipboard@^0.8.1:
     ember-cli-babel "^6.8.0"
     ember-cli-htmlbars "^2.0.2"
     fastboot-transform "0.1.1"
-
-ember-cli-content-security-policy@^0.6.1:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-content-security-policy/-/ember-cli-content-security-policy-0.6.2.tgz#15636998ce0dc224491b2a24f5d0e636a3f059a3"
-  integrity sha512-viNehfvb2ibERdQuZ+S5EwmNIDUZocFHzfYu4Z91kmu7Sd2ZgRUWDvoKok4+XGYqqtaUn/70UrYH4TQpp+Vbvw==
-  dependencies:
-    body-parser "^1.12.3"
-    chalk "^1.0.0"
 
 ember-cli-dependency-checker@^3.2.0:
   version "3.2.0"
