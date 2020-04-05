@@ -1,4 +1,4 @@
-import Service from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { isPresent } from '@ember/utils';
 import { set } from '@ember/object';
 import { A } from '@ember/array';
@@ -6,17 +6,40 @@ import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 export default Service.extend({
+  fastboot: service(),
 
   availableProjectVersions: null,
   projectRevMap: null,
 
   init() {
+    this._super(...arguments);
+
+    if (this.fastboot.isFastBoot) {
+      this.createProperties();
+      this.updateShoebox();
+    } else {
+      this.availableProjectVersions = this.fastboot.shoebox.retrieve('availableProjectVersions');
+      this.projectRevMap = this.fastboot.shoebox.retrieve('projectRevMap');
+    }
+
+    if (!this.availableProjectVersions || !this.projectRevMap) {
+      this.createProperties();
+    }
+  },
+
+  createProperties() {
     this.availableProjectVersions = {
       'ember': A(),
       'ember-data':A()
     };
     this.projectRevMap = {};
-    this._super(...arguments);
+  },
+
+  updateShoebox() {
+    if (this.fastboot.isFastBoot) {
+      this.fastboot.shoebox.put('availableProjectVersions', this.availableProjectVersions);
+      this.fastboot.shoebox.put('projectMap',this.projectRevMap);
+    }
   },
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
@@ -24,6 +47,7 @@ export default Service.extend({
     if (!isPresent(projectRevMap[projectVersionKey])) {
       projectRevMap[projectVersionKey] =  projectRevDoc;
       set(this, 'projectRevMap', projectRevMap);
+      this.updateShoebox();
     }
   },
 
@@ -43,7 +67,8 @@ export default Service.extend({
         'ember-data': A(availableProjectVersions['ember-data'])
       },
       projectRevMap: projectRevMap
-    })
+    });
+    this.updateShoebox();
   },
 
   getFullVersion(projectName, compactProjVersion) {
