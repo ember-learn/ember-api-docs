@@ -16,9 +16,6 @@ export default JSONAPIAdapter.extend({
   metaStore: service(),
   projectService: service('project'),
 
-  shouldBackgroundReloadAll() { return false; },
-  shouldBackgroundReloadRecord() { return false; },
-
   async findRecord(store, {modelName}, id) {
     let url;
     let host = this.host;
