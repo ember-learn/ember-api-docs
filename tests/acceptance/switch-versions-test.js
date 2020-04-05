@@ -171,4 +171,16 @@ module('Acceptance | version navigation', function(hooks) {
     await waitForSettled();
     assert.equal(currentURL(), '/ember/2.18/classes/Component', 'navigated to v2.18 for new class');
   });
+
+  test(`can switch to ember 1.13`, async function(assert) {
+    await visit('/ember/2.0/classes/Ember.Component');
+    await waitForSettled();
+    assert.equal(currentURL(), '/ember/2.0/classes/Ember.Component', 'navigated to v2.0 namespace');
+    await selectChoose('.ember-power-select-trigger', '1.12');
+    await waitForSettled();
+    assert.equal(currentURL(), '/ember/1.12/classes/Ember.Component', 'navigated to v1.12 class');
+    await selectChoose('.ember-power-select-trigger', '1.13');
+    await waitForSettled();
+    assert.equal(currentURL(), '/ember/1.13/classes/Ember.Component', 'navigated to v1.13 class');
+  });
 });

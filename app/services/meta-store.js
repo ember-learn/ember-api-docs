@@ -3,6 +3,7 @@ import { isPresent } from '@ember/utils';
 import { set } from '@ember/object';
 import { A } from '@ember/array';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
+import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
 export default Service.extend({
 
@@ -52,6 +53,6 @@ export default Service.extend({
       return;
     }
     // since there can be multiple full versions that match the compact version, use the most recent one.
-    return filtered.reduce((accumulator, current) => accumulator.split('.')[2] < current.split('.')[2] ? current : accumulator);
+    return getLastVersion(filtered);
   }
 });
