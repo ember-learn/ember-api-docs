@@ -15,7 +15,17 @@ export default DS.Model.extend({
   'public-namespaces': DS.hasMany('namespace', { async: true }),
   'private-namespaces': DS.hasMany('namespace', { async: true }),
   project: DS.belongsTo('project'),
-  compactVersion: computed('version', function() {
+  compactVersion: computed('version', function () {
     return getCompactVersion(this.version);
-  })
+  }),
+
+  firstModule: computed('modules.[]', function () {
+    let moduleNames = Object.keys(this.revMap.module).sort();
+    let encodedModule = moduleNames[0]
+      .split('-')
+      .reduce((result, val, index, arry) =>
+        val === this.version ? arry.slice(index + 1).join('-') : result
+      );
+    return decodeURIComponent(encodedModule);
+  }),
 });

@@ -1,10 +1,9 @@
-import { inject as service } from '@ember/service';
-import DS from 'ember-data';
-import fetch from 'fetch';
-import ENV from 'ember-api-docs/config/environment';
-import { pluralize } from 'ember-inflector';
-import { isBlank } from '@ember/utils';
 import { get } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import ENV from 'ember-api-docs/config/environment';
+import DS from 'ember-data';
+import { pluralize } from 'ember-inflector';
+import fetch from 'fetch';
 
 const { JSONAPIAdapter } = DS;
 
@@ -15,13 +14,27 @@ export default JSONAPIAdapter.extend({
 
   currentProjectVersion: '',
 
-  projectService: service('project'),
-
   shouldBackgroundReloadAll() {
     return false;
   },
+
   shouldBackgroundReloadRecord() {
     return false;
+  },
+
+  setCurrentProjectInfo(id) {
+    let [project, version] = id.split('-');
+    this.currentProjectVersion = version;
+    this.currentProject = project;
+  },
+
+  getRevId(type, id) {
+    let encodedId = encodeURIComponent(id);
+    let projectVersionDoc = this.store.peekRecord(
+      'project-version',
+      `${this.currentProject}-${this.currentProjectVersion}`
+    );
+    return get(projectVersionDoc, 'revMap')[type][encodedId];
   },
 
   async findRecord(store, { modelName }, id) {
@@ -29,20 +42,18 @@ export default JSONAPIAdapter.extend({
     let host = this.host;
     let projectName = this.currentProject;
 
-    const getRevId = (version, type, id) => {
-      let encodedId = encodeURIComponent(id);
-      let projectVersionDoc = store.peekRecord('project-version', `${projectName}-${version}`);
-      return get(projectVersionDoc, 'revMap')[type][encodedId];
-    };
-
     if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
-      let [version] = id.replace(`${projectName}-`, '').split('-');
-      let revId = getRevId(version, modelName, id);
+      if (isBlank(this.currentProjectVersion)) {
+        this.setCurrentProjectInfo(id);
+      }
+
+      let version = this.currentProjectVersion;
+      let revId = this.getRevId(modelName, id);
 
       let modelNameToUse = modelName;
       // To account for namespaces that are also classes but not defined properly in yuidocs
       if (isBlank(revId) && modelNameToUse === 'class') {
-        revId = getRevId(version, 'namespace', id);
+        revId = this.getRevId('namespace', id);
         modelNameToUse = 'namespace';
       }
 
@@ -53,14 +64,14 @@ export default JSONAPIAdapter.extend({
         throw new Error('Documentation item not found');
       }
     } else if (modelName === 'missing') {
-      let version = get(this, 'projectService.version');
-
-      let revId = getRevId(version, modelName, id);
+      let version = this.currentProjectVersion;
+      let revId = this.getRevId(modelName, id);
       url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
-      this.set('currentProject', id);
+      this.currentProject = id;
       url = `rev-index/${id}`;
     } else if (modelName === 'project-version') {
+      this.setCurrentProjectInfo(id);
       url = `rev-index/${id}`;
     } else {
       throw new Error('Unexpected model lookup');
@@ -71,5 +82,5 @@ export default JSONAPIAdapter.extend({
     let response = await fetch(url);
     let json = await response.json();
     return json;
-  }
+  },
 });

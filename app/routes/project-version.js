@@ -5,6 +5,7 @@ import getCompactVersion from '../utils/get-compact-version';
 import getFullVersion from '../utils/get-full-version';
 import getLastVersion from '../utils/get-last-version';
 import config from '../config/environment';
+import { get } from '@ember/object';
 
 export default Route.extend({
   fastboot: service(),
@@ -13,7 +14,7 @@ export default Route.extend({
   router: service(),
   projectService: service('project'),
 
-  titleToken: function(model) {
+  titleToken: function (model) {
     return model.get('version');
   },
 
@@ -37,10 +38,7 @@ export default Route.extend({
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
       let latestVersion = getLastVersion(
-        model
-          .get('project.content')
-          .hasMany('projectVersions')
-          .ids()
+        model.get('project.content').hasMany('projectVersions').ids()
       );
       let isLatestVersion = transitionVersion === latestVersion || transitionVersion === 'release';
       let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
@@ -50,15 +48,11 @@ export default Route.extend({
         return this.transitionTo('project-version.index');
       } else {
         // else go to the version specified
-        // let moduleRevs = this.metaStore.getEncodedModulesFromProjectRev(model.get('id'));
-        debugger; //eslint-disable-line
-        let moduleRevs = {};
-        let module = this.getFirstModule(moduleRevs);
         return this.transitionTo(
           'project-version.modules.module',
-          model.get('project.id'),
+          get(model, 'project.id'),
           transitionVersion,
-          module
+          get(model, 'firstModule')
         );
       }
     }
@@ -87,7 +81,7 @@ export default Route.extend({
   serialize(model) {
     return {
       project: model.get('project.id'),
-      project_version: model.get('compactVersion')
+      project_version: model.get('compactVersion'),
     };
   },
 
@@ -168,7 +162,7 @@ export default Route.extend({
       } else {
         this.transitionTo(`/${project}/${projectVersionID}`);
       }
-    }
+    },
   },
   // Input some version info, returns a boolean based on
   // whether the user is switching versions for a 2.16 docs release or later.
@@ -183,17 +177,4 @@ export default Route.extend({
       (previousComparison >= 0 && targetComparison < 0)
     );
   },
-
-  /**
-     splits the first encoded revision string in the list and takes the string after the version (which is the encoded name), then decodes the result.
-     */
-  getFirstModule(moduleRevs) {
-    let encodedModule = moduleRevs[0].split('-').reduce((result, val, index, arry) => {
-      if (val === this.get('projectService.version')) {
-        return arry.slice(index + 1).join('-');
-      }
-      return result;
-    });
-    return decodeURIComponent(encodedModule);
-  }
 });
