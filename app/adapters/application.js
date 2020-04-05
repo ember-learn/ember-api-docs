@@ -16,6 +16,23 @@ export default JSONAPIAdapter.extend({
   metaStore: service(),
   projectService: service('project'),
 
+  ids: null,
+
+  shouldBackgroundReloadAll() { return false; },
+  shouldBackgroundReloadRecord(store, snapshot) {
+    let key = `${snapshot.modelName}-${snapshot.id}`;
+    let hasId = this.ids[key];
+    if (!hasId) {
+      this.ids[key] = true;
+    }
+    return !hasId;
+  },
+
+  init() {
+    this._super(...arguments);
+    this.ids = {};
+  },
+
   async findRecord(store, {modelName}, id) {
     let url;
     let host = this.host;
