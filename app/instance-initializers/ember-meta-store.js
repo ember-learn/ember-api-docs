@@ -12,7 +12,6 @@ export function initialize(appInstance) {
     const {availableProjectVersions, projectRevMap} = shoebox.retrieve('meta-store');
     metaStore.initializeStore(availableProjectVersions, projectRevMap);
   }
-
 }
 
 export default {

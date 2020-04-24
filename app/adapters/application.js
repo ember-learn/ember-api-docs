@@ -18,9 +18,17 @@ export default JSONAPIAdapter.extend({
 
   ids: null,
 
+  shouldReloadRecord(store, { modelName, id }) {
+    if (modelName === 'project') {
+      this.currentProject = id;
+    } else if (modelName === 'project-version') {
+      this.currentProjectVersion = id;
+    }
+    return; // return undefined so auto determinated
+  },
   shouldBackgroundReloadAll() { return false; },
-  shouldBackgroundReloadRecord(store, snapshot) {
-    let key = `${snapshot.modelName}-${snapshot.id}`;
+  shouldBackgroundReloadRecord(store, { modelName, id }) {
+    let key = `${modelName}-${id}`;
     let hasId = this.ids[key];
     if (!hasId) {
       this.ids[key] = true;
@@ -33,7 +41,7 @@ export default JSONAPIAdapter.extend({
     this.ids = {};
   },
 
-  async findRecord(store, {modelName}, id) {
+  async findRecord(store, { modelName }, id) {
     let url;
     let host = this.host;
     let projectName = this.currentProject;
@@ -49,7 +57,7 @@ export default JSONAPIAdapter.extend({
         modelNameToUse = 'namespace';
       }
 
-      if (typeof revId != 'undefined') {
+      if (typeof revId !== 'undefined') {
         let encodedRevId = encodeURIComponent(revId);
         url = `json-docs/${projectName}/${version}/${pluralize(modelNameToUse)}/${encodedRevId}`;
       } else {
@@ -60,9 +68,10 @@ export default JSONAPIAdapter.extend({
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
       url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
-      this.set('currentProject', id);
+      this.currentProject = id;
       url = `rev-index/${id}`;
     } else if (modelName === 'project-version') {
+      this.currentProjectVersion = id;
       url = `rev-index/${id}`;
     } else {
       throw new Error('Unexpected model lookup');
