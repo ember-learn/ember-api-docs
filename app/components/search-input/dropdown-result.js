@@ -13,7 +13,11 @@ export default Component.extend({
     if (this.get('result.project')) {
       return this.get('result.project');
     }
-    return this.get('result.module') === 'ember-data' ? 'ember-data' : 'ember'
+    let module = this.get('result.module');
+    if (module.includes('ember-data')) {
+      return 'ember-data';
+    }
+    return 'ember';
   }),
   // Private API
   classNames: ['ds-suggestion'],
