@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import config from 'ember-api-docs/config/environment';
 
 const links = [
   {
@@ -12,7 +11,7 @@ const links = [
         type: 'link'
       },
       {
-        href: config.APP.domain,
+        href: 'https://api.emberjs.com/ember/release',
         name: 'API Reference',
         type: 'link'
       },
