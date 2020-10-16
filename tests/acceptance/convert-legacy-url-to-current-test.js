@@ -25,9 +25,9 @@ module('Acceptance | convert legacy url to current', function(hooks) {
     assert.equal(currentURL(), '/ember/release/modules/@ember%2Fapplication');
   });
 
-  test('should convert url for legacy ember data module', async function (assert) {
+  test('should convert url for legacy ember data module to 404', async function (assert) {
     await visit('/data/modules/ember-data.html');
-    assert.equal(currentURL(), '/ember-data/release/modules/@ember-data');
+    assert.equal(currentURL(), '/404');
   });
 
   test('should convert unknown legacy modules url to landing page', async function (assert) {
