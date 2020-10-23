@@ -22,10 +22,16 @@ export default Route.extend({
       moduleName = '@' + moduleName;
     }
     let mappingInfo = this.legacyModuleMappings.getNewModuleFromOld(moduleName, mappings);
-    return this.transitionTo(`project-version.modules.module`,
-      'ember-data',
-      'release',
-      mappingInfo.module);
+    if(mappingInfo.module === '@ember-data') {
+      return this.transitionTo(`project-version`,
+        'ember-data',
+        'release');
+    } else {
+      return this.transitionTo(`project-version.modules.module`,
+        'ember-data',
+        'release',
+        mappingInfo.module);
+    }
   }
 
 });
