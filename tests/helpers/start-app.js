@@ -3,7 +3,6 @@ import { merge } from '@ember/polyfills';
 import Application from '../../app';
 import config from '../../config/environment';
 import registerPowerSelectHelpers from 'ember-power-select/test-support/helpers';
-import './percy/register-helpers';
 
 registerPowerSelectHelpers();
 

@@ -1,14 +1,15 @@
 import { visit } from '@ember/test-helpers';
-import { module, test } from 'qunit';
+import percySnapshot from '@percy/ember';
 import { setupApplicationTest } from 'ember-qunit';
-import { percySnapshot } from 'ember-percy';
+import { module, test } from 'qunit';
 
 module('Acceptance | percy', function(hooks) {
   setupApplicationTest(hooks);
 
-  test('Percy snapshot tests', async function(assert) {
+  test('Percy snapshot', async function(assert) {
     await visit('/');
-    percySnapshot('Landing page');
+    await percySnapshot('Landing page');
+
     assert.ok(true);
   });
 });
