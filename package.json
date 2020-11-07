@@ -14,6 +14,7 @@
   },
   "scripts": {
     "build": "ember build --environment=production",
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start:local": "API_HOST=http://localhost:5050 ember serve",
@@ -95,6 +96,7 @@
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.0",
     "normalize.css": "^8.0.1",
+    "npm-run-all": "^4.1.5",
     "qunit-dom": "^1.0.0",
     "sanitize-html": "^1.19.3",
     "sass": "^1.25.0",
