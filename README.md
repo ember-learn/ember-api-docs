@@ -1,3 +1,6 @@
+[![This project uses GitHub Actions for continuous integration.](https://github.com/ember-learn/ember-api-docs/workflows/CI/badge.svg)](https://github.com/ember-learn/ember-api-docs/actions?query=workflow%3ACI)
+[![This project uses Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/Ember/ember-api-docs)
+
 # [Ember API Docs](https://api.emberjs.com/)
 
 This project contains only the [API docs](https://api.emberjs.com/) portion of [Emberjs.com](https://emberjs.com/). If you're looking for the rest of the site,
