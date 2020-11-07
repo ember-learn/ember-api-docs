@@ -1,16 +1,18 @@
-# Questions
+# Contributing to ember-api-docs
+
+## Questions
 
 This is the issue tracker for [Ember.js API](https://api.emberjs.com/).
 
-# Issue Labeling
-
-We use [StandardIssueLabels](https://github.com/wagenet/StandardIssueLabels) for Github Issues.
-
-# Issues
+## Issues
 
 Think you've found a bug or have a new feature to suggest? Let us know!
 
-## Reporting a Bug
+### Labeling an issue
+
+We use [StandardIssueLabels](https://github.com/wagenet/StandardIssueLabels) for Github Issues.
+
+### Reporting a Bug
 
 1. Search for similar issues. It's possible somebody has encountered
 this bug already.
@@ -53,7 +55,7 @@ original notice.
   Statuses may include: `In Progress`, `On Hold`. Priorities may include:
   `High` or `Low`.
 
-## Requesting a Feature
+### Requesting a Feature
 
 * Provide a clear and detailed explanation of the feature you want and why
 it's important to add. Keep in mind that we want features that will be useful
@@ -66,7 +68,7 @@ along.
 
 If you have a question please reach out to us on the #dev-ember-learning channel on ember Discord
 
-# Building Ember.js API Docs
+## Building Ember.js API Docs
 
 ```sh
 clone the latest ember.js api docs from github
@@ -82,7 +84,7 @@ follow these commands to build ember.js
  - yarn run build
 ```
 
-# Development steps
+## Development steps
 
 1. Follow the setup steps listed above under [Building Ember.js API](#building-emberjs-api-docs).
 
@@ -97,7 +99,7 @@ follow these commands to build ember.js
 ```
 
 
-# Pull Requests
+## Pull Requests
 
 We love pull requests. Here's a quick guide:
 
@@ -128,11 +130,11 @@ that your pull request is accepted.
 And in case we didn't emphasize it enough: we love tests!
 
 
-# Travis CI Tests
+## Continuous Integration (CI)
 
-We use [Travis CI](https://travis-ci.org/ember-learn/ember-api-docs/pull_requests) to test each PR before it is merged.
+We use GitHub Actions to test each PR before it is merged.
 
-When you submit your PR (or later change that code), a Travis build will automatically be kicked off.  A note will be added to the PR, and will indicate the current status of the build.
+When you submit your PR (or later change that code), CI will automatically kick off.  A note will be added to the PR, and will indicate the current status of the build.
 
 
 NOTE: Derived from https://raw.githubusercontent.com/emberjs/ember.js/master/CONTRIBUTING.md

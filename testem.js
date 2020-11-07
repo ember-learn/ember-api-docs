@@ -14,7 +14,7 @@ let localBrowsers = ['Chrome'];
 let ciBrowsers = canConnectToBrowserStack ? allBrowsers : localBrowsers;
 
 module.exports = {
-  'test_page': 'tests/index.html?hidepassed&notrycatch',
+  'test_page': 'tests/index.html?hidepassed&nolint&notrycatch',
   'disable_watching': true,
   timeout: 1200,
   browser_start_timeout: 2000,
