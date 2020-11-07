@@ -19,7 +19,8 @@
     "lint:js": "eslint .",
     "start:local": "API_HOST=http://localhost:5050 ember serve",
     "start": "ember serve",
-    "test": "percy exec -- node run-tests.js"
+    "test:browserstack": "node run-tests.js",
+    "test:ember": "percy exec -- ember test"
   },
   "devDependencies": {
     "@ember/jquery": "^1.1.0",
