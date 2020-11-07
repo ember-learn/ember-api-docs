@@ -1,4 +1,4 @@
-# [Ember API Docs](https://api.emberjs.com/) [![Build Status](https://travis-ci.org/ember-learn/ember-api-docs.svg?branch=master)](https://travis-ci.org/ember-learn/ember-api-docs)
+# [Ember API Docs](https://api.emberjs.com/)
 
 This project contains only the [API docs](https://api.emberjs.com/) portion of [Emberjs.com](https://emberjs.com/). If you're looking for the rest of the site,
 see the [website](https://github.com/ember-learn/ember-website)

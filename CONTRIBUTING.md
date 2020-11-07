@@ -130,11 +130,11 @@ that your pull request is accepted.
 And in case we didn't emphasize it enough: we love tests!
 
 
-## Travis CI Tests
+## Continuous Integration (CI)
 
-We use [Travis CI](https://travis-ci.org/ember-learn/ember-api-docs/pull_requests) to test each PR before it is merged.
+We use GitHub Actions to test each PR before it is merged.
 
-When you submit your PR (or later change that code), a Travis build will automatically be kicked off.  A note will be added to the PR, and will indicate the current status of the build.
+When you submit your PR (or later change that code), CI will automatically kick off.  A note will be added to the PR, and will indicate the current status of the build.
 
 
 NOTE: Derived from https://raw.githubusercontent.com/emberjs/ember.js/master/CONTRIBUTING.md

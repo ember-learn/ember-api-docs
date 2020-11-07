@@ -35,10 +35,6 @@ const execEmberProcess = async (cmd) => {
   await execEmberProcess('exam');
 
   if (canConnectToBrowserStack) {
-    if (process.env['TRAVIS_JOB_NUMBER']) {
-      await execEmberProcess('browserstack:results');
-    }
     await execEmberProcess('browserstack:disconnect');
   }
-
 })();
