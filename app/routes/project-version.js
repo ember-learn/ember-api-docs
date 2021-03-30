@@ -50,10 +50,11 @@ export default Route.extend({
       // if there is no class, module, or namespace specified...
       let latestVersion = getLastVersion(model.get('project.content').hasMany('projectVersions').ids());
       let isLatestVersion = transitionVersion === latestVersion || transitionVersion === 'release';
+      let isEmberProject = model.get('project.id') === 'ember';
       let shouldConvertPackages = semverCompare(model.get('version'), '2.16') < 0;
-      if (!shouldConvertPackages || isLatestVersion) {
-        // ... and the transition version is the latest release,
-        // display the landing page at
+      if ((!shouldConvertPackages || isLatestVersion) && isEmberProject) {
+        // ... and the transition version is the latest release, and the selected docs are
+        // ember (not Ember Data), then display the landing page at
         return this.transitionTo('project-version.index');
       } else {
         // else go to the version specified
