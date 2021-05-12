@@ -10,7 +10,7 @@
       "required": false
     },
     "HEROKU_EMBER_CLI_DEPLOY": {
-      "required": true
+      "required": false
     },
     "WORKER_COUNT": {
       "required": false
