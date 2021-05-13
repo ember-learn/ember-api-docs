@@ -10,7 +10,7 @@
       "required": false
     },
     "HEROKU_EMBER_CLI_DEPLOY": {
-      "required": true
+      "required": false
     },
     "WORKER_COUNT": {
       "required": false
@@ -22,7 +22,8 @@
   ],
   "buildpacks": [
     {
-      "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
+      "url": "https://buildpack-registry.s3.amazonaws.com/buildpacks/aedev/emberjs.tgz"
     }
-  ]
+  ],
+  "stack": "heroku-20"
 }
