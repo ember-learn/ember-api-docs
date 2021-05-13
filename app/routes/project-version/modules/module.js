@@ -11,9 +11,12 @@ export default ClassRoute.extend(ScrollTracker, {
     let projectVersion = getFullVersion(compactVersion, project, projectObj, this.metaStore);
     let klass = params['module'];
 
+    // These modules should not have `ember-` tacked onto the front of them
+    // when forming the ids and URLs.
+    let isNotEmber = klass.match(/@glimmer|rsvp|jquery/)
+
     if (
-      !~klass.indexOf(project) &&
-      !['rsvp', 'jquery', '@glimmer/component', '@glimmer/tracking'].includes(klass)
+      !~klass.indexOf(project) && !isNotEmber
     ) {
       klass = `${project}-${klass}`;
     }
