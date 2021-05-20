@@ -51,16 +51,23 @@ View at http://localhost:4200
 
 To run a11y tests, run `test_a11y=yes ember serve`
 
-## Staging Environment
-Latest changes from master can be seen on https://ember-api-docs-frontend-staging.global.ssl.fastly.net/
-
-### Linting
+## Linting
 
 * `yarn run lint:hbs`
 * `yarn run lint:js`
 * `yarn run lint:js -- --fix`
 
-### Building
+## Staging environment
+
+Latest changes from master can be seen on [ember-api-docs on Heroku](https://dashboard.heroku.com/pipelines/9368de86-caa5-4192-a96d-2ee22dc6ce71). You'll need access to Heroku via the Learning Team. In the "Staging" column, you can check out "Open app" under ember-api-docs-staging.
+
+## Deployment
+
+**Do not use "promote to production" on Heroku.**
+
+After you've checked out the app on Staging above, on [ember-api-docs on Heroku](https://dashboard.heroku.com/pipelines/9368de86-caa5-4192-a96d-2ee22dc6ce71) go to the "Production" column. From the toggle button, select "Deploy a branch".
+
+## Building
 
 Cross-browser testing provided by:
 
