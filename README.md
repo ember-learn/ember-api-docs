@@ -63,9 +63,7 @@ Latest changes from master can be seen on [ember-api-docs on Heroku](https://das
 
 ## Deployment
 
-**Do not use "promote to production" on Heroku.**
-
-After you've checked out the app on Staging above, on [ember-api-docs on Heroku](https://dashboard.heroku.com/pipelines/9368de86-caa5-4192-a96d-2ee22dc6ce71) go to the "Production" column. From the toggle button, select "Deploy a branch".
+See the [DEPLOYING.md](https://github.com/ember-learn/ember-api-docs/blob/master/DEPLOYING.md) guide for instructions.
 
 ## Building
 
