@@ -57,11 +57,7 @@ To run a11y tests, run `test_a11y=yes ember serve`
 * `yarn run lint:js`
 * `yarn run lint:js -- --fix`
 
-## Staging environment
-
-Latest changes from master can be seen on [ember-api-docs on Heroku](https://dashboard.heroku.com/pipelines/9368de86-caa5-4192-a96d-2ee22dc6ce71). You'll need access to Heroku via the Learning Team. In the "Staging" column, you can check out "Open app" under ember-api-docs-staging.
-
-## Deployment
+## Staging and Deployment
 
 See the [DEPLOYING.md](https://github.com/ember-learn/ember-api-docs/blob/master/DEPLOYING.md) guide for instructions.
 
