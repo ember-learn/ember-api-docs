@@ -54,6 +54,15 @@ export default Route.extend({
       if (!shouldConvertPackages || isLatestVersion) {
         // ... and the transition version is the latest release,
         // display the landing page at
+
+        // ember-data if @main declaration exists for ember-data-overview
+        let versionId = model.get('id');
+        let modules = model.hasMany('modules').ids().map(id => id.substring(versionId.length + 1));
+        if (model.get('project.id') === 'ember-data' && modules.indexOf('ember-data-overview') !== -1) {
+          return this.transitionTo('project-version.modules.module', model.get('project.id'), transitionVersion, 'ember-data-overview');
+        }
+
+        // ember / ember-cli / ember-data if no @main declaration exists for ember-data-overview
         return this.transitionTo('project-version.index');
       } else {
         // else go to the version specified
