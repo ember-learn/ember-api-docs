@@ -44,7 +44,8 @@ export default Controller.extend({
 
   getModuleRelationships(versionId, moduleType) {
     let relations = this.getRelations(moduleType);
-    return relations.map(id => id.substring(versionId.length + 1))
+    // filter overviews out. If other projects add their overview we should filter those too.
+    return relations.map(id => id.substring(versionId.length + 1)).filter(id => id !== 'ember-data-overview');
   },
 
   getRelations(relationship) {
