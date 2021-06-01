@@ -19,6 +19,13 @@ module.exports = function (defaults) {
         'node_modules/normalize.css'
       ]
     },
+    autoImport: {
+      webpack: { 
+        node: { 
+          process: 'mock'
+        }
+      }
+    },
     autoprefixer: {
       enabled: true,
       cascade: true,

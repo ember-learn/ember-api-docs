@@ -23,6 +23,8 @@ module.exports = {
     'ember/no-jquery': 'off',
     'no-console': 'off',
     'ember/no-new-mixins': 'off',
+    'ember/native-classes': 'off',
+    'ember/require-tagless-components': 'off',
   },
   overrides: [
     // node files
