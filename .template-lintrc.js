@@ -10,6 +10,6 @@ module.exports = {
     'no-implicit-this': false,
     'no-curly-component-invocation': false,
     'no-action': false,
-    quotes: false
-  }
+    quotes: false,
+  },
 };

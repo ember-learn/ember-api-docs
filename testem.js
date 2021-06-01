@@ -14,21 +14,21 @@ let localBrowsers = ['Chrome'];
 let ciBrowsers = canConnectToBrowserStack ? allBrowsers : localBrowsers;
 
 module.exports = {
-  'test_page': 'tests/index.html?hidepassed&nolint&notrycatch',
-  'disable_watching': true,
+  test_page: 'tests/index.html?hidepassed&nolint&notrycatch',
+  disable_watching: true,
   timeout: 1200,
   browser_start_timeout: 2000,
   parallel: 4,
-  'launch_in_ci': ciBrowsers,
-  'launch_in_dev': localBrowsers,
-  'browser_args': {
-    'Chrome': {
+  launch_in_ci: ciBrowsers,
+  launch_in_dev: localBrowsers,
+  browser_args: {
+    Chrome: {
       dev: [
         '--no-sandbox',
         '--disable-gpu',
         '--auto-open-devtools-for-tabs',
         '--window-size=1440,900'
-      ],
+      ].filter(Boolean),
       ci: [
         '--no-sandbox',
         '--disable-gpu',
@@ -38,7 +38,7 @@ module.exports = {
         '--mute-audio',
         '--remote-debugging-port=0',
         '--window-size=1440,900'
-      ]
+      ].filter(Boolean)
     },
     'Firefox': [
       '-headless'

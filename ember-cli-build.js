@@ -5,7 +5,7 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees  = require('broccoli-merge-trees');
 const envIsProduction = (process.env.EMBER_ENV === 'production');
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg', 'webmanifest'],

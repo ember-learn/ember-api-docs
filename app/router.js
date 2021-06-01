@@ -1,9 +1,9 @@
-import Router from '@ember/routing/router';
+import EmberRouter from '@ember/routing/router';
 import { scheduleOnce } from '@ember/runloop';
-import config from './config/environment';
+import config from 'ember-api-docs/config/environment';
 import { inject as service } from '@ember/service';
 
-class AppRouter extends Router {
+class AppRouter extends EmberRouter {
   location = config.locationType;
   rootURL = config.routerRootURL;
 
