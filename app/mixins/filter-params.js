@@ -17,11 +17,15 @@ export default Mixin.create({
     'filterData.{showInherited,showProtected,showPrivate,showDeprecated}',
     {
       get() {
-        let appliedFilters = filterTypes.reduce((filters, filter) => {
-          let filterValue = get(this, `filterData.show${capitalize(filter)}`) ? filter : null;
-          filters.push(filterValue);
-          return filters;
-        }, A()).compact();
+        let appliedFilters = filterTypes
+          .reduce((filters, filter) => {
+            let filterValue = get(this, `filterData.show${capitalize(filter)}`)
+              ? filter
+              : null;
+            filters.push(filterValue);
+            return filters;
+          }, A())
+          .compact();
 
         if (isEmpty(appliedFilters)) {
           return DEFAULT_FILTER;
@@ -31,12 +35,12 @@ export default Mixin.create({
       },
       set(key, value = '') {
         let filters = A(value.split(','));
-        filterTypes.forEach(filter => {
+        filterTypes.forEach((filter) => {
           let enabled = filters.indexOf(filter) > -1;
           set(this, `filterData.show${capitalize(filter)}`, enabled);
         });
         return value;
-      }
+      },
     }
-  )
+  ),
 });

@@ -9,7 +9,7 @@ async function waitForSettled() {
   await settled();
 }
 
-module('Acceptance | link from ember data to ember test', function(hooks) {
+module('Acceptance | link from ember data to ember test', function (hooks) {
   setupApplicationTest(hooks);
 
   test('extends link test', async function (assert) {

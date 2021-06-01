@@ -7,7 +7,7 @@ const browsers = [
   'last 1 Edge versions',
 ];
 
-const isCI = !!process.env.CI;
+const isCI = Boolean(process.env.CI);
 const isProduction = process.env.EMBER_ENV === 'production';
 
 if (isCI || isProduction) {
@@ -15,5 +15,5 @@ if (isCI || isProduction) {
 }
 
 module.exports = {
-  browsers
+  browsers,
 };

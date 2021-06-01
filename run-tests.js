@@ -1,17 +1,18 @@
 const spawn = require('spawndamnit');
 const ember = `./node_modules/.bin/ember`;
 
-const userName = process.env['BROWSERSTACK_USERNAME']
-const accessKey = process.env['BROWSERSTACK_ACCESS_KEY']
+const userName = process.env['BROWSERSTACK_USERNAME'];
+const accessKey = process.env['BROWSERSTACK_ACCESS_KEY'];
 
-const canConnectToBrowserStack =  (
-  userName && userName.trim().length !== 0 &&
-  accessKey && accessKey.trim().length !== 0
-);
+const canConnectToBrowserStack =
+  userName &&
+  userName.trim().length !== 0 &&
+  accessKey &&
+  accessKey.trim().length !== 0;
 
 const hookupLoggers = (proc) => {
-  proc.on('stdout', data => console.log(data.toString()));
-  proc.on('stderr', data => console.error(data.toString()));
+  proc.on('stdout', (data) => console.log(data.toString()));
+  proc.on('stderr', (data) => console.error(data.toString()));
 };
 
 const execEmberProcess = async (cmd) => {

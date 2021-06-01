@@ -1,6 +1,6 @@
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
@@ -11,14 +11,20 @@ export default Route.extend(ScrollTracker, {
   headData: service(),
   metaStore: service(),
 
-  titleToken: function(model) {
-    return get(model, 'name');
+  titleToken: function (model) {
+    return model.name;
   },
 
   async model(params) {
-    const { project, project_version: compactVersion } = this.paramsFor('project-version');
+    const { project, project_version: compactVersion } =
+      this.paramsFor('project-version');
     let projectObj = await this.store.findRecord('project', project);
-    let projectVersion = getFullVersion(compactVersion, project, projectObj, this.metaStore);
+    let projectVersion = getFullVersion(
+      compactVersion,
+      project,
+      projectObj,
+      this.metaStore
+    );
     const klass = params['class'];
     return this.find('class', `${project}-${projectVersion}-${klass}`);
   },
@@ -26,31 +32,34 @@ export default Route.extend(ScrollTracker, {
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
       if (typeName != 'namespace') {
-        console.warn(e1, 'fetching by class or module failed, retrying as namespace');
+        console.warn(
+          e1,
+          'fetching by class or module failed, retrying as namespace'
+        );
         return this.store.find('namespace', param).catch((e2) => {
           console.error(e2);
           return resolve({
             isError: true,
-            status: 404
+            status: 404,
           });
         });
       }
       console.error(e1);
       return resolve({
         isError: true,
-        status: 404
+        status: 404,
       });
     });
   },
 
   redirect(model, transition) {
-    const lookupParams = routeName => {
+    const lookupParams = (routeName) => {
       let route = transition.routeInfos.find(({ name }) => name === routeName);
       return route ? route.params : {};
     };
 
     let {
-      to: { queryParams }
+      to: { queryParams },
     } = transition;
 
     if (queryParams.anchor && queryParams.type) {
@@ -71,24 +80,28 @@ export default Route.extend(ScrollTracker, {
 
   afterModel(klass) {
     if (!klass.isError) {
-      let description = klass.get('ogDescription') || klass.get('description')
+      let description = klass.get('ogDescription') || klass.get('description');
       if (description) {
         set(this, 'headData.description', createExcerpt(description));
       }
 
-      const relationships = get(klass.constructor, 'relationshipNames');
-      const promises = Object.keys(relationships).reduce((memo, relationshipType) => {
-        const relationshipPromises = relationships[relationshipType].map(name => klass.get(name));
-        return memo.concat(relationshipPromises);
-      }, []);
+      const relationships = klass.constructor.relationshipNames;
+      const promises = Object.keys(relationships).reduce(
+        (memo, relationshipType) => {
+          const relationshipPromises = relationships[relationshipType].map(
+            (name) => klass.get(name)
+          );
+          return memo.concat(relationshipPromises);
+        },
+        []
+      );
       return all(promises);
     }
   },
 
   serialize(model) {
     return {
-      class: get(model, 'name')
+      class: model.name,
     };
-  }
-
+  },
 });

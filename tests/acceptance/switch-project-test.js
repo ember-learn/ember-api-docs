@@ -6,7 +6,7 @@ import {
   findAll,
   find,
   currentURL,
-  settled
+  settled,
 } from '@ember/test-helpers';
 import { selectSearch } from 'ember-power-select/test-support';
 import { timeout } from 'ember-concurrency';
@@ -26,11 +26,10 @@ async function ensureVersionsExist(assert) {
   assert.ok(findAll('.ember-power-select-options')[0].children.length > 1);
 }
 
-module('Acceptance | Switch Project', function(hooks) {
+module('Acceptance | Switch Project', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('Can switch projects back and forth', async function(assert) {
-
+  test('Can switch projects back and forth', async function (assert) {
     await visit('/');
 
     await click('.spec-ember-data');
@@ -46,7 +45,7 @@ module('Acceptance | Switch Project', function(hooks) {
     assert.dom(find('.spec-ember-data')).hasClass('active');
   });
 
-  test('Can open class after switching projects back and forth', async function(assert) {
+  test('Can open class after switching projects back and forth', async function (assert) {
     await visit('/');
     await ensureVersionsExist(assert);
     assert.dom(find('.spec-ember')).hasClass('active');

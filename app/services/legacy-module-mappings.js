@@ -4,11 +4,10 @@ import Service from '@ember/service';
 const LOCALNAME_CONVERSIONS = {
   Object: 'EmberObject',
   Array: 'EmberArray',
-  Error: 'EmberError'
+  Error: 'EmberError',
 };
 
 export default Service.extend({
-
   async initMappings() {
     try {
       let response = await this.fetch();
@@ -21,7 +20,7 @@ export default Service.extend({
   },
 
   buildMappings(mappings) {
-    return mappings.map(item => {
+    return mappings.map((item) => {
       let newItem = Object.assign({}, item);
       if (LOCALNAME_CONVERSIONS[newItem.localName]) {
         newItem.localName = LOCALNAME_CONVERSIONS[newItem.localName];
@@ -38,54 +37,56 @@ export default Service.extend({
     if (!this.mappings) {
       return '';
     }
-    let matches = this.mappings.filter(element => element.localName === name);
+    let matches = this.mappings.filter((element) => element.localName === name);
     return matches.length > 0 ? matches[0].module : documentedModule;
   },
 
   getNewClassFromOld(oldClassName, mappings) {
-    let matches = mappings.filter(element => element.global === oldClassName);
+    let matches = mappings.filter((element) => element.global === oldClassName);
     if (matches.length > 0) {
       if (matches[0].localName) {
         return {
           itemType: 'class',
           newModule: matches[0].module,
-          newName: matches[0].localName
-        }
+          newName: matches[0].localName,
+        };
       } else {
         return {
           itemType: 'function',
           newModule: matches[0].module,
-          newName: matches[0].export
-        }
+          newName: matches[0].export,
+        };
       }
-
     } else {
       return {
         itemType: 'class',
-        newName: oldClassName
-      }
+        newName: oldClassName,
+      };
     }
   },
 
   getNewModuleFromOld(oldModuleName, mappings) {
-    let matches = mappings.filter(element => element.module === oldModuleName);
+    let matches = mappings.filter(
+      (element) => element.module === oldModuleName
+    );
     if (matches.length > 0) {
       return {
-        module: matches[0].replacement.module
+        module: matches[0].replacement.module,
       };
     } else {
       return {
-        module: oldModuleName
+        module: oldModuleName,
       };
     }
   },
-
 
   hasFunctionMapping(name, module) {
     if (!this.mappings) {
       return false;
     }
-    let filtered = this.mappings.filter(element => element.export === name && element.module === module);
+    let filtered = this.mappings.filter(
+      (element) => element.export === name && element.module === module
+    );
     return filtered.length > 0;
   },
 
@@ -93,7 +94,8 @@ export default Service.extend({
     if (!this.mappings) {
       return false;
     }
-    return this.mappings.filter(element => element.localName === name).length > 0;
-  }
-
+    return (
+      this.mappings.filter((element) => element.localName === name).length > 0
+    );
+  },
 });

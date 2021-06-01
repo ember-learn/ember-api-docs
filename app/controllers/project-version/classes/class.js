@@ -9,21 +9,41 @@ export default Controller.extend(ParentNameMixin, FilterParams, {
   legacyModuleMappings: service(),
   metaStore: service(),
 
-  hasImportExample: computed('model.name', 'legacyModuleMappings.mappings', function () {
-    return this.legacyModuleMappings.hasClassMapping(this.get('model.name'), this.get('model.module'));
-  }),
+  hasImportExample: computed(
+    'legacyModuleMappings.mappings',
+    'model.{module,name}',
+    function () {
+      return this.legacyModuleMappings.hasClassMapping(
+        this.get('model.name'),
+        this.get('model.module')
+      );
+    }
+  ),
 
-  module: computed('model.name', 'legacyModulemappings.mappings', function () {
-    return this.legacyModuleMappings.getModule(this.get('model.name'), this.get('model.module'));
-  }),
+  module: computed(
+    'legacyModulemappings.mappings',
+    'model.{module,name}',
+    function () {
+      return this.legacyModuleMappings.getModule(
+        this.get('model.name'),
+        this.get('model.module')
+      );
+    }
+  ),
 
-  allVersions: computed('model.project.id', function() {
-    return this.get('metaStore.availableProjectVersions')[this.get('model.project.id')];
-  }),
+  allVersions: computed(
+    'metaStore.availableProjectVersions',
+    'model.project.id',
+    function () {
+      return this.get('metaStore.availableProjectVersions')[
+        this.get('model.project.id')
+      ];
+    }
+  ),
 
   actions: {
     updateFilter(filter) {
       this.toggleProperty(`filterData.${filter}`);
-    }
-  }
+    },
+  },
 });

@@ -1,6 +1,6 @@
 import semverCompare from 'semver-compare';
 
-export const mainDir = function(project, version) {
+export const mainDir = function (project, version) {
   if (project === 'ember') {
     return '/';
   }
@@ -13,6 +13,6 @@ export const mainDir = function(project, version) {
 };
 
 export default {
-  'ember': 'emberjs/ember.js',
-  'ember-data': 'emberjs/data'
+  ember: 'emberjs/ember.js',
+  'ember-data': 'emberjs/data',
 };

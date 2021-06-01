@@ -5,14 +5,14 @@ import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import sinon from 'sinon';
 
-module('Acceptance | analytics page tracking', function(hooks) {
+module('Acceptance | analytics page tracking', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('checking that trackPage gets called on transitions', async function(assert) {
+  test('checking that trackPage gets called on transitions', async function (assert) {
     const pages = [
       '/ember/2.11/namespaces/Ember',
       '/ember/2.11/modules/ember-metal',
-      '/ember/2.11/classes/Ember.Application'
+      '/ember/2.11/classes/Ember.Application',
     ];
 
     const applicationRouter = this.owner.lookup('router:main');
@@ -33,9 +33,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
     );
     assert.ok(
       serviceTrackPageSpy.calledThrice,
-      `metrics.trackPage() was not called 3 times it was called ${
-        serviceTrackPageSpy.callCount
-      } times`
+      `metrics.trackPage() was not called 3 times it was called ${serviceTrackPageSpy.callCount} times`
     );
 
     const hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
@@ -44,7 +42,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
       serviceTrackPageSpy.calledWith({
         page: '/ember/2.11/namespaces/Ember',
         title: 'project-version.namespaces.namespace.index',
-        hostname
+        hostname,
       }),
       'service was called with expected arguments for ember namespace page'
     );
@@ -52,7 +50,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
       serviceTrackPageSpy.calledWith({
         page: '/ember/2.11/modules/ember-metal',
         title: 'project-version.modules.module.index',
-        hostname
+        hostname,
       }),
       'service was called with expected arguments for ember metal module'
     );
@@ -60,7 +58,7 @@ module('Acceptance | analytics page tracking', function(hooks) {
       serviceTrackPageSpy.calledWith({
         page: '/ember/2.11/classes/Ember.Application',
         title: 'project-version.classes.class.index',
-        hostname
+        hostname,
       }),
       'service was called with expected arguments for ember application class'
     );

@@ -1,4 +1,4 @@
-const _parseHash = function(hash) {
+const _parseHash = function (hash) {
   let name = '';
   let urlType = '';
   let hashParts = hash.split('_');
@@ -22,18 +22,17 @@ const _parseHash = function(hash) {
     }
     return {
       urlType,
-      name
+      name,
     };
   }
   return null;
-
-}
+};
 
 function hashToUrl(window) {
   if (window && window.location && window.location.hash) {
-    let hashInfo = _parseHash(window.location.hash)
+    let hashInfo = _parseHash(window.location.hash);
     if (hashInfo) {
-      return `${window.location.pathname}/${hashInfo.urlType}/${hashInfo.name}?anchor=${hashInfo.name}`
+      return `${window.location.pathname}/${hashInfo.urlType}/${hashInfo.name}?anchor=${hashInfo.name}`;
     }
   }
 
@@ -51,8 +50,4 @@ function hasRedirectableHash(window) {
   return canRedirect;
 }
 
-export {
-  hashToUrl,
-  hasRedirectableHash
-}
-
+export { hashToUrl, hasRedirectableHash };

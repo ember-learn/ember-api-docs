@@ -9,8 +9,8 @@ function requestIdleCb(cb, opts) {
   }
 }
 
-export function requestIdlePromise({timeout}) {
-  return new RSVP.Promise(resolve => {
-    requestIdleCb(resolve, {timeout});
+export function requestIdlePromise({ timeout }) {
+  return new RSVP.Promise((resolve) => {
+    requestIdleCb(resolve, { timeout });
   });
 }

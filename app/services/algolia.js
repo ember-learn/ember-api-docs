@@ -10,11 +10,14 @@ export default Service.extend({
       params = undefined;
     }
     if (query) {
-      if (Array.isArray(query) && !params) { // if multiple indices
+      if (Array.isArray(query) && !params) {
+        // if multiple indices
         this._client.search(query, callback);
-      } else if (!params) { // if no params
+      } else if (!params) {
+        // if no params
         this.accessIndex(query.indexName).search(query.query, callback);
-      } else { // if params and callback
+      } else {
+        // if params and callback
         this.accessIndex(query.indexName).search(query.query, params, callback);
       }
     } else {
@@ -31,8 +34,11 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    this._client = algoliasearch(config.algolia.algoliaId, config.algolia.algoliaKey);
+    this._client = algoliasearch(
+      config.algolia.algoliaId,
+      config.algolia.algoliaKey
+    );
     this._indices = {};
     this.search = denodeify(this._search.bind(this));
-  }
+  },
 });

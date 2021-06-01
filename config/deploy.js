@@ -1,12 +1,12 @@
 /* eslint-env node: true */
 
-module.exports = function(deployTarget) {
+module.exports = function (deployTarget) {
   var ENV = {
     build: {},
     gzip: {
       ignorePattern: '{fastboot/*.js,*.json}',
-      keep: true
-    }
+      keep: true,
+    },
     // include other plugin configuration that applies to all deploy targets here
   };
 
