@@ -13,5 +13,5 @@ export default Service.extend({
 
   getUrlVersion() {
     return this.urlVersion;
-  }
+  },
 });

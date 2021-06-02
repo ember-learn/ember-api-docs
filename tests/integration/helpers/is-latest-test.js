@@ -4,16 +4,12 @@ import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { A } from '@ember/array';
 
-const versions = A([
-  'ember-1.13.0',
-  'ember-3.5.0',
-  'ember-2.1.10'
-]);
+const versions = A(['ember-1.13.0', 'ember-3.5.0', 'ember-2.1.10']);
 
 module('helper:is-latest', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('should resolve true if latest release', async function(assert) {
+  test('should resolve true if latest release', async function (assert) {
     this.set('version', '3.5.0');
     this.set('allVersions', versions);
 
@@ -35,6 +31,5 @@ module('helper:is-latest', function (hooks) {
   {{/if}}
   `);
     assert.notEqual(this.element.textContent.trim(), 'Hello World');
-  })
-
+  });
 });

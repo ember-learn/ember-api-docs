@@ -6,7 +6,10 @@ export default Component.extend({
   legacyModuleMappings: service(),
 
   hasImportExample: computed('field.{name,class}', function () {
-    return this.legacyModuleMappings.hasFunctionMapping(this.get('field.name'), this.get('field.class'));
+    return this.legacyModuleMappings.hasFunctionMapping(
+      this.get('field.name'),
+      this.get('field.class')
+    );
   }),
 
   /**
@@ -15,5 +18,5 @@ export default Component.extend({
    * @method updateAnchor
    * @method fieldName String The name representing the field that was clicked.
    */
-  updateAnchor() {}
+  updateAnchor() {},
 });

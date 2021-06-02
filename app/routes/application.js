@@ -15,7 +15,9 @@ export default Route.extend({
     }
     if (version) {
       const compactVersion = getCompactVersion(version);
-      const title = `${[entity, compactVersion].join(' - ')} - Ember API Documentation`;
+      const title = `${[entity, compactVersion].join(
+        ' - '
+      )} - Ember API Documentation`;
       set(this, 'headData.title', title);
       return title;
     }
@@ -25,6 +27,5 @@ export default Route.extend({
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     await this.legacyModuleMappings.initMappings();
     return this._super(...arguments);
-  }
-
+  },
 });

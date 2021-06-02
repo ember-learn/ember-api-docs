@@ -4,41 +4,42 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, click, findAll } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | api index', function(hooks) {
+module('Integration | Component | api index', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.actions = {};
-    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
+    this.send = (actionName, ...args) =>
+      this.actions[actionName].apply(this, args);
   });
 
-  test('should display api index', async function(assert) {
+  test('should display api index', async function (assert) {
     let model = EmberObject.create({
       project: {
-        id: 'lolwut'
+        id: 'lolwut',
       },
       projectVersion: {
-        version: '2.9'
+        version: '2.9',
       },
       name: 'hai',
       methods: [
         {
           name: 'doSomething',
-          route: 'do-something'
-        }
+          route: 'do-something',
+        },
       ],
       properties: [
         {
           name: 'isSomething',
-          route: 'is-something'
-        }
+          route: 'is-something',
+        },
       ],
       events: [
         {
           name: 'didSomething',
-          route: 'did-something'
-        }
-      ]
+          route: 'did-something',
+        },
+      ],
     });
     this.set('myModel', model);
 
@@ -68,37 +69,51 @@ module('Integration | Component | api index', function(hooks) {
           {{/each}}
         {{/api-index}}
     `);
-    assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
-    assert.dom('.spec-method-list>li>a').hasText('doSomething', 'should display 1 method');
-    assert.dom('.spec-property-list>li>a').hasText('isSomething', 'should display 1 property');
-    assert.dom('.spec-event-list>li>a').hasText('didSomething', 'should display 1 event');
+    assert
+      .dom('.api-index-section-title')
+      .exists({ count: 3 }, 'should show 3 sections');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
+    assert
+      .dom('.spec-method-list>li>a')
+      .hasText('doSomething', 'should display 1 method');
+    assert
+      .dom('.spec-property-list>li>a')
+      .hasText('isSomething', 'should display 1 property');
+    assert
+      .dom('.spec-event-list>li>a')
+      .hasText('didSomething', 'should display 1 event');
   });
 
-  test('should display text when no methods', async function(assert) {
+  test('should display text when no methods', async function (assert) {
     let model = EmberObject.create({
       project: {
-        id: 'lolwut'
+        id: 'lolwut',
       },
       projectVersion: {
-        version: '2.9'
+        version: '2.9',
       },
       name: 'hai',
       methods: [],
       properties: [
         {
           name: 'isSomething',
-          route: 'is-something'
-        }
+          route: 'is-something',
+        },
       ],
       events: [
         {
           name: 'didSomething',
-          route: 'did-something'
-        }
-      ]
+          route: 'did-something',
+        },
+      ],
     });
     this.set('myModel', model);
 
@@ -128,76 +143,89 @@ module('Integration | Component | api index', function(hooks) {
           {{/each}}
         {{/api-index}}
     `);
-    assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
-    assert.dom('.spec-method-list').hasText('No documented items', 'should display no items text');
-    assert.dom('.spec-property-list').hasText('isSomething', 'should display 1 property');
-    assert.dom('.spec-event-list').hasText('didSomething', 'should display 1 event');
+    assert
+      .dom('.api-index-section-title')
+      .exists({ count: 3 }, 'should show 3 sections');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
+    assert
+      .dom('.spec-method-list')
+      .hasText('No documented items', 'should display no items text');
+    assert
+      .dom('.spec-property-list')
+      .hasText('isSomething', 'should display 1 property');
+    assert
+      .dom('.spec-event-list')
+      .hasText('didSomething', 'should display 1 event');
   });
 
-  test('should display api index with filter', async function(assert) {
+  test('should display api index with filter', async function (assert) {
     let model = EmberObject.create({
       project: {
-        id: 'lolwut'
+        id: 'lolwut',
       },
       projectVersion: {
-        version: '2.9'
+        version: '2.9',
       },
       name: 'hai',
       methods: [
         {
           name: 'doSomething',
-          route: 'do-something'
+          route: 'do-something',
         },
         {
           name: 'parentDoSomething',
           route: 'parent-do-something',
-          inherited: true
+          inherited: true,
         },
         {
           name: 'doSomethingPrivate',
           route: 'do-something-private',
-          access: 'private'
+          access: 'private',
         },
         {
           name: 'doSomethingProtected',
           route: 'do-something-protected',
-          access: 'protected'
+          access: 'protected',
         },
         {
           name: 'doSomethingDeprecated',
           route: 'do-something-deprecated',
-          deprecated: true
-        }
+          deprecated: true,
+        },
       ],
       properties: [
         {
           name: 'isSomething',
-          route: 'is-something'
-        }
+          route: 'is-something',
+        },
       ],
       events: [
         {
           name: 'didSomething',
-          route: 'did-something'
-        }
-      ]
+          route: 'did-something',
+        },
+      ],
     });
     this.set('myModel', model);
     let filterData = EmberObject.create({
       showInherited: false,
       showProtected: false,
       showPrivate: false,
-      showDeprecated: false
+      showDeprecated: false,
     });
 
     this.set('filterData', filterData);
     this.actions.updateFilter = function (field, value) {
       filterData.set(field, value);
     };
-
 
     // Template block usage:
     await render(hbs`
@@ -258,70 +286,83 @@ module('Integration | Component | api index', function(hooks) {
         {{/api-index}}
       {{/api-index-filter}}
     `);
-    assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
-    assert.dom('.spec-method-list').hasText('doSomething', 'should display 1 method');
-    assert.dom('.spec-property-list').hasText('isSomething', 'should display 1 property');
-    assert.dom('.spec-event-list').hasText('didSomething', 'should display 1 event');
+    assert
+      .dom('.api-index-section-title')
+      .exists({ count: 3 }, 'should show 3 sections');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
+    assert
+      .dom('.spec-method-list')
+      .hasText('doSomething', 'should display 1 method');
+    assert
+      .dom('.spec-property-list')
+      .hasText('isSomething', 'should display 1 property');
+    assert
+      .dom('.spec-event-list')
+      .hasText('didSomething', 'should display 1 event');
   });
 
-
-  test('should display inherited method when show inherited toggled on', async function(assert) {
+  test('should display inherited method when show inherited toggled on', async function (assert) {
     let model = EmberObject.create({
       project: {
-        id: 'lolwut'
+        id: 'lolwut',
       },
       projectVersion: {
-        version: '2.9'
+        version: '2.9',
       },
       name: 'hai',
       methods: [
         {
           name: 'doSomething',
-          route: 'do-something'
+          route: 'do-something',
         },
         {
           name: 'parentDoSomething',
           route: 'parent-do-something',
-          inherited: true
+          inherited: true,
         },
         {
           name: 'doSomethingPrivate',
           route: 'do-something-private',
-          access: 'private'
+          access: 'private',
         },
         {
           name: 'doSomethingProtected',
           route: 'do-something-protected',
-          access: 'protected'
+          access: 'protected',
         },
         {
           name: 'doSomethingDeprecated',
           route: 'do-something-deprecated',
-          deprecated: true
-        }
+          deprecated: true,
+        },
       ],
       properties: [
         {
           name: 'isSomething',
-          route: 'is-something'
-        }
+          route: 'is-something',
+        },
       ],
       events: [
         {
           name: 'didSomething',
-          route: 'did-something'
-        }
-      ]
+          route: 'did-something',
+        },
+      ],
     });
     this.set('myModel', model);
     let filterData = EmberObject.create({
       showInherited: false,
       showProtected: false,
       showPrivate: false,
-      showDeprecated: false
+      showDeprecated: false,
     });
 
     this.set('filterData', filterData);
@@ -387,18 +428,38 @@ module('Integration | Component | api index', function(hooks) {
         {{/api-index}}
       {{/api-index-filter}}
     `);
-    assert.dom('.api-index-section-title').exists({ count: 3 }, 'should show 3 sections');
-    assert.dom(findAll('.api-index-section-title')[0]).hasText('Methods', 'should have methods as first section');
-    assert.dom(findAll('.api-index-section-title')[1]).hasText('Properties', 'should have properties as second section');
-    assert.dom(findAll('.api-index-section-title')[2]).hasText('Events', 'should have events as third section');
-    assert.dom('.spec-method-list>li>a').hasText('doSomething', 'should display 1 method');
-    assert.dom('.spec-property-list>li>a').hasText('isSomething', 'should display 1 property');
-    assert.dom('.spec-event-list>li>a').hasText('didSomething', 'should display 1 event');
+    assert
+      .dom('.api-index-section-title')
+      .exists({ count: 3 }, 'should show 3 sections');
+    assert
+      .dom(findAll('.api-index-section-title')[0])
+      .hasText('Methods', 'should have methods as first section');
+    assert
+      .dom(findAll('.api-index-section-title')[1])
+      .hasText('Properties', 'should have properties as second section');
+    assert
+      .dom(findAll('.api-index-section-title')[2])
+      .hasText('Events', 'should have events as third section');
+    assert
+      .dom('.spec-method-list>li>a')
+      .hasText('doSomething', 'should display 1 method');
+    assert
+      .dom('.spec-property-list>li>a')
+      .hasText('isSomething', 'should display 1 property');
+    assert
+      .dom('.spec-event-list>li>a')
+      .hasText('didSomething', 'should display 1 event');
 
     await click('#inherited-toggle');
 
-    assert.dom('.spec-method-list>li>a').exists({ count: 2 }, 'should display 2 methods total');
-    assert.dom(findAll('.spec-method-list>li>a')[0]).hasText('doSomething', 'should display 1 public method');
-    assert.dom(findAll('.spec-method-list>li>a')[1]).hasText('parentDoSomething', 'should display 1 inherited method');
+    assert
+      .dom('.spec-method-list>li>a')
+      .exists({ count: 2 }, 'should display 2 methods total');
+    assert
+      .dom(findAll('.spec-method-list>li>a')[0])
+      .hasText('doSomething', 'should display 1 public method');
+    assert
+      .dom(findAll('.spec-method-list>li>a')[1])
+      .hasText('parentDoSomething', 'should display 1 inherited method');
   });
 });

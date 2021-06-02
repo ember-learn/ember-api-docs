@@ -22,21 +22,26 @@ export default Component.extend({
     this._resultTetherConstraints = [
       {
         to: 'window',
-        pin: ['left','right']
-      }
+        pin: ['left', 'right'],
+      },
     ];
     this._super(...arguments);
   },
 
-  noResults: computed('query', 'searchService.{results.[],search.isRunning}', function() {
-    if (get(this, 'searchService.search.isRunning')) {
-      return false;
+  noResults: computed(
+    'query',
+    'searchService.{results.[],search.isRunning}',
+    function () {
+      if (get(this, 'searchService.search.isRunning')) {
+        return false;
+      }
+      return (
+        isPresent(this.query) && isEmpty(get(this, 'searchService.results'))
+      );
     }
-    return isPresent(this.query) && isEmpty(get(this, 'searchService.results'));
-  }),
+  ),
 
-  search: task(function * (query) {
-
+  search: task(function* (query) {
     yield timeout(SEARCH_DEBOUNCE_PERIOD);
 
     set(this, 'query', query);
@@ -50,24 +55,21 @@ export default Component.extend({
     set(this, '_focused', true);
 
     yield get(this, 'searchService.search').perform(query);
-
   }).restartable(),
 
-  closeMenu: task(function * () {
+  closeMenu: task(function* () {
     yield timeout(SEARCH_CLOSE_PERIOD);
 
     set(this, '_focused', false);
   }),
 
   actions: {
-
     onfocus() {
       set(this, '_focused', true);
     },
 
     onblur() {
       this.closeMenu.perform();
-    }
-
-  }
+    },
+  },
 });

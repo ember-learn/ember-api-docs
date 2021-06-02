@@ -6,7 +6,6 @@ import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 
 export default JSONAPIAdapter.extend({
-
   host: ENV.API_HOST,
 
   currentProject: '',
@@ -26,7 +25,9 @@ export default JSONAPIAdapter.extend({
     }
     return; // return undefined so auto determinated
   },
-  shouldBackgroundReloadAll() { return false; },
+  shouldBackgroundReloadAll() {
+    return false;
+  },
   shouldBackgroundReloadRecord(store, { modelName, id }) {
     let key = `${modelName}-${id}`;
     let hasId = this.ids[key];
@@ -59,14 +60,18 @@ export default JSONAPIAdapter.extend({
 
       if (typeof revId !== 'undefined') {
         let encodedRevId = encodeURIComponent(revId);
-        url = `json-docs/${projectName}/${version}/${pluralize(modelNameToUse)}/${encodedRevId}`;
+        url = `json-docs/${projectName}/${version}/${pluralize(
+          modelNameToUse
+        )}/${encodedRevId}`;
       } else {
         throw new Error('Documentation item not found');
       }
     } else if (modelName === 'missing') {
       let version = this.get('projectService.version');
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
-      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
+      url = `json-docs/${projectName}/${version}/${pluralize(
+        modelName
+      )}/${revId}`;
     } else if (modelName === 'project') {
       this.currentProject = id;
       url = `rev-index/${id}`;
@@ -82,6 +87,5 @@ export default JSONAPIAdapter.extend({
     let response = await fetch(url);
     let json = await response.json();
     return json;
-  }
-
+  },
 });

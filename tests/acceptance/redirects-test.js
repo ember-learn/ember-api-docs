@@ -2,10 +2,10 @@ import { currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | redirects', function(hooks) {
+module('Acceptance | redirects', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('visiting /', async function(assert) {
+  test('visiting /', async function (assert) {
     await visit('/');
     assert.equal(
       currentURL(),
@@ -15,7 +15,7 @@ module('Acceptance | redirects', function(hooks) {
     assert.dom('h1').hasText('Ember API Documentation');
   });
 
-  test('visiting pre-2.16 version', async function(assert) {
+  test('visiting pre-2.16 version', async function (assert) {
     await visit('/ember/1.0');
 
     assert.equal(

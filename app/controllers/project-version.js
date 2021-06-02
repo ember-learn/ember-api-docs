@@ -9,7 +9,6 @@ import semverCompare from 'semver-compare';
 import getCompactVersion from '../utils/get-compact-version';
 
 export default Controller.extend({
-
   filterData: service(),
 
   metaStore: service(),
@@ -18,34 +17,36 @@ export default Controller.extend({
 
   showPrivateClasses: alias('filterData.sideNav.showPrivate'),
 
-  classesIDs: computed('model', function() {
+  classesIDs: computed('model', function () {
     return this.getRelationshipIDs('classes');
   }),
 
-  publicClassesIDs: computed('model', function() {
+  publicClassesIDs: computed('model', function () {
     return this.getRelationshipIDs('public-classes');
   }),
 
-  namespaceIDs: computed('model', function() {
+  namespaceIDs: computed('model', function () {
     return this.getRelationshipIDs('namespaces');
   }),
 
-  publicNamespaceIDs: computed('model', function() {
+  publicNamespaceIDs: computed('model', function () {
     return this.getRelationshipIDs('public-namespaces');
   }),
 
-  moduleIDs: computed('model', function() {
+  moduleIDs: computed('model.id', function () {
     return this.getModuleRelationships(this.get('model.id'), 'modules');
   }),
 
-  publicModuleIDs: computed('model', function() {
+  publicModuleIDs: computed('model.id', function () {
     return this.getModuleRelationships(this.get('model.id'), 'public-modules');
   }),
 
   getModuleRelationships(versionId, moduleType) {
     let relations = this.getRelations(moduleType);
     // filter overviews out. If other projects add their overview we should filter those too.
-    return relations.map(id => id.substring(versionId.length + 1)).filter(id => id !== 'ember-data-overview');
+    return relations
+      .map((id) => id.substring(versionId.length + 1))
+      .filter((id) => id !== 'ember-data-overview');
   },
 
   getRelations(relationship) {
@@ -58,39 +59,73 @@ export default Controller.extend({
     const sorted = A(classes.ids()).sort();
     //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin
     //so we take the string after the 2nd '-'
-    return A(sorted).toArray().map(id => id.split('-').slice(splitPoint).join('-'));
+    return A(sorted)
+      .toArray()
+      .map((id) => id.split('-').slice(splitPoint).join('-'));
   },
 
-  shownClassesIDs: computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs', function() {
-    return this.showPrivateClasses ? this.classesIDs : this.publicClassesIDs;
-  }),
+  shownClassesIDs: computed(
+    'showPrivateClasses',
+    'classesIDs',
+    'publicClassesIDs',
+    function () {
+      return this.showPrivateClasses ? this.classesIDs : this.publicClassesIDs;
+    }
+  ),
 
-  shownModuleIDs: computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs', function() {
-    return this.showPrivateClasses ? this.moduleIDs : this.publicModuleIDs;
-  }),
+  shownModuleIDs: computed(
+    'showPrivateClasses',
+    'moduleIDs',
+    'publicModuleIDs',
+    function () {
+      return this.showPrivateClasses ? this.moduleIDs : this.publicModuleIDs;
+    }
+  ),
 
-  shownNamespaceIDs: computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs', function() {
-    return this.showPrivateClasses ? this.namespaceIDs : this.publicNamespaceIDs;
-  }),
+  shownNamespaceIDs: computed(
+    'showPrivateClasses',
+    'namespaceIDs',
+    'publicNamespaceIDs',
+    function () {
+      return this.showPrivateClasses
+        ? this.namespaceIDs
+        : this.publicNamespaceIDs;
+    }
+  ),
 
-  projectVersions: computed('metaStore.availableProjectVersions', 'model.project.id', function() {
-    const projectVersions = this.get('metaStore.availableProjectVersions')[this.get('model.project.id')];
-    let versions = projectVersions.sort((a, b) => semverCompare(b, a));
+  projectVersions: computed(
+    'metaStore.availableProjectVersions',
+    'model.project.id',
+    function () {
+      const projectVersions = this.get('metaStore.availableProjectVersions')[
+        this.get('model.project.id')
+      ];
+      let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
-    versions = versions.map((version) => {
-      const compactVersion = getCompactVersion(version);
-      return { id: version, compactVersion };
-    });
-    let groupedVersions = groupBy(versions, version => version.compactVersion);
+      versions = versions.map((version) => {
+        const compactVersion = getCompactVersion(version);
+        return { id: version, compactVersion };
+      });
+      let groupedVersions = groupBy(
+        versions,
+        (version) => version.compactVersion
+      );
 
-    return values(groupedVersions).map(groupedVersion => groupedVersion[0]);
-  }),
+      return values(groupedVersions).map((groupedVersion) => groupedVersion[0]);
+    }
+  ),
 
   urlVersion: alias('project.urlVersion'),
 
-  selectedProjectVersion:computed('projectVersions.[]', 'model.version', function() {
-    return this.projectVersions.filter(pV => pV.id === this.get('model.version'))[0];
-  }),
+  selectedProjectVersion: computed(
+    'projectVersions.[]',
+    'model.version',
+    function () {
+      return this.projectVersions.filter(
+        (pV) => pV.id === this.get('model.version')
+      )[0];
+    }
+  ),
 
-  activeProject: readOnly('model.project.id')
+  activeProject: readOnly('model.project.id'),
 });

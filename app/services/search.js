@@ -11,7 +11,7 @@ export default Service.extend({
 
   results: emberArray(),
 
-  search: task(function * (query) {
+  search: task(function* (query) {
     const projectVersion = this._projectVersion;
 
     const params = {
@@ -19,22 +19,23 @@ export default Service.extend({
       restrictSearchableAttributes: [
         'hierarchy.lvl0',
         'hierarchy.lvl1',
-        'hierarchy.lvl2'
+        'hierarchy.lvl2',
       ],
       tagFilters: [`version:${projectVersion}`],
-      facetFilters: ['access:-private']
+      facetFilters: ['access:-private'],
     };
 
     const searchObj = {
       indexName: 'methods',
-      query
+      query,
     };
 
-    return set(this, 'results', (yield this.doSearch(searchObj, params)));
+    return set(this, 'results', yield this.doSearch(searchObj, params));
   }).restartable(),
 
   doSearch(searchObj, params) {
-    return this._algoliaService.search(searchObj, params)
-      .then(results => get(results, 'hits'));
-  }
+    return this._algoliaService
+      .search(searchObj, params)
+      .then((results) => results.hits);
+  },
 });
