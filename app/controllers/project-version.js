@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes, ember/no-get */
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import { alias, readOnly } from '@ember/object/computed';

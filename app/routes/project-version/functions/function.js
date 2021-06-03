@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes, ember/no-get */
 import Route from '@ember/routing/route';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { inject as service } from '@ember/service';

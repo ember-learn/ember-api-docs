@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import Service from '@ember/service';
 import algoliasearch from 'algoliasearch';
 import config from 'ember-api-docs/config/environment';

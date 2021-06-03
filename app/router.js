@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-get, ember/classic-decorator-no-classic-methods */
 import EmberRouter from '@ember/routing/router';
 import { scheduleOnce } from '@ember/runloop';
 import config from 'ember-api-docs/config/environment';

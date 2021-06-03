@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-new-mixins, ember/no-private-routing-service */
 import { readOnly } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Mixin from '@ember/object/mixin';

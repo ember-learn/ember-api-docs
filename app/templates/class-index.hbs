@@ -1,3 +1,4 @@
+{{! template-lint-disable no-curly-component-invocation no-implicit-this no-link-to-positional-params }}
 {{#api-index-filter model=model filterData=filterData as |filteredModel|}}
   {{#api-index itemData=filteredModel classNames="api__index__content" as |sectionData|}}
     {{#each sectionData.sections as |section|}}

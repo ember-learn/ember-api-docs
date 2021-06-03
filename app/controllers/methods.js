@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins, ember/no-classic-classes */
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 import AnchorControllerSupport from 'ember-anchor/mixins/controller-support';

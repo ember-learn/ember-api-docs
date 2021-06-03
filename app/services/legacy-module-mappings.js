@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import fetch from 'fetch';
 import Service from '@ember/service';
 

@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-get */
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';

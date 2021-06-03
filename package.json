@@ -25,6 +25,7 @@
     "test:browserstack": "node run-tests.js",
     "test:ember": "ember test"
   },
+  "dependencies": {},
   "devDependencies": {
     "@ember/jquery": "^1.1.0",
     "@ember/optional-features": "^2.0.0",
@@ -95,6 +96,9 @@
     "eslint-plugin-prettier": "^3.3.1",
     "express-sslify": "^1.2.0",
     "fastboot-app-server": "^2.0.0",
+    "lint-to-the-future": "^0.5.0",
+    "lint-to-the-future-ember-template": "^0.3.3",
+    "lint-to-the-future-eslint": "^0.2.1",
     "loader.js": "^4.7.0",
     "lodash.groupby": "^4.6.0",
     "lodash.last": "^3.0.0",
@@ -117,7 +121,7 @@
   "engines": {
     "node": "10.* || 12.* || 14.*",
     "npm": "7",
-    "yarn": "1.22.10"
+    "yarn": "^1.22.0"
   },
   "ember": {
     "edition": "octane"

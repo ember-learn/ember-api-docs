@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-private-routing-service */
 import { visit } from '@ember/test-helpers';
 import config from 'ember-api-docs/config/environment';
 import { requestIdlePromise } from 'ember-api-docs/utils/request-idle-callback';

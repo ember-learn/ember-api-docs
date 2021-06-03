@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import Model, { hasMany, attr } from '@ember-data/model';
 
 export default Model.extend({

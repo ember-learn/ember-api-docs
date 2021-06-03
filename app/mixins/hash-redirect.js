@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-new-mixins */
 import Mixin from '@ember/object/mixin';
 import { hasRedirectableHash, hashToUrl } from '../utils/hash-to-url';
 

@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-test-this-render */
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { fillIn, waitFor } from '@ember/test-helpers';

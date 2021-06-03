@@ -1,3 +1,4 @@
+{{! template-lint-disable no-action no-curly-component-invocation no-implicit-this no-link-to-positional-params require-input-label }}
 <article class="chapter">
   {{#if (is-latest version=model.projectVersion.version allVersions=allVersions)}}
     <a data-tooltip="Edit on Github" class="heading__link__edit" href="{{github-link model.project.id model.projectVersion.version model.file model.line isEdit=true}}" target="_blank" rel="noopener noreferrer">{{svg-jar "fa-pencil"}}</a>

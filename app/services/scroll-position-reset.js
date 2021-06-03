@@ -1,3 +1,4 @@
+/* eslint-disable ember/classic-decorator-no-classic-methods */
 import Service from '@ember/service';
 import config from '../config/environment';
 import getOffset from '../utils/get-offset';

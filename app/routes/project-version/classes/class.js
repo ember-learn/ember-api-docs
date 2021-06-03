@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, ember/no-mixins, ember/no-classic-classes */
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set, get } from '@ember/object';

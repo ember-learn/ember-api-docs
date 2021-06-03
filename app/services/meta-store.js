@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 import { set } from '@ember/object';

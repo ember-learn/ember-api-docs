@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins, ember/no-classic-classes */
 import Route from '@ember/routing/route';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 

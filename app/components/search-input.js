@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-components, ember/no-classic-classes, ember/require-tagless-components, ember/no-get, ember/no-actions-hash */
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';

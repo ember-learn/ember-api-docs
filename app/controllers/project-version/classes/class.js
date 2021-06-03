@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins, ember/no-classic-classes, ember/no-get, ember/no-actions-hash */
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import Controller from '@ember/controller';

@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes, ember/no-get */
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { inject as service } from '@ember/service';
 import fetch from 'fetch';

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, ember/no-classic-classes */
 import Service, { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { get, set } from '@ember/object';
