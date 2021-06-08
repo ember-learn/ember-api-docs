@@ -1,6 +1,6 @@
 import Service, { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
-import { get, set } from '@ember/object';
+import { set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
 import { alias } from '@ember/object/computed';
 

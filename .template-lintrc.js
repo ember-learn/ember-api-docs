@@ -11,5 +11,7 @@ module.exports = {
     'no-curly-component-invocation': false,
     'no-action': false,
     quotes: false,
+    'no-link-to-positional-params': false,
+    'require-input-label': false,
   },
 };

@@ -1,6 +1,6 @@
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
-import { set, get } from '@ember/object';
+import { set } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';

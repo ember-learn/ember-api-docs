@@ -2,9 +2,7 @@ import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { module, test } from 'qunit';
 import Service from '@ember/service';
 import { A } from '@ember/array';
-import DS from 'ember-data';
-
-const { ManyArray } = DS;
+import { ManyArray } from '@ember-data/model/-private';
 
 module('Unit | Utility | get full version', function () {
   test('should return full version when release', function (assert) {

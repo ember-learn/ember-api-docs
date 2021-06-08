@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
+import { set } from '@ember/object';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
 export default Route.extend({
@@ -10,7 +10,7 @@ export default Route.extend({
   scrollPositionReset: service(),
 
   titleToken(model) {
-    return get(model, 'fn.name');
+    return model?.fn?.name;
   },
 
   async model(params) {

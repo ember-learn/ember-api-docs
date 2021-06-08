@@ -5,6 +5,10 @@ import getOffset from '../utils/get-offset';
 const { scrollContainerSelector } = config.APP;
 
 export default class ScrollPositionResetService extends Service {
+  constructor() {
+    super(...arguments);
+    this._shouldResetScroll = false;
+  }
   handleScrollPosition() {
     if (
       typeof FastBoot === 'undefined' &&
@@ -62,7 +66,7 @@ export default class ScrollPositionResetService extends Service {
         selector.scrollLeft = 0;
         selector.scrollTop = 0;
       }
-      this.set('_shouldResetScroll', false);
+      this._shouldResetScroll = false;
     }
   }
 }

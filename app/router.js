@@ -13,7 +13,7 @@ class AppRouter extends EmberRouter {
   constructor() {
     super(...arguments);
 
-    if (!this.get('fastboot.isFastBoot')) {
+    if (!this.fastboot.isFastBoot) {
       this.on('routeDidChange', this, this._trackPage);
     }
   }
