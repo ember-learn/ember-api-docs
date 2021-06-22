@@ -9,8 +9,8 @@ export default Service.extend({
 
   init() {
     this.sideNav = {
-      showPrivate: false
-    }
+      showPrivate: false,
+    };
     this._super(...arguments);
-  }
+  },
 });

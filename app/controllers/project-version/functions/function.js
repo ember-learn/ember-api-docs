@@ -3,5 +3,5 @@ import { alias } from '@ember/object/computed';
 
 export default Controller.extend({
   fn: alias('model.fn'),
-  fnModule: alias('model.fnModule')
+  fnModule: alias('model.fnModule'),
 });

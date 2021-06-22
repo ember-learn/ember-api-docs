@@ -4,12 +4,12 @@ import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
 
 export default Mixin.create({
-  router: service('-routing'),
+  router: service('router'),
 
   routeName: readOnly('router.currentRouteName'),
-  parentName: computed('routeName', function() {
+  parentName: computed('routeName', function () {
     const routeName = this.routeName;
     const routes = routeName.split('.');
     return routes.slice(0, 3).join('.');
-  })
+  }),
 });

@@ -9,5 +9,5 @@ export default ClassModel.extend({
   parent: attr(),
   staticfunctions: attr(),
   allstaticfunctions: attr(),
-  projectVersion: belongsTo('project-version', {inverse: 'modules'})
+  projectVersion: belongsTo('project-version', { inverse: 'modules' }),
 });

@@ -1,9 +1,10 @@
 /* eslint-env node */
 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID || 'Y1OMR4C7MF';
-  let ALGOLIA_API_KEY = process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
+  let ALGOLIA_API_KEY =
+    process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
 
   let ENV = {
     modulePrefix: 'ember-api-docs',
@@ -18,14 +19,14 @@ module.exports = function(environment) {
         //'ember-glimmer': true
         // Here you can enable experimental features on an ember canary build
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
-      }
+      },
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
       scrollContainerSelector: 'body, html',
-      domain: 'http://localhost:4200'
+      domain: 'http://localhost:4200',
     },
 
     fastboot: {
@@ -34,24 +35,23 @@ module.exports = function(environment) {
         /^localhost:\d+$/,
         /^127\.0\.0\.1:\d+$/,
         /^[\w-]+\.fastly\.net$/,
-        /^[\w-]+\.emberjs\.com$/
-      ]
+        /^[\w-]+\.emberjs\.com$/,
+      ],
     },
     algolia: {
       algoliaId: ALGOLIA_APP_ID,
-      algoliaKey: ALGOLIA_API_KEY
+      algoliaKey: ALGOLIA_API_KEY,
     },
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',
         environments: ['production'],
         config: {
-          id: 'UA-27675533-1'
-        }
-      }
-    ]
+          id: 'UA-27675533-1',
+        },
+      },
+    ],
   };
-
 
   ENV.contentSecurityPolicy = {
     'default-src': "'self' *.emberjs.com",
@@ -59,10 +59,11 @@ module.exports = function(environment) {
     'script-src':
       "'self' unsafe-inline use.typekit.net 'sha256-LEXBvGgYbhXJLZxA/dKnIx07iQsbEcS9SDWq01pWVAk=' *.emberjs.com https://www.google-analytics.com",
     'font-src': "'self' data://* https://fonts.gstatic.com  *.emberjs.com",
-    'img-src': "'self' data://*  *.emberjs.com https://www.google-analytics.com",
-    'style-src': "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com"
+    'img-src':
+      "'self' data://*  *.emberjs.com https://www.google-analytics.com",
+    'style-src':
+      "'self' 'unsafe-inline' https://fonts.googleapis.com  *.emberjs.com",
   };
-
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -72,11 +73,11 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['ember-a11y-testing'] = {
       componentOptions: {
-        turnAuditOff: process.env.test_a11y !== 'yes'
-      }
+        turnAuditOff: process.env.test_a11y !== 'yes',
+      },
     };
 
-    ENV.contentSecurityPolicy['connect-src'] += " localhost:5050"
+    ENV.contentSecurityPolicy['connect-src'] += ' localhost:5050';
   }
 
   if (environment === 'test') {
@@ -94,12 +95,14 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
 
     ENV['ember-tether'] = {
-      bodyElementId: 'ember-testing'
+      bodyElementId: 'ember-testing',
     };
   }
 
   if (environment === 'production') {
-    ENV.APP.domain = process.env.APP_DOMAIN_URL ? process.env.APP_DOMAIN_URL : 'https://api.emberjs.com';
+    ENV.APP.domain = process.env.APP_DOMAIN_URL
+      ? process.env.APP_DOMAIN_URL
+      : 'https://api.emberjs.com';
   }
 
   return ENV;

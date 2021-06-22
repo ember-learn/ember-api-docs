@@ -1,9 +1,9 @@
 import Model, { belongsTo, attr } from '@ember-data/model';
 import { computed } from '@ember/object';
 
-const projectNameFromClassName = key => {
-  return computed(key, function() {
-    const value = this.get(key) || "";
+const projectNameFromClassName = (key) => {
+  return computed(key, 'project.id', function () {
+    const value = this.get(key) || '';
     if (value.indexOf('Ember.') > -1) {
       return 'ember';
     }
@@ -17,16 +17,21 @@ const projectNameFromClassName = key => {
 };
 
 // ideally this computed property would not be needed and we'd have extendsVersion, extendsProject attrs from json-api-docs
-const guessVersionFor = key => {
-  return computed(key, 'project.id', function() {
+const guessVersionFor = (key) => {
+  return computed(
+    key,
+    'extendedClassProjectName',
+    'project.id',
+    'projectVersion.version',
+    function () {
+      if (this.extendedClassProjectName === this.get('project.id')) {
+        return this.get('projectVersion.version');
+      }
 
-    if (this.extendedClassProjectName === this.get('project.id')) {
-      return this.get('projectVersion.version');
+      // try linking to latest version at least
+      return 'release';
     }
-
-    // try linking to latest version at least
-    return 'release';
-  });
+  );
 };
 
 export default Model.extend({
@@ -43,9 +48,9 @@ export default Model.extend({
   file: attr(),
   line: attr(),
   module: attr(),
-  parentClass: belongsTo('class', {async: true, inverse: null}),
-  projectVersion: belongsTo('project-version', {inverse: 'classes'}),
-  project: computed('projectVersion.id', function() {
+  parentClass: belongsTo('class', { async: true, inverse: null }),
+  projectVersion: belongsTo('project-version', { inverse: 'classes' }),
+  project: computed('projectVersion.id', function () {
     return this.projectVersion.get('project');
   }),
 
@@ -54,7 +59,7 @@ export default Model.extend({
   usedClassProjectName: projectNameFromClassName('uses'),
   usedClassVersion: guessVersionFor('uses'),
 
-  extendedClassShortName: computed('extends', function() {
+  extendedClassShortName: computed('extends', function () {
     let extendedClassName = this['extends'];
     if (extendedClassName.substr(0, 6) === 'Ember.') {
       return extendedClassName.substr(6);
@@ -62,13 +67,17 @@ export default Model.extend({
     return extendedClassName;
   }),
 
-  usesObjects: computed('uses', function() {
-    return this.uses.map(className => ({
+  usesObjects: computed('project.id', 'uses', function () {
+    return this.uses.map((className) => ({
       name: className,
-      shortName: className.substr(0, 6) === 'Ember.' ? className.substr(6) : className,
-      projectId: className.substr(0, 6) === 'Ember.' ? 'ember' :
-        className.substr(0, 3) === 'DS' ? 'ember-data' : this.get('project.id')
+      shortName:
+        className.substr(0, 6) === 'Ember.' ? className.substr(6) : className,
+      projectId:
+        className.substr(0, 6) === 'Ember.'
+          ? 'ember'
+          : className.substr(0, 3) === 'DS'
+          ? 'ember-data'
+          : this.get('project.id'),
     }));
-  })
-
+  }),
 });

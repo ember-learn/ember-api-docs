@@ -14,17 +14,18 @@
   </ol>
 
   <div class="select-container">
-    {{#power-select
-      onchange=(route-action "updateProject" activeProject)
-      options=projectVersions
-      selected=selectedProjectVersion
-      ariaLabel="Select a version"
-      required=true
-      searchField="compactVersion"
+    <PowerSelect
+      @onChange={{route-action "updateProject" activeProject}}
+      @options={{projectVersions}}
+      @selected={{selectedProjectVersion}}
+      @ariaLabel="Select a version"
+      @required={{true}}
+      @searchField="compactVersion"
+      @searchEnabled={{true}}
       as |ver|
-    }}
+    >
       {{ver.compactVersion}}
-    {{/power-select}}
+    </PowerSelect>
   </div>
 
   {{table-of-contents

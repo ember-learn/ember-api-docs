@@ -6,6 +6,6 @@ export default Component.extend({
     showSuccess() {
       this.toggleProperty('showClipboardSuccessIcon');
       later(this, () => this.toggleProperty('showClipboardSuccessIcon'), 950);
-    }
-  }
+    },
+  },
 });

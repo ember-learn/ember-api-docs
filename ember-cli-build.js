@@ -2,50 +2,66 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
-const mergeTrees  = require('broccoli-merge-trees');
-const envIsProduction = (process.env.EMBER_ENV === 'production');
+const mergeTrees = require('broccoli-merge-trees');
+const envIsProduction = process.env.EMBER_ENV === 'production';
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'svg', 'webmanifest'],
-      generateAssetMap: true
+      extensions: [
+        'js',
+        'css',
+        'jpg',
+        'png',
+        'gif',
+        'map',
+        'svg',
+        'webmanifest',
+      ],
+      generateAssetMap: true,
     },
     sassOptions: {
       sourceMapEmbed: !envIsProduction,
       includePaths: [
         'app/styles',
         'node_modules/bourbon-neat/app/assets/stylesheets',
-        'node_modules/normalize.css'
-      ]
+        'node_modules/normalize.css',
+      ],
+    },
+    autoImport: {
+      webpack: {
+        node: {
+          process: 'mock',
+        },
+      },
     },
     autoprefixer: {
       enabled: true,
       cascade: true,
       sourcemap: !envIsProduction,
-      overrideBrowsersList: ['default']
+      overrideBrowsersList: ['default'],
     },
     'ember-composable-helpers': {
-      only: ['join', 'map-by']
+      only: ['join', 'map-by'],
     },
     'asset-cache': {
       version: '4', //Might have to change this with the app build,
     },
     svgJar: {
-      sourceDirs: ['public/assets/images']
+      sourceDirs: ['public/assets/images'],
     },
     'ember-cli-babel': {
       includePolyfill: true,
     },
     'ember-fetch': {
-      preferNative: true
-    }
+      preferNative: true,
+    },
   });
 
   let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
     srcDir: '/',
     include: ['mappings.json'],
-    destDir: '/assets/'
+    destDir: '/assets/',
   });
   return mergeTrees([app.toTree(), mappingsTree]);
 };
