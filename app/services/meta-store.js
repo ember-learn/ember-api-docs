@@ -5,9 +5,9 @@ import { A } from '@ember/array';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 
-export default Service.extend({
-  availableProjectVersions: null,
-  projectRevMap: null,
+export default class MetaStoreService extends Service {
+  availableProjectVersions = null;
+  projectRevMap = null;
 
   init() {
     this.availableProjectVersions = {
@@ -15,8 +15,8 @@ export default Service.extend({
       'ember-data': A(),
     };
     this.projectRevMap = {};
-    this._super(...arguments);
-  },
+    super.init(...arguments);
+  }
 
   addToProjectRevMap(projectVersionKey, projectRevDoc) {
     let projectRevMap = this.projectRevMap;
@@ -24,16 +24,16 @@ export default Service.extend({
       projectRevMap[projectVersionKey] = projectRevDoc;
       set(this, 'projectRevMap', projectRevMap);
     }
-  },
+  }
 
   getRevId(project, version, type, id) {
     let encodedId = encodeURIComponent(id);
     return this.projectRevMap[`${project}-${version}`][type][encodedId];
-  },
+  }
 
   getEncodedModulesFromProjectRev(id) {
     return Object.keys(this.projectRevMap[id].module).sort();
-  },
+  }
 
   initializeStore(availableProjectVersions, projectRevMap) {
     this.setProperties({
@@ -43,7 +43,7 @@ export default Service.extend({
       },
       projectRevMap: projectRevMap,
     });
-  },
+  }
 
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.get(
@@ -57,5 +57,5 @@ export default Service.extend({
     }
     // since there can be multiple full versions that match the compact version, use the most recent one.
     return getLastVersion(filtered);
-  },
-});
+  }
+}

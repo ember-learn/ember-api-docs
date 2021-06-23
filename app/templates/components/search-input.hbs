@@ -8,16 +8,6 @@
   placeholder="Search"
   >
 {{!-- Search results dropdown --}}
-  {{#ember-tether
-    target='#search-input'
-    targetAttachment='bottom left'
-    attachment='top left'
-    constraints=_resultTetherConstraints
-    class='ds-dropdown-results'
-  }}
-    {{search-input/dropdown
-      isVisible=_focused
-      results=searchService.results
-      noResults=noResults
-    }}
-  {{/ember-tether}}
+  <EmberTether @target="#search-input" @targetAttachment="bottom left" @attachment="top left" @constraints={{_resultTetherConstraints}} @class="ds-dropdown-results">
+    <SearchInput::Dropdown @isVisible={{_focused}} @results={{searchService.results}} @noResults={{noResults}} />
+  </EmberTether>

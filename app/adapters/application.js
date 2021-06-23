@@ -1,21 +1,22 @@
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { inject as service } from '@ember/service';
+import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import fetch from 'fetch';
 import ENV from 'ember-api-docs/config/environment';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 
-export default JSONAPIAdapter.extend({
-  host: ENV.API_HOST,
+export default class Application extends JSONAPIAdapter {
+  host = ENV.API_HOST;
+  currentProject = '';
+  currentProjectVersion = '';
 
-  currentProject: '',
+  @service
+  metaStore;
 
-  currentProjectVersion: '',
+  @service('project')
+  projectService;
 
-  metaStore: service(),
-  projectService: service('project'),
-
-  ids: null,
+  ids = null;
 
   shouldReloadRecord(store, { modelName, id }) {
     if (modelName === 'project') {
@@ -24,10 +25,12 @@ export default JSONAPIAdapter.extend({
       this.currentProjectVersion = id;
     }
     return; // return undefined so auto determinated
-  },
+  }
+
   shouldBackgroundReloadAll() {
     return false;
-  },
+  }
+
   shouldBackgroundReloadRecord(store, { modelName, id }) {
     let key = `${modelName}-${id}`;
     let hasId = this.ids[key];
@@ -35,12 +38,12 @@ export default JSONAPIAdapter.extend({
       this.ids[key] = true;
     }
     return !hasId;
-  },
+  }
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this.ids = {};
-  },
+  }
 
   async findRecord(store, { modelName }, id) {
     let url;
@@ -87,5 +90,5 @@ export default JSONAPIAdapter.extend({
     let response = await fetch(url);
     let json = await response.json();
     return json;
-  },
-});
+  }
+}

@@ -1,8 +1,8 @@
 <span class="ds-suggestions">
   {{#if noResults}}
-    {{#search-input/dropdown-header}}
+    <SearchInput::DropdownHeader>
       No results found
-    {{/search-input/dropdown-header}}
+    </SearchInput::DropdownHeader>
     <div class="algolia-docsearch-suggestion">
       <div class="algolia-docsearch-suggestion--noresults">
         <p>Try searching the <a href="https://www.emberjs.com/deprecations/" target="_deprecations">deprecations guide</a>.</p>
@@ -14,19 +14,15 @@
     {{#each-in _groupedResults as |lvl0section _lvl0results|}}
       {{!-- Dropdown header --}}
 
-      {{#search-input/dropdown-header}}
+      <SearchInput::DropdownHeader>
         {{lvl0section}}
-      {{/search-input/dropdown-header}}
+      </SearchInput::DropdownHeader>
 
       {{!-- Level 1 hierarchy --}}
       {{#each-in _lvl0results as |lvl1section _lvl1results|}}
         {{!-- Each result will be shown here --}}
         {{#each _lvl1results as |result index|}}
-          {{search-input/dropdown-result
-            result=result
-            groupName=lvl1section
-            groupPosition=index
-          }}
+          <SearchInput::DropdownResult @result={{result}} @groupName={{lvl1section}} @groupPosition={{index}} />
         {{/each}}
 
       {{/each-in}}

@@ -1,16 +1,18 @@
-import Component from '@ember/component';
-import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Component.extend({
-  legacyModuleMappings: service(),
+export default class ClassFieldDescription extends Component {
+  @service
+  legacyModuleMappings;
 
-  hasImportExample: computed('field.{name,class}', function () {
+  @computed('field.{name,class}')
+  get hasImportExample() {
     return this.legacyModuleMappings.hasFunctionMapping(
       this.get('field.name'),
       this.get('field.class')
     );
-  }),
+  }
 
   /**
    * Callback for updating the anchor with the field name that was clicked by a user.
@@ -18,5 +20,5 @@ export default Component.extend({
    * @method updateAnchor
    * @method fieldName String The name representing the field that was clicked.
    */
-  updateAnchor() {},
-});
+  updateAnchor() {}
+}

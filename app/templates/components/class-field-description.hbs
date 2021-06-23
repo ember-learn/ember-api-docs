@@ -24,7 +24,7 @@
     <div class="attributes">
       <div class="attribute">
         <span class="attribute-label">Module:</span>
-        <span class="attribute-value">{{#link-to 'project-version.modules.module' model.projectVersion.compactVersion model.module}}{{model.module}}{{/link-to}}</span>
+        <span class="attribute-value"><LinkTo @route="project-version.modules.module" @models={{array model.projectVersion.compactVersion model.module}}>{{model.module}}</LinkTo></span>
       </div>
     </div>
   {{/if}}
@@ -47,7 +47,7 @@
     </p>
   {{/if}}
   {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
-    {{import-example item=(concat "{ " field.name " }") package=field.class}}
+    <ImportExample @item={{concat "{ " field.name " }"}} @package={{field.class}} />
   {{/if}}
   <dl class="parameters">
     {{#each field.params as |param|}}

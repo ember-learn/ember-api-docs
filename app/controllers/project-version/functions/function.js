@@ -1,7 +1,10 @@
-import Controller from '@ember/controller';
 import { alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Controller.extend({
-  fn: alias('model.fn'),
-  fnModule: alias('model.fnModule'),
-});
+export default class FunctionController extends Controller {
+  @alias('model.fn')
+  fn;
+
+  @alias('model.fnModule')
+  fnModule;
+}

@@ -6,12 +6,7 @@
     </div>
     <div class="algolia-docsearch-suggestion--content">
       {{#if result.static}}
-        {{#link-to "project-version.functions.function"
-             module
-             version
-             result.class
-             result.name
-        }}
+        <LinkTo @route="project-version.functions.function" @models={{array module version result.class result.name}}>
           <div class="algolia-docsearch-suggestion--subcategory-inline">
             {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
             {{#if result._highlightResult.hierarchy.lvl1}}
@@ -31,14 +26,9 @@
               {{html-safe result._highlightResult.hierarchy.lvl4.value}}
             {{/if}}
           </div>
-        {{/link-to}}
+        </LinkTo>
       {{else}}
-        {{#link-to "project-version.classes.class.methods.method"
-             module
-             version
-             result.class
-             result.name
-             (query-params anchor=result.name)}}
+        <LinkTo @route="project-version.classes.class.methods.method" @models={{array module version}} @query={{hash anchor=result.name}}>
           <div class="algolia-docsearch-suggestion--subcategory-inline">
             {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
             {{#if result._highlightResult.hierarchy.lvl1}}
@@ -58,7 +48,7 @@
               {{html-safe result._highlightResult.hierarchy.lvl4.value}}
             {{/if}}
           </div>
-        {{/link-to}}
+        </LinkTo>
       {{/if}}
     </div>
   </div>

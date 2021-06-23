@@ -1,22 +1,25 @@
-import { set } from '@ember/object';
+import {
+  classNames,
+  attributeBindings,
+  tagName,
+} from '@ember-decorators/component';
+import { set, get, computed } from '@ember/object';
 import Component from '@ember/component';
-import { get, computed } from '@ember/object';
 import { A } from '@ember/array';
 
-export default Component.extend({
+@tagName('span')
+@classNames('ds-dropdown-menu', 'ds-with-1')
+@attributeBindings('role')
+export default class Dropdown extends Component {
   // Public API
-  role: 'listbox',
-  isVisible: false,
+  role = 'listbox';
 
-  // Private API
-  tagName: 'span',
-  classNames: ['ds-dropdown-menu', 'ds-with-1'],
-  attributeBindings: ['role'],
+  isVisible = false;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     set(this, 'results', A());
-  },
+  }
 
   // show
   // Massage data to make it easier for displaying on the template
@@ -28,7 +31,8 @@ export default Component.extend({
    *    }
    *  }
    */
-  _groupedResults: computed('results.[]', function () {
+  @computed('results.[]')
+  get _groupedResults() {
     if (!get(this, 'results.length')) {
       return {};
     }
@@ -72,5 +76,5 @@ export default Component.extend({
 
       return lvl0Result;
     }, {});
-  }),
-});
+  }
+}

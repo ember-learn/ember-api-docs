@@ -1,8 +1,9 @@
-import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
+import Route from '@ember/routing/route';
 
-export default Route.extend({
-  legacyModuleMappings: service(),
+export default class DataClassRoute extends Route {
+  @service
+  legacyModuleMappings;
 
   model(params) {
     return this.legacyModuleMappings
@@ -17,7 +18,7 @@ export default Route.extend({
           ),
         };
       });
-  },
+  }
 
   redirect(model) {
     let mappingInfo = this.legacyModuleMappings.getNewClassFromOld(
@@ -38,5 +39,5 @@ export default Route.extend({
     } else {
       return this.transitionTo('project-version', 'ember', 'release');
     }
-  },
-});
+  }
+}

@@ -1,14 +1,14 @@
 <aside class="sidebar">
   <ol class="toc-level-0">
     <li class="toc-level-0" data-test-home>
-      {{#link-to 'project' 'ember'}}Home{{/link-to}}
+      <LinkTo @route="project" @model="ember">Home</LinkTo>
     </li>
     <li class="toc-level-0">
       Projects
       <ol class="toc-level-1 selected" style="display: block;">
-        <li class="toc-level-1">{{#link-to 'project' 'ember' current-when=(eq activeProject 'ember') class="spec-ember"}}Ember{{/link-to}}</li>
-        <li class="toc-level-1">{{#link-to 'project' 'ember-data' current-when=(eq activeProject 'ember-data') class="spec-ember-data"}}Ember Data{{/link-to}}</li>
-        <li class="toc-level-1">{{#link-to 'project' 'ember-cli' current-when=(eq activeProject 'ember-cli') class="spec-ember"}}Ember CLI{{/link-to}}</li>
+        <li class="toc-level-1"><LinkTo @route="project" @model="ember" @current-when={{eq activeProject "ember"}} class="spec-ember">Ember</LinkTo></li>
+        <li class="toc-level-1"><LinkTo @route="project" @model="ember-data" @current-when={{eq activeProject "ember-data"}} class="spec-ember-data">Ember Data</LinkTo></li>
+        <li class="toc-level-1"><LinkTo @route="project" @model="ember-cli" @current-when={{eq activeProject "ember-cli"}} class="spec-ember">Ember CLI</LinkTo></li>
       </ol>
     </li>
   </ol>
@@ -28,15 +28,7 @@
     </PowerSelect>
   </div>
 
-  {{table-of-contents
-    projectId=model.project.id
-    version=urlVersion
-    classesIDs=shownClassesIDs
-    moduleIDs=shownModuleIDs
-    namespaceIDs=shownNamespaceIDs
-    showPrivateClasses=showPrivateClasses
-    isShowingNamespaces=(version-lt selectedProjectVersion.compactVersion '2.16')
-  }}
+  <TableOfContents @projectId={{model.project.id}} @version={{urlVersion}} @classesIDs={{shownClassesIDs}} @moduleIDs={{shownModuleIDs}} @namespaceIDs={{shownNamespaceIDs}} @showPrivateClasses={{showPrivateClasses}} @isShowingNamespaces={{version-lt selectedProjectVersion.compactVersion "2.16"}} />
 </aside>
 <section class="content">
   {{outlet}}

@@ -7,7 +7,7 @@ const LOCALNAME_CONVERSIONS = {
   Error: 'EmberError',
 };
 
-export default Service.extend({
+export default class LegacyModuleMappingsService extends Service {
   async initMappings() {
     try {
       let response = await this.fetch();
@@ -17,7 +17,7 @@ export default Service.extend({
     } catch (e) {
       this.set('mappings', []);
     }
-  },
+  }
 
   buildMappings(mappings) {
     return mappings.map((item) => {
@@ -27,11 +27,11 @@ export default Service.extend({
       }
       return newItem;
     });
-  },
+  }
 
   fetch() {
     return fetch('/assets/mappings.json');
-  },
+  }
 
   getModule(name, documentedModule) {
     if (!this.mappings) {
@@ -39,7 +39,7 @@ export default Service.extend({
     }
     let matches = this.mappings.filter((element) => element.localName === name);
     return matches.length > 0 ? matches[0].module : documentedModule;
-  },
+  }
 
   getNewClassFromOld(oldClassName, mappings) {
     let matches = mappings.filter((element) => element.global === oldClassName);
@@ -63,7 +63,7 @@ export default Service.extend({
         newName: oldClassName,
       };
     }
-  },
+  }
 
   getNewModuleFromOld(oldModuleName, mappings) {
     let matches = mappings.filter(
@@ -78,7 +78,7 @@ export default Service.extend({
         module: oldModuleName,
       };
     }
-  },
+  }
 
   hasFunctionMapping(name, module) {
     if (!this.mappings) {
@@ -88,7 +88,7 @@ export default Service.extend({
       (element) => element.export === name && element.module === module
     );
     return filtered.length > 0;
-  },
+  }
 
   hasClassMapping(name) {
     if (!this.mappings) {
@@ -97,5 +97,5 @@ export default Service.extend({
     return (
       this.mappings.filter((element) => element.localName === name).length > 0
     );
-  },
-});
+  }
+}

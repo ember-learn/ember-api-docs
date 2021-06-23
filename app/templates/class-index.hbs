@@ -1,19 +1,14 @@
-{{#api-index-filter model=model filterData=filterData as |filteredModel|}}
-  {{#api-index itemData=filteredModel classNames="api__index__content" as |sectionData|}}
+<ApiIndexFilter @model={{model}} @filterData={{filterData}} as |filteredModel|>
+  <ApiIndex @itemData={{filteredModel}} @classNames="api__index__content" as |sectionData|>
     {{#each sectionData.sections as |section|}}
       <h3 class="api-index-section-title">{{section.title}}</h3>
       {{#if section.items}}
         <ul class="{{section.class}}">
           {{#each section.items as |item|}}
             <li data-test-item={{item.name}}>
-              {{#link-to (concat parentName section.routeSuffix)
-                 model.project.id
-                 model.projectVersion.compactVersion
-                 model.name
-                 item.name
-                 (query-params anchor=item.name)}}
+              <LinkTo @route={{concat parentName section.routeSuffix }} @models={{array model.project.id model.projectVersion.compactVersion}} @query={{hash anchor=item.name}}>
                 {{item.name}}
-              {{/link-to}}
+              </LinkTo>
             </li>
           {{/each}}
         </ul>
@@ -21,5 +16,5 @@
         <p>No documented items</p>
       {{/if}}
     {{/each}}
-  {{/api-index}}
-{{/api-index-filter}}
+  </ApiIndex>
+</ApiIndexFilter>

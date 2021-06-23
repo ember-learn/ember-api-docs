@@ -30,7 +30,7 @@ export default Service.extend({
       query,
     };
 
-    return set(this, 'results', yield this.doSearch(searchObj, params));
+    return set(this, 'results', (yield this.doSearch(searchObj, params)));
   }).restartable(),
 
   doSearch(searchObj, params) {

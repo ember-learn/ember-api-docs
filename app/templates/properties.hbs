@@ -1,6 +1,6 @@
-{{ember-anchor a=anchor}}
-{{#api-index-filter model=model filterData=filterData as |filteredModel|}}
+<EmberAnchor @a={{anchor}} />
+<ApiIndexFilter @model={{model}} @filterData={{filterData}} as |filteredModel|>
   {{#each filteredModel.properties as |property|}}
-    {{class-field-description type="property" field=property model=model updateAnchor=(action 'updateAnchor')}}
+    <ClassFieldDescription @type="property" @field={{property}} @model={{model}} @updateAnchor={{action "updateAnchor"}} />
   {{/each}}
-{{/api-index-filter}}
+</ApiIndexFilter>
