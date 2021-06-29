@@ -31,7 +31,6 @@ terraform.tfstate.backup
 
 public/json-docs/
 public/rev-index/
-jsconfig.json
 
 package-lock.json
 
