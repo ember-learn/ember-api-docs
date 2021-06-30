@@ -1,51 +1,51 @@
 <div class="algolia-docsearch-suggestion
-  {{unless isSecondary 'algolia-docsearch-suggestion__secondary'}}">
+  {{unless this.isSecondary 'algolia-docsearch-suggestion__secondary'}}">
   <div class="algolia-docsearch-suggestion--wrapper">
     <div class="algolia-docsearch-suggestion--subcategory-column">
-      <span class="algolia-docsearch-suggestion--subcategory-column-text">{{_primaryColumn}}</span>
+      <span class="algolia-docsearch-suggestion--subcategory-column-text">{{this._primaryColumn}}</span>
     </div>
     <div class="algolia-docsearch-suggestion--content">
-      {{#if result.static}}
-        <LinkTo @route="project-version.functions.function" @models={{array module version result.class result.name}}>
+      {{#if this.result.static}}
+        <LinkTo @route="project-version.functions.function" @models={{array this.module this.version this.result.class this.result.name}}>
           <div class="algolia-docsearch-suggestion--subcategory-inline">
             {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
-            {{#if result._highlightResult.hierarchy.lvl1}}
-              {{html-safe result._highlightResult.hierarchy.lvl1.value}}
+            {{#if this.result._highlightResult.hierarchy.lvl1}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl1.value}}
             {{else}}
-              {{html-safe result._highlightResult.hierarchy.lvl0.value}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl0.value}}
             {{/if}}
           </div>
           <div class="algolia-docsearch-suggestion--title">
-            {{html-safe result._highlightResult.hierarchy.lvl2.value}}
-            {{#if result._highlightResult.hierarchy.lvl3}}
+            {{html-safe this.result._highlightResult.hierarchy.lvl2.value}}
+            {{#if this.result._highlightResult.hierarchy.lvl3}}
               <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-              {{html-safe result._highlightResult.hierarchy.lvl3.value}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl3.value}}
             {{/if}}
-            {{#if result._highlightResult.hierarchy.lvl4}}
+            {{#if this.result._highlightResult.hierarchy.lvl4}}
               <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-              {{html-safe result._highlightResult.hierarchy.lvl4.value}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl4.value}}
             {{/if}}
           </div>
         </LinkTo>
       {{else}}
-        <LinkTo @route="project-version.classes.class.methods.method" @models={{array module version}} @query={{hash anchor=result.name}}>
+        <LinkTo @route="project-version.classes.class.methods.method" @models={{array this.module this.version}} @query={{hash anchor=this.result.name}}>
           <div class="algolia-docsearch-suggestion--subcategory-inline">
             {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
-            {{#if result._highlightResult.hierarchy.lvl1}}
-              {{html-safe result._highlightResult.hierarchy.lvl1.value}}
+            {{#if this.result._highlightResult.hierarchy.lvl1}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl1.value}}
             {{else}}
-              {{html-safe result._highlightResult.hierarchy.lvl0.value}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl0.value}}
             {{/if}}
           </div>
           <div class="algolia-docsearch-suggestion--title">
-            {{html-safe result._highlightResult.hierarchy.lvl2.value}}
-            {{#if result._highlightResult.hierarchy.lvl3}}
+            {{html-safe this.result._highlightResult.hierarchy.lvl2.value}}
+            {{#if this.result._highlightResult.hierarchy.lvl3}}
               <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-              {{html-safe result._highlightResult.hierarchy.lvl3.value}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl3.value}}
             {{/if}}
-            {{#if result._highlightResult.hierarchy.lvl4}}
+            {{#if this.result._highlightResult.hierarchy.lvl4}}
               <span class="aa-suggestion-title-separator" aria-hidden="true"> › </span>
-              {{html-safe result._highlightResult.hierarchy.lvl4.value}}
+              {{html-safe this.result._highlightResult.hierarchy.lvl4.value}}
             {{/if}}
           </div>
         </LinkTo>

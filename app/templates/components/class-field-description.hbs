@@ -1,69 +1,69 @@
-<section class="{{type}}">
+<section class="{{this.type}}">
   {{!-- TODO: Fix this link for a11y --}}
-  <h3 class="class-field-description--link" data-anchor="{{field.name}}" role="link" onclick={{action updateAnchor field.name}}>
+  <h3 class="class-field-description--link" data-anchor="{{this.field.name}}" role="link" onclick={{action this.updateAnchor this.field.name}}>
     <a class="anchor" {{!-- template-lint-disable link-href-attributes --}}>
       {{svg-jar 'fa-link' class="class-field-description--link-hover" width="20px" height="20px"}}
     </a>
-    <span class="{{type}}-name">{{field.name}}</span>
-    {{#if field.params}}
+    <span class="{{this.type}}-name">{{this.field.name}}</span>
+    {{#if this.field.params}}
       <span class="args">
-        ({{join ", " (map-by "name" field.params)}})
+        ({{join ", " (map-by "name" this.field.params)}})
       </span>
     {{/if}}
-    {{#if field.return}}
-      <span class="return-type">{{field.return.type}}</span>
+    {{#if this.field.return}}
+      <span class="return-type">{{this.field.return.type}}</span>
     {{/if}}
-    {{#if field.access}}
-      <span class="access">{{field.access}}</span>
+    {{#if this.field.access}}
+      <span class="access">{{this.field.access}}</span>
     {{/if}}
-    {{#if field.deprecated}}
+    {{#if this.field.deprecated}}
       <span class="access">deprecated</span>
     {{/if}}
   </h3>
-  {{#if model.module}}
+  {{#if this.model.module}}
     <div class="attributes">
       <div class="attribute">
         <span class="attribute-label">Module:</span>
-        <span class="attribute-value"><LinkTo @route="project-version.modules.module" @models={{array model.projectVersion.compactVersion model.module}}>{{model.module}}</LinkTo></span>
+        <span class="attribute-value"><LinkTo @route="project-version.modules.module" @models={{array this.model.projectVersion.compactVersion this.model.module}}>{{this.model.module}}</LinkTo></span>
       </div>
     </div>
   {{/if}}
-  <p class="github-link" data-test-file={{field.file}}>
-    {{#if field.inherited}}
+  <p class="github-link" data-test-file={{this.field.file}}>
+    {{#if this.field.inherited}}
       Inherited from
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener noreferrer">
-        {{field.inheritedFrom}} {{field.file}}:{{field.line}}
+      <a href="{{github-link this.model.project.id this.model.projectVersion.version this.field.file this.field.line}}" target="_blank" rel="noopener noreferrer">
+        {{this.field.inheritedFrom}} {{this.field.file}}:{{this.field.line}}
       </a>
     {{else}}
       Defined in
-      <a href="{{github-link model.project.id model.projectVersion.version field.file field.line}}" target="_blank" rel="noopener noreferrer">
-        {{field.file}}:{{field.line}}
+      <a href="{{github-link this.model.project.id this.model.projectVersion.version this.field.file this.field.line}}" target="_blank" rel="noopener noreferrer">
+        {{this.field.file}}:{{this.field.line}}
       </a>
     {{/if}}
   </p>
-  {{#if field.since}}
+  {{#if this.field.since}}
     <p class="field-since">
-      Available since v{{field.since}}
+      Available since v{{this.field.since}}
     </p>
   {{/if}}
-  {{#if (and (eq field.static 1) (eq field.itemtype "method") hasImportExample)}}
-    <ImportExample @item={{concat "{ " field.name " }"}} @package={{field.class}} />
+  {{#if (and (eq this.field.static 1) (eq this.field.itemtype "method") this.hasImportExample)}}
+    <ImportExample @item={{concat "{ " this.field.name " }"}} @package={{this.field.class}} />
   {{/if}}
   <dl class="parameters">
-    {{#each field.params as |param|}}
+    {{#each this.field.params as |param|}}
       <div class="parameter">
         <dt>{{param.name}}</dt>
         <dd class="parameter-type">{{param.type}}</dd>
         <dd>{{param.description}}</dd>
       </div>
     {{/each}}
-    {{#if field.return}}
+    {{#if this.field.return}}
       <div class="return">
         <dt>returns</dt>
-        <dd class="return-type">{{field.return.type}}</dd>
-        <dd>{{field.return.description}}</dd>
+        <dd class="return-type">{{this.field.return.type}}</dd>
+        <dd>{{this.field.return.description}}</dd>
       </div>
     {{/if}}
   </dl>
-  {{html-safe field.description}}
+  {{html-safe this.field.description}}
 </section>

@@ -1,5 +1,5 @@
 <span class="ds-suggestions">
-  {{#if noResults}}
+  {{#if this.noResults}}
     <SearchInput::DropdownHeader>
       No results found
     </SearchInput::DropdownHeader>
@@ -11,7 +11,7 @@
 
   {{else}}
     {{!-- Level 0 hierarchy --}}
-    {{#each-in _groupedResults as |lvl0section _lvl0results|}}
+    {{#each-in this._groupedResults as |lvl0section _lvl0results|}}
       {{!-- Dropdown header --}}
 
       <SearchInput::DropdownHeader>

@@ -1,4 +1,4 @@
-<ApiIndexFilter @model={{model}} @filterData={{filterData}} as |filteredModel|>
+<ApiIndexFilter @model={{this.model}} @filterData={{this.filterData}} as |filteredModel|>
   <ApiIndex @itemData={{filteredModel}} @classNames="api__index__content" as |sectionData|>
     {{#each sectionData.sections as |section|}}
       <h3 class="api-index-section-title">{{section.title}}</h3>
@@ -6,7 +6,7 @@
         <ul class="{{section.class}}">
           {{#each section.items as |item|}}
             <li data-test-item={{item.name}}>
-              <LinkTo @route={{concat parentName section.routeSuffix }} @models={{array model.project.id model.projectVersion.compactVersion}} @query={{hash anchor=item.name}}>
+              <LinkTo @route={{concat this.parentName section.routeSuffix }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name item.name}} @query={{hash anchor=item.name}}>
                 {{item.name}}
               </LinkTo>
             </li>

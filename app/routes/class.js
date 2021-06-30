@@ -10,13 +10,14 @@ export default class ClassRoute extends Route {
       .fetch()
       .then((response) => response.json())
       .then((mappings) => {
-        return {
+        let ret = {
           mappings: this.legacyModuleMappings.buildMappings(mappings),
           className: params['class'].substr(
             0,
             params['class'].lastIndexOf('.')
           ),
         };
+        return ret;
       });
   }
 
