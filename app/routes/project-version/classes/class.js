@@ -1,19 +1,22 @@
+import { inject as service } from '@ember/service';
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
-import { inject as service } from '@ember/service';
 import { pluralize } from 'ember-inflector';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
-export default Route.extend(ScrollTracker, {
-  headData: service(),
-  metaStore: service(),
+export default class ClassRoute extends Route.extend(ScrollTracker) {
+  @service
+  headData;
 
-  titleToken: function (model) {
+  @service
+  metaStore;
+
+  titleToken(model) {
     return model.name;
-  },
+  }
 
   async model(params) {
     const { project, project_version: compactVersion } =
@@ -27,7 +30,7 @@ export default Route.extend(ScrollTracker, {
     );
     const klass = params['class'];
     return this.find('class', `${project}-${projectVersion}-${klass}`);
-  },
+  }
 
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
@@ -50,7 +53,7 @@ export default Route.extend(ScrollTracker, {
         status: 404,
       });
     });
-  },
+  }
 
   redirect(model, transition) {
     const lookupParams = (routeName) => {
@@ -76,7 +79,7 @@ export default Route.extend(ScrollTracker, {
     if (model.isError) {
       this.transitionTo('404');
     }
-  },
+  }
 
   afterModel(klass) {
     if (!klass.isError) {
@@ -97,11 +100,11 @@ export default Route.extend(ScrollTracker, {
       );
       return all(promises);
     }
-  },
+  }
 
   serialize(model) {
     return {
       class: model.name,
     };
-  },
-});
+  }
+}

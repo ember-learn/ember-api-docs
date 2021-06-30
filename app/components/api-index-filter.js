@@ -1,3 +1,4 @@
+import { classNames } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import sortBy from 'lodash.sortby';
@@ -5,32 +6,22 @@ import sortBy from 'lodash.sortby';
 const filterDataComputedParams =
   'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 
-export default Component.extend({
-  classNames: ['api-index-filter'],
+@classNames('api-index-filter')
+export default class ApiIndexFilter extends Component {
+  @computed('model.methods.[]', filterDataComputedParams)
+  get filteredMethods() {
+    return this.filterItems('methods');
+  }
 
-  filteredMethods: computed(
-    'model.methods.[]',
-    filterDataComputedParams,
-    function () {
-      return this.filterItems('methods');
-    }
-  ),
+  @computed('model.events.[]', filterDataComputedParams)
+  get filteredEvents() {
+    return this.filterItems('events');
+  }
 
-  filteredEvents: computed(
-    'model.events.[]',
-    filterDataComputedParams,
-    function () {
-      return this.filterItems('events');
-    }
-  ),
-
-  filteredProperties: computed(
-    'model.properties.[]',
-    filterDataComputedParams,
-    function () {
-      return this.filterItems('properties');
-    }
-  ),
+  @computed('model.properties.[]', filterDataComputedParams)
+  get filteredProperties() {
+    return this.filterItems('properties');
+  }
 
   filterItems(itemType) {
     let items =
@@ -52,20 +43,16 @@ export default Component.extend({
 
     let sortedItems = sortBy(items, (item) => item.name);
     return this.filterMultipleInheritance(sortedItems);
-  },
+  }
 
-  filteredData: computed(
-    'filteredMethods',
-    'filteredProperties',
-    'filteredEvents',
-    function () {
-      return {
-        methods: this.filteredMethods,
-        properties: this.filteredProperties,
-        events: this.filteredEvents,
-      };
-    }
-  ),
+  @computed('filteredMethods', 'filteredProperties', 'filteredEvents')
+  get filteredData() {
+    return {
+      methods: this.filteredMethods,
+      properties: this.filteredProperties,
+      events: this.filteredEvents,
+    };
+  }
 
   /**
    * Returns an array where duplicate methods (by name) are removed.
@@ -94,7 +81,8 @@ export default Component.extend({
       }
     }
     return dedupedArray;
-  },
+  }
+
   /**
    * Returns whichever item is most local.
    * What is "most local" is determined by looking at the file path for the
@@ -114,5 +102,5 @@ export default Component.extend({
       // otherwise, the next item must be "more local"
       return nextItem;
     }
-  },
-});
+  }
+}

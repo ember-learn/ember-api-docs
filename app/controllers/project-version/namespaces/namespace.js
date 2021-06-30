@@ -1,3 +1,3 @@
 import ClassController from '../classes/class';
 
-export default ClassController.extend();
+export default class NamespaceController extends ClassController {}

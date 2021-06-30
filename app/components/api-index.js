@@ -1,8 +1,9 @@
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 
-export default Component.extend({
-  sections: computed('itemData.{methods,properties,events}', function () {
+export default class ApiIndex extends Component {
+  @computed('itemData.{methods,properties,events}')
+  get sections() {
     return [
       {
         title: 'Methods',
@@ -26,5 +27,5 @@ export default Component.extend({
         routeSuffix: '.events.event',
       },
     ];
-  }),
-});
+  }
+}

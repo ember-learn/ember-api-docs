@@ -1,45 +1,55 @@
-import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { alias, readOnly } from '@ember/object/computed';
-import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import { readOnly, alias } from '@ember/object/computed';
+import Controller from '@ember/controller';
+import { A } from '@ember/array';
 import values from 'lodash.values';
 import groupBy from 'lodash.groupby';
 import semverCompare from 'semver-compare';
 import getCompactVersion from '../utils/get-compact-version';
 
-export default Controller.extend({
-  filterData: service(),
+export default class ProjectVersionController extends Controller {
+  @service
+  filterData;
 
-  metaStore: service(),
+  @service
+  metaStore;
 
-  project: service(),
+  @service
+  project;
 
-  showPrivateClasses: alias('filterData.sideNav.showPrivate'),
+  @alias('filterData.sideNav.showPrivate')
+  showPrivateClasses;
 
-  classesIDs: computed('model', function () {
+  @computed('model')
+  get classesIDs() {
     return this.getRelationshipIDs('classes');
-  }),
+  }
 
-  publicClassesIDs: computed('model', function () {
+  @computed('model')
+  get publicClassesIDs() {
     return this.getRelationshipIDs('public-classes');
-  }),
+  }
 
-  namespaceIDs: computed('model', function () {
+  @computed('model')
+  get namespaceIDs() {
     return this.getRelationshipIDs('namespaces');
-  }),
+  }
 
-  publicNamespaceIDs: computed('model', function () {
+  @computed('model')
+  get publicNamespaceIDs() {
     return this.getRelationshipIDs('public-namespaces');
-  }),
+  }
 
-  moduleIDs: computed('model.id', function () {
+  @computed('model.id')
+  get moduleIDs() {
     return this.getModuleRelationships(this.get('model.id'), 'modules');
-  }),
+  }
 
-  publicModuleIDs: computed('model.id', function () {
+  @computed('model.id')
+  get publicModuleIDs() {
     return this.getModuleRelationships(this.get('model.id'), 'public-modules');
-  }),
+  }
 
   getModuleRelationships(versionId, moduleType) {
     let relations = this.getRelations(moduleType);
@@ -47,11 +57,11 @@ export default Controller.extend({
     return relations
       .map((id) => id.substring(versionId.length + 1))
       .filter((id) => id !== 'ember-data-overview');
-  },
+  }
 
   getRelations(relationship) {
     return this.model.hasMany(relationship).ids().sort();
-  },
+  }
 
   getRelationshipIDs(relationship) {
     const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
@@ -62,70 +72,54 @@ export default Controller.extend({
     return A(sorted)
       .toArray()
       .map((id) => id.split('-').slice(splitPoint).join('-'));
-  },
+  }
 
-  shownClassesIDs: computed(
-    'showPrivateClasses',
-    'classesIDs',
-    'publicClassesIDs',
-    function () {
-      return this.showPrivateClasses ? this.classesIDs : this.publicClassesIDs;
-    }
-  ),
+  @computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs')
+  get shownClassesIDs() {
+    return this.showPrivateClasses ? this.classesIDs : this.publicClassesIDs;
+  }
 
-  shownModuleIDs: computed(
-    'showPrivateClasses',
-    'moduleIDs',
-    'publicModuleIDs',
-    function () {
-      return this.showPrivateClasses ? this.moduleIDs : this.publicModuleIDs;
-    }
-  ),
+  @computed('showPrivateClasses', 'moduleIDs', 'publicModuleIDs')
+  get shownModuleIDs() {
+    return this.showPrivateClasses ? this.moduleIDs : this.publicModuleIDs;
+  }
 
-  shownNamespaceIDs: computed(
-    'showPrivateClasses',
-    'namespaceIDs',
-    'publicNamespaceIDs',
-    function () {
-      return this.showPrivateClasses
-        ? this.namespaceIDs
-        : this.publicNamespaceIDs;
-    }
-  ),
+  @computed('showPrivateClasses', 'namespaceIDs', 'publicNamespaceIDs')
+  get shownNamespaceIDs() {
+    return this.showPrivateClasses
+      ? this.namespaceIDs
+      : this.publicNamespaceIDs;
+  }
 
-  projectVersions: computed(
-    'metaStore.availableProjectVersions',
-    'model.project.id',
-    function () {
-      const projectVersions = this.get('metaStore.availableProjectVersions')[
-        this.get('model.project.id')
-      ];
-      let versions = projectVersions.sort((a, b) => semverCompare(b, a));
+  @computed('metaStore.availableProjectVersions', 'model.project.id')
+  get projectVersions() {
+    const projectVersions = this.get('metaStore.availableProjectVersions')[
+      this.get('model.project.id')
+    ];
+    let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
-      versions = versions.map((version) => {
-        const compactVersion = getCompactVersion(version);
-        return { id: version, compactVersion };
-      });
-      let groupedVersions = groupBy(
-        versions,
-        (version) => version.compactVersion
-      );
+    versions = versions.map((version) => {
+      const compactVersion = getCompactVersion(version);
+      return { id: version, compactVersion };
+    });
+    let groupedVersions = groupBy(
+      versions,
+      (version) => version.compactVersion
+    );
 
-      return values(groupedVersions).map((groupedVersion) => groupedVersion[0]);
-    }
-  ),
+    return values(groupedVersions).map((groupedVersion) => groupedVersion[0]);
+  }
 
-  urlVersion: alias('project.urlVersion'),
+  @alias('project.urlVersion')
+  urlVersion;
 
-  selectedProjectVersion: computed(
-    'projectVersions.[]',
-    'model.version',
-    function () {
-      return this.projectVersions.filter(
-        (pV) => pV.id === this.get('model.version')
-      )[0];
-    }
-  ),
+  @computed('projectVersions.[]', 'model.version')
+  get selectedProjectVersion() {
+    return this.projectVersions.filter(
+      (pV) => pV.id === this.get('model.version')
+    )[0];
+  }
 
-  activeProject: readOnly('model.project.id'),
-});
+  @readOnly('model.project.id')
+  activeProject;
+}

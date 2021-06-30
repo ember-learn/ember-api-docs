@@ -1,5 +1,6 @@
 import Model, { attr } from '@ember-data/model';
 
-export default Model.extend({
-  name: attr(),
-});
+export default class Missing extends Model {
+  @attr()
+  name;
+}

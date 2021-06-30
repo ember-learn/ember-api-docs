@@ -1,49 +1,47 @@
+import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import Controller from '@ember/controller';
 import ParentNameMixin from 'ember-api-docs/mixins/parent-name';
 import FilterParams from 'ember-api-docs/mixins/filter-params';
 
-export default Controller.extend(ParentNameMixin, FilterParams, {
-  filterData: service(),
-  legacyModuleMappings: service(),
-  metaStore: service(),
+export default class ClassController extends Controller.extend(
+  ParentNameMixin,
+  FilterParams
+) {
+  @service
+  filterData;
 
-  hasImportExample: computed(
-    'legacyModuleMappings.mappings',
-    'model.{module,name}',
-    function () {
-      return this.legacyModuleMappings.hasClassMapping(
-        this.get('model.name'),
-        this.get('model.module')
-      );
-    }
-  ),
+  @service
+  legacyModuleMappings;
 
-  module: computed(
-    'legacyModulemappings.mappings',
-    'model.{module,name}',
-    function () {
-      return this.legacyModuleMappings.getModule(
-        this.get('model.name'),
-        this.get('model.module')
-      );
-    }
-  ),
+  @service
+  metaStore;
 
-  allVersions: computed(
-    'metaStore.availableProjectVersions',
-    'model.project.id',
-    function () {
-      return this.get('metaStore.availableProjectVersions')[
-        this.get('model.project.id')
-      ];
-    }
-  ),
+  @computed('legacyModuleMappings.mappings', 'model.{module,name}')
+  get hasImportExample() {
+    return this.legacyModuleMappings.hasClassMapping(
+      this.get('model.name'),
+      this.get('model.module')
+    );
+  }
 
-  actions: {
-    updateFilter(filter) {
-      this.toggleProperty(`filterData.${filter}`);
-    },
-  },
-});
+  @computed('legacyModulemappings.mappings', 'model.{module,name}')
+  get module() {
+    return this.legacyModuleMappings.getModule(
+      this.get('model.name'),
+      this.get('model.module')
+    );
+  }
+
+  @computed('metaStore.availableProjectVersions', 'model.project.id')
+  get allVersions() {
+    return this.get('metaStore.availableProjectVersions')[
+      this.get('model.project.id')
+    ];
+  }
+
+  @action
+  updateFilter(filter) {
+    this.toggleProperty(`filterData.${filter}`);
+  }
+}

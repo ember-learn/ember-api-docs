@@ -1,5 +1,5 @@
-import Model, { belongsTo, attr } from '@ember-data/model';
 import { computed } from '@ember/object';
+import Model, { belongsTo, attr } from '@ember-data/model';
 
 const projectNameFromClassName = (key) => {
   return computed(key, 'project.id', function () {
@@ -34,40 +34,80 @@ const guessVersionFor = (key) => {
   );
 };
 
-export default Model.extend({
-  name: attr(),
-  methods: attr(),
-  properties: attr(),
-  access: attr(),
-  events: attr(),
-  description: attr(),
-  ogDescription: attr(),
-  extends: attr(),
-  uses: attr(),
-  since: attr(),
-  file: attr(),
-  line: attr(),
-  module: attr(),
-  parentClass: belongsTo('class', { async: true, inverse: null }),
-  projectVersion: belongsTo('project-version', { inverse: 'classes' }),
-  project: computed('projectVersion.id', function () {
+export default class Class extends Model {
+  @attr()
+  name;
+
+  @attr()
+  methods;
+
+  @attr()
+  properties;
+
+  @attr()
+  access;
+
+  @attr()
+  events;
+
+  @attr()
+  description;
+
+  @attr()
+  ogDescription;
+
+  @attr()
+  extends;
+
+  @attr()
+  uses;
+
+  @attr()
+  since;
+
+  @attr()
+  file;
+
+  @attr()
+  line;
+
+  @attr()
+  module;
+
+  @belongsTo('class', { async: true, inverse: null })
+  parentClass;
+
+  @belongsTo('project-version', { inverse: 'classes' })
+  projectVersion;
+
+  @computed('projectVersion.id')
+  get project() {
     return this.projectVersion.get('project');
-  }),
+  }
 
-  extendedClassProjectName: projectNameFromClassName('extends'),
-  extendedClassVersion: guessVersionFor('extends'),
-  usedClassProjectName: projectNameFromClassName('uses'),
-  usedClassVersion: guessVersionFor('uses'),
+  @projectNameFromClassName('extends')
+  extendedClassProjectName;
 
-  extendedClassShortName: computed('extends', function () {
+  @guessVersionFor('extends')
+  extendedClassVersion;
+
+  @projectNameFromClassName('uses')
+  usedClassProjectName;
+
+  @guessVersionFor('uses')
+  usedClassVersion;
+
+  @computed('extends')
+  get extendedClassShortName() {
     let extendedClassName = this['extends'];
     if (extendedClassName.substr(0, 6) === 'Ember.') {
       return extendedClassName.substr(6);
     }
     return extendedClassName;
-  }),
+  }
 
-  usesObjects: computed('project.id', 'uses', function () {
+  @computed('project.id', 'uses')
+  get usesObjects() {
     return this.uses.map((className) => ({
       name: className,
       shortName:
@@ -79,5 +119,5 @@ export default Model.extend({
           ? 'ember-data'
           : this.get('project.id'),
     }));
-  }),
-});
+  }
+}

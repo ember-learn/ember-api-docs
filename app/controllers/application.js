@@ -169,6 +169,6 @@ const links = [
   },
 ];
 
-export default Controller.extend({
-  links,
-});
+export default class ApplicationController extends Controller {
+  links = links;
+}

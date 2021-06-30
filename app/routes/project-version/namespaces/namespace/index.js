@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  templateName: 'class-index',
-});
+export default class IndexRoute extends Route {
+  templateName = 'class-index';
+}

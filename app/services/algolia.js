@@ -3,7 +3,7 @@ import algoliasearch from 'algoliasearch';
 import config from 'ember-api-docs/config/environment';
 import { denodeify } from 'rsvp';
 
-export default Service.extend({
+export default class AlgoliaService extends Service {
   _search(query, params, callback) {
     if (!callback) {
       callback = params;
@@ -23,22 +23,22 @@ export default Service.extend({
     } else {
       callback(new Error(`Could not search algolia for query "${query}"`));
     }
-  },
+  }
 
   accessIndex(IndexName) {
     if (!this._indices[IndexName]) {
       this._indices[IndexName] = this._client.initIndex(IndexName);
     }
     return this._indices[IndexName];
-  },
+  }
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
     this._client = algoliasearch(
       config.algolia.algoliaId,
       config.algolia.algoliaKey
     );
     this._indices = {};
     this.search = denodeify(this._search.bind(this));
-  },
-});
+  }
+}

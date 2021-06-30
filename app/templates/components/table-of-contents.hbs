@@ -2,11 +2,11 @@
   <li class="toc-level-0">
     <a {{action 'toggle' 'modules'}} href="#">Packages</a>
     <ol class="toc-level-1 modules" style="display: block">
-      {{#each moduleIDs as |moduleID|}}
+      {{#each this.moduleIDs as |moduleID|}}
 
         {{#if (not-eq moduleID "@ember/object/computed")}}
           <li class="toc-level-1" data-test-module={{moduleID}}>
-            {{#link-to 'project-version.modules.module' version moduleID}}{{moduleID}}{{/link-to}}
+            <LinkTo @route="project-version.modules.module" @models={{array this.version moduleID}}>{{moduleID}}</LinkTo>
           </li>
         {{/if}}
 
@@ -14,13 +14,13 @@
     </ol>
   </li>
 
-  {{#if isShowingNamespaces}}
+  {{#if this.isShowingNamespaces}}
     <li class="toc-level-0">
       <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
       <ol class="toc-level-1 namespaces" style="display: block">
-        {{#each namespaceIDs as |namespaceID|}}
+        {{#each this.namespaceIDs as |namespaceID|}}
           <li class="toc-level-1" data-test-namespace={{namespaceID}}>
-            {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
+            <LinkTo @route="project-version.namespaces.namespace" @models={{array this.version namespaceID}}>{{namespaceID}}</LinkTo>
           </li>
         {{/each}}
       </ol>
@@ -30,15 +30,15 @@
   <li class="toc-level-0">
     <a {{action 'toggle' 'classes'}} href="#">Classes</a>
     <ol class="toc-level-1 classes" style="display: block">
-      {{#each classesIDs as |classID|}}
+      {{#each this.classesIDs as |classID|}}
         <li class="toc-level-1" data-test-class={{classID}}>
-          {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
+          <LinkTo @route="project-version.classes.class" @models={{array this.version classID}}>{{classID}}</LinkTo>
         </li>
       {{/each}}
     </ol>
   </li>
 </ol>
 <label class="toc-private-toggle">
-  {{input type="checkbox" checked=showPrivateClasses class='private-deprecated-toggle'}}
+  <Input @type="checkbox" @checked={{this.showPrivateClasses}} class="private-deprecated-toggle" />
   Show Private / Deprecated
 </label>

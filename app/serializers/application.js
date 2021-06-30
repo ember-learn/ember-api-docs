@@ -1,11 +1,12 @@
-import JSONAPISerializer from '@ember-data/serializer/json-api';
 import { inject as service } from '@ember/service';
+import JSONAPISerializer from '@ember-data/serializer/json-api';
 
-export default JSONAPISerializer.extend({
-  metaStore: service(),
+export default class Application extends JSONAPISerializer {
+  @service
+  metaStore;
 
   normalizeFindRecordResponse(store, primaryModelClass, payload, id) {
-    let normalizedDocument = this._super(...arguments);
+    let normalizedDocument = super.normalizeFindRecordResponse(...arguments);
 
     // We do this because ember data doesn't handle meta data in accordance to json-api spec yet
     if (primaryModelClass.modelName === 'project') {
@@ -16,5 +17,5 @@ export default JSONAPISerializer.extend({
     }
 
     return normalizedDocument;
-  },
-});
+  }
+}

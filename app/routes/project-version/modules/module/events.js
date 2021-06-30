@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  templateName: 'events',
-});
+export default class EventsRoute extends Route {
+  templateName = 'events';
+}
