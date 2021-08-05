@@ -56,7 +56,7 @@
           <span>Index</span>
         </LinkTo>
         {{#if @model.methods}}
-          <LinkTo @route={{concat this.parentName ".methods" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @id="methods" @current-when={{concat this.parentName ".methods"}} data-test-tab="methods">
+          <LinkTo @route={{concat this.parentName ".methods" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" id="methods" @current-when={{concat this.parentName ".methods"}} data-test-tab="methods">
             <span>Methods</span>
           </LinkTo>
         {{/if}}
