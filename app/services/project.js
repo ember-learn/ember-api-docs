@@ -1,14 +1,16 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking'
 
 export default class ProjectService extends Service {
-  version = '0.0.0';
+  @tracked version = '0.0.0';
+  @tracked urlVersion;
 
   setVersion(version) {
-    this.set('version', version);
+    this.version = version;
   }
 
   setUrlVersion(version) {
-    this.set('urlVersion', version);
+    this.urlVersion = version;
   }
 
   getUrlVersion() {
