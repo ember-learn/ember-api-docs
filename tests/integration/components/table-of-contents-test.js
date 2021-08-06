@@ -3,6 +3,10 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
+const TIMEOUT_FOR_ANIMATION = 600;
+const CLASSES = ['Descriptor', 'Ember'];
+const MODULES = ['@ember/application', '@ember/array'];
+
 module('Integration | Component | table of contents', function (hooks) {
   setupRenderingTest(hooks);
 
@@ -10,95 +14,144 @@ module('Integration | Component | table of contents', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
+    this.set('classesIDs', CLASSES);
 
-    this.set('classesIDs', ['Descriptor', 'Ember']);
+    await render(hbs`
+      {{
+        table-of-contents showPrivateClasses=true
+          projectid=projectId
+          version=emberVersion
+          classesIDs=classesIDs
+          isShowingNamespaces=true
+       }}
+    `);
 
-    await render(hbs`{{table-of-contents showPrivateClasses=true
-                                        projectid=projectId
-                                        version=emberVersion
-                                        classesIDs=classesIDs
-                                        isShowingNamespaces=true
-                    }}`);
+    const contentTitle = document.querySelector(
+      '[data-test-toc-title="classes"]'
+    );
+    const contentReference = '.toc-level-1';
 
-    assert.dom(findAll('.toc-level-0 > a')[2]).hasText('Classes');
+    assert.dom(contentTitle).hasText('Classes');
     assert
-      .dom('.toc-level-1 li')
+      .dom(`${contentReference} li`)
       .exists({ count: 2 }, 'We have two items to display');
-    assert.dom(findAll('.toc-level-1 li')[0]).hasText('Descriptor');
-    assert.dom(findAll('.toc-level-1 li')[1]).hasText('Ember');
+    assert.dom(findAll(`${contentReference} li`)[0]).hasText(CLASSES[0]);
+    assert.dom(findAll(`${contentReference} li`)[1]).hasText(CLASSES[1]);
   });
 
   test('Starts with underlying content visible', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
+    this.set('moduleIDs', MODULES);
 
-    this.set('moduleIDs', ['@ember/application', '@ember/array']);
+    await render(hbs`
+      {{
+        table-of-contents showPrivateClasses=true
+          projectid=projectId
+          version=emberVersion
+          moduleIDs=moduleIDs
+          isShowingNamespaces=true
+       }}
+    `);
 
-    await render(hbs`{{table-of-contents showPrivateClasses=true
-                                        projectid=projectId
-                                        version=emberVersion
-                                        moduleIDs=moduleIDs
-                                        isShowingNamespaces=true
-                    }}`);
+    const contentReference = '.toc-level-1';
+    const content = document.querySelector(contentReference);
+    const contentTitle = document.querySelector(
+      '[data-test-toc-title="classes"]'
+    );
 
-    assert.dom(findAll('.toc-level-0 > a')[0]).hasText('Packages');
+    assert.dom(contentTitle).hasText('Classes');
+    assert.dom(content).hasClass('selected');
     assert
-      .dom('.toc-level-1 li')
+      .dom(`${contentReference} li`)
       .exists({ count: 2 }, 'We have two items to display');
-    assert.dom('ol.toc-level-1').isVisible;
-    assert.dom('.toc-level-1').hasClass('selected');
-    assert.dom(findAll('.toc-level-1 li')[0]).hasText('@ember/application');
-    assert.dom(findAll('.toc-level-1 li')[1]).hasText('@ember/array');
+    assert.dom(content).isVisible();
+    assert.dom(findAll(`${contentReference} li`)[0]).hasText(MODULES[0]);
+    assert.dom(findAll(`${contentReference} li`)[1]).hasText(MODULES[1]);
   });
 
   test('Underlying content hides once clicked', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
+    this.set('moduleIDs', MODULES);
 
-    this.set('moduleIDs', ['@ember/application', '@ember/array']);
+    await render(hbs`
+      {{
+        table-of-contents showPrivateClasses=true
+          projectid=projectId
+          version=emberVersion
+          moduleIDs=moduleIDs
+          isShowingNamespaces=true
+       }}
+    `);
 
-    await render(hbs`{{table-of-contents showPrivateClasses=true
-                                        projectid=projectId
-                                        version=emberVersion
-                                        moduleIDs=moduleIDs
-                                        isShowingNamespaces=true
-                    }}`);
+    const contentTitle = document.querySelector(
+      '[data-test-toc-title="packages"]'
+    );
+    const contentReference = '.toc-level-1';
+    const content = document.querySelector(contentReference);
 
-    assert.dom(findAll('.toc-level-0 > a')[0]).hasText('Packages');
-    assert.dom('ol.toc-level-1').isVisible;
-    assert.dom('.toc-level-1').hasClass('selected');
+    assert.dom(contentTitle).hasText('Packages');
+    assert.dom(content).hasClass('selected');
+    assert.dom(content).isVisible();
 
-    await click(document.querySelector('.toc-level-0 > a'));
-    assert.dom('ol.toc-level-1').isNotVisible;
-    assert.dom('.toc-level-1').doesNotHaveClass('selected');
+    await click(contentTitle);
+
+    const done = assert.async();
+    setTimeout(() => {
+      assert.dom(content).isNotVisible();
+      assert.dom(content).doesNotHaveClass('selected');
+      done();
+    }, TIMEOUT_FOR_ANIMATION);
   });
 
   test('Underlying content should be visible after 2 clicks', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
+    this.set('moduleIDs', MODULES);
 
-    this.set('moduleIDs', ['@ember/application', '@ember/array']);
+    await render(hbs`
+      {{
+        table-of-contents showPrivateClasses=true
+          projectid=projectId
+          version=emberVersion
+          moduleIDs=moduleIDs
+          isShowingNamespaces=true
+       }}
+    `);
 
-    await render(hbs`{{table-of-contents showPrivateClasses=true
-                                        projectid=projectId
-                                        version=emberVersion
-                                        moduleIDs=moduleIDs
-                                        isShowingNamespaces=true
-                    }}`);
+    const titleButton = document.querySelector(
+      '[data-test-toc-title="packages"]'
+    );
+    const contentReference = '.toc-level-1';
+    const content = document.querySelector(contentReference);
 
-    assert.dom(findAll('.toc-level-0 > a')[0]).hasText('Packages');
-    assert.dom('ol.toc-level-1').isVisible;
-    assert.dom('.toc-level-1').hasClass('selected');
+    assert.dom(titleButton).hasText('Packages');
+    assert.dom(content).hasClass('selected');
+    assert.dom(content).isVisible();
 
-    await click(document.querySelector('.toc-level-0 > a'));
-    assert.dom('ol.toc-level-1').isNotVisible;
-    assert.dom('.toc-level-1').doesNotHaveClass('selected');
+    await click(titleButton);
 
-    await click(document.querySelector('.toc-level-0 > a'));
-    assert.dom('ol.toc-level-1').isVisible;
-    assert.dom('.toc-level-1').hasClass('selected');
+    const done1 = assert.async();
+
+    setTimeout(async () => {
+      assert.dom(content).isNotVisible();
+      assert.dom(content).doesNotHaveClass('selected');
+
+      await click(titleButton);
+
+      const done2 = assert.async();
+
+      setTimeout(() => {
+        assert.dom(content).isVisible();
+        assert.dom(content).hasClass('selected');
+        done2();
+      }, TIMEOUT_FOR_ANIMATION);
+
+      done1();
+    }, TIMEOUT_FOR_ANIMATION);
   });
 });

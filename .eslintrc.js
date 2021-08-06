@@ -20,7 +20,6 @@ module.exports = {
     browser: true,
   },
   rules: {
-    'ember/no-jquery': 'off',
     'no-console': 'off',
     'ember/no-new-mixins': 'off',
     'ember/no-mixins': 'off',
