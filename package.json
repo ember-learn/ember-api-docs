@@ -117,7 +117,7 @@
   "engines": {
     "node": "10.* || 12.* || 14.*",
     "npm": "7",
-    "yarn": "1.22.11"
+    "yarn": "1.22.*"
   },
   "cacheDirectories": [
     "node_modules"
