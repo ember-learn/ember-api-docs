@@ -121,10 +121,16 @@ li.toc-level-0 {
 ol.toc-level-1 {
   border-left: $base-border;
   font-size: $base-font-size * 0.9;
+  transition: max-height 0.5s ease;
+
+  &.selected{ 
+    max-height: 3000px;
+  }
 
   &:not(.selected) {
-    display: none;
-  }
+    overflow: hidden;
+    max-height: 0;
+  } 
 
   li {
     border-left: 3px solid transparent;

@@ -1,7 +1,7 @@
 <ol class="toc-level-0">
   <li class="toc-level-0">
-    <a {{action 'toggle' 'modules'}} href="#">Packages</a>
-    <ol class="toc-level-1 modules" style="display: block">
+    <a {{action 'toggle' 'modules'}} href="#" data-test-toc-title="packages">Packages</a>
+    <ol class="toc-level-1 modules selected">
       {{#each moduleIDs as |moduleID|}}
 
         {{#if (not-eq moduleID "@ember/object/computed")}}
@@ -16,8 +16,8 @@
 
   {{#if isShowingNamespaces}}
     <li class="toc-level-0">
-      <a {{action 'toggle' 'namespaces'}} href="#">Namespaces</a>
-      <ol class="toc-level-1 namespaces" style="display: block">
+      <a {{action 'toggle' 'namespaces'}} href="#" data-test-toc-title="namespaces">Namespaces</a>
+      <ol class="toc-level-1 namespaces selected">
         {{#each namespaceIDs as |namespaceID|}}
           <li class="toc-level-1" data-test-namespace={{namespaceID}}>
             {{#link-to 'project-version.namespaces.namespace' version namespaceID}}{{namespaceID}}{{/link-to}}
@@ -28,8 +28,8 @@
   {{/if}}
 
   <li class="toc-level-0">
-    <a {{action 'toggle' 'classes'}} href="#">Classes</a>
-    <ol class="toc-level-1 classes" style="display: block">
+    <a {{action 'toggle' 'classes'}} href="#" data-test-toc-title="classes">Classes</a>
+    <ol class="toc-level-1 classes selected">
       {{#each classesIDs as |classID|}}
         <li class="toc-level-1" data-test-class={{classID}}>
           {{#link-to 'project-version.classes.class' version classID}}{{classID}}{{/link-to}}
