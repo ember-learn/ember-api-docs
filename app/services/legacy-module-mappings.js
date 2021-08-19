@@ -1,5 +1,6 @@
 import fetch from 'fetch';
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 const LOCALNAME_CONVERSIONS = {
   Object: 'EmberObject',
@@ -8,14 +9,16 @@ const LOCALNAME_CONVERSIONS = {
 };
 
 export default class LegacyModuleMappingsService extends Service {
+  @tracked mappings;
+
   async initMappings() {
     try {
       let response = await this.fetch();
       let mappings = await response.json();
       let newMappings = this.buildMappings(mappings);
-      this.set('mappings', newMappings);
+      this.mappings = newMappings;
     } catch (e) {
-      this.set('mappings', []);
+      this.mappings = [];
     }
   }
 

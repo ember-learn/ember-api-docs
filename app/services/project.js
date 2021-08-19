@@ -1,5 +1,5 @@
 import Service from '@ember/service';
-import { tracked } from '@glimmer/tracking'
+import { tracked } from '@glimmer/tracking';
 
 export default class ProjectService extends Service {
   @tracked version = '0.0.0';
