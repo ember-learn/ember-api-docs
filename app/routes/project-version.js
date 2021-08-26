@@ -24,7 +24,7 @@ export default class ProjectVersionRoute extends Route {
   projectService;
 
   titleToken(model) {
-    return model.get('version');
+    return model.version;
   }
 
   async model({ project, project_version }) {
@@ -68,8 +68,7 @@ export default class ProjectVersionRoute extends Route {
       );
       let isLatestVersion =
         transitionVersion === latestVersion || transitionVersion === 'release';
-      let shouldConvertPackages =
-        semverCompare(model.get('version'), '2.16') < 0;
+      let shouldConvertPackages = semverCompare(model.version, '2.16') < 0;
       if (!shouldConvertPackages || isLatestVersion) {
         // ... and the transition version is the latest release,
         // display the landing page at
@@ -111,17 +110,17 @@ export default class ProjectVersionRoute extends Route {
   }
 
   _gatherHeadDataFromVersion(model, projectVersion) {
-    this.set('headData.isRelease', projectVersion === 'release');
-    this.set('headData.compactVersion', model.get('compactVersion'));
-    this.set('headData.urlVersion', projectVersion);
-    if (!this.get('headData.isRelease')) {
-      let request = this.get('fastboot.request');
-      let href = this.get('fastboot.isFastBoot')
+    this.headData.isRelease = projectVersion === 'release';
+    this.headData.compactVersion = model.get('compactVersion');
+    this.headData.urlVersion = projectVersion;
+    if (!this.headData.isRelease) {
+      let request = this.fastboot.request;
+      let href = this.fastboot.isFastBoot
         ? `${config.APP.domain}/${request.path}`
         : window.location.href;
       let version = new RegExp(model.get('compactVersion'), 'g');
       let canonicalUrl = href.replace(version, 'release');
-      this.set('headData.canonicalUrl', canonicalUrl);
+      this.headData.canonicalUrl = canonicalUrl;
     }
   }
 
@@ -215,7 +214,7 @@ export default class ProjectVersionRoute extends Route {
     // to the home page instead of trying to translate the url
     let shouldConvertPackages = this.shouldConvertPackages(
       ver,
-      this.get('projectService.version')
+      this.projectService.version
     );
     let isEmberProject = project === 'ember';
     if (!isEmberProject || !shouldConvertPackages) {
@@ -246,7 +245,7 @@ export default class ProjectVersionRoute extends Route {
     let encodedModule = moduleRevs[0]
       .split('-')
       .reduce((result, val, index, arry) => {
-        if (val === this.get('projectService.version')) {
+        if (val === this.projectService.version) {
           return arry.slice(index + 1).join('-');
         }
         return result;
