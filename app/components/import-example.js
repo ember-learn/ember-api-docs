@@ -1,3 +1,4 @@
+/* eslint-disable ember/classic-decorator-no-classic-methods */
 import { action } from '@ember/object';
 import Component from '@ember/component';
 import { later } from '@ember/runloop';

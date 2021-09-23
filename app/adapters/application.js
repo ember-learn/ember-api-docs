@@ -1,3 +1,4 @@
+/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods */
 import { inject as service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import fetch from 'fetch';

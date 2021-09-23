@@ -1,3 +1,4 @@
+/* eslint-disable ember/classic-decorator-no-classic-methods */
 import { get } from '@ember/object';
 import AnchorComponent from 'ember-anchor/components/ember-anchor';
 import config from 'ember-api-docs/config/environment';

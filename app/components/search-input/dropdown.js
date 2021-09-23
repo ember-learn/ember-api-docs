@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-hooks */
 import {
   classNames,
   attributeBindings,
