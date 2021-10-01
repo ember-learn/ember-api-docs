@@ -1,4 +1,3 @@
-/* eslint-disable ember/classic-decorator-hooks, ember/classic-decorator-no-classic-methods */
 import { inject as service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import fetch from 'fetch';
@@ -41,8 +40,8 @@ export default class Application extends JSONAPIAdapter {
     return !hasId;
   }
 
-  init() {
-    super.init(...arguments);
+  constructor(ids, args) {
+    super(ids, args);
     this.ids = {};
   }
 
@@ -71,7 +70,7 @@ export default class Application extends JSONAPIAdapter {
         throw new Error('Documentation item not found');
       }
     } else if (modelName === 'missing') {
-      let version = this.get('projectService.version');
+      let version = this.projectService.version;
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
       url = `json-docs/${projectName}/${version}/${pluralize(
         modelName
