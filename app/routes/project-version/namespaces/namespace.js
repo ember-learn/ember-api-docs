@@ -2,8 +2,8 @@ import ClassRoute from '../classes/class';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
-export default ClassRoute.extend(ScrollTracker, {
-  templateName: 'project-version/classes/class',
+export default class NamespaceRoute extends ClassRoute.extend(ScrollTracker) {
+  templateName = 'project-version/classes/class';
 
   async model(params) {
     const { project, project_version: compactVersion } =
@@ -18,11 +18,11 @@ export default ClassRoute.extend(ScrollTracker, {
     );
     const klass = params['namespace'];
     return this.find('namespace', `${project}-${projectVersion}-${klass}`);
-  },
+  }
 
   serialize(model) {
     return {
       namespace: model.get('name'),
     };
-  },
-});
+  }
+}

@@ -1,6 +1,6 @@
-{{ember-anchor a=anchor}}
-{{#api-index-filter model=model filterData=filterData as |filteredModel|}}
+<EmberAnchor @a={{this.anchor}} />
+<ApiIndexFilter @model={{this.model}} @filterData={{this.filterData}} as |filteredModel|>
   {{#each filteredModel.events as |event|}}
-    {{class-field-description type="event" field=event model=model}}
+    <ClassFieldDescription @type="event" @field={{event}} @model={{this.model}} />
   {{/each}}
-{{/api-index-filter}}
+</ApiIndexFilter>

@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  templateName: 'methods',
-});
+export default class MethodsRoute extends Route {
+  templateName = 'methods';
+}

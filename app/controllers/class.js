@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
 
-export default Controller.extend({
-  queryParams: ['anchor', 'type'],
-});
+export default class ClassController extends Controller {
+  queryParams = ['anchor', 'type'];
+}

@@ -1,16 +1,14 @@
 import Service from '@ember/service';
 
-export default Service.extend({
-  showInherited: false,
-  showProtected: false,
-  showPrivate: false,
-  showDeprecated: false,
-  sideNav: null,
+export default class FilterDataService extends Service {
+  // These attributes are not @tracked because they are used in computed
+  // properties and not directly in templates.
+  showInherited = false;
+  showProtected = false;
+  showPrivate = false;
+  showDeprecated = false;
 
-  init() {
-    this.sideNav = {
-      showPrivate: false,
-    };
-    this._super(...arguments);
-  },
-});
+  sideNav = {
+    showPrivate: false,
+  };
+}

@@ -28,8 +28,8 @@
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.2.5",
-    "@glimmer/component": "^1.0.4",
-    "@glimmer/tracking": "^1.0.4",
+    "@glimmer/component": "^1.0.0",
+    "@glimmer/tracking": "^1.0.0",
     "@percy/cli": "^1.0.0-beta.54",
     "@percy/ember": "^3.0.0",
     "algoliasearch": "^3.32.1",
@@ -95,6 +95,9 @@
     "eslint-plugin-prettier": "^3.3.1",
     "express-sslify": "^1.2.0",
     "fastboot-app-server": "^2.0.0",
+    "lint-to-the-future": "^0.6.1",
+    "lint-to-the-future-ember-template": "^0.3.5",
+    "lint-to-the-future-eslint": "^0.2.1",
     "loader.js": "^4.7.0",
     "lodash.groupby": "^4.6.0",
     "lodash.last": "^3.0.0",
@@ -117,14 +120,14 @@
   "engines": {
     "node": "10.* || 12.* || 14.*",
     "npm": "7",
-    "yarn": "1.22.11"
-  },
-  "ember": {
-    "edition": "octane"
+    "yarn": "1.22.*"
   },
   "cacheDirectories": [
     "node_modules"
   ],
+  "ember": {
+    "edition": "octane"
+  },
   "fastbootDependencies": [
     "algoliasearch",
     "node-fetch",

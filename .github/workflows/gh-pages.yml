@@ -1,0 +1,24 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: npm install -g npm@7
+      - run: npm install
+      - run: npx lint-to-the-future output -o lttfOutput --rootUrl ember-api-docs --previous-results https://ember-learn.github.io/ember-api-docs/data.json
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./lttfOutput

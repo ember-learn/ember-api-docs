@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
 
-export default Route.extend({
-  templateName: 'properties',
-});
+export default class PropertiesRoute extends Route {
+  templateName = 'properties';
+}

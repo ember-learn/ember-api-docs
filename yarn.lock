@@ -1299,7 +1299,7 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@glimmer/component@^1.0.2", "@glimmer/component@^1.0.4":
+"@glimmer/component@^1.0.0", "@glimmer/component@^1.0.2", "@glimmer/component@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-1.0.4.tgz#1c85a5181615a6647f6acfaaed68e28ad7e9626e"
   integrity sha512-sS4N8wtcKfYdUJ6O3m8nbTut6NjErdz94Ap8VB1ekcg4WSD+7sI7Nmv6kt2rdPoe363nUdjUbRBzHNWhLzraBw==
@@ -8962,6 +8962,13 @@ image-size@^1.0.0:
   dependencies:
     queue "6.0.2"
 
+import-cwd@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-3.0.0.tgz#20845547718015126ea9b3676b7592fb8bd4cf92"
+  integrity sha512-4pnzH16plW+hgvRECbDWpQl3cqtvSofHWh44met7ESfZ8UZOWWddm8hEyDTqREJ9RbYHY8gi8DqmaelApoOGMg==
+  dependencies:
+    import-from "^3.0.0"
+
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
@@ -8969,6 +8976,13 @@ import-fresh@^3.0.0, import-fresh@^3.2.1:
   dependencies:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
+
+import-from@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/import-from/-/import-from-3.0.0.tgz#055cfec38cd5a27d8057ca51376d7d3bf0891966"
+  integrity sha512-CiuXOFFSzkU5x/CR0+z7T91Iht4CXgfCxVOFRhh2Zyhg5wOpWvvDLQUsWl+gcN+QscYBjez8hDCt85O7RLDttQ==
+  dependencies:
+    resolve-from "^5.0.0"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -9172,9 +9186,9 @@ is-buffer@^1.1.5:
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
 
 is-callable@^1.1.4, is-callable@^1.2.3:
-  version "1.2.4"
-  resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.2.4.tgz#47301d58dd0259407865547853df6d61fe471945"
-  integrity sha512-nsuwtxZfMX67Oryl9LCQ+upnC0Z0BgpwntpS89m1H/TLF0zNfzfLMV/9Wa/6MZsj0acpEjAO0KF1xT6ZdLl95w==
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.2.3.tgz#8b1e0500b73a1d76c70487636f368e519de8db8e"
+  integrity sha512-J1DcMe8UYTBSrKezuIUTUwjXsho29693unXM2YhJUTR2txK/eG47bvNa/wipPFmZFgr/N6f1GA66dv0mEyTIyQ==
 
 is-core-module@^2.2.0:
   version "2.5.0"
@@ -9782,6 +9796,34 @@ linkify-it@^3.0.1:
   integrity sha512-gDBO4aHNZS6coiZCKVhSNh43F9ioIL4JwRjLZPkoLIY4yZFwg264Y5lu2x6rb1Js42Gh6Yqm2f6L2AJcnkzinQ==
   dependencies:
     uc.micro "^1.0.1"
+
+lint-to-the-future-ember-template@^0.3.5:
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/lint-to-the-future-ember-template/-/lint-to-the-future-ember-template-0.3.5.tgz#364eb73e76ef9e2631857b3f278689e22238b820"
+  integrity sha512-iQKOrARelzd4HiFomPXKnDVwTCcjBaxpN+XO2tXBW4/lu2+mCjUPQq5qj+QJ3GHOlHHybKUo/B6FBw8SZpO2kA==
+  dependencies:
+    esm "^3.2.25"
+    import-cwd "^3.0.0"
+    walk-sync "^2.2.0"
+
+lint-to-the-future-eslint@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/lint-to-the-future-eslint/-/lint-to-the-future-eslint-0.2.1.tgz#0726dc6d3b1d022d30f4f6d2f4150f1d8aea9640"
+  integrity sha512-KPLzvzNucDHYDmF0jbENIeB4Vf3sqH0WI9JcWex4BxbsaWj1KTtLXKQXQxx5tqFdKeBYn6NopBzt7bDjm/7XWQ==
+  dependencies:
+    esm "^3.2.25"
+    import-cwd "^3.0.0"
+    walk-sync "^2.2.0"
+
+lint-to-the-future@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/lint-to-the-future/-/lint-to-the-future-0.6.1.tgz#d63b149813da5b97164d54bf3183d3aabd0ba7f6"
+  integrity sha512-O/vaEdHXyhmlE0xkE8UOmOx2PB8aZ2mJwSfkQuQQJ0bX6ks8AROlivCwsmwRn9w80pFUVaY6/RNF7EwGc5f8RA==
+  dependencies:
+    fs-extra "^7.0.1"
+    import-cwd "^3.0.0"
+    minimist "^1.2.5"
+    node-fetch "^2.6.0"
 
 livereload-js@^3.3.1:
   version "3.3.2"
@@ -12185,6 +12227,11 @@ resolve-from@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
   integrity sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==
+
+resolve-from@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-5.0.0.tgz#c35225843df8f776df21c57557bc087e9dfdfc69"
+  integrity sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==
 
 resolve-package-path@^1.0.11, resolve-package-path@^1.2.2, resolve-package-path@^1.2.6:
   version "1.2.7"

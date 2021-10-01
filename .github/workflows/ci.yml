@@ -82,5 +82,5 @@ jobs:
         env:
           PERCY_PARALLEL_NONCE: ${{ env.PERCY_PARALLEL_NONCE }}
           PERCY_PARALLEL_TOTAL: ${{ env.PERCY_PARALLEL_TOTAL }}
-          PERCY_TOKEN: 5ad6687f6b1ad3dec2b964f94d3d59ff3880baccf1492c0663e85c1ce79c1a52
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: yarn run percy exec -- yarn test:ember
