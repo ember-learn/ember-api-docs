@@ -1,4 +1,3 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
 import { classNames } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';
@@ -26,19 +25,19 @@ export default class ApiIndexFilter extends Component {
 
   filterItems(itemType) {
     let items =
-      this.get(`model.${itemType}`) === undefined
+      this.model[`${itemType}`] === undefined
         ? []
-        : this.get(`model.${itemType}`);
-    if (!this.get('filterData.showInherited')) {
+        : this.model[`${itemType}`];
+    if (!this.filterData.showInherited) {
       items = items.filter((item) => item.inherited !== true);
     }
-    if (!this.get('filterData.showProtected')) {
+    if (!this.filterData.showProtected) {
       items = items.filter((item) => item.access !== 'protected');
     }
-    if (!this.get('filterData.showPrivate')) {
+    if (!this.filterData.showPrivate) {
       items = items.filter((item) => item.access !== 'private');
     }
-    if (!this.get('filterData.showDeprecated')) {
+    if (!this.filterData.showDeprecated) {
       items = items.filter((item) => item.deprecated !== true);
     }
 
@@ -91,8 +90,8 @@ export default class ApiIndexFilter extends Component {
    * @method findMostLocal
    */
   findMostLocal(currentItem, nextItem) {
-    let currentScope = this.get('model.file');
-    let parentClassScope = this.get('model.parentClass.file');
+    let currentScope = this.model.file;
+    let parentClassScope = this.model.parentClass.file;
     if (currentScope === currentItem.file) {
       // if the item belongs to the class, keep it
       return currentItem;
