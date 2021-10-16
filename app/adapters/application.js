@@ -40,8 +40,8 @@ export default class Application extends JSONAPIAdapter {
     return !hasId;
   }
 
-  constructor(ids, args) {
-    super(ids, args);
+  constructor() {
+    super(...arguments);
     this.ids = {};
   }
 
