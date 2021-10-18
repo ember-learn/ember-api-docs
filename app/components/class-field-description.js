@@ -1,17 +1,22 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
-import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+import { tracked } from '@glimmer/tracking';
+
+class Field {
+  @tracked name;
+  @tracked class;
+}
 
 export default class ClassFieldDescription extends Component {
   @service
   legacyModuleMappings;
 
-  @computed('field.{name,class}')
+  field = new Field();
+
   get hasImportExample() {
     return this.legacyModuleMappings.hasFunctionMapping(
-      this.get('field.name'),
-      this.get('field.class')
+      this.field.name,
+      this.field.class
     );
   }
 
