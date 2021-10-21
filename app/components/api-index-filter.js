@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import { classNames } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';
@@ -24,10 +25,8 @@ export default class ApiIndexFilter extends Component {
   }
 
   filterItems(itemType) {
-    let items =
-      this.model[`${itemType}`] === undefined
-        ? []
-        : this.model[`${itemType}`];
+    let items = 
+      this.model[itemType] === undefined ? [] : this.model[`${itemType}`];
     if (!this.filterData.showInherited) {
       items = items.filter((item) => item.inherited !== true);
     }
