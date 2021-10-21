@@ -25,7 +25,7 @@ export default class ApiIndexFilter extends Component {
   }
 
   filterItems(itemType) {
-    let items = 
+    let items =
       this.model[itemType] === undefined ? [] : this.model[`${itemType}`];
     if (!this.filterData.showInherited) {
       items = items.filter((item) => item.inherited !== true);
