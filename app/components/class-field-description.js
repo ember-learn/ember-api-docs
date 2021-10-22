@@ -1,22 +1,14 @@
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { tracked } from '@glimmer/tracking';
-
-class Field {
-  @tracked name;
-  @tracked class;
-}
 
 export default class ClassFieldDescription extends Component {
   @service
   legacyModuleMappings;
 
-  field = new Field();
-
   get hasImportExample() {
     return this.legacyModuleMappings.hasFunctionMapping(
-      this.field.name,
-      this.field.class
+      this.args.field.name,
+      this.args.field.class
     );
   }
 
