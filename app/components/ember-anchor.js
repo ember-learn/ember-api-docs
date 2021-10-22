@@ -1,5 +1,3 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods */
-import { get } from '@ember/object';
 import AnchorComponent from 'ember-anchor/components/ember-anchor';
 import config from 'ember-api-docs/config/environment';
 import getOffset from 'ember-api-docs/utils/get-offset';
@@ -8,7 +6,7 @@ export default class EmberAnchor extends AnchorComponent {
   // This overrides Ember Anchor to support scrolling within a fixed position element
   _scrollToElemPosition() {
     let qp = this.anchorQueryParam;
-    let qpVal = this.get(get(this, 'attrs.a') ? 'a' : `controller.${qp}`);
+    let qpVal = this[this['attrs.a'] ? 'a' : `controller.${qp}`];
     let elem = document.querySelector(`[data-${qp}="${qpVal}"]`);
 
     if (elem && elem.offsetHeight) {
