@@ -55,6 +55,17 @@
         <dt>{{param.name}}</dt>
         <dd class="parameter-type">{{param.type}}</dd>
         <dd>{{param.description}}</dd>
+        {{#if param.props}}
+          <dl class="parameters">
+            {{#each param.props as |prop|}}
+              <div class="prop">
+                <dt>{{prop.name}}</dt>
+                <dd class="parameter-type">{{prop.type}}</dd>
+                <dd>{{prop.description}}</dd>
+              </div>
+            {{/each}}
+          </dl>
+        {{/if}}
       </div>
     {{/each}}
     {{#if this.field.return}}
