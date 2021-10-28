@@ -1,12 +1,12 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-hooks */
 import {
   classNames,
   attributeBindings,
   tagName,
 } from '@ember-decorators/component';
-import { set, get, computed } from '@ember/object';
+import { get } from '@ember/object';
 import Component from '@ember/component';
 import { A } from '@ember/array';
+import { tracked } from '@glimmer/tracking';
 
 @tagName('span')
 @classNames('ds-dropdown-menu', 'ds-with-1')
@@ -17,9 +17,11 @@ export default class Dropdown extends Component {
 
   isVisible = false;
 
-  init() {
-    super.init(...arguments);
-    set(this, 'results', A());
+  @tracked results;
+
+  constructor() {
+    super(...arguments);
+    this.results = A();
   }
 
   // show
@@ -32,7 +34,6 @@ export default class Dropdown extends Component {
    *    }
    *  }
    */
-  @computed('results.[]')
   get _groupedResults() {
     if (!get(this, 'results.length')) {
       return {};
