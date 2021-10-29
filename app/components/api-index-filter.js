@@ -90,7 +90,7 @@ export default class ApiIndexFilter extends Component {
    */
   findMostLocal(currentItem, nextItem) {
     let currentScope = this.model.file;
-    let parentClassScope = this.model.get('parentClass').file;
+    let parentClassScope = this.model.get('parentClass').get('file');
     if (currentScope === currentItem.file) {
       // if the item belongs to the class, keep it
       return currentItem;
