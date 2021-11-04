@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 
@@ -9,21 +9,21 @@ export default class ApiIndex extends Component {
       {
         title: 'Methods',
         tab: 'methods',
-        items: this.get('itemData.methods'),
+        items: this.itemData.methods,
         class: 'spec-method-list',
         routeSuffix: '.methods.method',
       },
       {
         title: 'Properties',
         tab: 'properties',
-        items: this.get('itemData.properties'),
+        items: this.itemData.properties,
         class: 'spec-property-list',
         routeSuffix: '.properties.property',
       },
       {
         title: 'Events',
         tab: 'events',
-        items: this.get('itemData.events'),
+        items: this.itemData.events,
         class: 'spec-event-list',
         routeSuffix: '.events.event',
       },

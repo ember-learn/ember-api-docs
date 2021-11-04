@@ -22,9 +22,9 @@ module('Integration | Component | api index filter', function (hooks) {
     },
     name: 'hai',
     file: 'my-class',
-    parentClass: {
+    parentClass: EmberObject.create({
       file: 'my-class',
-    },
+    }),
     methods: [
       {
         name: 'doSomething',
