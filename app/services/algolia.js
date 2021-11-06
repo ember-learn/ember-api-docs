@@ -1,4 +1,3 @@
-/* eslint-disable ember/classic-decorator-hooks */
 import Service from '@ember/service';
 import algoliasearch from 'algoliasearch';
 import config from 'ember-api-docs/config/environment';
@@ -33,8 +32,8 @@ export default class AlgoliaService extends Service {
     return this._indices[IndexName];
   }
 
-  init() {
-    super.init(...arguments);
+  constructor() {
+    super(...arguments);
     this._client = algoliasearch(
       config.algolia.algoliaId,
       config.algolia.algoliaKey
