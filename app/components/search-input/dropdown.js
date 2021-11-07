@@ -34,12 +34,14 @@ export default class Dropdown extends Component {
    *    }
    *  }
    */
+
   get _groupedResults() {
-    if (!get(this, 'results.length')) {
+    let results = this.results || [];
+    if (!results.length) {
       return {};
     }
 
-    const lvl0Group = this.results.reduce((previous, current) => {
+    const lvl0Group = results.reduce((previous, current) => {
       // Remap all lowercase usages of 'guides' to 'Guides'
       let lvl0 = get(current, 'hierarchy.lvl0');
       // If lvl0 doesn't exist in the resulting object, create the array
