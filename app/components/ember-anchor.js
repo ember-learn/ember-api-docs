@@ -7,7 +7,7 @@ export default class EmberAnchor extends AnchorComponent {
   // This overrides Ember Anchor to support scrolling within a fixed position element
   _scrollToElemPosition() {
     let qp = this.anchorQueryParam;
-    let qpVal = this.a ?? this.controller[qp];
+    let qpVal = this.a;
     let elem = document.querySelector(`[data-${qp}="${qpVal}"]`);
 
     if (elem && elem.offsetHeight) {
