@@ -6,7 +6,6 @@ import {
 import { get } from '@ember/object';
 import Component from '@ember/component';
 import { A } from '@ember/array';
-import { tracked } from '@glimmer/tracking';
 
 @tagName('span')
 @classNames('ds-dropdown-menu', 'ds-with-1')
@@ -16,13 +15,6 @@ export default class Dropdown extends Component {
   role = 'listbox';
 
   isVisible = false;
-
-  @tracked results;
-
-  constructor() {
-    super(...arguments);
-    this.results = A();
-  }
 
   // show
   // Massage data to make it easier for displaying on the template
