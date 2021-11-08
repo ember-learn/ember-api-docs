@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
+/* eslint-disable ember/no-computed-properties-in-native-classes */
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { readOnly, alias } from '@ember/object/computed';
@@ -44,12 +44,12 @@ export default class ProjectVersionController extends Controller {
 
   @computed('model.id')
   get moduleIDs() {
-    return this.getModuleRelationships(this.get('model.id'), 'modules');
+    return this.getModuleRelationships(this.model.id, 'modules');
   }
 
   @computed('model.id')
   get publicModuleIDs() {
-    return this.getModuleRelationships(this.get('model.id'), 'public-modules');
+    return this.getModuleRelationships(this.model.id, 'public-modules');
   }
 
   getModuleRelationships(versionId, moduleType) {
@@ -65,6 +65,7 @@ export default class ProjectVersionController extends Controller {
   }
 
   getRelationshipIDs(relationship) {
+    // eslint-disable-next-line
     const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
     const classes = this.model.hasMany(relationship);
     const sorted = A(classes.ids()).sort();
@@ -94,9 +95,8 @@ export default class ProjectVersionController extends Controller {
 
   @computed('metaStore.availableProjectVersions', 'model.project.id')
   get projectVersions() {
-    const projectVersions = this.get('metaStore.availableProjectVersions')[
-      this.get('model.project.id')
-    ];
+    const projectVersions =
+      this.metaStore.availableProjectVersions[this.model.project.get('id')];
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
@@ -116,9 +116,7 @@ export default class ProjectVersionController extends Controller {
 
   @computed('projectVersions.[]', 'model.version')
   get selectedProjectVersion() {
-    return this.projectVersions.filter(
-      (pV) => pV.id === this.get('model.version')
-    )[0];
+    return this.projectVersions.filter((pV) => pV.id === this.model.version)[0];
   }
 
   @readOnly('model.project.id')
