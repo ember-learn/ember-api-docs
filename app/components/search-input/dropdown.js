@@ -28,7 +28,7 @@ export default class Dropdown extends Component {
    */
 
   get _groupedResults() {
-    let results = this.results || [];
+    let results = get(this, 'results');
     if (!results.length) {
       return {};
     }
