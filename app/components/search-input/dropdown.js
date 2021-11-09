@@ -1,10 +1,9 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-hooks */
 import {
   classNames,
   attributeBindings,
   tagName,
 } from '@ember-decorators/component';
-import { set, get, computed } from '@ember/object';
+import { get } from '@ember/object';
 import Component from '@ember/component';
 import { A } from '@ember/array';
 
@@ -17,11 +16,6 @@ export default class Dropdown extends Component {
 
   isVisible = false;
 
-  init() {
-    super.init(...arguments);
-    set(this, 'results', A());
-  }
-
   // show
   // Massage data to make it easier for displaying on the template
   // Returned object:
@@ -32,13 +26,14 @@ export default class Dropdown extends Component {
    *    }
    *  }
    */
-  @computed('results.[]')
+
   get _groupedResults() {
-    if (!get(this, 'results.length')) {
+    let results = get(this, 'results');
+    if (!results.length) {
       return {};
     }
 
-    const lvl0Group = this.results.reduce((previous, current) => {
+    const lvl0Group = results.reduce((previous, current) => {
       // Remap all lowercase usages of 'guides' to 'Guides'
       let lvl0 = get(current, 'hierarchy.lvl0');
       // If lvl0 doesn't exist in the resulting object, create the array
