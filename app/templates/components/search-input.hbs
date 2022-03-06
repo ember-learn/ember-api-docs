@@ -6,6 +6,7 @@
   onfocus={{action 'onfocus'}}
   onblur={{action 'onblur'}}
   placeholder="Search"
+  data-test-search-input
   >
 {{!-- Search results dropdown --}}
   <EmberTether @target="#search-input" @targetAttachment="bottom left" @attachment="top left" @constraints={{this._resultTetherConstraints}} @class="ds-dropdown-results">
