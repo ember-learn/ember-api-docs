@@ -50,6 +50,10 @@ h3 .access{
   dd {
     display: inline-block;
   }
+  dl.parameters {
+    margin-left: 24px;
+    margin-block-start: 0;
+  }
 }
 
 .method, .property, .event {
