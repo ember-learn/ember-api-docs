@@ -1,5 +1,5 @@
 import { action } from '@ember/object';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
 export default class TableOfContents extends Component {
   @action
