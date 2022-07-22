@@ -16,12 +16,12 @@ module('Integration | Component | table of contents', function (hooks) {
     this.set('classesIDs', CLASSES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          version=emberVersion
-          classesIDs=classesIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @classesIDs={{this.classesIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const contentTitle = document.querySelector(
@@ -43,12 +43,12 @@ module('Integration | Component | table of contents', function (hooks) {
     this.set('moduleIDs', MODULES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          version=emberVersion
-          moduleIDs=moduleIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @moduleIDs={{this.moduleIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const contentReference = '.toc-level-1';
@@ -73,12 +73,12 @@ module('Integration | Component | table of contents', function (hooks) {
     this.set('moduleIDs', MODULES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          version=emberVersion
-          moduleIDs=moduleIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @moduleIDs={{this.moduleIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const contentTitle = document.querySelector(
@@ -107,12 +107,12 @@ module('Integration | Component | table of contents', function (hooks) {
     this.set('moduleIDs', MODULES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          version=emberVersion
-          moduleIDs=moduleIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @moduleIDs={{this.moduleIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const titleButton = document.querySelector(
