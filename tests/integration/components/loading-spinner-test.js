@@ -10,15 +10,15 @@ module('Integration | Component | loading spinner', function (hooks) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
-    await render(hbs`{{loading-spinner}}`);
+    await render(hbs`<LoadingSpinner/>`);
 
     assert.dom('*').hasText('');
 
     // Template block usage:
     await render(hbs`
-      {{#loading-spinner}}
+      <LoadingSpinner>
         template block text
-      {{/loading-spinner}}
+      </LoadingSpinner>
     `);
 
     assert.dom('*').hasText('template block text');
