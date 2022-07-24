@@ -155,7 +155,7 @@ module('Integration | Component | search input', function (hooks) {
       ];
     });
 
-    await render(hbs`{{search-input}}`);
+    await render(hbs`<SearchInput/>`);
 
     await fillIn('#search-input', 'model');
 
@@ -171,7 +171,7 @@ module('Integration | Component | search input', function (hooks) {
       return [];
     });
 
-    await render(hbs`{{search-input}}`);
+    await render(hbs`<SearchInput/>`);
 
     await fillIn('#search-input', 'model');
 
