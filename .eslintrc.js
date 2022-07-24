@@ -24,7 +24,6 @@ module.exports = {
     'ember/no-new-mixins': 'off',
     'ember/no-mixins': 'off',
     'ember/require-tagless-components': 'off',
-    'ember/no-test-this-render': 'off',
     'ember/no-classic-classes': 'off',
     'ember/no-get': 'off',
     'ember/no-classic-components': 'off',

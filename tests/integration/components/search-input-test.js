@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { fillIn, waitFor } from '@ember/test-helpers';
+import { fillIn, render, waitFor } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 import { set } from '@ember/object';
 
@@ -155,7 +155,7 @@ module('Integration | Component | search input', function (hooks) {
       ];
     });
 
-    await this.render(hbs`{{search-input}}`);
+    await render(hbs`{{search-input}}`);
 
     await fillIn('#search-input', 'model');
 
@@ -171,7 +171,7 @@ module('Integration | Component | search input', function (hooks) {
       return [];
     });
 
-    await this.render(hbs`{{search-input}}`);
+    await render(hbs`{{search-input}}`);
 
     await fillIn('#search-input', 'model');
 
