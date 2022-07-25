@@ -1,5 +1,6 @@
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 
 export default class ClassFieldDescription extends Component {
   @service
@@ -7,8 +8,8 @@ export default class ClassFieldDescription extends Component {
 
   get hasImportExample() {
     return this.legacyModuleMappings.hasFunctionMapping(
-      this.field.name,
-      this.field.class
+      this.args.field.name,
+      this.args.field.class
     );
   }
 
@@ -18,5 +19,8 @@ export default class ClassFieldDescription extends Component {
    * @method updateAnchor
    * @method fieldName String The name representing the field that was clicked.
    */
-  updateAnchor() {}
+  @action
+  updateAnchor(fieldName) {
+    this.args.updateAnchor?.(fieldName);
+  }
 }

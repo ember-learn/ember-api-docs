@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Typography
 $base-font-family: 'Source Sans Pro', sans-serif;
 $heading-font-family: $base-font-family;
@@ -15,7 +17,7 @@ $heading-line-height: 1.2;
 
 // Spacing
 $base-spacing: $base-line-height * 1em;
-$small-spacing: $base-spacing / 2;
+$small-spacing: math.div($base-spacing, 2);
 $large-spacing: $base-spacing * 2;
 $top-spacing: $base-spacing * 3.333; // 80px
 
