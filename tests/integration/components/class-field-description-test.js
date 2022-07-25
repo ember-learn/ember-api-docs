@@ -26,7 +26,9 @@ module('Integration | Component | class field description', function (hooks) {
       })
     );
 
-    await render(hbs`{{class-field-description type=type field=field}}`);
+    await render(
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+    );
 
     assert.dom('.method-name').hasText('concat');
     assert.dom(findAll('.access')[0]).hasText('public');
@@ -47,7 +49,9 @@ module('Integration | Component | class field description', function (hooks) {
       })
     );
 
-    await render(hbs`{{class-field-description type=type field=field}}`);
+    await render(
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+    );
 
     await triggerEvent('.class-field-description--link', 'mouseenter');
     assert
@@ -73,7 +77,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`{{class-field-description field=field updateAnchor=updateAnchor}}`
+      hbs`<ClassFieldDescription @field={{this.field}} @updateAnchor={{this.updateAnchor}}/>`
     );
 
     await click('.class-field-description--link');
@@ -98,7 +102,9 @@ module('Integration | Component | class field description', function (hooks) {
       })
     );
 
-    await render(hbs`{{class-field-description type=type field=field}}`);
+    await render(
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+    );
 
     assert.dom(find('.prop:nth-child(1) dt')).hasText('prop1');
     assert.dom(find('.prop:nth-child(2) dt')).hasText('prop2');
