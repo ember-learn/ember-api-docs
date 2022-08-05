@@ -92,4 +92,39 @@ AppRouter.map(function () {
   this.route('data-module', { path: '/data/modules/:module' });
 });
 
+/*
+404
+ember-cli
+project
+
+/:project/:project_version
+  /classes/:class
+    /methods, /properties, /events
+  /functions/:module (no sub routes)
+  /namespaces/:namespace
+    /methods, /properties, /events
+  /modules/:module
+    /methods, /properties, /events
+
+SUB ROUTES
+
+Instead of https://api.emberjs.com/ember/4.6/classes/Engine/methods/unregister?anchor=unregister
+We can do https://api.emberjs.com/ember/4.6/classes/Engine/methods?anchor=unregister
+
+  /methods/:method
+  /properties/:property
+  /events/:event
+
+OTHER STATES
+private, deprecated, inherited, protected
+inherited is not reflected in URL state but it's checked by default
+
+MAYBE REDIRECTS
+
+/data/modules/:module
+/data/classes/:class
+/modules/:module
+/classes/:class
+*/
+
 export default AppRouter;
