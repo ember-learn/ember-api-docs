@@ -112,7 +112,7 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
-    "sass": "^1.25.0",
+    "sass": "^1.54.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
     "testem": "^2.14.0"
