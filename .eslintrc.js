@@ -44,6 +44,7 @@ module.exports = {
         'lib/**/*.js',
         'bin/*',
         'server/**/*.js',
+        'prember-urls.js',
       ],
       excludedFiles: ['config/deprecation-workflow.js'],
       parserOptions: {

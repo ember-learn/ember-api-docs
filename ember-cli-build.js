@@ -4,11 +4,12 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const envIsProduction = process.env.EMBER_ENV === 'production';
+const premberUrls = require('./prember-urls');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     prember: {
-      urls: [] // fill this in!
+      urls: premberUrls(),
     },
     fingerprint: {
       extensions: [
