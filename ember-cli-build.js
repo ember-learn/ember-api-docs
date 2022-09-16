@@ -66,5 +66,10 @@ module.exports = function (defaults) {
     include: ['mappings.json'],
     destDir: '/assets/',
   });
-  return mergeTrees([app.toTree(), mappingsTree]);
+
+  let docsJsonTree = new Funnel('ember-api-docs-data', {
+    include: ['**/json-docs/**', '**/rev-index/**'],
+  });
+
+  return mergeTrees([app.toTree(), mappingsTree, docsJsonTree]);
 };

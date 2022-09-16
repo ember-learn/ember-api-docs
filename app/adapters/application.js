@@ -6,7 +6,7 @@ import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 
 export default class Application extends JSONAPIAdapter {
-  host = ENV.API_HOST;
+  // host = ENV.API_HOST;
   currentProject = '';
   currentProjectVersion = '';
 
@@ -47,7 +47,7 @@ export default class Application extends JSONAPIAdapter {
 
   async findRecord(store, { modelName }, id) {
     let url;
-    let host = this.host;
+    // let host = this.host;
     let projectName = this.currentProject;
 
     if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
@@ -85,7 +85,7 @@ export default class Application extends JSONAPIAdapter {
       throw new Error('Unexpected model lookup');
     }
 
-    url = `${host}/${url}.json`;
+    url = `/${url}.json`;
 
     let response = await fetch(url);
     let json = await response.json();

@@ -13,6 +13,7 @@
     "test": "tests"
   },
   "scripts": {
+    "clone": "rm -rf ember-api-docs-data && git clone --depth=1 https://github.com/ember-learn/ember-api-docs-data.git",
     "build": "ember build --environment=production",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
