@@ -157,5 +157,10 @@
   "volta": {
     "node": "14.17.0",
     "npm": "8.19.3"
+  },
+  "ember-addon": {
+    "paths": [
+      "lib/api-docs-data"
+    ]
   }
 }
