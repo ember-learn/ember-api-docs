@@ -5,7 +5,22 @@ module.exports = function () {
 
   const urls = [];
 
-  projects.forEach((p) => urls.push(`/${p}/release`));
+  projects.forEach((p) => {
+    // add release for each of the projects
+    urls.push(`/${p}/release`);
+
+    // add landing page for each of the projects versions
+    const projectVersions = readdirSync(`ember-api-docs-data/json-docs/${p}`)
+      .filter((v) => v.match(/\d+\.\d+\.\d+/))
+      .map((v) => {
+        let [, major, minor] = v.match(/(\d+)\.(\d+)\.\d+/);
+        return `${major}.${minor}`;
+      }); // uniq
+
+    [...new Set(projectVersions)].forEach((v) => {
+      urls.push(`/${p}/${v}`);
+    });
+  });
 
   return urls;
 };
