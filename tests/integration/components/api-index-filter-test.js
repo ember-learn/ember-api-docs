@@ -86,34 +86,34 @@ module('Integration | Component | api index filter', function (hooks) {
     };
 
     await render(hbs`
-      {{#api-index-filter model=model filterData=filterData as |myModel|}}
+      {{#api-index-filter model=this.model filterData=this.filterData as |myModel|}}
           <section>
             Show:
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{filterData.showInherited}}"
+                     checked="{{this.filterData.showInherited}}"
                      onchange={{action "updateFilter" "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
-                     checked={{filterData.showProtected}}
+                     checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" \"showProtected\"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id=\"private-toggle\"
                      type=\"checkbox\"
-                     checked={{sectionData.showPrivate}}
+                     checked={{this.sectionData.showPrivate}}
                      onchange={{action \"updateFilter\" \"showPrivate\"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{sectionData.showDeprecated}}\"
+                     checked=\"{{this.sectionData.showDeprecated}}\"
                      onchange={{action \"updateFilter\" \"showDeprecated\"}}>
             </label>
           </section>
@@ -151,34 +151,34 @@ module('Integration | Component | api index filter', function (hooks) {
     };
 
     await render(hbs`
-      {{#api-index-filter model=model filterData=filterData updateFilter=(action "updateFilter") as |myModel|}}
+      {{#api-index-filter model=this.model filterData=this.filterData updateFilter=(action "updateFilter") as |myModel|}}
           <section>
             Show:
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{filterData.showInherited}}"
+                     checked="{{this.filterData.showInherited}}"
                      onchange={{action "updateFilter" "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
-                     checked={{filterData.showProtected}}
+                     checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" \"showProtected\"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
-                     checked={{filterData.showPrivate}}
+                     checked={{this.filterData.showPrivate}}
                      onchange={{action "updateFilter" "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{sectionData.showDeprecated}}\"
+                     checked=\"{{this.sectionData.showDeprecated}}\"
                      onchange={{action \"updateFilter\" \"showDeprecated\"}}>
             </label>
           </section>
@@ -216,34 +216,34 @@ module('Integration | Component | api index filter', function (hooks) {
     };
 
     await render(hbs`
-      {{#api-index-filter model=model filterData=filterData as |myModel|}}
+      {{#api-index-filter model=this.model filterData=this.filterData as |myModel|}}
           <section>
             Show:
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{filterData.showInherited}}"
+                     checked="{{this.filterData.showInherited}}"
                      onchange={{action "updateFilter" "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
-                     checked={{filterData.showProtected}}
+                     checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" \"showProtected\"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
-                     checked={{filterData.showPrivate}}
+                     checked={{this.filterData.showPrivate}}
                      onchange={{action "updateFilter" "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{sectionData.showDeprecated}}\"
+                     checked=\"{{this.sectionData.showDeprecated}}\"
                      onchange={{action \"updateFilter\" \"showDeprecated\"}}>
             </label>
           </section>
@@ -285,34 +285,34 @@ module('Integration | Component | api index filter', function (hooks) {
     };
 
     await render(hbs`
-      {{#api-index-filter model=model filterData=filterData as |myModel|}}
+      {{#api-index-filter model=this.model filterData=this.filterData as |myModel|}}
           <section>
             Show:
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{filterData.showInherited}}"
+                     checked="{{this.filterData.showInherited}}"
                      onchange={{action "updateFilter" "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
-                     checked={{filterData.showProtected}}
+                     checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
-                     checked={{filterData.showPrivate}}
+                     checked={{this.filterData.showPrivate}}
                      onchange={{action "updateFilter" "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked="{{filterData.showDeprecated}}"
+                     checked="{{this.filterData.showDeprecated}}"
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
@@ -362,34 +362,34 @@ module('Integration | Component | api index filter', function (hooks) {
     };
 
     await render(hbs`
-      {{#api-index-filter model=model filterData=filterData as |myModel|}}
+      {{#api-index-filter model=this.model filterData=this.filterData as |myModel|}}
           <section>
             Show:
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{filterData.showInherited}}"
+                     checked="{{this.filterData.showInherited}}"
                      onchange={{action "updateFilter" "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
-                     checked={{filterData.showProtected}}
+                     checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
-                     checked={{filterData.showPrivate}}
+                     checked={{this.filterData.showPrivate}}
                      onchange={{action "updateFilter" "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked="{{filterData.showDeprecated}}"
+                     checked="{{this.filterData.showDeprecated}}"
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
@@ -444,7 +444,7 @@ module('Integration | Component | api index filter', function (hooks) {
     this.set('filterData', filterData);
 
     await render(hbs`
-      {{#api-index-filter model=model filterData=filterData as |myModel|}}
+      {{#api-index-filter model=this.model filterData=this.filterData as |myModel|}}
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
             <p class=\"method-name\">{{method.name}}</p>

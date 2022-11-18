@@ -14,7 +14,7 @@ module('helper:is-latest', function (hooks) {
     this.set('allVersions', versions);
 
     await render(hbs`
-  {{#if (is-latest version=version allVersions=allVersions)}}
+  {{#if (is-latest version=this.version allVersions=this.allVersions)}}
     Hello World
   {{/if}}
   `);
@@ -26,7 +26,7 @@ module('helper:is-latest', function (hooks) {
     this.set('version', '3.1.0');
     this.set('allVersions', versions);
     await render(hbs`
-  {{#if (is-latest version=version allVersions=allVersions)}}
+  {{#if (is-latest version=this.version allVersions=this.allVersions)}}
     Hello World
   {{/if}}
   `);

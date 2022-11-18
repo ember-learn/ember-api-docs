@@ -28,7 +28,14 @@
     </PowerSelect>
   </div>
 
-  <TableOfContents @version={{this.urlVersion}} @classesIDs={{this.shownClassesIDs}} @moduleIDs={{this.shownModuleIDs}} @namespaceIDs={{this.shownNamespaceIDs}} @showPrivateClasses={{this.showPrivateClasses}} @isShowingNamespaces={{version-lt this.selectedProjectVersion.compactVersion "2.16"}} />
+  <TableOfContents
+    @version={{this.urlVersion}}
+    @classesIDs={{this.shownClassesIDs}}
+    @moduleIDs={{this.shownModuleIDs}}
+    @namespaceIDs={{this.shownNamespaceIDs}}
+    @showPrivateClasses={{this.showPrivateClasses}}
+    @isShowingNamespaces={{version-lt this.selectedProjectVersion.compactVersion "2.16"}}
+  />
 </aside>
 <section class="content">
   {{outlet}}
