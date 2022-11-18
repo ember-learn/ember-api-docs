@@ -10,7 +10,7 @@
       <div class="attribute">
         <span class="attribute-label">Extends:</span>
         <span class="attribute-value">
-          <LinkTo 
+          <LinkTo
             @route="project-version.classes.class"
             @models={{array @model.extendedClassProjectName @model.projectVersion.compactVersion @model.extendedClassShortName}}
             data-test-extends-link
@@ -26,7 +26,7 @@
         <span class="attribute-value">
           {{#each @model.usesObjects as |parentClass idx|}}
             {{#if (not-eq idx 0)}}<span class="comma">,</span>{{/if}}
-            <LinkTo @route="project-version.classes.class" @model={{array parentClass.projectId @model.projectVersion.compactVersion parentClass.shortName}} data-test-uses-link>{{parentClass.name}}</LinkTo>
+            <LinkTo @route="project-version.classes.class" @models={{array parentClass.projectId @model.projectVersion.compactVersion parentClass.shortName}} data-test-uses-link>{{parentClass.name}}</LinkTo>
           {{/each}}
         </span>
       </div>
@@ -43,7 +43,7 @@
       <div class="attribute">
         <span class="attribute-label">Module:</span>
         <span class="attribute-value">
-          <LinkTo 
+          <LinkTo
             @route="project-version.modules.module"
             @models={{array @model.projectVersion.compactVersion @model.module}}
           >
