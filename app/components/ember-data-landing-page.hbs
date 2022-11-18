@@ -10,27 +10,27 @@
   </h2>
   <ul class="spec-method-list">
     <li>
-      {{#link-to "project-version.classes.class" "Model"}}
+      <LinkTo @route="project-version.classes.class" @model="Model">
         Model
-      {{/link-to}}
+      </LinkTo>
       - an object that represents the underlying data that your application presents to the user.
     </li>
     <li>
-      {{#link-to "project-version.classes.class" "Store"}}
+      <LinkTo @route="project-version.classes.class" @model="Store">
         Store
-      {{/link-to}}
+      </LinkTo>
       - a service that contains all of the data for records loaded from the server.
     </li>
     <li>
-      {{#link-to "project-version.classes.class" "Adapter"}}
+      <LinkTo @route="project-version.classes.class" @model="Adapter">
         Adapter
-      {{/link-to}}
+      </LinkTo>
       - determines how data is persisted to a backend data store.
     </li>
     <li>
-      {{#link-to "project-version.classes.class" "Serializer"}}
+      <LinkTo @route="project-version.classes.class" @model="Serializer">
         Serializer
-      {{/link-to}}
+      </LinkTo>
       - format the data sent to and received from the backend store.
     </li>
   </ul>
