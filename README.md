@@ -42,7 +42,7 @@ locally yourself.
 ```
 git clone https://github.com/ember-learn/ember-api-docs.git
 cd ember-api-docs
-npm install
+yarn install
 ember serve
 ```
 View at http://localhost:4200
@@ -53,9 +53,9 @@ To run a11y tests, run `test_a11y=yes ember serve`
 
 ## Linting
 
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `yarn run lint:hbs`
+* `yarn run lint:js`
+* `yarn run lint:js -- --fix`
 
 ## Staging and Deployment
 
