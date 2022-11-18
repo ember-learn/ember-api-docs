@@ -1,7 +1,13 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, findAll, triggerEvent } from '@ember/test-helpers';
+import {
+  render,
+  click,
+  findAll,
+  find,
+  triggerEvent,
+} from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | class field description', function (hooks) {
@@ -20,7 +26,9 @@ module('Integration | Component | class field description', function (hooks) {
       })
     );
 
-    await render(hbs`{{class-field-description type=type field=field}}`);
+    await render(
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+    );
 
     assert.dom('.method-name').hasText('concat');
     assert.dom(findAll('.access')[0]).hasText('public');
@@ -41,7 +49,9 @@ module('Integration | Component | class field description', function (hooks) {
       })
     );
 
-    await render(hbs`{{class-field-description type=type field=field}}`);
+    await render(
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+    );
 
     await triggerEvent('.class-field-description--link', 'mouseenter');
     assert
@@ -67,11 +77,36 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`{{class-field-description field=field updateAnchor=updateAnchor}}`
+      hbs`<ClassFieldDescription @field={{this.field}} @updateAnchor={{this.updateAnchor}}/>`
     );
 
     await click('.class-field-description--link');
 
     assert.verifySteps(['updateAnchorAction']);
+  });
+
+  test('parameter props are displayed', async function (assert) {
+    this.set('type', 'method');
+    this.set(
+      'field',
+      EmberObject.create({
+        access: 'public',
+        deprecated: true,
+        name: 'concat',
+        description: 'concatenates',
+        params: [
+          { name: 'param1' },
+          { name: 'param2' },
+          { name: 'options', props: [{ name: 'prop1' }, { name: 'prop2' }] },
+        ],
+      })
+    );
+
+    await render(
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+    );
+
+    assert.dom(find('.prop:nth-child(1) dt')).hasText('prop1');
+    assert.dom(find('.prop:nth-child(2) dt')).hasText('prop2');
   });
 });
