@@ -55,7 +55,7 @@
     "ember-cli-deploy-gzip": "^1.0.0",
     "ember-cli-deprecation-workflow": "^1.0.1",
     "ember-cli-document-title-northm": "^1.0.3",
-    "ember-cli-fastboot": "^2.0.0",
+    "ember-cli-fastboot": "^3.3.2",
     "ember-cli-htmlbars": "^5.7.1",
     "ember-cli-inject-live-reload": "^2.0.2",
     "ember-cli-meta-tags": "^5.1.0",
@@ -63,7 +63,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-terser": "^4.0.1",
     "ember-composable-helpers": "^3.1.1",
-    "ember-concurrency": "^1.1.6",
+    "ember-concurrency": "^2.3.7",
     "ember-data": "~3.26.0",
     "ember-data-fastboot": "https://codeload.github.com/gaurav0/ember-data-fastboot/tar.gz/a681c9f3d3e550cc97520abd88272691170e4094",
     "ember-exam": "^1.0.0",
@@ -94,7 +94,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "express-sslify": "^1.2.0",
-    "fastboot-app-server": "^2.0.0",
+    "fastboot-app-server": "^3.3.2",
     "lint-to-the-future": "^0.6.1",
     "lint-to-the-future-ember-template": "^0.3.5",
     "lint-to-the-future-eslint": "^0.2.1",
@@ -112,15 +112,14 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
-    "sass": "^1.25.0",
+    "sass": "^1.54.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
     "testem": "^2.14.0"
   },
   "engines": {
-    "node": "10.* || 12.* || 14.*",
-    "npm": "7",
-    "yarn": "1.22.*"
+    "node": "14.* || 16.* || 18.*",
+    "npm": "8"
   },
   "cacheDirectories": [
     "node_modules"
@@ -136,6 +135,6 @@
   ],
   "volta": {
     "node": "14.17.0",
-    "yarn": "1.22.11"
+    "yarn": "1.22.19"
   }
 }
