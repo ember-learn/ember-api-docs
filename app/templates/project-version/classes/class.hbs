@@ -9,7 +9,15 @@
     {{#if @model.extends}}
       <div class="attribute">
         <span class="attribute-label">Extends:</span>
-        <span class="attribute-value">{{#link-to 'project-version.classes.class' @model.extendedClassProjectName @model.projectVersion.compactVersion @model.extendedClassShortName data-test-extends-link=true}}{{@model.extends}}{{/link-to}}</span>
+        <span class="attribute-value">
+          <LinkTo
+            @route="project-version.classes.class"
+            @models={{array @model.extendedClassProjectName @model.projectVersion.compactVersion @model.extendedClassShortName}}
+            data-test-extends-link
+          >
+            {{@model.extends}}
+          </LinkTo>
+        </span>
       </div>
     {{/if}}
     {{#if @model.uses}}
@@ -18,7 +26,7 @@
         <span class="attribute-value">
           {{#each @model.usesObjects as |parentClass idx|}}
             {{#if (not-eq idx 0)}}<span class="comma">,</span>{{/if}}
-            {{#link-to 'project-version.classes.class' parentClass.projectId @model.projectVersion.compactVersion parentClass.shortName data-test-uses-link=true}}{{parentClass.name}}{{/link-to}}
+            <LinkTo @route="project-version.classes.class" @models={{array parentClass.projectId @model.projectVersion.compactVersion parentClass.shortName}} data-test-uses-link>{{parentClass.name}}</LinkTo>
           {{/each}}
         </span>
       </div>
@@ -34,7 +42,14 @@
     {{#if @model.module}}
       <div class="attribute">
         <span class="attribute-label">Module:</span>
-        <span class="attribute-value"><LinkTo @route="project-version.modules.module" @models={{array @model.projectVersion.compactVersion @model.module}}>{{@model.module}}</LinkTo></span>
+        <span class="attribute-value">
+          <LinkTo
+            @route="project-version.modules.module"
+            @models={{array @model.projectVersion.compactVersion @model.module}}
+          >
+            {{@model.module}}
+          </LinkTo>
+        </span>
       </div>
     {{/if}}
     {{#if @model.since}}
