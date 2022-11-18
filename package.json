@@ -63,7 +63,7 @@
     "ember-cli-shims": "^1.2.0",
     "ember-cli-terser": "^4.0.1",
     "ember-composable-helpers": "^3.1.1",
-    "ember-concurrency": "^1.1.6",
+    "ember-concurrency": "^2.3.7",
     "ember-data": "~3.26.0",
     "ember-data-fastboot": "https://codeload.github.com/gaurav0/ember-data-fastboot/tar.gz/a681c9f3d3e550cc97520abd88272691170e4094",
     "ember-exam": "^1.0.0",
