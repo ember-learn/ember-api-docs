@@ -28,9 +28,12 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     assert.equal(currentURL(), '/ember/release/modules/@ember%2Fapplication');
   });
 
-  test('should convert url for legacy ember data module to index', async function (assert) {
+  test('should convert url for legacy ember data module to overview', async function (assert) {
     await visit('/data/modules/ember-data.html');
-    assert.equal(currentURL(), '/ember-data/release');
+    assert.equal(
+      currentURL(),
+      '/ember-data/release/modules/ember-data-overview'
+    );
   });
 
   test('should convert unknown legacy modules url to landing page', async function (assert) {

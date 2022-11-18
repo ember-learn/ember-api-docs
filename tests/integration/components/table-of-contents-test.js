@@ -12,18 +12,16 @@ module('Integration | Component | table of contents', function (hooks) {
 
   test('it renders', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
     this.set('classesIDs', CLASSES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          projectid=projectId
-          version=emberVersion
-          classesIDs=classesIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @classesIDs={{this.classesIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const contentTitle = document.querySelector(
@@ -41,18 +39,16 @@ module('Integration | Component | table of contents', function (hooks) {
 
   test('Starts with underlying content visible', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          projectid=projectId
-          version=emberVersion
-          moduleIDs=moduleIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @moduleIDs={{this.moduleIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const contentReference = '.toc-level-1';
@@ -73,18 +69,16 @@ module('Integration | Component | table of contents', function (hooks) {
 
   test('Underlying content hides once clicked', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          projectid=projectId
-          version=emberVersion
-          moduleIDs=moduleIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @moduleIDs={{this.moduleIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const contentTitle = document.querySelector(
@@ -109,18 +103,16 @@ module('Integration | Component | table of contents', function (hooks) {
 
   test('Underlying content should be visible after 2 clicks', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
-    this.set('projectId', 'Ember');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
     await render(hbs`
-      {{
-        table-of-contents showPrivateClasses=true
-          projectid=projectId
-          version=emberVersion
-          moduleIDs=moduleIDs
-          isShowingNamespaces=true
-       }}
+      <TableOfContents
+        @showPrivateClasses={{true}}
+        @version={{this.emberVersion}}
+        @moduleIDs={{this.moduleIDs}}
+        @isShowingNamespaces={{true}}
+      />
     `);
 
     const titleButton = document.querySelector(
