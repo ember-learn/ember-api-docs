@@ -52,14 +52,18 @@ module('Integration | Component | api index', function (hooks) {
               <ul class=\"{{section.class}}\">
                 {{#each section.items as |item|}}
                   <li>
-                    {{#link-to \"item.route\"
-                               sectionData.projectId
-                               sectionData.projectVersion
-                               sectionData.name
-                               item.name
-                               (query-params anchor=item.name)}}
+                    <LinkTo
+                      @route=\"item.route\"
+                      @models={{array
+                        sectionData.projectId
+                        sectionData.projectVersion
+                        sectionData.name
+                        item.name
+                      }}
+                      @query={{hash anchor=item.name}}
+                    >
                       {{item.name}}
-                    {{/link-to}}
+                    </LinkTo>
                   </li>
                 {{/each}}
               </ul>
@@ -126,14 +130,18 @@ module('Integration | Component | api index', function (hooks) {
               <ul class=\"{{section.class}}\">
                 {{#each section.items as |item|}}
                   <li>
-                    {{#link-to \"item.route\"
-                               sectionData.projectId
-                               sectionData.projectVersion
-                               sectionData.name
-                               item.name
-                               (query-params anchor=item.name)}}
+                    <LinkTo
+                      @route=\"item.route\"
+                      @models={{array
+                        sectionData.projectId
+                        sectionData.projectVersion
+                        sectionData.name
+                        item.name
+                      }}
+                      @query={{hash anchor=item.name}}
+                    >
                       {{item.name}}
-                    {{/link-to}}
+                    </LinkTo>
                   </li>
                 {{/each}}
               </ul>
@@ -268,14 +276,18 @@ module('Integration | Component | api index', function (hooks) {
               <ul class=\"{{section.class}}\">
                 {{#each section.items as |item|}}
                   <li>
-                    {{#link-to \"item.route\"
-                               sectionData.projectId
-                               sectionData.projectVersion
-                               sectionData.name
-                               item.name
-                               (query-params anchor=item.name)}}
+                    <LinkTo
+                      @route=\"item.route\"
+                      @models={{array
+                        sectionData.projectId
+                        sectionData.projectVersion
+                        sectionData.name
+                        item.name
+                      }}
+                      @query={{hash anchor=item.name}}
+                    >
                       {{item.name}}
-                    {{/link-to}}
+                    </LinkTo>
                   </li>
                 {{/each}}
               </ul>
@@ -410,14 +422,18 @@ module('Integration | Component | api index', function (hooks) {
               <ul class=\"{{section.class}}\">
                 {{#each section.items as |item|}}
                   <li>
-                    {{#link-to "item.route"
-                               sectionData.projectId
-                               sectionData.projectVersion
-                               sectionData.name
-                               item.name
-                               (query-params anchor=item.name)}}
+                    <LinkTo
+                      @route=\"item.route\"
+                      @models={{array
+                        sectionData.projectId
+                        sectionData.projectVersion
+                        sectionData.name
+                        item.name
+                      }}
+                      query={{hash anchor=item.name}}
+                    >
                       {{item.name}}
-                    {{/link-to}}
+                    </LinkTo>
                   </li>
                 {{/each}}
               </ul>
