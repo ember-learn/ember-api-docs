@@ -1,12 +1,12 @@
-<ol class='toc-level-0'>
-  <li class='toc-level-0'>
+<ol class='toc-level-0 link-underline-override'>
+  <li class='toc-level-0 large list-unstyled link-underline-override'>
     <a {{action 'toggle' 'modules'}} href='#' data-test-toc-title='packages'>Packages</a>
-    <ol class='toc-level-1 modules selected'>
+    <ol class='toc-level-1 modules selected medium regular list-unstyled'>
       {{#each @moduleIDs as |moduleID|}}
 
         {{#if (not-eq moduleID '@ember/object/computed')}}
-          <li class='toc-level-1' data-test-module={{moduleID}}>
-            <LinkTo @route='project-version.modules.module' @models={{array @version moduleID}}>{{moduleID}}</LinkTo>
+          <li class='toc-level-1 medium regular pl-2 list-unstyle link-underline-override' data-test-module={{moduleID}}>
+            <LinkTo class='link-underline-override' @route='project-version.modules.module' @models={{array @version moduleID}}>{{moduleID}}</LinkTo>
           </li>
         {{/if}}
 
@@ -17,9 +17,9 @@
   {{#if @isShowingNamespaces}}
     <li class='toc-level-0'>
       <a {{action 'toggle' 'namespaces'}} href='#' data-test-toc-title='namespaces'>Namespaces</a>
-      <ol class='toc-level-1 namespaces selected'>
+      <ol class='toc-level-1 namespaces selected medium regular'>
         {{#each @namespaceIDs as |namespaceID|}}
-          <li class='toc-level-1' data-test-namespace={{namespaceID}}>
+          <li class='toc-level-1 medium regular pl-2 list-unstyled' data-test-namespace={{namespaceID}}>
             <LinkTo @route='project-version.namespaces.namespace' @models={{array @version namespaceID}}>{{namespaceID}}</LinkTo>
           </li>
         {{/each}}
@@ -27,11 +27,11 @@
     </li>
   {{/if}}
 
-  <li class='toc-level-0'>
+  <li class='toc-level-0 large list-unstyled"'>
     <a {{action 'toggle' 'classes'}} href='#' data-test-toc-title='classes'>Classes</a>
-    <ol class='toc-level-1 classes selected'>
+    <ol class='toc-level-1 classes selected medium regular'>
       {{#each @classesIDs as |classID|}}
-        <li class='toc-level-1' data-test-class={{classID}}>
+        <li class='toc-level-1 medium regular pl-2 list-unstyled link-underline-override' data-test-class={{classID}}>
           <LinkTo @route='project-version.classes.class' @models={{array @version classID}}>{{classID}}</LinkTo>
         </li>
       {{/each}}

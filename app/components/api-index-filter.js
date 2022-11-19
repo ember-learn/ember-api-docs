@@ -1,13 +1,10 @@
 /* eslint-disable ember/no-computed-properties-in-native-classes */
-import { classNames } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';
 import sortBy from 'lodash.sortby';
 
 const filterDataComputedParams =
   'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
-
-@classNames('api-index-filter')
 export default class ApiIndexFilter extends Component {
   @computed('model.methods.[]', filterDataComputedParams)
   get filteredMethods() {

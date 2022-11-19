@@ -2,7 +2,7 @@ article {
   padding: $large-spacing $small-spacing;
 
   @media (min-width: $medium-screen){
-    padding: $small-spacing;
+    padding: 0 $large-spacing;
   }
 
   .edit-page {
@@ -39,47 +39,6 @@ article {
 
   ol {
     @extend %default-ol;
-  }
-
-  footer {
-    @include clearfix;
-    border-top: $base-border;
-    margin-top: 5em;
-    padding: $base-spacing 0;
-
-    a {
-      &::before,
-      &::after {
-        display: inline-block;
-        font-weight: 700;
-        margin: 0 0.5em;
-        transition: transform $duration;
-      }
-    }
-
-    .previous-guide {
-      float: left;
-
-      &::before {
-        content: "\2039";
-      }
-
-      &:hover::before {
-        transform: translateX(-0.5em);
-      }
-    }
-
-    .next-guide {
-      float: right;
-
-      &::after {
-        content: "\203A";
-      }
-
-      &:hover::after {
-        transform: translateX(0.5em);
-      }
-    }
   }
 
   table {

@@ -4,12 +4,6 @@ main {
   }
 }
 
-.container {
-  margin: 0 auto;
-  padding: 0 1em;
-  &::after {
-  	clear: both;
-  	content: '';
-  	display: table;
-  }
+body {
+  background: var(--color-gray-100);
 }

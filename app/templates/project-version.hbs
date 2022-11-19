@@ -1,14 +1,14 @@
 <aside class="sidebar col-1-large col-6">
   <ol class="toc-level-0">
-    <li class="toc-level-0 large margin-bottom-small list-unstyled" data-test-home>
-      <LinkTo @route="project" @model="ember">Home</LinkTo>
+    <li class="toc-level-0 large list-unstyled" data-test-home>
+      <LinkTo class='link-underline-override' @route="project" @model="ember">Home</LinkTo>
     </li>
-    <li class="toc-level-0 large margin-vertical-small  list-unstyled">
+    <li class="toc-level-0 large my-2 list-unstyled">
       <span class="toc-spacing">Projects</span>
       <ol class="toc-level-1 selected" style="display: block;">
-        <li class="toc-level-1 medium regular padding-left-small list-unstyled"><LinkTo @route="project" @model="ember" @current-when={{eq this.activeProject "ember"}} class="spec-ember">Ember</LinkTo></li>
-        <li class="toc-level-1 medium regular padding-left-small list-unstyled"><LinkTo @route="project" @model="ember-data" @current-when={{eq this.activeProject "ember-data"}} class="spec-ember-data">Ember Data</LinkTo></li>
-        <li class="toc-level-1 medium regular padding-left-small list-unstyled"><LinkTo @route="project" @model="ember-cli" @current-when={{eq this.activeProject "ember-cli"}} class="spec-ember">Ember CLI</LinkTo></li>
+        <li class="toc-level-1 medium regular pl-2 list-unstyled"><LinkTo @route="project" @model="ember" @current-when={{eq this.activeProject "ember"}} class="link-underline-override spec-ember">Ember</LinkTo></li>
+        <li class="toc-level-1 medium regular pl-2 list-unstyled"><LinkTo @route="project" @model="ember-data" @current-when={{eq this.activeProject "ember-data"}} class="link-underline-override spec-ember-data">Ember Data</LinkTo></li>
+        <li class="toc-level-1 medium regular pl-2 list-unstyled"><LinkTo @route="project" @model="ember-cli" @current-when={{eq this.activeProject "ember-cli"}} class="link-underline-override spec-ember">Ember CLI</LinkTo></li>
       </ol>
     </li>
   </ol>

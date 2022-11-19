@@ -15,6 +15,16 @@
   }
 }
 
+.link-underline-override {
+  text-decoration: none!important;
+  background: none!important;
+
+  a {
+    text-decoration: none!important;
+    background: none!important;
+  }
+}
+
 label[for="toc-toggle"] {
   cursor: pointer;
   position: relative;
@@ -70,7 +80,6 @@ label[for="toc-toggle"] {
 }
 
 ol.toc-level-1 {
-  font-size: $base-font-size * 0.9;
   transition: max-height 0.5s ease;
   border-left: 1px solid #74B0CE;
 
@@ -81,7 +90,7 @@ ol.toc-level-1 {
   // override ember-styleguide link color
   a {
     color: #42474f;
-    padding-left: 2rem;
+    padding-left: 0.5rem;
   }
 
   &:not(.selected) {
@@ -90,7 +99,7 @@ ol.toc-level-1 {
   } 
 
   li {
-    border-left: 3px solid transparent;
+    border-left: 5px solid transparent;
     transition: border-width $duration, margin-right $duration;
     padding-top: 0.3em;
     padding-bottom: 0.3em;
@@ -98,11 +107,6 @@ ol.toc-level-1 {
     &.selected,
     &:hover {
       border-left-color: #74B0CE;
-    }
-
-    &:hover {
-      border-left-width: 6px;
-      margin-right: -3px;
     }
   }
 }
