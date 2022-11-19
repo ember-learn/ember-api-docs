@@ -1,22 +1,57 @@
 /* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
-import { action, computed } from '@ember/object';
+import { action, computed, set, get } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
+import { A } from '@ember/array';
+import { capitalize } from '@ember/string';
+import { isEmpty } from '@ember/utils';
 import ParentNameMixin from 'ember-api-docs/mixins/parent-name';
-import FilterParams from 'ember-api-docs/mixins/filter-params';
+
+const filterTypes = ['inherited', 'protected', 'private', 'deprecated'];
+const DEFAULT_FILTER = 'inherited';
 
 export default class ClassController extends Controller.extend(
-  ParentNameMixin,
-  FilterParams
+  ParentNameMixin
 ) {
   @service
   filterData;
+
+  queryParams = [{ visibilityFilter: 'show' }];
 
   @service
   legacyModuleMappings;
 
   @service
   metaStore;
+
+  @computed(
+    'filterData.{showInherited,showProtected,showPrivate,showDeprecated}'
+  )
+  get visibilityFilter() {
+    let appliedFilters = filterTypes
+      .reduce((filters, filter) => {
+        let filterValue = get(this, `filterData.show${capitalize(filter)}`)
+          ? filter
+          : null;
+        filters.push(filterValue);
+        return filters;
+      }, A())
+      .compact();
+
+    if (isEmpty(appliedFilters)) {
+      return DEFAULT_FILTER;
+    } else {
+      return appliedFilters.join(',');
+    }
+  }
+
+  set visibilityFilter(value = '') {
+    let filters = A(value.split(','));
+    filterTypes.forEach((filter) => {
+      let enabled = filters.indexOf(filter) > -1;
+      set(this, `filterData.show${capitalize(filter)}`, enabled);
+    });
+  }
 
   @computed('legacyModuleMappings.mappings', 'model.{module,name}')
   get hasImportExample() {
