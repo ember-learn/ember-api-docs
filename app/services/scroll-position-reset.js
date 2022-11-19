@@ -34,6 +34,12 @@ export default class ScrollPositionResetService extends Service {
     //TODO: Use routeInfo for reliable behavior
     const dynamicSlugLocation = 3;
 
+    // These will be unset when first entering the app, in which case we know we
+    // are not changing tabs.
+    if (!transition.from || !transition.to) {
+      return false;
+    }
+
     let fromRoutePathParts = transition.from.name.split('.');
     let toRoutePathParts = transition.to.name.split('.');
 
