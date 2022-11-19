@@ -1,5 +1,5 @@
 /* eslint-disable ember/no-computed-properties-in-native-classes */
-import { computed } from '@ember/object';
+import { action, computed, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { readOnly, alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
@@ -121,4 +121,9 @@ export default class ProjectVersionController extends Controller {
 
   @readOnly('model.project.id')
   activeProject;
+
+  @action
+  togglePrivateClasses() {
+    set(this, 'showPrivateClasses', !this.showPrivateClasses);
+  }
 }
