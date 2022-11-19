@@ -5,14 +5,16 @@ import Controller from '@ember/controller';
 import { A } from '@ember/array';
 import { capitalize } from '@ember/string';
 import { isEmpty } from '@ember/utils';
-import ParentNameMixin from 'ember-api-docs/mixins/parent-name';
+import { parentName } from '../../../utils/parent-name';
 
 const filterTypes = ['inherited', 'protected', 'private', 'deprecated'];
 const DEFAULT_FILTER = 'inherited';
 
-export default class ClassController extends Controller.extend(
-  ParentNameMixin
-) {
+export default class ClassController extends Controller {
+  /** @type {import('@ember/routing/router-service').default} */
+  @service
+  router;
+
   @service
   filterData;
 
@@ -74,6 +76,10 @@ export default class ClassController extends Controller.extend(
     return this.get('metaStore.availableProjectVersions')[
       this.get('model.project.id')
     ];
+  }
+
+  get parentName() {
+    return parentName(this.router.currentRouteName);
   }
 
   @action
