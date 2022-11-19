@@ -7,7 +7,6 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: 12
   PERCY_PARALLEL_NONCE: ${{ github.run_id }}-${{ github.run_number }}
   PERCY_PARALLEL_TOTAL: 1
 
@@ -29,13 +28,13 @@ jobs:
 
       - name: Cache Yarn cache and node_modules
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             node_modules
-          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-${{ env.NODE_VERSION }}-
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -43,7 +42,6 @@ jobs:
 
       - name: Lint
         run: yarn lint
-
 
   test-app:
     name: Test app
@@ -53,7 +51,7 @@ jobs:
       - name: Check out a copy of the repo
         uses: actions/checkout@v2
 
-      - name: Use Node.js 14
+      - name: Use Node.js v14
         uses: volta-cli/action@v4
 
       - name: Get Yarn cache path
@@ -62,13 +60,13 @@ jobs:
 
       - name: Cache Yarn cache and node_modules
         id: cache-dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             ${{ steps.yarn-cache-dir-path.outputs.dir }}
             node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-14-
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
