@@ -1,5 +1,15 @@
 {
-    "compilerOptions": {
-      "experimentalDecorators": true
-    },
+  "extends": "@tsconfig/ember",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "ember-api-docs/*": [
+        "app/*"
+      ]
+    }
+  },
+  "glint": {
+    "environment": "ember-loose",
+    "checkStandaloneTemplates": false
+  }
 }

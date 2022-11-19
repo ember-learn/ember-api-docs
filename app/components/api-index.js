@@ -1,29 +1,46 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes */
-import { computed } from '@ember/object';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 
+/**
+ * @typedef ItemData
+ * @property {Array<{ name: string }>} methods
+ * @property {Array<{ name: string }>} properties
+ * @property {Array<{ name: string }>} events
+ */
+
+/**
+ * @typedef Args
+ * @property {ItemData} itemData
+ */
+
+/**
+ * @typedef Blocks
+ * @property {[{ sections: ApiIndex['sections'] }]} default
+ */
+
+/**
+ * @extends Component<{ Args: Args, Blocks: Blocks }>
+ */
 export default class ApiIndex extends Component {
-  @computed('itemData.{methods,properties,events}')
   get sections() {
     return [
       {
         title: 'Methods',
         tab: 'methods',
-        items: this.itemData.methods,
+        items: this.args.itemData.methods,
         class: 'spec-method-list',
         routeSuffix: '.methods.method',
       },
       {
         title: 'Properties',
         tab: 'properties',
-        items: this.itemData.properties,
+        items: this.args.itemData.properties,
         class: 'spec-property-list',
         routeSuffix: '.properties.property',
       },
       {
         title: 'Events',
         tab: 'events',
-        items: this.itemData.events,
+        items: this.args.itemData.events,
         class: 'spec-event-list',
         routeSuffix: '.events.event',
       },

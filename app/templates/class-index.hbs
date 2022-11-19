@@ -6,7 +6,15 @@
         <ul class="{{section.class}}">
           {{#each section.items as |item|}}
             <li data-test-item={{item.name}}>
-              <LinkTo @route={{concat this.parentName section.routeSuffix }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name item.name}} @query={{hash anchor=item.name}}>
+              <LinkTo
+                @route="{{this.parentName}}{{section.routeSuffix}}"
+                @models={{array
+                  @model.project.id
+                  @model.projectVersion.compactVersion
+                  @model.name item.name
+                }}
+                @query={{hash anchor=item.name}}
+              >
                 {{item.name}}
               </LinkTo>
             </li>
