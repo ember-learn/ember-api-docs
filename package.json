@@ -73,7 +73,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^1.5.2",
     "ember-page-title": "^6.2.1",
-    "ember-power-select": "^4.1.6",
+    "ember-power-select": "^6.0.1",
     "ember-qunit": "^5.1.4",
     "ember-resolver": "^8.0.2",
     "ember-rfc176-data": "^0.3.17",
