@@ -28,7 +28,7 @@
           </div>
         </LinkTo>
       {{else}}
-        <LinkTo @route="project-version.classes.class.methods.method" @models={{array this.module this.version result.class result.name}} @query={{hash anchor=this.result.name}} data-test-search-result>
+        <LinkTo @route="project-version.classes.class.methods.method" @models={{array this.module this.version this.result.class this.result.name}} @query={{hash anchor=this.result.name}} data-test-search-result>
           <div class="algolia-docsearch-suggestion--subcategory-inline">
             {{!-- Sometimes hierarchy lvl1 is null, fall-back to lvl0 --}}
             {{#if this.result._highlightResult.hierarchy.lvl1}}
