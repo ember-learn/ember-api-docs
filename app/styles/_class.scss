@@ -1,6 +1,6 @@
 article.chapter {
   h1.module-name {
-    display: inline;
+    margin-top: 0;
   }
 
   .heading__link__edit {
@@ -85,7 +85,6 @@ article.chapter {
 }
 
 .attributes {
-  margin: 10px 0;
 
   .attribute-label {
     display: inline-block;

@@ -1,5 +1,4 @@
 .tabbed-layout {
-  margin-top: 1em;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   overflow: hidden;
@@ -14,7 +13,6 @@
   }
 
   .api-index-filter, section {
-    padding: 0 1em;
 
     @media (max-width: $mobile-portrait-screen){
       padding: 0;
