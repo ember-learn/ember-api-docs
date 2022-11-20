@@ -63,6 +63,12 @@ export default class ScrollPositionResetService extends Service {
   }
 
   doReset() {
+    // No-op if we get called in FastBoot, since doing the `document` operations
+    // is by definition unsafe in that mode!
+    if (typeof FastBoot !== 'undefined') {
+      return;
+    }
+
     if (this._shouldResetScroll) {
       const selector = document.querySelector(scrollContainerSelector);
       if (selector.scrollTo) {
