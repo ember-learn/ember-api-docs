@@ -2,6 +2,10 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
 export default class ClassRoute extends Route {
+  /** @type {import('@ember/routing/router-service').default} */
+  @service
+  router;
+
   @service
   legacyModuleMappings;
 
@@ -29,14 +33,14 @@ export default class ClassRoute extends Route {
     if (!mappedInfo.error && model.className !== mappedInfo.newName) {
       let { itemType, newName, newModule } = mappedInfo;
       if (itemType === 'class') {
-        return this.transitionTo(
+        return this.router.transitionTo(
           `project-version.classes.class`,
           'ember',
           'release',
           newName
         );
       } else {
-        return this.transitionTo(
+        return this.router.transitionTo(
           `project-version.functions.function`,
           'ember',
           'release',
@@ -45,6 +49,6 @@ export default class ClassRoute extends Route {
         );
       }
     }
-    return this.transitionTo('project-version', 'ember', 'release');
+    return this.router.transitionTo('project-version', 'ember', 'release');
   }
 }
