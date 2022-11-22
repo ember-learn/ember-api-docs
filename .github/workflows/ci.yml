@@ -12,16 +12,16 @@ env:
   PERCY_PARALLEL_TOTAL: 1
 
 jobs:
-   lint:
+  lint:
     name: Lint files
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: 'npm'
           node-version: ${{ env.NODE_VERSION }}
@@ -39,10 +39,10 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           cache: 'npm'
           node-version: ${{ env.NODE_VERSION }}
@@ -55,4 +55,4 @@ jobs:
           PERCY_PARALLEL_NONCE: ${{ env.PERCY_PARALLEL_NONCE }}
           PERCY_PARALLEL_TOTAL: ${{ env.PERCY_PARALLEL_TOTAL }}
           PERCY_TOKEN: 5ad6687f6b1ad3dec2b964f94d3d59ff3880baccf1492c0663e85c1ce79c1a52
-        run: npx percy exec -- npm test
+        run: npx percy exec -- npm run test:ember
