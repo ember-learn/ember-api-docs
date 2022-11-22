@@ -117,8 +117,8 @@
     "testem": "^2.14.0"
   },
   "engines": {
-    "node": "14.*",
-    "npm": "8"
+    "node": "14.* || 16.* || 18.*",
+    "npm": "7 || 8 || 9"
   },
   "cacheDirectories": [
     "node_modules"
