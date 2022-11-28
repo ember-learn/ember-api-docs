@@ -7,6 +7,20 @@ import sortBy from 'lodash.sortby';
 const filterDataComputedParams =
   'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 
+/**
+ * @typedef Args
+ * @property {object} model
+ * @property {object} filterData
+ */
+
+/**
+ * @typedef Blocks
+ * @property {[ApiIndexFilter['filteredData']]} default
+ */
+
+/**
+ * @extends Component<{ Args: Args, Blocks: Blocks }>
+ */
 @classNames('api-index-filter')
 export default class ApiIndexFilter extends Component {
   @computed('model.methods.[]', filterDataComputedParams)
