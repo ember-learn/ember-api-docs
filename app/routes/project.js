@@ -1,7 +1,12 @@
 import Route from '@ember/routing/route';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
+import { inject as service } from '@ember/service';
 
 export default class ProjectRoute extends Route.extend(ScrollTracker) {
+  /** @type {import('@ember/routing/router-service').default} */
+  @service
+  router;
+
   model({ project: projectName }) {
     let projectNameToLookUp = 'ember';
 
@@ -11,7 +16,7 @@ export default class ProjectRoute extends Route.extend(ScrollTracker) {
     }
 
     if (projectName.indexOf('cli') !== -1) {
-      return this.transitionTo('ember-cli');
+      return this.router.transitionTo('ember-cli');
     }
 
     return this.store.findRecord('project', projectNameToLookUp, {
@@ -21,6 +26,10 @@ export default class ProjectRoute extends Route.extend(ScrollTracker) {
 
   // Using redirect instead of afterModel so transition succeeds and returns 307 in fastboot
   redirect(project /*, transition */) {
-    return this.transitionTo('project-version', project.get('id'), 'release');
+    return this.router.transitionTo(
+      'project-version',
+      project.get('id'),
+      'release'
+    );
   }
 }

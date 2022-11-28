@@ -17,6 +17,7 @@ export default class ProjectVersionRoute extends Route {
   @service
   metaStore;
 
+  /** @type {import('@ember/routing/router-service').default} */
   @service
   router;
 
@@ -83,7 +84,7 @@ export default class ProjectVersionRoute extends Route {
           model.get('project.id') === 'ember-data' &&
           modules.indexOf('ember-data-overview') !== -1
         ) {
-          return this.transitionTo(
+          return this.router.transitionTo(
             'project-version.modules.module',
             model.get('project.id'),
             transitionVersion,
@@ -92,14 +93,14 @@ export default class ProjectVersionRoute extends Route {
         }
 
         // ember / ember-cli / ember-data if no @main declaration exists for ember-data-overview
-        return this.transitionTo('project-version.index');
+        return this.router.transitionTo('project-version.index');
       } else {
         // else go to the version specified
         let moduleRevs = this.metaStore.getEncodedModulesFromProjectRev(
           model.get('id')
         );
         let module = this.getFirstModule(moduleRevs);
-        return this.transitionTo(
+        return this.router.transitionTo(
           'project-version.modules.module',
           model.get('project.id'),
           transitionVersion,
@@ -218,9 +219,11 @@ export default class ProjectVersionRoute extends Route {
     );
     let isEmberProject = project === 'ember';
     if (!isEmberProject || !shouldConvertPackages) {
-      this.transitionTo(`/${project}/${projectVersionID}/${endingRoute}`);
+      this.router.transitionTo(
+        `/${project}/${projectVersionID}/${endingRoute}`
+      );
     } else {
-      this.transitionTo(`/${project}/${projectVersionID}`);
+      this.router.transitionTo(`/${project}/${projectVersionID}`);
     }
   }
 

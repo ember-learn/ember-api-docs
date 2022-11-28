@@ -2,6 +2,10 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 
 export default class DataClassRoute extends Route {
+  /** @type {import('@ember/routing/router-service').default} */
+  @service
+  router;
+
   @service
   legacyModuleMappings;
 
@@ -30,14 +34,14 @@ export default class DataClassRoute extends Route {
       newName = newName.substr(3);
     }
     if (!mappingInfo.error) {
-      return this.transitionTo(
+      return this.router.transitionTo(
         `project-version.classes.class`,
         'ember-data',
         'release',
         newName
       );
     } else {
-      return this.transitionTo('project-version', 'ember', 'release');
+      return this.router.transitionTo('project-version', 'ember', 'release');
     }
   }
 }

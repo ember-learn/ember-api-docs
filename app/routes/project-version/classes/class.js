@@ -8,6 +8,10 @@ import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
 export default class ClassRoute extends Route.extend(ScrollTracker) {
+  /** @type {import('@ember/routing/router-service').default} */
+  @service
+  router;
+
   @service
   headData;
 
@@ -67,7 +71,7 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
 
     if (queryParams.anchor && queryParams.type) {
       let type = queryParams.type;
-      this.transitionTo(
+      this.router.transitionTo(
         `project-version.classes.class.${pluralize(type)}.${type}`,
         lookupParams('project-version').project,
         lookupParams('project-version').project_version,
@@ -77,7 +81,7 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
     }
 
     if (model.isError) {
-      this.transitionTo('404');
+      this.router.transitionTo('404');
     }
   }
 

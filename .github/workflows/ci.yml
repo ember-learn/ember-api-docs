@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: 12
+  NODE_VERSION: 14
   PERCY_PARALLEL_NONCE: ${{ github.run_id }}-${{ github.run_number }}
   PERCY_PARALLEL_TOTAL: 1
 
@@ -15,68 +15,51 @@ jobs:
   lint:
     name: Lint files
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: volta-cli/action@v4
+      - name: Check lockfile version
+        uses: mansona/npm-lockfile-version@v1
 
-      - name: Get Yarn cache path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache Yarn cache and node_modules
-        id: cache-dependencies
-        uses: actions/cache@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-${{ env.NODE_VERSION }}-
+          cache: 'npm'
+          node-version: ${{ env.NODE_VERSION }}
+
+      - run: npm i -g npm@9
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
 
   test-app:
     name: Test app
     runs-on: ubuntu-latest
-    timeout-minutes: 7
+    timeout-minutes: 10
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Use Node.js 14
-        uses: volta-cli/action@v4
-
-      - name: Get Yarn cache path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
-      - name: Cache Yarn cache and node_modules
-        id: cache-dependencies
-        uses: actions/cache@v2
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v3
         with:
-          path: |
-            ${{ steps.yarn-cache-dir-path.outputs.dir }}
-            node_modules
-          key: ${{ runner.os }}-14-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: ${{ runner.os }}-14-
+          cache: 'npm'
+          node-version: ${{ env.NODE_VERSION }}
+
+      - run: npm i -g npm@9
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: Test
         env:
           PERCY_PARALLEL_NONCE: ${{ env.PERCY_PARALLEL_NONCE }}
           PERCY_PARALLEL_TOTAL: ${{ env.PERCY_PARALLEL_TOTAL }}
           PERCY_TOKEN: 5ad6687f6b1ad3dec2b964f94d3d59ff3880baccf1492c0663e85c1ce79c1a52
-        run: yarn run percy exec -- yarn test:ember
+        run: npx percy exec -- npm run test:ember
