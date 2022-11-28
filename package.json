@@ -30,8 +30,8 @@
     "@ember/test-helpers": "^2.2.5",
     "@glimmer/component": "^1.0.0",
     "@glimmer/tracking": "^1.0.0",
-    "@percy/cli": "^1.0.0-beta.54",
-    "@percy/ember": "^3.0.0",
+    "@percy/cli": "^1.14.0",
+    "@percy/ember": "^3.0.1",
     "algoliasearch": "^3.32.1",
     "babel-eslint": "^10.1.0",
     "bourbon": "5.1.0",
@@ -117,8 +117,8 @@
     "testem": "^2.14.0"
   },
   "engines": {
-    "node": "14.*",
-    "npm": "8"
+    "node": "14.* || 16.* || 18.*",
+    "npm": "7 || 8 || 9"
   },
   "cacheDirectories": [
     "node_modules"
@@ -133,7 +133,6 @@
     "abortcontroller-polyfill/dist/cjs-ponyfill"
   ],
   "volta": {
-    "node": "14.17.0",
-    "yarn": "1.22.19"
+    "node": "14.17.0"
   }
 }

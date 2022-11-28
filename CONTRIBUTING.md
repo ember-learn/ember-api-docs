@@ -77,20 +77,20 @@ clone the latest ember.js api docs from github
 cd to the cloned ember-api-docs directory
  - cd ember-api-docs
 
-ensure Node.js and yarn are installed
+ensure Node.js and npm are installed
 
 follow these commands to build ember.js
- - yarn install
- - yarn run build
+ - npm install
+ - npm build
 ```
 
 ## Development steps
 
 1. Follow the setup steps listed above under [Building Ember.js API](#building-emberjs-api-docs).
 
-2. To start the development server, run `yarn start`.
+2. To start the development server, run `npm start`.
 
-3. To run all tests run `yarn test`
+3. To run all tests run `npm test`
 
 4. To run the app with fastboot cli like our server deployment run the following commands,
 ```
@@ -106,7 +106,7 @@ We love pull requests. Here's a quick guide:
 1. Fork the repo.
 
 2. Run the tests. We only take pull requests with passing tests, and it's great
-to know that you have a clean slate: `yarn install && yarn test`.
+to know that you have a clean slate: `npm install && npm test`.
 
 3. Add a test for your change. Only refactoring and documentation changes
 require no new tests. If you are adding functionality or fixing a bug, we need
