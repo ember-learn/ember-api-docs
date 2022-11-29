@@ -132,7 +132,7 @@
     "sass": "^1.54.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
-    "testem": "^2.14.0",
+    "testem": "^3.10.0",
     "typescript": "^4.9.3"
   },
   "engines": {
