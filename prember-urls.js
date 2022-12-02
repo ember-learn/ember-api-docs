@@ -23,7 +23,29 @@ module.exports = function () {
 
     const uniqueProjectVersions = [...new Set(projectVersions)];
 
+    const oldVersions = [
+      '1.12',
+      '1.13',
+      '2.17',
+      '2.18',
+      '3.4',
+      '3.8',
+      '3.12',
+      '3.16',
+      '3.20',
+      '3.24',
+      '3.27',
+      '3.28',
+    ];
+
     uniqueProjectVersions.forEach((uniqVersion) => {
+      if (
+        !oldVersions.includes(uniqVersion) &&
+        !semver.gte(`${uniqVersion}.0`, '4.0.0')
+      ) {
+        return;
+      }
+
       urls.push(`/${p}/${uniqVersion}`);
 
       const sortedPatchVersions = fullProjectVersions
