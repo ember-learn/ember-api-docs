@@ -2,6 +2,10 @@ const { readdirSync, readFileSync } = require('fs');
 const cmp = require('semver-compare');
 const semver = require('semver');
 
+function partialUrlEncode(input) {
+  return input.replace('/', '%2F');
+}
+
 module.exports = function () {
   const projects = readdirSync('ember-api-docs-data/json-docs');
 
@@ -67,9 +71,19 @@ module.exports = function () {
           urls.push(`/${p}/${uniqVersion}/${entity}/${cleanId}`);
 
           // TODO only include sub routes if that entity has stuff in that route i.e. if it's empty don't pre-render it
-          urls.push(`/${p}/${uniqVersion}/${entity}/${cleanId}/methods`);
-          urls.push(`/${p}/${uniqVersion}/${entity}/${cleanId}/properties`);
-          urls.push(`/${p}/${uniqVersion}/${entity}/${cleanId}/events`);
+          urls.push(
+            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
+              cleanId
+            )}/methods`
+          );
+          urls.push(
+            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
+              cleanId
+            )}/properties`
+          );
+          urls.push(
+            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(cleanId)}/events`
+          );
 
           if (entity === 'modules') {
             // id is
@@ -93,9 +107,8 @@ module.exports = function () {
 
               listOfFunctions.forEach((func) => {
                 urls.push(
-                  `/${p}/${uniqVersion}/functions/${cleanId.replace(
-                    '/',
-                    '%2F'
+                  `/${p}/${uniqVersion}/functions/${partialUrlEncode(
+                    cleanId
                   )}/${func.name}`
                 );
               });
