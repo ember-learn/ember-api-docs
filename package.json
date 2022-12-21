@@ -83,7 +83,7 @@
     "ember-concurrency": "^2.3.7",
     "ember-data": "~3.26.0",
     "ember-data-fastboot": "https://github.com/cardstack/ember-data-fastboot#6e6fb8bbf0b405ae174160cc1e4833c5582f68cd",
-    "ember-exam": "^1.0.0",
+    "ember-exam": "^8.0.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.0.4",
     "ember-inflector": "^3.0.0",
