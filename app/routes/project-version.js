@@ -50,7 +50,6 @@ export default class ProjectVersionRoute extends Route {
       let route = transition.routeInfos.find(({ name }) => name === routeName);
       return route && route.params;
     };
-
     this._gatherHeadDataFromVersion(
       model,
       lookupParams('project-version').project_version
@@ -60,8 +59,14 @@ export default class ProjectVersionRoute extends Route {
     let moduleParams = lookupParams('project-version.modules.module');
     let namespaceParams = lookupParams('project-version.namespaces.namespace');
     let functionParams = lookupParams('project-version.functions.function');
-
+    
     let transitionVersion = this.projectService.getUrlVersion();
+    if (
+      moduleParams?.module === 'ember-data-overview' &&
+      semverCompare(transitionVersion, '4.7') < 0
+    ) {
+      return this.router.transitionTo('project-version.index');
+    }
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
       let latestVersion = getLastVersion(
