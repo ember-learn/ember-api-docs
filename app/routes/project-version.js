@@ -59,7 +59,6 @@ export default class ProjectVersionRoute extends Route {
     let moduleParams = lookupParams('project-version.modules.module');
     let namespaceParams = lookupParams('project-version.namespaces.namespace');
     let functionParams = lookupParams('project-version.functions.function');
-    
     let transitionVersion = this.projectService.getUrlVersion();
     if (
       moduleParams?.module === 'ember-data-overview' &&
