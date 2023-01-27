@@ -1,5 +1,9 @@
 <article class="chapter">
-  <h1 class="module-name">Package {{this.model.name}}</h1>
+  {{#if (eq this.model.name 'ember-data-overview')}}
+    <h1 class="module-name">Ember Data Overview</h1>
+  {{else}}
+    <h1 class="module-name">Package {{this.model.name}}</h1>
+  {{/if}}
   {{#if this.model.access}}<span class="access">{{this.model.access}}</span>{{/if}}
 
   <p class="attributes">
