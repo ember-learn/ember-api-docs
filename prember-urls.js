@@ -86,9 +86,8 @@ module.exports = function () {
           );
 
           if (entity === 'modules') {
-            // id is
+            const moduleKey = id;
 
-            const moduleKey = `${encodeURIComponent(id)}`;
             const fileName = revIndex.meta.module[moduleKey];
 
             if (fileName === undefined) {

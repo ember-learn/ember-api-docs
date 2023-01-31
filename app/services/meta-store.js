@@ -22,7 +22,7 @@ export default class MetaStoreService extends Service {
   }
 
   getRevId(project, version, type, id) {
-    let encodedId = encodeURIComponent(id);
+    let encodedId = id;
     return this.projectRevMap[`${project}-${version}`][type][encodedId];
   }
 
