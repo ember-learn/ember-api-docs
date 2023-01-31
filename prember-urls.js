@@ -107,9 +107,7 @@ module.exports = function () {
 
               listOfFunctions.forEach((func) => {
                 urls.push(
-                  `/${p}/${uniqVersion}/functions/${partialUrlEncode(
-                    cleanId
-                  )}/${func.name}`
+                  `/${p}/${uniqVersion}/functions/${func.class}/${func.name}`
                 );
               });
             });
