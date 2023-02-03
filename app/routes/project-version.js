@@ -62,7 +62,8 @@ export default class ProjectVersionRoute extends Route {
     let transitionVersion = this.projectService.getUrlVersion();
     if (
       moduleParams?.module === 'ember-data-overview' &&
-      semverCompare(transitionVersion, '4.7') < 0
+      semverCompare(transitionVersion, '4.7') < 0 &&
+      transitionVersion !== 'release' // infinite redirects happen without this line
     ) {
       return this.router.transitionTo('project-version.index');
     }
