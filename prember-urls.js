@@ -68,7 +68,9 @@ module.exports = function () {
         // add classes
         revIndex.data.relationships[entity].data.forEach(({ id }) => {
           const [, cleanId] = id.match(/^.+-\d+\.\d+\.\d+-(.*)/);
-          urls.push(`/${p}/${uniqVersion}/${entity}/${cleanId}`);
+          urls.push(
+            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(cleanId)}`
+          );
 
           // TODO only include sub routes if that entity has stuff in that route i.e. if it's empty don't pre-render it
           urls.push(
@@ -106,7 +108,9 @@ module.exports = function () {
 
               listOfFunctions.forEach((func) => {
                 urls.push(
-                  `/${p}/${uniqVersion}/functions/${func.class}/${func.name}`
+                  `/${p}/${uniqVersion}/functions/${encodeURIComponent(
+                    func.class
+                  )}/${func.name}`
                 );
               });
             });
