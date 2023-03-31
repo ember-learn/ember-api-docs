@@ -6,7 +6,30 @@ export default class IndexRoute extends Route {
   @service
   router;
 
-  redirect() {
-    return this.router.transitionTo('project', 'ember');
+  @service store;
+
+  async redirect() {
+    // redirect to first available project ember => ember-data => ember-cli
+    let foundProject = 'ember-cli';
+    try {
+      await this.store.findRecord('project', 'ember', {
+        includes: 'project-version',
+      });
+      foundProject = 'ember';
+    } catch {
+      try {
+        await this.store.findRecord('project', 'ember-data', {
+          includes: 'project-version',
+        });
+        foundProject = 'ember-data';
+      } catch (e) {
+        foundProject = 'ember-cli';
+      }
+    }
+
+    if (foundProject === 'ember-cli') {
+      return this.router.transitionTo('ember-cli');
+    }
+    return this.router.transitionTo('project-version', foundProject, 'release');
   }
 }
