@@ -1,6 +1,98 @@
 article.chapter {
   h1.module-name {
     display: inline;
+    color: #4d4d4d;
+    font-size: 1.2em;
+
+    span.title-badge {
+      display: inline-block;
+      margin-left: 0.5em;
+      vertical-align: middle;
+      font-size: 0.5em;
+      font-weight: 500;
+      color: $white;
+      padding: 0.2em 0.5em;
+      border-radius: 3px;
+      background-color: $light-brown;
+    }
+  }
+
+  h1.package-name {
+    display: inline;
+
+    span.package-title-badge {
+      display: inline-block;
+      margin-left: 0em;
+      vertical-align: middle;
+      font-size: 0.5em;
+      font-weight: 500;
+      line-height: 1em;
+      color: $white;
+      padding: 0.2em 0.5em;
+      border-radius: 3px 0 0 3px;
+      background-color: $brown;
+      position: relative;
+      z-index: 1;
+
+      // arrow right
+      &::after {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: .7em solid transparent;
+        border-bottom: .7em solid transparent;
+        border-left: .6em solid $brown;
+        position: absolute;
+        top: 50%;
+        margin-top: -.7em;
+        left: 100%;
+        z-index: 2;
+      }
+    }
+
+    span.package-title-part {
+      display: inline-block;
+      margin-left: 0.5em;
+      vertical-align: middle;
+      font-size: 0.5em;
+      font-weight: 500;
+      line-height: 1em;
+      color: $light-brown;
+      position: relative;
+      left: -1rem;
+      padding: 0.2em 0.5em 0.2em 0.2em;
+      border-radius: 0 3px 3px 0;
+      background-color: $light-gray;
+
+      &:nth-of-type(2) {
+        padding-left: 1.2em;
+        left: -1rem;
+      }
+      &:nth-of-type(3) {
+        left: -2rem;
+        // background-color: lighten($light-gray, 20%);
+      }
+      &:nth-of-type(4) {
+        left: -3rem;
+        // background-color: lighten($light-gray, 30%);
+      }
+
+      &:last-of-type::after {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: .7em solid transparent;
+        border-bottom: .7em solid transparent;
+        border-left: .6em solid $light-gray;
+        position: absolute;
+        top: 50%;
+        margin-top: -.7em;
+        left: 100%;
+        z-index: 2;
+      }
+    }
   }
 
   .heading__link__edit {
