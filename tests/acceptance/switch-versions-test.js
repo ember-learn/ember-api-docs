@@ -271,7 +271,7 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
-  test('switching versions works if class name includes slashes', async function (assert) {
+  test.skip('switching versions works if class name includes slashes', async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
       currentURL(),
@@ -287,7 +287,23 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
-  test(`switching versions works if we've previously switched for a different class`, async function (assert) {
+  test('switching versions works if class name includes slashes for more modern versions', async function (assert) {
+    await visit('/ember/3.13/classes/@ember%2Fobject%2Fcomputed');
+    assert.equal(
+      currentURL(),
+      '/ember/3.13/classes/@ember%2Fobject%2Fcomputed',
+      'navigated to v3.13 class'
+    );
+    await selectChoose('.ember-power-select-trigger', '3.20');
+    await waitForSettled();
+    assert.equal(
+      currentURL(),
+      '/ember/3.20/classes/@ember%2Fobject%2Fcomputed',
+      'navigated to v3.20 class'
+    );
+  });
+
+  test.skip(`switching versions works if we've previously switched for a different class`, async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
       currentURL(),
@@ -313,6 +329,36 @@ module('Acceptance | version navigation', function (hooks) {
       currentURL(),
       '/ember/2.18/classes/Component',
       'navigated to v2.18 for new class'
+    );
+  });
+
+  test(`switching versions works if we've previously switched for a different class (for more modern versions)`, async function (assert) {
+    await visit('/ember/3.13/classes/@ember%2Fobject%2Fcomputed');
+    assert.equal(
+      currentURL(),
+      '/ember/3.13/classes/@ember%2Fobject%2Fcomputed',
+      'navigated to v3.13 class'
+    );
+    await selectChoose('.ember-power-select-trigger', '3.20');
+    await waitForSettled();
+    assert.equal(
+      currentURL(),
+      '/ember/3.20/classes/@ember%2Fobject%2Fcomputed',
+      'navigated to v3.20 class'
+    );
+
+    await visit('/ember/3.25/classes/Component');
+    assert.equal(
+      currentURL(),
+      '/ember/3.25/classes/Component',
+      'navigated to new class'
+    );
+    await selectChoose('.ember-power-select-trigger', '3.15');
+    await waitForSettled();
+    assert.equal(
+      currentURL(),
+      '/ember/3.15/classes/Component',
+      'navigated to v3.15 for new class'
     );
   });
 
