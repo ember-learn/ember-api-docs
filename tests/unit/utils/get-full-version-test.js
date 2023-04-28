@@ -1,3 +1,4 @@
+/* eslint-disable qunit/require-expect */
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { module, test } from 'qunit';
 import Service from '@ember/service';
