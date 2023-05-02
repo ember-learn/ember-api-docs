@@ -19,9 +19,10 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   // 'https://github.com/emberjs/data/tree/v4.10.0/packages/packages/store/addon/-private/record-arrays/identifier-array.ts#L118'
   const fixedFile = file?.replace('../packages/', '../');
 
-  return `https://github.com/${
-    githubMap[project]
-  }/tree/v${version}${mainDir(project, version)}${fixedFile}#L${line}`;
+  return `https://github.com/${githubMap[project]}/tree/v${version}${mainDir(
+    project,
+    version
+  )}${fixedFile}#L${line}`;
 }
 
 export default helper(githubLink);
