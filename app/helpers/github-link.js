@@ -15,14 +15,13 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   // 'packages/packages' in the GitHub source URL
   // For example, without this fixedFile line, a `file` with value
   // '../packages/store/addon/-private/record-arrays/identifier-array.ts'
-  // would become 
+  // would become
   // 'https://github.com/emberjs/data/tree/v4.10.0/packages/packages/store/addon/-private/record-arrays/identifier-array.ts#L118'
   const fixedFile = file?.replace('../packages/', '../');
 
-  const result = `https://github.com/${
+  return `https://github.com/${
     githubMap[project]
   }/tree/v${version}${mainDir(project, version)}${fixedFile}#L${line}`;
-  return result;
 }
 
 export default helper(githubLink);
