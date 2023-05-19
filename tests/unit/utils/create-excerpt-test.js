@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-ok-equality */
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 import { module, test } from 'qunit';
 
