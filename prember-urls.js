@@ -1,10 +1,16 @@
-const { readdirSync, readFileSync } = require('fs');
+const { readdirSync } = require('fs');
 const cmp = require('semver-compare');
 const semver = require('semver');
 
 function partialUrlEncode(input) {
-  return input.replace('/', '%2F');
+  return input.replace(/\//g, '%2F');
 }
+
+const singularData = {
+  classes: 'class',
+  namespaces: 'namespace',
+  modules: 'module',
+};
 
 module.exports = function () {
   const projects = readdirSync('ember-api-docs-data/json-docs');
@@ -72,36 +78,42 @@ module.exports = function () {
             `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(cleanId)}`
           );
 
-          // TODO only include sub routes if that entity has stuff in that route i.e. if it's empty don't pre-render it
-          urls.push(
-            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
-              cleanId
-            )}/methods`
-          );
-          urls.push(
-            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
-              cleanId
-            )}/properties`
-          );
-          urls.push(
-            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(cleanId)}/events`
-          );
+          const fileName = revIndex.meta[singularData[entity]][id];
+          let entityData;
 
-          if (entity === 'modules') {
-            const moduleKey = id;
+          if (fileName !== undefined) {
+            // rare cases when very strange things make it through this far
+            // e.g. ember-3.0.0-ember%0A%0ARemove%20after%203.4%20once%20_ENABLE_RENDER_SUPPORT%20flag%20is%20no%20longer%20needed.
+            // 🤷‍♀️
+            entityData = require(`${__dirname}/ember-api-docs-data/json-docs/${p}/${highestPatchVersion}/${entity}/${fileName}.json`);
+          }
 
-            const fileName = revIndex.meta.module[moduleKey];
+          if (entityData.data.attributes.methods?.length) {
+            urls.push(
+              `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
+                cleanId
+              )}/methods`
+            );
+          }
 
-            if (fileName === undefined) {
-              // rare cases when very strange things make it through this far
-              // e.g. ember-3.0.0-ember%0A%0ARemove%20after%203.4%20once%20_ENABLE_RENDER_SUPPORT%20flag%20is%20no%20longer%20needed.
-              // 🤷‍♀️
-              return;
-            }
+          if (entityData.data.attributes.properties?.length) {
+            urls.push(
+              `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
+                cleanId
+              )}/properties`
+            );
+          }
 
-            const moduleData = require(`${__dirname}/ember-api-docs-data/json-docs/${p}/${highestPatchVersion}/modules/${fileName}.json`);
+          if (entityData.data.attributes.events?.length) {
+            urls.push(
+              `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
+                cleanId
+              )}/events`
+            );
+          }
 
-            const staticFunctions = moduleData.data.attributes.staticfunctions;
+          if (entity === 'modules' && entityData) {
+            const staticFunctions = entityData.data.attributes.staticfunctions;
 
             Object.keys(staticFunctions).forEach((k) => {
               const listOfFunctions = staticFunctions[k];
