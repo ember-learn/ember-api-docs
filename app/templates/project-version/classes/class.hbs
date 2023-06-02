@@ -1,6 +1,6 @@
 {{! template-lint-disable no-action }}
 <article class="chapter">
-  {{#if (is-latest version=@model.projectVersion.version allVersions=this.allVersions)}}
+  {{#if (and @model.project.id @model.file @model.line (is-latest version=@model.projectVersion.version allVersions=this.allVersions))}}
     <a data-tooltip="Edit on Github" class="heading__link__edit" href="{{github-link @model.project.id @model.projectVersion.version @model.file @model.line isEdit=true}}" target="_blank" rel="noopener noreferrer">{{svg-jar "fa-pencil"}}</a>
   {{/if}}
   <h1 class="module-name">Class {{@model.name}}</h1>
