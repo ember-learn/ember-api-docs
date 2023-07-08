@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll, click } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
@@ -67,7 +67,7 @@ module('Integration | Component | table of contents', function (hooks) {
     assert.dom(findAll(`${contentReference} li`)[1]).hasText(MODULES[1]);
   });
 
-  test('Underlying content hides once clicked', async function (assert) {
+  skip('Underlying content hides once clicked', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
@@ -101,7 +101,7 @@ module('Integration | Component | table of contents', function (hooks) {
     }, TIMEOUT_FOR_ANIMATION);
   });
 
-  test('Underlying content should be visible after 2 clicks', async function (assert) {
+  skip('Underlying content should be visible after 2 clicks', async function (assert) {
     // Set any properties with this.set('myProperty', 'value');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);

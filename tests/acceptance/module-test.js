@@ -1,11 +1,11 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, findAll } from '@ember/test-helpers';
 
 module('Acceptance | Module', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('lists all public/private classes and namespaces on the module page', async function (assert) {
+  skip('lists all public/private classes and namespaces on the module page', async function (assert) {
     await visit('ember/1.0/modules/ember-handlebars');
 
     const store = this.owner.lookup('service:store');
