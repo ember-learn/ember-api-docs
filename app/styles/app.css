@@ -1,0 +1,27 @@
+.article-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.module-name {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.access {
+  color: #fff;
+  background-color: var(--color-gray-600);
+  margin-left: var(--spacing-1);
+  padding: 0.25rem var(--spacing-1);
+  font-size: var(--font-size-md);
+  border-radius: var(--radius);
+  vertical-align: middle;
+}
+
+main a.edit-icon {
+  height: 1rem;
+  width: 16px;
+  display: inline-block;
+  background: none;
+}
