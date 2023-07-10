@@ -1,10 +1,15 @@
 {{! template-lint-disable no-action }}
 <article class="chapter">
-  {{#if (and @model.project.id @model.file @model.line (is-latest version=@model.projectVersion.version allVersions=this.allVersions))}}
-    <a data-tooltip="Edit on Github" class="heading__link__edit" href="{{github-link @model.project.id @model.projectVersion.version @model.file @model.line isEdit=true}}" target="_blank" rel="noopener noreferrer">{{svg-jar "fa-pencil"}}</a>
-  {{/if}}
-  <h1 class="module-name">Class {{@model.name}}</h1>
-  {{#if @model.access}}<span class="access">{{@model.access}}</span>{{/if}}
+  <div class="article-title-wrapper">
+    <h1 class="module-name">Class {{@model.name}}
+      {{#if @model.access}}
+        <span class="access">{{@model.access}}</span>
+      {{/if}}
+    </h1>
+    {{#if (and @model.project.id @model.file @model.line (is-latest version=@model.projectVersion.version allVersions=this.allVersions))}}
+      <a data-tooltip="Edit on Github" class="edit-icon" href="{{github-link @model.project.id @model.projectVersion.version @model.file @model.line isEdit=true}}" target="_blank" rel="noopener noreferrer">{{svg-jar "pen"}}</a>
+    {{/if}}
+  </div>
   <hr>
   <div class="attributes">
     {{#if @model.extends}}
