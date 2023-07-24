@@ -56,6 +56,10 @@ export default class SearchInput extends Component {
   }
 
   @action onfocus() {
+    if (this.query.length > 0 && this.searchService.hasStaleResults()) {
+      this.searchService.search.perform(this.query);
+    }
+
     this._focused = true;
   }
 
