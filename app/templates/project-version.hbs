@@ -1,19 +1,6 @@
-{{! template-lint-disable no-inline-styles }}
 <div class="sidebar-container">
   <EsSidebar>
-    <ol class="toc-level-0">
-      <li class="toc-level-0" data-test-home>
-        <LinkTo @route="project" @model="ember">Home</LinkTo>
-      </li>
-      <li class="toc-level-0">
-        Projects
-        <ol class="toc-level-1 selected" style="display: block;">
-          <li class="toc-level-1"><LinkTo @route="project" @model="ember" @current-when={{eq this.activeProject "ember"}} class="spec-ember">Ember</LinkTo></li>
-          <li class="toc-level-1"><LinkTo @route="project" @model="ember-data" @current-when={{eq this.activeProject "ember-data"}} class="spec-ember-data">Ember Data</LinkTo></li>
-          <li class="toc-level-1"><LinkTo @route="project" @model="ember-cli" @current-when={{eq this.activeProject "ember-cli"}} class="spec-ember">Ember CLI</LinkTo></li>
-        </ol>
-      </li>
-    </ol>
+   <TableOfProjects @activeProject={{this.activeProject}} />
 
     <div class="select-container">
       <PowerSelect
