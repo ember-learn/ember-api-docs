@@ -51,11 +51,13 @@ export default Service.extend({
    * @returns {boolean}
    */
   hasStaleResults() {
-    return this._lastQueriedProjectVersion !== null
-    && this._projectVersion !== this._lastQueriedProjectVersion;
+    return (
+      this._lastQueriedProjectVersion !== null &&
+      this._projectVersion !== this._lastQueriedProjectVersion
+    );
   },
 
   clearResults() {
     set(this, 'results', emberArray());
-  }
+  },
 });

@@ -42,7 +42,9 @@ module('Acceptance | search', function (hooks) {
     await fillIn('[data-test-search-input]', 'forEach');
 
     // the url contains /ember/4.1/
-    assert.dom('[data-test-search-result]').hasAttribute('href', /\/ember\/4\.1\//);
+    assert
+      .dom('[data-test-search-result]')
+      .hasAttribute('href', /\/ember\/4\.1\//);
 
     algoliaService.search = async () => {
       return searchResultsV5_1;
@@ -53,6 +55,8 @@ module('Acceptance | search', function (hooks) {
     await focus('[data-test-search-input]');
 
     // the url contains /ember/5.1/
-    assert.dom('[data-test-search-result]').hasAttribute('href', /\/ember\/5\.1\//);
+    assert
+      .dom('[data-test-search-result]')
+      .hasAttribute('href', /\/ember\/5\.1\//);
   });
 });
