@@ -27,7 +27,7 @@ module('Integration | Component | table of contents', function (hooks) {
     const contentTitle = document.querySelector(
       '[data-test-toc-title="classes"]'
     );
-    const contentReference = '.toc-level-1';
+    const contentReference = '.sub-table-of-contents';
 
     assert.dom(contentTitle).hasText('Classes');
     assert
@@ -51,7 +51,7 @@ module('Integration | Component | table of contents', function (hooks) {
       />
     `);
 
-    const contentReference = '.toc-level-1';
+    const contentReference = '.sub-table-of-contents';
     const content = document.querySelector(contentReference);
     const contentTitle = document.querySelector(
       '[data-test-toc-title="classes"]'
@@ -84,7 +84,7 @@ module('Integration | Component | table of contents', function (hooks) {
     const contentTitle = document.querySelector(
       '[data-test-toc-title="packages"]'
     );
-    const contentReference = '.toc-level-1';
+    const contentReference = '.sub-table-of-content';
     const content = document.querySelector(contentReference);
 
     assert.dom(contentTitle).hasText('Packages');
@@ -118,7 +118,7 @@ module('Integration | Component | table of contents', function (hooks) {
     const titleButton = document.querySelector(
       '[data-test-toc-title="packages"]'
     );
-    const contentReference = '.toc-level-1';
+    const contentReference = '.sub-table-of-contents';
     const content = document.querySelector(contentReference);
 
     assert.dom(titleButton).hasText('Packages');
