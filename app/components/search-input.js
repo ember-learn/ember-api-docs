@@ -57,6 +57,9 @@ export default class SearchInput extends Component {
 
   @action onfocus() {
     if (this.query.length > 0 && this.searchService.hasStaleResults()) {
+      // clearing the results avoids a flash of stale content while the search
+      // is performed
+      this.searchService.clearResults();
       this.searchService.search.perform(this.query);
     }
 

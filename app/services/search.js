@@ -54,4 +54,8 @@ export default Service.extend({
     return this._lastQueriedProjectVersion !== null
     && this._projectVersion !== this._lastQueriedProjectVersion;
   },
+
+  clearResults() {
+    set(this, 'results', emberArray());
+  }
 });
