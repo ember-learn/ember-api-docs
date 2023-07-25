@@ -39,7 +39,7 @@ module('Acceptance | search', function (hooks) {
 
     await selectChoose('.ember-power-select-trigger', '4.1');
 
-    await fillIn('[data-test-search-input]', 'get');
+    await fillIn('[data-test-search-input]', 'forEach');
 
     // the url contains /ember/4.1/
     assert.dom('[data-test-search-result]').hasAttribute('href', /\/ember\/4\.1\//);
