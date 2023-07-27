@@ -9,6 +9,9 @@ export default Service.extend({
   _projectService: service('project'),
   _projectVersion: alias('_projectService.version'),
 
+  /** @type {?string} */
+  _lastQueriedProjectVersion: null,
+
   results: emberArray(),
 
   search: task(function* (query) {
@@ -30,6 +33,8 @@ export default Service.extend({
       query,
     };
 
+    this._lastQueriedProjectVersion = projectVersion;
+
     return set(this, 'results', yield this.doSearch(searchObj, params));
   }).restartable(),
 
@@ -37,5 +42,22 @@ export default Service.extend({
     return this._algoliaService
       .search(searchObj, params)
       .then((results) => results.hits);
+  },
+
+  /**
+   * Whenever the version changes in service:project, the results in this
+   * service become stale. Presenting them any further could allow the user to
+   * undo their version change by clicking a stale link.
+   * @returns {boolean}
+   */
+  hasStaleResults() {
+    return (
+      this._lastQueriedProjectVersion !== null &&
+      this._projectVersion !== this._lastQueriedProjectVersion
+    );
+  },
+
+  clearResults() {
+    set(this, 'results', emberArray());
   },
 });
