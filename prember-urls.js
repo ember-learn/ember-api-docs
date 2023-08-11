@@ -33,25 +33,12 @@ module.exports = function () {
 
     const uniqueProjectVersions = [...new Set(projectVersions)];
 
-    const oldVersions = [
-      '1.12',
-      '1.13',
-      '2.17',
-      '2.18',
-      '3.4',
-      '3.8',
-      '3.12',
-      '3.16',
-      '3.20',
-      '3.24',
-      '3.27',
-      '3.28',
-    ];
+    const oldVersions = ['1.13', '2.18', '3.28', '4.4', '4.8', '4.12'];
 
     uniqueProjectVersions.forEach((uniqVersion) => {
       if (
         !oldVersions.includes(uniqVersion) &&
-        !semver.gte(`${uniqVersion}.0`, '4.0.0')
+        !semver.gte(`${uniqVersion}.0`, '5.0.0')
       ) {
         return;
       }
