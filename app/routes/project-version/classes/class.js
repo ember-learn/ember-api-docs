@@ -81,7 +81,11 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
     }
 
     if (model.isError) {
-      this.router.transitionTo('404');
+      let error = new Error('Error retrieving model in routes/project-version/classes/class');
+
+      error.status = 404;
+
+      throw error;
     }
   }
 
