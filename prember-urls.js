@@ -1,4 +1,4 @@
-const { readdirSync } = require('fs');
+const { readdirSync, existsSync } = require('fs');
 const cmp = require('semver-compare');
 const semver = require('semver');
 
@@ -85,7 +85,15 @@ module.exports = function () {
             // rare cases when very strange things make it through this far
             // e.g. ember-3.0.0-ember%0A%0ARemove%20after%203.4%20once%20_ENABLE_RENDER_SUPPORT%20flag%20is%20no%20longer%20needed.
             // 🤷‍♀️
-            entityData = require(`${__dirname}/ember-api-docs-data/json-docs/${p}/${highestPatchVersion}/${entity}/${fileName}.json`);
+            const requirePath = `${__dirname}/ember-api-docs-data/json-docs/${p}/${highestPatchVersion}/${entity}/${fileName}.json`;
+            if (!existsSync(requirePath)) {
+              // TODO we really shouldn't come across this so we should investigate why there are things in the rev-index that don't have corresponding files
+              console.log(
+                `about to require ${requirePath} but that file doesn't exist`
+              );
+              return;
+            }
+            entityData = require(requirePath);
           }
 
           if (entityData.data.attributes.methods?.length) {
