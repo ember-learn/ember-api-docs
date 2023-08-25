@@ -18,7 +18,7 @@ module.exports = function () {
   const urls = [];
 
   projects.forEach((p) => {
-    // add release for each of the projects
+    // add release index for each of the projects
     urls.push(`/${p}/release`);
 
     const fullProjectVersions = readdirSync(
@@ -32,6 +32,14 @@ module.exports = function () {
     }); // uniq
 
     const uniqueProjectVersions = [...new Set(projectVersions)];
+
+    const addUrl = (p, uniqVersion, suffix) => {
+      // If it's the latest release version, also create release URLs
+      if (projectVersions[projectVersions.length - 1] === uniqVersion) {
+        urls.push(`/${p}/release/${suffix}`);
+      }
+      urls.push(`/${p}/${uniqVersion}/${suffix}`);
+    };
 
     const oldVersions = ['1.13', '2.18', '3.28', '4.4', '4.8', '4.12'];
 
@@ -61,9 +69,7 @@ module.exports = function () {
         // add classes
         revIndex.data.relationships[entity].data.forEach(({ id }) => {
           const [, cleanId] = id.match(/^.+-\d+\.\d+\.\d+-(.*)/);
-          urls.push(
-            `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(cleanId)}`
-          );
+          addUrl(p, uniqVersion, `${entity}/${partialUrlEncode(cleanId)}`);
 
           const fileName = revIndex.meta[singularData[entity]][id];
           let entityData;
@@ -84,26 +90,26 @@ module.exports = function () {
           }
 
           if (entityData.data.attributes.methods?.length) {
-            urls.push(
-              `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
-                cleanId
-              )}/methods`
+            addUrl(
+              p,
+              uniqVersion,
+              `${entity}/${partialUrlEncode(cleanId)}/methods`
             );
           }
 
           if (entityData.data.attributes.properties?.length) {
-            urls.push(
-              `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
-                cleanId
-              )}/properties`
+            addUrl(
+              p,
+              uniqVersion,
+              `${entity}/${partialUrlEncode(cleanId)}/properties`
             );
           }
 
           if (entityData.data.attributes.events?.length) {
-            urls.push(
-              `/${p}/${uniqVersion}/${entity}/${partialUrlEncode(
-                cleanId
-              )}/events`
+            addUrl(
+              p,
+              uniqVersion,
+              `${entity}/${partialUrlEncode(cleanId)}/events`
             );
           }
 
@@ -114,10 +120,10 @@ module.exports = function () {
               const listOfFunctions = staticFunctions[k];
 
               listOfFunctions.forEach((func) => {
-                urls.push(
-                  `/${p}/${uniqVersion}/functions/${encodeURIComponent(
-                    func.class
-                  )}/${func.name}`
+                addUrl(
+                  p,
+                  uniqVersion,
+                  `functions/${encodeURIComponent(func.class)}/${func.name}`
                 );
               });
             });
