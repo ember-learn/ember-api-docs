@@ -8,16 +8,7 @@ const envIsProduction = process.env.EMBER_ENV === 'production';
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      extensions: [
-        'js',
-        'css',
-        'jpg',
-        'png',
-        'gif',
-        'map',
-        'svg',
-        'webmanifest',
-      ],
+      extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'webmanifest'],
       generateAssetMap: true,
     },
     autoImport: {
