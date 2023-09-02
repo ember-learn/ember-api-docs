@@ -35,10 +35,6 @@ main a.edit-icon {
   margin-block-start: 0;
 }
 
-.content {
-  margin-top: var(--spacing-4);
-}
-
 .table-of-contents {
   list-style-type: none;
   padding-left: 0;
@@ -99,5 +95,9 @@ li.toc-heading:first-child {
   .es-sidebar {
     padding: var(--spacing-4);
     background-color: var(--color-gray-200);
+  }
+
+  .content {
+    margin-top: var(--spacing-4);
   }
 }
