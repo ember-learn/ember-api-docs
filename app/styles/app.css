@@ -26,6 +26,11 @@ main a.edit-icon {
   background: none;
 }
 
+.es-header {
+  padding: 0 var(--spacing-4);
+  justify-content: start;
+}
+
 .es-sidebar-content .table-of-contents:first-child {
   margin-block-start: 0;
 }
