@@ -44,13 +44,13 @@ main a.edit-icon {
 .table-of-contents {
   list-style-type: none;
   padding-left: 0;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-3);
 }
 
 .sub-table-of-contents {
   padding-left: var(--spacing-1);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-2);
 }
 
