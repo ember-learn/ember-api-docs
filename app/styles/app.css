@@ -26,6 +26,21 @@ main a.edit-icon {
   background: none;
 }
 
+@media (min-width: 845px) {
+  .es-sidebar {
+    padding: var(--spacing-4);
+    background-color: var(--color-gray-200);
+  }
+}
+
+.es-sidebar-content .table-of-contents:first-child {
+  margin-block-start: 0;
+}
+
+.content {
+  margin-top: var(--spacing-4);
+}
+
 .table-of-contents {
   list-style-type: none;
   padding-left: 0;
