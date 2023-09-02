@@ -26,11 +26,6 @@ main a.edit-icon {
   background: none;
 }
 
-.es-header {
-  padding: 0 var(--spacing-4);
-  justify-content: start;
-}
-
 .es-sidebar-content .table-of-contents:first-child {
   margin-block-start: 0;
 }
@@ -92,6 +87,11 @@ li.toc-heading:first-child {
 }
 
 @media (min-width: 845px) {
+  .es-header {
+    padding: 0 var(--spacing-4);
+    justify-content: start;
+  }
+  
   .es-sidebar {
     padding: var(--spacing-4);
     background-color: var(--color-gray-200);
