@@ -26,16 +26,24 @@ main a.edit-icon {
   background: none;
 }
 
+.sidebar-container {
+  --sidebar-width: min-content;
+}
+
+.es-sidebar-content .table-of-contents:first-child {
+  margin-block-start: 0;
+}
+
 .table-of-contents {
   list-style-type: none;
   padding-left: 0;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-3);
 }
 
 .sub-table-of-contents {
   padding-left: var(--spacing-1);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-base);
   font-weight: var(--font-weight-2);
 }
 
@@ -82,3 +90,18 @@ li.toc-heading:first-child {
   margin-top: 0;
 }
 
+@media (min-width: 845px) {
+  .es-header {
+    padding: 0 var(--spacing-4);
+    justify-content: start;
+  }
+
+  .es-sidebar {
+    padding: var(--spacing-4);
+    background-color: var(--color-gray-200);
+  }
+
+  .content {
+    margin-top: var(--spacing-4);
+  }
+}
