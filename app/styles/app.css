@@ -79,6 +79,7 @@ main a.edit-icon {
 .table-of-contents li {
   margin: 3px 0;
   list-style-type: none;
+  color: var(--color-gray-600);
 }
 
 li.toc-heading {
