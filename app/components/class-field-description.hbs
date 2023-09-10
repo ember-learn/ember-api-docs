@@ -17,7 +17,7 @@
     {{/if}}
     {{!-- TODO: Fix this link for a11y --}}
     <a class='anchor class-field-description--link' role='link' {{on 'click' (fn this.updateAnchor @field.name)}} {{!-- template-lint-disable link-href-attributes --}}>
-      {{svg-jar 'fa-link' width='20px' height='20px'}}
+      {{svg-jar 'link' width='20px' height='20px'}}
     </a>
   </h3>
   {{#if @model.module}}
