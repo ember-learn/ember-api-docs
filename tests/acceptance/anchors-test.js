@@ -11,7 +11,9 @@ module('Acceptance | Creating Anchors', function (hooks) {
     await click(element);
     assert.equal(
       currentURL(),
-      `/ember/1.0/classes/Container/properties?anchor=${element.innerText.trim()}`
+      `/ember/1.0/classes/Container/properties?anchor=${element.getAttribute(
+        'data-test-anchor'
+      )}`
     );
   });
 });
