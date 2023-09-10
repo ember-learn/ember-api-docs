@@ -1,6 +1,6 @@
 <section class='{{@type}}'>
   {{!-- TODO: Fix this link for a11y --}}
-  <h3 class='class-field-description--link' data-anchor='{{@field.name}}' role='link' {{on 'click' (fn this.updateAnchor @field.name)}}>
+  <h3 class='class-field-description--link' data-anchor='{{@field.name}}'>
     <span class='{{@type}}-name'>{{@field.name}}</span>
     {{#if @field.params}}
       <span class='args'>
@@ -16,7 +16,7 @@
     {{#if @field.deprecated}}
       <span class='access'>deprecated</span>
     {{/if}}
-    <a class='anchor' {{!-- template-lint-disable link-href-attributes --}}>
+    <a class='anchor' role='link' {{on 'click' (fn this.updateAnchor @field.name)}} {{!-- template-lint-disable link-href-attributes --}}>
       {{svg-jar 'fa-link' class='class-field-description--link-hover' width='20px' height='20px'}}
     </a>
   </h3>
