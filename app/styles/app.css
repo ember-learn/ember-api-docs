@@ -90,6 +90,24 @@ li.toc-heading:first-child {
   margin-top: 0;
 }
 
+a.class-field-description--link {
+  margin-left: 12px;
+  vertical-align: middle;
+  background: none;
+  cursor: pointer;
+}
+
+a.class-field-description--link svg {
+  height: 18px;
+  fill: var(--color-gray-600);
+  transform: rotate(45deg);
+  vertical-align: middle;
+}
+
+a.class-field-description--link:hover svg {
+  fill: var(--color-brand);
+}
+
 @media (min-width: 845px) {
   .es-header {
     padding: 0 var(--spacing-4);
