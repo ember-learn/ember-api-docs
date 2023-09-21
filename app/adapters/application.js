@@ -1,12 +1,10 @@
 import { inject as service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import fetch from 'fetch';
-import ENV from 'ember-api-docs/config/environment';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 
 export default class Application extends JSONAPIAdapter {
-  // host = ENV.API_HOST;
   currentProject = '';
   currentProjectVersion = '';
 
