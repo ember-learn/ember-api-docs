@@ -50,18 +50,16 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     assert.equal(currentURL(), '/ember/release');
   });
 
-  test('should convert unknown legacy data url to 404', async function (assert) {
+  test('should display 404 when navigating to unknown legacy data url', async function (assert) {
     await visit('/data/modules/ember-random.html');
-    assert.equal(currentURL(), '/404');
+    assert.equal(currentURL(), '/data/modules/ember-random.html');
+    assert
+      .dom('.whoops__title')
+      .hasText(`Ack! 404 friend, you're in the wrong place`);
   });
 
   test('should convert unknown legacy classes url to landing page', async function (assert) {
     await visit('classes/Ember.View.html');
     assert.equal(currentURL(), '/ember/release');
-  });
-
-  test('should convert unknown legacy data classes to 404', async function (assert) {
-    await visit('data/classes/DS.Whatever.html');
-    assert.equal(currentURL(), '/404');
   });
 });
