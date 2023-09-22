@@ -163,5 +163,8 @@
     "paths": [
       "lib/api-docs-data"
     ]
+  },
+  "overrides": {
+    "node-sass": "^6.0.0"
   }
 }
