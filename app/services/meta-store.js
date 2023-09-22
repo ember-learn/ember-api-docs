@@ -22,8 +22,14 @@ export default class MetaStoreService extends Service {
   }
 
   getRevId(project, version, type, id) {
-    let encodedId = encodeURIComponent(id);
-    return this.projectRevMap[`${project}-${version}`][type][encodedId];
+    let encodedId = id;
+    let revType = this.projectRevMap[`${project}-${version}`][type];
+
+    let matchingKey = Object.keys(revType).find(
+      (key) => key.toLowerCase() === encodedId.toLowerCase()
+    );
+
+    return this.projectRevMap[`${project}-${version}`][type][matchingKey];
   }
 
   getEncodedModulesFromProjectRev(id) {
