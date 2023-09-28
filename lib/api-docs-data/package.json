@@ -1,0 +1,9 @@
+{
+  "name": "api-docs-data",
+  "keywords": [
+    "ember-addon"
+  ],
+  "peerDependencies": {
+    "broccoli-funnel": "*"
+  }
+}

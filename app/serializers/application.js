@@ -5,6 +5,18 @@ export default class Application extends JSONAPISerializer {
   @service
   metaStore;
 
+  extractId(_, hash) {
+    return hash.id.toLowerCase();
+  }
+
+  extractRelationship(relationship) {
+    // for some reason we only need to update the id to lowercase when it's an object relationship and not an array 🤷
+    if (relationship?.data?.id) {
+      relationship.data.id = relationship.data.id.toLowerCase();
+    }
+    return super.extractRelationship(relationship);
+  }
+
   normalizeFindRecordResponse(store, primaryModelClass, payload, id) {
     let normalizedDocument = super.normalizeFindRecordResponse(...arguments);
 

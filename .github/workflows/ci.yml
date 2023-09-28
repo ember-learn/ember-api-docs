@@ -57,6 +57,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - run: npm run clone
+
       - name: Test
         env:
           PERCY_PARALLEL_NONCE: ${{ env.PERCY_PARALLEL_NONCE }}
