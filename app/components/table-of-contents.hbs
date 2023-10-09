@@ -1,7 +1,7 @@
 <ul class='table-of-contents '>
-  <li class='toc-item toc-group'>
-    <a {{on 'click' (fn this.toggle 'modules')}} href='#' data-test-toc-title='packages'>Packages</a>
-    <ul class='sub-table-of-contents modules selected'>
+  <li class='toc-item toc-group' data-test-toc-title="packages">
+    Packages
+    <ul class='sub-table-of-contents modules'>
       {{#each @moduleIDs as |moduleID|}}
 
         {{#if (not-eq moduleID '@ember/object/computed')}}
@@ -15,9 +15,9 @@
   </li>
 
   {{#if @isShowingNamespaces}}
-    <li class='table-of-contents'>
-      <a {{on 'click' (fn this.toggle 'namespaces')}} href='#' data-test-toc-title='namespaces'>Namespaces</a>
-      <ul class='sub-table-of-contents namespaces selected'>
+    <li class='table-of-contents' data-test-toc-title="namespaces">
+      Namespaces
+      <ul class='sub-table-of-contents namespaces'>
         {{#each @namespaceIDs as |namespaceID|}}
           <li class='toc-item toc-link' data-test-namespace={{namespaceID}}>
             <LinkTo @route='project-version.namespaces.namespace' @models={{array @version namespaceID}}>{{namespaceID}}</LinkTo>
@@ -27,9 +27,9 @@
     </li>
   {{/if}}
 
-  <li class='table-of-contents '>
-    <a {{on 'click' (fn this.toggle 'classes')}} href='#' data-test-toc-title='classes'>Classes</a>
-    <ul class='sub-table-of-contents classes selected'>
+  <li class='table-of-contents' data-test-toc-title="classes">
+    Classes
+    <ul class='sub-table-of-contents classes'>
       {{#each @classesIDs as |classID|}}
         <li class='toc-item toc-link' data-test-class={{classID}}>
           <LinkTo @route='project-version.classes.class' @models={{array @version classID}}>{{classID}}</LinkTo>
