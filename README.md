@@ -47,6 +47,29 @@ ember serve
 ```
 View at http://localhost:4200
 
+## Run fully-locally using `ember-api-docs-data`
+
+The Prembered version of the ember-api-docs expects a folder in its root that links to the `ember-api-docs-data` folder, so all you need to do is create a symbolic link to ember-api-docs-data and you can see the app running locally.
+
+Clone all of the following repositories into the same directory so they are "siblings" on the file system
+
+- This repository, `ember-api-docs`
+- [ember-data](https://github.com/emberjs/data/)
+
+```sh
+git clone https://github.com/ember-learn/ember-api-docs-data
+cd ../ember-api-docs-data
+npm install
+cd ..
+git clone https://github.com/ember-learn/ember-api-docs
+cd ember-api-docs
+ln -s ../ember-api-docs-data # assuming it's checked out in the same folder
+npm install
+npm start
+```
+
+Visit the app in your browser at [http://localhost:4200](http://localhost:4200)
+
 ## a11y testing
 
 To run a11y tests, run `test_a11y=yes ember serve`
