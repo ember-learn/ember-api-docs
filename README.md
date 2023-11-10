@@ -63,7 +63,7 @@ npm install
 cd ..
 git clone https://github.com/ember-learn/ember-api-docs
 cd ember-api-docs
-ln -s ../ember-api-docs-data # assuming it's checked out in the same folder
+ln -s ../ember-api-docs-data
 npm install
 npm start
 ```
