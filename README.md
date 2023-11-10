@@ -54,7 +54,7 @@ The Prembered version of the ember-api-docs expects a folder in its root that li
 Clone all of the following repositories into the same directory so they are "siblings" on the file system
 
 - This repository, `ember-api-docs`
-- [ember-data](https://github.com/emberjs/data/)
+- [ember-api-docs-data](https://github.com/ember-learn/ember-api-docs-data)
 
 ```sh
 git clone https://github.com/ember-learn/ember-api-docs-data
