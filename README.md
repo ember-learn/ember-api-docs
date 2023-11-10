@@ -33,7 +33,11 @@ Some tips for working with git/GitHub can be found in
 
 Please also see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Quickstart to run semi-locally
+## Running in your local environment
+
+The Prembered version of the ember-api-docs expects a folder in its root that links to the `ember-api-docs-data` folder, so you can either use the `npm run clone` script to clone the `ember-api-docs-data` repo into `ember-api-docs`, OR you can create a symbolic link to `ember-api-docs-data` from `ember-api-docs`. You might want to sym-link `ember-api-docs-data` if you are generating new versions of the docs files with `ember-jsonapi-docs`, otherwise you can probably use the clone script.
+
+### Quickstart to run locally
 
 Follow these instructions to run the app using publically available online data.
 You do not need to run [ember-jsonapi-docs](https://github.com/ember-learn/ember-jsonapi-docs)
@@ -43,15 +47,14 @@ locally yourself.
 git clone https://github.com/ember-learn/ember-api-docs.git
 cd ember-api-docs
 npm install
-ember serve
+npm run clone
+npm run start
 ```
 View at http://localhost:4200
 
-## Run fully-locally using `ember-api-docs-data`
+### Run locally with a sym-link
 
-The Prembered version of the ember-api-docs expects a folder in its root that links to the `ember-api-docs-data` folder, so all you need to do is create a symbolic link to ember-api-docs-data and you can see the app running locally.
-
-Clone all of the following repositories into the same directory so they are "siblings" on the file system
+Clone all of the following repositories into the same directory so they are "siblings" on the file system:
 
 - This repository, `ember-api-docs`
 - [ember-api-docs-data](https://github.com/ember-learn/ember-api-docs-data)
