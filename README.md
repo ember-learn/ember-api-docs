@@ -35,7 +35,7 @@ Please also see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Running in your local environment
 
-The Prembered version of the ember-api-docs expects a folder in its root that links to the `ember-api-docs-data` folder, so you can either use the `npm run clone` script to clone the `ember-api-docs-data` repo into `ember-api-docs`, OR you can create a symbolic link to `ember-api-docs-data` from `ember-api-docs`. You might want to sym-link `ember-api-docs-data` if you are generating new versions of the docs files with `ember-jsonapi-docs`, otherwise you can probably use the clone script.
+ember-api-docs expects a folder in its root that links to the `ember-api-docs-data` folder, so you can either use the `npm run clone` script to clone the `ember-api-docs-data` repo into `ember-api-docs`, OR you can create a symbolic link to `ember-api-docs-data` from `ember-api-docs`. You might want to sym-link `ember-api-docs-data` if you are generating new versions of the docs files with `ember-jsonapi-docs`, otherwise you can probably use the clone script.
 
 ### Quickstart to run locally
 
