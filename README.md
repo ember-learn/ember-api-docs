@@ -61,9 +61,6 @@ Clone all of the following repositories into the same directory so they are "sib
 
 ```sh
 git clone https://github.com/ember-learn/ember-api-docs-data
-cd ../ember-api-docs-data
-npm install
-cd ..
 git clone https://github.com/ember-learn/ember-api-docs
 cd ember-api-docs
 ln -s ../ember-api-docs-data
