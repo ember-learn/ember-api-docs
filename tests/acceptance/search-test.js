@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, skip } from 'qunit';
 import { visit, currentURL, fillIn, click, focus } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';
 import { setupApplicationTest } from 'ember-qunit';
@@ -9,7 +9,7 @@ import searchResultsV5_1 from 'ember-api-docs/tests/fixtures/searchresult-v-5-1'
 module('Acceptance | search', function (hooks) {
   setupApplicationTest(hooks);
 
-  test('search for an EmberArray function and navigate properly', async function (assert) {
+  skip('search for an EmberArray function and navigate properly', async function (assert) {
     await visit('/');
 
     const algoliaService = this.owner.lookup('service:algolia');

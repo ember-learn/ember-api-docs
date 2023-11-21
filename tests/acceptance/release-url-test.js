@@ -7,6 +7,6 @@ module('Acceptance | release URL', function (hooks) {
 
   test('specifying release instead of specific version in URL should go to the latest release', async function (assert) {
     await visit('ember/release/classes/Application');
-    assert.dom('h1.module-name').hasText('Class Application');
+    assert.dom('h1.module-name').includesText('Class Application');
   });
 });

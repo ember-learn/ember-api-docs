@@ -53,8 +53,6 @@
     "@types/ember__utils": "^4.0.2",
     "algoliasearch": "^3.32.1",
     "babel-eslint": "^10.1.0",
-    "bourbon": "5.1.0",
-    "bourbon-neat": "^1.9.1",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^2.0.0",
@@ -65,7 +63,6 @@
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-autoprefixer": "^1.0.0",
     "ember-cli-babel": "^7.26.10",
-    "ember-cli-bourbon": "^2.0.1",
     "ember-cli-browserstack": "^1.0.1",
     "ember-cli-clipboard": "^0.8.1",
     "ember-cli-dependency-checker": "^3.2.0",
@@ -78,12 +75,12 @@
     "ember-cli-htmlbars": "^6.1.1",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-meta-tags": "^7.0.0",
-    "ember-cli-sass": "^10.0.1",
     "ember-cli-terser": "^4.0.2",
     "ember-composable-helpers": "^3.1.1",
     "ember-concurrency": "^2.3.7",
     "ember-data": "~3.28.6",
     "ember-data-fastboot": "https://github.com/cardstack/ember-data-fastboot#6e6fb8bbf0b405ae174160cc1e4833c5582f68cd",
+    "ember-decorators": "^6.1.1",
     "ember-exam": "^1.0.0",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.1.1",
@@ -99,7 +96,7 @@
     "ember-route-action-helper": "^2.0.5",
     "ember-sinon": "^4.1.1",
     "ember-source": "~3.28.8",
-    "ember-styleguide": "2.6.0-0",
+    "ember-styleguide": "^8.3.0",
     "ember-svg-jar": "^2.4.2",
     "ember-template-lint": "^3.15.0",
     "ember-test-selectors": "^6.0.0",
@@ -132,7 +129,6 @@
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
-    "sass": "^1.54.4",
     "semver": "^7.5.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
@@ -163,8 +159,5 @@
     "paths": [
       "lib/api-docs-data"
     ]
-  },
-  "overrides": {
-    "node-sass": "^6.0.0"
   }
 }

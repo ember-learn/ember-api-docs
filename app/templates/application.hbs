@@ -1,12 +1,11 @@
+<HeadLayout />
+
 <EsHeader>
-  <EsNavbar @links={{this.links}}>
-    <SearchInput />
-  </EsNavbar>
+  {{!-- <SearchInput /> --}}
 </EsHeader>
-<main class="container">
+
+<main>
   {{outlet}}
 </main>
-<EsFooter />
 
-{{!-- required by ember-cli-meta-tags --}}
-<HeadLayout />
+<EsFooter />

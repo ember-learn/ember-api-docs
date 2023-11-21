@@ -12,25 +12,8 @@ module.exports = function (defaults) {
       urls: premberUrls(),
     },
     fingerprint: {
-      extensions: [
-        'js',
-        'css',
-        'jpg',
-        'png',
-        'gif',
-        'map',
-        'svg',
-        'webmanifest',
-      ],
+      extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'webmanifest'],
       generateAssetMap: true,
-    },
-    sassOptions: {
-      sourceMapEmbed: !envIsProduction,
-      includePaths: [
-        'app/styles',
-        'node_modules/bourbon-neat/app/assets/stylesheets',
-        'node_modules/normalize.css',
-      ],
     },
     autoImport: {
       webpack: {
