@@ -3,7 +3,7 @@
   border-bottom: $base-border;
   position: relative;
   z-index: 1;
-  padding: $small-spacing 0;
+  padding: var(--small-spacing) 0;
 
   @include media($large-screen-up) {
     // fixed sidebar, full height
@@ -12,7 +12,7 @@
     width: 19em;
     border-bottom: 0;
     border-right: $base-border;
-    padding: $small-spacing $base-spacing $base-spacing * 1.5;
+    padding: var(--small-spacing) $base-spacing $base-spacing * 1.5;
 
     &::before {
       @include position(absolute, 0 0 0 -100vw);
@@ -123,14 +123,14 @@ ol.toc-level-1 {
   font-size: $base-font-size * 0.9;
   transition: max-height 0.5s ease;
 
-  &.selected{ 
+  &.selected{
     max-height: 3000px;
   }
 
   &:not(.selected) {
     overflow: hidden;
     max-height: 0;
-  } 
+  }
 
   li {
     border-left: 3px solid transparent;
@@ -148,6 +148,6 @@ ol.toc-level-1 {
   }
 
   a {
-    padding-left: $small-spacing;
+    padding-left: var(--small-spacing);
   }
 }

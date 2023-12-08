@@ -1,5 +1,5 @@
 .chapter li {
-  margin: $small-spacing 0;
+  margin: var(--small-spacing) 0;
 
   @media (max-width: $mobile-portrait-screen) {
     margin: 0;

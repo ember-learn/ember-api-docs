@@ -1,7 +1,7 @@
 fieldset {
   background-color: lighten($base-border-color, 10%);
   border: $base-border;
-  margin: 0 0 $small-spacing;
+  margin: 0 0 var(--small-spacing);
   padding: $base-spacing;
 }
 
@@ -28,7 +28,7 @@ select {
 
 label {
   font-weight: 600;
-  margin-bottom: calc($small-spacing / 2);
+  margin-bottom: calc(--sass-small-spacing / 2);
 
   &.required::after {
     content: "*";
@@ -72,10 +72,10 @@ textarea {
 input[type="checkbox"],
 input[type="radio"] {
   display: inline;
-  margin-right: calc($small-spacing / 2);
+  margin-right: calc(--small-spacing / 2);
 }
 
 input[type="file"] {
-  padding-bottom: $small-spacing;
+  padding-bottom: var(--small-spacing);
   width: 100%;
 }
