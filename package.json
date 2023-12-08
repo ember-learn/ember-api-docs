@@ -63,7 +63,7 @@
     "ember-auto-import": "1.12.0",
     "ember-cli": "~3.28.6",
     "ember-cli-app-version": "^5.0.0",
-    "ember-cli-autoprefixer": "^1.0.0",
+    "ember-cli-autoprefixer": "^2.0.0",
     "ember-cli-babel": "^7.26.10",
     "ember-cli-bourbon": "^2.0.1",
     "ember-cli-browserstack": "^1.0.1",
