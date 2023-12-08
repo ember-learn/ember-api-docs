@@ -1,9 +1,7 @@
-@use "sass:math";
-
 fieldset {
   background-color: lighten($base-border-color, 10%);
   border: $base-border;
-  margin: 0 0 $small-spacing;
+  margin: 0 0 var(--small-spacing);
   padding: $base-spacing;
 }
 
@@ -30,7 +28,7 @@ select {
 
 label {
   font-weight: 600;
-  margin-bottom: math.div($small-spacing, 2);
+  margin-bottom: calc(--sass-small-spacing / 2);
 
   &.required::after {
     content: "*";
@@ -50,8 +48,8 @@ textarea {
   box-sizing: border-box;
   font-family: $base-font-family;
   font-size: $base-font-size;
-  margin-bottom: math.div($base-spacing, 2);
-  padding: math.div($base-spacing, 3);
+  margin-bottom: calc($base-spacing / 2);
+  padding: calc($base-spacing / 3);
   transition: border-color;
   width: 100%;
 
@@ -74,10 +72,10 @@ textarea {
 input[type="checkbox"],
 input[type="radio"] {
   display: inline;
-  margin-right: math.div($small-spacing, 2);
+  margin-right: calc(--small-spacing / 2);
 }
 
 input[type="file"] {
-  padding-bottom: $small-spacing;
+  padding-bottom: var(--small-spacing);
   width: 100%;
 }

@@ -5,6 +5,7 @@ const Funnel = require('broccoli-funnel');
 const mergeTrees = require('broccoli-merge-trees');
 const envIsProduction = process.env.EMBER_ENV === 'production';
 const premberUrls = require('./prember-urls');
+const nodeSass = require('node-sass');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -25,19 +26,13 @@ module.exports = function (defaults) {
       generateAssetMap: true,
     },
     sassOptions: {
+      implementation: nodeSass,
       sourceMapEmbed: !envIsProduction,
       includePaths: [
         'app/styles',
         'node_modules/bourbon-neat/app/assets/stylesheets',
         'node_modules/normalize.css',
       ],
-    },
-    autoImport: {
-      webpack: {
-        node: {
-          process: 'mock',
-        },
-      },
     },
     autoprefixer: {
       enabled: true,

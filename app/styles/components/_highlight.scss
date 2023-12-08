@@ -5,7 +5,7 @@
   font-family: $monospace-font-family;
   font-size: 0.8em;
   line-height: 1.5em;
-  margin: $small-spacing 0 $large-spacing;
+  margin: var(--small-spacing) 0 $large-spacing;
   overflow: hidden;
   position: relative;
   font-variant-ligatures: none;
@@ -28,7 +28,7 @@
       }
     }
   }
-  
+
   .scroller {
     overflow: auto;
   }

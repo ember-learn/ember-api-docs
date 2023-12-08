@@ -6,7 +6,7 @@ ol {
 
   &%default-ul {
     list-style-type: disc;
-    margin-bottom: $small-spacing;
+    margin-bottom: var(--small-spacing);
     padding-left: $base-spacing;
 
     @media (max-width: $mobile-portrait-screen){
@@ -21,12 +21,12 @@ ol {
     > li {
       counter-increment: customlistcounter;
       clear: both;
-      padding: $small-spacing 0 $small-spacing 2em;
+      padding: var(--small-spacing) 0 var(--small-spacing) 2em;
       position: relative;
       z-index: 1;
 
       &::before {
-        @include position(absolute, ($small-spacing + 0.5em) null null 0);
+        @include position(absolute, (var(--small-spacing) + 0.5em) null null 0);
         @include size(2em);
         content: counter(customlistcounter) " ";
         border: 2px solid $base-border-color;
@@ -47,11 +47,11 @@ ol {
 }
 
 dl {
-  margin-bottom: $small-spacing;
+  margin-bottom: var(--small-spacing);
 
   dt {
     font-weight: bold;
-    margin-top: $small-spacing;
+    margin-top: var(--small-spacing);
   }
 
   dd {

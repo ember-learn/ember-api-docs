@@ -20,7 +20,7 @@ h6 {
   font-family: $heading-font-family;
   font-size: $base-font-size;
   line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
+  margin: 0 0 var(--small-spacing);
   font-weight: bold;
 
   code {
@@ -43,7 +43,7 @@ h2 {
 }
 
 p {
-  margin: 1.5em 0 $small-spacing;
+  margin: 1.5em 0 var(--small-spacing);
   line-height: 1.5em;
 }
 
