@@ -1,27 +1,20 @@
 import Service from '@ember/service';
 import algoliasearch from 'algoliasearch';
 import config from 'ember-api-docs/config/environment';
-import { denodeify } from 'rsvp';
 
 export default class AlgoliaService extends Service {
-  _search(query, params, callback) {
-    if (!callback) {
-      callback = params;
-      params = undefined;
-    }
+  async search(query, params) {
     if (query) {
       if (Array.isArray(query) && !params) {
         // if multiple indices
-        this._client.search(query, callback);
+        return this._client.search(query);
       } else if (!params) {
         // if no params
-        this.accessIndex(query.indexName).search(query.query, callback);
+        return this.accessIndex(query.indexName).search(query.query);
       } else {
         // if params and callback
-        this.accessIndex(query.indexName).search(query.query, params, callback);
+        return this.accessIndex(query.indexName).search(query.query, params);
       }
-    } else {
-      callback(new Error(`Could not search algolia for query "${query}"`));
     }
   }
 
@@ -39,6 +32,5 @@ export default class AlgoliaService extends Service {
       config.algolia.algoliaKey
     );
     this._indices = {};
-    this.search = denodeify(this._search.bind(this));
   }
 }

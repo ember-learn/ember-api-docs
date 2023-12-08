@@ -51,7 +51,7 @@
     "@types/ember__utils": "^4.0.2",
     "@types/ember-qunit": "^5.0.2",
     "@types/ember-resolver": "^5.0.13",
-    "algoliasearch": "^3.32.1",
+    "algoliasearch": "^4.20.0",
     "babel-eslint": "^10.1.0",
     "bourbon": "5.1.0",
     "bourbon-neat": "^1.9.1",
@@ -60,7 +60,7 @@
     "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^0.5.4",
     "ember-anchor": "^1.0.3",
-    "ember-auto-import": "1.12.0",
+    "ember-auto-import": "^2.7.0",
     "ember-cli": "~3.28.6",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-autoprefixer": "^1.0.0",
@@ -125,6 +125,7 @@
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
+    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
     "prember": "^1.1.1",
@@ -132,16 +133,16 @@
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
-    "sass": "^1.54.4",
     "semver": "^7.5.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
     "testem": "^3.10.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "webpack": "^5.89.0"
   },
   "engines": {
-    "node": "14.*",
-    "npm": "7 || 8 || 9"
+    "node": "16.* || 18.* || 20.*",
+    "npm": "7 || 8 || >= 9"
   },
   "cacheDirectories": [
     "node_modules"
@@ -155,16 +156,12 @@
     "abortcontroller-polyfill",
     "abortcontroller-polyfill/dist/cjs-ponyfill"
   ],
-  "volta": {
-    "node": "14.17.0",
-    "npm": "8.19.3"
-  },
   "ember-addon": {
     "paths": [
       "lib/api-docs-data"
     ]
   },
   "overrides": {
-    "node-sass": "^6.0.0"
+    "node-sass": "^9.0.0"
   }
 }
