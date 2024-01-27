@@ -63,9 +63,14 @@ module.exports = function (defaults) {
     destDir: '/assets/',
   });
 
-
   const { Webpack } = require('@embroider/webpack');
-  const appTree = require('@embroider/compat').compatBuild(app, Webpack);
+  const appTree = require('@embroider/compat').compatBuild(app, Webpack, {
+    staticAddonTrees: true,
+    staticAddonTestSupportTrees: true,
+    staticHelpers: true,
+    staticModifiers: true,
+    staticComponents: true,
+  });
 
   return mergeTrees([appTree, mappingsTree]);
 };
