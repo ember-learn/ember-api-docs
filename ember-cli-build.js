@@ -72,5 +72,5 @@ module.exports = function (defaults) {
     staticComponents: true,
   });
 
-  return mergeTrees([appTree, mappingsTree]);
+  return mergeTrees([require('prember').prerender(app, appTree), mappingsTree]);
 };
