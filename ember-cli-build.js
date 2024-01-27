@@ -63,5 +63,14 @@ module.exports = function (defaults) {
     destDir: '/assets/',
   });
 
-  return mergeTrees([app.toTree(), mappingsTree]);
+  const { Webpack } = require('@embroider/webpack');
+  const appTree = require('@embroider/compat').compatBuild(app, Webpack, {
+    staticAddonTrees: true,
+    staticAddonTestSupportTrees: true,
+    staticHelpers: true,
+    staticModifiers: true,
+    staticComponents: true,
+  });
+
+  return mergeTrees([require('prember').prerender(app, appTree), mappingsTree]);
 };
