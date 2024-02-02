@@ -61,18 +61,14 @@ export default class Application extends JSONAPIAdapter {
 
       if (typeof revId !== 'undefined') {
         let encodedRevId = encodeURIComponent(revId);
-        url = `json-docs/${projectName}/${version}/${pluralize(
-          modelNameToUse
-        )}/${encodedRevId}`;
+        url = `json-docs/${projectName}/${version}/${pluralize(modelNameToUse)}/${encodedRevId}`;
       } else {
         throw new Error('Documentation item not found');
       }
     } else if (modelName === 'missing') {
       let version = this.projectService.version;
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
-      url = `json-docs/${projectName}/${version}/${pluralize(
-        modelName
-      )}/${revId}`;
+      url = `json-docs/${projectName}/${version}/${pluralize(modelName)}/${revId}`;
     } else if (modelName === 'project') {
       this.currentProject = id;
       url = `rev-index/${id}`;
