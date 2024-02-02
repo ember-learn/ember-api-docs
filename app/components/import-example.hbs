@@ -5,7 +5,7 @@
       {{#if this.showClipboardSuccessIcon}}
         {{svg-jar 'success' width='24px' height='24px'}}
       {{else}}
-        <CopyButton @text={{concat 'import ' @item " from '" @package "';"}} @success={{this.showSuccess}}>
+        <CopyButton @text={{concat 'import ' @item " from '" @package "';"}} @onSuccess={{this.showSuccess}}>
           {{svg-jar 'copy' width='24px' height='24px'}}
         </CopyButton>
       {{/if}}
