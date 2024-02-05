@@ -2,6 +2,10 @@ import { belongsTo, attr } from '@ember-data/model';
 import ClassModel from './class';
 
 export default class Module extends ClassModel {
+  get nameParts() {
+    return this.name ? this.name.split('/') : [];
+  }
+
   @attr()
   submodules;
 
