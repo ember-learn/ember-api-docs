@@ -1,5 +1,20 @@
 .whoops {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20%;
+
+   @media (max-width: $mobile-portrait-screen){
+    margin-left: 15px;
+   }
+
+  img {
+    width: 40%;
+    @media (max-width: $mobile-portrait-screen){
+    width: 80%;
+   }
+  }
 
   &__title {
     text-transform: uppercase;
