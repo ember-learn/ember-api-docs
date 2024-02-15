@@ -144,6 +144,7 @@ a.class-field-description--link:hover svg {
   }
 
   .whoops__message {
-    margin: var(--spacing-4);
+    margin: var(--spacing-2);
+    text-align: center;
   }
 }
