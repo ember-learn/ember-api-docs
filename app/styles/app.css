@@ -109,6 +109,18 @@ a.class-field-description--link:hover svg {
   fill: var(--color-brand);
 }
 
+.whoops {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.whoops img {
+    width: 40%;
+    margin: var(--spacing-2);
+}
+
 @media (min-width: 845px) {
   .es-header {
     padding: 0 var(--spacing-4);
@@ -122,5 +134,16 @@ a.class-field-description--link:hover svg {
 
   .content {
     margin-top: var(--spacing-4);
+  }
+}
+
+@media (max-width: 450px) {
+  .whoops img {
+    width: 80%;
+    margin: var(--spacing-4);
+  }
+
+  .whoops__message {
+    margin: var(--spacing-4);
   }
 }
