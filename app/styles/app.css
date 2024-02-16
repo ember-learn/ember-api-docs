@@ -111,13 +111,13 @@ a.class-field-description--link:hover svg {
 
 .whoops {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: var(--spacing-6)
 }
 
 .whoops img {
-    width: 40%;
+    width: 240px;
     margin: var(--spacing-2);
 }
 
@@ -138,6 +138,11 @@ a.class-field-description--link:hover svg {
 }
 
 @media (max-width: 450px) {
+  .whoops {
+    flex-direction: column;
+    padding: var(--spacing-3);
+  }
+
   .whoops img {
     width: 80%;
     margin: var(--spacing-4);
