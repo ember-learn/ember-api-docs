@@ -1,4 +1,4 @@
-import { module, skip } from 'qunit';
+import { module, skip, test } from 'qunit';
 import { visit, currentURL, fillIn, click, focus } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';
 import { setupApplicationTest } from 'ember-qunit';
