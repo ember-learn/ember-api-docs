@@ -1,8 +1,9 @@
 import ClassRoute from '../classes/class';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import { withScrollReset } from '../../../utils/with-scroll-reset';
 
-export default class ModuleRoute extends ClassRoute.extend(ScrollTracker) {
+@withScrollReset
+export default class ModuleRoute extends ClassRoute {
   async model(params) {
     const { project, project_version: compactVersion } =
       this.paramsFor('project-version');
