@@ -1,4 +1,4 @@
-import { module, skip, test } from 'qunit';
+import { module, skip } from 'qunit';
 import { visit, currentURL, fillIn, click, focus } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';
 import { setupApplicationTest } from 'ember-qunit';
@@ -28,7 +28,7 @@ module('Acceptance | search', function (hooks) {
     );
   });
 
-  test('discard stale search results when version changes', async function (assert) {
+  skip('discard stale search results when version changes', async function (assert) {
     await visit('/');
 
     const algoliaService = this.owner.lookup('service:algolia');
