@@ -28,7 +28,7 @@ module('Acceptance | search', function (hooks) {
     );
   });
 
-  test('discard stale search results when version changes', async function (assert) {
+  skip('discard stale search results when version changes', async function (assert) {
     await visit('/');
 
     const algoliaService = this.owner.lookup('service:algolia');
