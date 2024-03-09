@@ -43,6 +43,10 @@ export default class ProjectVersionRoute extends Route {
     });
   }
 
+  afterModel(model) {
+    this.headData.modelVersion = model.version;
+  }
+
   // Using redirect instead of afterModel so transition succeeds and returns 307
   redirect(model, transition) {
     const lookupParams = (routeName) => {

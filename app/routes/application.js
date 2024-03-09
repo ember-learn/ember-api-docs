@@ -11,8 +11,9 @@ export default class ApplicationRoute extends Route {
   @service
   legacyModuleMappings;
 
-  title(tokens) {
-    let [version, entity] = tokens;
+  title() {
+    let entity = this.headData.modelName;
+    let version = this.headData.modelVersion;
     if (!entity) {
       entity = 'Ember';
     }
@@ -30,6 +31,22 @@ export default class ApplicationRoute extends Route {
   async afterModel() {
     set(this, 'headData.cdnDomain', ENV.API_HOST);
     await this.legacyModuleMappings.initMappings();
+
+    let entity = this.headData.modelName;
+    let version = this.headData.modelVersion;
+    if (!entity) {
+      entity = 'Ember';
+    }
+    if (version) {
+      const compactVersion = getCompactVersion(version);
+      const title = `${[entity, compactVersion].join(
+        ' - '
+      )} - Ember API Documentation`;
+      set(this, 'headData.title', title);
+      return title;
+    }
+    return '';
+
     return super.afterModel(...arguments);
   }
 }

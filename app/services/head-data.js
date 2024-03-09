@@ -9,4 +9,6 @@ export default class HeadDataService extends Service {
   @tracked canonicalUrl;
   @tracked description;
   @tracked cdnDomain;
+  @tracked modelName;
+  @tracked modelVersion;
 }
