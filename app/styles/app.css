@@ -109,6 +109,23 @@ a.class-field-description--link:hover svg {
   fill: var(--color-brand);
 }
 
+
+
+.parameter, .return {
+  display: flex;
+  gap: 5px;
+}
+.parameter dt, .return dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0;
+}
+.parameter-type, .return .return-type {
+  font-style: italic;
+  color: var(--color-gray-600);
+}
+
 .whoops {
   display: flex;
   justify-content: center;
