@@ -113,7 +113,7 @@ a.class-field-description--link:hover svg {
 
 .parameter, .return {
   display: flex;
-  gap: 5px;
+  gap: var(--spacing-1);
 }
 .parameter dt, .return dt {
   font-weight: bold;
