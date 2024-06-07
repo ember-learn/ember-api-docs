@@ -20,6 +20,9 @@ devDependencies:
   '@embroider/core':
     specifier: ^3.4.3
     version: 3.4.10
+  '@embroider/router':
+    specifier: ^2.1.8
+    version: 2.1.8(@embroider/core@3.4.10)
   '@embroider/webpack':
     specifier: ^3.2.1
     version: 3.2.3(@embroider/core@3.4.10)(webpack@5.91.0)
@@ -2331,6 +2334,21 @@ packages:
       lodash: 4.17.21
       resolve: 1.22.8
       semver: 7.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@embroider/router@2.1.8(@embroider/core@3.4.10):
+    resolution: {integrity: sha512-Dvp8YdqAWT6T0yzBZfUe6SyaVNH7xoXBlrxF1LbqoF/Q2buNzDy9oAQ5tTnbX1x+5KOrM0ryOjfeF0GoqkfobA==}
+    peerDependencies:
+      '@embroider/core': ^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      '@embroider/core':
+        optional: true
+    dependencies:
+      '@ember/test-waiters': 3.1.0
+      '@embroider/addon-shim': 1.8.9
+      '@embroider/core': 3.4.10
     transitivePeerDependencies:
       - supports-color
     dev: true
