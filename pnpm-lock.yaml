@@ -191,9 +191,6 @@ devDependencies:
   ember-data-fastboot:
     specifier: https://github.com/cardstack/ember-data-fastboot#6e6fb8bbf0b405ae174160cc1e4833c5582f68cd
     version: github.com/cardstack/ember-data-fastboot/6e6fb8bbf0b405ae174160cc1e4833c5582f68cd(@babel/core@7.24.7)
-  ember-exam:
-    specifier: ^1.0.0
-    version: 1.0.0(@babel/core@7.24.7)
   ember-export-application-global:
     specifier: ^2.0.1
     version: 2.0.1
@@ -6530,15 +6527,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /cli-table2@0.2.0:
-    resolution: {integrity: sha512-rNig1Ons+B0eTcophmN0nlbsROa7B3+Yfo1J3leU56awc8IuKDW3MLMv9gayl4zUnYaLGg8CrecKso+hSmUvUw==}
-    dependencies:
-      lodash: 3.10.1
-      string-width: 1.0.2
-    optionalDependencies:
-      colors: 1.4.0
-    dev: true
-
   /cli-table@0.3.11:
     resolution: {integrity: sha512-IqLQi4lO0nIB4tcdTpN4LCB9FI3uqrJZK7RC515EnhZ6qBaglkIgICb1wjeAqpdoOabm1+SuQtkXIPdYC93jhQ==}
     engines: {node: '>= 0.2.0'}
@@ -6612,11 +6600,6 @@ packages:
       '@types/q': 1.5.8
       chalk: 2.4.2
       q: 1.5.1
-    dev: true
-
-  /code-point-at@1.1.0:
-    resolution: {integrity: sha512-RpAVKQA5T63xEj6/giIbUEtZwJ4UFIc3ZtvEkiaUERylqe8xb5IvqcgOurZLahv93CLKfxcw5YI+DZcUBRyLXA==}
-    engines: {node: '>=0.10.0'}
     dev: true
 
   /collection-visit@1.0.0:
@@ -8853,21 +8836,6 @@ packages:
     transitivePeerDependencies:
       - '@glint/environment-ember-loose'
       - '@glint/template'
-      - supports-color
-    dev: true
-
-  /ember-exam@1.0.0(@babel/core@7.24.7):
-    resolution: {integrity: sha512-5E7FiG9zJSkYiJC88JRW4sT9xt51bj1yflF4b+YS9HXhKV1g4NpeH3gdWMExTNdTaY7eKvXfecdbnsc6kTlSBg==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-    dependencies:
-      chalk: 2.4.2
-      cli-table2: 0.2.0
-      debug: 3.2.7
-      ember-cli-babel: 6.18.0(@babel/core@7.24.7)
-      fs-extra: 4.0.3
-      rimraf: 2.7.1
-    transitivePeerDependencies:
-      - '@babel/core'
       - supports-color
     dev: true
 
@@ -11894,13 +11862,6 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /is-fullwidth-code-point@1.0.0:
-    resolution: {integrity: sha512-1pqUqRjkhPJ9miNq9SwMfdvi6lBJcd6eFxvfaivQhaH3SgisfiuudvFntdKOmxuee/77l+FPjKrQjWvmPjWrRw==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      number-is-nan: 1.0.1
-    dev: true
-
   /is-fullwidth-code-point@2.0.0:
     resolution: {integrity: sha512-VHskAKYM8RfSFXwee5t5cbN5PZeq1Wrh6qd5bkyiXIf6UQcN6w/A0eXM9r6t8d+GYOh+o6ZhiEnb88LN/Y8m2w==}
     engines: {node: '>=4'}
@@ -12784,10 +12745,6 @@ packages:
 
   /lodash.values@4.3.0:
     resolution: {integrity: sha512-r0RwvdCv8id9TUblb/O7rYPwVy6lerCbcawrfdo9iC/1t1wsNMJknO79WNBgwkH0hIeJ08jmvvESbFpNb4jH0Q==}
-    dev: true
-
-  /lodash@3.10.1:
-    resolution: {integrity: sha512-9mDDwqVIma6OZX79ZlDACZl8sBm0TEnkf99zV3iMA4GzkIT/9hiqP5mY0HoT1iNLCrKc/R1HByV+yJfRWVJryQ==}
     dev: true
 
   /lodash@4.17.21:
@@ -13754,11 +13711,6 @@ packages:
 
   /num2fraction@1.2.2:
     resolution: {integrity: sha512-Y1wZESM7VUThYY+4W+X4ySH2maqcA+p7UR+w8VWNWVAd6lwuXXWz/w/Cz43J/dI2I+PS6wD5N+bJUF+gjWvIqg==}
-    dev: true
-
-  /number-is-nan@1.0.1:
-    resolution: {integrity: sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==}
-    engines: {node: '>=0.10.0'}
     dev: true
 
   /nwsapi@2.2.10:
@@ -15929,15 +15881,6 @@ packages:
 
   /string-template@0.2.1:
     resolution: {integrity: sha512-Yptehjogou2xm4UJbxJ4CxgZx12HBfeystp0y3x7s4Dj32ltVVG1Gg8YhKjHZkHicuKpZX/ffilA8505VbUbpw==}
-    dev: true
-
-  /string-width@1.0.2:
-    resolution: {integrity: sha512-0XsVpQLnVCXHJfyEs8tC0zpTVIr5PKKsQtkT29IwupnPTjtPmQ3xT/4yCREF9hYkV/3M3kzcUTSAZT6a6h81tw==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      code-point-at: 1.1.0
-      is-fullwidth-code-point: 1.0.0
-      strip-ansi: 3.0.1
     dev: true
 
   /string-width@2.1.1:
