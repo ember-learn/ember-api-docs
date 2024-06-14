@@ -137,6 +137,19 @@ dd {
   color: var(--color-gray-600);
 }
 
+.on-this-page-wrapper .access-checkbox-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.on-this-page-wrapper .api-index-filter {
+  margin-top: var(--spacing-2)
+}
+
+.on-this-page-wrapper ul {
+  margin-top: 0;
+}
+
 .whoops {
   display: flex;
   justify-content: center;

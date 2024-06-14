@@ -71,31 +71,26 @@
     <ImportExample @item={{@model.name}} @package={{this.module}} />
   {{/if}}
   <p class="description"><MarkdownToHtml @markdown={{@model.description}} /></p>
-
-  {{#if (or @model.methods @model.properties @model.events)}}
+  <hr>
+  {{#if @model.methods}}
+  <h2>Methods</h2>
+  <Methods @model={{@model}} @filterData={{this.filterData}}/>
+  {{/if}}
+  {{#if @model.properties}}
+  <h2>Properties</h2>
+  <Properties @model={{@model}} @filterData={{this.filterData}}/>
+  {{/if}}
+  {{#if @model.events}}
+  <h2>Events</h2>
+  <Events @model={{@model}} @filterData={{this.filterData}}/>
+  {{/if}}
+</article>
+<div class="on-this-page-wrapper">
+    <div class="on-this-page-wrapper-header">On this page</div>
+    <hr>
+{{#if (or @model.methods @model.properties @model.events)}}
     <div class="tabbed-layout">
-      <nav class="tabbed-layout__menu">
-        <LinkTo @route={{concat this.parentName ".index" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".index"}} data-test-tab="index">
-          <span>Index</span>
-        </LinkTo>
-        {{#if @model.methods}}
-          <LinkTo @route={{concat this.parentName ".methods" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".methods"}} data-test-tab="methods">
-            <span>Methods</span>
-          </LinkTo>
-        {{/if}}
-        {{#if @model.properties}}
-          <LinkTo @route={{concat this.parentName ".properties" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".properties"}} data-test-tab="properties">
-            <span>Properties</span>
-          </LinkTo>
-        {{/if}}
-        {{#if @model.events}}
-          <LinkTo @route={{concat this.parentName ".events" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".events"}} data-test-tab="events">
-            <span>Events</span>
-          </LinkTo>
-        {{/if}}
-      </nav>
-      <section>
-        Show:
+      <section class="access-checkbox-list">
         <label class="access-checkbox">
           <input id="inherited-toggle"
                  data-test-checkbox="inherited"
@@ -130,8 +125,7 @@
         </label>
       </section>
       <hr>
-      {{outlet}}
     </div>
+    {{outlet}}
   {{/if}}
-
-</article>
+</div>
