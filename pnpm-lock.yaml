@@ -107,9 +107,6 @@ importers:
       ember-a11y-testing:
         specifier: ^5.2.1
         version: 5.2.1(@babel/core@7.24.7)(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(@glint/environment-ember-loose@0.9.7(@glimmer/component@1.1.2(@babel/core@7.24.7))(ember-cli-htmlbars@6.3.0)(ember-modifier@3.2.7(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7)))(qunit@2.21.0)(webpack@5.91.0)
-      ember-anchor:
-        specifier: ^1.0.3
-        version: 1.0.3
       ember-auto-import:
         specifier: ^2.7.2
         version: 2.7.3(webpack@5.91.0)
@@ -3651,10 +3648,6 @@ packages:
       qunit:
         optional: true
 
-  ember-anchor@1.0.3:
-    resolution: {integrity: sha512-fguKScK+t0eOzUOWodloNy5ve+q0p1hI1fghQbYSscl8aTN/KB5edA/K2gs75Q0t3FplzpqQpYbHk06WLw07Fg==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-
   ember-arg-types@1.1.0:
     resolution: {integrity: sha512-hWpUz0eiNkWzi3FgHW5QU6LyCDyUlTWwuIROHluEKZoa9m6LJVXbb/EVFgIG3FkAib6a5Ie00WvkXEZFXxh3+A==}
     engines: {node: 14.* || >= 16}
@@ -3768,10 +3761,6 @@ packages:
   ember-cli-head@2.0.0:
     resolution: {integrity: sha512-i9qwljBlpzU/ei0xN+FiCHUvU1ZdjVXk0OzRKoeMZJK3m4p29CvB095klT0q+PigvYFYHIyTaeSWmbgjP8CZiw==}
     engines: {node: 12.* || >= 14}
-
-  ember-cli-htmlbars@3.1.0:
-    resolution: {integrity: sha512-cgvRJM73IT0aePUG7oQ/afB7vSRBV3N0wu9BrWhHX2zkR7A7cUBI7KC9VPk6tbctCXoM7BRGsCC4aIjF7yrfXA==}
-    engines: {node: 6.* || 8.* || >= 10.*}
 
   ember-cli-htmlbars@4.5.0:
     resolution: {integrity: sha512-bYJpK1pqFu9AadDAGTw05g2LMNzY8xTCIqQm7dMJmKEoUpLRFbPf4SfHXrktzDh7Q5iggl6Skzf1M0bPlIxARw==}
@@ -13349,13 +13338,6 @@ snapshots:
       - supports-color
       - webpack
 
-  ember-anchor@1.0.3:
-    dependencies:
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 3.1.0
-    transitivePeerDependencies:
-      - supports-color
-
   ember-arg-types@1.1.0(webpack@5.91.0):
     dependencies:
       '@embroider/macros': 1.16.2
@@ -13721,15 +13703,6 @@ snapshots:
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 5.7.2
       ember-in-element-polyfill: 1.0.1
-    transitivePeerDependencies:
-      - supports-color
-
-  ember-cli-htmlbars@3.1.0:
-    dependencies:
-      broccoli-persistent-filter: 2.3.1
-      hash-for-dep: 1.5.1
-      json-stable-stringify: 1.1.1
-      strip-bom: 3.0.0
     transitivePeerDependencies:
       - supports-color
 
@@ -15738,7 +15711,7 @@ snapshots:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.8
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
 
