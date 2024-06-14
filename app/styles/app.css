@@ -91,6 +91,11 @@ li.toc-heading:first-child {
   margin-top: 0;
 }
 
+.toc-private-toggle {
+  display: block;
+  margin-top: var(--spacing-2);
+}
+
 a.class-field-description--link {
   margin-left: 12px;
   vertical-align: middle;
@@ -108,8 +113,6 @@ a.class-field-description--link svg {
 a.class-field-description--link:hover svg {
   fill: var(--color-brand);
 }
-
-
 
 .parameter, .return {
   display: flex;
