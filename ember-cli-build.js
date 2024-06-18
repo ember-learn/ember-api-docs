@@ -15,13 +15,6 @@ module.exports = function (defaults) {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'webmanifest'],
       generateAssetMap: true,
     },
-    autoImport: {
-      webpack: {
-        node: {
-          process: 'mock',
-        },
-      },
-    },
     autoprefixer: {
       enabled: true,
       cascade: true,
