@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  NODE_VERSION: 14
+  NODE_VERSION: 20
   PERCY_PARALLEL_NONCE: ${{ github.run_id }}-${{ github.run_number }}
   PERCY_PARALLEL_TOTAL: 1
 
@@ -18,24 +18,24 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Check lockfile version
-        uses: mansona/npm-lockfile-version@v1
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 8
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          cache: 'npm'
+          cache: 'pnpm'
           node-version: ${{ env.NODE_VERSION }}
 
-      - run: npm i -g npm@9
-
       - name: Install dependencies
-        run: npm ci
+        run: pnpm i --frozen-lockfile
 
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
 
 
   test-app:
@@ -44,24 +44,26 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Check out a copy of the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          version: 8
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          cache: 'npm'
+          cache: 'pnpm'
           node-version: ${{ env.NODE_VERSION }}
 
-      - run: npm i -g npm@9
+      - run: pnpm install --frozen-lockfile
 
-      - name: Install dependencies
-        run: npm ci
-
-      - run: npm run clone
+      - run: pnpm run clone
 
       - name: Test
         env:
           PERCY_PARALLEL_NONCE: ${{ env.PERCY_PARALLEL_NONCE }}
           PERCY_PARALLEL_TOTAL: ${{ env.PERCY_PARALLEL_TOTAL }}
           PERCY_TOKEN: 5ad6687f6b1ad3dec2b964f94d3d59ff3880baccf1492c0663e85c1ce79c1a52
-        run: npx percy exec -- npm run test:ember
+        run: pnpm percy exec -- pnpm run test:ember

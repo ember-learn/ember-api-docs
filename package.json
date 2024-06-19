@@ -51,14 +51,14 @@
     "@types/ember__string": "^3.0.10",
     "@types/ember__test-helpers": "^2.8.2",
     "@types/ember__utils": "^4.0.2",
-    "algoliasearch": "^3.32.1",
+    "algoliasearch": "^4.20.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^0.5.4",
     "ember-anchor": "^1.0.3",
-    "ember-auto-import": "1.12.0",
+    "ember-auto-import": "^2.7.0",
     "ember-cli": "~3.28.6",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-autoprefixer": "^1.0.0",
@@ -71,7 +71,7 @@
     "ember-cli-deploy-gzip": "^1.0.0",
     "ember-cli-deprecation-workflow": "^2.1.0",
     "ember-cli-document-title-northm": "^1.0.3",
-    "ember-cli-fastboot": "^3.3.2",
+    "ember-cli-fastboot": "^4.1.5",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-meta-tags": "^7.0.0",
@@ -111,9 +111,9 @@
     "eslint-plugin-qunit": "^6.2.0",
     "express-sslify": "^1.2.0",
     "fastboot-app-server": "^3.3.2",
-    "lint-to-the-future": "^0.6.1",
-    "lint-to-the-future-ember-template": "^0.3.5",
-    "lint-to-the-future-eslint": "^0.2.1",
+    "lint-to-the-future": "^2.0.0",
+    "lint-to-the-future-ember-template": "^1.2.0",
+    "lint-to-the-future-eslint": "^2.0.1",
     "loader.js": "^4.7.0",
     "lodash.groupby": "^4.6.0",
     "lodash.last": "^3.0.0",
@@ -122,9 +122,10 @@
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
+    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
-    "prember": "^1.1.1",
+    "prember": "^2.0.0",
     "prettier": "^2.5.1",
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
@@ -133,11 +134,12 @@
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
     "testem": "^3.10.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "webpack": "^5.89.0"
   },
   "engines": {
-    "node": "14.*",
-    "npm": "7 || 8 || 9"
+    "node": "16.* || 18.* || 20.*",
+    "npm": "7 || 8 || >= 9"
   },
   "cacheDirectories": [
     "node_modules"
@@ -151,10 +153,6 @@
     "abortcontroller-polyfill",
     "abortcontroller-polyfill/dist/cjs-ponyfill"
   ],
-  "volta": {
-    "node": "14.17.0",
-    "npm": "8.19.3"
-  },
   "ember-addon": {
     "paths": [
       "lib/api-docs-data"
