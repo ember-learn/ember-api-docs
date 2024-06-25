@@ -1,8 +1,18 @@
 <article class="chapter">
   {{#if (eq this.model.name 'ember-data-overview')}}
-    <h1 class="module-name">EmberData Overview</h1>
+    <h1 class="module-name">EmberData</h1>
+  {{else if this.model.nameParts}}
+    <h1 class="package-name">
+      <span class="package-title-badge">Package</span>
+      {{~#each this.model.nameParts as |part index|~}}
+        <span class="package-title-part">{{part}}{{if (eq index (sub this.model.nameParts.length 1)) '' '/'}}</span>
+      {{~/each}}
+    </h1>
   {{else}}
-    <h1 class="module-name">Package {{this.model.name}}</h1>
+    <h1 class="module-name">
+      {{this.model.name}}
+      <span class="title-badge">Package</span>
+    </h1>
   {{/if}}
   {{#if this.model.access}}<span class="access">{{this.model.access}}</span>{{/if}}
 

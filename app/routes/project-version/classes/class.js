@@ -18,6 +18,9 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
   @service
   metaStore;
 
+  @service
+  store;
+
   titleToken(model) {
     return model.name;
   }
@@ -37,13 +40,13 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
   }
 
   find(typeName, param) {
-    return this.store.find(typeName, param).catch((e1) => {
+    return this.store.findRecord(typeName, param).catch((e1) => {
       if (typeName != 'namespace') {
         console.warn(
           e1,
           'fetching by class or module failed, retrying as namespace'
         );
-        return this.store.find('namespace', param).catch((e2) => {
+        return this.store.findRecord('namespace', param).catch((e2) => {
           console.error(e2);
           return resolve({
             isError: true,
