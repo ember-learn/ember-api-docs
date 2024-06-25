@@ -1,4 +1,4 @@
-import { htmlSafe as emberHtmlSafe } from '@ember/string';
+import { htmlSafe as emberHtmlSafe } from '@ember/template';
 import { htmlSafe } from 'ember-api-docs/helpers/html-safe';
 import { module, test } from 'qunit';
 
