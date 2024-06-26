@@ -1,3 +1,7 @@
+<label class='toc-private-toggle'>
+  <input type='checkbox' checked={{@showPrivateClasses}} onchange={{@togglePrivateClasses}} class='private-deprecated-toggle' />
+  Show Private / Deprecated packages
+</label>
 <ul class='table-of-contents '>
   <li class='toc-item toc-group' data-test-toc-title="packages">
     Packages
@@ -38,7 +42,3 @@
     </ul>
   </li>
 </ul>
-<label class='toc-private-toggle'>
-  <input type='checkbox' checked={{@showPrivateClasses}} onchange={{@togglePrivateClasses}} class='private-deprecated-toggle' />
-  Show Private / Deprecated
-</label>
