@@ -15,7 +15,7 @@
     {{/if}}
   </p>
 
-  <p class="description">{{html-safe this.model.description}}</p>
+  <p class="description"><MarkdownToHtml @markdown={{this.model.description}} /></p>
 
   {{#if this.submodules}}
     <section>
