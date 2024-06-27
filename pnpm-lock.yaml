@@ -327,8 +327,8 @@ devDependencies:
     specifier: ^4.1.5
     version: 4.1.5
   prember:
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: ^2.1.0
+    version: 2.1.0
   prettier:
     specifier: ^2.5.1
     version: 2.8.8
@@ -3138,8 +3138,8 @@ packages:
       '@types/ember__array': 4.0.10(@babel/core@7.24.7)
       '@types/ember__component': 4.0.22(@babel/core@7.24.7)
       '@types/ember__controller': 4.0.12(@babel/core@7.24.7)
-      '@types/ember__debug': 4.0.8(@babel/core@7.24.7)
-      '@types/ember__engine': 4.0.11(@babel/core@7.24.7)
+      '@types/ember__debug': 4.0.8
+      '@types/ember__engine': 4.0.11
       '@types/ember__error': 4.0.6
       '@types/ember__object': 4.0.12(@babel/core@7.24.7)
       '@types/ember__polyfills': 4.0.6
@@ -3161,7 +3161,7 @@ packages:
     dependencies:
       '@glimmer/component': 1.1.2(@babel/core@7.24.7)
       '@types/ember': 4.0.11(@babel/core@7.24.7)
-      '@types/ember__engine': 4.0.11(@babel/core@7.24.7)
+      '@types/ember__engine': 4.0.11
       '@types/ember__object': 4.0.12(@babel/core@7.24.7)
       '@types/ember__owner': 4.0.9
       '@types/ember__routing': 4.0.22(@babel/core@7.24.7)
@@ -3199,24 +3199,18 @@ packages:
       - supports-color
     dev: true
 
-  /@types/ember__debug@4.0.8(@babel/core@7.24.7):
+  /@types/ember__debug@4.0.8:
     resolution: {integrity: sha512-9wF7STmDHDsUxSjyCq2lpMq/03QOPkBQMGJnV8yOBnVZxB6f+FJH/kxaCprdMkUe7iwAPNEC2zrFFx1tzH75Kg==}
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.24.7)
       '@types/ember__owner': 4.0.9
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
     dev: true
 
-  /@types/ember__engine@4.0.11(@babel/core@7.24.7):
+  /@types/ember__engine@4.0.11:
     resolution: {integrity: sha512-ryR4Q1Xm3kQ3Ap58w10CxV3+vb3hs1cJqi7UZ5IlSdLRql7AbpS6hIjxSQ3EQ4zadeeJ6/D8JJcSwqR7eX3PFA==}
     dependencies:
       '@types/ember__object': 4.0.12(@babel/core@7.24.7)
       '@types/ember__owner': 4.0.9
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
     dev: true
 
   /@types/ember__error@4.0.6:
@@ -14434,8 +14428,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prember@2.0.0:
-    resolution: {integrity: sha512-mNlTBBTC6ToJAqTG98pPAw9Kbg/yrRql21PoHMn0/MMQvFszR5e6w1NuOP76mfKQLFkHvxsKZcgibwjnRAKeMg==}
+  /prember@2.1.0:
+    resolution: {integrity: sha512-bK3lwDIm9lP1YemNy1cLImpxT0a4XYWJ8WHztUtGtLrXPJuRGtNUXbHx9d73Pf3RfhqY4fzSQCbR2HEtBcG8jQ==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       broccoli-debug: 0.6.5
