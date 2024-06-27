@@ -327,8 +327,8 @@ devDependencies:
     specifier: ^4.1.5
     version: 4.1.5
   prember:
-    specifier: ^2.0.0
-    version: 2.0.0
+    specifier: github:ef4/prember#batching
+    version: github.com/ef4/prember/dcc202d1df57352a41432aedbd791be69cef9361
   prettier:
     specifier: ^2.5.1
     version: 2.8.8
@@ -14434,25 +14434,6 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prember@2.0.0:
-    resolution: {integrity: sha512-mNlTBBTC6ToJAqTG98pPAw9Kbg/yrRql21PoHMn0/MMQvFszR5e6w1NuOP76mfKQLFkHvxsKZcgibwjnRAKeMg==}
-    engines: {node: 12.* || 14.* || >= 16}
-    dependencies:
-      broccoli-debug: 0.6.5
-      broccoli-merge-trees: 4.2.0
-      broccoli-plugin: 4.0.7
-      chalk: 4.1.2
-      ember-cli-babel: 7.26.11
-      express: 4.19.2
-      fastboot: 4.1.5
-      mkdirp: 3.0.1
-    transitivePeerDependencies:
-      - bufferutil
-      - canvas
-      - supports-color
-      - utf-8-validate
-    dev: true
-
   /prettier-linter-helpers@1.0.0:
     resolution: {integrity: sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==}
     engines: {node: '>=6.0.0'}
@@ -17737,4 +17718,25 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+    dev: true
+
+  github.com/ef4/prember/dcc202d1df57352a41432aedbd791be69cef9361:
+    resolution: {tarball: https://codeload.github.com/ef4/prember/tar.gz/dcc202d1df57352a41432aedbd791be69cef9361}
+    name: prember
+    version: 2.0.0
+    engines: {node: 12.* || 14.* || >= 16}
+    dependencies:
+      broccoli-debug: 0.6.5
+      broccoli-merge-trees: 4.2.0
+      broccoli-plugin: 4.0.7
+      chalk: 4.1.2
+      ember-cli-babel: 7.26.11
+      express: 4.19.2
+      fastboot: 4.1.5
+      mkdirp: 3.0.1
+    transitivePeerDependencies:
+      - bufferutil
+      - canvas
+      - supports-color
+      - utf-8-validate
     dev: true
