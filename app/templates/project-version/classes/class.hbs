@@ -63,7 +63,7 @@
   {{#if (and (not (eq this.static 1)) this.hasImportExample)}}
     <ImportExample @item={{@model.name}} @package={{this.module}} />
   {{/if}}
-  <p class="description">{{html-safe @model.description}}</p>
+  <p class="description"><MarkdownToHtml @markdown={{@model.description}} /></p>
 
   {{#if (or @model.methods @model.properties @model.events)}}
     <div class="tabbed-layout">
