@@ -54,14 +54,14 @@
       <div class='parameter'>
         <dt>{{param.name}}</dt>
         <dd class='parameter-type'>{{param.type}}</dd>
-        <dd>{{param.description}}</dd>
+        <dd><MarkdownToHtml @markdown={{param.description}} /></dd>
         {{#if param.props}}
           <dl class='parameters'>
             {{#each param.props as |prop|}}
               <div class='prop'>
                 <dt>{{prop.name}}</dt>
                 <dd class='parameter-type'>{{prop.type}}</dd>
-                <dd>{{prop.description}}</dd>
+                <dd><MarkdownToHtml @markdown={{prop.description}} /></dd>
               </div>
             {{/each}}
           </dl>
@@ -72,9 +72,9 @@
       <div class='return'>
         <dt>returns</dt>
         <dd class='return-type'>{{@field.return.type}}</dd>
-        <dd>{{@field.return.description}}</dd>
+        <dd><MarkdownToHtml @markdown={{@field.return.description}} /></dd>
       </div>
     {{/if}}
   </dl>
-  {{html-safe @field.description}}
+  <MarkdownToHtml @markdown={{@field.description}} />
 </section>
