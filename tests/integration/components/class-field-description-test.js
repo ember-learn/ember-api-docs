@@ -1,4 +1,3 @@
-/* eslint-disable qunit/require-expect */
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -32,6 +31,7 @@ module('Integration | Component | class field description', function (hooks) {
   });
 
   test('it calls the provided action on link-click with the field name as an arg', async function (assert) {
+    assert.expect(3);
     this.set('updateAnchor', (name) => {
       assert.equal(
         name,

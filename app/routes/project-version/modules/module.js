@@ -18,7 +18,7 @@ export default class ModuleRoute extends ClassRoute.extend(ScrollTracker) {
 
     // These modules should not have `ember-` tacked onto the front of them
     // when forming the ids and URLs.
-    let isNotEmber = klass.match(/@glimmer|rsvp|jquery/);
+    let isNotEmber = klass.match(/@warp-drive|@glimmer|rsvp|jquery/);
 
     if (!~klass.indexOf(project) && !isNotEmber) {
       klass = `${project}-${klass}`;

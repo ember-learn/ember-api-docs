@@ -1,4 +1,3 @@
-/* eslint-disable qunit/require-expect */
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import {
@@ -31,6 +30,7 @@ module('Acceptance | Switch Project', function (hooks) {
   setupApplicationTest(hooks);
 
   test('Can switch projects back and forth', async function (assert) {
+    assert.expect(9);
     await visit('/');
 
     await click('.spec-ember-data');
@@ -47,6 +47,7 @@ module('Acceptance | Switch Project', function (hooks) {
   });
 
   test('Can open class after switching projects back and forth', async function (assert) {
+    assert.expect(10);
     await visit('/');
     await ensureVersionsExist(assert);
     assert.dom(find('.spec-ember')).hasClass('active');
