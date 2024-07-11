@@ -1,9 +1,8 @@
 import ClassRoute from '../classes/class';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { inject as service } from '@ember/service';
 
-export default class ModuleRoute extends ClassRoute.extend(ScrollTracker) {
+export default class ModuleRoute extends ClassRoute {
   @service store;
 
   async model(params) {
