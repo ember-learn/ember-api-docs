@@ -148,9 +148,10 @@
     "webpack": "^5.90.0"
   },
   "engines": {
-    "node": "14.* || 16.* || >= 18",
-    "npm": "7 || 8 || >= 9"
+    "node": "16.* || 18.* || 20.*",
+    "pnpm": "9"
   },
+  "packageManager": "pnpm@9.5.0",
   "cacheDirectories": [
     "node_modules"
   ],
