@@ -141,8 +141,9 @@
   },
   "engines": {
     "node": "16.* || 18.* || 20.*",
-    "npm": "7 || 8 || >= 9"
+    "pnpm": "9"
   },
+  "packageManager": "pnpm@9.5.0",
   "cacheDirectories": [
     "node_modules"
   ],
