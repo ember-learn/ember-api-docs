@@ -1,8 +1,7 @@
 import ClassRoute from '../classes/class';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 
-export default class NamespaceRoute extends ClassRoute.extend(ScrollTracker) {
+export default class NamespaceRoute extends ClassRoute {
   templateName = 'project-version/classes/class';
 
   async model(params) {

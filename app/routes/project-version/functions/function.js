@@ -11,9 +11,6 @@ export default class FunctionRoute extends Route {
   @service
   metaStore;
 
-  @service
-  scrollPositionReset;
-
   titleToken(model) {
     return model?.fn?.name;
   }
@@ -62,9 +59,5 @@ export default class FunctionRoute extends Route {
     return classObj.get('methods').find((fn) => {
       return fn.name === functionName;
     });
-  }
-
-  activate() {
-    this.scrollPositionReset.doReset();
   }
 }
