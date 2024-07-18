@@ -225,8 +225,8 @@ devDependencies:
     specifier: ~3.28.8
     version: 3.28.12(@babel/core@7.24.7)
   ember-styleguide:
-    specifier: ^8.3.0
-    version: 8.5.0(@babel/core@7.24.7)(ember-source@3.28.12)
+    specifier: ^11.0.3
+    version: 11.0.3(@babel/core@7.24.7)(ember-source@3.28.12)
   ember-svg-jar:
     specifier: ^2.4.2
     version: 2.4.9
@@ -5771,6 +5771,20 @@ packages:
       - supports-color
     dev: true
 
+  /broccoli-postcss-single@5.0.2:
+    resolution: {integrity: sha512-r4eWtz/5uihtHwOszViWwV6weJr9VryvaqtVo1DOh4gL+TbTyU+NX+Y+t9TqUw99OtuivMz4uHLLH7zZECbZmw==}
+    engines: {node: '>= 10'}
+    dependencies:
+      broccoli-caching-writer: 3.0.3
+      include-path-searcher: 0.1.0
+      minimist: 1.2.8
+      mkdirp: 1.0.4
+      object-assign: 4.1.1
+      postcss: 8.4.38
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /broccoli-postcss@5.1.0:
     resolution: {integrity: sha512-f5cHP5g7EFidu9w88WOLTtbk4dd/W7amK0nek08FkmUII2h4W/Je4EV26HtMEm9nb1hKI301wwuEQ5AQRsVYog==}
     engines: {node: '>= 10'}
@@ -5780,6 +5794,19 @@ packages:
       minimist: 1.2.8
       object-assign: 4.1.1
       postcss: 7.0.39
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /broccoli-postcss@6.1.0:
+    resolution: {integrity: sha512-I8+DHq5xcCBHU0PpCtDMayAmSUVx07CqAquUpdlNUHckXeD//cUFf4aFQllnZBhF8Z86YLhuA+j7qvCYYgBXRg==}
+    engines: {node: '>= 10'}
+    dependencies:
+      broccoli-funnel: 3.0.8
+      broccoli-persistent-filter: 3.1.3
+      minimist: 1.2.8
+      object-assign: 4.1.1
+      postcss: 8.4.38
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8298,6 +8325,19 @@ packages:
     resolution: {integrity: sha512-Qq0vvquzf4cFHoDZavzkOy3Izc893r/5spspWgyzLCPTaG78fM3HsrjZm7UWEltbXUqwHHYrqZd/R0jS08NqSA==}
     dev: true
 
+  /ember-cli-postcss@8.2.0:
+    resolution: {integrity: sha512-S2HQqmNtcezmLSt/OPZKCXg+aRV7yFoZp+tn1HCLSbR/eU95xl7MWxTjbj/wOIGMfhggy/hBT2+STDh8mGuVpw==}
+    engines: {node: '>= 14'}
+    dependencies:
+      broccoli-merge-trees: 4.2.0
+      broccoli-postcss: 6.1.0
+      broccoli-postcss-single: 5.0.2
+      ember-cli-babel: 7.26.11
+      merge: 2.1.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /ember-cli-preprocess-registry@3.3.0:
     resolution: {integrity: sha512-60GYpw7VPeB7TvzTLZTuLTlHdOXvayxjAQ+IxM2T04Xkfyu75O2ItbWlftQW7NZVGkaCsXSRAmn22PG03VpLMA==}
     dependencies:
@@ -9129,20 +9169,19 @@ packages:
       - supports-color
     dev: true
 
-  /ember-styleguide@8.5.0(@babel/core@7.24.7)(ember-source@3.28.12):
-    resolution: {integrity: sha512-R/mUM3/teRgwOffc+W8LTTl2aD4VLZ0y8fM5wpE0oQTof72R6Ddpzm4/RNduT3AUcqrnB9iCNvw91vpSrc0wlw==}
-    engines: {node: 12.* || 14.* || >= 16}
+  /ember-styleguide@11.0.3(@babel/core@7.24.7)(ember-source@3.28.12):
+    resolution: {integrity: sha512-9MViYqciH0l2zl3SCPnUnu+jQHVgOWo6xLefc1cuy8MYS2BsxQ5p3/8+e1kRGcKZLhLRkw7D2VgGf3GvU45axQ==}
+    engines: {node: 18.* || >= 20}
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.24.7)(ember-source@3.28.12)
       '@glimmer/component': 1.1.2(@babel/core@7.24.7)
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
-      broccoli-postcss: 5.1.0
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 5.7.2
+      ember-cli-postcss: 8.2.0
       ember-concurrency: 2.3.7(@babel/core@7.24.7)
       ember-named-blocks-polyfill: 0.2.5
-      ember-svg-jar: 2.4.9
       ember-test-waiters: 2.1.3(@babel/core@7.24.7)
       ember-truth-helpers: 3.1.1
       lodash.get: 4.4.2
@@ -11494,6 +11533,10 @@ packages:
     engines: {node: '>=0.8.19'}
     dev: true
 
+  /include-path-searcher@0.1.0:
+    resolution: {integrity: sha512-KlpXnsZOrBGo4PPKqPFi3Ft6dcRyh8fTaqgzqDRi8jKAsngJEWWOxeFIWC8EfZtXKaZqlsNf9XRwcQ49DVgl/g==}
+    dev: true
+
   /indent-string@4.0.0:
     resolution: {integrity: sha512-EdDDZu4A2OyIK7Lr/2zG+w5jmbuk1DVBnEwREQvBzspBJkCEbRa8GxU1lghYcaGJCnRWibjDXlq779X1/y5xwg==}
     engines: {node: '>=8'}
@@ -12939,6 +12982,10 @@ packages:
   /merge2@1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
+    dev: true
+
+  /merge@2.1.1:
+    resolution: {integrity: sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==}
     dev: true
 
   /methods@1.1.2:
