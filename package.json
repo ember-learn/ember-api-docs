@@ -168,7 +168,8 @@
   },
   "pnpm": {
     "overrides": {
-      "node-sass": "^9.0.0"
+      "node-sass": "^9.0.0",
+      "ember-truth-helpers": "^4.0.0"
     }
   },
   "packageManager": "pnpm@9.5.0"

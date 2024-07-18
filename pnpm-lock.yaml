@@ -6,6 +6,7 @@ settings:
 
 overrides:
   node-sass: ^9.0.0
+  ember-truth-helpers: ^4.0.0
 
 importers:
 
@@ -258,8 +259,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(@babel/core@7.24.7)
       ember-truth-helpers:
-        specifier: ^2.1.0
-        version: 2.1.0(@babel/core@7.24.7)
+        specifier: ^4.0.0
+        version: 4.0.3(ember-source@3.28.12(@babel/core@7.24.7))
       ember-web-app:
         specifier: ^2.0.0
         version: 2.3.1(@babel/core@7.24.7)
@@ -3986,6 +3987,12 @@ packages:
     peerDependencies:
       ember-source: ^4.0.0 || ^5.0.0
 
+  ember-functions-as-helper-polyfill@2.1.2:
+    resolution: {integrity: sha512-yvW6xykvZEIYzzwlrC/g9yu6LtLkkj5F+ho6U+BDxN1uREMgoMOZnji7sSILn5ITVpaJ055DPcO+utEFD7IZOA==}
+    engines: {node: '>= 14.0.0'}
+    peerDependencies:
+      ember-source: ^3.25.0 || >=4.0.0
+
   ember-get-config@2.1.1:
     resolution: {integrity: sha512-uNmv1cPG/4qsac8oIf5txJ2FZ8p88LEpG4P3dNcjsJS98Y8hd0GPMFwVqpnzI78Lz7VYRGQWY4jnE4qm5R3j4g==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -4134,13 +4141,10 @@ packages:
     resolution: {integrity: sha512-/aZs2x2i6kT4a5tAW+zenH2wg8AbRK9jKxLkbVsKl/1ublNl27idVRdov1gJ+zgWu3DNK7whcfVycXtlaybYQw==}
     engines: {node: 10.* || >= 12}
 
-  ember-truth-helpers@2.1.0:
-    resolution: {integrity: sha512-BQlU8aTNl1XHKTYZ243r66yqtR9JU7XKWQcmMA+vkqfkE/c9WWQ9hQZM8YABihCmbyxzzZsngvldokmeX5GhAw==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-
-  ember-truth-helpers@3.1.1:
-    resolution: {integrity: sha512-FHwJAx77aA5q27EhdaaiBFuy9No+8yaWNT5A7zs0sIFCmf14GbcLn69vJEp6mW7vkITezizGAWhw7gL0Wbk7DA==}
-    engines: {node: 10.* || >= 12}
+  ember-truth-helpers@4.0.3:
+    resolution: {integrity: sha512-T6Ogd3pk9FxYiZfSxdjgn3Hb3Ksqgw7CD23V9qfig9jktNdkNEHo4+3PA3cSD/+3a2kdH3KmNvKyarVuzdtEkA==}
+    peerDependencies:
+      ember-source: '>=3.28.0'
 
   ember-web-app@2.3.1:
     resolution: {integrity: sha512-l+AvQZA/6DlNz6GV39GYk1Sl5+JamYP0NqnbAfV10ugvT2r3R2HCeCv1WYAk9PYStCSV89ok3NH3ogBc/2GmpA==}
@@ -13495,7 +13499,7 @@ snapshots:
       ember-modifier: 3.2.7(@babel/core@7.24.7)
       ember-source: 3.28.12(@babel/core@7.24.7)
       ember-style-modifier: 0.8.0(@babel/core@7.24.7)
-      ember-truth-helpers: 2.1.0(@babel/core@7.24.7)
+      ember-truth-helpers: 4.0.3(ember-source@3.28.12(@babel/core@7.24.7))
     transitivePeerDependencies:
       - '@babel/core'
       - '@glint/environment-ember-loose'
@@ -14358,6 +14362,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  ember-functions-as-helper-polyfill@2.1.2(ember-source@3.28.12(@babel/core@7.24.7)):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-typescript: 5.3.0
+      ember-cli-version-checker: 5.1.2
+      ember-source: 3.28.12(@babel/core@7.24.7)
+    transitivePeerDependencies:
+      - supports-color
+
   ember-get-config@2.1.1:
     dependencies:
       '@embroider/macros': 1.16.2
@@ -14488,7 +14501,7 @@ snapshots:
       ember-cli-typescript: 5.3.0
       ember-concurrency: 2.3.7(@babel/core@7.24.7)
       ember-text-measurer: 0.6.0
-      ember-truth-helpers: 3.1.1
+      ember-truth-helpers: 4.0.3(ember-source@3.28.12(@babel/core@7.24.7))
     transitivePeerDependencies:
       - '@babel/core'
       - '@glint/environment-ember-loose'
@@ -14639,7 +14652,7 @@ snapshots:
       ember-cli-htmlbars: 5.7.2
       ember-cli-sass: 8.0.1
       ember-svg-jar: 1.2.2(@babel/core@7.24.7)
-      ember-truth-helpers: 2.1.0(@babel/core@7.24.7)
+      ember-truth-helpers: 4.0.3(ember-source@3.28.12(@babel/core@7.24.7))
       node-sass: 9.0.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -14751,16 +14764,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-truth-helpers@2.1.0(@babel/core@7.24.7):
+  ember-truth-helpers@4.0.3(ember-source@3.28.12(@babel/core@7.24.7)):
     dependencies:
-      ember-cli-babel: 6.18.0(@babel/core@7.24.7)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
-  ember-truth-helpers@3.1.1:
-    dependencies:
-      ember-cli-babel: 7.26.11
+      '@embroider/addon-shim': 1.8.9
+      ember-functions-as-helper-polyfill: 2.1.2(ember-source@3.28.12(@babel/core@7.24.7))
+      ember-source: 3.28.12(@babel/core@7.24.7)
     transitivePeerDependencies:
       - supports-color
 
