@@ -14,7 +14,7 @@
   },
   "scripts": {
     "clone": "rm -rf ember-api-docs-data && git clone --depth=1 https://github.com/ember-learn/ember-api-docs-data.git",
-    "build": "ember build --environment=production",
+    "build": "vite build",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
@@ -22,7 +22,7 @@
     "lint:js": "eslint . --cache",
     "start:local": "API_HOST=http://localhost:5050 ember serve",
     "lint:js:fix": "eslint . --fix",
-    "start": "ember serve",
+    "start": "vite",
     "test:browserstack": "node run-tests.js",
     "test:ember": "ember test"
   },
@@ -40,6 +40,7 @@
     "@glint/environment-ember-loose": "^0.9.7",
     "@percy/cli": "^1.28.7",
     "@percy/ember": "^4.2.0",
+    "@rollup/plugin-babel": "^6.0.4",
     "@tsconfig/ember": "^1.0.1",
     "@types/ember": "^4.0.2",
     "@types/ember-qunit": "^5.0.2",
@@ -78,10 +79,7 @@
     "ember-cli-deploy-build": "^1.1.0",
     "ember-cli-deploy-gzip": "^1.0.0",
     "ember-cli-deprecation-workflow": "^3.0.1",
-    "ember-cli-document-title-northm": "^1.0.3",
-    "ember-cli-fastboot": "^4.1.5",
     "ember-cli-htmlbars": "^6.1.1",
-    "@rollup/plugin-babel": "^6.0.4",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-meta-tags": "^7.0.0",
     "ember-cli-sass": "^10.0.1",
@@ -91,12 +89,11 @@
     "ember-concurrency": "^2.3.7",
     "ember-data": "~3.28.6",
     "ember-export-application-global": "^2.0.1",
-    "ember-fetch": "^8.1.1",
     "ember-inflector": "^4.0.3",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^1.5.2",
-    "ember-page-title": "^6.2.2",
+    "ember-page-title": "^8.2.3",
     "ember-power-select": "^7.2.0",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
@@ -134,22 +131,35 @@
     "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
-    "prember": "^2.1.0",
     "prettier": "^2.5.1",
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
     "semver": "^7.5.4",
     "semver-compare": "^1.0.0",
+    "showdown": "^2.1.0",
     "spawndamnit": "2.0.0",
     "testem": "^3.10.0",
     "typescript": "^4.9.3",
-    "webpack": "^5.90.0"
     "vite": "^5.3.4",
+    "webpack": "^5.90.0"
   },
+  "packageManager": "pnpm@9.5.0",
   "engines": {
     "node": "16.* || 18.* || 20.*",
     "npm": "7 || 8 || >= 9"
+  },
+  "pnpm": {
+    "overrides": {
+      "ember-get-config": "github:mansona/ember-get-config#config-meta-loader",
+      "ember-truth-helpers": "^4.0.0",
+      "node-sass": "^9.0.0"
+    },
+    "patchedDependencies": {
+      "@ember-data/store@3.28.13": "patches/@ember-data__store@3.28.13.patch",
+      "ember-source@3.28.12": "patches/ember-source@3.28.12.patch",
+      "postcss@8.4.39": "patches/postcss@8.4.39.patch"
+    }
   },
   "cacheDirectories": [
     "node_modules"
@@ -157,22 +167,15 @@
   "ember": {
     "edition": "octane"
   },
-  "fastbootDependencies": [
-    "algoliasearch",
-    "node-fetch",
-    "abortcontroller-polyfill",
-    "abortcontroller-polyfill/dist/cjs-ponyfill"
-  ],
   "ember-addon": {
     "paths": [
       "lib/api-docs-data"
     ]
   },
-  "pnpm": {
-    "overrides": {
-      "node-sass": "^9.0.0",
-      "ember-truth-helpers": "^4.0.0"
-    }
-  },
-  "packageManager": "pnpm@9.5.0"
+  "fastbootDependencies": [
+    "algoliasearch",
+    "node-fetch",
+    "abortcontroller-polyfill",
+    "abortcontroller-polyfill/dist/cjs-ponyfill"
+  ]
 }

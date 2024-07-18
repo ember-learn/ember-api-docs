@@ -7,9 +7,6 @@ const { maybeEmbroider } = require('@embroider/test-setup');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
-    prember: {
-      urls: premberUrls(),
-    },
     fingerprint: {
       extensions: [
         'js',
