@@ -1,25 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AppTemplate</title>
+    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="{{rootURL}}assets/images/favicon.png">
-    <meta property="og:type" content="website">
 
     {{content-for "head"}}
 
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ember-api-docs.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">
+    <link integrity="" rel="stylesheet" href="/@embroider/core/vendor.css">
+    <link integrity="" rel="stylesheet" href="/assets/ember-api-docs.css">
 
     {{content-for "head-footer"}}
   </head>
   <body>
     {{content-for "body"}}
 
-    <script src="{{rootURL}}assets/vendor.js"></script>
-    <script src="{{rootURL}}assets/ember-api-docs.js"></script>
+    <script src="/@embroider/core/vendor.js"></script>
+    <script type="module">
+      import Application from './app';
+      import environment from './config/environment';
+
+      Application.create(environment.APP);
+    </script>
 
     {{content-for "body-footer"}}
   </body>
