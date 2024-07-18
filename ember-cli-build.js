@@ -70,6 +70,16 @@ module.exports = function (defaults) {
     staticHelpers: true,
     staticModifiers: true,
     staticComponents: true,
+    splitAtRoutes: [
+      'project-version.classes',
+      'project-version.functions',
+      'project-version.namespaces',
+      'project-version.modules',
+      'class',
+      'module',
+      'data-class',
+      'data-module',
+    ],
   });
 
   return mergeTrees([require('prember').prerender(app, appTree), mappingsTree]);
