@@ -114,9 +114,6 @@ importers:
       broccoli-funnel:
         specifier: ^2.0.1
         version: 2.0.2
-      broccoli-merge-trees:
-        specifier: ^2.0.0
-        version: 2.0.1
       ember-a11y-testing:
         specifier: ^5.2.1
         version: 5.2.1(@babel/core@7.24.7)(@ember/test-helpers@2.9.4(@babel/core@7.24.7)(@glint/environment-ember-loose@0.9.7(@glimmer/component@1.1.2(@babel/core@7.24.7))(ember-cli-htmlbars@6.3.0)(ember-modifier@3.2.7(@babel/core@7.24.7)))(ember-source@3.28.12(@babel/core@7.24.7)))(qunit@2.21.0)(webpack@5.91.0)
