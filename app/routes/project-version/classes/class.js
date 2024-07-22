@@ -33,7 +33,10 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
       this.metaStore
     );
     const klass = params['class'];
-    return this.find('class', `${project}-${projectVersion}-${klass}`);
+    return this.find(
+      'class',
+      `${project}-${projectVersion}-${klass}`.toLowerCase()
+    );
   }
 
   find(typeName, param) {
