@@ -36,6 +36,10 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
     return this.find('class', `${project}-${projectVersion}-${klass}`);
   }
 
+  afterModel(model) {
+    this.headData.modelName = model.name;
+  }
+
   find(typeName, param) {
     return this.store.find(typeName, param).catch((e1) => {
       if (typeName != 'namespace') {

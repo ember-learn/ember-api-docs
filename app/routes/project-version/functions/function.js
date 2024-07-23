@@ -56,6 +56,8 @@ export default class FunctionRoute extends Route {
     if (description) {
       set(this, 'headData.description', createExcerpt(description));
     }
+
+    this.headData.functionName = model?.fn?.name;
   }
 
   getFunctionObjFromList(classObj, functionName) {
