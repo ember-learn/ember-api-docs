@@ -1,6 +1,7 @@
-import fetch from 'fetch';
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+
+import legacyMappings from 'ember-rfc176-data/mappings.json';
 
 const LOCALNAME_CONVERSIONS = {
   Object: 'EmberObject',
@@ -10,12 +11,11 @@ const LOCALNAME_CONVERSIONS = {
 
 export default class LegacyModuleMappingsService extends Service {
   @tracked mappings;
+  legacyMappings = legacyMappings;
 
   async initMappings() {
     try {
-      let response = await this.fetch();
-      let mappings = await response.json();
-      let newMappings = this.buildMappings(mappings);
+      let newMappings = this.buildMappings(legacyMappings);
       this.mappings = newMappings;
     } catch (e) {
       this.mappings = [];
@@ -30,10 +30,6 @@ export default class LegacyModuleMappingsService extends Service {
       }
       return newItem;
     });
-  }
-
-  fetch() {
-    return fetch('/assets/mappings.json');
   }
 
   getModule(name, documentedModule) {

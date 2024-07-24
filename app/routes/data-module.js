@@ -10,15 +10,12 @@ export default class DataModuleRoute extends Route {
   legacyModuleMappings;
 
   model(params) {
-    return this.legacyModuleMappings
-      .fetch()
-      .then((response) => response.json())
-      .then((mappings) => {
-        return {
-          moduleName: params.module.substr(0, params.module.lastIndexOf('.')),
-          mappings: this.legacyModuleMappings.buildMappings(mappings),
-        };
-      });
+    return {
+      moduleName: params.module.substr(0, params.module.lastIndexOf('.')),
+      mappings: this.legacyModuleMappings.buildMappings(
+        this.legacyModuleMappings.legacyMappings
+      ),
+    };
   }
 
   redirect(model) {

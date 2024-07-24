@@ -46,10 +46,11 @@ locally yourself.
 ```
 git clone https://github.com/ember-learn/ember-api-docs.git
 cd ember-api-docs
-npm install
-npm run clone
-npm run start
+pnpm install
+pnpm run clone
+pnpm run start
 ```
+
 View at http://localhost:4200
 
 ### Run locally with a sym-link
@@ -64,8 +65,8 @@ git clone https://github.com/ember-learn/ember-api-docs-data
 git clone https://github.com/ember-learn/ember-api-docs
 cd ember-api-docs
 ln -s ../ember-api-docs-data
-npm install
-npm start
+pnpm install
+pnpm start
 ```
 
 Visit the app in your browser at [http://localhost:4200](http://localhost:4200)
@@ -76,9 +77,9 @@ To run a11y tests, run `test_a11y=yes ember serve`
 
 ## Linting
 
-* `npm run lint:hbs`
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
+* `pnpm run lint:hbs`
+* `pnpm run lint:js`
+* `pnpm run lint:js -- --fix`
 
 ## Staging and Deployment
 

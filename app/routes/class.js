@@ -10,19 +10,13 @@ export default class ClassRoute extends Route {
   legacyModuleMappings;
 
   model(params) {
-    return this.legacyModuleMappings
-      .fetch()
-      .then((response) => response.json())
-      .then((mappings) => {
-        let ret = {
-          mappings: this.legacyModuleMappings.buildMappings(mappings),
-          className: params['class'].substr(
-            0,
-            params['class'].lastIndexOf('.')
-          ),
-        };
-        return ret;
-      });
+    let ret = {
+      mappings: this.legacyModuleMappings.buildMappings(
+        this.legacyModuleMappings.legacyMappings
+      ),
+      className: params['class'].substr(0, params['class'].lastIndexOf('.')),
+    };
+    return ret;
   }
 
   redirect(model) {
