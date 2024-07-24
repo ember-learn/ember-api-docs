@@ -1,8 +1,6 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const Funnel = require('broccoli-funnel');
-const mergeTrees = require('broccoli-merge-trees');
 const envIsProduction = process.env.EMBER_ENV === 'production';
 const premberUrls = require('./prember-urls');
 const nodeSass = require('node-sass');
@@ -57,12 +55,6 @@ module.exports = function (defaults) {
     },
   });
 
-  let mappingsTree = new Funnel('node_modules/ember-rfc176-data/', {
-    srcDir: '/',
-    include: ['mappings.json'],
-    destDir: '/assets/',
-  });
-
   const { Webpack } = require('@embroider/webpack');
   const appTree = require('@embroider/compat').compatBuild(app, Webpack, {
     staticAddonTrees: true,
@@ -72,5 +64,5 @@ module.exports = function (defaults) {
     staticComponents: true,
   });
 
-  return mergeTrees([require('prember').prerender(app, appTree), mappingsTree]);
+  return require('prember').prerender(app, appTree);
 };

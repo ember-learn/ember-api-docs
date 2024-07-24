@@ -61,7 +61,6 @@
     "bourbon-neat": "^1.9.1",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0",
     "ember-a11y-testing": "^5.2.1",
     "ember-anchor": "^1.0.3",
     "ember-auto-import": "^2.7.2",

@@ -29,13 +29,8 @@ export default class Application extends JSONAPIAdapter {
     return false;
   }
 
-  shouldBackgroundReloadRecord(store, { modelName, id }) {
-    let key = `${modelName}-${id}`;
-    let hasId = this.ids[key];
-    if (!hasId) {
-      this.ids[key] = true;
-    }
-    return !hasId;
+  shouldBackgroundReloadRecord() {
+    return false;
   }
 
   constructor() {
