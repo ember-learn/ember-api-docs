@@ -1,10 +1,9 @@
-self.deprecationWorkflow = self.deprecationWorkflow || {};
-self.deprecationWorkflow.config = {
+import setupDeprecationWorkflow from 'ember-cli-deprecation-workflow';
+
+setupDeprecationWorkflow({
   workflow: [
-    { handler: 'silence', matchId: 'ember-global' },
     { handler: 'silence', matchId: 'ember.component.reopen' },
     { handler: 'silence', matchId: 'implicit-injections' },
-    { handler: 'silence', matchId: 'manager-capabilities.modifiers-3-13' },
     { handler: 'silence', matchId: 'this-property-fallback' },
     { handler: 'silence', matchId: 'ember-component.is-visible' },
     {
@@ -12,4 +11,4 @@ self.deprecationWorkflow.config = {
       matchId: 'deprecated-run-loop-and-computed-dot-access',
     },
   ],
-};
+});

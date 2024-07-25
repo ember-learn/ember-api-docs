@@ -58,8 +58,7 @@
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
-    "broccoli-merge-trees": "^2.0.0",
-    "ember-a11y-testing": "^0.5.4",
+    "ember-a11y-testing": "^5.2.1",
     "ember-anchor": "^1.0.3",
     "ember-auto-import": "^2.7.2",
     "ember-cli": "~3.28.6",
@@ -67,12 +66,12 @@
     "ember-cli-autoprefixer": "^1.0.0",
     "ember-cli-babel": "^7.26.10",
     "ember-cli-browserstack": "^1.0.1",
-    "ember-cli-clipboard": "^0.8.1",
+    "ember-cli-clipboard": "^1.1.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-deploy": "^1.0.1",
     "ember-cli-deploy-build": "^1.1.0",
     "ember-cli-deploy-gzip": "^1.0.0",
-    "ember-cli-deprecation-workflow": "^2.1.0",
+    "ember-cli-deprecation-workflow": "^3.0.1",
     "ember-cli-document-title-northm": "^1.0.3",
     "ember-cli-fastboot": "^4.1.5",
     "ember-cli-htmlbars": "^6.1.1",
@@ -87,16 +86,16 @@
     "ember-decorators": "^6.1.1",
     "ember-export-application-global": "^2.0.1",
     "ember-fetch": "^8.1.1",
-    "ember-inflector": "^3.0.0",
+    "ember-inflector": "^4.0.3",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^1.5.2",
     "ember-page-title": "^6.2.2",
-    "ember-power-select": "^6.0.1",
+    "ember-power-select": "^7.2.0",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
     "ember-rfc176-data": "^0.3.17",
-    "ember-route-action-helper": "^2.0.5",
+    "ember-route-action-helper": "^2.0.8",
     "ember-showdown-shiki": "^1.2.1",
     "ember-sinon": "^4.1.1",
     "ember-source": "~3.28.8",
@@ -161,5 +160,11 @@
     "paths": [
       "lib/api-docs-data"
     ]
-  }
+  },
+  "pnpm": {
+    "overrides": {
+      "node-sass": "^9.0.0"
+    }
+  },
+  "packageManager": "pnpm@9.5.0"
 }

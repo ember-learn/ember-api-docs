@@ -10,18 +10,12 @@ export default class DataClassRoute extends Route {
   legacyModuleMappings;
 
   model(params) {
-    return this.legacyModuleMappings
-      .fetch()
-      .then((response) => response.json())
-      .then((mappings) => {
-        return {
-          mappings: this.legacyModuleMappings.buildMappings(mappings),
-          className: params['class'].substr(
-            0,
-            params['class'].lastIndexOf('.')
-          ),
-        };
-      });
+    return {
+      mappings: this.legacyModuleMappings.buildMappings(
+        this.legacyModuleMappings.legacyMappings
+      ),
+      className: params['class'].substr(0, params['class'].lastIndexOf('.')),
+    };
   }
 
   redirect(model) {
