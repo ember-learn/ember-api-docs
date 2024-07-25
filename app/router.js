@@ -89,6 +89,7 @@ AppRouter.map(function () {
   this.route('module', { path: '/modules/:module' });
   this.route('data-class', { path: '/data/classes/:class' });
   this.route('data-module', { path: '/data/modules/:module' });
+  this.route('not-found', { path: '/*' });
 });
 
 /*
