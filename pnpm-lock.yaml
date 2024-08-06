@@ -218,6 +218,9 @@ importers:
       ember-route-action-helper:
         specifier: ^2.0.8
         version: 2.0.8(@babel/core@7.24.7)
+      ember-scroll:
+        specifier: ^1.0.3
+        version: 1.0.3(@babel/core@7.24.7)
       ember-showdown-shiki:
         specifier: ^1.2.1
         version: 1.2.1(@babel/core@7.24.7)(showdown@2.1.0)
@@ -3899,6 +3902,10 @@ packages:
     resolution: {integrity: sha512-j1YjPl2JNHxQwQW6Bgfis44XSr4WCtdwMXr/SPpLsF1oVeTWIn3kwefcDnbuCI8Spmt1B9ab3ZLKzf2KkGN/7g==}
     engines: {node: 12.* || >= 14.*}
 
+  ember-decorators-polyfill@1.1.5:
+    resolution: {integrity: sha512-O154i8sLoVjsiKzSqxGRfHGr+N+drT6mRrLDbNgJCnW/V5uLg/ppZFpUsrdxuXnp5Q9us3OfXV1nX2CH+7bUpA==}
+    engines: {node: 8.* || >= 10.*}
+
   ember-decorators@6.1.1:
     resolution: {integrity: sha512-63vZPntPn1aqMyeNRLoYjJD+8A8obd+c2iZkJflswpDRNVIsp2m7aQdSCtPt4G0U/TEq2251g+N10maHX3rnJQ==}
     engines: {node: '>= 8.*'}
@@ -4012,6 +4019,10 @@ packages:
   ember-router-generator@2.0.0:
     resolution: {integrity: sha512-89oVHVJwmLDvGvAUWgS87KpBoRhy3aZ6U0Ql6HOmU4TrPkyaa8pM0W81wj9cIwjYprcQtN9EwzZMHnq46+oUyw==}
     engines: {node: 8.* || 10.* || >= 12}
+
+  ember-scroll@1.0.3:
+    resolution: {integrity: sha512-iIB54xrzxpXmXvLfYWD6NrACYuD8o9+DZ4i/8ojd7szOVRp/pdBIm6GSsPcdcI4T2N98RPtquwhM27hvAOPYjA==}
+    engines: {node: 10.* || >= 12}
 
   ember-showdown-shiki@1.2.1:
     resolution: {integrity: sha512-h3WYvEVjK7R86SosU6Y9lA7kvlVff4Y/7KS/D79lJ828NReLW1CnQAcxRSoGVvu+S6A8uONzImzJhyDXwuZDZA==}
@@ -14210,6 +14221,15 @@ snapshots:
       - ember-source
       - supports-color
 
+  ember-decorators-polyfill@1.1.5(@babel/core@7.24.7):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-version-checker: 3.1.3
+      ember-compatibility-helpers: 1.2.7(@babel/core@7.24.7)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
   ember-decorators@6.1.1:
     dependencies:
       '@ember-decorators/component': 6.1.1
@@ -14449,6 +14469,15 @@ snapshots:
       '@babel/traverse': 7.24.7(supports-color@8.1.1)
       recast: 0.18.10
     transitivePeerDependencies:
+      - supports-color
+
+  ember-scroll@1.0.3(@babel/core@7.24.7):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-htmlbars: 5.7.2
+      ember-decorators-polyfill: 1.1.5(@babel/core@7.24.7)
+    transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   ember-showdown-shiki@1.2.1(@babel/core@7.24.7)(showdown@2.1.0):
