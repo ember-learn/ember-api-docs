@@ -1,0 +1,67 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+deleted file mode 100644
+index 7ab6fbae31241ccf49da5f1dcea7690738e659d9..0000000000000000000000000000000000000000
+diff --git a/dist/packages/@ember/-internals/runtime/.gitignore b/dist/packages/@ember/-internals/runtime/.gitignore
+deleted file mode 100644
+index a1136368651e6eb6d0d93a09c478f4978f4196fa..0000000000000000000000000000000000000000
+diff --git a/dist/packages/@ember/debug/index.js b/dist/packages/@ember/debug/index.js
+index 6e9b00d5c858be042cd530bcb647fc87d2a00e83..393bdc04dbf1ecc6a091b4696303affa0d94c4a2 100644
+--- a/dist/packages/@ember/debug/index.js
++++ b/dist/packages/@ember/debug/index.js
+@@ -1,7 +1,7 @@
+ import { isChrome, isFirefox } from '@ember/-internals/browser-environment';
+ import EmberError from '@ember/error';
+ import { DEBUG } from '@glimmer/env';
+-import _deprecate from './lib/deprecate';
++import defaultDeprecate from './lib/deprecate';
+ import { isTesting } from './lib/testing';
+ import _warn from './lib/warn';
+ export { inspect } from '@ember/-internals/utils';
+@@ -16,7 +16,7 @@ let assert = noop;
+ let info = noop;
+ let warn = noop;
+ let debug = noop;
+-let deprecate = noop;
++let currentDeprecate;
+ let debugSeal = noop;
+ let debugFreeze = noop;
+ let runInDebug = noop;
+@@ -27,6 +27,14 @@ let deprecateFunc = function () {
+   return arguments[arguments.length - 1];
+ };
+ 
++export function deprecate() {
++  if (currentDeprecate) {
++    return currentDeprecate(...arguments);
++  }
++  
++  return defaultDeprecate(...arguments);
++}
++
+ if (DEBUG) {
+   setDebugFunction = function (type, callback) {
+     switch (type) {
+@@ -43,7 +51,7 @@ if (DEBUG) {
+         return debug = callback;
+ 
+       case 'deprecate':
+-        return deprecate = callback;
++        return currentDeprecate = callback;
+ 
+       case 'debugSeal':
+         return debugSeal = callback;
+@@ -251,7 +259,6 @@ if (DEBUG) {
+       Object.freeze(obj);
+     }
+   });
+-  setDebugFunction('deprecate', _deprecate);
+   setDebugFunction('warn', _warn);
+ }
+ 
+@@ -275,4 +282,4 @@ if (DEBUG && !isTesting()) {
+   }
+ }
+ 
+-export { assert, info, warn, debug, deprecate, debugSeal, debugFreeze, runInDebug, deprecateFunc, setDebugFunction, getDebugFunction, _warnIfUsingStrippedFeatureFlags };
+\ No newline at end of file
++export { assert, info, warn, debug, debugSeal, debugFreeze, runInDebug, deprecateFunc, setDebugFunction, getDebugFunction, _warnIfUsingStrippedFeatureFlags };
