@@ -4,6 +4,7 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const envIsProduction = process.env.EMBER_ENV === 'production';
 const premberUrls = require('./prember-urls');
 const nodeSass = require('node-sass');
+const { maybeEmbroider } = require('@embroider/test-setup');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -55,14 +56,5 @@ module.exports = function (defaults) {
     },
   });
 
-  const { Webpack } = require('@embroider/webpack');
-  const appTree = require('@embroider/compat').compatBuild(app, Webpack, {
-    staticAddonTrees: true,
-    staticAddonTestSupportTrees: true,
-    staticHelpers: true,
-    staticModifiers: true,
-    staticComponents: true,
-  });
-
-  return require('prember').prerender(app, appTree);
+  return maybeEmbroider(app);
 };

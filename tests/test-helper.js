@@ -3,9 +3,12 @@ import config from 'ember-api-docs/config/environment';
 import * as QUnit from 'qunit';
 import { setApplication } from '@ember/test-helpers';
 import { setup } from 'qunit-dom';
-import { start } from 'ember-qunit';
-setApplication(Application.create(config.APP));
+import { start as qunitStart } from 'ember-qunit';
 
-setup(QUnit.assert);
+export function start() {
+  setApplication(Application.create(config.APP));
 
-start();
+  setup(QUnit.assert);
+
+  qunitStart();
+}
