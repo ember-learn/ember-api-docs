@@ -1,10 +1,10 @@
-import sanitizeHtml from 'sanitize-html';
+import HtmlSanitizer from '@jitbit/htmlsanitizer';
 
 export default function createExcerpt(string, maxLength = 300) {
   // Stop at first code example
   string = string.split('<table')[0];
 
-  let excerpt = sanitizeHtml(string, { allowedTags: [] })
+  let excerpt = HtmlSanitizer.SanitizeHtml(string, { allowedTags: [] })
     // Remove tabs and line breaks
     .replace(/\t/g, '')
     .replace(/\n/g, ' ')

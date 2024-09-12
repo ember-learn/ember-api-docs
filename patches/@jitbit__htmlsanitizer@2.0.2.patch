@@ -1,0 +1,10 @@
+diff --git a/HtmlSanitizer.js b/HtmlSanitizer.js
+index 1dde0ed2effaf438946fd07f550ba502dd0371f4..d40db1d18ee3a5880054afd8611adbbda7488d67 100644
+--- a/HtmlSanitizer.js
++++ b/HtmlSanitizer.js
+@@ -110,3 +110,5 @@ const HtmlSanitizer = new (function () {
+ 	this.AllowedCssStyles = _cssWhitelist;
+ 	this.AllowedSchemas = _schemaWhiteList;
+ });
++
++module.exports = HtmlSanitizer;

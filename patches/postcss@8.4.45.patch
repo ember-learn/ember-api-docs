@@ -1,0 +1,30 @@
+diff --git a/lib/css-syntax-error.js b/lib/css-syntax-error.js
+index 275a4f64c2f8df215341a74d61e2aa2d05d61f78..6fa64a9ea9119fb194cfe28c9a02748d9d736672 100644
+--- a/lib/css-syntax-error.js
++++ b/lib/css-syntax-error.js
+@@ -2,7 +2,7 @@
+ 
+ let pico = require('picocolors')
+ 
+-let terminalHighlight = require('./terminal-highlight')
++let terminalHighlight = require('./terminal-highlight.js')
+ 
+ class CssSyntaxError extends Error {
+   constructor(message, line, column, source, file, plugin) {
+diff --git a/lib/input.js b/lib/input.js
+index 685bce74b22af19d28e19aacea26f5f35e37cacc..205653ea088484495ad756ee8cd0a5c5b84d6e17 100644
+--- a/lib/input.js
++++ b/lib/input.js
+@@ -5,9 +5,9 @@ let { isAbsolute, resolve } = require('path')
+ let { SourceMapConsumer, SourceMapGenerator } = require('source-map-js')
+ let { fileURLToPath, pathToFileURL } = require('url')
+ 
+-let CssSyntaxError = require('./css-syntax-error')
+-let PreviousMap = require('./previous-map')
+-let terminalHighlight = require('./terminal-highlight')
++let CssSyntaxError = require('./css-syntax-error.js')
++let PreviousMap = require('./previous-map.js')
++let terminalHighlight = require('./terminal-highlight.js')
+ 
+ let fromOffsetCache = Symbol('fromOffsetCache')
+ 
