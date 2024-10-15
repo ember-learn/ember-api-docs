@@ -59,7 +59,6 @@
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
     "ember-a11y-testing": "^5.2.1",
-    "ember-anchor": "^1.0.3",
     "ember-auto-import": "^2.7.2",
     "ember-cli": "~3.28.6",
     "ember-cli-app-version": "^5.0.0",
@@ -142,8 +141,9 @@
   },
   "engines": {
     "node": "16.* || 18.* || 20.*",
-    "npm": "7 || 8 || >= 9"
+    "pnpm": "9"
   },
+  "packageManager": "pnpm@9.5.0",
   "cacheDirectories": [
     "node_modules"
   ],
@@ -165,6 +165,5 @@
     "overrides": {
       "node-sass": "^9.0.0"
     }
-  },
-  "packageManager": "pnpm@9.5.0"
+  }
 }
