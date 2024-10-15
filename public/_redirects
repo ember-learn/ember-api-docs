@@ -1,1 +1,3 @@
+/:project/:version/classes/:class/methods/* anchor=:anchor /:project/:version/classes/:class#:anchor 301
+
 /*  /index.html  200
