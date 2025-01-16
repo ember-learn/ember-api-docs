@@ -2,10 +2,15 @@ import { helper } from '@ember/component/helper';
 import githubMap, { mainDir } from '../utils/github-map';
 
 export function githubLink([project, version, file, line], { isEdit = false }) {
+  // Adjust version if it's a `v6.0.x` pattern to match the Git tags
+  const adjustedVersion = version.startsWith('v6.0.')
+    ? `${version}-ember-source`
+    : version;
+
   if (isEdit) {
     return `https://github.com/${githubMap[project]}/edit/release${mainDir(
       project,
-      version
+      adjustedVersion
     )}${file}#L${line}`;
   }
 
@@ -22,9 +27,9 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   // 'https://github.com/emberjs/data/tree/v4.10.0/packages/packages/store/addon/-private/record-arrays/identifier-array.ts#L118'
   const fixedFile = file?.replace('../packages/', '../');
 
-  return `https://github.com/${githubMap[project]}/tree/v${version}${mainDir(
+  return `https://github.com/${githubMap[project]}/tree/${adjustedVersion}${mainDir(
     project,
-    version
+    adjustedVersion
   )}${fixedFile}#L${line}`;
 }
 
