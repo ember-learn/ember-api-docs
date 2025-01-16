@@ -2,8 +2,11 @@ import { helper } from '@ember/component/helper';
 import githubMap, { mainDir } from '../utils/github-map';
 
 export function githubLink([project, version, file, line], { isEdit = false }) {
-  // Adjust version if it's a `v6.0.x` pattern to match the Git tags
-  const adjustedVersion = version.startsWith('v6.0.')
+  const isEmberProject = project === 'ember';
+  const majorVersion = parseInt(version.split('.')[0].replace('v', ''), 10);
+
+  // Check if the project is 'ember' and adjust the tag only if the major version is >= 6 to match the Git tags
+  const adjustedVersion = isEmberProject && majorVersion >= 6
     ? `${version}-ember-source`
     : version;
 
