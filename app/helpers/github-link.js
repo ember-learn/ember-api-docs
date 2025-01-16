@@ -6,8 +6,8 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   const majorVersion = parseInt(version.split('.')[0].replace('v', ''), 10);
 
   // Check if the project is 'ember' and adjust the tag only if the major version is >= 6 to match the Git tags
-  const adjustedVersion = isEmberProject && majorVersion >= 6
-    ? `${version}-ember-source`
+  const adjustedVersion =
+    isEmberProject && majorVersion >= 6 ? `${version}-ember-source`
     : version;
 
   if (isEdit) {
@@ -30,7 +30,9 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   // 'https://github.com/emberjs/data/tree/v4.10.0/packages/packages/store/addon/-private/record-arrays/identifier-array.ts#L118'
   const fixedFile = file?.replace('../packages/', '../');
 
-  return `https://github.com/${githubMap[project]}/tree/${adjustedVersion}${mainDir(
+  return `https://github.com/${
+    githubMap[project]
+  }/tree/${adjustedVersion}${mainDir(
     project,
     adjustedVersion
   )}${fixedFile}#L${line}`;
