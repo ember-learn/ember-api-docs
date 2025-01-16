@@ -7,8 +7,7 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
 
   // Check if the project is 'ember' and adjust the tag only if the major version is >= 6 to match the Git tags
   const adjustedVersion =
-    isEmberProject && majorVersion >= 6 ? `${version}-ember-source`
-    : version;
+    isEmberProject && majorVersion >= 6 ? `v${version}-ember-source` : `v${version}`;
 
   if (isEdit) {
     return `https://github.com/${githubMap[project]}/edit/release${mainDir(
