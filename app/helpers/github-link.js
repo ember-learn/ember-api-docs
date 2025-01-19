@@ -5,13 +5,11 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   const isEmberProject = project === 'ember';
   const majorVersion = parseInt(version?.split('.')[0].replace('v', ''), 10);
 
-  const baseVersion = version ? `v${version.replace(/^v/, '')}` : 'main';
-
   // Check if the project is 'ember' and adjust the tag only if the major version is >= 6 to match the Git tags
   const adjustedVersion =
     isEmberProject && majorVersion >= 6
-      ? `${baseVersion}-ember-source`
-      : baseVersion;
+      ? `${version}-ember-source`
+      : version;
 
   if (isEdit) {
     return `https://github.com/${githubMap[project]}/edit/release${mainDir(
@@ -35,7 +33,7 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
 
   return `https://github.com/${
     githubMap[project]
-  }/tree/${adjustedVersion}${mainDir(
+  }/tree/v${adjustedVersion}${mainDir(
     project,
     adjustedVersion
   )}${fixedFile}#L${line}`;
