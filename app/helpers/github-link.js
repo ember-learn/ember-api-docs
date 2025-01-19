@@ -5,7 +5,7 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   const isEmberProject = project === 'ember';
   const majorVersion = parseInt(version?.split('.')[0].replace('v', ''), 10);
 
-  const baseVersion = `v${version.replace(/^v/, '')}`;
+  const baseVersion = version ? `v${version.replace(/^v/, '')}` : 'main';
 
   // Check if the project is 'ember' and adjust the tag only if the major version is >= 6 to match the Git tags
   const adjustedVersion =
