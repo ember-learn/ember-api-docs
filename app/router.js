@@ -34,7 +34,6 @@ class AppRouter extends EmberRouter {
 }
 
 AppRouter.map(function () {
-  this.route('ember-cli');
   this.route('project', { path: '/:project' });
 
   this.route(

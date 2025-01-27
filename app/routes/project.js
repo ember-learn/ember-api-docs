@@ -16,7 +16,7 @@ export default class ProjectRoute extends Route.extend(ScrollTracker) {
     }
 
     if (projectName.indexOf('cli') !== -1) {
-      return this.router.transitionTo('ember-cli');
+      projectNameToLookUp = 'ember-cli';
     }
 
     return this.store.findRecord('project', projectNameToLookUp, {
