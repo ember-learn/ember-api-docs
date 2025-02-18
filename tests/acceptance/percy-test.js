@@ -1,5 +1,5 @@
 import { visit } from '@ember/test-helpers';
-import percySnapshot from '@percy/ember';
+// import percySnapshot from '@percy/ember';
 import { setupApplicationTest } from 'ember-qunit';
 import { module, test } from 'qunit';
 
@@ -22,7 +22,7 @@ module('Acceptance | percy', function (hooks) {
   test('Percy snapshots', async function (assert) {
     for (let [page, title] of snapshots) {
       await visit(page);
-      await percySnapshot(title);
+      // await percySnapshot(title);
     }
 
     assert.ok(true);

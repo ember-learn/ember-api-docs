@@ -1,6 +1,7 @@
 import { isPresent } from '@ember/utils';
 
 export function initialize(appInstance) {
+  return;
   const metaStore = appInstance.lookup('service:meta-store');
   const fastBootService = appInstance.lookup('service:fastboot');
 

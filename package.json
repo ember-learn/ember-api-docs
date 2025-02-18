@@ -1,43 +1,50 @@
 {
   "name": "ember-api-docs",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "description": "Small description for ember-api-docs goes here",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ember-learn/ember-api-docs.git"
-  },
+  "repository": "",
   "license": "MIT",
-  "author": "Ember Learning Team and contributors",
+  "author": "",
   "directories": {
+    "doc": "doc",
     "test": "tests"
   },
   "scripts": {
     "clone": "rm -rf ember-api-docs-data && git clone --depth=1 https://github.com/ember-learn/ember-api-docs-data.git",
-    "build": "ember build --environment=production",
+    "build": "vite build",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
-    "start:local": "API_HOST=http://localhost:5050 ember serve",
     "lint:js:fix": "eslint . --fix",
-    "start": "ember serve",
+    "start": "vite",
     "test:browserstack": "node run-tests.js",
     "test:ember": "ember test"
   },
   "devDependencies": {
+    "@ember-data/adapter": "~3.28.0",
+    "@ember-data/model": "~3.28.0",
+    "@ember-data/serializer": "~3.28.0",
+    "@ember-decorators/component": "^6.1.1",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.6.0",
-    "@embroider/compat": "^3.4.3",
-    "@embroider/core": "^3.4.3",
+    "@embroider/compat": "3.6.2-unstable.a691d39",
+    "@embroider/config-meta-loader": "0.0.1-unstable.a691d39",
+    "@embroider/core": "3.4.16-unstable.a691d39",
+    "@embroider/test-setup": "4.0.1-unstable.a691d39",
+    "@embroider/vite": "0.2.1-unstable.a691d39",
     "@embroider/webpack": "^3.2.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@glint/core": "^0.9.7",
     "@glint/environment-ember-loose": "^0.9.7",
+    "@jitbit/htmlsanitizer": "^2.0.2",
     "@percy/cli": "^1.28.7",
     "@percy/ember": "^4.2.0",
+    "@percy/sdk-utils": "1.28.7",
+    "@rollup/plugin-babel": "^6.0.4",
     "@tsconfig/ember": "^1.0.1",
     "@types/ember": "^4.0.2",
     "@types/ember-qunit": "^5.0.2",
@@ -59,42 +66,34 @@
     "bootstrap": "^4.6.2",
     "bourbon": "5.1.0",
     "bourbon-neat": "^1.9.1",
-    "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
     "ember-a11y-testing": "^5.2.1",
     "ember-anchor": "^1.0.3",
     "ember-auto-import": "^2.7.2",
     "ember-cli": "~3.28.6",
-    "ember-cli-app-version": "^5.0.0",
     "ember-cli-autoprefixer": "^1.0.0",
     "ember-cli-babel": "^7.26.10",
     "ember-cli-bourbon": "^2.0.1",
     "ember-cli-browserstack": "^1.0.1",
     "ember-cli-clipboard": "^1.1.0",
-    "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-deploy": "^1.0.1",
     "ember-cli-deploy-build": "^1.1.0",
     "ember-cli-deploy-gzip": "^1.0.0",
     "ember-cli-deprecation-workflow": "^3.0.1",
-    "ember-cli-document-title-northm": "^1.0.3",
-    "ember-cli-fastboot": "^4.1.5",
     "ember-cli-htmlbars": "^6.1.1",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-meta-tags": "^7.0.0",
     "ember-cli-sass": "^10.0.1",
     "ember-cli-showdown": "^9.0.1",
-    "ember-cli-terser": "^4.0.2",
     "ember-composable-helpers": "^3.1.1",
     "ember-concurrency": "^2.3.7",
     "ember-data": "~3.28.6",
-    "ember-data-fastboot": "https://github.com/cardstack/ember-data-fastboot#6e6fb8bbf0b405ae174160cc1e4833c5582f68cd",
     "ember-export-application-global": "^2.0.1",
-    "ember-fetch": "^8.1.1",
     "ember-inflector": "^4.0.3",
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-metrics": "^1.5.2",
-    "ember-page-title": "^6.2.2",
+    "ember-page-title": "^8.2.3",
     "ember-power-select": "^7.2.0",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
@@ -132,44 +131,56 @@
     "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
-    "prember": "^2.1.0",
     "prettier": "^2.5.1",
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
     "semver": "^7.5.4",
     "semver-compare": "^1.0.0",
+    "showdown": "^2.1.0",
+    "sinon": "7.5.0",
     "spawndamnit": "2.0.0",
     "testem": "^3.10.0",
     "typescript": "^4.9.3",
+    "vite": "^5.4.3",
     "webpack": "^5.90.0"
   },
+  "packageManager": "pnpm@9.5.0",
   "engines": {
     "node": "16.* || 18.* || 20.*",
     "npm": "7 || 8 || >= 9"
   },
-  "cacheDirectories": [
-    "node_modules"
-  ],
+  "pnpm": {
+    "overrides": {
+      "ember-get-config": "github:mansona/ember-get-config#config-meta-loader",
+      "ember-truth-helpers": "^4.0.0",
+      "node-sass": "^9.0.0"
+    },
+    "patchedDependencies": {
+      "@ember-data/store@3.28.13": "patches/@ember-data__store@3.28.13.patch",
+      "ember-source@3.28.12": "patches/ember-source@3.28.12.patch",
+      "postcss@8.4.45": "patches/postcss@8.4.45.patch",
+      "@jitbit/htmlsanitizer@2.0.2": "patches/@jitbit__htmlsanitizer@2.0.2.patch"
+    }
+  },
   "ember": {
     "edition": "octane"
+  },
+  "ember-addon": {
+    "paths": [
+      "lib/api-docs-data"
+    ],
+    "type": "app",
+    "version": 2
+  },
+  "exports": {
+    "./tests/*": "./tests/*",
+    "./*": "./app/*"
   },
   "fastbootDependencies": [
     "algoliasearch",
     "node-fetch",
     "abortcontroller-polyfill",
     "abortcontroller-polyfill/dist/cjs-ponyfill"
-  ],
-  "ember-addon": {
-    "paths": [
-      "lib/api-docs-data"
-    ]
-  },
-  "pnpm": {
-    "overrides": {
-      "node-sass": "^9.0.0",
-      "ember-truth-helpers": "^4.0.0"
-    }
-  },
-  "packageManager": "pnpm@9.5.0"
+  ]
 }

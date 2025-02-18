@@ -1,0 +1,52 @@
+diff --git a/addon/-private/system/backburner.js b/addon/-private/system/backburner.js
+index 6aa30ddf1a6c5151f68ec7a1e2b30e34fae64716..28cc2bad6367c2a41a0b589c7e788bf6bcb19ec5 100644
+--- a/addon/-private/system/backburner.js
++++ b/addon/-private/system/backburner.js
+@@ -2,7 +2,6 @@
+   @module @ember-data/store
+ */
+ 
+-import { registerWaiter } from '@ember/test';
+ import { DEBUG } from '@glimmer/env';
+ import Ember from 'ember';
+ 
+@@ -17,9 +16,7 @@ import Ember from 'ember';
+ const backburner = new Ember._Backburner(['coalesce', 'sync', 'notify']);
+ 
+ if (DEBUG) {
+-  registerWaiter(() => {
+-    return !backburner.currentInstance && !backburner.hasTimers();
+-  });
++  
+ }
+ 
+ export default backburner;
+diff --git a/addon/-private/system/core-store.ts b/addon/-private/system/core-store.ts
+index f7eb8b96bd70abb8b8ebf5beb8a755853e38adc6..319c72e5beb6474a3111b1c5be9b4537797d5b27 100644
+--- a/addon/-private/system/core-store.ts
++++ b/addon/-private/system/core-store.ts
+@@ -8,7 +8,6 @@ import { computed, defineProperty, get, set } from '@ember/object';
+ import { assign } from '@ember/polyfills';
+ import { _backburner as emberBackburner } from '@ember/runloop';
+ import Service from '@ember/service';
+-import { registerWaiter, unregisterWaiter } from '@ember/test';
+ import { isNone, isPresent, typeOf } from '@ember/utils';
+ import { DEBUG } from '@glimmer/env';
+ import Ember from 'ember';
+@@ -414,8 +413,6 @@ abstract class CoreStore extends Service {
+ 
+         return shouldTrack !== true || isSettled;
+       };
+-
+-      registerWaiter(this.__asyncWaiter);
+     }
+   }
+ 
+@@ -3690,7 +3687,6 @@ abstract class CoreStore extends Service {
+     this.unloadAll();
+ 
+     if (DEBUG) {
+-      unregisterWaiter(this.__asyncWaiter);
+       let shouldTrack = this.shouldTrackAsyncRequests;
+       let tracked = this._trackedAsyncRequests;
+       let isSettled = tracked.length === 0;
