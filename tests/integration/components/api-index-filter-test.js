@@ -100,21 +100,21 @@ module('Integration | Component | api index filter', function (hooks) {
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" \"showProtected\"}}>
+                     onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id=\"private-toggle\"
                      type=\"checkbox\"
                      checked={{this.sectionData.showPrivate}}
-                     onchange={{action \"updateFilter\" \"showPrivate\"}}>
+                     onchange={{action "updateFilter" "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{this.sectionData.showDeprecated}}\"
-                     onchange={{action \"updateFilter\" \"showDeprecated\"}}>
+                     checked={{this.sectionData.showDeprecated}}
+                     onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -165,7 +165,7 @@ module('Integration | Component | api index filter', function (hooks) {
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" \"showProtected\"}}>
+                     onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
@@ -178,8 +178,8 @@ module('Integration | Component | api index filter', function (hooks) {
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{this.sectionData.showDeprecated}}\"
-                     onchange={{action \"updateFilter\" \"showDeprecated\"}}>
+                     checked={{this.sectionData.showDeprecated}}
+                     onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -230,7 +230,7 @@ module('Integration | Component | api index filter', function (hooks) {
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" \"showProtected\"}}>
+                     onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
@@ -243,8 +243,8 @@ module('Integration | Component | api index filter', function (hooks) {
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{this.sectionData.showDeprecated}}\"
-                     onchange={{action \"updateFilter\" \"showDeprecated\"}}>
+                     checked={{this.sectionData.showDeprecated}}
+                     onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>

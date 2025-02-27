@@ -49,7 +49,7 @@ module('Integration | Component | api index', function (hooks) {
           {{#each sectionData.sections as |section|}}
             <h2 class=\"api-index-section-title\">{{section.title}}</h2>
             {{#if section.items}}
-              <ul class=\"{{section.class}}\">
+              <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
@@ -127,7 +127,7 @@ module('Integration | Component | api index', function (hooks) {
           {{#each sectionData.sections as |section|}}
             <h2 class=\"api-index-section-title\">{{section.title}}</h2>
             {{#if section.items}}
-              <ul class=\"{{section.class}}\">
+              <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
@@ -251,7 +251,7 @@ module('Integration | Component | api index', function (hooks) {
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" \"showProtected\"}}>
+                     onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
@@ -264,8 +264,8 @@ module('Integration | Component | api index', function (hooks) {
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{this.filterData.showDeprecated}}\"
-                     onchange={{action \"updateFilter\" \"showDeprecated\"}}>
+                     checked={{this.filterData.showDeprecated}}
+                     onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
 
@@ -273,7 +273,7 @@ module('Integration | Component | api index', function (hooks) {
           {{#each sectionData.sections as |section|}}
             <h2 class=\"api-index-section-title\">{{section.title}}</h2>
             {{#if section.items}}
-              <ul class=\"{{section.class}}\">
+              <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
@@ -397,7 +397,7 @@ module('Integration | Component | api index', function (hooks) {
               <input id=\"protected-toggle\"
                      type=\"checkbox\"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" \"showProtected\"}}>
+                     onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
@@ -411,8 +411,8 @@ module('Integration | Component | api index', function (hooks) {
             <label class="access-checkbox">
               <input id=\"deprecated-toggle\"
                      type=\"checkbox\"
-                     checked=\"{{this.sectionData.showDeprecated}}\"
-                     onchange={{action \"updateFilter\" \"showDeprecated\"}}>
+                     checked={{this.sectionData.showDeprecated}}
+                     onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
 
@@ -420,7 +420,7 @@ module('Integration | Component | api index', function (hooks) {
           {{#each sectionData.sections as |section|}}
             <h2 class=\"api-index-section-title\">{{section.title}}</h2>
             {{#if section.items}}
-              <ul class=\"{{section.class}}\">
+              <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
