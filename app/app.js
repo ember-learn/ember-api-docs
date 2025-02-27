@@ -4,6 +4,7 @@ import loadInitializers from 'ember-load-initializers';
 import config from 'ember-api-docs/config/environment';
 
 import './deprecation-workflow';
+import 'ember-power-select/styles';
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
