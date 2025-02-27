@@ -1,7 +1,7 @@
-/* eslint-disable no-undef, node/no-extraneous-require, prettier/prettier */
+/* eslint-disable no-undef, prettier/prettier */
 const { readdirSync, existsSync } = require('fs');
 const cmp = require('semver-compare');
-// eslint-disable-next-line node/no-extraneous-require
+
 const semver = require('semver');
 
 function partialUrlEncode(input) {

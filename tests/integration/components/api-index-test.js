@@ -47,13 +47,13 @@ module('Integration | Component | api index', function (hooks) {
     await render(hbs`
         {{#api-index itemData=this.myModel as |sectionData|}}
           {{#each sectionData.sections as |section|}}
-            <h2 class=\"api-index-section-title\">{{section.title}}</h2>
+            <h2 class="api-index-section-title">{{section.title}}</h2>
             {{#if section.items}}
               <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
-                      @route=\"item.route\"
+                      @route={{item.route}}
                       @models={{array
                         sectionData.projectId
                         sectionData.projectVersion
@@ -125,13 +125,13 @@ module('Integration | Component | api index', function (hooks) {
     await render(hbs`
         {{#api-index itemData=this.myModel as |sectionData|}}
           {{#each sectionData.sections as |section|}}
-            <h2 class=\"api-index-section-title\">{{section.title}}</h2>
+            <h2 class="api-index-section-title">{{section.title}}</h2>
             {{#if section.items}}
               <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
-                      @route=\"item.route\"
+                      @route={{item.route}}
                       @models={{array
                         sectionData.projectId
                         sectionData.projectVersion
@@ -248,8 +248,8 @@ module('Integration | Component | api index', function (hooks) {
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id=\"protected-toggle\"
-                     type=\"checkbox\"
+              <input id="protected-toggle"
+                     type="checkbox"
                      checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
@@ -262,8 +262,8 @@ module('Integration | Component | api index', function (hooks) {
               Private
             </label>
             <label class="access-checkbox">
-              <input id=\"deprecated-toggle\"
-                     type=\"checkbox\"
+              <input id="deprecated-toggle"
+                     type="checkbox"
                      checked={{this.filterData.showDeprecated}}
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
@@ -271,13 +271,13 @@ module('Integration | Component | api index', function (hooks) {
 
         {{#api-index itemData=filteredModel as |sectionData|}}
           {{#each sectionData.sections as |section|}}
-            <h2 class=\"api-index-section-title\">{{section.title}}</h2>
+            <h2 class="api-index-section-title">{{section.title}}</h2>
             {{#if section.items}}
               <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
-                      @route=\"item.route\"
+                      @route={{item.route}}
                       @models={{array
                         sectionData.projectId
                         sectionData.projectVersion
@@ -394,8 +394,8 @@ module('Integration | Component | api index', function (hooks) {
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id=\"protected-toggle\"
-                     type=\"checkbox\"
+              <input id="protected-toggle"
+                     type="checkbox"
                      checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
@@ -409,8 +409,8 @@ module('Integration | Component | api index', function (hooks) {
             </label>
             {{! TODO: investigate this 'checked=': it looks wrong!}}
             <label class="access-checkbox">
-              <input id=\"deprecated-toggle\"
-                     type=\"checkbox\"
+              <input id="deprecated-toggle"
+                     type="checkbox"
                      checked={{this.sectionData.showDeprecated}}
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
@@ -418,13 +418,13 @@ module('Integration | Component | api index', function (hooks) {
 
         {{#api-index itemData=filteredModel as |sectionData|}}
           {{#each sectionData.sections as |section|}}
-            <h2 class=\"api-index-section-title\">{{section.title}}</h2>
+            <h2 class="api-index-section-title">{{section.title}}</h2>
             {{#if section.items}}
               <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
                     <LinkTo
-                      @route=\"item.route\"
+                      @route={{item.route}}
                       @models={{array
                         sectionData.projectId
                         sectionData.projectVersion

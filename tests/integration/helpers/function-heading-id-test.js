@@ -9,7 +9,7 @@ module('helper:function-heading-id', function (hooks) {
   test('should transform nested package to id', async function (assert) {
     this.set('inputValue', '@ember/object/computed');
 
-    await render(hbs`{{function-heading-id inputValue}}`);
+    await render(hbs`{{function-heading-id this.inputValue}}`);
 
     assert.dom(this.element).hasText('functions-computed');
   });

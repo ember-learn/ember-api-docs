@@ -98,29 +98,29 @@ module('Integration | Component | api index filter', function (hooks) {
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id=\"protected-toggle\"
-                     type=\"checkbox\"
+              <input id="protected-toggle"
+                     type="checkbox"
                      checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
-              <input id=\"private-toggle\"
-                     type=\"checkbox\"
+              <input id="private-toggle"
+                     type="checkbox"
                      checked={{this.sectionData.showPrivate}}
                      onchange={{action "updateFilter" "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
-              <input id=\"deprecated-toggle\"
-                     type=\"checkbox\"
+              <input id="deprecated-toggle"
+                     type="checkbox"
                      checked={{this.sectionData.showDeprecated}}
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
-            <p class=\"method-name\">{{method.name}}</p>
+            <p class="method-name">{{method.name}}</p>
           {{/each}}
       {{/api-index-filter}}
     `);
@@ -163,8 +163,8 @@ module('Integration | Component | api index filter', function (hooks) {
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id=\"protected-toggle\"
-                     type=\"checkbox\"
+              <input id="protected-toggle"
+                     type="checkbox"
                      checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
@@ -177,15 +177,15 @@ module('Integration | Component | api index filter', function (hooks) {
               Private
             </label>
             <label class="access-checkbox">
-              <input id=\"deprecated-toggle\"
-                     type=\"checkbox\"
+              <input id="deprecated-toggle"
+                     type="checkbox"
                      checked={{this.sectionData.showDeprecated}}
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
-            <p class=\"method-name\">{{method.name}}</p>
+            <p class="method-name">{{method.name}}</p>
           {{/each}}
       {{/api-index-filter}}
     `);
@@ -228,8 +228,8 @@ module('Integration | Component | api index filter', function (hooks) {
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id=\"protected-toggle\"
-                     type=\"checkbox\"
+              <input id="protected-toggle"
+                     type="checkbox"
                      checked={{this.filterData.showProtected}}
                      onchange={{action "updateFilter" "showProtected"}}>
               Protected
@@ -242,15 +242,15 @@ module('Integration | Component | api index filter', function (hooks) {
               Private
             </label>
             <label class="access-checkbox">
-              <input id=\"deprecated-toggle\"
-                     type=\"checkbox\"
+              <input id="deprecated-toggle"
+                     type="checkbox"
                      checked={{this.sectionData.showDeprecated}}
                      onchange={{action "updateFilter" "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
-            <p class=\"method-name\">{{method.name}}</p>
+            <p class="method-name">{{method.name}}</p>
           {{/each}}
       {{/api-index-filter}}
     `);
@@ -319,7 +319,7 @@ module('Integration | Component | api index filter', function (hooks) {
           </section>
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
-            <p class=\"method-name\">{{method.name}}</p>
+            <p class="method-name">{{method.name}}</p>
           {{/each}}
       {{/api-index-filter}}
     `);
@@ -396,7 +396,7 @@ module('Integration | Component | api index filter', function (hooks) {
           </section>
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
-            <p class=\"method-name\">{{method.name}}</p>
+            <p class="method-name">{{method.name}}</p>
           {{/each}}
       {{/api-index-filter}}
     `);
@@ -448,7 +448,7 @@ module('Integration | Component | api index filter', function (hooks) {
       {{#api-index-filter model=this.model filterData=this.filterData as |myModel|}}
           <h2>Methods</h2>
           {{#each myModel.methods as |method|}}
-            <p class=\"method-name\">{{method.name}}</p>
+            <p class="method-name">{{method.name}}</p>
           {{/each}}
       {{/api-index-filter}}
     `);
