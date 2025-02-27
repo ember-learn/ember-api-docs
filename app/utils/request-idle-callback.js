@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-runloop */
 import RSVP from 'rsvp';
 import { run } from '@ember/runloop';
 

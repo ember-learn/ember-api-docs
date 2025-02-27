@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-implicit-injections, prettier/prettier */
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';

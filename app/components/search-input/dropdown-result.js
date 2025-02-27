@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes, ember/no-classic-components, ember/no-get, ember/require-tagless-components, prettier/prettier */
 import { gt } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Component from '@ember/component';

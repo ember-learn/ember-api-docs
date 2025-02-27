@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-implicit-injections, ember/no-mixins, prettier/prettier */
 import Route from '@ember/routing/route';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';

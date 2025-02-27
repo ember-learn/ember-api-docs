@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, currentURL } from '@ember/test-helpers';

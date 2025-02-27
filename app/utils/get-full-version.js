@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 

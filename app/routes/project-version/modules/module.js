@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-mixins, prettier/prettier */
 import ClassRoute from '../classes/class';
 import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';

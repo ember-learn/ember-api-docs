@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import Service, { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 import { set } from '@ember/object';

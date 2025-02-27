@@ -1,4 +1,4 @@
-/* eslint-disable ember/classic-decorator-no-classic-methods */
+/* eslint-disable ember/classic-decorator-no-classic-methods, prettier/prettier */
 import AnchorComponent from 'ember-anchor/components/ember-anchor';
 import config from 'ember-api-docs/config/environment';
 import getOffset from 'ember-api-docs/utils/get-offset';

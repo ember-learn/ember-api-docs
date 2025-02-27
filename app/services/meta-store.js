@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
 import { set } from '@ember/object';

@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-implicit-injections, ember/no-mixins, prettier/prettier */
 import { inject as service } from '@ember/service';
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';

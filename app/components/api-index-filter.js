@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes */
+/* eslint-disable ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/require-tagless-components */
 import { classNames } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';

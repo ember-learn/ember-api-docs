@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-new-mixins, prettier/prettier */
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
 import config from 'ember-api-docs/config/environment';

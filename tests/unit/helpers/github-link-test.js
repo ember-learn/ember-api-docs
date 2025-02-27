@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { githubLink } from 'ember-api-docs/helpers/github-link';
 import { module, test } from 'qunit';
 

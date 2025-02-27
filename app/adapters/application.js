@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { inject as service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import fetch from 'fetch';

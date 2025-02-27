@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { module, test } from 'qunit';
 import { visit, currentURL, fillIn, click, focus } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';

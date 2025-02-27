@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-get */
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { get } from '@ember/object';

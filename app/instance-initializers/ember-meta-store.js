@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { isPresent } from '@ember/utils';
 
 export function initialize(appInstance) {

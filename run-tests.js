@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const spawn = require('spawndamnit');
 const ember = `./node_modules/.bin/ember`;
 

@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-components, ember/no-get, ember/require-tagless-components, prettier/prettier */
 import {
   classNames,
   attributeBindings,

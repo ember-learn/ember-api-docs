@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
+/* eslint-disable ember/classic-decorator-no-classic-methods, ember/no-computed-properties-in-native-classes, ember/no-get, prettier/prettier */
 import { computed } from '@ember/object';
 import Model, { belongsTo, attr } from '@ember-data/model';
 

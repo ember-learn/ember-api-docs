@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';

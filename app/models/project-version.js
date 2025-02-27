@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-classes */
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 import { computed } from '@ember/object';
 import getCompactVersion from '../utils/get-compact-version';
