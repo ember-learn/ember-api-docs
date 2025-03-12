@@ -1,3 +1,14 @@
+import { action } from '@ember/object';
+import Component from '@glimmer/component';
+
+export default class TableOfContents extends Component {
+  @action
+  toggle(type) {
+    const tableElement = document.querySelector(`ol.toc-level-1.${type}`);
+    tableElement.classList.toggle('selected');
+  }
+}
+
 <ol class='toc-level-0'>
   <li class='toc-level-0'>
     <a {{on 'click' (fn this.toggle 'modules')}} href='#' data-test-toc-title='packages'>Packages</a>
