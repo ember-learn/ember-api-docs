@@ -1,19 +1,15 @@
+/* eslint-disable prettier/prettier */
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import {
-  render,
-  click,
-  findAll,
-  find,
-  triggerEvent,
-} from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render, click, findAll, find, triggerEvent } from '@ember/test-helpers';
+import ClassFieldDescription from "ember-api-docs/components/class-field-description";
 
 module('Integration | Component | class field description', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
+  test('it renders', async function (assert) {const self = this;
+
     this.set('type', 'method');
     this.set(
       'field',
@@ -27,7 +23,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+      <template><ClassFieldDescription @type={{self.type}} @field={{self.field}} /></template>
     );
 
     assert.dom('.method-name').hasText('concat');
@@ -36,7 +32,8 @@ module('Integration | Component | class field description', function (hooks) {
     assert.dom(findAll('.args')[0]).hasText('(param1, param2, param3)');
   });
 
-  test('On hover -- the link icon shows up', async function (assert) {
+  test('On hover -- the link icon shows up', async function (assert) {const self = this;
+
     this.set('type', 'method');
     this.set(
       'field',
@@ -50,7 +47,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+      <template><ClassFieldDescription @type={{self.type}} @field={{self.field}} /></template>
     );
 
     await triggerEvent('.class-field-description--link', 'mouseenter');
@@ -59,7 +56,8 @@ module('Integration | Component | class field description', function (hooks) {
       .exists('The link icon appears when hovering on the method text');
   });
 
-  test('it calls the provided action on link-click with the field name as an arg', async function (assert) {
+  test('it calls the provided action on link-click with the field name as an arg', async function (assert) {const self = this;
+
     assert.expect(3);
     this.set('updateAnchor', (name) => {
       assert.equal(
@@ -78,7 +76,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`<ClassFieldDescription @field={{this.field}} @updateAnchor={{this.updateAnchor}}/>`
+      <template><ClassFieldDescription @field={{self.field}} @updateAnchor={{self.updateAnchor}} /></template>
     );
 
     await click('.class-field-description--link');
@@ -86,7 +84,8 @@ module('Integration | Component | class field description', function (hooks) {
     assert.verifySteps(['updateAnchorAction']);
   });
 
-  test('parameter props are displayed', async function (assert) {
+  test('parameter props are displayed', async function (assert) {const self = this;
+
     this.set('type', 'method');
     this.set(
       'field',
@@ -104,7 +103,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+      <template><ClassFieldDescription @type={{self.type}} @field={{self.field}} /></template>
     );
 
     assert.dom(find('.prop:nth-child(1) dt')).hasText('prop1');

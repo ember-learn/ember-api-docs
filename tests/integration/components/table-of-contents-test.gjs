@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll, click } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import TableOfContents from "ember-api-docs/components/table-of-contents";
 
 const TIMEOUT_FOR_ANIMATION = 600;
 const CLASSES = ['Descriptor', 'Ember'];
@@ -10,19 +11,15 @@ const MODULES = ['@ember/application', '@ember/array'];
 module('Integration | Component | table of contents', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it renders', async function (assert) {
+  test('it renders', async function (assert) {const self = this;
+
     // Set any properties with this.set('myProperty', 'value');
     this.set('emberVersion', '2.4.3');
     this.set('classesIDs', CLASSES);
 
-    await render(hbs`
-      <TableOfContents
-        @showPrivateClasses={{true}}
-        @version={{this.emberVersion}}
-        @classesIDs={{this.classesIDs}}
-        @isShowingNamespaces={{true}}
-      />
-    `);
+    await render(<template>
+      <TableOfContents @showPrivateClasses={{true}} @version={{self.emberVersion}} @classesIDs={{self.classesIDs}} @isShowingNamespaces={{true}} />
+    </template>);
 
     const contentTitle = document.querySelector(
       '[data-test-toc-title="classes"]'
@@ -37,19 +34,15 @@ module('Integration | Component | table of contents', function (hooks) {
     assert.dom(findAll(`${contentReference} li`)[1]).hasText(CLASSES[1]);
   });
 
-  test('Starts with underlying content visible', async function (assert) {
+  test('Starts with underlying content visible', async function (assert) {const self = this;
+
     // Set any properties with this.set('myProperty', 'value');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
-    await render(hbs`
-      <TableOfContents
-        @showPrivateClasses={{true}}
-        @version={{this.emberVersion}}
-        @moduleIDs={{this.moduleIDs}}
-        @isShowingNamespaces={{true}}
-      />
-    `);
+    await render(<template>
+      <TableOfContents @showPrivateClasses={{true}} @version={{self.emberVersion}} @moduleIDs={{self.moduleIDs}} @isShowingNamespaces={{true}} />
+    </template>);
 
     const contentReference = '.toc-level-1';
     const content = document.querySelector(contentReference);
@@ -67,19 +60,15 @@ module('Integration | Component | table of contents', function (hooks) {
     assert.dom(findAll(`${contentReference} li`)[1]).hasText(MODULES[1]);
   });
 
-  test('Underlying content hides once clicked', async function (assert) {
+  test('Underlying content hides once clicked', async function (assert) {const self = this;
+
     // Set any properties with this.set('myProperty', 'value');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
-    await render(hbs`
-      <TableOfContents
-        @showPrivateClasses={{true}}
-        @version={{this.emberVersion}}
-        @moduleIDs={{this.moduleIDs}}
-        @isShowingNamespaces={{true}}
-      />
-    `);
+    await render(<template>
+      <TableOfContents @showPrivateClasses={{true}} @version={{self.emberVersion}} @moduleIDs={{self.moduleIDs}} @isShowingNamespaces={{true}} />
+    </template>);
 
     const contentTitle = document.querySelector(
       '[data-test-toc-title="packages"]'
@@ -101,19 +90,15 @@ module('Integration | Component | table of contents', function (hooks) {
     }, TIMEOUT_FOR_ANIMATION);
   });
 
-  test('Underlying content should be visible after 2 clicks', async function (assert) {
+  test('Underlying content should be visible after 2 clicks', async function (assert) {const self = this;
+
     // Set any properties with this.set('myProperty', 'value');
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
-    await render(hbs`
-      <TableOfContents
-        @showPrivateClasses={{true}}
-        @version={{this.emberVersion}}
-        @moduleIDs={{this.moduleIDs}}
-        @isShowingNamespaces={{true}}
-      />
-    `);
+    await render(<template>
+      <TableOfContents @showPrivateClasses={{true}} @version={{self.emberVersion}} @moduleIDs={{self.moduleIDs}} @isShowingNamespaces={{true}} />
+    </template>);
 
     const titleButton = document.querySelector(
       '[data-test-toc-title="packages"]'

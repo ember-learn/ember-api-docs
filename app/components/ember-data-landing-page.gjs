@@ -1,4 +1,5 @@
-<article class="chapter">
+import { LinkTo } from "@ember/routing";
+<template><article class="chapter">
   <h1>
     Ember Data API Documentation
   </h1>
@@ -53,4 +54,4 @@
       </h5>
     </li>
   </ul>
-</article>
+</article></template>

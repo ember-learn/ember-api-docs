@@ -1,8 +1,8 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { fillIn, render, waitFor } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 import { set } from '@ember/object';
+import SearchInput from "ember-api-docs/components/search-input";
 
 module('Integration | Component | search input', function (hooks) {
   setupRenderingTest(hooks);
@@ -155,7 +155,7 @@ module('Integration | Component | search input', function (hooks) {
       ];
     });
 
-    await render(hbs`<SearchInput/>`);
+    await render(<template><SearchInput /></template>);
 
     await fillIn('#search-input', 'model');
 
@@ -171,7 +171,7 @@ module('Integration | Component | search input', function (hooks) {
       return [];
     });
 
-    await render(hbs`<SearchInput/>`);
+    await render(<template><SearchInput /></template>);
 
     await fillIn('#search-input', 'model');
 

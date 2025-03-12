@@ -1,12 +1,14 @@
-<title>{{this.model.title}}</title>
+import RouteTemplate from 'ember-route-template'
 
-<link rel="dns-prefetch" href="{{this.model.cdnDomain}}">
-<meta property="og:title" content={{this.model.title}}>
+export default RouteTemplate(<template><title>{{@controller.model.title}}</title>
 
-{{#if this.model.description}}
-  <meta name="description" content={{this.model.description}}>
-  <meta property="og:description" content={{this.model.description}}>
+<link rel="dns-prefetch" href="{{@controller.model.cdnDomain}}">
+<meta property="og:title" content={{@controller.model.title}}>
+
+{{#if @controller.model.description}}
+  <meta name="description" content={{@controller.model.description}}>
+  <meta property="og:description" content={{@controller.model.description}}>
 {{/if}}
-{{#unless this.model.isRelease}}
-  <link rel="canonical" href={{this.model.canonicalUrl}}>
-{{/unless}}
+{{#unless @controller.model.isRelease}}
+  <link rel="canonical" href={{@controller.model.canonicalUrl}}>
+{{/unless}}</template>)

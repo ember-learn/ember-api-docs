@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes */
+/* eslint-disable ember/no-classic-components, ember/no-computed-properties-in-native-classes, ember/require-tagless-components */
 import { classNames } from '@ember-decorators/component';
 import { computed } from '@ember/object';
 import Component from '@ember/component';
@@ -22,7 +22,8 @@ const filterDataComputedParams =
  * @extends Component<{ Args: Args, Blocks: Blocks }>
  */
 @classNames('api-index-filter')
-export default class ApiIndexFilter extends Component {
+export default class ApiIndexFilter extends Component {<template>{{yield this.filteredData}}
+</template>
   @computed('model.methods.[]', filterDataComputedParams)
   get filteredMethods() {
     return this.filterItems('methods');
@@ -117,5 +118,3 @@ export default class ApiIndexFilter extends Component {
     }
   }
 }
-
-{{yield this.filteredData}}

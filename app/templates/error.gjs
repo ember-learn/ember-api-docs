@@ -1,5 +1,8 @@
-<article class="whoops">
-  {{#if (eq this.model.status 404)}}
+import RouteTemplate from 'ember-route-template'
+import eq from "ember-api-docs/helpers/eq";
+import { LinkTo } from "@ember/routing";
+export default RouteTemplate(<template><article class="whoops">
+  {{#if (eq @controller.model.status 404)}}
     <h2 class="whoops__title">Ack! 404 friend, you're in the wrong place</h2>
     <div class="whoops__message">
       <p>
@@ -13,3 +16,4 @@
     </h2>
   {{/if}}
 </article>
+</template>)

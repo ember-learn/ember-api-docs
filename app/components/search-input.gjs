@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-get */
 import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { get } from '@ember/object';
@@ -5,11 +6,24 @@ import { isPresent } from '@ember/utils';
 import { task, timeout } from 'ember-concurrency';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import perform from "ember-concurrency/helpers/perform";
+import EmberTether from "ember-tether/components/ember-tether";
+import Dropdown from "ember-api-docs/components/search-input/dropdown";
+import and from "ember-truth-helpers/helpers/and";
+import not from "ember-truth-helpers/helpers/not";
+import eq from "ember-api-docs/helpers/eq";
 
 const SEARCH_DEBOUNCE_PERIOD = 300;
 const SEARCH_CLOSE_PERIOD = 200;
 
-export default class SearchInput extends Component {
+export default class SearchInput extends Component {<template>{{!-- template-lint-disable no-action --}}
+<div class="search-input">
+  <input id="search-input" type="search" value={{this.value}} oninput={{perform this.search value="target.value"}} onfocus={{action "onfocus"}} onblur={{action "onblur"}} placeholder="Search" data-test-search-input />
+  {{!-- Search results dropdown --}}
+  <EmberTether @target="#search-input" @targetAttachment="bottom left" @attachment="top left" @constraints={{this._resultTetherConstraints}} @class="ds-dropdown-results">
+    <Dropdown @isVisible={{this._focused}} @results={{this.searchService.results}} @noResults={{if (and (and (not this.searchService.search.isRunning) this.queryIsPresent) (eq this.searchService.results.length 0)) true false}} />
+  </EmberTether>
+</div></template>
   @tracked query = '';
   @tracked _focused = false;
 
@@ -70,38 +84,3 @@ export default class SearchInput extends Component {
     this.closeMenu.perform();
   }
 }
-
-{{! template-lint-disable no-action }}
-<div class='search-input'>
-  <input
-    id='search-input'
-    type='search'
-    value={{this.value}}
-    oninput={{perform this.search value='target.value'}}
-    onfocus={{action 'onfocus'}}
-    onblur={{action 'onblur'}}
-    placeholder='Search'
-    data-test-search-input
-  />
-  {{! Search results dropdown }}
-  <EmberTether
-    @target='#search-input'
-    @targetAttachment='bottom left'
-    @attachment='top left'
-    @constraints={{this._resultTetherConstraints}}
-    @class='ds-dropdown-results'
-  >
-    <SearchInput::Dropdown
-      @isVisible={{this._focused}}
-      @results={{this.searchService.results}}
-      @noResults={{if
-        (and
-          (and (not this.searchService.search.isRunning) this.queryIsPresent)
-          (eq this.searchService.results.length 0)
-        )
-        true
-        false
-      }}
-    />
-  </EmberTether>
-</div>
