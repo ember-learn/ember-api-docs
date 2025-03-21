@@ -130,7 +130,6 @@
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
-    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
     "prember": "^2.1.0",
@@ -138,6 +137,7 @@
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
+    "sass": "^1.86.0",
     "semver": "^7.5.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
@@ -146,8 +146,8 @@
     "webpack": "^5.90.0"
   },
   "engines": {
-    "node": "16.* || 18.* || 20.*",
-    "npm": "7 || 8 || >= 9"
+    "node": "16.* || 18.* || 20.* || >= 22",
+    "npm": "7 || 8 || 9 || >= 10"
   },
   "cacheDirectories": [
     "node_modules"
@@ -172,5 +172,9 @@
       "ember-truth-helpers": "^4.0.0"
     }
   },
-  "packageManager": "pnpm@9.5.0"
+  "packageManager": "pnpm@10.6.5",
+  "volta": {
+    "node": "23.10.0",
+    "pnpm": "10.6.5"
+  }
 }

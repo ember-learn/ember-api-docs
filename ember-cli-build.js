@@ -3,7 +3,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const envIsProduction = process.env.EMBER_ENV === 'production';
 const premberUrls = require('./prember-urls');
-const nodeSass = require('node-sass');
+const sass = require('sass');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -24,7 +24,7 @@ module.exports = function (defaults) {
       generateAssetMap: true,
     },
     sassOptions: {
-      implementation: nodeSass,
+      implementation: sass,
       sourceMapEmbed: !envIsProduction,
       includePaths: [
         'app/styles',
