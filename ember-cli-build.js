@@ -24,7 +24,6 @@ module.exports = function (defaults) {
       generateAssetMap: true,
     },
     sassOptions: {
-      implementation: nodeSass,
       sourceMapEmbed: !envIsProduction,
       includePaths: [
         'app/styles',

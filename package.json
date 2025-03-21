@@ -57,8 +57,8 @@
     "algoliasearch": "^4.20.0",
     "babel-eslint": "^10.1.0",
     "bootstrap": "^4.6.2",
-    "bourbon": "5.1.0",
-    "bourbon-neat": "^1.9.1",
+    "bourbon": "7.3.0",
+    "bourbon-neat": "^4.0.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
     "ember-a11y-testing": "^5.2.1",
@@ -82,7 +82,7 @@
     "ember-cli-htmlbars": "^6.1.1",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-meta-tags": "^7.0.0",
-    "ember-cli-sass": "^10.0.1",
+    "ember-cli-sass": "^11.0.1",
     "ember-cli-showdown": "^9.0.1",
     "ember-cli-terser": "^4.0.2",
     "ember-composable-helpers": "^3.1.1",
@@ -104,7 +104,7 @@
     "ember-showdown-shiki": "^1.2.1",
     "ember-sinon": "^4.1.1",
     "ember-source": "~3.28.8",
-    "ember-styleguide": "^3.3.0",
+    "ember-styleguide": "^11.0.3",
     "ember-svg-jar": "^2.4.2",
     "ember-template-lint": "^3.15.0",
     "ember-test-selectors": "^6.0.0",
@@ -130,7 +130,6 @@
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
-    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "npm-run-all": "^4.1.5",
     "prember": "^2.1.0",
@@ -138,6 +137,7 @@
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
     "sanitize-html": "^2.3.2",
+    "sass": "^1.86.0",
     "semver": "^7.5.4",
     "semver-compare": "^1.0.0",
     "spawndamnit": "2.0.0",
@@ -146,8 +146,8 @@
     "webpack": "^5.90.0"
   },
   "engines": {
-    "node": "16.* || 18.* || 20.*",
-    "npm": "7 || 8 || >= 9"
+    "node": "16.* || 18.* || 20.* || >= 22",
+    "npm": "7 || 8 || 9 || >= 10"
   },
   "cacheDirectories": [
     "node_modules"
@@ -168,9 +168,12 @@
   },
   "pnpm": {
     "overrides": {
-      "node-sass": "^9.0.0",
       "ember-truth-helpers": "^4.0.0"
     }
   },
-  "packageManager": "pnpm@9.5.0"
+  "packageManager": "pnpm@10.6.5",
+  "volta": {
+    "node": "23.10.0",
+    "pnpm": "10.6.5"
+  }
 }
