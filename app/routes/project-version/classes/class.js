@@ -18,6 +18,8 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
   @service
   metaStore;
 
+  @service store;
+
   titleToken(model) {
     return model.name;
   }

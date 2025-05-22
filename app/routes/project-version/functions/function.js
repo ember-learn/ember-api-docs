@@ -14,6 +14,8 @@ export default class FunctionRoute extends Route {
   @service
   scrollPositionReset;
 
+  @service store;
+
   titleToken(model) {
     return model?.fn?.name;
   }
