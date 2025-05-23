@@ -24,10 +24,6 @@ export default class ProjectVersionRoute extends Route {
   @service('project')
   projectService;
 
-  titleToken(model) {
-    return model.version;
-  }
-
   async model({ project, project_version }) {
     let projectObj = await this.store.findRecord('project', project);
     let projectVersion = getFullVersion(
