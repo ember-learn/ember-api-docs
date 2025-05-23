@@ -12,7 +12,7 @@ export default class NamespaceRoute extends ClassRoute.extend(ScrollTracker) {
     const { project, project_version: compactVersion } =
       this.paramsFor('project-version');
 
-    let projectRecord = await this.store.findRecord('project', project);
+    let projectRecord = await this.store.findRecord('project', project.toLowerCase());
     let projectVersion = getFullVersion(
       compactVersion,
       project,
@@ -20,7 +20,7 @@ export default class NamespaceRoute extends ClassRoute.extend(ScrollTracker) {
       this.metaStore
     );
     const klass = params['namespace'];
-    return this.find('namespace', `${project}-${projectVersion}-${klass}`);
+    return this.find('namespace', `${project}-${projectVersion}-${klass}`.toLowerCase());
   }
 
   serialize(model) {
