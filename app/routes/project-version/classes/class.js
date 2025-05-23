@@ -20,10 +20,6 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
 
   @service store;
 
-  titleToken(model) {
-    return model.name;
-  }
-
   async model(params) {
     const { project, project_version: compactVersion } =
       this.paramsFor('project-version');
