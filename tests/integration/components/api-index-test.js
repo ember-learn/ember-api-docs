@@ -244,28 +244,28 @@ module('Integration | Component | api index', function (hooks) {
               <input id="inherited-toggle"
                      type="checkbox"
                      checked="{{this.filterData.showInherited}}"
-                     onchange={{action "updateFilter" "showInherited"}}>
+                     onchange={{fn this.actions.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" "showProtected"}}>
+                     onchange={{fn this.actions.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
                      checked={{this.filterData.showPrivate}}
-                     onchange={{action "updateFilter" "showPrivate"}}>
+                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
                      checked="{{this.filterData.showDeprecated}}"
-                     onchange={{action "updateFilter" "showDeprecated"}}>
+                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
             </label>
           </section>
 
@@ -390,21 +390,21 @@ module('Integration | Component | api index', function (hooks) {
               <input id="inherited-toggle"
                      type="checkbox"
                      checked="{{this.filterData.showInherited}}"
-                     onchange={{action "updateFilter" "showInherited"}}>
+                     onchange={{fn this.actions.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{action "updateFilter" "showProtected"}}>
+                     onchange={{fn this.actions.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
                      checked={{this.filterData.showPrivate}}
-                     onchange={{action "updateFilter" "showPrivate"}}>
+                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
               Private
             </label>
             {{! TODO: investigate this 'checked=': it looks wrong!}}
@@ -412,7 +412,7 @@ module('Integration | Component | api index', function (hooks) {
               <input id="deprecated-toggle"
                      type="checkbox"
                      checked={{this.sectionData.showDeprecated}}
-                     onchange={{action "updateFilter" "showDeprecated"}}>
+                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
             </label>
           </section>
 
