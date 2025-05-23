@@ -249,8 +249,8 @@ importers:
         specifier: 3.1.0
         version: 3.1.0(ember-source@3.28.12(@babel/core@7.24.7))(webpack@5.91.0)
       ember-truth-helpers:
-        specifier: ^2.1.0
-        version: 2.1.0(@babel/core@7.24.7)
+        specifier: ^4.0.3
+        version: 4.0.3(ember-source@3.28.12(@babel/core@7.24.7))
       ember-web-app:
         specifier: ^2.0.0
         version: 2.3.1(@babel/core@7.24.7)
@@ -4145,10 +4145,6 @@ packages:
     engines: {node: '>= 14'}
     peerDependencies:
       ember-source: ~3.28.0 || ^4.0.0 || ^5.0.0
-
-  ember-truth-helpers@2.1.0:
-    resolution: {integrity: sha512-BQlU8aTNl1XHKTYZ243r66yqtR9JU7XKWQcmMA+vkqfkE/c9WWQ9hQZM8YABihCmbyxzzZsngvldokmeX5GhAw==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
 
   ember-truth-helpers@3.1.1:
     resolution: {integrity: sha512-FHwJAx77aA5q27EhdaaiBFuy9No+8yaWNT5A7zs0sIFCmf14GbcLn69vJEp6mW7vkITezizGAWhw7gL0Wbk7DA==}
@@ -14790,13 +14786,6 @@ snapshots:
       - supports-color
       - webpack
 
-  ember-truth-helpers@2.1.0(@babel/core@7.24.7):
-    dependencies:
-      ember-cli-babel: 6.18.0(@babel/core@7.24.7)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
   ember-truth-helpers@3.1.1:
     dependencies:
       ember-cli-babel: 7.26.11
@@ -14805,7 +14794,7 @@ snapshots:
 
   ember-truth-helpers@4.0.3(ember-source@3.28.12(@babel/core@7.24.7)):
     dependencies:
-      '@embroider/addon-shim': 1.8.9
+      '@embroider/addon-shim': 1.9.0
       ember-functions-as-helper-polyfill: 2.1.2(ember-source@3.28.12(@babel/core@7.24.7))
       ember-source: 3.28.12(@babel/core@7.24.7)
     transitivePeerDependencies:
