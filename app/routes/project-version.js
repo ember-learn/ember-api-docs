@@ -21,6 +21,8 @@ export default class ProjectVersionRoute extends Route {
   @service
   router;
 
+  @service store;
+
   @service('project')
   projectService;
 

@@ -31,6 +31,7 @@
     "@ember/test-helpers": "^2.6.0",
     "@embroider/compat": "^3.4.3",
     "@embroider/core": "^3.4.3",
+    "@embroider/macros": "^1.18.0",
     "@embroider/webpack": "^3.2.1",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",

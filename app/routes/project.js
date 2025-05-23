@@ -7,6 +7,8 @@ export default class ProjectRoute extends Route.extend(ScrollTracker) {
   @service
   router;
 
+  @service store;
+
   model({ project: projectName }) {
     let projectNameToLookUp = 'ember';
 
