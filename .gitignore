@@ -36,10 +36,14 @@ browserstack-local.pid
 local.log
 .vscode/
 
+# ember-api-docs-data checkout
+/ember-api-docs-data/
+/ember-api-docs-data
+
 # ember-try
 /.node_modules.ember-try/
 /bower.json.ember-try
+/npm-shrinkwrap.json.ember-try
 /package.json.ember-try
-
-/ember-api-docs-data/
-/ember-api-docs-data
+/package-lock.json.ember-try
+/yarn.lock.ember-try
