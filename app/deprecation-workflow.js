@@ -8,7 +8,7 @@ setupDeprecationWorkflow({
     { handler: 'throw', matchId: 'this-property-fallback' },
     { handler: 'throw', matchId: 'ember-component.is-visible' },
     {
-      handler: 'silence',
+      handler: 'throw',
       matchId: 'deprecated-run-loop-and-computed-dot-access',
     },
   ],
