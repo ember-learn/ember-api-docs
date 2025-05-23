@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { currentURL, visit, settled } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';
 import { module, test } from 'qunit';

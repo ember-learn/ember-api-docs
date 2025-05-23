@@ -1,3 +1,4 @@
+/* stylelint-disable no-descending-specificity, selector-class-pattern */
 .article-title-wrapper {
   display: flex;
   justify-content: space-between;

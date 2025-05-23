@@ -1,4 +1,4 @@
-/* eslint-disable qunit/no-negated-ok */
+/* eslint-disable qunit/no-assert-equal, qunit/no-negated-ok */
 import {
   hashToUrl,
   hasRedirectableHash,

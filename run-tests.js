@@ -1,3 +1,4 @@
+/* eslint-disable n/no-process-exit */
 const spawn = require('spawndamnit');
 const ember = `./node_modules/.bin/ember`;
 
