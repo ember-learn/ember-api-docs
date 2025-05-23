@@ -246,8 +246,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       ember-tether:
-        specifier: 1.0.0
-        version: 1.0.0(@babel/core@7.24.7)
+        specifier: 3.1.0
+        version: 3.1.0(ember-source@3.28.12(@babel/core@7.24.7))(webpack@5.91.0)
       ember-truth-helpers:
         specifier: ^2.1.0
         version: 2.1.0(@babel/core@7.24.7)
@@ -3851,10 +3851,6 @@ packages:
     resolution: {integrity: sha512-fvfNB3TNVwNQOHWJ0vd+I1kFiRHcamEDJ9iNTtU9oxX1JIusSrp7JPb/t3DojMQUfEze/eiWQ98VE/zsFar31g==}
     engines: {node: 14.* || 16.* || >= 18}
 
-  ember-cli-node-assets@0.2.2:
-    resolution: {integrity: sha512-pFyjlhzwx2FxAmkxSVJvP+i+MwHDhmgsmma1ZQbFLYwBeufo1GIzqSJUfStcpOE1NDg8fXm2yZVVzdZYf9lW2w==}
-    engines: {node: '>= 4'}
-
   ember-cli-normalize-entity-name@1.0.0:
     resolution: {integrity: sha512-rF4P1rW2P1gVX1ynZYPmuIf7TnAFDiJmIUFI1Xz16VYykUAyiOCme0Y22LeZq8rTzwBMiwBwoE3RO4GYWehXZA==}
 
@@ -4144,9 +4140,11 @@ packages:
     resolution: {integrity: sha512-xDjvq8/1C3b9z3NGpez7aslbq5gsLrxsdjD3apyziHkImh/PTeXZr2bxo/YAUgOwGOtpZ1So0fIsppiSN0u1Ng==}
     engines: {node: 10.* || >= 12.*}
 
-  ember-tether@1.0.0:
-    resolution: {integrity: sha512-/qfAJZmsHSWrNGC0Ry6jqwpxr/ksO+fnBJIJM5DbDfRw4HlSQDw+pACpcLKCrgSW/JU+hIdedIvKwIbPbR9Dzw==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
+  ember-tether@3.1.0:
+    resolution: {integrity: sha512-PbCLEbjLj6d22Jj+7dLHpV0grciVv47/mpULKUaHjcvk1d218MgvlFXfJhWqbt+wPl/OBbqcgCXAqwpwZ+7d7g==}
+    engines: {node: '>= 14'}
+    peerDependencies:
+      ember-source: ~3.28.0 || ^4.0.0 || ^5.0.0
 
   ember-truth-helpers@2.1.0:
     resolution: {integrity: sha512-BQlU8aTNl1XHKTYZ243r66yqtR9JU7XKWQcmMA+vkqfkE/c9WWQ9hQZM8YABihCmbyxzzZsngvldokmeX5GhAw==}
@@ -7837,8 +7835,8 @@ packages:
     engines: {node: '>= 7.*'}
     hasBin: true
 
-  tether@1.4.7:
-    resolution: {integrity: sha512-Z0J1aExjoFU8pybVkQAo/vD2wfSO63r+XOPfWQMC5qtf1bI7IWqNk4MiyBcgvvnY8kqnY06dVdvwTK2S3PU/Fw==}
+  tether@2.0.0:
+    resolution: {integrity: sha512-iAkyBhwILpLIvkwzO5w5WUBtpYwxvzLRTO+sbzF3Uy7X4zznsy73v2b4sOQHXE3CQHeSNtB/YMU2Nn9tocbeBQ==}
 
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
@@ -13962,17 +13960,6 @@ snapshots:
       - ember-source
       - supports-color
 
-  ember-cli-node-assets@0.2.2:
-    dependencies:
-      broccoli-funnel: 1.2.0
-      broccoli-merge-trees: 1.2.4
-      broccoli-source: 1.1.0
-      debug: 2.6.9(supports-color@8.1.1)
-      lodash: 4.17.21
-      resolve: 1.22.8
-    transitivePeerDependencies:
-      - supports-color
-
   ember-cli-normalize-entity-name@1.0.0:
     dependencies:
       silent-error: 1.1.1
@@ -14789,14 +14776,19 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-tether@1.0.0(@babel/core@7.24.7):
+  ember-tether@3.1.0(ember-source@3.28.12(@babel/core@7.24.7))(webpack@5.91.0):
     dependencies:
-      ember-cli-babel: 6.18.0(@babel/core@7.24.7)
-      ember-cli-node-assets: 0.2.2
-      tether: 1.4.7
+      '@babel/core': 7.24.7
+      '@ember/render-modifiers': 2.1.0(@babel/core@7.24.7)(ember-source@3.28.12(@babel/core@7.24.7))
+      ember-auto-import: 2.10.0(webpack@5.91.0)
+      ember-cli-babel: 8.2.0(@babel/core@7.24.7)
+      ember-cli-htmlbars: 6.3.0
+      ember-source: 3.28.12(@babel/core@7.24.7)
+      tether: 2.0.0
     transitivePeerDependencies:
-      - '@babel/core'
+      - '@glint/template'
       - supports-color
+      - webpack
 
   ember-truth-helpers@2.1.0(@babel/core@7.24.7):
     dependencies:
@@ -19397,7 +19389,7 @@ snapshots:
       - walrus
       - whiskers
 
-  tether@1.4.7: {}
+  tether@2.0.0: {}
 
   text-table@0.2.0: {}
 

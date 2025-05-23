@@ -105,7 +105,7 @@
     "ember-svg-jar": "^2.4.2",
     "ember-template-lint": "^3.15.0",
     "ember-test-selectors": "^6.0.0",
-    "ember-tether": "1.0.0",
+    "ember-tether": "3.1.0",
     "ember-truth-helpers": "^2.1.0",
     "ember-web-app": "^2.0.0",
     "eslint": "^7.32.0",
