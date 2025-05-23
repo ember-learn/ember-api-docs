@@ -14,8 +14,6 @@ export default class Dropdown extends Component {
   // Public API
   role = 'listbox';
 
-  isVisible = false;
-
   // show
   // Massage data to make it easier for displaying on the template
   // Returned object:
