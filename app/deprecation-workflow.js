@@ -5,7 +5,7 @@ setupDeprecationWorkflow({
   workflow: [
     { handler: 'throw', matchId: 'ember.component.reopen' },
     { handler: 'throw', matchId: 'implicit-injections' },
-    { handler: 'silence', matchId: 'this-property-fallback' },
+    { handler: 'throw', matchId: 'this-property-fallback' },
     { handler: 'throw', matchId: 'ember-component.is-visible' },
     {
       handler: 'silence',

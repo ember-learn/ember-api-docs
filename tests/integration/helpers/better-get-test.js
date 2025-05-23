@@ -13,7 +13,7 @@ module('helper:better-get', function (hooks) {
     this.set('dataStructure', obj);
     this.set('key', 'Ember.Object');
 
-    await render(hbs`{{better-get dataStructure key}}`);
+    await render(hbs`{{better-get this.dataStructure this.key}}`);
 
     assert.dom(this.element).hasText('hello');
   });
@@ -25,7 +25,7 @@ module('helper:better-get', function (hooks) {
     this.set('dataStructure', obj);
     this.set('key', '@ember/object');
 
-    await render(hbs`{{better-get dataStructure key}}`);
+    await render(hbs`{{better-get this.dataStructure this.key}}`);
 
     assert.dom(this.element).hasText('hello');
   });
