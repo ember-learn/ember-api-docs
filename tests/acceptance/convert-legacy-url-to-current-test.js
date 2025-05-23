@@ -7,10 +7,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
 
   test('should convert url for legacy Ember class', async function (assert) {
     await visit('/classes/Ember.Application.html');
-    assert.equal(
-      currentURL(),
-      '/ember/release/classes/Application'
-    );
+    assert.equal(currentURL(), '/ember/release/classes/Application');
   });
 
   test('should convert url for legacy Ember class to function', async function (assert) {
@@ -23,18 +20,12 @@ module('Acceptance | convert legacy url to current', function (hooks) {
 
   test('should convert url for legacy ember data class', async function (assert) {
     await visit('/data/classes/DS.Adapter.html');
-    assert.equal(
-      currentURL(),
-      '/ember-data/release/classes/Adapter'
-    );
+    assert.equal(currentURL(), '/ember-data/release/classes/Adapter');
   });
 
   test('should convert url for legacy ember module', async function (assert) {
     await visit('/modules/ember-application.html');
-    assert.equal(
-      currentURL(),
-      '/ember/release/modules/@ember%2Fapplication'
-    );
+    assert.equal(currentURL(), '/ember/release/modules/@ember%2Fapplication');
   });
 
   test('should convert url for legacy ember data module to overview', async function (assert) {
