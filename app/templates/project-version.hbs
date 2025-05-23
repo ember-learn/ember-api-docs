@@ -4,7 +4,7 @@
 
     <div class="select-container">
       <PowerSelect
-        @onChange={{route-action "updateProject" this.activeProject}}
+        @onChange={{fn this.updateProject this.activeProject}}
         @options={{this.projectVersions}}
         @selected={{this.selectedProjectVersion}}
         @ariaLabel="Select a version"
