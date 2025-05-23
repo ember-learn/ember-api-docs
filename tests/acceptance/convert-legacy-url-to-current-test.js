@@ -9,7 +9,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     await visit('/classes/Ember.Application.html');
     assert.equal(
       currentURL(),
-      '/ember/release/classes/Application?show=inherited'
+      '/ember/release/classes/Application'
     );
   });
 
@@ -25,7 +25,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     await visit('/data/classes/DS.Adapter.html');
     assert.equal(
       currentURL(),
-      '/ember-data/release/classes/Adapter?show=inherited'
+      '/ember-data/release/classes/Adapter'
     );
   });
 
@@ -33,7 +33,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     await visit('/modules/ember-application.html');
     assert.equal(
       currentURL(),
-      '/ember/release/modules/@ember%2Fapplication?show=inherited'
+      '/ember/release/modules/@ember%2Fapplication'
     );
   });
 
@@ -41,7 +41,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     await visit('/data/modules/ember-data.html');
     assert.equal(
       currentURL(),
-      '/ember-data/release/modules/ember-data-overview?show=inherited'
+      '/ember-data/release/modules/ember-data-overview'
     );
   });
 

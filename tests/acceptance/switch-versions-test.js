@@ -250,7 +250,7 @@ module('Acceptance | version navigation', function (hooks) {
     await waitForSettled();
     assert.equal(
       currentURL(),
-      '/ember/2.11/modules/ember?show=inherited',
+      '/ember/2.11/modules/ember',
       'navigated to v2.11 ember module'
     );
   });

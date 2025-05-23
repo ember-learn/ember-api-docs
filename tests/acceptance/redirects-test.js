@@ -20,7 +20,7 @@ module('Acceptance | redirects', function (hooks) {
 
     assert.equal(
       currentURL(),
-      '/ember/1.0/modules/ember?show=inherited',
+      '/ember/1.0/modules/ember',
       'routes to the first module of the project-version'
     );
   });
