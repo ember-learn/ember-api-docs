@@ -1,7 +1,10 @@
 import ClassRoute from '../classes/class';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import { inject as service } from '@ember/service';
 
 export default class NamespaceRoute extends ClassRoute {
+  @service store;
+
   templateName = 'project-version/classes/class';
 
   async model(params) {

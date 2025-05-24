@@ -1,10 +1,12 @@
+{{page-title @model.version}}
+
 <div class="sidebar-container sidebar-container--full-width">
   <EsSidebar>
    <TableOfProjects @activeProject={{this.activeProject}} />
 
     <div class="select-container">
       <PowerSelect
-        @onChange={{route-action "updateProject" this.activeProject}}
+        @onChange={{fn this.updateProject this.activeProject}}
         @options={{this.projectVersions}}
         @selected={{this.selectedProjectVersion}}
         @ariaLabel="Select a version"

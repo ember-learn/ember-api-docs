@@ -13,6 +13,17 @@ module('Unit | Helper | github link', function () {
     );
   });
 
+  test('should append "ember-source" to the version for git tags v6 and above', function (assert) {
+    let result = githubLink(
+      ['ember', '6.0.0', 'ember-glimmer/lib/component.js', '35'],
+      {}
+    );
+    assert.equal(
+      result,
+      'https://github.com/emberjs/ember.js/tree/v6.0.0-ember-source/ember-glimmer/lib/component.js#L35'
+    );
+  });
+
   test('should render a github link for ember-data from file info', function (assert) {
     let result = githubLink(
       ['ember-data', '2.10.0', 'addon/-private/adapters/errors.js', '10'],

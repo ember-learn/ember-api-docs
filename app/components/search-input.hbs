@@ -16,10 +16,9 @@
     @targetAttachment='bottom left'
     @attachment='top left'
     @constraints={{this._resultTetherConstraints}}
-    @class='ds-dropdown-results'
+    class='ds-dropdown-results'
   >
     <SearchInput::Dropdown
-      @isVisible={{this._focused}}
       @results={{this.searchService.results}}
       @noResults={{if
         (and

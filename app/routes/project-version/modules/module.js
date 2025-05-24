@@ -1,7 +1,10 @@
 import ClassRoute from '../classes/class';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
+import { inject as service } from '@ember/service';
 
 export default class ModuleRoute extends ClassRoute {
+  @service store;
+
   async model(params) {
     const { project, project_version: compactVersion } =
       this.paramsFor('project-version');

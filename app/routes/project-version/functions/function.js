@@ -11,9 +11,7 @@ export default class FunctionRoute extends Route {
   @service
   metaStore;
 
-  titleToken(model) {
-    return model?.fn?.name;
-  }
+  @service store;
 
   async model(params) {
     const pVParams = this.paramsFor('project-version');

@@ -6,6 +6,8 @@ export default class ProjectRoute extends Route {
   @service
   router;
 
+  @service store;
+
   model({ project: projectName }) {
     let projectNameToLookUp = 'ember';
 

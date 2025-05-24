@@ -18,9 +18,7 @@ export default class ClassRoute extends Route {
   @service
   metaStore;
 
-  titleToken(model) {
-    return model.name;
-  }
+  @service store;
 
   async model(params) {
     const { project, project_version: compactVersion } =

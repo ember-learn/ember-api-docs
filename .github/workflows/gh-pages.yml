@@ -10,12 +10,14 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '14'
-      - run: npm install -g npm@7
-      - run: npm install
+          cache: 'pnpm'
+          node-version: 20
+      - run: pnpm i --frozen-lockfile
       - run: npx lint-to-the-future output -o lttfOutput --rootUrl ember-api-docs --previous-results https://ember-learn.github.io/ember-api-docs/data.json
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
