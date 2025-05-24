@@ -133,6 +133,69 @@ export default class ProjectVersionRoute extends Route {
     };
   }
 
+  @action
+  updateProject(project, ver /*, component */) {
+    let projectVersionID = ver.compactVersion;
+    let endingRoute;
+    switch (this.router.currentRouteName) {
+      case 'project-version.classes.class': {
+        let className = this._getEncodedNameForCurrentClass();
+        endingRoute = `classes/${className}`;
+        break;
+      }
+      case 'project-version.classes.class.index': {
+        let className = this._getEncodedNameForCurrentClass();
+        endingRoute = `classes/${className}`;
+        break;
+      }
+      case 'project-version.modules.module.index': {
+        let moduleName = encodeURIComponent(
+          this.paramsFor('project-version.modules.module').module
+        );
+        endingRoute = `modules/${moduleName}`;
+        break;
+      }
+      case 'project-version.namespaces.namespace.index': {
+        let namespaceName = this.paramsFor(
+          'project-version.namespaces.namespace'
+        ).namespace;
+        endingRoute = `namespaces/${namespaceName}`;
+        break;
+      }
+      default:
+        endingRoute = '';
+        break;
+    }
+    // if the user is navigating to/from api versions >= 2.16, take them
+    // to the home page instead of trying to translate the url
+    let shouldConvertPackages = this.shouldConvertPackages(
+      ver,
+      this.projectService.version
+    );
+    let isEmberProject = project === 'ember';
+    if (!isEmberProject || !shouldConvertPackages) {
+      this.router.transitionTo(
+        `/${project}/${projectVersionID}/${endingRoute}`
+      );
+    } else {
+      this.router.transitionTo(`/${project}/${projectVersionID}`);
+    }
+  }
+
+  // Input some version info, returns a boolean based on
+  // whether the user is switching versions for a 2.16 docs release or later.
+  // The urls for pre-2.16 classes and later packages are quite different
+  shouldConvertPackages(targetVer, previousVer) {
+    let targetVersion = getCompactVersion(targetVer.id);
+    let previousVersion = getCompactVersion(previousVer);
+    let previousComparison = semverCompare(previousVersion, '2.16');
+    let targetComparison = semverCompare(targetVersion, '2.16');
+    return (
+      (previousComparison < 0 && targetComparison >= 0) ||
+      (previousComparison >= 0 && targetComparison < 0)
+    );
+  }
+
   /**
      splits the first encoded revision string in the list and takes the string after the version (which is the encoded name), then decodes the result.
      */
