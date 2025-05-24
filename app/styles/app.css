@@ -142,6 +142,10 @@ dd {
   margin-top: 0;
 }
 
+section.method, section.property, section.event {
+ margin-bottom: var(--spacing-3);
+}
+
 .whoops {
   display: flex;
   justify-content: center;
