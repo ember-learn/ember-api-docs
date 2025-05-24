@@ -312,6 +312,7 @@ importers:
       ember-rfc176-data:
         specifier: ^0.3.17
         version: 0.3.18
+<<<<<<< HEAD
 =======
         specifier: ^7.2.0
         version: 7.2.0(@babel/core@7.24.9)(@glint/environment-ember-loose@0.9.7(@glimmer/component@1.1.2(@babel/core@7.24.9))(ember-cli-htmlbars@6.3.0))(ember-source@3.28.12(@babel/core@7.24.9))(webpack@5.93.0)
@@ -328,6 +329,14 @@ importers:
         specifier: ^2.0.8
         version: 2.0.8(@babel/core@7.24.9)
 >>>>>>> 791a69c (Fix function layout)
+=======
+      ember-route-action-helper:
+        specifier: ^2.0.8
+        version: 2.0.8(@babel/core@7.24.9)
+      ember-scroll:
+        specifier: ^1.0.3
+        version: 1.0.3(@babel/core@7.24.9)
+>>>>>>> e2ceca9 (WIP stuff)
       ember-showdown-shiki:
         specifier: ^1.2.1
         version: 1.2.1(@babel/core@7.24.9)(showdown@2.1.0)
@@ -3999,6 +4008,10 @@ packages:
     resolution: {integrity: sha512-99QGCePP8EGvPnWIn57yfHDuUtyuHt/Ax7tyAfe2l+xrGSXweNFsTgU7MKx9Nb30TgCBMzZtIw0REPKIAep/pQ==}
     engines: {node: ^14.8.0 || 16.* || >= 18.*}
 
+  ember-decorators-polyfill@1.1.5:
+    resolution: {integrity: sha512-O154i8sLoVjsiKzSqxGRfHGr+N+drT6mRrLDbNgJCnW/V5uLg/ppZFpUsrdxuXnp5Q9us3OfXV1nX2CH+7bUpA==}
+    engines: {node: 8.* || >= 10.*}
+
   ember-decorators@6.1.1:
     resolution: {integrity: sha512-63vZPntPn1aqMyeNRLoYjJD+8A8obd+c2iZkJflswpDRNVIsp2m7aQdSCtPt4G0U/TEq2251g+N10maHX3rnJQ==}
     engines: {node: '>= 8.*'}
@@ -4114,6 +4127,10 @@ packages:
   ember-router-generator@2.0.0:
     resolution: {integrity: sha512-89oVHVJwmLDvGvAUWgS87KpBoRhy3aZ6U0Ql6HOmU4TrPkyaa8pM0W81wj9cIwjYprcQtN9EwzZMHnq46+oUyw==}
     engines: {node: 8.* || 10.* || >= 12}
+
+  ember-scroll@1.0.3:
+    resolution: {integrity: sha512-iIB54xrzxpXmXvLfYWD6NrACYuD8o9+DZ4i/8ojd7szOVRp/pdBIm6GSsPcdcI4T2N98RPtquwhM27hvAOPYjA==}
+    engines: {node: 10.* || >= 12}
 
   ember-showdown-shiki@1.2.1:
     resolution: {integrity: sha512-h3WYvEVjK7R86SosU6Y9lA7kvlVff4Y/7KS/D79lJ828NReLW1CnQAcxRSoGVvu+S6A8uONzImzJhyDXwuZDZA==}
@@ -14474,6 +14491,15 @@ snapshots:
       - supports-color
       - webpack
 
+  ember-decorators-polyfill@1.1.5(@babel/core@7.24.9):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-version-checker: 3.1.3
+      ember-compatibility-helpers: 1.2.7(@babel/core@7.24.9)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
   ember-decorators@6.1.1:
     dependencies:
       '@ember-decorators/component': 6.1.1
@@ -14799,6 +14825,18 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< HEAD
+=======
+  ember-scroll@1.0.3(@babel/core@7.24.9):
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-htmlbars: 5.7.2
+      ember-decorators-polyfill: 1.1.5(@babel/core@7.24.9)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
+>>>>>>> e2ceca9 (WIP stuff)
   ember-showdown-shiki@1.2.1(@babel/core@7.24.9)(showdown@2.1.0):
     dependencies:
       '@embroider/addon-shim': 1.8.9
@@ -16168,7 +16206,12 @@ snapshots:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
+<<<<<<< HEAD
       minimatch: 3.0.8
+=======
+      minimatch: 3.1.2
+      minimatch: 3.1.2
+>>>>>>> e2ceca9 (WIP stuff)
       once: 1.4.0
       path-is-absolute: 1.0.1
 
