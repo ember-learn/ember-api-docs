@@ -3,6 +3,8 @@ import Route from '@ember/routing/route';
 import semverCompare from 'semver-compare';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
+import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
+
 import config from 'ember-api-docs/config/environment';
 
 export default class ProjectVersionRoute extends Route {
