@@ -41,12 +41,22 @@ module.exports = function () {
       urls.push(`/${p}/${uniqVersion}/${suffix}`);
     };
 
-    const oldVersions = ['1.13', '2.18', '3.28', '4.4', '4.8', '4.12'];
+    const oldVersions = [
+      '1.13',
+      '2.18',
+      '3.28',
+      '4.4',
+      '4.8',
+      '4.12',
+      '5.4',
+      '5.8',
+      '5.12',
+    ];
 
     uniqueProjectVersions.forEach((uniqVersion) => {
       if (
         !oldVersions.includes(uniqVersion) &&
-        !semver.gte(`${uniqVersion}.0`, '5.0.0')
+        !semver.gte(`${uniqVersion}.0`, '6.0.0')
       ) {
         return;
       }
