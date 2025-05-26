@@ -3,7 +3,6 @@ import Route from '@ember/routing/route';
 import semverCompare from 'semver-compare';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
-import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 
 import config from 'ember-api-docs/config/environment';
 
@@ -133,20 +132,6 @@ export default class ProjectVersionRoute extends Route {
       project: model.get('project.id'),
       project_version: model.get('compactVersion'),
     };
-  }
-
-  // Input some version info, returns a boolean based on
-  // whether the user is switching versions for a 2.16 docs release or later.
-  // The urls for pre-2.16 classes and later packages are quite different
-  shouldConvertPackages(targetVer, previousVer) {
-    let targetVersion = getCompactVersion(targetVer.id);
-    let previousVersion = getCompactVersion(previousVer);
-    let previousComparison = semverCompare(previousVersion, '2.16');
-    let targetComparison = semverCompare(targetVersion, '2.16');
-    return (
-      (previousComparison < 0 && targetComparison >= 0) ||
-      (previousComparison >= 0 && targetComparison < 0)
-    );
   }
 
   /**
