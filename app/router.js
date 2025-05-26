@@ -46,7 +46,7 @@ AppRouter.map(function () {
       // project-version.classes-redirect => project-version.classes.index
       // project-version.class => project-version.classes.class
       this.route('classes', function () {
-        this.route('class', { path: '/:class' }, itemRoutes);
+        this.route('class', { path: '/:class' });
       });
       // this.route('class', {path: '/classes/:class'}, itemRoutes);
 
@@ -58,7 +58,7 @@ AppRouter.map(function () {
       // project-version.namespace => project-version.namespaces.namespace
       //    routes/project-version/namespace   =>  routes/project-version/namespaces/namespace
       this.route('namespaces', function () {
-        this.route('namespace', { path: '/:namespace' }, itemRoutes);
+        this.route('namespace', { path: '/:namespace' });
       });
       // this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
 
@@ -67,22 +67,9 @@ AppRouter.map(function () {
       //    routes/project-version/module   =>  routes/project-version/modules/module
       //    routes/project-version/module/* =>  routes/project-version/modules/module/*
       this.route('modules', function () {
-        this.route('module', { path: '/:module' }, itemRoutes);
+        this.route('module', { path: '/:module' });
       });
       // this.route('module', {path: '/modules/:module'}, itemRoutes);
-
-      // Common sub-routes
-      function itemRoutes() {
-        this.route('methods', function () {
-          this.route('method', { path: '/:method' });
-        });
-        this.route('properties', function () {
-          this.route('property', { path: '/:property' });
-        });
-        this.route('events', function () {
-          this.route('event', { path: '/:event' });
-        });
-      }
     }
   );
   this.route('class', { path: '/classes/:class' });
