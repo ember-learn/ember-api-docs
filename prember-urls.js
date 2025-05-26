@@ -99,30 +99,6 @@ module.exports = function () {
             entityData = require(requirePath);
           }
 
-          if (entityData.data.attributes.methods?.length) {
-            addUrl(
-              p,
-              uniqVersion,
-              `${entity}/${partialUrlEncode(cleanId)}/methods`
-            );
-          }
-
-          if (entityData.data.attributes.properties?.length) {
-            addUrl(
-              p,
-              uniqVersion,
-              `${entity}/${partialUrlEncode(cleanId)}/properties`
-            );
-          }
-
-          if (entityData.data.attributes.events?.length) {
-            addUrl(
-              p,
-              uniqVersion,
-              `${entity}/${partialUrlEncode(cleanId)}/events`
-            );
-          }
-
           if (entity === 'modules' && entityData) {
             const staticFunctions = entityData.data.attributes.staticfunctions;
 
