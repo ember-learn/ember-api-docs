@@ -26,7 +26,10 @@ export default class ModuleRoute extends ClassRoute {
       klass = `${project}-${klass}`;
     }
 
-    return this.find('module', `${project}-${projectVersion}-${klass}`);
+    return this.find(
+      'module',
+      `${project}-${projectVersion}-${klass}`.toLowerCase()
+    );
   }
 
   serialize(model) {

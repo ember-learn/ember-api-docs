@@ -19,7 +19,10 @@ export default class NamespaceRoute extends ClassRoute {
       this.metaStore
     );
     const klass = params['namespace'];
-    return this.find('namespace', `${project}-${projectVersion}-${klass}`);
+    return this.find(
+      'namespace',
+      `${project}-${projectVersion}-${klass}`.toLowerCase()
+    );
   }
 
   serialize(model) {
