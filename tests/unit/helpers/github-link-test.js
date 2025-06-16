@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { githubLink } from 'ember-api-docs/helpers/github-link';
 import { module, test } from 'qunit';
 

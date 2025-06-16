@@ -5,7 +5,7 @@ const envIsProduction = process.env.EMBER_ENV === 'production';
 const premberUrls = require('./prember-urls');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
+  const app = new EmberApp(defaults, {
     prember: {
       urls: premberUrls(),
     },

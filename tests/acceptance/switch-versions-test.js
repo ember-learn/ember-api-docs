@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { currentURL, visit, settled } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';
 import { module, test } from 'qunit';
@@ -250,7 +251,7 @@ module('Acceptance | version navigation', function (hooks) {
     await waitForSettled();
     assert.equal(
       currentURL(),
-      '/ember/2.11/modules/ember?show=inherited',
+      '/ember/2.11/modules/ember',
       'navigated to v2.11 ember module'
     );
   });

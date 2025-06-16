@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import { module, test } from 'qunit';
 

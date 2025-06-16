@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { module, test, skip } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, findAll } from '@ember/test-helpers';
