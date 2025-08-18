@@ -129,7 +129,6 @@
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
-    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "prember": "^2.1.0",
     "prettier": "^2.8.7",
