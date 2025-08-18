@@ -30,10 +30,7 @@ module.exports = function (defaults) {
     },
     'ember-cli-babel': {
       includePolyfill: true,
-    },
-    'ember-fetch': {
-      preferNative: true,
-    },
+    }
   });
 
   const { Webpack } = require('@embroider/webpack');
