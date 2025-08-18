@@ -11,14 +11,16 @@ html {
 }
 
 .module-name {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
   margin-bottom: 0;
 }
 
 .access {
   color: #fff;
   background-color: var(--color-gray-600);
-  margin-left: var(--spacing-1);
   padding: 0.25rem var(--spacing-1);
   font-size: var(--font-size-md);
   border-radius: var(--radius);
