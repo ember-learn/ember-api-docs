@@ -2,7 +2,7 @@ import { inject as service } from '@ember/service';
 import Component from '@glimmer/component';
 import { get } from '@ember/object';
 import { isPresent } from '@ember/utils';
-import { task, timeout } from 'ember-concurrency';
+import { restartableTask, task, timeout } from 'ember-concurrency';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
@@ -32,8 +32,8 @@ export default class SearchInput extends Component {
     return isPresent(this.query);
   }
 
-  @task({ restartable: true }) *search(query) {
-    yield timeout(SEARCH_DEBOUNCE_PERIOD);
+  search = restartableTask(async (query) => {
+    await timeout(SEARCH_DEBOUNCE_PERIOD);
 
     this.query = query;
 
@@ -46,14 +46,14 @@ export default class SearchInput extends Component {
     // ensure search results are visible if the menu was previously closed above
     this._focused = true;
 
-    yield get(this, 'searchService.search').perform(query);
-  }
+    await get(this, 'searchService.search').perform(query);
+  });
 
-  @task *closeMenu() {
-    yield timeout(SEARCH_CLOSE_PERIOD);
+  closeMenu = task(async () => {
+    await timeout(SEARCH_CLOSE_PERIOD);
 
     this._focused = false;
-  }
+  });
 
   @action onfocus() {
     if (this.query.length > 0 && this.searchService.hasStaleResults()) {

@@ -1,20 +1,22 @@
 import Service, { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
+import { restartableTask } from 'ember-concurrency';
 import { set } from '@ember/object';
 import { A as emberArray } from '@ember/array';
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { alias } from '@ember/object/computed';
 
-export default Service.extend({
-  _algoliaService: service('algolia'),
-  _projectService: service('project'),
-  _projectVersion: alias('_projectService.version'),
+export default class SearchService extends Service {
+  @service('algolia') _algoliaService;
+  @service('project') _projectService;
+
+  @alias('_projectService.version') _projectVersion;
 
   /** @type {?string} */
-  _lastQueriedProjectVersion: null,
+  _lastQueriedProjectVersion = null;
 
-  results: emberArray(),
+  results = emberArray();
 
-  search: task(function* (query) {
+  search = restartableTask(async (query) => {
     const projectVersion = this._projectVersion;
 
     const params = {
@@ -35,14 +37,14 @@ export default Service.extend({
 
     this._lastQueriedProjectVersion = projectVersion;
 
-    return set(this, 'results', yield this.doSearch(searchObj, params));
-  }).restartable(),
+    return set(this, 'results', await this.doSearch(searchObj, params));
+  });
 
   doSearch(searchObj, params) {
     return this._algoliaService
       .search(searchObj, params)
       .then((results) => results.hits);
-  },
+  }
 
   /**
    * Whenever the version changes in service:project, the results in this
@@ -55,9 +57,9 @@ export default Service.extend({
       this._lastQueriedProjectVersion !== null &&
       this._projectVersion !== this._lastQueriedProjectVersion
     );
-  },
+  }
 
   clearResults() {
     set(this, 'results', emberArray());
-  },
-});
+  }
+}
