@@ -143,15 +143,17 @@ dd {
 }
 
 .on-this-page-wrapper .api-index-filter {
-  margin-top: var(--spacing-2)
+  margin-top: var(--spacing-2);
 }
 
 .on-this-page-wrapper ul {
   margin-top: 0;
 }
 
-section.method, section.property, section.event {
- margin-bottom: var(--spacing-3);
+section.method,
+section.property,
+section.event {
+  margin-bottom: var(--spacing-3);
 }
 
 .whoops {
