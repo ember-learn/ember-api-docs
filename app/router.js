@@ -46,7 +46,7 @@ AppRouter.map(function () {
       // project-version.classes-redirect => project-version.classes.index
       // project-version.class => project-version.classes.class
       this.route('classes', function () {
-        this.route('class', { path: '/:class' }, itemRoutes);
+        this.route('class', { path: '/:class' });
       });
       // this.route('class', {path: '/classes/:class'}, itemRoutes);
 
@@ -58,7 +58,7 @@ AppRouter.map(function () {
       // project-version.namespace => project-version.namespaces.namespace
       //    routes/project-version/namespace   =>  routes/project-version/namespaces/namespace
       this.route('namespaces', function () {
-        this.route('namespace', { path: '/:namespace' }, itemRoutes);
+        this.route('namespace', { path: '/:namespace' });
       });
       // this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
 
@@ -67,22 +67,9 @@ AppRouter.map(function () {
       //    routes/project-version/module   =>  routes/project-version/modules/module
       //    routes/project-version/module/* =>  routes/project-version/modules/module/*
       this.route('modules', function () {
-        this.route('module', { path: '/:module' }, itemRoutes);
+        this.route('module', { path: '/:module' });
       });
       // this.route('module', {path: '/modules/:module'}, itemRoutes);
-
-      // Common sub-routes
-      function itemRoutes() {
-        this.route('methods', function () {
-          this.route('method', { path: '/:method' });
-        });
-        this.route('properties', function () {
-          this.route('property', { path: '/:property' });
-        });
-        this.route('events', function () {
-          this.route('event', { path: '/:event' });
-        });
-      }
     }
   );
   this.route('class', { path: '/classes/:class' });
@@ -96,24 +83,6 @@ AppRouter.map(function () {
 404
 ember-cli
 project
-
-/:project/:project_version
-  /classes/:class
-    /methods, /properties, /events
-  /functions/:module (no sub routes)
-  /namespaces/:namespace
-    /methods, /properties, /events
-  /modules/:module
-    /methods, /properties, /events
-
-SUB ROUTES
-
-Instead of https://api.emberjs.com/ember/4.6/classes/Engine/methods/unregister?anchor=unregister
-We can do https://api.emberjs.com/ember/4.6/classes/Engine/methods?anchor=unregister
-
-  /methods/:method
-  /properties/:property
-  /events/:event
 
 OTHER STATES
 private, deprecated, inherited, protected

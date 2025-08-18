@@ -1,5 +1,5 @@
-{{#if (eq @model.id "ember-data")}}
+{{#if (eq @model.project "ember-data")}}
   <EmberDataLandingPage />
 {{else}}
-  <EmberLandingPage />
+  <EmberLandingPage @version={{@model.version}}/>
 {{/if}}

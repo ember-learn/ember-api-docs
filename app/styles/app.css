@@ -93,6 +93,11 @@ li.toc-heading:first-child {
   margin-top: 0;
 }
 
+.toc-private-toggle {
+  display: block;
+  margin-top: var(--spacing-2);
+}
+
 a.class-field-description--link {
   margin-left: 12px;
   vertical-align: middle;
@@ -130,6 +135,25 @@ dd {
 .return .return-type {
   font-style: italic;
   color: var(--color-gray-600);
+}
+
+.on-this-page-wrapper .access-checkbox-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.on-this-page-wrapper .api-index-filter {
+  margin-top: var(--spacing-2);
+}
+
+.on-this-page-wrapper ul {
+  margin-top: 0;
+}
+
+section.method,
+section.property,
+section.event {
+  margin-bottom: var(--spacing-3);
 }
 
 .whoops {

@@ -11,10 +11,11 @@ export default class FunctionRoute extends Route {
   @service
   metaStore;
 
-  @service
-  scrollPositionReset;
-
   @service store;
+
+  titleToken(model) {
+    return model?.fn?.name;
+  }
 
   async model(params) {
     const pVParams = this.paramsFor('project-version');
@@ -34,12 +35,12 @@ export default class FunctionRoute extends Route {
     try {
       fnModule = await this.store.find(
         'class',
-        `${project}-${projectVersion}-${className}`
+        `${project}-${projectVersion}-${className}`.toLowerCase()
       );
     } catch (e) {
       fnModule = await this.store.find(
         'namespace',
-        `${project}-${projectVersion}-${className}`
+        `${project}-${projectVersion}-${className}`.toLowerCase()
       );
     }
 
@@ -60,9 +61,5 @@ export default class FunctionRoute extends Route {
     return classObj.get('methods').find((fn) => {
       return fn.name === functionName;
     });
-  }
-
-  activate() {
-    this.scrollPositionReset.doReset();
   }
 }

@@ -149,32 +149,27 @@ export default class ProjectVersionController extends Controller {
         endingRoute = `classes/${className}`;
         break;
       }
-      case 'project-version.classes.class.index': {
-        let className = this._getEncodedNameForCurrentClass();
-        endingRoute = `classes/${className}`;
-        break;
-      }
-      case 'project-version.modules.module.index': {
+      case 'project-version.modules.module': {
         let moduleName = encodeURIComponent(this.moduleController.model.name);
         endingRoute = `modules/${moduleName}`;
         break;
       }
-      case 'project-version.namespaces.namespace.index': {
+      case 'project-version.namespaces.namespace': {
         let namespaceName = this.namespaceController.model.name;
         endingRoute = `namespaces/${namespaceName}`;
         break;
       }
-      case 'project-version.classes.class.methods.index': {
+      case 'project-version.classes.class.methods': {
         let className = this._getEncodedNameForCurrentClass();
         endingRoute = `classes/${className}/methods`;
         break;
       }
-      case 'project-version.classes.class.events.index': {
+      case 'project-version.classes.class.events': {
         let className = this._getEncodedNameForCurrentClass();
         endingRoute = `classes/${className}/events`;
         break;
       }
-      case 'project-version.classes.class.properties.index': {
+      case 'project-version.classes.class.properties': {
         let className = this._getEncodedNameForCurrentClass();
         endingRoute = `classes/${className}/properties`;
         break;

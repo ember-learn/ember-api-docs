@@ -1,1 +1,12 @@
+/:project/:version/classes/:class/methods/* anchor=:anchor /:project/:version/classes/:class#:anchor 301!
+/:project/:version/classes/:class/properties/* anchor=:anchor /:project/:version/classes/:class#:anchor 301!
+/:project/:version/classes/:class/events/* anchor=:anchor /:project/:version/classes/:class#:anchor 301!
+
+/:project/:version/namespaces/:namespace/methods/* anchor=:anchor /:project/:version/namespaces/:namespace#:anchor 301!
+/:project/:version/namespaces/:namespace/properties/* anchor=:anchor /:project/:version/namespaces/:namespace#:anchor 301!
+/:project/:version/namespaces/:namespace/events/* anchor=:anchor /:project/:version/namespaces/:namespace#:anchor 301!
+
+/:project/:version/modules/:module/methods/* anchor=:anchor /:project/:version/modules/:module#:anchor 301!
+/:project/:version/modules/:module/properties/* anchor=:anchor /:project/:version/modules/:module#:anchor 301!
+/:project/:version/modules/:module/events/* anchor=:anchor /:project/:version/modules/:module#:anchor 301!
 /*  /index.html  200

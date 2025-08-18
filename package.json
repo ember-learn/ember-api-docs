@@ -65,7 +65,6 @@
     "broccoli-funnel": "^2.0.1",
     "concurrently": "^8.0.1",
     "ember-a11y-testing": "^5.2.1",
-    "ember-anchor": "^1.0.3",
     "ember-auto-import": "^2.10.0",
     "ember-basic-dropdown": "^8.6.0",
     "ember-cli": "~4.12.3",
@@ -90,7 +89,6 @@
     "ember-data": "~4.6.0",
     "ember-data-fastboot": "https://github.com/mainmatter/ember-data-fastboot#update-babel",
     "ember-decorators": "^6.1.1",
-    "ember-fetch": "^8.1.2",
     "ember-inflector": "^4.0.3",
     "ember-load-initializers": "^2.1.2",
     "ember-metrics": "^1.5.2",
@@ -130,7 +128,6 @@
     "lodash.uniq": "^4.5.0",
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
-    "node-sass": "^9.0.0",
     "normalize.css": "^8.0.1",
     "prember": "^2.1.0",
     "prettier": "^2.8.7",
@@ -149,9 +146,10 @@
     "webpack": "^5.90.0"
   },
   "engines": {
-    "node": "14.* || 16.* || >= 18",
-    "npm": "7 || 8 || >= 9"
+    "node": "16.* || 18.* || 20.*",
+    "pnpm": "9"
   },
+  "packageManager": "pnpm@9.5.0",
   "cacheDirectories": [
     "node_modules"
   ],
@@ -174,6 +172,5 @@
     "overrides": {
       "node-sass": "^9.0.0"
     }
-  },
-  "packageManager": "pnpm@9.5.0"
+  }
 }

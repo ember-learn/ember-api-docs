@@ -41,7 +41,7 @@ module('Acceptance | analytics page tracking', function (hooks) {
     assert.ok(
       serviceTrackPageSpy.calledWith({
         page: '/ember/2.11/namespaces/Ember',
-        title: 'project-version.namespaces.namespace.index',
+        title: 'project-version.namespaces.namespace',
         hostname,
       }),
       'service was called with expected arguments for ember namespace page'
@@ -49,7 +49,7 @@ module('Acceptance | analytics page tracking', function (hooks) {
     assert.ok(
       serviceTrackPageSpy.calledWith({
         page: '/ember/2.11/modules/ember-metal',
-        title: 'project-version.modules.module.index',
+        title: 'project-version.modules.module',
         hostname,
       }),
       'service was called with expected arguments for ember metal module'
@@ -57,7 +57,7 @@ module('Acceptance | analytics page tracking', function (hooks) {
     assert.ok(
       serviceTrackPageSpy.calledWith({
         page: '/ember/2.11/classes/Ember.Application',
-        title: 'project-version.classes.class.index',
+        title: 'project-version.classes.class',
         hostname,
       }),
       'service was called with expected arguments for ember application class'

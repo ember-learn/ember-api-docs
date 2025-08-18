@@ -2,12 +2,12 @@ import { inject as service } from '@ember/service';
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
+
 import { pluralize } from 'ember-inflector';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
-export default class ClassRoute extends Route.extend(ScrollTracker) {
+export default class ClassRoute extends Route {
   /** @type {import('@ember/routing/router-service').default} */
   @service
   router;

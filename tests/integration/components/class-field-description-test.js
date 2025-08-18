@@ -2,7 +2,7 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, findAll, find } from '@ember/test-helpers';
+import { render, findAll, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Component | class field description', function (hooks) {
@@ -29,33 +29,6 @@ module('Integration | Component | class field description', function (hooks) {
     assert.dom(findAll('.access')[0]).hasText('public');
     assert.dom(findAll('.access')[1]).hasText('deprecated');
     assert.dom(findAll('.args')[0]).hasText('(param1, param2, param3)');
-  });
-
-  test('it calls the provided action on link-click with the field name as an arg', async function (assert) {
-    assert.expect(3);
-    this.set('updateAnchor', (name) => {
-      assert.equal(
-        name,
-        'field-name',
-        'expected the field name to be passed into the action'
-      );
-      assert.step('updateAnchorAction');
-    });
-
-    this.set(
-      'field',
-      EmberObject.create({
-        name: 'field-name',
-      })
-    );
-
-    await render(
-      hbs`<ClassFieldDescription @field={{this.field}} @updateAnchor={{this.updateAnchor}}/>`
-    );
-
-    await click('.class-field-description--link');
-
-    assert.verifySteps(['updateAnchorAction']);
   });
 
   test('parameter props are displayed', async function (assert) {
