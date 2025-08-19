@@ -1,4 +1,9 @@
 /* stylelint-disable no-descending-specificity, selector-class-pattern */
+
+html {
+  scroll-padding-top: var(--spacing-3);
+}
+
 .article-title-wrapper {
   display: flex;
   justify-content: space-between;
