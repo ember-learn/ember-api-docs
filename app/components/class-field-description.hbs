@@ -16,9 +16,8 @@
     {{#if @field.deprecated}}
       <span class='access'>deprecated</span>
     {{/if}}
-    {{!-- TODO: Fix this link for a11y --}}
-    <a class='class-field-description--link' href="#{{@field.name}}">
-      {{svg-jar 'link' width='20px' height='20px'}}
+    <a class='class-field-description--link' href="#{{@field.name}}" aria-label="Jump to {{@field.name}}">
+      {{svg-jar 'link' width='20px' height='20px' aria-hidden='true'}}
     </a>
   </h3>
   {{#if @model.module}}
