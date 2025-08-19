@@ -1,6 +1,6 @@
 {{! template-lint-disable no-invalid-interactive }}
-<section class='{{@type}}'>
-  <h3 id='{{@field.name}}'>
+<section class='class-field-description {{@type}}'>
+  <h3 id='{{@field.name}}' class="class-field-description--header">
     <span class='{{@type}}-name'>{{@field.name}}</span>
     {{#if @field.params}}
       <span class='args'>

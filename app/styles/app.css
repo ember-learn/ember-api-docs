@@ -105,8 +105,15 @@ li.toc-heading:first-child {
   margin-top: var(--spacing-2);
 }
 
+.class-field-description--header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: var(--spacing-1);
+}
+
 a.class-field-description--link {
-  margin-left: 12px;
+  margin-left: 0;
   vertical-align: middle;
   background: none;
   cursor: pointer;
@@ -139,6 +146,7 @@ dd {
 }
 
 .parameter-type,
+.class-field-description .return-type,
 .return .return-type {
   font-style: italic;
   color: var(--color-gray-600);
