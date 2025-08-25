@@ -3,7 +3,6 @@ import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
 
-import { pluralize } from 'ember-inflector';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
@@ -60,27 +59,7 @@ export default class ClassRoute extends Route {
     });
   }
 
-  redirect(model, transition) {
-    const lookupParams = (routeName) => {
-      let route = transition.routeInfos.find(({ name }) => name === routeName);
-      return route ? route.params : {};
-    };
-
-    let {
-      to: { queryParams },
-    } = transition;
-
-    if (queryParams.anchor && queryParams.type) {
-      let type = queryParams.type;
-      this.router.transitionTo(
-        `project-version.classes.class.${pluralize(type)}.${type}`,
-        lookupParams('project-version').project,
-        lookupParams('project-version').project_version,
-        lookupParams('project-version.classes.class').class,
-        queryParams.anchor
-      );
-    }
-
+  redirect(model) {
     if (model.isError) {
       let error = new Error(
         'Error retrieving model in routes/project-version/classes/class'
