@@ -1,12 +1,46 @@
+# Old-style ?anchor=... URLs to new-style #:... URLs for classes
 /:project/:version/classes/:class/methods/* anchor=:anchor /:project/:version/classes/:class#:anchor 301!
 /:project/:version/classes/:class/properties/* anchor=:anchor /:project/:version/classes/:class#:anchor 301!
 /:project/:version/classes/:class/events/* anchor=:anchor /:project/:version/classes/:class#:anchor 301!
 
+# Old-style classes/Application/methods/foo to new-style classes/Application#foo
+/:project/:version/classes/:class/methods/:method /:project/:version/classes/:class#:method 301!
+/:project/:version/classes/:class/properties/:property /:project/:version/classes/:class#:property 301!
+/:project/:version/classes/:class/events/:event /:project/:version/classes/:class#:event 301!
+
+# Index page redirects for classes
+/:project/:version/classes/:class/methods/ /:project/:version/classes/:class 301!
+/:project/:version/classes/:class/properties/ /:project/:version/classes/:class 301!
+/:project/:version/classes/:class/events/ /:project/:version/classes/:class 301!
+
+# Old-style ?anchor=... URLs to new-style #:... URLs for namespaces
 /:project/:version/namespaces/:namespace/methods/* anchor=:anchor /:project/:version/namespaces/:namespace#:anchor 301!
 /:project/:version/namespaces/:namespace/properties/* anchor=:anchor /:project/:version/namespaces/:namespace#:anchor 301!
 /:project/:version/namespaces/:namespace/events/* anchor=:anchor /:project/:version/namespaces/:namespace#:anchor 301!
 
+# Old-style namespaces/Ember.FEATURES/methods/foo to new-style namespaces/Ember.FEATURES#foo
+/:project/:version/namespaces/:namespace/methods/:method /:project/:version/namespaces/:namespace#:method 301!
+/:project/:version/namespaces/:namespace/properties/:property /:project/:version/namespaces/:namespace#:property 301!
+/:project/:version/namespaces/:namespace/events/:event /:project/:version/namespaces/:namespace#:event 301!
+
+# Index page redirects for namespaces
+/:project/:version/namespaces/:namespace/methods/ /:project/:version/namespaces/:namespace 301!
+/:project/:version/namespaces/:namespace/properties/ /:project/:version/namespaces/:namespace 301!
+/:project/:version/namespaces/:namespace/events/ /:project/:version/namespaces/:namespace 301!
+
+# Old-style ?anchor=... URLs to new-style #:... URLs for modules (but not sure these were ever used)
 /:project/:version/modules/:module/methods/* anchor=:anchor /:project/:version/modules/:module#:anchor 301!
 /:project/:version/modules/:module/properties/* anchor=:anchor /:project/:version/modules/:module#:anchor 301!
 /:project/:version/modules/:module/events/* anchor=:anchor /:project/:version/modules/:module#:anchor 301!
+
+# Old-style modules/Ember.String/methods/foo to new-style modules/Ember.String#foo
+/:project/:version/modules/:module/methods/:method /:project/:version/modules/:module#:method 301!
+/:project/:version/modules/:module/properties/:property /:project/:version/modules/:module#:property 301!
+/:project/:version/modules/:module/events/:event /:project/:version/modules/:module#:event 301!
+
+# Index page redirects for modules
+/:project/:version/modules/:module/methods/ /:project/:version/modules/:module 301!
+/:project/:version/modules/:module/properties/ /:project/:version/modules/:module 301!
+/:project/:version/modules/:module/events/ /:project/:version/modules/:module 301!
+
 /*  /index.html  200
