@@ -21,10 +21,8 @@ module('Acceptance | Function', function (hooks) {
     await visit('ember/3.28/functions/@ember%2Fapplication/getOwner');
 
     assert.dom('.method').exists({ count: 1 }, 'Single function per page');
-    assert.equal(
-      find('.method .method-name').innerText,
-      'getOwner',
-      'Correct function is shown'
-    );
+    assert
+      .dom('.method .method-name')
+      .hasText('getOwner', 'Correct function is shown');
   });
 });

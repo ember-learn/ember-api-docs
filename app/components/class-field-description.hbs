@@ -1,15 +1,15 @@
 {{! template-lint-disable no-invalid-interactive }}
 <section class='class-field-description {{@type}}'>
   <h3 id='{{@field.name}}' class="class-field-description--header">
-    <span class='{{@type}}-name'>{{@field.name}}</span>
-    {{#if @field.params}}
-      <span class='args'>
-        ({{join ', ' (map-by 'name' @field.params)}})
+    <span class="signature">
+      <span class='{{@type}}-name'>
+        {{@field.name}}
       </span>
-    {{/if}}
-    {{#if @field.return}}
-      <span class='return-type'>{{@field.return.type}}</span>
-    {{/if}}
+      {{#if @field.params}}(<span class='args'>{{join ', ' (map-by 'name' @field.params)}}</span>){{/if}}
+      {{#if @field.return}}
+        : <span class='return-type'>{{@field.return.type}}</span>
+      {{/if}}
+    </span>
     {{#if @field.access}}
       <span class='access'>{{@field.access}}</span>
     {{/if}}

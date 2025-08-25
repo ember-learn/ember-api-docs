@@ -28,7 +28,7 @@ module('Integration | Component | class field description', function (hooks) {
     assert.dom('.method-name').hasText('concat');
     assert.dom(findAll('.access')[0]).hasText('public');
     assert.dom(findAll('.access')[1]).hasText('deprecated');
-    assert.dom(findAll('.args')[0]).hasText('(param1, param2, param3)');
+    assert.dom(findAll('.args')[0]).hasText('param1, param2, param3');
   });
 
   test('parameter props are displayed', async function (assert) {

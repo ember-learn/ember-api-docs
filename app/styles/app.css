@@ -145,6 +145,10 @@ dd {
   margin: 0;
 }
 
+.class-field-description .args {
+  font-weight: var(--font-weight-2);
+}
+
 .parameter-type,
 .class-field-description .return-type,
 .return .return-type {
