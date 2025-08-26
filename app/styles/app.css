@@ -11,14 +11,16 @@ html {
 }
 
 .module-name {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
   margin-bottom: 0;
 }
 
 .access {
   color: #fff;
   background-color: var(--color-gray-600);
-  margin-left: var(--spacing-1);
   padding: 0.25rem var(--spacing-1);
   font-size: var(--font-size-md);
   border-radius: var(--radius);
@@ -103,8 +105,15 @@ li.toc-heading:first-child {
   margin-top: var(--spacing-2);
 }
 
+.class-field-description--header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: var(--spacing-1);
+}
+
 a.class-field-description--link {
-  margin-left: 12px;
+  margin-left: 0;
   vertical-align: middle;
   background: none;
   cursor: pointer;
@@ -136,7 +145,12 @@ dd {
   margin: 0;
 }
 
+.class-field-description .args {
+  font-weight: var(--font-weight-2);
+}
+
 .parameter-type,
+.class-field-description .return-type,
 .return .return-type {
   font-style: italic;
   color: var(--color-gray-600);

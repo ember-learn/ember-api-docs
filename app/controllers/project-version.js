@@ -25,9 +25,6 @@ export default class ProjectVersionController extends Controller {
   @controller('project-version.classes.class') classController;
   @controller('project-version.modules.module') moduleController;
   @controller('project-version.namespaces.namespace') namespaceController;
-  @controller('project-version.classes.class.methods') methodsController;
-  @controller('project-version.classes.class.events') eventsController;
-  @controller('project-version.classes.class.properties') propertiesController;
 
   @alias('filterData.sideNav.showPrivate')
   showPrivateClasses;
@@ -157,39 +154,6 @@ export default class ProjectVersionController extends Controller {
       case 'project-version.namespaces.namespace': {
         let namespaceName = this.namespaceController.model.name;
         endingRoute = `namespaces/${namespaceName}`;
-        break;
-      }
-      case 'project-version.classes.class.methods': {
-        let className = this._getEncodedNameForCurrentClass();
-        endingRoute = `classes/${className}/methods`;
-        break;
-      }
-      case 'project-version.classes.class.events': {
-        let className = this._getEncodedNameForCurrentClass();
-        endingRoute = `classes/${className}/events`;
-        break;
-      }
-      case 'project-version.classes.class.properties': {
-        let className = this._getEncodedNameForCurrentClass();
-        endingRoute = `classes/${className}/properties`;
-        break;
-      }
-      case 'project-version.classes.class.methods.method': {
-        let className = this._getEncodedNameForCurrentClass();
-        let methodName = this.methodsController.anchor;
-        endingRoute = `classes/${className}/methods/${methodName}?anchor=${methodName}`;
-        break;
-      }
-      case 'project-version.classes.class.events.event': {
-        let className = this._getEncodedNameForCurrentClass();
-        let eventName = this.eventsController.anchor;
-        endingRoute = `classes/${className}/events/${eventName}?anchor=${eventName}`;
-        break;
-      }
-      case 'project-version.classes.class.properties.property': {
-        let className = this._getEncodedNameForCurrentClass();
-        let propertyName = this.propertiesController.anchor;
-        endingRoute = `classes/${className}/properties/${propertyName}?anchor=${propertyName}`;
         break;
       }
       default:

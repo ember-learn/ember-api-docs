@@ -41,35 +41,23 @@ AppRouter.map(function () {
     'project-version',
     { path: '/:project/:project_version' },
     function () {
-      // this.route('classes-redirect', {path: '/classes'});
-
-      // project-version.classes-redirect => project-version.classes.index
-      // project-version.class => project-version.classes.class
       this.route('classes', function () {
         this.route('class', { path: '/:class' });
       });
-      // this.route('class', {path: '/classes/:class'}, itemRoutes);
 
       this.route('functions', function () {
         this.route('function', { path: '/:module/:fn' });
       });
 
       // Namespace routes
-      // project-version.namespace => project-version.namespaces.namespace
-      //    routes/project-version/namespace   =>  routes/project-version/namespaces/namespace
       this.route('namespaces', function () {
         this.route('namespace', { path: '/:namespace' });
       });
-      // this.route('namespace', {path: '/namespaces/:namespace'}, itemRoutes);
 
       // Module routes
-      // project-version.module => project-version.modules.module
-      //    routes/project-version/module   =>  routes/project-version/modules/module
-      //    routes/project-version/module/* =>  routes/project-version/modules/module/*
       this.route('modules', function () {
         this.route('module', { path: '/:module' });
       });
-      // this.route('module', {path: '/modules/:module'}, itemRoutes);
     }
   );
   this.route('class', { path: '/classes/:class' });
@@ -94,6 +82,8 @@ MAYBE REDIRECTS
 /data/classes/:class
 /modules/:module
 /classes/:class
+
+See _redirects for netlify redirects
 */
 
 export default AppRouter;
