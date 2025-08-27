@@ -207,7 +207,8 @@ table tr {
   border-bottom: 1px solid var(--color-gray-300);
 }
 
-table th, table td {
+table th,
+table td {
   padding: var(--spacing-1);
 }
 
