@@ -198,8 +198,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(@babel/core@7.28.3)
       ember-metrics:
-        specifier: ^1.5.2
-        version: 1.5.2
+        specifier: ^2.0.0
+        version: 2.0.0(@ember/string@3.1.1)(ember-source@4.12.4(@babel/core@7.28.3)(@glimmer/component@1.1.2(@babel/core@7.28.3))(webpack@5.101.2))(webpack@5.101.2)
       ember-modifier:
         specifier: ^4.1.0
         version: 4.2.2(@babel/core@7.28.3)
@@ -258,8 +258,8 @@ importers:
         specifier: ^8.8.0
         version: 8.10.2(eslint@8.57.1)
       eslint-plugin-ember:
-        specifier: ^11.5.0
-        version: 11.12.0(eslint@8.57.1)
+        specifier: ^12.7.3
+        version: 12.7.3(@babel/core@7.28.3)(eslint@8.57.1)(typescript@4.9.5)
       eslint-plugin-n:
         specifier: ^15.7.0
         version: 15.7.0(eslint@8.57.1)
@@ -1808,6 +1808,12 @@ packages:
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
 
+  '@typescript-eslint/tsconfig-utils@8.41.0':
+    resolution: {integrity: sha512-TDhxYFPUYRFxFhuU5hTIJk+auzM/wKvWgoNYOPcOf6i4ReYlOoYN8q1dV5kOTjNQNJgzWN3TUUQMtlLOcUgdUw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '>=4.8.4 <6.0.0'
+
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
@@ -3131,6 +3137,9 @@ packages:
     resolution: {integrity: sha512-FveZTNuGw04cxlAiWbzi6zTAL/lhehaWbTtgluJh4/E95DqMwTmha3KZN1aAWA8cFIhHzMZUvLevkw5Rqk+tSQ==}
     engines: {node: '>= 0.6'}
 
+  content-tag@2.0.3:
+    resolution: {integrity: sha512-htLIdtfhhKW2fHlFLnZH7GFzHSdSpHhDLrWVswkNiiPMZ5uXq5JfrGboQKFhNQuAAFF8VNB2EYUj3MsdJrKKpg==}
+
   content-tag@3.1.3:
     resolution: {integrity: sha512-4Kiv9mEroxuMXfWUNUHcljVJgxThCNk7eEswdHMXdzJnkBBaYDqDwzHkoh3F74JJhfU3taJOsgpR6oEGIDg17g==}
 
@@ -3265,6 +3274,10 @@ packages:
 
   css-tree@2.3.1:
     resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
+
+  css-tree@3.1.0:
+    resolution: {integrity: sha512-0eW44TGN5SQXU1mWSkKwFstI/22X2bG1nYzZTYMAWjylYURhse752YgbE4Cx46AC+bAvI+/dYTPRk1LqSUnu6w==}
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
 
   css-what@3.4.2:
@@ -3831,6 +3844,16 @@ packages:
     resolution: {integrity: sha512-3slTltQV5ke53t3YVP2GYoswsQ6y+lhuVzKmt09tbEx91DapG8I/xa8W5OA0StvcQlavL3/vHrz/vCQEFs8bBA==}
     engines: {node: 14.* || 16.* || >= 18}
 
+  ember-eslint-parser@0.5.11:
+    resolution: {integrity: sha512-YuYc+bxDGHhNdz2yEZebwwzdiErHLLGud/Q2VE6J7czuMQ/vdiL8SYWBHWyYK691MCFzrxVYpSJb89+yjXv8yg==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@babel/core': ^7.23.6
+      '@typescript-eslint/parser': '*'
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
+
   ember-functions-as-helper-polyfill@2.1.3:
     resolution: {integrity: sha512-Hte8jfOmSNzrz/vOchf68CGaBWXN2/5qKgFaylqr9omW2i4Wt9JmaBWRkeR0AJ53N57q3DX2TOb166Taq6QjiA==}
     engines: {node: '>= 14.0.0'}
@@ -3864,9 +3887,12 @@ packages:
     resolution: {integrity: sha512-CYR+U/wRxLbrfYN3dh+0Tb6mFaxJKfdyz+wNql6cqTrA0BBi9k6J3AaKXj273TqvEpyyXegQFFkZEiuZdYtgJw==}
     engines: {node: 6.* || 8.* || >= 10.*}
 
-  ember-metrics@1.5.2:
-    resolution: {integrity: sha512-6QUg3XcGQ/wnMHxT4T+QXQs9NlojJ+ai/055sQWdmLrxep4w2fyy/spn9wxAkokdwEjj0nV5MPfTOTq5OS748w==}
-    engines: {node: 12.* || 14.* || >= 16}
+  ember-metrics@2.0.0:
+    resolution: {integrity: sha512-r62LSNiivGKdhV7UOC9H9lmmApO/zaCnVo9BStVDkHTgcdzoq6iENft/ZDsCihQt3loevCi/BXb+DLffOBjKxg==}
+    engines: {node: 18.* || 20.* || >= 22}
+    peerDependencies:
+      '@ember/string': '>= 3.0.0'
+      ember-source: '>= 3.28.0'
 
   ember-modifier-manager-polyfill@1.2.0:
     resolution: {integrity: sha512-bnaKF1LLKMkBNeDoetvIJ4vhwRPKIIumWr6dbVuW6W6p4QV8ZiO+GdF8J7mxDNlog9CeL9Z/7wam4YS86G8BYA==}
@@ -4130,11 +4156,15 @@ packages:
   eslint-formatter-kakoune@1.0.0:
     resolution: {integrity: sha512-Uk/TVLt6Nf6Xoz7C1iYuZjOSdJxe5aaauGRke8JhKeJwD66Y61/pY2FjtLP04Ooq9PwV34bzrkKkU2UZ5FtDRA==}
 
-  eslint-plugin-ember@11.12.0:
-    resolution: {integrity: sha512-7Ow1ky5JnRR0k3cxuvgYi4AWTe9DzGjlLgOJbU5VABLgr7Q0iq3ioC+YwAP79nV48cpw2HOgMgkZ1MynuIg59g==}
-    engines: {node: 14.* || 16.* || >= 18}
+  eslint-plugin-ember@12.7.3:
+    resolution: {integrity: sha512-yZeq0g6XPFXPdz9eTmJ0LUj8xPLDTSYG9Ne2wT1z1aaDWtnREN1vyxGkcQ6veeH4hYIZxbm37OFth2aWFNX5lA==}
+    engines: {node: 18.* || 20.* || >= 21}
     peerDependencies:
-      eslint: '>= 7'
+      '@typescript-eslint/parser': '*'
+      eslint: '>= 8'
+    peerDependenciesMeta:
+      '@typescript-eslint/parser':
+        optional: true
 
   eslint-plugin-es@4.1.0:
     resolution: {integrity: sha512-GILhQTnjYE2WorX5Jyi5i4dz5ALWxBIdQECVQavL6s7cI76IZTDWleTHkxz/QT3kvcs2QlGHvKLYsSlPOlPXnQ==}
@@ -5658,9 +5688,6 @@ packages:
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
 
-  magic-string@0.30.17:
-    resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
-
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
@@ -5732,6 +5759,9 @@ packages:
 
   mdn-data@2.0.4:
     resolution: {integrity: sha512-iV3XNKw06j5Q7mi6h+9vbx23Tv7JkjEVgKHW4pimwyDGWm0OIQntJJ+u1C6mg6mK1EaTv42XQ7w76yuzH7M2cA==}
+
+  mdn-data@2.12.2:
+    resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
   mdurl@1.0.1:
     resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==}
@@ -10502,6 +10532,10 @@ snapshots:
       '@types/node': 24.3.0
     optional: true
 
+  '@typescript-eslint/tsconfig-utils@8.41.0(typescript@4.9.5)':
+    dependencies:
+      typescript: 4.9.5
+
   '@ungap/structured-clone@1.3.0': {}
 
   '@webassemblyjs/ast@1.14.1':
@@ -12301,6 +12335,8 @@ snapshots:
     dependencies:
       safe-buffer: 5.2.1
 
+  content-tag@2.0.3: {}
+
   content-tag@3.1.3: {}
 
   content-type@1.0.5: {}
@@ -12443,6 +12479,11 @@ snapshots:
   css-tree@2.3.1:
     dependencies:
       mdn-data: 2.0.30
+      source-map-js: 1.2.1
+
+  css-tree@3.1.0:
+    dependencies:
+      mdn-data: 2.12.2
       source-map-js: 1.2.1
 
   css-what@3.4.2: {}
@@ -13556,6 +13597,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  ember-eslint-parser@0.5.11(@babel/core@7.28.3)(eslint@8.57.1)(typescript@4.9.5):
+    dependencies:
+      '@babel/core': 7.28.3
+      '@babel/eslint-parser': 7.28.0(@babel/core@7.28.3)(eslint@8.57.1)
+      '@glimmer/syntax': 0.95.0
+      '@typescript-eslint/tsconfig-utils': 8.41.0(typescript@4.9.5)
+      content-tag: 2.0.3
+      eslint-scope: 7.2.2
+      html-tags: 3.3.1
+      mathml-tag-names: 2.1.3
+      svg-tags: 1.0.0
+    transitivePeerDependencies:
+      - eslint
+      - typescript
+
   ember-functions-as-helper-polyfill@2.1.3(ember-source@4.12.4(@babel/core@7.28.3)(@glimmer/component@1.1.2(@babel/core@7.28.3))(webpack@5.101.2)):
     dependencies:
       ember-cli-babel: 7.26.11
@@ -13605,13 +13661,18 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-metrics@1.5.2:
+  ember-metrics@2.0.0(@ember/string@3.1.1)(ember-source@4.12.4(@babel/core@7.28.3)(@glimmer/component@1.1.2(@babel/core@7.28.3))(webpack@5.101.2))(webpack@5.101.2):
     dependencies:
+      '@ember/string': 3.1.1
       broccoli-funnel: 3.0.8
+      ember-auto-import: 2.10.0(webpack@5.101.2)
       ember-cli-babel: 7.26.11
-      ember-cli-typescript: 4.2.1
+      ember-cli-typescript: 5.3.0
+      ember-source: 4.12.4(@babel/core@7.28.3)(@glimmer/component@1.1.2(@babel/core@7.28.3))(webpack@5.101.2)
     transitivePeerDependencies:
+      - '@glint/template'
       - supports-color
+      - webpack
 
   ember-modifier-manager-polyfill@1.2.0(@babel/core@7.28.3):
     dependencies:
@@ -14127,24 +14188,22 @@ snapshots:
 
   eslint-formatter-kakoune@1.0.0: {}
 
-  eslint-plugin-ember@11.12.0(eslint@8.57.1):
+  eslint-plugin-ember@12.7.3(@babel/core@7.28.3)(eslint@8.57.1)(typescript@4.9.5):
     dependencies:
       '@ember-data/rfc395-data': 0.0.4
-      '@glimmer/syntax': 0.84.3
-      css-tree: 2.3.1
+      css-tree: 3.1.0
+      ember-eslint-parser: 0.5.11(@babel/core@7.28.3)(eslint@8.57.1)(typescript@4.9.5)
       ember-rfc176-data: 0.3.18
-      ember-template-imports: 3.4.2
-      ember-template-recast: 6.1.5
       eslint: 8.57.1
       eslint-utils: 3.0.0(eslint@8.57.1)
       estraverse: 5.3.0
       lodash.camelcase: 4.3.0
       lodash.kebabcase: 4.1.1
-      magic-string: 0.30.17
       requireindex: 1.2.0
       snake-case: 3.0.4
     transitivePeerDependencies:
-      - supports-color
+      - '@babel/core'
+      - typescript
 
   eslint-plugin-es@4.1.0(eslint@8.57.1):
     dependencies:
@@ -16088,10 +16147,6 @@ snapshots:
     dependencies:
       sourcemap-codec: 1.4.8
 
-  magic-string@0.30.17:
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.5.5
-
   make-dir@3.1.0:
     dependencies:
       semver: 6.3.1
@@ -16168,6 +16223,8 @@ snapshots:
   mdn-data@2.0.30: {}
 
   mdn-data@2.0.4: {}
+
+  mdn-data@2.12.2: {}
 
   mdurl@1.0.1: {}
 
