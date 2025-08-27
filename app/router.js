@@ -1,36 +1,9 @@
 import EmberRouter from '@ember/routing/router';
-import { scheduleOnce } from '@ember/runloop';
 import config from 'ember-api-docs/config/environment';
-import { inject as service } from '@ember/service';
 
 class AppRouter extends EmberRouter {
   location = config.locationType;
   rootURL = config.routerRootURL;
-
-  @service metrics;
-  @service fastboot;
-
-  constructor() {
-    super(...arguments);
-
-    if (!this.fastboot.isFastBoot) {
-      this.on('routeDidChange', this, this._trackPage);
-    }
-  }
-
-  _trackPage() {
-    scheduleOnce('afterRender', this, this.__trackPage);
-  }
-
-  __trackPage() {
-    // this is constant for this app and is only used to identify page views in the GA dashboard
-    const hostname = config.APP.domain.replace(/(http|https)?:?\/\//g, '');
-
-    const page = this.url;
-    const title =
-      this.currentRouteName === undefined ? 'unknown' : this.currentRouteName;
-    this.metrics.trackPage({ page, title, hostname });
-  }
 }
 
 AppRouter.map(function () {
