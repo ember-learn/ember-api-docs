@@ -1,0 +1,11 @@
+
+<template><div class="ds-suggestion">
+  <div class="algolia-docsearch-suggestion algolia-docsearch-suggestion__main">
+    <div class="algolia-docsearch-suggestion--category-header">
+      <span class="algolia-docsearch-suggestion--category-header-lvl0">
+        {{yield}}
+      </span>
+    </div>
+    <div class="algolia-docsearch-suggestion--wrapper"></div>
+  </div>
+</div></template>
