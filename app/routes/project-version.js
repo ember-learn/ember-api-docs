@@ -31,7 +31,7 @@ export default class ProjectVersionRoute extends Route {
       project_version,
       project,
       projectObj,
-      this.metaStore
+      this.metaStore,
     );
     let id = `${project}-${projectVersion}`;
     this.projectService.setUrlVersion(project_version);
@@ -49,7 +49,7 @@ export default class ProjectVersionRoute extends Route {
     };
     this._gatherHeadDataFromVersion(
       model,
-      lookupParams('project-version').project_version
+      lookupParams('project-version').project_version,
     );
 
     let classParams = lookupParams('project-version.classes.class');
@@ -67,7 +67,7 @@ export default class ProjectVersionRoute extends Route {
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
       let latestVersion = getLastVersion(
-        model.get('project.content').hasMany('projectVersions').ids()
+        model.get('project.content').hasMany('projectVersions').ids(),
       );
       let isLatestVersion =
         transitionVersion === latestVersion || transitionVersion === 'release';
@@ -90,7 +90,7 @@ export default class ProjectVersionRoute extends Route {
             'project-version.modules.module',
             model.get('project.id'),
             transitionVersion,
-            'ember-data-overview'
+            'ember-data-overview',
           );
         }
 
@@ -99,14 +99,14 @@ export default class ProjectVersionRoute extends Route {
       } else {
         // else go to the version specified
         let moduleRevs = this.metaStore.getEncodedModulesFromProjectRev(
-          model.get('id')
+          model.get('id'),
         );
         let module = this.getFirstModule(moduleRevs);
         return this.router.transitionTo(
           'project-version.modules.module',
           model.get('project.id'),
           transitionVersion,
-          module
+          module,
         );
       }
     }

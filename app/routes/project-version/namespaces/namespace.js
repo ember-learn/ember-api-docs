@@ -13,18 +13,18 @@ export default class NamespaceRoute extends ClassRoute {
 
     let projectRecord = await this.store.findRecord(
       'project',
-      project.toLowerCase()
+      project.toLowerCase(),
     );
     let projectVersion = getFullVersion(
       compactVersion,
       project,
       projectRecord,
-      this.metaStore
+      this.metaStore,
     );
     const klass = params['namespace'];
     return this.find(
       'namespace',
-      `${project}-${projectVersion}-${klass}`.toLowerCase()
+      `${project}-${projectVersion}-${klass}`.toLowerCase(),
     );
   }
 

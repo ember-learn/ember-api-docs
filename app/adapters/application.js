@@ -56,7 +56,7 @@ export default class Application extends JSONAPIAdapter {
       if (typeof revId !== 'undefined') {
         let encodedRevId = encodeURIComponent(revId);
         url = `json-docs/${projectName}/${version}/${pluralize(
-          modelNameToUse
+          modelNameToUse,
         )}/${encodedRevId}`;
       } else {
         throw new Error('Documentation item not found');
@@ -65,7 +65,7 @@ export default class Application extends JSONAPIAdapter {
       let version = this.projectService.version;
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
       url = `json-docs/${projectName}/${version}/${pluralize(
-        modelName
+        modelName,
       )}/${revId}`;
     } else if (modelName === 'project') {
       this.currentProject = id;
@@ -86,7 +86,7 @@ export default class Application extends JSONAPIAdapter {
       let response = await fetch(url);
       if (!response.ok) {
         throw new Error(
-          `Network response was not ok: ${response.status} ${response.statusText}`
+          `Network response was not ok: ${response.status} ${response.statusText}`,
         );
       }
       let json = await response.json();

@@ -13,7 +13,7 @@ export default class DataModuleRoute extends Route {
     return {
       moduleName: params.module.substr(0, params.module.lastIndexOf('.')),
       mappings: this.legacyModuleMappings.buildMappings(
-        this.legacyModuleMappings.legacyMappings
+        this.legacyModuleMappings.legacyMappings,
       ),
     };
   }
@@ -25,20 +25,20 @@ export default class DataModuleRoute extends Route {
     }
     let mappingInfo = this.legacyModuleMappings.getNewModuleFromOld(
       moduleName,
-      mappings
+      mappings,
     );
     if (mappingInfo.module === '@ember-data') {
       return this.router.transitionTo(
         `project-version`,
         'ember-data',
-        'release'
+        'release',
       );
     } else {
       return this.router.transitionTo(
         `project-version.modules.module`,
         'ember-data',
         'release',
-        mappingInfo.module
+        mappingInfo.module,
       );
     }
   }

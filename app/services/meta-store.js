@@ -26,7 +26,7 @@ export default class MetaStoreService extends Service {
     let revType = this.projectRevMap[`${project}-${version}`][type];
 
     let matchingKey = Object.keys(revType).find(
-      (key) => key.toLowerCase() === encodedId.toLowerCase()
+      (key) => key.toLowerCase() === encodedId.toLowerCase(),
     );
 
     return this.projectRevMap[`${project}-${version}`][type][matchingKey];
@@ -47,7 +47,7 @@ export default class MetaStoreService extends Service {
   getFullVersion(projectName, compactProjVersion) {
     const availProjVersions = this.availableProjectVersions[projectName];
     let filtered = availProjVersions.filter(
-      (v) => getCompactVersion(v) === getCompactVersion(compactProjVersion)
+      (v) => getCompactVersion(v) === getCompactVersion(compactProjVersion),
     );
     if (filtered.length === 0) {
       return;

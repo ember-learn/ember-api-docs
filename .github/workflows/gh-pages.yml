@@ -15,7 +15,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
-          cache: 'pnpm'
+          cache: "pnpm"
           node-version: 20
       - run: pnpm i --frozen-lockfile
       - run: npx lint-to-the-future output -o lttfOutput --rootUrl ember-api-docs --previous-results https://ember-learn.github.io/ember-api-docs/data.json

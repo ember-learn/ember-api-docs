@@ -30,7 +30,7 @@ export default class ProjectRoute extends Route {
     return this.router.transitionTo(
       'project-version',
       project.get('id'),
-      'release'
+      'release',
     );
   }
 }

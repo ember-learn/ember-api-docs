@@ -24,7 +24,7 @@ export default Component.extend({
   attributeBindings: ['role'],
   version: computed('result._tags.[]', function () {
     let versionTag = this.get('result._tags').find(
-      (_tag) => _tag.indexOf('version:') > -1
+      (_tag) => _tag.indexOf('version:') > -1,
     );
     let versionSegments = versionTag.replace('version:', '').split('.');
     return `${versionSegments[0]}.${versionSegments[1]}`;

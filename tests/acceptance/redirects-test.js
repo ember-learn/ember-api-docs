@@ -11,7 +11,7 @@ module('Acceptance | redirects', function (hooks) {
     assert.equal(
       currentURL(),
       `/ember/release`,
-      'routes to the latest version of the project'
+      'routes to the latest version of the project',
     );
     assert.dom('h1').hasText('Ember API Documentation');
   });
@@ -22,7 +22,7 @@ module('Acceptance | redirects', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/modules/ember',
-      'routes to the first module of the project-version'
+      'routes to the first module of the project-version',
     );
   });
 });

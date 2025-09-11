@@ -27,7 +27,7 @@ export default class ClassController extends Controller {
   metaStore;
 
   @computed(
-    'filterData.{showInherited,showProtected,showPrivate,showDeprecated}'
+    'filterData.{showInherited,showProtected,showPrivate,showDeprecated}',
   )
   get visibilityFilter() {
     let appliedFilters = filterTypes
@@ -59,7 +59,7 @@ export default class ClassController extends Controller {
   get hasImportExample() {
     return this.legacyModuleMappings.hasClassMapping(
       this.get('model.name'),
-      this.get('model.module')
+      this.get('model.module'),
     );
   }
 
@@ -67,7 +67,7 @@ export default class ClassController extends Controller {
   get module() {
     return this.legacyModuleMappings.getModule(
       this.get('model.name'),
-      this.get('model.module')
+      this.get('model.module'),
     );
   }
 

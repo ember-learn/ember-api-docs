@@ -65,7 +65,7 @@ export default class Dropdown extends Component {
           lvl1Result[lvl1Key].addObject(lvl1Item);
           return lvl1Result;
         },
-        {}
+        {},
       );
 
       return lvl0Result;

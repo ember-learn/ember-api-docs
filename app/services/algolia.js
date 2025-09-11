@@ -29,7 +29,7 @@ export default class AlgoliaService extends Service {
     super(...arguments);
     this._client = algoliasearch(
       config.algolia.algoliaId,
-      config.algolia.algoliaKey
+      config.algolia.algoliaKey,
     );
     this._indices = {};
   }

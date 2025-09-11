@@ -13,7 +13,7 @@ module('Acceptance | Function', function (hooks) {
     assert.equal(
       find('.method .method-name').innerText,
       'getOwner',
-      'Correct function is shown'
+      'Correct function is shown',
     );
   });
 

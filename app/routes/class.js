@@ -12,7 +12,7 @@ export default class ClassRoute extends Route {
   model(params) {
     let ret = {
       mappings: this.legacyModuleMappings.buildMappings(
-        this.legacyModuleMappings.legacyMappings
+        this.legacyModuleMappings.legacyMappings,
       ),
       className: params['class'].substr(0, params['class'].lastIndexOf('.')),
     };
@@ -22,7 +22,7 @@ export default class ClassRoute extends Route {
   redirect(model) {
     let mappedInfo = this.legacyModuleMappings.getNewClassFromOld(
       model.className,
-      model.mappings
+      model.mappings,
     );
     if (!mappedInfo.error && model.className !== mappedInfo.newName) {
       let { itemType, newName, newModule } = mappedInfo;
@@ -31,7 +31,7 @@ export default class ClassRoute extends Route {
           `project-version.classes.class`,
           'ember',
           'release',
-          newName
+          newName,
         );
       } else {
         return this.router.transitionTo(
@@ -39,7 +39,7 @@ export default class ClassRoute extends Route {
           'ember',
           'release',
           newModule,
-          newName
+          newName,
         );
       }
     }

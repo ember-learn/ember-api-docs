@@ -26,7 +26,7 @@ export default class FunctionRoute extends Route {
       compactVersion,
       project,
       projectObj,
-      this.metaStore
+      this.metaStore,
     );
     let className = params['module'];
     let functionName = params['fn'];
@@ -35,12 +35,12 @@ export default class FunctionRoute extends Route {
     try {
       fnModule = await this.store.find(
         'class',
-        `${project}-${projectVersion}-${className}`.toLowerCase()
+        `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
     } catch (e) {
       fnModule = await this.store.find(
         'namespace',
-        `${project}-${projectVersion}-${className}`.toLowerCase()
+        `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
     }
 

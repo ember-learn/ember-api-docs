@@ -1,7 +1,6 @@
 {
   "name": "ember-api-docs",
-  "scripts": {
-  },
+  "scripts": {},
   "env": {
     "FASTLY_API_KEY": {
       "required": false
@@ -16,10 +15,8 @@
       "required": false
     }
   },
-  "formation": {
-  },
-  "addons": [
-  ],
+  "formation": {},
+  "addons": [],
   "buildpacks": [
     {
       "url": "https://buildpack-registry.s3.amazonaws.com/buildpacks/aedev/emberjs.tgz"

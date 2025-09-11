@@ -31,7 +31,7 @@ AppRouter.map(function () {
       this.route('modules', function () {
         this.route('module', { path: '/:module' });
       });
-    }
+    },
   );
   this.route('class', { path: '/classes/:class' });
   this.route('module', { path: '/modules/:module' });

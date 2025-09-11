@@ -13,7 +13,7 @@ export default class ModuleRoute extends Route {
     return {
       moduleName: params.module.substr(0, params.module.lastIndexOf('.')),
       mappings: this.legacyModuleMappings.buildMappings(
-        this.legacyModuleMappings.legacyMappings
+        this.legacyModuleMappings.legacyMappings,
       ),
     };
   }
@@ -21,14 +21,14 @@ export default class ModuleRoute extends Route {
   redirect(model) {
     let mappingInfo = this.legacyModuleMappings.getNewModuleFromOld(
       model.moduleName,
-      model.mappings
+      model.mappings,
     );
     if (!mappingInfo.error && model.moduleName !== mappingInfo.module) {
       return this.router.transitionTo(
         `project-version.modules.module`,
         'ember',
         'release',
-        mappingInfo.module
+        mappingInfo.module,
       );
     }
     return this.router.transitionTo('project-version', 'ember', 'release');

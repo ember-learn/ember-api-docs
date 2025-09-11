@@ -24,7 +24,7 @@ module('Acceptance | search', function (hooks) {
 
     assert.equal(
       currentURL(),
-      '/ember/4.1/classes/EmberArray/methods/forEach?anchor=forEach'
+      '/ember/4.1/classes/EmberArray/methods/forEach?anchor=forEach',
     );
   });
 

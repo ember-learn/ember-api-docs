@@ -17,7 +17,7 @@ module('Acceptance | sidebar navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/namespaces/Ember.String',
-      'navigated to namespace'
+      'navigated to namespace',
     );
   });
 
@@ -31,7 +31,7 @@ module('Acceptance | sidebar navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/modules/ember-application',
-      'navigated to module'
+      'navigated to module',
     );
   });
 
@@ -45,7 +45,7 @@ module('Acceptance | sidebar navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/classes/Ember.Component',
-      'navigated to class'
+      'navigated to class',
     );
   });
 
