@@ -100,7 +100,7 @@
     "ember-qunit": "^6.2.0",
     "ember-resolver": "^10.0.0",
     "ember-rfc176-data": "^0.3.17",
-    "ember-router-scroll": "^4.1.2",
+    "@nullvoxpopuli/ember-router-scroll": "^0.0.2",
     "ember-showdown-shiki": "^1.2.1",
     "ember-sinon": "^4.1.1",
     "ember-source": "~4.12.0",
