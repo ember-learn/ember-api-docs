@@ -5,14 +5,14 @@ export default function getFullVersion(
   urlVersion,
   project,
   projectObj,
-  metaStore
+  metaStore,
 ) {
   let projectVersion;
   if (urlVersion === 'release') {
     let versions = projectObj.hasMany('projectVersions').ids();
     projectVersion = metaStore.getFullVersion(
       project,
-      getCompactVersion(getLastVersion(versions))
+      getCompactVersion(getLastVersion(versions)),
     );
   } else {
     projectVersion = metaStore.getFullVersion(project, urlVersion);

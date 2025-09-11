@@ -8,7 +8,7 @@ export default class ClassFieldDescription extends Component {
   get hasImportExample() {
     return this.legacyModuleMappings.hasFunctionMapping(
       this.args.field.name,
-      this.args.field.class
+      this.args.field.class,
     );
   }
 }

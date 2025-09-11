@@ -20,21 +20,21 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.7/classes/Ember.Component',
-      'navigated to v2.7 namespace'
+      'navigated to v2.7 namespace',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.11/classes/Ember.Component',
-      'navigated to v2.11 class'
+      'navigated to v2.11 class',
     );
     await selectChoose('.ember-power-select-trigger', '1.4');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.4/classes/Ember.Component',
-      'navigated to v2.8 class'
+      'navigated to v2.8 class',
     );
   });
 
@@ -56,21 +56,21 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.8/modules/ember-metal',
-      'navigated to v2.8 module'
+      'navigated to v2.8 module',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.11/modules/ember-metal',
-      'navigated to v2.11 module'
+      'navigated to v2.11 module',
     );
     await selectChoose('.ember-power-select-trigger', '1.4');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.4/modules/ember-metal',
-      'navigated to v2.7 module'
+      'navigated to v2.7 module',
     );
   });
 
@@ -80,21 +80,21 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.18/modules/@ember%2Fapplication',
-      'navigated to v2.18 module'
+      'navigated to v2.18 module',
     );
     await selectChoose('.ember-power-select-trigger', '2.17');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.17/modules/@ember%2Fapplication',
-      'navigated to v2.17 module'
+      'navigated to v2.17 module',
     );
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.16/modules/@ember%2Fapplication',
-      'navigated to v2.16 module'
+      'navigated to v2.16 module',
     );
   });
 
@@ -104,14 +104,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.7/classes/Ember.Component',
-      'navigated to v2.7 class'
+      'navigated to v2.7 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.16',
-      'navigated to v2.16 landing page'
+      'navigated to v2.16 landing page',
     );
   });
 
@@ -121,14 +121,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember-data/2.7/classes/DS.Adapter',
-      'navigated to v2.7 class'
+      'navigated to v2.7 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember-data/2.16/classes/DS.Adapter',
-      'navigated to v2.16 landing page'
+      'navigated to v2.16 landing page',
     );
   });
 
@@ -138,14 +138,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.16/classes/Component',
-      'navigated to v2.16 class'
+      'navigated to v2.16 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.11/modules/ember',
-      'navigated to v2.11 ember module'
+      'navigated to v2.11 ember module',
     );
   });
 
@@ -154,14 +154,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember-data/2.16/classes/DS.Adapter',
-      'navigated to v2.7 class'
+      'navigated to v2.7 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember-data/2.11/classes/DS.Adapter',
-      'navigated to v2.16 landing page'
+      'navigated to v2.16 landing page',
     );
   });
 
@@ -170,14 +170,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/3.4/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.4 class'
+      'navigated to v3.4 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.7');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.7/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.7 class'
+      'navigated to v3.7 class',
     );
   });
 
@@ -186,14 +186,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/3.13/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.13 class'
+      'navigated to v3.13 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.20');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.20/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.20 class'
+      'navigated to v3.20 class',
     );
   });
 
@@ -202,27 +202,27 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/3.4/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.4 class'
+      'navigated to v3.4 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.7');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.7/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.7 class'
+      'navigated to v3.7 class',
     );
     await visit('/ember/3.7/classes/Component');
     assert.equal(
       currentURL(),
       '/ember/3.7/classes/Component',
-      'navigated to new class'
+      'navigated to new class',
     );
     await selectChoose('.ember-power-select-trigger', '2.18');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.18/classes/Component',
-      'navigated to v2.18 for new class'
+      'navigated to v2.18 for new class',
     );
   });
 
@@ -231,28 +231,28 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/3.13/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.13 class'
+      'navigated to v3.13 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.20');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.20/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.20 class'
+      'navigated to v3.20 class',
     );
 
     await visit('/ember/3.25/classes/Component');
     assert.equal(
       currentURL(),
       '/ember/3.25/classes/Component',
-      'navigated to new class'
+      'navigated to new class',
     );
     await selectChoose('.ember-power-select-trigger', '3.15');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.15/classes/Component',
-      'navigated to v3.15 for new class'
+      'navigated to v3.15 for new class',
     );
   });
 
@@ -262,21 +262,21 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.0/classes/Ember.Component',
-      'navigated to v2.0 namespace'
+      'navigated to v2.0 namespace',
     );
     await selectChoose('.ember-power-select-trigger', '1.12');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.12/classes/Ember.Component',
-      'navigated to v1.12 class'
+      'navigated to v1.12 class',
     );
     await selectChoose('.ember-power-select-trigger', '1.13');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.13/classes/Ember.Component',
-      'navigated to v1.13 class'
+      'navigated to v1.13 class',
     );
   });
 });

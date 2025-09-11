@@ -9,7 +9,7 @@ module('Integration | Component | import example', function (hooks) {
   test('it renders a class import example', async function (assert) {
     await render(
       hbs`{{!-- template-lint-disable no-potential-path-strings --}}
-          <ImportExample @item='Application' @package='@ember/application'/>`
+          <ImportExample @item='Application' @package='@ember/application'/>`,
     );
     assert.dom('*').hasText("import Application from '@ember/application';");
   });
@@ -17,7 +17,7 @@ module('Integration | Component | import example', function (hooks) {
   test('it renders a function import example', async function (assert) {
     await render(
       hbs`{{!-- template-lint-disable no-potential-path-strings --}}
-          <ImportExample @item='{ uniqBy }' @package='@ember/object/computed'/>`
+          <ImportExample @item='{ uniqBy }' @package='@ember/object/computed'/>`,
     );
     assert.dom('*').hasText("import { uniqBy } from '@ember/object/computed';");
   });

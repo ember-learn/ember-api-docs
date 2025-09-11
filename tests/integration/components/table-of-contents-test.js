@@ -24,7 +24,7 @@ module('Integration | Component | table of contents', function (hooks) {
     `);
 
     const contentTitle = document.querySelector(
-      '[data-test-toc-title="classes"]'
+      '[data-test-toc-title="classes"]',
     );
     const contentReference = '.sub-table-of-contents';
 
@@ -53,7 +53,7 @@ module('Integration | Component | table of contents', function (hooks) {
     const contentReference = '.sub-table-of-contents';
     const content = document.querySelector(contentReference);
     const contentTitle = document.querySelector(
-      '[data-test-toc-title="packages"]'
+      '[data-test-toc-title="packages"]',
     );
 
     assert.dom(contentTitle).includesText('Packages');

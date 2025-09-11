@@ -15,7 +15,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     await visit('/classes/Ember.computed.html');
     assert.equal(
       currentURL(),
-      '/ember/release/functions/@ember%2Fobject/computed'
+      '/ember/release/functions/@ember%2Fobject/computed',
     );
   });
 
@@ -33,7 +33,7 @@ module('Acceptance | convert legacy url to current', function (hooks) {
     await visit('/data/modules/ember-data.html');
     assert.equal(
       currentURL(),
-      '/ember-data/release/modules/ember-data-overview'
+      '/ember-data/release/modules/ember-data-overview',
     );
   });
 

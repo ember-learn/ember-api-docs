@@ -114,7 +114,7 @@ export default class ProjectVersionController extends Controller {
     });
     let groupedVersions = groupBy(
       versions,
-      (version) => version.compactVersion
+      (version) => version.compactVersion,
     );
 
     return values(groupedVersions).map((groupedVersion) => groupedVersion[0]);
@@ -164,13 +164,13 @@ export default class ProjectVersionController extends Controller {
     // to the home page instead of trying to translate the url
     let shouldConvertPackages = this._shouldConvertPackages(
       ver,
-      this.projectService.version
+      this.projectService.version,
     );
     let isEmberProject = project === 'ember';
 
     if (!isEmberProject || !shouldConvertPackages) {
       this.router.transitionTo(
-        `/${project}/${projectVersionID}/${endingRoute}`
+        `/${project}/${projectVersionID}/${endingRoute}`,
       );
     } else {
       this.router.transitionTo(`/${project}/${projectVersionID}`);

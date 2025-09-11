@@ -455,7 +455,7 @@ module('Integration | Component | api index filter', function (hooks) {
       .dom('.method-name')
       .exists(
         { count: 2 },
-        'should display only the local method and the parent method with a different name'
+        'should display only the local method and the parent method with a different name',
       );
     assert
       .dom(findAll('.method-name')[0])

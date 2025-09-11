@@ -22,7 +22,7 @@ module.exports = function () {
     urls.push(`/${p}/release`);
 
     const fullProjectVersions = readdirSync(
-      `ember-api-docs-data/json-docs/${p}`
+      `ember-api-docs-data/json-docs/${p}`,
     ).filter((v) => v.match(/\d+\.\d+\.\d+/));
 
     // add landing page for each of the projects versions
@@ -63,7 +63,9 @@ module.exports = function () {
       const highestPatchVersion =
         sortedPatchVersions[sortedPatchVersions.length - 1];
 
-      const revIndex = require(`${__dirname}/ember-api-docs-data/rev-index/${p}-${highestPatchVersion}.json`);
+      const revIndex = require(
+        `${__dirname}/ember-api-docs-data/rev-index/${p}-${highestPatchVersion}.json`,
+      );
 
       ['classes', 'namespaces', 'modules'].forEach((entity) => {
         // add classes
@@ -82,7 +84,7 @@ module.exports = function () {
             if (!existsSync(requirePath)) {
               // TODO we really shouldn't come across this so we should investigate why there are things in the rev-index that don't have corresponding files
               console.log(
-                `about to require ${requirePath} but that file doesn't exist`
+                `about to require ${requirePath} but that file doesn't exist`,
               );
               return;
             }
@@ -99,7 +101,7 @@ module.exports = function () {
                 addUrl(
                   p,
                   uniqVersion,
-                  `functions/${encodeURIComponent(func.class)}/${func.name}`
+                  `functions/${encodeURIComponent(func.class)}/${func.name}`,
                 );
               });
             });

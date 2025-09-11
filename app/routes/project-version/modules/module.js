@@ -14,7 +14,7 @@ export default class ModuleRoute extends ClassRoute {
       compactVersion,
       project,
       projectObj,
-      this.metaStore
+      this.metaStore,
     );
     let klass = params['module'];
 
@@ -28,7 +28,7 @@ export default class ModuleRoute extends ClassRoute {
 
     return this.find(
       'module',
-      `${project}-${projectVersion}-${klass}`.toLowerCase()
+      `${project}-${projectVersion}-${klass}`.toLowerCase(),
     );
   }
 

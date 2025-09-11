@@ -27,12 +27,12 @@ export default class ClassRoute extends Route {
       compactVersion,
       project,
       projectObj,
-      this.metaStore
+      this.metaStore,
     );
     const klass = params['class'];
     return this.find(
       'class',
-      `${project}-${projectVersion}-${klass}`.toLowerCase()
+      `${project}-${projectVersion}-${klass}`.toLowerCase(),
     );
   }
 
@@ -41,7 +41,7 @@ export default class ClassRoute extends Route {
       if (typeName != 'namespace') {
         console.warn(
           e1,
-          'fetching by class or module failed, retrying as namespace'
+          'fetching by class or module failed, retrying as namespace',
         );
         return this.store.find('namespace', param).catch((e2) => {
           console.error(e2);
@@ -62,7 +62,7 @@ export default class ClassRoute extends Route {
   redirect(model) {
     if (model.isError) {
       let error = new Error(
-        'Error retrieving model in routes/project-version/classes/class'
+        'Error retrieving model in routes/project-version/classes/class',
       );
 
       error.status = 404;
@@ -82,11 +82,11 @@ export default class ClassRoute extends Route {
       const promises = Object.keys(relationships).reduce(
         (memo, relationshipType) => {
           const relationshipPromises = relationships[relationshipType].map(
-            (name) => klass.get(name)
+            (name) => klass.get(name),
           );
           return memo.concat(relationshipPromises);
         },
-        []
+        [],
       );
       return all(promises);
     }

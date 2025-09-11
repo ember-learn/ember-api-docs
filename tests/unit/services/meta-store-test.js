@@ -107,7 +107,7 @@ module('Unit | Service | meta-store', function (hooks) {
     service.addToProjectRevMap('ember-2.14.90.12', fakeProjectRevMap);
     assert.equal(
       service.getRevId('ember', '2.14.90.12', 'class', 'ember-42'),
-      'ember-42-hash'
+      'ember-42-hash',
     );
   });
 
@@ -119,9 +119,9 @@ module('Unit | Service | meta-store', function (hooks) {
         'ember',
         '2.14.1',
         'namespace',
-        'ember-2.14.1-Ember.Instrumentation'
+        'ember-2.14.1-Ember.Instrumentation',
       ),
-      'string'
+      'string',
     );
   });
 

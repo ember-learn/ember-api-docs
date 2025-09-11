@@ -50,6 +50,10 @@ module.exports = function (environment) {
           id: 'UA-27675533-1',
         },
       },
+      {
+        name: 'LocalAdapter',
+        environments: ['development'],
+      },
     ],
   };
 

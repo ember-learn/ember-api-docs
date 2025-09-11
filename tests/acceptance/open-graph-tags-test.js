@@ -11,7 +11,7 @@ module('Acceptance | open graph tags', function (hooks) {
 
   function findOpenGraphContent(propertyName) {
     const el = document.querySelector(
-      `head meta[property="og:${propertyName}"]`
+      `head meta[property="og:${propertyName}"]`,
     );
     return el.content;
   }

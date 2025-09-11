@@ -12,7 +12,7 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
   if (isEdit) {
     return `https://github.com/${githubMap[project]}/edit/release${mainDir(
       project,
-      adjustedVersion
+      adjustedVersion,
     )}${file}#L${line}`;
   }
 
@@ -33,7 +33,7 @@ export function githubLink([project, version, file, line], { isEdit = false }) {
     githubMap[project]
   }/tree/v${adjustedVersion}${mainDir(
     project,
-    adjustedVersion
+    adjustedVersion,
   )}${fixedFile}#L${line}`;
 }
 

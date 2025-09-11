@@ -18,11 +18,11 @@ module('Integration | Component | class field description', function (hooks) {
         name: 'concat',
         description: 'concatenates',
         params: [{ name: 'param1' }, { name: 'param2' }, { name: 'param3' }],
-      })
+      }),
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`,
     );
 
     assert.dom('.method-name').hasText('concat');
@@ -45,11 +45,11 @@ module('Integration | Component | class field description', function (hooks) {
           { name: 'param2' },
           { name: 'options', props: [{ name: 'prop1' }, { name: 'prop2' }] },
         ],
-      })
+      }),
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`
+      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`,
     );
 
     assert.dom(find('.prop:nth-child(1) dt')).hasText('prop1');
