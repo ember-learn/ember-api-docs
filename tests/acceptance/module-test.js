@@ -1,12 +1,12 @@
 /* eslint-disable qunit/no-assert-equal */
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, findAll } from '@ember/test-helpers';
 
 module('Acceptance | Module', function (hooks) {
   setupApplicationTest(hooks);
 
-  skip('lists all public/private classes and namespaces on the module page', async function (assert) {
+  test('lists all public/private classes and namespaces on the module page', async function (assert) {
     await visit('ember/1.0/modules/ember-handlebars');
 
     const store = this.owner.lookup('service:store');
@@ -28,7 +28,7 @@ module('Acceptance | Module', function (hooks) {
       numberPublicClasses + numberNameSpaces,
     );
 
-    await click('.sidebar .private-deprecated-toggle');
+    await click('[data-test-private-deprecated-toggle]');
     assert.equal(
       findAll('.spec-property-list li').length,
       numberPublicClasses + numberNameSpaces + numberPrivateClasses,

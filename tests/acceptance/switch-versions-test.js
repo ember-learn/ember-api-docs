@@ -165,7 +165,7 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
-  test.skip('switching versions works if class name includes slashes', async function (assert) {
+  test('switching versions works if class name includes slashes', async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
       currentURL(),
@@ -197,7 +197,7 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
-  test.skip(`switching versions works if we've previously switched for a different class`, async function (assert) {
+  test(`switching versions works if we've previously switched for a different class`, async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
       currentURL(),
