@@ -31,5 +31,9 @@
   </EsSidebar>
   <section class="content-wrapper">
     {{outlet}}
+    
+    {{#unless this.fastboot.isFastBoot}}
+      <ScrollToTopButton />
+    {{/unless}}
   </section>
 </div>
