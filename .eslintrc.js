@@ -13,24 +13,12 @@ module.exports = {
       ],
     },
   },
-  plugins: ['ember'],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended'],
   env: {
     browser: true,
   },
   rules: {
     'no-console': 'off',
-    'ember/no-new-mixins': 'off',
-    'ember/no-mixins': 'off',
-    'ember/require-tagless-components': 'off',
-    'ember/no-classic-classes': 'off',
-    'ember/no-get': 'off',
-    'ember/no-classic-components': 'off',
-    'ember/no-private-routing-service': 'off',
   },
   overrides: [
     // node files
@@ -62,8 +50,35 @@ module.exports = {
       extends: ['plugin:n/recommended'],
     },
     {
-      // test files
-      files: ['tests/**/*-test.{js,ts}'],
+      files: ['**/*.{js,ts}'],
+      plugins: ['ember'],
+      parser: '@typescript-eslint/parser',
+      extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended', // or other configuration
+      ],
+      rules: {
+        'ember/no-new-mixins': 'off',
+        'ember/no-mixins': 'off',
+        'ember/require-tagless-components': 'off',
+        'ember/no-classic-classes': 'off',
+        'ember/no-get': 'off',
+        'ember/no-classic-components': 'off',
+        'ember/no-private-routing-service': 'off',
+      },
+    },
+    {
+      files: ['**/*.gjs'],
+      parser: 'ember-eslint-parser',
+      plugins: ['ember'],
+      extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended',
+        'plugin:ember/recommended-gjs',
+      ],
+    },
+    {
+      files: ['tests/**/*.{js,ts,gjs,gts}'],
       extends: ['plugin:qunit/recommended'],
     },
   ],

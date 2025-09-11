@@ -23,3 +23,15 @@
 /package.json.ember-try
 /package-lock.json.ember-try
 /yarn.lock.ember-try
+
+# Misc files 
+*.md
+pnpm-lock.yaml
+jsconfig.json
+
+# api docs data
+/ember-api-docs-data/
+
+
+# hbs -- no point to prettier before moving to <template>
+*.hbs
