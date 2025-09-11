@@ -81,5 +81,61 @@ module('Unit | Controller | project version', function (hooks) {
         '/ember/6.4/modules/%40ember%2Fapplication#classes',
       );
     });
+
+    test('For ember project, it goes to version root when crossing 2.16 boundary', function (assert) {
+      let endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '2.15.0',
+        currentVersion: '2.16.0',
+        currentRouteName: 'project-version.classes.class',
+        classModelName: 'Component',
+        moduleModelName: null,
+        namespaceModelName: null,
+        currentAnchor: '#didInsertElement',
+      });
+
+      assert.strictEqual(endingRoute, '/ember/2.15');
+
+      endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '2.16.0',
+        currentVersion: '2.15.0',
+        currentRouteName: 'project-version.classes.class',
+        classModelName: 'Component',
+        moduleModelName: null,
+        namespaceModelName: null,
+        currentAnchor: '#didInsertElement',
+      });
+
+      assert.strictEqual(endingRoute, '/ember/2.16');
+    });
+
+    test('For ember-data project, it goes to version root when crossing 4.0 boundary', function (assert) {
+      let endingRoute = findEndingRoute({
+        project: 'ember-data',
+        targetVersion: '3.28.0',
+        currentVersion: '4.0.0',
+        currentRouteName: 'project-version.classes.class',
+        classModelName: 'Adapter',
+        moduleModelName: null,
+        namespaceModelName: null,
+        currentAnchor: '',
+      });
+
+      assert.strictEqual(endingRoute, '/ember-data/3.28');
+
+      endingRoute = findEndingRoute({
+        project: 'ember-data',
+        targetVersion: '4.0.0',
+        currentVersion: '3.28.0',
+        currentRouteName: 'project-version.classes.class',
+        classModelName: 'DS.Adapter',
+        moduleModelName: null,
+        namespaceModelName: null,
+        currentAnchor: '',
+      });
+
+      assert.strictEqual(endingRoute, '/ember-data/4.0');
+    });
   });
 });

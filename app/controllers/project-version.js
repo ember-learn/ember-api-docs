@@ -189,30 +189,36 @@ export function findEndingRoute({
       break;
   }
 
-  let isEmberProject = project === 'ember';
-
-  // if the user is navigating to/from api versions >= 2.16, take them
+  // if the user is navigating to/from api versions Ember >= 2.16 or Ember Data >= 4.0, take them
   // to the home page instead of trying to translate the url
-  let shouldConvertPackages = _shouldConvertPackages(
-    targetVersion,
-    currentVersion,
-  );
-
-  if (!isEmberProject || !shouldConvertPackages) {
-    return `/${project}/${projectVersionID}/${endingRoute}${currentAnchor}`;
-  } else {
+  if (shouldGoToVersionIndex(project, targetVersion, currentVersion)) {
     return `/${project}/${projectVersionID}`;
+  } else {
+    return `/${project}/${projectVersionID}/${endingRoute}${currentAnchor}`;
   }
 }
 
+function shouldGoToVersionIndex(project, targetVersion, currentVersion) {
+  let boundaryVersion;
+  if (project === 'ember') {
+    boundaryVersion = '2.16';
+  } else if (project === 'ember-data') {
+    boundaryVersion = '4.0';
+  }
+  return isCrossingVersionBoundary(
+    targetVersion,
+    currentVersion,
+    boundaryVersion,
+  );
+}
+
 // Input some version info, returns a boolean based on
-// whether the user is switching versions for a 2.16 docs release or later.
-// The urls for pre-2.16 classes and later packages are quite different
-function _shouldConvertPackages(targetVer, previousVer) {
+// whether the user is switching versions for a release or later.
+function isCrossingVersionBoundary(targetVer, previousVer, boundaryVersion) {
   let targetVersion = getCompactVersion(targetVer);
   let previousVersion = getCompactVersion(previousVer);
-  let previousComparison = semverCompare(previousVersion, '2.16');
-  let targetComparison = semverCompare(targetVersion, '2.16');
+  let previousComparison = semverCompare(previousVersion, boundaryVersion);
+  let targetComparison = semverCompare(targetVersion, boundaryVersion);
   return (
     (previousComparison < 0 && targetComparison >= 0) ||
     (previousComparison >= 0 && targetComparison < 0)
