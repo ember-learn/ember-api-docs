@@ -279,4 +279,40 @@ module('Acceptance | version navigation', function (hooks) {
       'navigated to v1.13 class',
     );
   });
+
+  test('switching to a version that is missing a module or class offers a link to the API index for that version', async function (assert) {
+    const versionIndexLinkSelector = '[data-test-version-index-link]';
+    await visit('/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '3.10');
+
+    assert
+      .dom()
+      .includesText(
+        'We could not find module @glimmer/tracking/primitives/cache in v3.10 of ember.',
+      );
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v3.10')
+      .hasAttribute('href', '/ember/3.10');
+
+    await visit('/ember/3.0/classes/Ember.Debug');
+    assert.strictEqual(currentURL(), '/ember/3.0/classes/Ember.Debug');
+
+    await selectChoose('.ember-power-select-trigger', '4.0');
+
+    assert
+      .dom()
+      .includesText('We could not find class Ember.Debug in v4.0 of ember.');
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v4.0')
+      .hasAttribute('href', '/ember/4.0');
+  });
 });

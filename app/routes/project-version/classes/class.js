@@ -59,8 +59,26 @@ export default class ClassRoute extends Route {
     });
   }
 
-  redirect(model) {
+  redirect(model, transition) {
     if (model.isError) {
+      // Transitioning to the same route, probably only changing version
+      // Could explicitly check by comparing transition.to and transition.from
+      if (transition.to.name === transition?.from?.name) {
+        const projectVersionRouteInfo = transition.to.find(function (item) {
+          return item.params?.project_version;
+        });
+        const attemptedVersion =
+          projectVersionRouteInfo.params?.project_version;
+        const attemptedProject = projectVersionRouteInfo.params?.project;
+        let error = new Error(
+          `We could not find ${transition.to.localName} ${transition.to.params[transition.to.paramNames[0]]} in v${attemptedVersion} of ${attemptedProject}.`,
+        );
+        error.status = 404;
+        error.attemptedProject = attemptedProject;
+        error.attemptedVersion = attemptedVersion;
+        throw error;
+      }
+
       let error = new Error(
         'Error retrieving model in routes/project-version/classes/class',
       );
