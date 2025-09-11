@@ -187,6 +187,81 @@ section.event {
   margin: var(--spacing-2);
 }
 
+.search-wrapper {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 25vw;
+  min-width: 500px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
+  margin-top: 10px;
+  border: 2px solid var(--color-card-border);
+  overflow-x: auto;
+  max-height: 70dvh;
+  z-index: 1;
+}
+
+@media (width <= 500px) {
+  .search-results {
+    width: 95dvw;
+    min-width: auto;
+    max-height: initial;
+  }
+}
+
+.search-results--instructions,
+.search-results--no-results,
+.search-results--searching,
+.search-results--group-header,
+.search-results--result {
+  padding: 8px 16px;
+}
+
+.search-results--result {
+  display: flex;
+  border-bottom: 1px solid var(--color-card-border);
+  gap: 10px;
+  font-size: 14px;
+}
+
+.search-results--subcategory-column {
+  font-weight: bold;
+  max-width: 33%;
+  flex-basis: 33%;
+  overflow-wrap: break-word;
+}
+
+.search-results--content {
+  flex: 1 0 0;
+}
+
+.search-results--no-results {
+  color: var(--color-gray-600);
+}
+
+.search-results--group-header {
+  background-color: var(--color-info);
+}
+
+.visually-hidden,
+.screen-reader-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Ember data uses styled elements in markdown blocks that conflict with the
    default styles for blockquotes (because of ::before block that has an
    absolutely positioned quote mark).
@@ -211,6 +286,40 @@ table th,
 table td {
   padding: var(--spacing-1);
 }
+
+/* Taken from guidemaker for search
+   Should probably move to ember-styleguide
+ */
+
+.es-navbar {
+  max-width: 100%;
+}
+
+.search-input {
+  border-radius: 18px;
+  border: 2px solid var(--color-card-border);
+  line-height: 30px;
+  padding-left: 8px;
+  width: 100%;
+}
+
+.powered-by-algolia {
+  display: flex;
+  justify-content: end;
+  margin: 8px;
+}
+
+.powered-by-algolia a {
+  display: flex;
+}
+
+@media (width >= 1008px) {
+  .navbar-list {
+    flex-grow: 1;
+  }
+}
+
+/* End taken from guidemaker for search */
 
 @media (width >= 845px) {
   .es-header {
