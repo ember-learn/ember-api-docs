@@ -38,6 +38,23 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
+  test('switching versions from release', async function (assert) {
+    await visit('/ember/release/modules/@glimmer%2Ftracking');
+
+    assert.equal(
+      currentURL(),
+      '/ember/release/modules/@glimmer%2Ftracking',
+      'navigated to release',
+    );
+    await selectChoose('.ember-power-select-trigger', '6.4');
+
+    assert.equal(
+      currentURL(),
+      '/ember/6.4/modules/@glimmer%2Ftracking',
+      'navigated to v6.4 class',
+    );
+  });
+
   test('switching namespace versions less than 2.16 should retain namespace page', async function (assert) {
     await visit('/ember/2.7/namespaces/Ember');
     await waitForSettled();

@@ -147,6 +147,7 @@ export default class ProjectVersionController extends Controller {
         project,
         targetVersion: ver.id,
         currentVersion: this.projectService.version,
+        currentUrlVersion: this.projectService.getUrlVersion(),
         currentURL,
         currentAnchor: window.location.hash,
       }),
@@ -158,6 +159,7 @@ export function findEndingRoute({
   project,
   targetVersion,
   currentVersion,
+  currentUrlVersion,
   currentURL,
   currentAnchor,
 }) {
@@ -167,7 +169,7 @@ export function findEndingRoute({
   if (shouldGoToVersionIndex(project, targetVersion, currentVersion)) {
     return `/${project}/${projectVersionID}`;
   } else {
-    return `${currentURL.replace(getCompactVersion(currentVersion), projectVersionID)}${currentAnchor}`;
+    return `${currentURL.replace(currentUrlVersion, projectVersionID)}${currentAnchor}`;
   }
 }
 
