@@ -53,10 +53,7 @@ module('Unit | Controller | project version', function (hooks) {
         project: 'ember',
         targetVersion: '6.4.0',
         currentVersion: '6.5.0',
-        currentRouteName: 'project-version.classes.class',
-        classModelName: 'Component',
-        moduleModelName: null,
-        namespaceModelName: null,
+        currentURL: '/ember/6.5/classes/Component',
         currentAnchor: '#didInsertElement',
       });
 
@@ -69,10 +66,7 @@ module('Unit | Controller | project version', function (hooks) {
         project: 'ember',
         targetVersion: '6.4.0',
         currentVersion: '6.5.0',
-        currentRouteName: 'project-version.modules.module',
-        classModelName: null,
-        moduleModelName: '@ember/application',
-        namespaceModelName: null,
+        currentURL: '/ember/6.5/modules/%40ember%2Fapplication',
         currentAnchor: '#classes',
       });
 
@@ -87,10 +81,7 @@ module('Unit | Controller | project version', function (hooks) {
         project: 'ember',
         targetVersion: '2.15.0',
         currentVersion: '2.16.0',
-        currentRouteName: 'project-version.classes.class',
-        classModelName: 'Component',
-        moduleModelName: null,
-        namespaceModelName: null,
+        currentURL: '/ember/2.16/classes/Component',
         currentAnchor: '#didInsertElement',
       });
 
@@ -100,10 +91,7 @@ module('Unit | Controller | project version', function (hooks) {
         project: 'ember',
         targetVersion: '2.16.0',
         currentVersion: '2.15.0',
-        currentRouteName: 'project-version.classes.class',
-        classModelName: 'Component',
-        moduleModelName: null,
-        namespaceModelName: null,
+        currentURL: '/ember/2.15/classes/Component',
         currentAnchor: '#didInsertElement',
       });
 
@@ -115,10 +103,7 @@ module('Unit | Controller | project version', function (hooks) {
         project: 'ember-data',
         targetVersion: '3.28.0',
         currentVersion: '4.0.0',
-        currentRouteName: 'project-version.classes.class',
-        classModelName: 'Adapter',
-        moduleModelName: null,
-        namespaceModelName: null,
+        currentURL: '/ember-data/4.0/classes/Adapter',
         currentAnchor: '',
       });
 
@@ -128,10 +113,7 @@ module('Unit | Controller | project version', function (hooks) {
         project: 'ember-data',
         targetVersion: '4.0.0',
         currentVersion: '3.28.0',
-        currentRouteName: 'project-version.classes.class',
-        classModelName: 'DS.Adapter',
-        moduleModelName: null,
-        namespaceModelName: null,
+        currentURL: '/ember-data/3.28/classes/DS.Adapter',
         currentAnchor: '',
       });
 

@@ -165,6 +165,21 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
+  test('switching between versions on a function works', async function (assert) {
+    await visit('/ember/6.5/functions/@ember%2Fdebug/debug');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.5/functions/@ember%2Fdebug/debug',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '6.4');
+
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.4/functions/@ember%2Fdebug/debug',
+    );
+  });
+
   test('switching versions works if class name includes slashes', async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(

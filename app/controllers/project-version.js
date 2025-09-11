@@ -141,15 +141,13 @@ export default class ProjectVersionController extends Controller {
 
   @action
   updateProject(project, ver /*, component */) {
+    const currentURL = this.router.currentURL;
     this.router.transitionTo(
       findEndingRoute({
         project,
         targetVersion: ver.id,
         currentVersion: this.projectService.version,
-        currentRouteName: this.router.currentRouteName,
-        classModelName: this.classController?.model?.get('name'),
-        moduleModelName: this.moduleController?.model?.name,
-        namespaceModelName: this.namespaceController?.model?.name,
+        currentURL,
         currentAnchor: window.location.hash,
       }),
     );
@@ -160,41 +158,16 @@ export function findEndingRoute({
   project,
   targetVersion,
   currentVersion,
-  currentRouteName,
-  classModelName,
-  moduleModelName,
-  namespaceModelName,
+  currentURL,
   currentAnchor,
 }) {
   let projectVersionID = getCompactVersion(targetVersion);
-  let endingRoute;
-  switch (currentRouteName) {
-    case 'project-version.classes.class': {
-      let className = encodeURIComponent(classModelName);
-      endingRoute = `classes/${className}`;
-      break;
-    }
-    case 'project-version.modules.module': {
-      let moduleName = encodeURIComponent(moduleModelName);
-      endingRoute = `modules/${moduleName}`;
-      break;
-    }
-    case 'project-version.namespaces.namespace': {
-      let namespaceName = namespaceModelName;
-      endingRoute = `namespaces/${namespaceName}`;
-      break;
-    }
-    default:
-      endingRoute = '';
-      break;
-  }
-
   // if the user is navigating to/from api versions Ember >= 2.16 or Ember Data >= 4.0, take them
   // to the home page instead of trying to translate the url
   if (shouldGoToVersionIndex(project, targetVersion, currentVersion)) {
     return `/${project}/${projectVersionID}`;
   } else {
-    return `/${project}/${projectVersionID}/${endingRoute}${currentAnchor}`;
+    return `${currentURL.replace(getCompactVersion(currentVersion), projectVersionID)}${currentAnchor}`;
   }
 }
 
