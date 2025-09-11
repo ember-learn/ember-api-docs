@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 /* eslint-disable ember/no-restricted-resolver-tests */
 import { setupTest } from 'ember-qunit';
+import { findEndingRoute } from 'ember-api-docs/controllers/project-version';
 
 const moduleIds = [
   'ember-2.10.0-ember',
@@ -44,5 +45,41 @@ module('Unit | Controller | project version', function (hooks) {
 
     let moduleNames = controller.getModuleRelationships('ember-2.10.1');
     assert.deepEqual(moduleNames, expectedModuleNames);
+  });
+
+  module('findEndingRoute', function () {
+    test('Maintains anchors', function (assert) {
+      let endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '6.4.0',
+        currentVersion: '6.5.0',
+        currentRouteName: 'project-version.classes.class',
+        classModelName: 'Component',
+        moduleModelName: null,
+        namespaceModelName: null,
+        currentAnchor: '#didInsertElement',
+      });
+
+      assert.strictEqual(
+        endingRoute,
+        '/ember/6.4/classes/Component#didInsertElement',
+      );
+
+      endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '6.4.0',
+        currentVersion: '6.5.0',
+        currentRouteName: 'project-version.modules.module',
+        classModelName: null,
+        moduleModelName: '@ember/application',
+        namespaceModelName: null,
+        currentAnchor: '#classes',
+      });
+
+      assert.strictEqual(
+        endingRoute,
+        '/ember/6.4/modules/%40ember%2Fapplication#classes',
+      );
+    });
   });
 });

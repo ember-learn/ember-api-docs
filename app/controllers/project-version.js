@@ -141,61 +141,80 @@ export default class ProjectVersionController extends Controller {
 
   @action
   updateProject(project, ver /*, component */) {
-    let projectVersionID = ver.compactVersion;
-    let endingRoute;
-    switch (this.router.currentRouteName) {
-      case 'project-version.classes.class': {
-        let className = this._getEncodedNameForCurrentClass();
-        endingRoute = `classes/${className}`;
-        break;
-      }
-      case 'project-version.modules.module': {
-        let moduleName = encodeURIComponent(this.moduleController.model.name);
-        endingRoute = `modules/${moduleName}`;
-        break;
-      }
-      case 'project-version.namespaces.namespace': {
-        let namespaceName = this.namespaceController.model.name;
-        endingRoute = `namespaces/${namespaceName}`;
-        break;
-      }
-      default:
-        endingRoute = '';
-        break;
-    }
-    // if the user is navigating to/from api versions >= 2.16, take them
-    // to the home page instead of trying to translate the url
-    let shouldConvertPackages = this._shouldConvertPackages(
-      ver,
-      this.projectService.version,
-    );
-    let isEmberProject = project === 'ember';
-
-    if (!isEmberProject || !shouldConvertPackages) {
-      this.router.transitionTo(
-        `/${project}/${projectVersionID}/${endingRoute}`,
-      );
-    } else {
-      this.router.transitionTo(`/${project}/${projectVersionID}`);
-    }
-  }
-
-  _getEncodedNameForCurrentClass() {
-    // escape any reserved characters for url, like slashes
-    return encodeURIComponent(this.classController.model.get('name'));
-  }
-
-  // Input some version info, returns a boolean based on
-  // whether the user is switching versions for a 2.16 docs release or later.
-  // The urls for pre-2.16 classes and later packages are quite different
-  _shouldConvertPackages(targetVer, previousVer) {
-    let targetVersion = getCompactVersion(targetVer.id);
-    let previousVersion = getCompactVersion(previousVer);
-    let previousComparison = semverCompare(previousVersion, '2.16');
-    let targetComparison = semverCompare(targetVersion, '2.16');
-    return (
-      (previousComparison < 0 && targetComparison >= 0) ||
-      (previousComparison >= 0 && targetComparison < 0)
+    this.router.transitionTo(
+      findEndingRoute({
+        project,
+        targetVersion: ver.id,
+        currentVersion: this.projectService.version,
+        currentRouteName: this.router.currentRouteName,
+        classModelName: this.classController?.model?.get('name'),
+        moduleModelName: this.moduleController?.model?.name,
+        namespaceModelName: this.namespaceController?.model?.name,
+        currentAnchor: window.location.hash,
+      }),
     );
   }
+}
+
+export function findEndingRoute({
+  project,
+  targetVersion,
+  currentVersion,
+  currentRouteName,
+  classModelName,
+  moduleModelName,
+  namespaceModelName,
+  currentAnchor,
+}) {
+  let projectVersionID = getCompactVersion(targetVersion);
+  let endingRoute;
+  switch (currentRouteName) {
+    case 'project-version.classes.class': {
+      let className = encodeURIComponent(classModelName);
+      endingRoute = `classes/${className}`;
+      break;
+    }
+    case 'project-version.modules.module': {
+      let moduleName = encodeURIComponent(moduleModelName);
+      endingRoute = `modules/${moduleName}`;
+      break;
+    }
+    case 'project-version.namespaces.namespace': {
+      let namespaceName = namespaceModelName;
+      endingRoute = `namespaces/${namespaceName}`;
+      break;
+    }
+    default:
+      endingRoute = '';
+      break;
+  }
+
+  let isEmberProject = project === 'ember';
+
+  // if the user is navigating to/from api versions >= 2.16, take them
+  // to the home page instead of trying to translate the url
+  let shouldConvertPackages = _shouldConvertPackages(
+    targetVersion,
+    currentVersion,
+  );
+
+  if (!isEmberProject || !shouldConvertPackages) {
+    return `/${project}/${projectVersionID}/${endingRoute}${currentAnchor}`;
+  } else {
+    return `/${project}/${projectVersionID}`;
+  }
+}
+
+// Input some version info, returns a boolean based on
+// whether the user is switching versions for a 2.16 docs release or later.
+// The urls for pre-2.16 classes and later packages are quite different
+function _shouldConvertPackages(targetVer, previousVer) {
+  let targetVersion = getCompactVersion(targetVer);
+  let previousVersion = getCompactVersion(previousVer);
+  let previousComparison = semverCompare(previousVersion, '2.16');
+  let targetComparison = semverCompare(targetVersion, '2.16');
+  return (
+    (previousComparison < 0 && targetComparison >= 0) ||
+    (previousComparison >= 0 && targetComparison < 0)
+  );
 }
