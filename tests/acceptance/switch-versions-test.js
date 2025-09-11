@@ -11,6 +11,8 @@ async function waitForSettled() {
   await settled();
 }
 
+const versionIndexLinkSelector = '[data-test-version-index-link]';
+
 module('Acceptance | version navigation', function (hooks) {
   setupApplicationTest(hooks);
 
@@ -312,8 +314,7 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
-  test('switching to a version that is missing a module or class offers a link to the API index for that version', async function (assert) {
-    const versionIndexLinkSelector = '[data-test-version-index-link]';
+  test('switching to a version that is missing a module offers a link to the API index for that version', async function (assert) {
     await visit('/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache');
     assert.strictEqual(
       currentURL(),
@@ -332,7 +333,9 @@ module('Acceptance | version navigation', function (hooks) {
       .dom(versionIndexLinkSelector)
       .includesText('v3.10')
       .hasAttribute('href', '/ember/3.10');
+  });
 
+  test('switching to a version that is missing a class offers a link to the API index for that version', async function (assert) {
     await visit('/ember/3.0/classes/Ember.Debug');
     assert.strictEqual(currentURL(), '/ember/3.0/classes/Ember.Debug');
 
@@ -346,5 +349,26 @@ module('Acceptance | version navigation', function (hooks) {
       .dom(versionIndexLinkSelector)
       .includesText('v4.0')
       .hasAttribute('href', '/ember/4.0');
+  });
+
+  test('switching to a version that is missing a function offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/3.28/functions/@glimmer%2Ftracking/tracked');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/3.28/functions/@glimmer%2Ftracking/tracked',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '3.12');
+
+    assert
+      .dom()
+      .includesText(
+        'We could not find function @glimmer/tracking/tracked in v3.12 of ember.',
+      );
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v3.12')
+      .hasAttribute('href', '/ember/3.12');
   });
 });
