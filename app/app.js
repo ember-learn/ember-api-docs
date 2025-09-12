@@ -4,6 +4,7 @@ import loadInitializers from 'ember-load-initializers';
 import config from 'ember-api-docs/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import 'ember-power-select/styles';
+import './assets/styles.css';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');

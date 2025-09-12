@@ -1,6 +1,9 @@
 import EmberRouter from '@ember/routing/router';
 import config from 'ember-api-docs/config/environment';
+import { withHashSupport } from 'ember-api-docs/utils/url-hash-polyfill';
 
+// The following adds support for URL hash routing for those URLs not rendered with fastboot
+@withHashSupport
 class AppRouter extends EmberRouter {
   location = config.locationType;
   rootURL = config.routerRootURL;

@@ -2,6 +2,7 @@ import { inject as service } from '@ember/service';
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
 import ENV from 'ember-api-docs/config/environment';
+import { isDestroying, isDestroyed } from '@ember/destroyable';
 
 export default class ApplicationRoute extends Route {
   @service
@@ -19,10 +20,25 @@ export default class ApplicationRoute extends Route {
   @service
   metrics;
 
+  @service
+  routerScroll;
+
   constructor() {
     super(...arguments);
     if (!this.fastboot.isFastBoot) {
       this.router.on('routeDidChange', this.trackPage);
+
+      /* Hax from https://github.com/DockYard/ember-router-scroll/issues/263 
+         to handle router scroll behavior when the page was initially served 
+         with fastboot
+       */
+      this.routerScroll.set('preserveScrollPosition', true);
+
+      setTimeout(() => {
+        if (!isDestroying(this) && !isDestroyed(this)) {
+          this.routerScroll.set('preserveScrollPosition', false);
+        }
+      }, 1000);
     }
   }
 
