@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 /* eslint-disable ember/no-restricted-resolver-tests */
 import { setupTest } from 'ember-qunit';
+import { findEndingRoute } from 'ember-api-docs/controllers/project-version';
 
 const moduleIds = [
   'ember-2.10.0-ember',
@@ -44,5 +45,85 @@ module('Unit | Controller | project version', function (hooks) {
 
     let moduleNames = controller.getModuleRelationships('ember-2.10.1');
     assert.deepEqual(moduleNames, expectedModuleNames);
+  });
+
+  module('findEndingRoute', function () {
+    test('Maintains anchors', function (assert) {
+      let endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '6.4.0',
+        currentVersion: '6.5.0',
+        currentUrlVersion: '6.5',
+        currentURL: '/ember/6.5/classes/Component',
+        currentAnchor: '#didInsertElement',
+      });
+
+      assert.strictEqual(
+        endingRoute,
+        '/ember/6.4/classes/Component#didInsertElement',
+      );
+
+      endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '6.4.0',
+        currentVersion: '6.5.0',
+        currentUrlVersion: '6.5',
+        currentURL: '/ember/6.5/modules/%40ember%2Fapplication',
+        currentAnchor: '#classes',
+      });
+
+      assert.strictEqual(
+        endingRoute,
+        '/ember/6.4/modules/%40ember%2Fapplication#classes',
+      );
+    });
+
+    test('For ember project, it goes to version root when crossing 2.16 boundary', function (assert) {
+      let endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '2.15.0',
+        currentVersion: '2.16.0',
+        currentUrlVersion: '2.16',
+        currentURL: '/ember/2.16/classes/Component',
+        currentAnchor: '#didInsertElement',
+      });
+
+      assert.strictEqual(endingRoute, '/ember/2.15');
+
+      endingRoute = findEndingRoute({
+        project: 'ember',
+        targetVersion: '2.16.0',
+        currentVersion: '2.15.0',
+        currentUrlVersion: '2.15',
+        currentURL: '/ember/2.15/classes/Component',
+        currentAnchor: '#didInsertElement',
+      });
+
+      assert.strictEqual(endingRoute, '/ember/2.16');
+    });
+
+    test('For ember-data project, it goes to version root when crossing 4.0 boundary', function (assert) {
+      let endingRoute = findEndingRoute({
+        project: 'ember-data',
+        targetVersion: '3.28.0',
+        currentVersion: '4.0.0',
+        currentUrlVersion: '4.0',
+        currentURL: '/ember-data/4.0/classes/Adapter',
+        currentAnchor: '',
+      });
+
+      assert.strictEqual(endingRoute, '/ember-data/3.28');
+
+      endingRoute = findEndingRoute({
+        project: 'ember-data',
+        targetVersion: '4.0.0',
+        currentVersion: '3.28.0',
+        currentUrlVersion: '3.28',
+        currentURL: '/ember-data/3.28/classes/DS.Adapter',
+        currentAnchor: '',
+      });
+
+      assert.strictEqual(endingRoute, '/ember-data/4.0');
+    });
   });
 });

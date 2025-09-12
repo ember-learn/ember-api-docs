@@ -2,7 +2,7 @@
 import { action, computed, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { readOnly, alias } from '@ember/object/computed';
-import Controller, { inject as controller } from '@ember/controller';
+import Controller from '@ember/controller';
 import { A } from '@ember/array';
 import values from 'lodash.values';
 import groupBy from 'lodash.groupby';
@@ -24,10 +24,6 @@ export default class ProjectVersionController extends Controller {
 
   @service router;
   @service('project') projectService;
-
-  @controller('project-version.classes.class') classController;
-  @controller('project-version.modules.module') moduleController;
-  @controller('project-version.namespaces.namespace') namespaceController;
 
   @alias('filterData.sideNav.showPrivate')
   showPrivateClasses;
@@ -141,61 +137,61 @@ export default class ProjectVersionController extends Controller {
 
   @action
   updateProject(project, ver /*, component */) {
-    let projectVersionID = ver.compactVersion;
-    let endingRoute;
-    switch (this.router.currentRouteName) {
-      case 'project-version.classes.class': {
-        let className = this._getEncodedNameForCurrentClass();
-        endingRoute = `classes/${className}`;
-        break;
-      }
-      case 'project-version.modules.module': {
-        let moduleName = encodeURIComponent(this.moduleController.model.name);
-        endingRoute = `modules/${moduleName}`;
-        break;
-      }
-      case 'project-version.namespaces.namespace': {
-        let namespaceName = this.namespaceController.model.name;
-        endingRoute = `namespaces/${namespaceName}`;
-        break;
-      }
-      default:
-        endingRoute = '';
-        break;
-    }
-    // if the user is navigating to/from api versions >= 2.16, take them
-    // to the home page instead of trying to translate the url
-    let shouldConvertPackages = this._shouldConvertPackages(
-      ver,
-      this.projectService.version,
-    );
-    let isEmberProject = project === 'ember';
-
-    if (!isEmberProject || !shouldConvertPackages) {
-      this.router.transitionTo(
-        `/${project}/${projectVersionID}/${endingRoute}`,
-      );
-    } else {
-      this.router.transitionTo(`/${project}/${projectVersionID}`);
-    }
-  }
-
-  _getEncodedNameForCurrentClass() {
-    // escape any reserved characters for url, like slashes
-    return encodeURIComponent(this.classController.model.get('name'));
-  }
-
-  // Input some version info, returns a boolean based on
-  // whether the user is switching versions for a 2.16 docs release or later.
-  // The urls for pre-2.16 classes and later packages are quite different
-  _shouldConvertPackages(targetVer, previousVer) {
-    let targetVersion = getCompactVersion(targetVer.id);
-    let previousVersion = getCompactVersion(previousVer);
-    let previousComparison = semverCompare(previousVersion, '2.16');
-    let targetComparison = semverCompare(targetVersion, '2.16');
-    return (
-      (previousComparison < 0 && targetComparison >= 0) ||
-      (previousComparison >= 0 && targetComparison < 0)
+    const currentURL = this.router.currentURL;
+    this.router.transitionTo(
+      findEndingRoute({
+        project,
+        targetVersion: ver.id,
+        currentVersion: this.projectService.version,
+        currentUrlVersion: this.projectService.getUrlVersion(),
+        currentURL,
+        currentAnchor: window.location.hash,
+      }),
     );
   }
+}
+
+export function findEndingRoute({
+  project,
+  targetVersion,
+  currentVersion,
+  currentUrlVersion,
+  currentURL,
+  currentAnchor,
+}) {
+  let projectVersionID = getCompactVersion(targetVersion);
+  // if the user is navigating to/from api versions Ember >= 2.16 or Ember Data >= 4.0, take them
+  // to the home page instead of trying to translate the url
+  if (shouldGoToVersionIndex(project, targetVersion, currentVersion)) {
+    return `/${project}/${projectVersionID}`;
+  } else {
+    return `${currentURL.replace(currentUrlVersion, projectVersionID)}${currentAnchor}`;
+  }
+}
+
+function shouldGoToVersionIndex(project, targetVersion, currentVersion) {
+  let boundaryVersion;
+  if (project === 'ember') {
+    boundaryVersion = '2.16';
+  } else if (project === 'ember-data') {
+    boundaryVersion = '4.0';
+  }
+  return isCrossingVersionBoundary(
+    targetVersion,
+    currentVersion,
+    boundaryVersion,
+  );
+}
+
+// Input some version info, returns a boolean based on
+// whether the user is switching versions for a release or later.
+function isCrossingVersionBoundary(targetVer, previousVer, boundaryVersion) {
+  let targetVersion = getCompactVersion(targetVer);
+  let previousVersion = getCompactVersion(previousVer);
+  let previousComparison = semverCompare(previousVersion, boundaryVersion);
+  let targetComparison = semverCompare(targetVersion, boundaryVersion);
+  return (
+    (previousComparison < 0 && targetComparison >= 0) ||
+    (previousComparison >= 0 && targetComparison < 0)
+  );
 }

@@ -17,7 +17,7 @@ export default class FunctionRoute extends Route {
     return model?.fn?.name;
   }
 
-  async model(params) {
+  async model(params, transition) {
     const pVParams = this.paramsFor('project-version');
     const { project, project_version: compactVersion } = pVParams;
 
@@ -38,10 +38,24 @@ export default class FunctionRoute extends Route {
         `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
     } catch (e) {
-      fnModule = await this.store.find(
-        'namespace',
-        `${project}-${projectVersion}-${className}`.toLowerCase(),
-      );
+      try {
+        fnModule = await this.store.find(
+          'namespace',
+          `${project}-${projectVersion}-${className}`.toLowerCase(),
+        );
+      } catch (e2) {
+        if (transition.to.name === transition?.from?.name) {
+          let error = new Error(
+            `We could not find function ${className}/${functionName} in v${compactVersion} of ${project}.`,
+          );
+          error.status = 404;
+          error.attemptedProject = project;
+          error.attemptedVersion = compactVersion;
+          throw error;
+        } else {
+          throw e2;
+        }
+      }
     }
 
     return {

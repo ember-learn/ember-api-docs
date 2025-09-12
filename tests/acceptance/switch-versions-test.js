@@ -11,6 +11,8 @@ async function waitForSettled() {
   await settled();
 }
 
+const versionIndexLinkSelector = '[data-test-version-index-link]';
+
 module('Acceptance | version navigation', function (hooks) {
   setupApplicationTest(hooks);
 
@@ -35,6 +37,23 @@ module('Acceptance | version navigation', function (hooks) {
       currentURL(),
       '/ember/1.4/classes/Ember.Component',
       'navigated to v2.8 class',
+    );
+  });
+
+  test('switching versions from release', async function (assert) {
+    await visit('/ember/release/modules/@glimmer%2Ftracking');
+
+    assert.equal(
+      currentURL(),
+      '/ember/release/modules/@glimmer%2Ftracking',
+      'navigated to release',
+    );
+    await selectChoose('.ember-power-select-trigger', '6.4');
+
+    assert.equal(
+      currentURL(),
+      '/ember/6.4/modules/@glimmer%2Ftracking',
+      'navigated to v6.4 class',
     );
   });
 
@@ -165,6 +184,21 @@ module('Acceptance | version navigation', function (hooks) {
     );
   });
 
+  test('switching between versions on a function works', async function (assert) {
+    await visit('/ember/6.5/functions/@ember%2Fdebug/debug');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.5/functions/@ember%2Fdebug/debug',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '6.4');
+
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.4/functions/@ember%2Fdebug/debug',
+    );
+  });
+
   test('switching versions works if class name includes slashes', async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
@@ -278,5 +312,63 @@ module('Acceptance | version navigation', function (hooks) {
       '/ember/1.13/classes/Ember.Component',
       'navigated to v1.13 class',
     );
+  });
+
+  test('switching to a version that is missing a module offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '3.10');
+
+    assert
+      .dom()
+      .includesText(
+        'We could not find module @glimmer/tracking/primitives/cache in v3.10 of ember.',
+      );
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v3.10')
+      .hasAttribute('href', '/ember/3.10');
+  });
+
+  test('switching to a version that is missing a class offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/3.0/classes/Ember.Debug');
+    assert.strictEqual(currentURL(), '/ember/3.0/classes/Ember.Debug');
+
+    await selectChoose('.ember-power-select-trigger', '4.0');
+
+    assert
+      .dom()
+      .includesText('We could not find class Ember.Debug in v4.0 of ember.');
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v4.0')
+      .hasAttribute('href', '/ember/4.0');
+  });
+
+  test('switching to a version that is missing a function offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/3.28/functions/@glimmer%2Ftracking/tracked');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/3.28/functions/@glimmer%2Ftracking/tracked',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '3.12');
+
+    assert
+      .dom()
+      .includesText(
+        'We could not find function @glimmer/tracking/tracked in v3.12 of ember.',
+      );
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v3.12')
+      .hasAttribute('href', '/ember/3.12');
   });
 });
