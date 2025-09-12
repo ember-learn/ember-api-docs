@@ -2,7 +2,7 @@
 import { action, computed, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { readOnly, alias } from '@ember/object/computed';
-import Controller, { inject as controller } from '@ember/controller';
+import Controller from '@ember/controller';
 import { A } from '@ember/array';
 import values from 'lodash.values';
 import groupBy from 'lodash.groupby';
@@ -24,10 +24,6 @@ export default class ProjectVersionController extends Controller {
 
   @service router;
   @service('project') projectService;
-
-  @controller('project-version.classes.class') classController;
-  @controller('project-version.modules.module') moduleController;
-  @controller('project-version.namespaces.namespace') namespaceController;
 
   @alias('filterData.sideNav.showPrivate')
   showPrivateClasses;
