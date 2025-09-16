@@ -413,3 +413,30 @@ table td {
     text-align: center;
   }
 }
+
+/* Overriding ember-styleguide because the on-this-page 
+   is used for index lists of methods and properties and
+   is vital information for the api guides.
+   Ideally we'd also switch to the mobile left nav at
+   around < 1000px but that requires upstream changes.
+*/
+@media (width <= 80em) {
+  .content-wrapper {
+    gap: 2em;
+    grid-template-columns: minmax(20ch, 80ch) 10em;
+  }
+
+  .on-this-page-wrapper {
+    display: block;
+  }
+}
+
+@media (width <= 500px) {
+  .content-wrapper {
+    grid-template-columns: minmax(20ch, 80ch);
+  }
+
+  .on-this-page-wrapper {
+    display: block;
+  }
+}
