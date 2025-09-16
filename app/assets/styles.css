@@ -420,7 +420,7 @@ table td {
    Ideally we'd also switch to the mobile left nav at
    around < 1000px but that requires upstream changes.
 */
-@media (max-width: 80em) {
+@media (width <= 80em) {
   .content-wrapper {
     gap: 2em;
     grid-template-columns: minmax(20ch, 80ch) 10em;
@@ -431,7 +431,7 @@ table td {
   }
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .content-wrapper {
     grid-template-columns: minmax(20ch, 80ch);
   }
