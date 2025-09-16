@@ -10,6 +10,7 @@ export default class MetaStoreService extends Service {
   @tracked availableProjectVersions = {
     ember: A(),
     'ember-data': A(),
+    'ember-cli': A(),
   };
   @tracked projectRevMap = {};
 
@@ -40,6 +41,7 @@ export default class MetaStoreService extends Service {
     this.availableProjectVersions = {
       ember: A(availableProjectVersions['ember']),
       'ember-data': A(availableProjectVersions['ember-data']),
+      'ember-cli': A(availableProjectVersions['ember-cli']),
     };
     this.projectRevMap = projectRevMap;
   }
