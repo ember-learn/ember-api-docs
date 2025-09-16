@@ -36,6 +36,8 @@ main a.edit-icon {
 
 .sidebar-container {
   --sidebar-width: min-content;
+
+  padding: 0;
 }
 
 .es-sidebar-content .table-of-contents:first-child {
@@ -194,25 +196,25 @@ section.event {
 
 .search-results {
   position: absolute;
-  right: 0;
+  width: 100%;
+  min-width: auto;
+  max-height: initial;
   top: 100%;
-  width: 25vw;
-  min-width: 500px;
   background-color: white;
   color: black;
   border-radius: 8px;
   margin-top: 10px;
   border: 2px solid var(--color-card-border);
   overflow-x: auto;
-  max-height: 70dvh;
   z-index: 1;
 }
 
-@media (width <= 500px) {
+@media (width > 500px) {
   .search-results {
-    width: 95dvw;
-    min-width: auto;
-    max-height: initial;
+    width: 25vw;
+    min-width: 500px;
+    right: 0;
+    max-height: 70dvh;
   }
 }
 
@@ -321,6 +323,21 @@ table td {
 }
 
 /* End taken from guidemaker for search */
+
+.scroll-to-top {
+  display: none; /* hidden on mobile */
+}
+
+@media (width < 845px) {
+  .es-sidebar[aria-expanded="true"] {
+    padding: var(--spacing-2);
+    margin: var(--spacing-2) 0 0 0;
+  }
+
+  .es-sidebar-content {
+    margin-top: 0;
+  }
+}
 
 @media (width >= 845px) {
   .es-header {
