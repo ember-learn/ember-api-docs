@@ -1,21 +1,22 @@
 import Service, { inject as service } from '@ember/service';
-import { task } from 'ember-concurrency';
-import { set } from '@ember/object';
-import { A as emberArray } from '@ember/array';
-import { alias } from '@ember/object/computed';
+import { restartableTask } from 'ember-concurrency';
+import { tracked } from '@glimmer/tracking';
 
-export default Service.extend({
-  _algoliaService: service('algolia'),
-  _projectService: service('project'),
-  _projectVersion: alias('_projectService.version'),
+export default class SearchService extends Service {
+  @service('algolia') _algoliaService;
+  @service('project') projectService;
 
   /** @type {?string} */
-  _lastQueriedProjectVersion: null,
+  #lastQueriedProjectVersion = null;
 
-  results: emberArray(),
+  @tracked results = [];
 
-  search: task(function* (query) {
-    const projectVersion = this._projectVersion;
+  get projectVersion() {
+    return this.projectService.version;
+  }
+
+  search = restartableTask(async (query) => {
+    const projectVersion = this.projectVersion;
 
     const params = {
       hitsPerPage: 15,
@@ -33,16 +34,17 @@ export default Service.extend({
       query,
     };
 
-    this._lastQueriedProjectVersion = projectVersion;
+    this.#lastQueriedProjectVersion = projectVersion;
 
-    return set(this, 'results', yield this.doSearch(searchObj, params));
-  }).restartable(),
+    this.results = await this.doSearch(searchObj, params);
+    return this.results;
+  });
 
   doSearch(searchObj, params) {
     return this._algoliaService
       .search(searchObj, params)
       .then((results) => results.hits);
-  },
+  }
 
   /**
    * Whenever the version changes in service:project, the results in this
@@ -52,12 +54,12 @@ export default Service.extend({
    */
   hasStaleResults() {
     return (
-      this._lastQueriedProjectVersion !== null &&
-      this._projectVersion !== this._lastQueriedProjectVersion
+      this.#lastQueriedProjectVersion !== null &&
+      this.projectVersion !== this.#lastQueriedProjectVersion
     );
-  },
+  }
 
   clearResults() {
-    set(this, 'results', emberArray());
-  },
-});
+    this.results = [];
+  }
+}

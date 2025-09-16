@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, findAll, currentURL } from '@ember/test-helpers';
@@ -18,7 +19,7 @@ module('Acceptance | Class', function (hooks) {
     const container = store.peekRecord('class', 'ember-1.0.0-container');
     assert.equal(
       findAll('.spec-method-list li').length,
-      container.get('methods.length')
+      container.get('methods.length'),
     );
 
     await click('[data-test-checkbox="private"]'); // turn private back off
@@ -26,7 +27,7 @@ module('Acceptance | Class', function (hooks) {
     assert.equal(
       findAll('.spec-method-list li').length,
       container.get('methods').filter((method) => method.access !== 'private')
-        .length
+        .length,
     );
   });
 
@@ -35,7 +36,7 @@ module('Acceptance | Class', function (hooks) {
     const container = store.peekRecord('class', 'ember-1.0.0-container');
     assert.equal(
       findAll('.spec-property-list li').length,
-      container.get('properties.length')
+      container.get('properties.length'),
     );
   });
 
@@ -44,7 +45,7 @@ module('Acceptance | Class', function (hooks) {
     const container = store.peekRecord('class', 'ember-1.0.0-container');
     assert.equal(
       findAll('.spec-event-list li').length,
-      container.get('events.length')
+      container.get('events.length'),
     );
   });
 
@@ -52,7 +53,7 @@ module('Acceptance | Class', function (hooks) {
     let params = (currentURL().match(/show=([\w\d%]*)/)[1] || '').split('%2C');
     assert.notOk(
       params.includes('inherited'),
-      'show param does not include inherited because it is the default and we unselected it'
+      'show param does not include inherited because it is the default and we unselected it',
     );
     assert.ok(params.includes('protected'), 'show param includes protected');
     assert.ok(params.includes('private'), 'show param includes private');

@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, currentURL, find, settled } from '@ember/test-helpers';
@@ -16,7 +17,7 @@ module('Acceptance | sidebar navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/namespaces/Ember.String',
-      'navigated to namespace'
+      'navigated to namespace',
     );
   });
 
@@ -30,7 +31,7 @@ module('Acceptance | sidebar navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/modules/ember-application',
-      'navigated to module'
+      'navigated to module',
     );
   });
 
@@ -44,7 +45,7 @@ module('Acceptance | sidebar navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/1.0/classes/Ember.Component',
-      'navigated to class'
+      'navigated to class',
     );
   });
 

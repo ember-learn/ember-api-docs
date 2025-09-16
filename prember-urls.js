@@ -1,6 +1,5 @@
 const { readdirSync, existsSync } = require('fs');
 const cmp = require('semver-compare');
-// eslint-disable-next-line node/no-extraneous-require
 const semver = require('semver');
 
 function partialUrlEncode(input) {
@@ -23,7 +22,7 @@ module.exports = function () {
     urls.push(`/${p}/release`);
 
     const fullProjectVersions = readdirSync(
-      `ember-api-docs-data/json-docs/${p}`
+      `ember-api-docs-data/json-docs/${p}`,
     ).filter((v) => v.match(/\d+\.\d+\.\d+/));
 
     // add landing page for each of the projects versions
@@ -42,7 +41,7 @@ module.exports = function () {
       urls.push(`/${p}/${uniqVersion}/${suffix}`);
     };
 
-    const oldVersions = ['1.13', '2.18', '3.28', '4.12', '5.4', '5.8', '5.12'];
+    const oldVersions = ['1.13', '2.18', '3.28', '4.12', '5.12'];
 
     uniqueProjectVersions.forEach((uniqVersion) => {
       if (
@@ -64,7 +63,9 @@ module.exports = function () {
       const highestPatchVersion =
         sortedPatchVersions[sortedPatchVersions.length - 1];
 
-      const revIndex = require(`${__dirname}/ember-api-docs-data/rev-index/${p}-${highestPatchVersion}.json`);
+      const revIndex = require(
+        `${__dirname}/ember-api-docs-data/rev-index/${p}-${highestPatchVersion}.json`,
+      );
 
       ['classes', 'namespaces', 'modules'].forEach((entity) => {
         // add classes
@@ -83,35 +84,11 @@ module.exports = function () {
             if (!existsSync(requirePath)) {
               // TODO we really shouldn't come across this so we should investigate why there are things in the rev-index that don't have corresponding files
               console.log(
-                `about to require ${requirePath} but that file doesn't exist`
+                `about to require ${requirePath} but that file doesn't exist`,
               );
               return;
             }
             entityData = require(requirePath);
-          }
-
-          if (entityData.data.attributes.methods?.length) {
-            addUrl(
-              p,
-              uniqVersion,
-              `${entity}/${partialUrlEncode(cleanId)}/methods`
-            );
-          }
-
-          if (entityData.data.attributes.properties?.length) {
-            addUrl(
-              p,
-              uniqVersion,
-              `${entity}/${partialUrlEncode(cleanId)}/properties`
-            );
-          }
-
-          if (entityData.data.attributes.events?.length) {
-            addUrl(
-              p,
-              uniqVersion,
-              `${entity}/${partialUrlEncode(cleanId)}/events`
-            );
           }
 
           if (entity === 'modules' && entityData) {
@@ -124,7 +101,7 @@ module.exports = function () {
                 addUrl(
                   p,
                   uniqVersion,
-                  `functions/${encodeURIComponent(func.class)}/${func.name}`
+                  `functions/${encodeURIComponent(func.class)}/${func.name}`,
                 );
               });
             });

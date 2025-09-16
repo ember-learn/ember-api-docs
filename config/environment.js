@@ -6,12 +6,12 @@ module.exports = function (environment) {
   let ALGOLIA_API_KEY =
     process.env.ALGOLIA_API_KEY || 'c35425b69b31be1bb4786f0a72146306';
 
-  let ENV = {
+  const ENV = {
     modulePrefix: 'ember-api-docs',
     environment,
     rootURL: '/',
     routerRootURL: '/',
-    locationType: 'auto',
+    locationType: 'history',
     API_HOST: process.env.API_HOST || 'https://api-store.emberjs.com',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
@@ -49,6 +49,10 @@ module.exports = function (environment) {
         config: {
           id: 'UA-27675533-1',
         },
+      },
+      {
+        name: 'LocalAdapter',
+        environments: ['development'],
       },
     ],
   };

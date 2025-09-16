@@ -2,32 +2,23 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 'latest',
     sourceType: 'module',
-    ecmaFeatures: {
-      legacyDecorators: true,
+    requireConfigFile: false,
+    babelOptions: {
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+      ],
     },
   },
-  plugins: ['ember'],
-  extends: [
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint:recommended'],
   env: {
     browser: true,
   },
   rules: {
     'no-console': 'off',
-    'ember/no-new-mixins': 'off',
-    'ember/no-mixins': 'off',
-    'ember/require-tagless-components': 'off',
-    'ember/no-classic-classes': 'off',
-    'ember/no-get': 'off',
-    'ember/no-classic-components': 'off',
-    'ember/no-private-routing-service': 'off',
   },
   overrides: [
     // node files
@@ -35,6 +26,7 @@ module.exports = {
       files: [
         './.eslintrc.js',
         './.prettierrc.js',
+        './.stylelintrc.js',
         './.template-lintrc.js',
         './ember-cli-build.js',
         './testem.js',
@@ -55,17 +47,38 @@ module.exports = {
         browser: false,
         node: true,
       },
-      plugins: ['node'],
-      extends: ['plugin:node/recommended'],
+      extends: ['plugin:n/recommended'],
+    },
+    {
+      files: ['**/*.{js,ts}'],
+      plugins: ['ember'],
+      parser: '@typescript-eslint/parser',
+      extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended', // or other configuration
+      ],
       rules: {
-        // this can be removed once the following is fixed
-        // https://github.com/mysticatea/eslint-plugin-node/issues/77
-        'node/no-unpublished-require': 'off',
+        'ember/no-new-mixins': 'off',
+        'ember/no-mixins': 'off',
+        'ember/require-tagless-components': 'off',
+        'ember/no-classic-classes': 'off',
+        'ember/no-get': 'off',
+        'ember/no-classic-components': 'off',
+        'ember/no-private-routing-service': 'off',
       },
     },
     {
-      // Test files:
-      files: ['tests/**/*-test.{js,ts}'],
+      files: ['**/*.gjs'],
+      parser: 'ember-eslint-parser',
+      plugins: ['ember'],
+      extends: [
+        'eslint:recommended',
+        'plugin:ember/recommended',
+        'plugin:ember/recommended-gjs',
+      ],
+    },
+    {
+      files: ['tests/**/*.{js,ts,gjs,gts}'],
       extends: ['plugin:qunit/recommended'],
     },
   ],

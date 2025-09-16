@@ -3,34 +3,15 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const envIsProduction = process.env.EMBER_ENV === 'production';
 const premberUrls = require('./prember-urls');
-const sass = require('sass');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
+  const app = new EmberApp(defaults, {
     prember: {
       urls: premberUrls(),
     },
     fingerprint: {
-      extensions: [
-        'js',
-        'css',
-        'jpg',
-        'png',
-        'gif',
-        'map',
-        'svg',
-        'webmanifest',
-      ],
+      extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'webmanifest'],
       generateAssetMap: true,
-    },
-    sassOptions: {
-      implementation: sass,
-      sourceMapEmbed: !envIsProduction,
-      includePaths: [
-        'app/styles',
-        'node_modules/bourbon-neat/app/assets/stylesheets',
-        'node_modules/normalize.css',
-      ],
     },
     autoprefixer: {
       enabled: true,
@@ -50,8 +31,13 @@ module.exports = function (defaults) {
     'ember-cli-babel': {
       includePolyfill: true,
     },
-    'ember-fetch': {
-      preferNative: true,
+    babel: {
+      plugins: [
+        // ... any other plugins
+        require.resolve('ember-concurrency/async-arrow-task-transform'),
+
+        // NOTE: put any code coverage plugins last, after the transform.
+      ],
     },
   });
 

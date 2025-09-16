@@ -1,11 +1,18 @@
 {{! template-lint-disable no-action }}
-<article class="chapter">
-  {{#if (and @model.project.id @model.file @model.line (is-latest version=@model.projectVersion.version allVersions=this.allVersions))}}
-    <a data-tooltip="Edit on Github" class="heading__link__edit" href="{{github-link @model.project.id @model.projectVersion.version @model.file @model.line isEdit=true}}" target="_blank" rel="noopener noreferrer">{{svg-jar "fa-pencil"}}</a>
-  {{/if}}
-  <h1 class="module-name">Class {{@model.name}}</h1>
-  {{#if @model.access}}<span class="access">{{@model.access}}</span>{{/if}}
+{{page-title @model.name}}
 
+<article class="chapter">
+  <div class="article-title-wrapper">
+    <h1 class="module-name">Class {{@model.name}}
+      {{#if @model.access}}
+        <span class="access">{{@model.access}}</span>
+      {{/if}}
+    </h1>
+    {{#if (and @model.project.id @model.file @model.line (is-latest version=@model.projectVersion.version allVersions=this.allVersions))}}
+      <a data-tooltip="Edit on Github" class="edit-icon" href="{{github-link @model.project.id @model.projectVersion.version @model.file @model.line isEdit=true}}" target="_blank" rel="noopener noreferrer">{{svg-jar "pen"}}</a>
+    {{/if}}
+  </div>
+  <hr>
   <div class="attributes">
     {{#if @model.extends}}
       <div class="attribute">
@@ -64,31 +71,26 @@
     <ImportExample @item={{@model.name}} @package={{this.module}} />
   {{/if}}
   <p class="description"><MarkdownToHtml @markdown={{@model.description}} /></p>
-
-  {{#if (or @model.methods @model.properties @model.events)}}
+  <hr>
+  {{#if @model.methods}}
+  <h2>Methods</h2>
+  <Methods @model={{@model}} @filterData={{this.filterData}}/>
+  {{/if}}
+  {{#if @model.properties}}
+  <h2>Properties</h2>
+  <Properties @model={{@model}} @filterData={{this.filterData}}/>
+  {{/if}}
+  {{#if @model.events}}
+  <h2>Events</h2>
+  <Events @model={{@model}} @filterData={{this.filterData}}/>
+  {{/if}}
+</article>
+<div class="on-this-page-wrapper">
+    <div class="on-this-page-wrapper-header">On this page</div>
+    <hr>
+{{#if (or @model.methods @model.properties @model.events)}}
     <div class="tabbed-layout">
-      <nav class="tabbed-layout__menu">
-        <LinkTo @route={{concat this.parentName ".index" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".index"}} data-test-tab="index">
-          <span>Index</span>
-        </LinkTo>
-        {{#if @model.methods}}
-          <LinkTo @route={{concat this.parentName ".methods" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".methods"}} data-test-tab="methods">
-            <span>Methods</span>
-          </LinkTo>
-        {{/if}}
-        {{#if @model.properties}}
-          <LinkTo @route={{concat this.parentName ".properties" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".properties"}} data-test-tab="properties">
-            <span>Properties</span>
-          </LinkTo>
-        {{/if}}
-        {{#if @model.events}}
-          <LinkTo @route={{concat this.parentName ".events" }} @models={{array @model.project.id @model.projectVersion.compactVersion @model.name}} @query={{hash anchor=undefined}} class="tabbed-layout__menu__item" @activeClass="tabbed-layout__menu__item_selected" @current-when={{concat this.parentName ".events"}} data-test-tab="events">
-            <span>Events</span>
-          </LinkTo>
-        {{/if}}
-      </nav>
-      <section>
-        Show:
+      <section class="access-checkbox-list">
         <label class="access-checkbox">
           <input id="inherited-toggle"
                  data-test-checkbox="inherited"
@@ -123,8 +125,26 @@
         </label>
       </section>
       <hr>
-      {{outlet}}
     </div>
+    <ApiIndexFilter @model={{this.model}} @filterData={{this.filterData}} as |filteredModel|>
+  <ApiIndex @itemData={{filteredModel}} @classNames="api__index__content" as |sectionData|>
+    {{#each sectionData.sections as |section|}}
+      {{#if section.items}}
+      <h3 class="api-index-section-title">{{section.title}}</h3>
+        <ul class="{{section.class}}">
+          {{#each section.items as |item|}}
+            <li data-test-item={{item.name}}>
+              <a
+                href="#{{item.name}}"
+              >
+                {{item.name}}
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    {{/each}}
+  </ApiIndex>
+</ApiIndexFilter>
   {{/if}}
-
-</article>
+</div>

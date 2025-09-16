@@ -31,7 +31,7 @@ const guessVersionFor = (key) => {
 
       // try linking to latest version at least
       return 'release';
-    }
+    },
   );
 };
 
@@ -117,8 +117,8 @@ export default class Class extends Model {
         className.substr(0, 6) === 'Ember.'
           ? 'ember'
           : className.substr(0, 3) === 'DS'
-          ? 'ember-data'
-          : this.get('project.id'),
+            ? 'ember-data'
+            : this.get('project.id'),
     }));
   }
 }

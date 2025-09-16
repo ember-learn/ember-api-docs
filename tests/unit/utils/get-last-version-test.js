@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { A } from '@ember/array';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
 import { module, test } from 'qunit';

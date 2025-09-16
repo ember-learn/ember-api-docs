@@ -1,8 +1,8 @@
 import { inject as service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
-import fetch from 'fetch';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
+import config from 'ember-api-docs/config/environment';
 
 export default class Application extends JSONAPIAdapter {
   currentProject = '';
@@ -40,7 +40,6 @@ export default class Application extends JSONAPIAdapter {
 
   async findRecord(store, { modelName }, id) {
     let url;
-    // let host = this.host;
     let projectName = this.currentProject;
 
     if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
@@ -57,7 +56,7 @@ export default class Application extends JSONAPIAdapter {
       if (typeof revId !== 'undefined') {
         let encodedRevId = encodeURIComponent(revId);
         url = `json-docs/${projectName}/${version}/${pluralize(
-          modelNameToUse
+          modelNameToUse,
         )}/${encodedRevId}`;
       } else {
         throw new Error('Documentation item not found');
@@ -66,7 +65,7 @@ export default class Application extends JSONAPIAdapter {
       let version = this.projectService.version;
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
       url = `json-docs/${projectName}/${version}/${pluralize(
-        modelName
+        modelName,
       )}/${revId}`;
     } else if (modelName === 'project') {
       this.currentProject = id;
@@ -78,10 +77,23 @@ export default class Application extends JSONAPIAdapter {
       throw new Error('Unexpected model lookup');
     }
 
-    url = `/${url}.json`;
+    const base = this.fastboot.isFastBoot
+      ? config.APP.domain
+      : window.location.origin;
 
-    let response = await fetch(url);
-    let json = await response.json();
-    return json;
+    url = `${base}/${url}.json`;
+    try {
+      let response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(
+          `Network response was not ok: ${response.status} ${response.statusText}`,
+        );
+      }
+      let json = await response.json();
+      return json;
+    } catch (error) {
+      console.error(`Failed to fetch or parse JSON from ${url}:`, error);
+      throw new Error(`Failed to load data for ${url}: ${error.message}`);
+    }
   }
 }

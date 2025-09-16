@@ -27,7 +27,7 @@ export default class ModuleController extends ClassController {
   get classes() {
     if (this.showPrivateClasses) {
       return this.get('model.publicclasses').concat(
-        this.get('model.privateclasses')
+        this.get('model.privateclasses'),
       );
     }
     return this.get('model.publicclasses');

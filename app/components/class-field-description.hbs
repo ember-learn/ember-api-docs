@@ -1,24 +1,24 @@
-<section class='{{@type}}'>
-  {{!-- TODO: Fix this link for a11y --}}
-  <h3 class='class-field-description--link' data-anchor='{{@field.name}}' role='link' {{on 'click' (fn this.updateAnchor @field.name)}}>
-    <a class='anchor' {{!-- template-lint-disable link-href-attributes --}}>
-      {{svg-jar 'fa-link' class='class-field-description--link-hover' width='20px' height='20px'}}
-    </a>
-    <span class='{{@type}}-name'>{{@field.name}}</span>
-    {{#if @field.params}}
-      <span class='args'>
-        ({{join ', ' (map-by 'name' @field.params)}})
+{{! template-lint-disable no-invalid-interactive }}
+<section class='class-field-description {{@type}}'>
+  <h3 id='{{@field.name}}' class="class-field-description--header">
+    <span class="signature">
+      <span class='{{@type}}-name'>
+        {{@field.name}}
       </span>
-    {{/if}}
-    {{#if @field.return}}
-      <span class='return-type'>{{@field.return.type}}</span>
-    {{/if}}
+      {{#if @field.params}}(<span class='args'>{{join ', ' (map-by 'name' @field.params)}}</span>){{/if}}
+      {{#if @field.return}}
+        : <span class='return-type'>{{@field.return.type}}</span>
+      {{/if}}
+    </span>
     {{#if @field.access}}
       <span class='access'>{{@field.access}}</span>
     {{/if}}
     {{#if @field.deprecated}}
       <span class='access'>deprecated</span>
     {{/if}}
+    <a class='class-field-description--link' href="#{{@field.name}}" aria-label="Jump to {{@field.name}}">
+      {{svg-jar 'link' width='20px' height='20px' aria-hidden='true'}}
+    </a>
   </h3>
   {{#if @model.module}}
     <div class='attributes'>

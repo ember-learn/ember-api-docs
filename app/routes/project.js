@@ -1,11 +1,12 @@
 import Route from '@ember/routing/route';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
 import { inject as service } from '@ember/service';
 
-export default class ProjectRoute extends Route.extend(ScrollTracker) {
+export default class ProjectRoute extends Route {
   /** @type {import('@ember/routing/router-service').default} */
   @service
   router;
+
+  @service store;
 
   model({ project: projectName }) {
     let projectNameToLookUp = 'ember';
@@ -29,7 +30,7 @@ export default class ProjectRoute extends Route.extend(ScrollTracker) {
     return this.router.transitionTo(
       'project-version',
       project.get('id'),
-      'release'
+      'release',
     );
   }
 }

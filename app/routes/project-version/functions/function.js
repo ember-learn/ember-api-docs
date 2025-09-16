@@ -11,14 +11,13 @@ export default class FunctionRoute extends Route {
   @service
   metaStore;
 
-  @service
-  scrollPositionReset;
+  @service store;
 
   titleToken(model) {
     return model?.fn?.name;
   }
 
-  async model(params) {
+  async model(params, transition) {
     const pVParams = this.paramsFor('project-version');
     const { project, project_version: compactVersion } = pVParams;
 
@@ -27,7 +26,7 @@ export default class FunctionRoute extends Route {
       compactVersion,
       project,
       projectObj,
-      this.metaStore
+      this.metaStore,
     );
     let className = params['module'];
     let functionName = params['fn'];
@@ -36,13 +35,27 @@ export default class FunctionRoute extends Route {
     try {
       fnModule = await this.store.find(
         'class',
-        `${project}-${projectVersion}-${className}`
+        `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
     } catch (e) {
-      fnModule = await this.store.find(
-        'namespace',
-        `${project}-${projectVersion}-${className}`
-      );
+      try {
+        fnModule = await this.store.find(
+          'namespace',
+          `${project}-${projectVersion}-${className}`.toLowerCase(),
+        );
+      } catch (e2) {
+        if (transition.to.name === transition?.from?.name) {
+          let error = new Error(
+            `We could not find function ${className}/${functionName} in v${compactVersion} of ${project}.`,
+          );
+          error.status = 404;
+          error.attemptedProject = project;
+          error.attemptedVersion = compactVersion;
+          throw error;
+        } else {
+          throw e2;
+        }
+      }
     }
 
     return {
@@ -62,9 +75,5 @@ export default class FunctionRoute extends Route {
     return classObj.get('methods').find((fn) => {
       return fn.name === functionName;
     });
-  }
-
-  activate() {
-    this.scrollPositionReset.doReset();
   }
 }

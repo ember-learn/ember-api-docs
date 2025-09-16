@@ -1,14 +1,14 @@
-<EsHeader>
-  <EsNavbar @links={{this.links}}>
-    <SearchInput />
-  </EsNavbar>
-</EsHeader>
-<main class="container">
-  {{outlet}}
-</main>
-<EsFooter />
+{{page-title "Ember API Documentation"}}
 
-{{!-- required by ember-cli-meta-tags --}}
 <HeadLayout />
 
+<EsHeader>
+  <ApiSearch />
+</EsHeader>
+
+<main>
+  {{outlet}}
+</main>
+
+<EsFooter />
 <BasicDropdownWormhole />

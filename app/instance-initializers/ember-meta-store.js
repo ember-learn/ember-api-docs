@@ -9,7 +9,7 @@ export function initialize(appInstance) {
   if (typeof FastBoot !== 'undefined') {
     shoebox.put(
       'meta-store',
-      metaStore.getProperties('availableProjectVersions', 'projectRevMap')
+      metaStore.getProperties('availableProjectVersions', 'projectRevMap'),
     );
   } else if (isPresent(shoebox.retrieve('meta-store'))) {
     const { availableProjectVersions, projectRevMap } =

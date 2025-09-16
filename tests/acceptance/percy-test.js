@@ -8,12 +8,8 @@ let snapshots = [
   ['/ember-data/', 'Ember Data Landing Page'],
   ['/ember/release/modules/@ember%2Fcomponent', 'Package Page'],
   ['/ember/release/classes/Component', 'Class Index'],
-  ['/ember/release/classes/Component/methods', 'Class Methods'],
-  ['/ember/release/classes/Component/properties', 'Class Properties'],
-  ['/ember/release/classes/Component/events', 'Class Events'],
   ['/ember/release/functions/@ember%2Fcomponent/capabilities', 'Function Page'],
   ['/ember/release/namespaces/Instrumentation', 'Namespace Page'],
-  ['/ember/release/namespaces/FEATURES/methods', 'Namespace methods page'],
 ];
 
 module('Acceptance | percy', function (hooks) {

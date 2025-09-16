@@ -19,6 +19,12 @@ export default class ProjectVersionController extends Controller {
   @service
   project;
 
+  @service
+  fastboot;
+
+  @service router;
+  @service('project') projectService;
+
   @alias('filterData.sideNav.showPrivate')
   showPrivateClasses;
 
@@ -107,7 +113,7 @@ export default class ProjectVersionController extends Controller {
     });
     let groupedVersions = groupBy(
       versions,
-      (version) => version.compactVersion
+      (version) => version.compactVersion,
     );
 
     return values(groupedVersions).map((groupedVersion) => groupedVersion[0]);
@@ -128,4 +134,64 @@ export default class ProjectVersionController extends Controller {
   togglePrivateClasses() {
     set(this, 'showPrivateClasses', !this.showPrivateClasses);
   }
+
+  @action
+  updateProject(project, ver /*, component */) {
+    const currentURL = this.router.currentURL;
+    this.router.transitionTo(
+      findEndingRoute({
+        project,
+        targetVersion: ver.id,
+        currentVersion: this.projectService.version,
+        currentUrlVersion: this.projectService.getUrlVersion(),
+        currentURL,
+        currentAnchor: window.location.hash,
+      }),
+    );
+  }
+}
+
+export function findEndingRoute({
+  project,
+  targetVersion,
+  currentVersion,
+  currentUrlVersion,
+  currentURL,
+  currentAnchor,
+}) {
+  let projectVersionID = getCompactVersion(targetVersion);
+  // if the user is navigating to/from api versions Ember >= 2.16 or Ember Data >= 4.0, take them
+  // to the home page instead of trying to translate the url
+  if (shouldGoToVersionIndex(project, targetVersion, currentVersion)) {
+    return `/${project}/${projectVersionID}`;
+  } else {
+    return `${currentURL.replace(currentUrlVersion, projectVersionID)}${currentAnchor}`;
+  }
+}
+
+function shouldGoToVersionIndex(project, targetVersion, currentVersion) {
+  let boundaryVersion;
+  if (project === 'ember') {
+    boundaryVersion = '2.16';
+  } else if (project === 'ember-data') {
+    boundaryVersion = '4.0';
+  }
+  return isCrossingVersionBoundary(
+    targetVersion,
+    currentVersion,
+    boundaryVersion,
+  );
+}
+
+// Input some version info, returns a boolean based on
+// whether the user is switching versions for a release or later.
+function isCrossingVersionBoundary(targetVer, previousVer, boundaryVersion) {
+  let targetVersion = getCompactVersion(targetVer);
+  let previousVersion = getCompactVersion(previousVer);
+  let previousComparison = semverCompare(previousVersion, boundaryVersion);
+  let targetComparison = semverCompare(targetVersion, boundaryVersion);
+  return (
+    (previousComparison < 0 && targetComparison >= 0) ||
+    (previousComparison >= 0 && targetComparison < 0)
+  );
 }

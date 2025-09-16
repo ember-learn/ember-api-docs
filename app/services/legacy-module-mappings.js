@@ -66,7 +66,7 @@ export default class LegacyModuleMappingsService extends Service {
 
   getNewModuleFromOld(oldModuleName, mappings) {
     let matches = mappings.filter(
-      (element) => element.module === oldModuleName
+      (element) => element.module === oldModuleName,
     );
     if (matches.length > 0) {
       return {
@@ -84,7 +84,7 @@ export default class LegacyModuleMappingsService extends Service {
       return false;
     }
     let filtered = this.mappings.filter(
-      (element) => element.export === name && element.module === module
+      (element) => element.export === name && element.module === module,
     );
     return filtered.length > 0;
   }

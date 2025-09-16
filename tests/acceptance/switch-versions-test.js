@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { currentURL, visit, settled } from '@ember/test-helpers';
 import { selectChoose } from 'ember-power-select/test-support';
 import { module, test } from 'qunit';
@@ -10,6 +11,8 @@ async function waitForSettled() {
   await settled();
 }
 
+const versionIndexLinkSelector = '[data-test-version-index-link]';
+
 module('Acceptance | version navigation', function (hooks) {
   setupApplicationTest(hooks);
 
@@ -19,21 +22,38 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.7/classes/Ember.Component',
-      'navigated to v2.7 namespace'
+      'navigated to v2.7 namespace',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.11/classes/Ember.Component',
-      'navigated to v2.11 class'
+      'navigated to v2.11 class',
     );
     await selectChoose('.ember-power-select-trigger', '1.4');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.4/classes/Ember.Component',
-      'navigated to v2.8 class'
+      'navigated to v2.8 class',
+    );
+  });
+
+  test('switching versions from release', async function (assert) {
+    await visit('/ember/release/modules/@glimmer%2Ftracking');
+
+    assert.equal(
+      currentURL(),
+      '/ember/release/modules/@glimmer%2Ftracking',
+      'navigated to release',
+    );
+    await selectChoose('.ember-power-select-trigger', '6.4');
+
+    assert.equal(
+      currentURL(),
+      '/ember/6.4/modules/@glimmer%2Ftracking',
+      'navigated to v6.4 class',
     );
   });
 
@@ -55,21 +75,21 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.8/modules/ember-metal',
-      'navigated to v2.8 module'
+      'navigated to v2.8 module',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.11/modules/ember-metal',
-      'navigated to v2.11 module'
+      'navigated to v2.11 module',
     );
     await selectChoose('.ember-power-select-trigger', '1.4');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.4/modules/ember-metal',
-      'navigated to v2.7 module'
+      'navigated to v2.7 module',
     );
   });
 
@@ -79,128 +99,21 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.18/modules/@ember%2Fapplication',
-      'navigated to v2.18 module'
+      'navigated to v2.18 module',
     );
     await selectChoose('.ember-power-select-trigger', '2.17');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.17/modules/@ember%2Fapplication',
-      'navigated to v2.17 module'
+      'navigated to v2.17 module',
     );
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.16/modules/@ember%2Fapplication',
-      'navigated to v2.16 module'
-    );
-  });
-
-  test('switching specific method less than 2.16 should retain method', async function (assert) {
-    await visit(
-      '/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs'
-    );
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.8/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs',
-      'navigated to v2.8 method'
-    );
-    await selectChoose('.ember-power-select-trigger', '2.11');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.11/classes/Ember.Component/methods/didReceiveAttrs?anchor=didReceiveAttrs',
-      'navigated to v2.11 method'
-    );
-  });
-
-  test('switching specific event less than 2.16 should retain event', async function (assert) {
-    await visit(
-      '/ember/2.8/classes/Ember.Component/events/didReceiveAttrs?anchor=didReceiveAttrs'
-    );
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.8/classes/Ember.Component/events/didReceiveAttrs?anchor=didReceiveAttrs',
-      'navigated to v2.8 method'
-    );
-    await selectChoose('.ember-power-select-trigger', '2.11');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.11/classes/Ember.Component/events/didReceiveAttrs?anchor=didReceiveAttrs',
-      'navigated to v2.11 method'
-    );
-  });
-
-  test('switching specific property less than 2.16 should retain property', async function (assert) {
-    await visit(
-      '/ember/2.8/classes/Ember.Component/properties/isDestroyed?anchor=isDestroyed'
-    );
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.8/classes/Ember.Component/properties/isDestroyed?anchor=isDestroyed',
-      'navigated to v2.8 property'
-    );
-    await selectChoose('.ember-power-select-trigger', '2.11');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.11/classes/Ember.Component/properties/isDestroyed?anchor=isDestroyed',
-      'navigated to v2.11 property'
-    );
-  });
-
-  test('switching class methods tab less than 2.16 should retain', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/methods');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.8/classes/Ember.Component/methods',
-      'navigated to v2.8 methods'
-    );
-    await selectChoose('.ember-power-select-trigger', '2.11');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.11/classes/Ember.Component/methods',
-      'navigated to v2.11 methods'
-    );
-  });
-
-  test('switching class events tab less than 2.16 should retain', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/events');
-    assert.equal(
-      currentURL(),
-      '/ember/2.8/classes/Ember.Component/events',
-      'navigated to v2.8 events'
-    );
-    await selectChoose('.ember-power-select-trigger', '2.11');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.11/classes/Ember.Component/events',
-      'navigated to v2.11 events'
-    );
-  });
-
-  test('switching class properties tab less than 2.16 should retain', async function (assert) {
-    await visit('/ember/2.8/classes/Ember.Component/properties');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.8/classes/Ember.Component/properties',
-      'navigated to v2.8 properties'
-    );
-    await selectChoose('.ember-power-select-trigger', '2.11');
-    await waitForSettled();
-    assert.equal(
-      currentURL(),
-      '/ember/2.11/classes/Ember.Component/properties',
-      'navigated to v2.11 properties'
+      'navigated to v2.16 module',
     );
   });
 
@@ -210,14 +123,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.7/classes/Ember.Component',
-      'navigated to v2.7 class'
+      'navigated to v2.7 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.16',
-      'navigated to v2.16 landing page'
+      'navigated to v2.16 landing page',
     );
   });
 
@@ -227,14 +140,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember-data/2.7/classes/DS.Adapter',
-      'navigated to v2.7 class'
+      'navigated to v2.7 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.16');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember-data/2.16/classes/DS.Adapter',
-      'navigated to v2.16 landing page'
+      'navigated to v2.16 landing page',
     );
   });
 
@@ -244,14 +157,14 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.16/classes/Component',
-      'navigated to v2.16 class'
+      'navigated to v2.16 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
-      '/ember/2.11/modules/ember?show=inherited',
-      'navigated to v2.11 ember module'
+      '/ember/2.11/modules/ember',
+      'navigated to v2.11 ember module',
     );
   });
 
@@ -260,30 +173,45 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember-data/2.16/classes/DS.Adapter',
-      'navigated to v2.7 class'
+      'navigated to v2.7 class',
     );
     await selectChoose('.ember-power-select-trigger', '2.11');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember-data/2.11/classes/DS.Adapter',
-      'navigated to v2.16 landing page'
+      'navigated to v2.16 landing page',
     );
   });
 
-  test.skip('switching versions works if class name includes slashes', async function (assert) {
+  test('switching between versions on a function works', async function (assert) {
+    await visit('/ember/6.5/functions/@ember%2Fdebug/debug');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.5/functions/@ember%2Fdebug/debug',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '6.4');
+
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.4/functions/@ember%2Fdebug/debug',
+    );
+  });
+
+  test('switching versions works if class name includes slashes', async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
       currentURL(),
       '/ember/3.4/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.4 class'
+      'navigated to v3.4 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.7');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.7/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.7 class'
+      'navigated to v3.7 class',
     );
   });
 
@@ -292,43 +220,43 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/3.13/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.13 class'
+      'navigated to v3.13 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.20');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.20/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.20 class'
+      'navigated to v3.20 class',
     );
   });
 
-  test.skip(`switching versions works if we've previously switched for a different class`, async function (assert) {
+  test(`switching versions works if we've previously switched for a different class`, async function (assert) {
     await visit('/ember/3.4/classes/@ember%2Fobject%2Fcomputed');
     assert.equal(
       currentURL(),
       '/ember/3.4/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.4 class'
+      'navigated to v3.4 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.7');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.7/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.7 class'
+      'navigated to v3.7 class',
     );
     await visit('/ember/3.7/classes/Component');
     assert.equal(
       currentURL(),
       '/ember/3.7/classes/Component',
-      'navigated to new class'
+      'navigated to new class',
     );
     await selectChoose('.ember-power-select-trigger', '2.18');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/2.18/classes/Component',
-      'navigated to v2.18 for new class'
+      'navigated to v2.18 for new class',
     );
   });
 
@@ -337,28 +265,28 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/3.13/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.13 class'
+      'navigated to v3.13 class',
     );
     await selectChoose('.ember-power-select-trigger', '3.20');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.20/classes/@ember%2Fobject%2Fcomputed',
-      'navigated to v3.20 class'
+      'navigated to v3.20 class',
     );
 
     await visit('/ember/3.25/classes/Component');
     assert.equal(
       currentURL(),
       '/ember/3.25/classes/Component',
-      'navigated to new class'
+      'navigated to new class',
     );
     await selectChoose('.ember-power-select-trigger', '3.15');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/3.15/classes/Component',
-      'navigated to v3.15 for new class'
+      'navigated to v3.15 for new class',
     );
   });
 
@@ -368,21 +296,79 @@ module('Acceptance | version navigation', function (hooks) {
     assert.equal(
       currentURL(),
       '/ember/2.0/classes/Ember.Component',
-      'navigated to v2.0 namespace'
+      'navigated to v2.0 namespace',
     );
     await selectChoose('.ember-power-select-trigger', '1.12');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.12/classes/Ember.Component',
-      'navigated to v1.12 class'
+      'navigated to v1.12 class',
     );
     await selectChoose('.ember-power-select-trigger', '1.13');
     await waitForSettled();
     assert.equal(
       currentURL(),
       '/ember/1.13/classes/Ember.Component',
-      'navigated to v1.13 class'
+      'navigated to v1.13 class',
     );
+  });
+
+  test('switching to a version that is missing a module offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/6.4/modules/@glimmer%2Ftracking%2Fprimitives%2Fcache',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '3.10');
+
+    assert
+      .dom()
+      .includesText(
+        'We could not find module @glimmer/tracking/primitives/cache in v3.10 of ember.',
+      );
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v3.10')
+      .hasAttribute('href', '/ember/3.10');
+  });
+
+  test('switching to a version that is missing a class offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/3.0/classes/Ember.Debug');
+    assert.strictEqual(currentURL(), '/ember/3.0/classes/Ember.Debug');
+
+    await selectChoose('.ember-power-select-trigger', '4.0');
+
+    assert
+      .dom()
+      .includesText('We could not find class Ember.Debug in v4.0 of ember.');
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v4.0')
+      .hasAttribute('href', '/ember/4.0');
+  });
+
+  test('switching to a version that is missing a function offers a link to the API index for that version', async function (assert) {
+    await visit('/ember/3.28/functions/@glimmer%2Ftracking/tracked');
+    assert.strictEqual(
+      currentURL(),
+      '/ember/3.28/functions/@glimmer%2Ftracking/tracked',
+    );
+
+    await selectChoose('.ember-power-select-trigger', '3.12');
+
+    assert
+      .dom()
+      .includesText(
+        'We could not find function @glimmer/tracking/tracked in v3.12 of ember.',
+      );
+
+    assert
+      .dom(versionIndexLinkSelector)
+      .includesText('v3.12')
+      .hasAttribute('href', '/ember/3.12');
   });
 });

@@ -12,7 +12,7 @@ export default class DataClassRoute extends Route {
   model(params) {
     return {
       mappings: this.legacyModuleMappings.buildMappings(
-        this.legacyModuleMappings.legacyMappings
+        this.legacyModuleMappings.legacyMappings,
       ),
       className: params['class'].substr(0, params['class'].lastIndexOf('.')),
     };
@@ -21,7 +21,7 @@ export default class DataClassRoute extends Route {
   redirect(model) {
     let mappingInfo = this.legacyModuleMappings.getNewClassFromOld(
       model.className,
-      model.mappings
+      model.mappings,
     );
     let { newName } = mappingInfo;
     if (newName.substr(0, 3) === 'DS.') {
@@ -32,7 +32,7 @@ export default class DataClassRoute extends Route {
         `project-version.classes.class`,
         'ember-data',
         'release',
-        newName
+        newName,
       );
     } else {
       return this.router.transitionTo('project-version', 'ember', 'release');

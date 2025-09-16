@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { currentURL, visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
@@ -10,7 +11,7 @@ module('Acceptance | redirects', function (hooks) {
     assert.equal(
       currentURL(),
       `/ember/release`,
-      'routes to the latest version of the project'
+      'routes to the latest version of the project',
     );
     assert.dom('h1').hasText('Ember API Documentation');
   });
@@ -20,8 +21,8 @@ module('Acceptance | redirects', function (hooks) {
 
     assert.equal(
       currentURL(),
-      '/ember/1.0/modules/ember?show=inherited',
-      'routes to the first module of the project-version'
+      '/ember/1.0/modules/ember',
+      'routes to the first module of the project-version',
     );
   });
 });

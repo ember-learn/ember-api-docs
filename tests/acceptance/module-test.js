@@ -1,3 +1,4 @@
+/* eslint-disable qunit/no-assert-equal */
 import { module, test } from 'qunit';
 import { setupApplicationTest } from 'ember-qunit';
 import { visit, click, findAll } from '@ember/test-helpers';
@@ -11,26 +12,26 @@ module('Acceptance | Module', function (hooks) {
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord(
       'module',
-      'ember-1.0.0-ember-handlebars'
+      'ember-1.0.0-ember-handlebars',
     );
 
     let numberNameSpaces = Object.keys(container.get('namespaces')).length;
     let numberPublicClasses = Object.keys(
-      container.get('publicclasses')
+      container.get('publicclasses'),
     ).length;
     let numberPrivateClasses = Object.keys(
-      container.get('privateclasses')
+      container.get('privateclasses'),
     ).length;
 
     assert.equal(
       findAll('.spec-property-list li').length,
-      numberPublicClasses + numberNameSpaces
+      numberPublicClasses + numberNameSpaces,
     );
 
-    await click('.sidebar .private-deprecated-toggle');
+    await click('[data-test-private-deprecated-toggle]');
     assert.equal(
       findAll('.spec-property-list li').length,
-      numberPublicClasses + numberNameSpaces + numberPrivateClasses
+      numberPublicClasses + numberNameSpaces + numberPrivateClasses,
     );
   });
 
@@ -51,7 +52,7 @@ module('Acceptance | Module', function (hooks) {
     const store = this.owner.lookup('service:store');
     const container = store.peekRecord(
       'module',
-      'ember-1.0.0-ember-application'
+      'ember-1.0.0-ember-application',
     );
     assert.dom(`.attribute-value`).hasText(container.get('parent'));
   });

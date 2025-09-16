@@ -2,12 +2,11 @@ import { inject as service } from '@ember/service';
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
-import ScrollTracker from 'ember-api-docs/mixins/scroll-tracker';
-import { pluralize } from 'ember-inflector';
+
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import createExcerpt from 'ember-api-docs/utils/create-excerpt';
 
-export default class ClassRoute extends Route.extend(ScrollTracker) {
+export default class ClassRoute extends Route {
   /** @type {import('@ember/routing/router-service').default} */
   @service
   router;
@@ -18,9 +17,7 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
   @service
   metaStore;
 
-  titleToken(model) {
-    return model.name;
-  }
+  @service store;
 
   async model(params) {
     const { project, project_version: compactVersion } =
@@ -30,12 +27,12 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
       compactVersion,
       project,
       projectObj,
-      this.metaStore
+      this.metaStore,
     );
     const klass = params['class'];
     return this.find(
       'class',
-      `${project}-${projectVersion}-${klass}`.toLowerCase()
+      `${project}-${projectVersion}-${klass}`.toLowerCase(),
     );
   }
 
@@ -44,7 +41,7 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
       if (typeName != 'namespace') {
         console.warn(
           e1,
-          'fetching by class or module failed, retrying as namespace'
+          'fetching by class or module failed, retrying as namespace',
         );
         return this.store.find('namespace', param).catch((e2) => {
           console.error(e2);
@@ -63,29 +60,27 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
   }
 
   redirect(model, transition) {
-    const lookupParams = (routeName) => {
-      let route = transition.routeInfos.find(({ name }) => name === routeName);
-      return route ? route.params : {};
-    };
-
-    let {
-      to: { queryParams },
-    } = transition;
-
-    if (queryParams.anchor && queryParams.type) {
-      let type = queryParams.type;
-      this.router.transitionTo(
-        `project-version.classes.class.${pluralize(type)}.${type}`,
-        lookupParams('project-version').project,
-        lookupParams('project-version').project_version,
-        lookupParams('project-version.classes.class').class,
-        queryParams.anchor
-      );
-    }
-
     if (model.isError) {
+      // Transitioning to the same route, probably only changing version
+      // Could explicitly check by comparing transition.to and transition.from
+      if (transition.to.name === transition?.from?.name) {
+        const projectVersionRouteInfo = transition.to.find(function (item) {
+          return item.params?.project_version;
+        });
+        const attemptedVersion =
+          projectVersionRouteInfo.params?.project_version;
+        const attemptedProject = projectVersionRouteInfo.params?.project;
+        let error = new Error(
+          `We could not find ${transition.to.localName} ${transition.to.params[transition.to.paramNames[0]]} in v${attemptedVersion} of ${attemptedProject}.`,
+        );
+        error.status = 404;
+        error.attemptedProject = attemptedProject;
+        error.attemptedVersion = attemptedVersion;
+        throw error;
+      }
+
       let error = new Error(
-        'Error retrieving model in routes/project-version/classes/class'
+        'Error retrieving model in routes/project-version/classes/class',
       );
 
       error.status = 404;
@@ -105,11 +100,11 @@ export default class ClassRoute extends Route.extend(ScrollTracker) {
       const promises = Object.keys(relationships).reduce(
         (memo, relationshipType) => {
           const relationshipPromises = relationships[relationshipType].map(
-            (name) => klass.get(name)
+            (name) => klass.get(name),
           );
           return memo.concat(relationshipPromises);
         },
-        []
+        [],
       );
       return all(promises);
     }
