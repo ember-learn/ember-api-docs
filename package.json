@@ -171,10 +171,5 @@
     "paths": [
       "lib/api-docs-data"
     ]
-  },
-  "pnpm": {
-    "overrides": {
-      "node-sass": "^9.0.0"
-    }
   }
 }

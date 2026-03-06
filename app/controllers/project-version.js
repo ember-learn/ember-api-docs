@@ -71,15 +71,20 @@ export default class ProjectVersionController extends Controller {
   }
 
   getRelationshipIDs(relationship) {
-    // eslint-disable-next-line
-    const splitPoint = 2 + this.get('model.project.id').split('-').length - 1;
+    // eslint-disable-next-line ember/classic-decorator-no-classic-methods
+    const projectId = this.get('model.project.id');
     const classes = this.model.hasMany(relationship);
     const sorted = A(classes.ids()).sort();
-    //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin
-    //so we take the string after the 2nd '-'
+    //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin or ember-4.12.0-alpha.23-@ember/object/promise-proxy-mixin
+    //so we remove the project name and version (including pre-release) to get the class name
     return A(sorted)
       .toArray()
-      .map((id) => id.split('-').slice(splitPoint).join('-'));
+      .map((id) => {
+        // Remove project name prefix
+        const withoutProject = id.replace(`${projectId}-`, '');
+        // Remove version (e.g., 2.16.0 or 4.12.0-alpha.23) and the following dash
+        return withoutProject.replace(/^\d+\.\d+\.\d+(?:-[a-z]+\.\d+)?-/i, '');
+      });
   }
 
   @computed('showPrivateClasses', 'classesIDs', 'publicClassesIDs')
