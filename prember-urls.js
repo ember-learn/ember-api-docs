@@ -23,13 +23,21 @@ module.exports = function () {
 
     const fullProjectVersions = readdirSync(
       `ember-api-docs-data/json-docs/${p}`,
-    ).filter((v) => v.match(/\d+\.\d+\.\d+/));
+    ).filter((v) => !!semver.valid(v));
 
     // add landing page for each of the projects versions
-    const projectVersions = fullProjectVersions.map((v) => {
-      let [, major, minor] = v.match(/(\d+)\.(\d+)\.\d+/);
-      return `${major}.${minor}`;
-    }); // uniq
+    const projectVersions = fullProjectVersions
+      .map((v) => {
+        let parsed = semver.parse(v);
+        if (!parsed) return null;
+        if (parsed.prerelease && parsed.prerelease.length > 0) {
+          return `${parsed.major}.${parsed.minor}.${
+            parsed.patch
+          }-${parsed.prerelease.join('.')}`;
+        }
+        return `${parsed.major}.${parsed.minor}`;
+      })
+      .filter(Boolean);
 
     const uniqueProjectVersions = [...new Set(projectVersions)];
 
@@ -44,9 +52,18 @@ module.exports = function () {
     const oldVersions = ['1.13', '2.18', '3.28', '4.12', '5.12'];
 
     uniqueProjectVersions.forEach((uniqVersion) => {
+      let isPreRelease = uniqVersion.includes('-');
+      let baseVersion = isPreRelease ? uniqVersion.split('-')[0] : uniqVersion;
+
       if (
-        !oldVersions.includes(uniqVersion) &&
-        !semver.gte(`${uniqVersion}.0`, '6.0.0')
+        !oldVersions.includes(baseVersion) &&
+        !semver.valid(`${baseVersion}.0`)
+      ) {
+        return;
+      }
+      if (
+        !oldVersions.includes(baseVersion) &&
+        !semver.gte(`${baseVersion}.0`, '6.0.0')
       ) {
         return;
       }
@@ -55,13 +72,24 @@ module.exports = function () {
 
       const sortedPatchVersions = fullProjectVersions
         .filter((projectVersion) => {
-          // console.log("comparing", projectVersion, uniqVersion, semver.satisfies(projectVersion, uniqVersion))
-          return semver.satisfies(projectVersion, uniqVersion);
+          let parsed = semver.parse(projectVersion);
+          if (!parsed) return false;
+          if (isPreRelease) {
+            return (
+              `${parsed.major}.${parsed.minor}.${
+                parsed.patch
+              }-${parsed.prerelease.join('.')}` === uniqVersion
+            );
+          } else {
+            return `${parsed.major}.${parsed.minor}` === uniqVersion;
+          }
         })
         .sort(cmp);
 
       const highestPatchVersion =
         sortedPatchVersions[sortedPatchVersions.length - 1];
+
+      if (!highestPatchVersion) return;
 
       const revIndex = require(
         `${__dirname}/ember-api-docs-data/rev-index/${p}-${highestPatchVersion}.json`,

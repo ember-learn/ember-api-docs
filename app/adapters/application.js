@@ -43,7 +43,10 @@ export default class Application extends JSONAPIAdapter {
     let projectName = this.currentProject;
 
     if (['namespace', 'class', 'module'].indexOf(modelName) > -1) {
-      let [version] = id.replace(`${projectName}-`, '').split('-');
+      let [version] =
+        id
+          .replace(`${projectName}-`, '')
+          .match(/^(\d+\.\d+\.\d+(?:-[a-z]+\.\d+)?)/i) || [];
       let revId = this.metaStore.getRevId(projectName, version, modelName, id);
 
       let modelNameToUse = modelName;
