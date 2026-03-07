@@ -84,9 +84,3 @@ To run a11y tests, run `test_a11y=yes ember serve`
 ## Staging and Deployment
 
 See the [DEPLOYING.md](https://github.com/ember-learn/ember-api-docs/blob/master/DEPLOYING.md) guide for instructions.
-
-## Building
-
-Cross-browser testing provided by:
-
-<a href="http://browserstack.com" target="browserstack"><img height="70" src="/public/assets/images/browserstack-logo.png" alt="BrowserStack"></a>

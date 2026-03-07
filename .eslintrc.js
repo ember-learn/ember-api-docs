@@ -34,7 +34,6 @@ module.exports = {
         './config/**/*.js',
         './lib/*/index.js',
         './server/**/*.js',
-        './run-tests.js',
         './bin/*',
         './prember-urls.js',
       ],
