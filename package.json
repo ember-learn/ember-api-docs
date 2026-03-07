@@ -43,7 +43,7 @@
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@percy/cli": "^1.28.7",
-    "@percy/ember": "^4.2.0",
+    "@percy/ember": "^5.0.0",
     "@typescript-eslint/parser": "^8.43.0",
     "algoliasearch": "^4.20.0",
     "broccoli-asset-rev": "^3.0.0",
