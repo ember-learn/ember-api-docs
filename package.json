@@ -134,9 +134,9 @@
   },
   "engines": {
     "node": "16.* || 18.* || 20.*",
-    "pnpm": "9"
+    "pnpm": "10"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@10.30.2",
   "cacheDirectories": [
     "node_modules"
   ],
