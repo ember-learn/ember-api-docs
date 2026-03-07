@@ -56,7 +56,7 @@
     "ember-cli-app-version": "^6.0.0",
     "ember-cli-autoprefixer": "^1.0.0",
     "ember-cli-babel": "^8.2.0",
-    "ember-cli-browserstack": "^1.0.1",
+    "ember-cli-browserstack": "^3.0.0",
     "ember-cli-clipboard": "^1.1.0",
     "ember-cli-dependency-checker": "^3.3.1",
     "ember-cli-deploy": "^1.0.1",
