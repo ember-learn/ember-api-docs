@@ -99,7 +99,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-qunit": "^7.3.4",
     "express-sslify": "^1.2.0",
-    "fastboot-app-server": "^3.3.2",
+    "fastboot-app-server": "^4.1.4",
     "lint-to-the-future": "^2.6.3",
     "lint-to-the-future-ember-template": "^4.1.0",
     "lint-to-the-future-eslint": "^3.1.0",
