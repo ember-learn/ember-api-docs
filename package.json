@@ -67,7 +67,7 @@
     "ember-cli-meta-tags": "^7.0.0",
     "ember-cli-showdown": "^9.0.1",
     "ember-cli-terser": "^4.0.2",
-    "ember-composable-helpers": "^3.1.1",
+    "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.3",
     "ember-data": "~4.6.0",
     "ember-data-fastboot": "https://github.com/mainmatter/ember-data-fastboot#update-babel",

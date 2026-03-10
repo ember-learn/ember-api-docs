@@ -120,8 +120,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       ember-composable-helpers:
-        specifier: ^3.1.1
-        version: 3.2.0
+        specifier: ^5.0.0
+        version: 5.0.0
       ember-concurrency:
         specifier: ^4.0.3
         version: 4.0.6(@babel/core@7.29.0)
@@ -4266,9 +4266,9 @@ packages:
     resolution: {integrity: sha512-BtkjulweiXo9c3yVWrtexw2dTmBrvavD/xixNC6TKOBdrixUwU+6nuOO9dufDWsMxoid7MvtmDpzc9+mE8PdaA==}
     engines: {node: 10.* || >= 12.*}
 
-  ember-composable-helpers@3.2.0:
-    resolution: {integrity: sha512-OBnwpDkeOnDBMGQ/96B7TUy3e3wR1dqmAJ8+zDQTEjWrrCztKFg2dNGzCJchN1AD1i4FS4B/9iloAnn1pPWw8w==}
-    engines: {node: 6.* || 8.* || >= 10.*}
+  ember-composable-helpers@5.0.0:
+    resolution: {integrity: sha512-gyUrjiSju4QwNrsCLbBpP0FL6VDFZaELNW7Kbcp60xXhjvNjncYgzm4zzYXhT+i1lLA6WEgRZ3lOGgyBORYD0w==}
+    engines: {node: 12.* || 14.* || >= 16}
 
   ember-concurrency@2.3.7:
     resolution: {integrity: sha512-sz6sTIXN/CuLb5wdpauFa+rWXuvXXSnSHS4kuNzU5GSMDX1pLBWSuovoUk61FUe6CYRqBmT1/UushObwBGickQ==}
@@ -15568,12 +15568,12 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-composable-helpers@3.2.0:
+  ember-composable-helpers@5.0.0:
     dependencies:
-      '@babel/core': 7.24.7
+      '@babel/core': 7.29.0
       broccoli-funnel: 2.0.1
       ember-cli-babel: 7.26.11
-      resolve: 1.22.8
+      resolve: 1.22.11
     transitivePeerDependencies:
       - supports-color
 
