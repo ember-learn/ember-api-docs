@@ -191,9 +191,6 @@ importers:
       ember-test-selectors:
         specifier: ^6.0.0
         version: 6.0.0
-      ember-tether:
-        specifier: 3.1.0
-        version: 3.1.0(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))(webpack@5.104.1)
       ember-truth-helpers:
         specifier: ^4.0.3
         version: 4.0.3(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
@@ -4434,12 +4431,6 @@ packages:
     resolution: {integrity: sha512-xDjvq8/1C3b9z3NGpez7aslbq5gsLrxsdjD3apyziHkImh/PTeXZr2bxo/YAUgOwGOtpZ1So0fIsppiSN0u1Ng==}
     engines: {node: 10.* || >= 12.*}
 
-  ember-tether@3.1.0:
-    resolution: {integrity: sha512-PbCLEbjLj6d22Jj+7dLHpV0grciVv47/mpULKUaHjcvk1d218MgvlFXfJhWqbt+wPl/OBbqcgCXAqwpwZ+7d7g==}
-    engines: {node: '>= 14'}
-    peerDependencies:
-      ember-source: ~3.28.0 || ^4.0.0 || ^5.0.0
-
   ember-tracked-storage-polyfill@1.0.0:
     resolution: {integrity: sha512-eL7lZat68E6P/D7b9UoTB5bB5Oh/0aju0Z7PCMi3aTwhaydRaxloE7TGrTRYU+NdJuyNVZXeGyxFxn2frvd3TA==}
     engines: {node: 12.* || >= 14}
@@ -8079,9 +8070,6 @@ packages:
     engines: {node: '>= 7.*'}
     hasBin: true
 
-  tether@2.0.0:
-    resolution: {integrity: sha512-iAkyBhwILpLIvkwzO5w5WUBtpYwxvzLRTO+sbzF3Uy7X4zznsy73v2b4sOQHXE3CQHeSNtB/YMU2Nn9tocbeBQ==}
-
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
 
@@ -11266,16 +11254,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@ember/render-modifiers@2.1.0(@babel/core@7.24.7)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))':
-    dependencies:
-      '@embroider/macros': 1.18.0
-      ember-cli-babel: 7.26.11
-      ember-modifier-manager-polyfill: 1.2.0(@babel/core@7.24.7)
-      ember-source: 4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
   '@ember/render-modifiers@2.1.0(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))':
     dependencies:
       '@embroider/macros': 1.18.0
@@ -12816,11 +12794,6 @@ snapshots:
   babel-plugin-check-es2015-constants@6.22.0:
     dependencies:
       babel-runtime: 6.26.0
-
-  babel-plugin-debug-macros@0.2.0(@babel/core@7.24.7):
-    dependencies:
-      '@babel/core': 7.24.7
-      semver: 5.7.2
 
   babel-plugin-debug-macros@0.2.0(@babel/core@7.29.0):
     dependencies:
@@ -15460,17 +15433,6 @@ snapshots:
       - walrus
       - whiskers
 
-  ember-compatibility-helpers@1.2.7(@babel/core@7.24.7):
-    dependencies:
-      babel-plugin-debug-macros: 0.2.0(@babel/core@7.24.7)
-      ember-cli-version-checker: 5.1.2
-      find-up: 5.0.0
-      fs-extra: 9.1.0
-      semver: 5.7.2
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
   ember-compatibility-helpers@1.2.7(@babel/core@7.29.0):
     dependencies:
       babel-plugin-debug-macros: 0.2.0(@babel/core@7.29.0)
@@ -15665,15 +15627,6 @@ snapshots:
       - '@glint/template'
       - supports-color
       - webpack
-
-  ember-modifier-manager-polyfill@1.2.0(@babel/core@7.24.7):
-    dependencies:
-      ember-cli-babel: 7.26.11
-      ember-cli-version-checker: 2.2.0
-      ember-compatibility-helpers: 1.2.7(@babel/core@7.24.7)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
 
   ember-modifier-manager-polyfill@1.2.0(@babel/core@7.29.0):
     dependencies:
@@ -15911,20 +15864,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
-
-  ember-tether@3.1.0(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))(webpack@5.104.1):
-    dependencies:
-      '@babel/core': 7.24.7
-      '@ember/render-modifiers': 2.1.0(@babel/core@7.24.7)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
-      ember-auto-import: 2.12.0(webpack@5.104.1)
-      ember-cli-babel: 8.2.0(@babel/core@7.24.7)
-      ember-cli-htmlbars: 6.3.0
-      ember-source: 4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)
-      tether: 2.0.0
-    transitivePeerDependencies:
-      - '@glint/template'
-      - supports-color
-      - webpack
 
   ember-tracked-storage-polyfill@1.0.0:
     dependencies:
@@ -20433,8 +20372,6 @@ snapshots:
       - velocityjs
       - walrus
       - whiskers
-
-  tether@2.0.0: {}
 
   text-table@0.2.0: {}
 
