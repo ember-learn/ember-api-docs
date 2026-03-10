@@ -167,9 +167,6 @@ importers:
       ember-showdown-shiki:
         specifier: ^1.2.1
         version: 1.2.1(@babel/core@7.29.0)(showdown@2.1.0)
-      ember-sinon:
-        specifier: ^4.1.1
-        version: 4.1.1
       ember-source:
         specifier: ~4.12.0
         version: 4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)
@@ -2018,21 +2015,6 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
-  '@sinonjs/commons@1.8.6':
-    resolution: {integrity: sha512-Ky+XkAkqPZSm3NLBeUng77EBQl3cmeJhITaGHdYH8kjVB+aun3S4XBRti2zt17mtt0mIUDiNxYeoJm6drVvBJQ==}
-
-  '@sinonjs/formatio@3.2.2':
-    resolution: {integrity: sha512-B8SEsgd8gArBLMD6zpRw3juQ2FVSsmdd7qlevyDqzS9WTCtvF55/gAL+h6gue8ZvPYcdiPdvueM/qm//9XzyTQ==}
-
-  '@sinonjs/samsam@3.3.3':
-    resolution: {integrity: sha512-bKCMKZvWIjYD0BLGnNrxVuw4dkWCYsLqFOUWw8VgKF/+5Y+mE7LfHWPIYoDXowH+3a9LsWDMo0uAP8YDosPvHQ==}
-
-  '@sinonjs/text-encoding@0.7.2':
-    resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
-    deprecated: |-
-      Deprecated: no longer maintained and no longer used by Sinon packages. See
-        https://github.com/sinonjs/nise/issues/243 for replacement details.
-
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
@@ -2452,9 +2434,6 @@ packages:
 
   array-flatten@1.1.1:
     resolution: {integrity: sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==}
-
-  array-from@2.1.1:
-    resolution: {integrity: sha512-GQTc6Uupx1FCavi5mPzBvVT7nEOeWMmUA9P95wpfpW1XwMSKs+KaymD5C2Up7KAUKg/mYwbsUYzdZWcoajlNZg==}
 
   array-to-error@1.1.1:
     resolution: {integrity: sha512-kqcQ8s7uQfg3UViYON3kCMcck3A9exxgq+riVuKy08Mx00VN4EJhK30L2VpjE58LQHKhcE/GRpvbVUhqTvqzGQ==}
@@ -3974,10 +3953,6 @@ packages:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
 
-  diff@3.5.0:
-    resolution: {integrity: sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==}
-    engines: {node: '>=0.3.1'}
-
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
     engines: {node: '>=0.3.1'}
@@ -4396,10 +4371,6 @@ packages:
     resolution: {integrity: sha512-h3WYvEVjK7R86SosU6Y9lA7kvlVff4Y/7KS/D79lJ828NReLW1CnQAcxRSoGVvu+S6A8uONzImzJhyDXwuZDZA==}
     peerDependencies:
       showdown: '>1.0.0'
-
-  ember-sinon@4.1.1:
-    resolution: {integrity: sha512-CmLjy7LGcTw2uP0WdFSPuXYbI7rwB4U/5EOtVU5h2jXtItrnspLIXBL50kigDzwv+lgE8XhfDVPbJ1QMrIXWXg==}
-    engines: {node: 8.* || >= 10.*}
 
   ember-source@4.12.4:
     resolution: {integrity: sha512-HUlNAY+qr/Jm4c/5E11n5w6IvLY7Rr4DxmFv/0LZ3R5LqDSubM1jEmny5zDjOfadMa4pawoCmFFWXVeJEXwppg==}
@@ -5940,9 +5911,6 @@ packages:
   jsonify@0.0.1:
     resolution: {integrity: sha512-2/Ki0GcmuqSrgFyelQq9M05y7PS0mEwuIzrf3f1fPqkVDVRvZrPZtVSMHxdgo8Aq0sxAOb/cr2aqqA3LeWHVPg==}
 
-  just-extend@4.2.1:
-    resolution: {integrity: sha512-g3UB796vUFIY90VIv/WX3L2c8CS2MdWUww3CNrYmqza1Fg0DURc2K/O4YrnklBdQarSJ/y8JnJYDGc+1iumQjg==}
-
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
@@ -6153,12 +6121,6 @@ packages:
   log-symbols@4.1.0:
     resolution: {integrity: sha512-8XPvpAA8uyhfteu8pIvQxpJZ7SYYdpUivZpGy6sFsBuKRY/7rQGavedeB8aK+Zkyq6upMFVL/9AW6vOYzfRyLg==}
     engines: {node: '>=10'}
-
-  lolex@4.2.0:
-    resolution: {integrity: sha512-gKO5uExCXvSm6zbF562EvM+rd1kQDnB9AZBbiQVzf1ZmdDpxUSvpnAaVOP83N/31mRK8Ml8/VE8DMvsAZQ+7wg==}
-
-  lolex@5.1.2:
-    resolution: {integrity: sha512-h4hmjAvHTmd+25JSwrtTIuwbKdwg5NzZVRMLn9saij4SZaepCrTCxPr35H/3bjwfMJtN+t3CX8672UIkglz28A==}
 
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -6487,9 +6449,6 @@ packages:
 
   nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
-
-  nise@1.5.3:
-    resolution: {integrity: sha512-Ymbac/94xeIrMf59REBPOv0thr+CJVFMhrlAkW/gjCIE58BGQdCj0x7KRCb3yz+Ga2Rz3E9XXSvUyyxqqhjQAQ==}
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
@@ -6847,9 +6806,6 @@ packages:
 
   path-to-regexp@0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
-
-  path-to-regexp@1.9.0:
-    resolution: {integrity: sha512-xIp7/apCFJuUHdDLWe8O1HIkb0kQrOMb/0u6FXQjemHn/ii5LrIzU6bdECnsiTF/GjZkMEKg1xdiZwNqDYlZ6g==}
 
   path-to-regexp@6.3.0:
     resolution: {integrity: sha512-Yhpw4T9C6hPpgPeA28us07OJeqZ5EzQTkbfwuhsUg0c237RomFoETJgmp2sa3F/41gfLE6G5cqcYwznmeEeOlQ==}
@@ -7726,10 +7682,6 @@ packages:
   simple-html-tokenizer@0.5.11:
     resolution: {integrity: sha512-C2WEK/Z3HoSFbYq8tI7ni3eOo/NneSPRoPpcM7WdLjFOArFuyXEjAoCdOC3DgMfRyziZQ1hCNR4mrNdWEvD0og==}
 
-  sinon@7.5.0:
-    resolution: {integrity: sha512-AoD0oJWerp0/rY9czP/D6hDTTUYGpObhZjMpd7Cl/A6+j0xBE+ayL/ldfggkBXUs0IkvIiM1ljM8+WkOc5k78Q==}
-    deprecated: 16.1.1
-
   slash@1.0.0:
     resolution: {integrity: sha512-3TYDR7xWt4dIqV2JauJr+EJeW356RXijHeUlO+8djJ+uBXPn8/2dpzBc8yQhh583sVvc9CvFAeQVgijsH+PNNg==}
     engines: {node: '>=0.10.0'}
@@ -8242,10 +8194,6 @@ packages:
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
-
-  type-detect@4.0.8:
-    resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
-    engines: {node: '>=4'}
 
   type-fest@0.11.0:
     resolution: {integrity: sha512-OdjXJxnCN1AvyLSzeKIgXTXxV+99ZuXl3Hpo9XpJAv9MBcHrrJOQ5kV7ypXOuQie+AmWG25hLbiKdwYTifzcfQ==}
@@ -12118,23 +12066,6 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@sinonjs/commons@1.8.6':
-    dependencies:
-      type-detect: 4.0.8
-
-  '@sinonjs/formatio@3.2.2':
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-      '@sinonjs/samsam': 3.3.3
-
-  '@sinonjs/samsam@3.3.3':
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-      array-from: 2.1.1
-      lodash: 4.17.23
-
-  '@sinonjs/text-encoding@0.7.2': {}
-
   '@socket.io/component-emitter@3.1.2': {}
 
   '@tootallnate/once@1.1.2': {}
@@ -12607,8 +12538,6 @@ snapshots:
   array-equal@1.0.2: {}
 
   array-flatten@1.1.1: {}
-
-  array-from@2.1.1: {}
 
   array-to-error@1.1.1:
     dependencies:
@@ -14713,8 +14642,6 @@ snapshots:
 
   detect-newline@3.1.0: {}
 
-  diff@3.5.0: {}
-
   diff@5.2.0: {}
 
   dir-glob@3.0.1:
@@ -15823,15 +15750,6 @@ snapshots:
       showdown: 2.1.0
     transitivePeerDependencies:
       - '@babel/core'
-      - supports-color
-
-  ember-sinon@4.1.1:
-    dependencies:
-      broccoli-funnel: 2.0.2
-      broccoli-merge-trees: 3.0.2
-      ember-cli-babel: 7.26.11
-      sinon: 7.5.0
-    transitivePeerDependencies:
       - supports-color
 
   ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1):
@@ -17968,8 +17886,6 @@ snapshots:
 
   jsonify@0.0.1: {}
 
-  just-extend@4.2.1: {}
-
   keyv@4.5.4:
     dependencies:
       json-buffer: 3.0.1
@@ -18187,12 +18103,6 @@ snapshots:
     dependencies:
       chalk: 4.1.2
       is-unicode-supported: 0.1.0
-
-  lolex@4.2.0: {}
-
-  lolex@5.1.2:
-    dependencies:
-      '@sinonjs/commons': 1.8.6
 
   loose-envify@1.4.0:
     dependencies:
@@ -18522,14 +18432,6 @@ snapshots:
   netmask@2.0.2: {}
 
   nice-try@1.0.5: {}
-
-  nise@1.5.3:
-    dependencies:
-      '@sinonjs/formatio': 3.2.2
-      '@sinonjs/text-encoding': 0.7.2
-      just-extend: 4.2.1
-      lolex: 5.1.2
-      path-to-regexp: 1.9.0
 
   no-case@3.0.4:
     dependencies:
@@ -18887,10 +18789,6 @@ snapshots:
   path-to-regexp@0.1.12: {}
 
   path-to-regexp@0.1.7: {}
-
-  path-to-regexp@1.9.0:
-    dependencies:
-      isarray: 0.0.1
 
   path-to-regexp@6.3.0: {}
 
@@ -19925,16 +19823,6 @@ snapshots:
 
   simple-html-tokenizer@0.5.11: {}
 
-  sinon@7.5.0:
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-      '@sinonjs/formatio': 3.2.2
-      '@sinonjs/samsam': 3.3.3
-      diff: 3.5.0
-      lolex: 4.2.0
-      nise: 1.5.3
-      supports-color: 5.5.0
-
   slash@1.0.0:
     optional: true
 
@@ -20649,8 +20537,6 @@ snapshots:
   type-check@0.4.0:
     dependencies:
       prelude-ls: 1.2.1
-
-  type-detect@4.0.8: {}
 
   type-fest@0.11.0: {}
 

@@ -83,7 +83,6 @@
     "ember-resolver": "^10.0.0",
     "ember-rfc176-data": "^0.3.17",
     "ember-showdown-shiki": "^1.2.1",
-    "ember-sinon": "^4.1.1",
     "ember-source": "~4.12.0",
     "ember-styleguide": "^11.3.1",
     "ember-svg-jar": "^2.7.1",
