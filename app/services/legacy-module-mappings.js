@@ -17,7 +17,7 @@ export default class LegacyModuleMappingsService extends Service {
     try {
       let newMappings = this.buildMappings(legacyMappings);
       this.mappings = newMappings;
-    } catch (e) {
+    } catch {
       this.mappings = [];
     }
   }

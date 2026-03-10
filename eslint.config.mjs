@@ -17,7 +17,7 @@ import js from '@eslint/js';
 
 import ember from 'eslint-plugin-ember/recommended';
 import eslintConfigPrettier from 'eslint-config-prettier';
-import qunit from 'eslint-plugin-qunit';
+import eslintPluginQunitRecommended from 'eslint-plugin-qunit/configs/recommended';
 import n from 'eslint-plugin-n';
 
 import babelParser from '@babel/eslint-parser';
@@ -70,9 +70,7 @@ export default [
   },
   {
     files: ['tests/**/*-test.{js,gjs}'],
-    plugins: {
-      qunit,
-    },
+    ...eslintPluginQunitRecommended,
   },
   /**
    * CJS node files
@@ -89,7 +87,10 @@ export default [
       '.stylelintrc.js',
       '.template-lintrc.js',
       'ember-cli-build.js',
+      'prember-urls.js',
+      'lib/api-docs-data/**/*.js',
     ],
+    ...n.configs['flat/recommended-script'],
     plugins: {
       n,
     },
@@ -107,6 +108,7 @@ export default [
    */
   {
     files: ['**/*.mjs'],
+    ...n.configs['flat/recommended-module'],
     plugins: {
       n,
     },
