@@ -22,7 +22,7 @@ export default class IndexRoute extends Route {
           includes: 'project-version',
         });
         foundProject = 'ember-data';
-      } catch (e) {
+      } catch {
         foundProject = 'ember-cli';
       }
     }

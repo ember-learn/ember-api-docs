@@ -37,7 +37,7 @@ export default class FunctionRoute extends Route {
         'class',
         `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
-    } catch (e) {
+    } catch {
       try {
         fnModule = await this.store.findRecord(
           'namespace',

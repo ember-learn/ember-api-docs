@@ -1,5 +1,4 @@
 import { module, test } from 'qunit';
-/* eslint-disable ember/no-restricted-resolver-tests */
 import { setupTest } from 'ember-qunit';
 import { findEndingRoute } from 'ember-api-docs/controllers/project-version';
 
