@@ -291,8 +291,8 @@ importers:
         specifier: ^3.10.0
         version: 3.17.0(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)
       tracked-built-ins:
-        specifier: ^3.1.1
-        version: 3.4.0(@babel/core@7.29.0)
+        specifier: ^4.1.0
+        version: 4.1.0(@babel/core@7.29.0)
       webpack:
         specifier: ^5.90.0
         version: 5.104.1
@@ -8202,8 +8202,8 @@ packages:
     resolution: {integrity: sha512-l7FvfAHlcmulp8kr+flpQZmVwtu7nfRV7NZujtN0OqES8EL4O4e0qqzL0DC5gAvx/ZC/9lk6rhcUwYvkBnBnYA==}
     engines: {node: '>=12'}
 
-  tracked-built-ins@3.4.0:
-    resolution: {integrity: sha512-aRwWQXC3VkY50oYxS7wKZiavkjf3uaN+UYUH30D5gxUqbxDN2LnNsfWyDfckmxHUGw4gJDH5lpRS0jX/tim0vw==}
+  tracked-built-ins@4.1.0:
+    resolution: {integrity: sha512-v1+jca3sD3LgbAFVsontSONTv7HsZll3yeUB00L6KPwLilFRrY77gvgptDe35fTalk9ea7mmrM2wABD56pTvuw==}
 
   tree-kill@1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
@@ -20600,10 +20600,10 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  tracked-built-ins@3.4.0(@babel/core@7.29.0):
+  tracked-built-ins@4.1.0(@babel/core@7.29.0):
     dependencies:
-      '@embroider/addon-shim': 1.9.0
-      decorator-transforms: 2.3.0(@babel/core@7.29.0)
+      '@embroider/addon-shim': 1.10.2
+      decorator-transforms: 2.3.1(@babel/core@7.29.0)
       ember-tracked-storage-polyfill: 1.0.0
     transitivePeerDependencies:
       - '@babel/core'
