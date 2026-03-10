@@ -123,7 +123,7 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       ember-concurrency:
-        specifier: ^4.0.3
+        specifier: ^4.0.6
         version: 4.0.6(@babel/core@7.29.0)
       ember-data:
         specifier: ~4.6.0
