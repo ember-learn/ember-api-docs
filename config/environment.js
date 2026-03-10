@@ -97,10 +97,6 @@ module.exports = function (environment) {
     ENV.APP.scrollContainerSelector = '#ember-testing-container';
 
     ENV.APP.autoboot = false;
-
-    ENV['ember-tether'] = {
-      bodyElementId: 'ember-testing',
-    };
   }
 
   if (environment === 'production') {
