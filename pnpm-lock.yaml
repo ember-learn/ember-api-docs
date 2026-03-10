@@ -138,8 +138,8 @@ importers:
         specifier: ^0.5.11
         version: 0.5.13(@babel/core@7.29.0)(@typescript-eslint/parser@8.56.1(eslint@8.57.1)(typescript@4.9.5))(eslint@8.57.1)(typescript@4.9.5)
       ember-inflector:
-        specifier: ^4.0.3
-        version: 4.0.3(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
+        specifier: ^6.0.0
+        version: 6.0.0(@babel/core@7.29.0)
       ember-load-initializers:
         specifier: ^2.1.2
         version: 2.1.2(@babel/core@7.29.0)
@@ -4335,6 +4335,9 @@ packages:
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
       ember-source: ^3.16.0 || ^4.0.0 || ^5.0.0
+
+  ember-inflector@6.0.0:
+    resolution: {integrity: sha512-g6trqBhQHRwlq9bBmoyxhAl0tD0/CaTKK0xWPUgi3BfxFOgGG1bbiwAx+tjyiAkLzDqU+ihyjtT+sd41y6K1hA==}
 
   ember-load-initializers@2.1.2:
     resolution: {integrity: sha512-CYR+U/wRxLbrfYN3dh+0Tb6mFaxJKfdyz+wNql6cqTrA0BBi9k6J3AaKXj273TqvEpyyXegQFFkZEiuZdYtgJw==}
@@ -15709,6 +15712,14 @@ snapshots:
       ember-cli-babel: 7.26.11
       ember-source: 4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)
     transitivePeerDependencies:
+      - supports-color
+
+  ember-inflector@6.0.0(@babel/core@7.29.0):
+    dependencies:
+      '@embroider/addon-shim': 1.10.2
+      decorator-transforms: 2.3.1(@babel/core@7.29.0)
+    transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   ember-load-initializers@2.1.2(@babel/core@7.29.0):
