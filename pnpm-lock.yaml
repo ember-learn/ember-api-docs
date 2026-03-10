@@ -90,14 +90,14 @@ importers:
         specifier: ^3.3.1
         version: 3.3.3(ember-cli@4.12.3(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8))
       ember-cli-deploy:
-        specifier: ^1.0.1
-        version: 1.0.2
+        specifier: ^2.0.0
+        version: 2.0.0
       ember-cli-deploy-build:
-        specifier: ^1.1.0
-        version: 1.1.2
+        specifier: ^3.0.0
+        version: 3.0.0(@babel/core@7.29.0)(eslint@8.57.1)
       ember-cli-deploy-gzip:
-        specifier: ^1.0.0
-        version: 1.0.1
+        specifier: ^3.0.0
+        version: 3.0.0(@babel/core@7.29.0)(eslint@8.57.1)
       ember-cli-deprecation-workflow:
         specifier: ^3.0.1
         version: 3.0.1(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
@@ -4068,13 +4068,13 @@ packages:
     peerDependencies:
       ember-cli: ^3.2.0 || >=4.0.0
 
-  ember-cli-deploy-build@1.1.2:
-    resolution: {integrity: sha512-D5rjlSXfwt9BAeaGD1OLegF30Fr96dLrDYEB4DT5XVTrHWBcQp5cg5PVkFfp7Ov3AYx4xOyugxQVMy0FqrQAkA==}
-    engines: {node: 8.* || >= 10.*}
+  ember-cli-deploy-build@3.0.0:
+    resolution: {integrity: sha512-nCgRkQ/ujzy4fqxSvoaQD8j1ev3LOA30STlZTvHt+dhyfYC6ojMqTBl7SatPcv7Fz6Vy6BqE/Sqy3vhOHCzQJg==}
+    engines: {node: 14.* || 16.* || 18.* || >= 20}
 
-  ember-cli-deploy-gzip@1.0.1:
-    resolution: {integrity: sha512-5tRDVfym1JTqEA6XWjWL4Cn4xCoAcaOfhwGjeSIK3IGQrOckHpHZM44TUQ/NaxXBsABBymZjXNkimIAFbkfkYA==}
-    engines: {node: '>= 0.10.0'}
+  ember-cli-deploy-gzip@3.0.0:
+    resolution: {integrity: sha512-JUKHPHYgpGkgybewsKeMbWc9KL0gNB/kNPoHcfjVZsyeW6Ms+rAexwKqSLMuBgXZeDQEZN5AifyVJ3aHAy8iMg==}
+    engines: {node: 14.x || 16.x || 18.x || >= 20.x}
 
   ember-cli-deploy-plugin@0.2.9:
     resolution: {integrity: sha512-6Cq3XbjZLi4vFYcyF0xfVr5tJdcnNY8kXZFY76qeN3VoKpwTfwiYMc45I8N9DsH8zog8xzHO8YL5RU58qKiqUQ==}
@@ -4084,9 +4084,9 @@ packages:
     resolution: {integrity: sha512-CLCvKFKudR0AKmo6EMKlC/jf/Qh7zj0qpV9bC6dyz2W+DRX0T4NXN/BwX5Shi4VpFQQujXzGNUogWRpNHGPdEg==}
     engines: {node: '>=0.4.0'}
 
-  ember-cli-deploy@1.0.2:
-    resolution: {integrity: sha512-ERnOxUF6Ownhv+34ZN6xQBkrKBKYCdHNxihwZPW7aA4aKmadPC9CRbT1oWnSC/Em4T0dLyQInqyT0EZeSrZWbg==}
-    engines: {node: '>= 0.10.0'}
+  ember-cli-deploy@2.0.0:
+    resolution: {integrity: sha512-x6vtuxruExD66qo/OvNldGbxZ3NTaeRSdL63Q9clJ/+JspLXeHtKxl5dDMqRNvl8sItVrZJqq9GYMJfPsg5SWA==}
+    engines: {node: 12.* || 14.* || >= 16}
 
   ember-cli-deprecation-workflow@3.0.1:
     resolution: {integrity: sha512-d5wM5IHu+HjIK2TucQWOTFD9725Dx+xBZ3oBc0ZLaB8mdTV3wrAOrQ1vyzcuZEe/uvFBhr5TIy5QP+UNJ2q8Hg==}
@@ -14861,20 +14861,30 @@ snapshots:
       resolve: 1.22.11
       semver: 5.7.2
 
-  ember-cli-deploy-build@1.1.2:
+  ember-cli-deploy-build@3.0.0(@babel/core@7.29.0)(eslint@8.57.1):
     dependencies:
-      chalk: 1.1.3
+      '@babel/eslint-parser': 7.28.6(@babel/core@7.29.0)(eslint@8.57.1)
+      chalk: 4.1.2
       ember-cli-deploy-plugin: 0.2.9
-      glob: 7.2.3
-      rsvp: 3.6.2
+      glob: 10.5.0
+      rsvp: 4.8.5
+    transitivePeerDependencies:
+      - '@babel/core'
+      - eslint
 
-  ember-cli-deploy-gzip@1.0.1:
+  ember-cli-deploy-gzip@3.0.0(@babel/core@7.29.0)(eslint@8.57.1):
     dependencies:
-      chalk: 1.1.3
-      core-object: 2.1.1
+      '@babel/eslint-parser': 7.28.6(@babel/core@7.29.0)(eslint@8.57.1)
+      '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
+      chalk: 4.1.2
+      core-object: 3.1.5
       ember-cli-deploy-plugin: 0.2.9
-      minimatch: 3.1.2
-      rsvp: 3.6.2
+      minimatch: 3.1.5
+      rsvp: 4.8.5
+    transitivePeerDependencies:
+      - '@babel/core'
+      - eslint
+      - supports-color
 
   ember-cli-deploy-plugin@0.2.9:
     dependencies:
@@ -14884,14 +14894,14 @@ snapshots:
 
   ember-cli-deploy-progress@1.3.0: {}
 
-  ember-cli-deploy@1.0.2:
+  ember-cli-deploy@2.0.0:
     dependencies:
       chalk: 1.1.3
       core-object: 2.1.1
       dag-map: 2.0.2
       dotenv: 1.2.0
       ember-cli-deploy-progress: 1.3.0
-      lodash: 4.17.21
+      lodash: 4.17.23
       rsvp: 3.6.2
       silent-error: 1.1.1
     transitivePeerDependencies:
@@ -16882,7 +16892,7 @@ snapshots:
     dependencies:
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
 
