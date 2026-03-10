@@ -86,9 +86,6 @@ importers:
       ember-cli-babel:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.29.0)
-      ember-cli-clipboard:
-        specifier: ^1.1.0
-        version: 1.1.0(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))(webpack@5.104.1)
       ember-cli-dependency-checker:
         specifier: ^3.3.1
         version: 3.3.3(ember-cli@4.12.3(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8))
@@ -3264,9 +3261,6 @@ packages:
     resolution: {integrity: sha512-FxqpkPPwu1HjuN93Omfm4h8uIanXofW0RxVEW3k5RKx+mJJYSthzNhp32Kzxxy3YAEZ/Dc/EWN1vZRY0+kOhbw==}
     engines: {node: '>= 10'}
 
-  clipboard@2.0.11:
-    resolution: {integrity: sha512-C+0bbOqkezLIsmWSvlsXS0Q0bmkugu7jcfMIACB+RDEntIzQIkdr148we28AfSloQLRdZlYL/QYyrq05j/3Faw==}
-
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
@@ -3890,9 +3884,6 @@ packages:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
 
-  delegate@3.2.0:
-    resolution: {integrity: sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==}
-
   delegates@1.0.0:
     resolution: {integrity: sha512-bd2L678uiWATM6m5Z1VzNCErI3jiGzt6HGY8OVICs40JQq/HALfbyNJmp0UDakEY4pMMaN0Ly5om/B1VI/+xfQ==}
 
@@ -4016,10 +4007,6 @@ packages:
       qunit:
         optional: true
 
-  ember-arg-types@1.1.0:
-    resolution: {integrity: sha512-hWpUz0eiNkWzi3FgHW5QU6LyCDyUlTWwuIROHluEKZoa9m6LJVXbb/EVFgIG3FkAib6a5Ie00WvkXEZFXxh3+A==}
-    engines: {node: 14.* || >= 16}
-
   ember-assign-helper@0.5.0:
     resolution: {integrity: sha512-swH7FqmqB5iSeoKlU6X41iqw5HQ+EdBDyFDXmwytTyUd5GRvfGfZUn2SMUUGdyvo5FxXJWqMJ0rBT//EcGC0+Q==}
     peerDependencies:
@@ -4074,10 +4061,6 @@ packages:
     engines: {node: 16.* || 18.* || >= 20}
     peerDependencies:
       '@babel/core': ^7.12.0
-
-  ember-cli-clipboard@1.1.0:
-    resolution: {integrity: sha512-gqFMeLCMe7OKP8rtZluV3BsP03bnjqD/f1QQLdOB9gAbdiHzMIAbwIA/RhccGtGQgy5AlnxkkQ+7j/h6UDluPQ==}
-    engines: {node: 14.* || >= 16}
 
   ember-cli-dependency-checker@3.3.3:
     resolution: {integrity: sha512-mvp+HrE0M5Zhc2oW8cqs8wdhtqq0CfQXAYzaIstOzHJJn/U01NZEGu3hz7J7zl/+jxZkyygylzcS57QqmPXMuQ==}
@@ -4289,10 +4272,6 @@ packages:
     engines: {node: '>= 14.0.0'}
     peerDependencies:
       ember-source: ^3.25.0 || >=4.0.0
-
-  ember-get-config@2.1.1:
-    resolution: {integrity: sha512-uNmv1cPG/4qsac8oIf5txJ2FZ8p88LEpG4P3dNcjsJS98Y8hd0GPMFwVqpnzI78Lz7VYRGQWY4jnE4qm5R3j4g==}
-    engines: {node: 12.* || 14.* || >= 16}
 
   ember-in-element-polyfill@1.0.1:
     resolution: {integrity: sha512-eHs+7D7PuQr8a1DPqsJTsEyo3FZ1XuH6WEZaEBPDa9s0xLlwByCNKl8hi1EbXOgvgEZNHHi9Rh0vjxyfakrlgg==}
@@ -5226,9 +5205,6 @@ packages:
 
   globrex@0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
-
-  good-listener@1.2.2:
-    resolution: {integrity: sha512-goW1b+d9q/HIwbVYZzZ6SsTr4IgE+WA44A0GmPIQstuOrgsFcT7VEJ48nmr9GaRtNu0XTKacFLGnBPAM6Afouw==}
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -7129,9 +7105,6 @@ packages:
     resolution: {integrity: sha512-KYcnXctWUWyVD3W3Ye0ZDuA1N8Szrh85cVCxpG6xYrOk/0CttRtYCmU30nWsUch0NuExQQ63QXvzRE6FLimZmg==}
     engines: {node: 10.* || >= 12.*}
 
-  prop-types@15.8.1:
-    resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
-
   proper-lockfile@4.1.2:
     resolution: {integrity: sha512-TjNPblN4BwAWMXU8s9AEz4JmQxnD1NNL7bNOY/AKUzyamc379FWASUhc/K1pL2noVb+XmZKLL68cjzLsiOAMaA==}
 
@@ -7213,9 +7186,6 @@ packages:
   raw-body@2.5.3:
     resolution: {integrity: sha512-s4VSOf6yN0rvbRZGxs8Om5CWj6seneMwK3oDb4lWDH0UPhWcxwOWw5+qk24bxq87szX1ydrwylIOp2uG1ojUpA==}
     engines: {node: '>= 0.8'}
-
-  react-is@16.13.1:
-    resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
   read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -7543,9 +7513,6 @@ packages:
   schema-utils@4.3.3:
     resolution: {integrity: sha512-eflK8wEtyOE6+hsaRVPxvUKYCpRgzLqDTb8krvAsRIwOGlHoSgYLgBXoubGgLd2fT41/OUYdb48v4k4WWHQurA==}
     engines: {node: '>= 10.13.0'}
-
-  select@1.1.2:
-    resolution: {integrity: sha512-OwpTSOfy6xSs1+pwcNrv0RBMOzI39Lp3qQKUTPVVPRjCdNa5JH/oPRiqsesIskK8TVgmRiHwO4KXlV2Li9dANA==}
 
   semver-compare@1.0.0:
     resolution: {integrity: sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==}
@@ -8073,9 +8040,6 @@ packages:
 
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
-
-  tiny-emitter@2.1.0:
-    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
 
   tiny-glob@0.2.9:
     resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
@@ -14046,12 +14010,6 @@ snapshots:
 
   cli-width@3.0.0: {}
 
-  clipboard@2.0.11:
-    dependencies:
-      good-listener: 1.2.2
-      select: 1.1.2
-      tiny-emitter: 2.1.0
-
   cliui@8.0.1:
     dependencies:
       string-width: 4.2.3
@@ -14522,8 +14480,6 @@ snapshots:
 
   delayed-stream@1.0.0: {}
 
-  delegate@3.2.0: {}
-
   delegates@1.0.0: {}
 
   depd@1.1.2: {}
@@ -14648,19 +14604,6 @@ snapshots:
       qunit: 2.21.0
     transitivePeerDependencies:
       - '@babel/core'
-      - '@glint/template'
-      - supports-color
-      - webpack
-
-  ember-arg-types@1.1.0(webpack@5.104.1):
-    dependencies:
-      '@embroider/macros': 1.18.0
-      ember-auto-import: 2.12.0(webpack@5.104.1)
-      ember-cli-babel: 7.26.11
-      ember-cli-typescript: 5.3.0
-      ember-get-config: 2.1.1
-      prop-types: 15.8.1
-    transitivePeerDependencies:
       - '@glint/template'
       - supports-color
       - webpack
@@ -14908,23 +14851,6 @@ snapshots:
       semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
-
-  ember-cli-clipboard@1.1.0(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))(webpack@5.104.1):
-    dependencies:
-      '@embroider/macros': 1.18.0
-      clipboard: 2.0.11
-      ember-arg-types: 1.1.0(webpack@5.104.1)
-      ember-auto-import: 2.12.0(webpack@5.104.1)
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.3.0
-      ember-modifier: 4.2.0(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
-      prop-types: 15.8.1
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@glint/template'
-      - ember-source
-      - supports-color
-      - webpack
 
   ember-cli-dependency-checker@3.3.3(ember-cli@4.12.3(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)):
     dependencies:
@@ -15549,14 +15475,6 @@ snapshots:
       ember-cli-version-checker: 5.1.2
       ember-source: 4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)
     transitivePeerDependencies:
-      - supports-color
-
-  ember-get-config@2.1.1:
-    dependencies:
-      '@embroider/macros': 1.18.0
-      ember-cli-babel: 7.26.11
-    transitivePeerDependencies:
-      - '@glint/template'
       - supports-color
 
   ember-in-element-polyfill@1.0.1:
@@ -17063,10 +16981,6 @@ snapshots:
   globjoin@0.1.4: {}
 
   globrex@0.1.2: {}
-
-  good-listener@1.2.2:
-    dependencies:
-      delegate: 3.2.0
 
   gopd@1.2.0: {}
 
@@ -19104,12 +19018,6 @@ snapshots:
 
   promise.hash.helper@1.0.8: {}
 
-  prop-types@15.8.1:
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react-is: 16.13.1
-
   proper-lockfile@4.1.2:
     dependencies:
       graceful-fs: 4.2.11
@@ -19201,8 +19109,6 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.4.24
       unpipe: 1.0.0
-
-  react-is@16.13.1: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -19583,8 +19489,6 @@ snapshots:
       ajv: 8.18.0
       ajv-formats: 2.1.1(ajv@8.18.0)
       ajv-keywords: 5.1.0(ajv@8.18.0)
-
-  select@1.1.2: {}
 
   semver-compare@1.0.0: {}
 
@@ -20356,8 +20260,6 @@ snapshots:
       readable-stream: 3.6.2
 
   through@2.3.8: {}
-
-  tiny-emitter@2.1.0: {}
 
   tiny-glob@0.2.9:
     dependencies:
