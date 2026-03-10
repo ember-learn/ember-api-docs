@@ -174,8 +174,8 @@ importers:
         specifier: ~4.12.0
         version: 4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)
       ember-styleguide:
-        specifier: ^11.0.3
-        version: 11.0.3(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
+        specifier: ^11.3.1
+        version: 11.3.1(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))(webpack@5.104.1)
       ember-svg-jar:
         specifier: ^2.7.1
         version: 2.7.1
@@ -3205,9 +3205,6 @@ packages:
     resolution: {integrity: sha512-RbsNrFyhwkx+6psk/0fK/Q9orOUr9VMxohGd8vTa4djf4TGLfblBgUfqZChrZuW0Q+mz2eBPFLusw9Jfukzmhg==}
     hasBin: true
 
-  caniuse-lite@1.0.30001629:
-    resolution: {integrity: sha512-c3dl911slnQhmxUIT4HhYzT7wnBK/XYpGnYLOj4nJBaRiw52Ibe7YxlDaAeRECvA786zCuExhxIUJ2K7nHMrBw==}
-
   caniuse-lite@1.0.30001777:
     resolution: {integrity: sha512-tmN+fJxroPndC74efCdp12j+0rk0RHwV5Jwa1zWaFVyw2ZxAuPeG8ZgWC3Wz7uSjT3qMRQ5XHZ4COgQmsCMJAQ==}
 
@@ -4412,8 +4409,8 @@ packages:
     peerDependencies:
       '@ember/string': ^3.1.1 || ^4.0.0
 
-  ember-styleguide@11.0.3:
-    resolution: {integrity: sha512-9MViYqciH0l2zl3SCPnUnu+jQHVgOWo6xLefc1cuy8MYS2BsxQ5p3/8+e1kRGcKZLhLRkw7D2VgGf3GvU45axQ==}
+  ember-styleguide@11.3.1:
+    resolution: {integrity: sha512-DWS2hTQkocxrcRDAsf044z1tkdgaq8aITdkFM0v/+r0McEnHFcIc20Q2xMKHnf4UivDOAXfKk65d0BYJCY24HA==}
     engines: {node: 18.* || >= 20}
 
   ember-svg-jar@2.7.1:
@@ -7091,6 +7088,10 @@ packages:
 
   postcss-selector-parser@6.1.0:
     resolution: {integrity: sha512-UMz42UD0UY0EApS0ZL9o1XnLhSTtvvvLe5Dc2H2O56fvRZi+KulDyf5ctDhhtYJBGKStV2FL1fy6253cmLgqVQ==}
+    engines: {node: '>=4'}
+
+  postcss-selector-parser@6.1.2:
+    resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
     engines: {node: '>=4'}
 
   postcss-selector-parser@7.1.1:
@@ -13835,7 +13836,7 @@ snapshots:
 
   broccoli-postcss-single@5.0.2:
     dependencies:
-      broccoli-caching-writer: 3.0.3
+      broccoli-caching-writer: 3.1.0
       include-path-searcher: 0.1.0
       minimist: 1.2.8
       mkdirp: 1.0.4
@@ -14079,8 +14080,6 @@ snapshots:
   can-symlink@1.0.0:
     dependencies:
       tmp: 0.0.28
-
-  caniuse-lite@1.0.30001629: {}
 
   caniuse-lite@1.0.30001777: {}
 
@@ -15869,14 +15868,16 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-styleguide@11.0.3(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1)):
+  ember-styleguide@11.3.1(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))(webpack@5.104.1):
     dependencies:
+      '@babel/core': 7.29.0
       '@ember/render-modifiers': 2.1.0(@babel/core@7.29.0)(ember-source@4.12.4(@babel/core@7.29.0)(@glimmer/component@1.1.2(@babel/core@7.29.0))(webpack@5.104.1))
       '@glimmer/component': 1.1.2(@babel/core@7.29.0)
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 5.7.2
+      ember-auto-import: 2.12.0(webpack@5.104.1)
+      ember-cli-babel: 8.2.0(@babel/core@7.29.0)
+      ember-cli-htmlbars: 6.3.0
       ember-cli-postcss: 8.2.0
       ember-concurrency: 2.3.7(@babel/core@7.29.0)
       ember-named-blocks-polyfill: 0.2.5
@@ -15888,10 +15889,10 @@ snapshots:
       postcss-preset-env: 6.7.2
       static-postcss-addon-tree: 2.0.0
     transitivePeerDependencies:
-      - '@babel/core'
       - '@glint/template'
       - ember-source
       - supports-color
+      - webpack
 
   ember-svg-jar@2.7.1:
     dependencies:
@@ -18945,7 +18946,7 @@ snapshots:
   postcss-attribute-case-insensitive@4.0.2:
     dependencies:
       postcss: 7.0.39
-      postcss-selector-parser: 6.1.0
+      postcss-selector-parser: 6.1.2
 
   postcss-color-functional-notation@2.0.1:
     dependencies:
@@ -19091,7 +19092,7 @@ snapshots:
     dependencies:
       autoprefixer: 9.8.8
       browserslist: 4.28.1
-      caniuse-lite: 1.0.30001629
+      caniuse-lite: 1.0.30001777
       css-blank-pseudo: 0.1.4
       css-has-pseudo: 0.10.0
       css-prefers-color-scheme: 3.1.1
@@ -19159,6 +19160,11 @@ snapshots:
       uniq: 1.0.1
 
   postcss-selector-parser@6.1.0:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
+  postcss-selector-parser@6.1.2:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
