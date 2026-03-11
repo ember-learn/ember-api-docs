@@ -136,7 +136,11 @@
   "packageManager": "pnpm@10.30.2",
   "pnpm": {
     "overrides": {
+      "@ember/string": "^4.0.1",
       "ember-data>ember-inflector": "^6.0.0"
+    },
+    "patchedDependencies": {
+      "@ember/string": "patches/@ember__string.patch"
     }
   },
   "cacheDirectories": [

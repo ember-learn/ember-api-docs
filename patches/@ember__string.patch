@@ -1,0 +1,29 @@
+diff --git a/addon-main.cjs b/addon-main.cjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..9b86aec04c7ca2cdf8ea19dd3df09feb3047ea42
+--- /dev/null
++++ b/addon-main.cjs
+@@ -0,0 +1,3 @@
++'use strict';
++
++module.exports = { name: '@ember/string' };
+diff --git a/package.json b/package.json
+index e2c5f2dddfbe4b7f4adc0dd9a825140692e7d626..26bb3acd7d30eed68de79ab534d3026b7379b632 100644
+--- a/package.json
++++ b/package.json
+@@ -4,6 +4,7 @@
+   "description": "A set of utilities to transform strings",
+   "repository": "https://github.com/emberjs/ember-string",
+   "license": "MIT",
++  "keywords": ["ember-addon"],
+   "author": "",
+   "type": "module",
+   "exports": {
+@@ -49,6 +50,7 @@
+     "node": "20.11.1",
+     "pnpm": "9.4.0"
+   },
++  "ember-addon": { "version": 2, "type": "addon", "main": "addon-main.cjs", "app-js": {} },
+   "publishConfig": {
+     "registry": "https://registry.npmjs.org"
+   },
