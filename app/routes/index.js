@@ -23,13 +23,13 @@ export default class IndexRoute extends Route {
         });
         foundProject = 'ember-data';
       } catch (e) {
+        await this.store.findRecord('project', 'ember-cli', {
+          includes: 'project-version',
+        });
         foundProject = 'ember-cli';
       }
     }
 
-    if (foundProject === 'ember-cli') {
-      return this.router.transitionTo('ember-cli');
-    }
     return this.router.transitionTo('project-version', foundProject, 'release');
   }
 }
