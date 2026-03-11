@@ -221,7 +221,7 @@ module('Integration | Component | api search', function (hooks) {
 
     await render(
       <template>
-        <ApiSearch /><button>Bar</button>
+        <ApiSearch /><button type="button">Bar</button>
       </template>,
     );
     await fillIn(Selectors.input, 'foo');
