@@ -1,3 +1,18 @@
+import { service } from '@ember/service';
+import Component from '@glimmer/component';
+
+export default class ClassFieldDescription extends Component {
+  @service
+  legacyModuleMappings;
+
+  get hasImportExample() {
+    return this.legacyModuleMappings.hasFunctionMapping(
+      this.args.field.name,
+      this.args.field.class,
+    );
+  }
+}
+
 {{! template-lint-disable no-invalid-interactive }}
 <section class='class-field-description {{@type}}'>
   <h3 id='{{@field.name}}' class="class-field-description--header">
