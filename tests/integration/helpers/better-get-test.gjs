@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import betterGet from "ember-api-docs/helpers/better-get";
 
 module('helper:better-get', function (hooks) {
   setupRenderingTest(hooks);
@@ -13,7 +13,7 @@ module('helper:better-get', function (hooks) {
     this.set('dataStructure', obj);
     this.set('key', 'Ember.Object');
 
-    await render(hbs`{{better-get this.dataStructure this.key}}`);
+    await render(<template>{{betterGet this.dataStructure this.key}}</template>);
 
     assert.dom(this.element).hasText('hello');
   });
@@ -25,7 +25,7 @@ module('helper:better-get', function (hooks) {
     this.set('dataStructure', obj);
     this.set('key', '@ember/object');
 
-    await render(hbs`{{better-get this.dataStructure this.key}}`);
+    await render(<template>{{betterGet this.dataStructure this.key}}</template>);
 
     assert.dom(this.element).hasText('hello');
   });

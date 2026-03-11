@@ -1,7 +1,10 @@
-{{page-title "Ember CLI - Ember API Documentation"}}
+import pageTitle from "ember-page-title/helpers/page-title";
+import EsSidebar from "ember-styleguide/components/es-sidebar";
+import TableOfProjects from "ember-api-docs/components/table-of-projects";
+<template>{{pageTitle "Ember CLI - Ember API Documentation"}}
 
 <div class="sidebar-container sidebar-container--full-width">
-  <EsSidebar><TableOfProjects @activeProject='ember-cli' /></EsSidebar>
+  <EsSidebar><TableOfProjects @activeProject="ember-cli" /></EsSidebar>
   <section class="content">
     <article class="chapter">
       <h1>Ember CLI API Documentation</h1>
@@ -10,3 +13,4 @@
     </article>
   </section>
 </div>
+</template>

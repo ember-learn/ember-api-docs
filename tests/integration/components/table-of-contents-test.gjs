@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import TableOfContents from "ember-api-docs/components/table-of-contents";
 
 const CLASSES = ['Descriptor', 'Ember'];
 const MODULES = ['@ember/application', '@ember/array'];
@@ -14,14 +14,9 @@ module('Integration | Component | table of contents', function (hooks) {
     this.set('emberVersion', '2.4.3');
     this.set('classesIDs', CLASSES);
 
-    await render(hbs`
-      <TableOfContents
-        @showPrivateClasses={{true}}
-        @version={{this.emberVersion}}
-        @classesIDs={{this.classesIDs}}
-        @isShowingNamespaces={{true}}
-      />
-    `);
+    await render(<template>
+      <TableOfContents @showPrivateClasses={{true}} @version={{this.emberVersion}} @classesIDs={{this.classesIDs}} @isShowingNamespaces={{true}} />
+    </template>);
 
     const contentTitle = document.querySelector(
       '[data-test-toc-title="classes"]',
@@ -41,14 +36,9 @@ module('Integration | Component | table of contents', function (hooks) {
     this.set('emberVersion', '2.4.3');
     this.set('moduleIDs', MODULES);
 
-    await render(hbs`
-      <TableOfContents
-        @showPrivateClasses={{true}}
-        @version={{this.emberVersion}}
-        @moduleIDs={{this.moduleIDs}}
-        @isShowingNamespaces={{true}}
-      />
-    `);
+    await render(<template>
+      <TableOfContents @showPrivateClasses={{true}} @version={{this.emberVersion}} @moduleIDs={{this.moduleIDs}} @isShowingNamespaces={{true}} />
+    </template>);
 
     const contentReference = '.sub-table-of-contents';
     const content = document.querySelector(contentReference);

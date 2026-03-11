@@ -1,13 +1,16 @@
-<article class="whoops">
-  {{#if (eq this.model.status 404)}}
+import eq from "ember-api-docs/helpers/eq";
+import { LinkTo } from "@ember/routing";
+import { array } from "@ember/helper";
+<template><article class="whoops">
+  {{#if (eq @controller.model.status 404)}}
     <h2 class="whoops__title">Ack! 404 friend, you're in the wrong place</h2>
-    {{#if this.model.attemptedVersion}}
+    {{#if @controller.model.attemptedVersion}}
       <h3>
-        {{this.model.message}} 
+        {{@controller.model.message}} 
       </h3>
       <p>
         Modules, classes, and functions sometimes move around or are renamed across versions.
-        Try the <LinkTo @route="project-version" @models={{array this.model.attemptedProject this.model.attemptedVersion}} data-test-version-index-link>v{{this.model.attemptedVersion}} API docs index.</LinkTo>
+        Try the <LinkTo @route="project-version" @models={{array @controller.model.attemptedProject @controller.model.attemptedVersion}} data-test-version-index-link>v{{@controller.model.attemptedVersion}} API docs index.</LinkTo>
       </p>
     {{else}}
       <p>
@@ -21,3 +24,4 @@
     </h2>
   {{/if}}
 </article>
+</template>

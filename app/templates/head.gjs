@@ -1,10 +1,11 @@
-<link rel="dns-prefetch" href="{{this.model.cdnDomain}}">
 
-{{#if this.model.description}}
-  <meta name="description" content={{this.model.description}}>
-  <meta property="og:description" content={{this.model.description}}>
+<template><link rel="dns-prefetch" href="{{@controller.model.cdnDomain}}">
+
+{{#if @controller.model.description}}
+  <meta name="description" content={{@controller.model.description}}>
+  <meta property="og:description" content={{@controller.model.description}}>
 {{/if}}
 
-{{#unless this.model.isRelease}}
-  <link rel="canonical" href={{this.model.canonicalUrl}}>
-{{/unless}}
+{{#unless @controller.model.isRelease}}
+  <link rel="canonical" href={{@controller.model.canonicalUrl}}>
+{{/unless}}</template>

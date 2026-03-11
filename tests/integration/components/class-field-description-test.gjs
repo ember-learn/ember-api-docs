@@ -2,7 +2,7 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import ClassFieldDescription from "ember-api-docs/components/class-field-description";
 
 module('Integration | Component | class field description', function (hooks) {
   setupRenderingTest(hooks);
@@ -21,7 +21,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`,
+      <template><ClassFieldDescription @type={{this.type}} @field={{this.field}} /></template>,
     );
 
     assert.dom('.method-name').hasText('concat');
@@ -48,7 +48,7 @@ module('Integration | Component | class field description', function (hooks) {
     );
 
     await render(
-      hbs`<ClassFieldDescription @type={{this.type}} @field={{this.field}}/>`,
+      <template><ClassFieldDescription @type={{this.type}} @field={{this.field}} /></template>,
     );
 
     assert.dom(find('.prop:nth-child(1) dt')).hasText('prop1');

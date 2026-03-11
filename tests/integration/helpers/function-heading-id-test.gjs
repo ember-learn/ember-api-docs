@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import functionHeadingId from "ember-api-docs/helpers/function-heading-id";
 
 module('helper:function-heading-id', function (hooks) {
   setupRenderingTest(hooks);
@@ -9,7 +9,7 @@ module('helper:function-heading-id', function (hooks) {
   test('should transform nested package to id', async function (assert) {
     this.set('inputValue', '@ember/object/computed');
 
-    await render(hbs`{{function-heading-id this.inputValue}}`);
+    await render(<template>{{functionHeadingId this.inputValue}}</template>);
 
     assert.dom(this.element).hasText('functions-computed');
   });

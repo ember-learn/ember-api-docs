@@ -1,4 +1,6 @@
-<article class="chapter">
+import { LinkTo } from "@ember/routing";
+import { array } from "@ember/helper";
+<template><article class="chapter">
   <h1>Ember API Documentation</h1>
   <hr>
   <p>
@@ -12,34 +14,34 @@
   </p>
   <h2>Commonly searched-for documentation</h2>
   <ul class="spec-method-list">
-    {{! template-lint-disable no-potential-path-strings }}
-    <li>Components - <LinkTo @route='project-version.classes.class' @model='Component'>Classic</LinkTo> or <LinkTo @route='project-version.modules.module' @model='@glimmer/component'>Glimmer</LinkTo>; a view that is completely isolated</li>
-    <li><LinkTo @route='project-version.functions.function' @models={{array '@glimmer/tracking' 'tracked'}}>Tracked</LinkTo> - make your templates responsive to property updates</li>
-    <li><LinkTo @route='project-version.classes.class' @model='ComputedProperty'>Computed Properties</LinkTo> - declare functions as properties</li>
-    {{! template-lint-disable no-potential-path-strings }}
-    <li><LinkTo @route='project-version.classes.class' @model='@ember/object/computed'>Computed Macros</LinkTo> - shorter ways of expressing certain types of computed properties</li>
+    {{!-- template-lint-disable no-potential-path-strings --}}
+    <li>Components - <LinkTo @route="project-version.classes.class" @model="Component">Classic</LinkTo> or <LinkTo @route="project-version.modules.module" @model="@glimmer/component">Glimmer</LinkTo>; a view that is completely isolated</li>
+    <li><LinkTo @route="project-version.functions.function" @models={{array "@glimmer/tracking" "tracked"}}>Tracked</LinkTo> - make your templates responsive to property updates</li>
+    <li><LinkTo @route="project-version.classes.class" @model="ComputedProperty">Computed Properties</LinkTo> - declare functions as properties</li>
+    {{!-- template-lint-disable no-potential-path-strings --}}
+    <li><LinkTo @route="project-version.classes.class" @model="@ember/object/computed">Computed Macros</LinkTo> - shorter ways of expressing certain types of computed properties</li>
     <li>
-      <LinkTo @route='project-version.classes.class' @model='EmberArray'>EmberArray</LinkTo> - contains methods like
+      <LinkTo @route="project-version.classes.class" @model="EmberArray">EmberArray</LinkTo> - contains methods like
       <a href="/ember/{{@version}}/classes/EmberArray#forEach">forEach</a> and
       <a href="/ember/{{@version}}/classes/EmberArray#mapBy">mapBy</a>
       that help you iterate over Ember Objects
     </li>
     <li>
-      <LinkTo @route='project-version.classes.class' @model='EmberObject'>EmberObject</LinkTo> - the main base class for all Ember objects, including the
+      <LinkTo @route="project-version.classes.class" @model="EmberObject">EmberObject</LinkTo> - the main base class for all Ember objects, including the
       <a href="/ember/{{@version}}/classes/EmberObject#get">get</a> and
       <a href="/ember/{{@version}}/classes/EmberObject#set">set</a> methods
     </li>
     <li>
-      <LinkTo @route='project-version.classes.class' @model='Ember.Templates.helpers'>Ember.Templates.helpers</LinkTo> - built-in functions that can be used in templates, such as the
+      <LinkTo @route="project-version.classes.class" @model="Ember.Templates.helpers">Ember.Templates.helpers</LinkTo> - built-in functions that can be used in templates, such as the
       <a href="/ember/{{@version}}/classes/Ember.Templates.helpers#each">each</a> and
       <a href="/ember/{{@version}}/classes/Ember.Templates.helpers#on">on</a> helpers
     </li>
-    <li><LinkTo @route='project-version.classes.class' @model='Helper'>Helpers</LinkTo> - a way to define custom display functions that are used in templates</li>
+    <li><LinkTo @route="project-version.classes.class" @model="Helper">Helpers</LinkTo> - a way to define custom display functions that are used in templates</li>
     <li>
-      <LinkTo @route='project-version.classes.class' @model='Route'>Route</LinkTo> - used to define individual routes, including the
+      <LinkTo @route="project-version.classes.class" @model="Route">Route</LinkTo> - used to define individual routes, including the
       <a href="/ember/{{@version}}/classes/Route#model">model</a> hook for loading data
     </li>
-    <li><LinkTo @route='project-version.classes.class' @model='Service'>Service</LinkTo> - an Ember object that lives for the duration of the application, and can be made available in different parts of your application</li>
+    <li><LinkTo @route="project-version.classes.class" @model="Service">Service</LinkTo> - an Ember object that lives for the duration of the application, and can be made available in different parts of your application</li>
   </ul>
   <h2>Useful links</h2>
   <ul>
@@ -55,3 +57,4 @@
     </li>
   </ul>
 </article>
+</template>

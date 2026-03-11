@@ -1,16 +1,19 @@
-<label class='toc-private-toggle'>
-  <input type='checkbox' checked={{@showPrivateClasses}} onchange={{@togglePrivateClasses}} class='private-deprecated-toggle' data-test-private-deprecated-toggle />
+import notEq from "ember-truth-helpers/helpers/not-eq";
+import { LinkTo } from "@ember/routing";
+import { array } from "@ember/helper";
+<template><label class="toc-private-toggle">
+  <input type="checkbox" checked={{@showPrivateClasses}} onchange={{@togglePrivateClasses}} class="private-deprecated-toggle" data-test-private-deprecated-toggle />
   Show Private / Deprecated packages
 </label>
-<ul class='table-of-contents '>
-  <li class='toc-item toc-group' data-test-toc-title="packages">
+<ul class="table-of-contents ">
+  <li class="toc-item toc-group" data-test-toc-title="packages">
     Packages
-    <ul class='sub-table-of-contents modules'>
+    <ul class="sub-table-of-contents modules">
       {{#each @moduleIDs as |moduleID|}}
 
-        {{#if (not-eq moduleID '@ember/object/computed')}}
-          <li class='toc-item toc-link' data-test-module={{moduleID}}>
-            <LinkTo @route='project-version.modules.module' @models={{array @version moduleID}}>{{moduleID}}</LinkTo>
+        {{#if (notEq moduleID "@ember/object/computed")}}
+          <li class="toc-item toc-link" data-test-module={{moduleID}}>
+            <LinkTo @route="project-version.modules.module" @models={{array @version moduleID}}>{{moduleID}}</LinkTo>
           </li>
         {{/if}}
 
@@ -19,26 +22,27 @@
   </li>
 
   {{#if @isShowingNamespaces}}
-    <li class='table-of-contents' data-test-toc-title="namespaces">
+    <li class="table-of-contents" data-test-toc-title="namespaces">
       Namespaces
-      <ul class='sub-table-of-contents namespaces'>
+      <ul class="sub-table-of-contents namespaces">
         {{#each @namespaceIDs as |namespaceID|}}
-          <li class='toc-item toc-link' data-test-namespace={{namespaceID}}>
-            <LinkTo @route='project-version.namespaces.namespace' @models={{array @version namespaceID}}>{{namespaceID}}</LinkTo>
+          <li class="toc-item toc-link" data-test-namespace={{namespaceID}}>
+            <LinkTo @route="project-version.namespaces.namespace" @models={{array @version namespaceID}}>{{namespaceID}}</LinkTo>
           </li>
         {{/each}}
       </ul>
     </li>
   {{/if}}
 
-  <li class='table-of-contents' data-test-toc-title="classes">
+  <li class="table-of-contents" data-test-toc-title="classes">
     Classes
-    <ul class='sub-table-of-contents classes'>
+    <ul class="sub-table-of-contents classes">
       {{#each @classesIDs as |classID|}}
-        <li class='toc-item toc-link' data-test-class={{classID}}>
-          <LinkTo @route='project-version.classes.class' @models={{array @version classID}}>{{classID}}</LinkTo>
+        <li class="toc-item toc-link" data-test-class={{classID}}>
+          <LinkTo @route="project-version.classes.class" @models={{array @version classID}}>{{classID}}</LinkTo>
         </li>
       {{/each}}
     </ul>
   </li>
 </ul>
+</template>
