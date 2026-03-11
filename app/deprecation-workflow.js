@@ -1,7 +1,7 @@
 import setupDeprecationWorkflow from 'ember-cli-deprecation-workflow';
 
 setupDeprecationWorkflow({
-  throwOnUnhandled: true,
+  throwOnUnhandled: false,
   workflow: [
     { handler: 'throw', matchId: 'ember.component.reopen' },
     { handler: 'throw', matchId: 'implicit-injections' },

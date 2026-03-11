@@ -30,7 +30,7 @@ jobs:
           cache: pnpm
           node-version: ${{ env.NODE_VERSION }}
       - name: Install Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - name: Lint
         run: pnpm run lint
 
@@ -46,7 +46,7 @@ jobs:
         with:
           cache: pnpm
           node-version: ${{ env.NODE_VERSION }}
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run clone
       - name: Run Tests
         env:

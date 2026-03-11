@@ -96,7 +96,7 @@
                  data-test-checkbox="inherited"
                  type="checkbox"
                  checked={{this.filterData.showInherited}}
-                 onchange={{action "updateFilter" "showInherited"}}>
+                 onchange={{fn this.updateFilter "showInherited"}}>
           Inherited
         </label>
         <label class="access-checkbox">
@@ -104,7 +104,7 @@
                  data-test-checkbox="protected"
                  type="checkbox"
                  checked={{this.filterData.showProtected}}
-                 onchange={{action "updateFilter" "showProtected"}}>
+                 onchange={{fn this.updateFilter "showProtected"}}>
           Protected
         </label>
         <label class="access-checkbox">
@@ -112,7 +112,7 @@
                  data-test-checkbox="private"
                  type="checkbox"
                  checked={{this.filterData.showPrivate}}
-                 onchange={{action "updateFilter" "showPrivate"}}>
+                 onchange={{fn this.updateFilter "showPrivate"}}>
           Private
         </label>
         <label class="access-checkbox">
@@ -120,7 +120,7 @@
                  data-test-checkbox="deprecated"
                  type="checkbox"
                  checked={{this.filterData.showDeprecated}}
-                 onchange={{action "updateFilter" "showDeprecated"}}>
+                 onchange={{fn this.updateFilter "showDeprecated"}}>
           Deprecated
         </label>
       </section>
