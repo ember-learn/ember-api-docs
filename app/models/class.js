@@ -1,39 +1,4 @@
-// eslint-disable-next-line ember/no-computed-properties-in-native-classes
-import { computed } from '@ember/object';
 import Model, { belongsTo, attr } from '@ember-data/model';
-
-const projectNameFromClassName = (key) => {
-  return computed(key, 'project.id', function () {
-    const value = this.get(key) || '';
-    if (value.indexOf('Ember.') > -1) {
-      return 'ember';
-    }
-
-    if (value.indexOf('DS.') > 1) {
-      return 'ember-data';
-    }
-
-    return this.project.id;
-  });
-};
-
-// ideally this computed property would not be needed and we'd have extendsVersion, extendsProject attrs from json-api-docs
-const guessVersionFor = (key) => {
-  return computed(
-    key,
-    'extendedClassProjectName',
-    'project.id',
-    'projectVersion.version',
-    function () {
-      if (this.extendedClassProjectName === this.project.id) {
-        return this.projectVersion.version;
-      }
-
-      // try linking to latest version at least
-      return 'release';
-    },
-  );
-};
 
 export default class Class extends Model {
   @attr()
@@ -81,24 +46,18 @@ export default class Class extends Model {
   @belongsTo('project-version', { inverse: 'classes' })
   projectVersion;
 
-  @computed('projectVersion.id')
   get project() {
     return this.projectVersion.get('project');
   }
 
-  @projectNameFromClassName('extends')
-  extendedClassProjectName;
+  get extendedClassProjectName() {
+    return this.projectNameFromClassName(this['extends']);
+  }
 
-  @guessVersionFor('extends')
-  extendedClassVersion;
+  get usedClassProjectName() {
+    return this.projectNameFromClassName(this.uses);
+  }
 
-  @projectNameFromClassName('uses')
-  usedClassProjectName;
-
-  @guessVersionFor('uses')
-  usedClassVersion;
-
-  @computed('extends')
   get extendedClassShortName() {
     let extendedClassName = this['extends'];
     if (extendedClassName.substr(0, 6) === 'Ember.') {
@@ -107,7 +66,6 @@ export default class Class extends Model {
     return extendedClassName;
   }
 
-  @computed('project.id', 'uses')
   get usesObjects() {
     return this.uses.map((className) => ({
       name: className,
@@ -120,5 +78,18 @@ export default class Class extends Model {
             ? 'ember-data'
             : this.project.id,
     }));
+  }
+
+  projectNameFromClassName(val) {
+    const value = val ?? '';
+    if (value.indexOf('Ember.') > -1) {
+      return 'ember';
+    }
+
+    if (value.indexOf('DS.') > 1) {
+      return 'ember-data';
+    }
+
+    return this.project.id;
   }
 }
