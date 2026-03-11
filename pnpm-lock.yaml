@@ -110,15 +110,15 @@ importers:
       ember-cli-fastboot:
         specifier: ^4.1.5
         version: 4.1.5(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1))
+      ember-cli-head:
+        specifier: ^2.0.0
+        version: 2.0.0
       ember-cli-htmlbars:
         specifier: ^6.3.0
         version: 6.3.0
       ember-cli-inject-live-reload:
         specifier: ^2.1.0
         version: 2.1.0
-      ember-cli-meta-tags:
-        specifier: ^7.0.0
-        version: 7.0.0(@babel/core@7.29.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1))
       ember-cli-showdown:
         specifier: ^9.0.1
         version: 9.0.1(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
@@ -4168,10 +4168,6 @@ packages:
     resolution: {integrity: sha512-QkLGcYv1WRK35g4MWu/uIeJ5Suk2eJXKtZ+8s+qE7C9INmpCPyPxzaqZABquYzcWNzIdw6kYwz3NWAFdKYFxwg==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
 
-  ember-cli-meta-tags@7.0.0:
-    resolution: {integrity: sha512-fvfNB3TNVwNQOHWJ0vd+I1kFiRHcamEDJ9iNTtU9oxX1JIusSrp7JPb/t3DojMQUfEze/eiWQ98VE/zsFar31g==}
-    engines: {node: 14.* || 16.* || >= 18}
-
   ember-cli-normalize-entity-name@1.0.0:
     resolution: {integrity: sha512-rF4P1rW2P1gVX1ynZYPmuIf7TnAFDiJmIUFI1Xz16VYykUAyiOCme0Y22LeZq8rTzwBMiwBwoE3RO4GYWehXZA==}
 
@@ -4286,12 +4282,6 @@ packages:
   ember-destroyable-polyfill@2.0.3:
     resolution: {integrity: sha512-TovtNqCumzyAiW0/OisSkkVK93xnVF4NRU6+FN0ubpfwEOpRrmM2RqDwXI6YAChCgSHON1cz0DfQStpA1Gjuuw==}
     engines: {node: 10.* || >= 12}
-
-  ember-element-helper@0.6.1:
-    resolution: {integrity: sha512-YiOdAMlzYul4ulkIoNp8z7iHDfbT1fbut/9xGFRfxDwU/FmF8HtAUB2f1veu/w50HTeZNopa1OV2PCloZ76XlQ==}
-    engines: {node: 12.* || 14.* || >= 16}
-    peerDependencies:
-      ember-source: ^3.8 || 4
 
   ember-element-helper@0.8.8:
     resolution: {integrity: sha512-3slTltQV5ke53t3YVP2GYoswsQ6y+lhuVzKmt09tbEx91DapG8I/xa8W5OA0StvcQlavL3/vHrz/vCQEFs8bBA==}
@@ -14295,20 +14285,6 @@ snapshots:
 
   ember-cli-lodash-subset@2.0.1: {}
 
-  ember-cli-meta-tags@7.0.0(@babel/core@7.29.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1)):
-    dependencies:
-      '@glimmer/component': 1.1.2(@babel/core@7.29.0)
-      ember-cli-babel: 7.26.11
-      ember-cli-head: 2.0.0
-      ember-cli-htmlbars: 6.3.0
-      ember-element-helper: 0.6.1(@babel/core@7.29.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1))
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@glint/environment-ember-loose'
-      - '@glint/template'
-      - ember-source
-      - supports-color
-
   ember-cli-normalize-entity-name@1.0.0:
     dependencies:
       silent-error: 1.1.1
@@ -14713,18 +14689,6 @@ snapshots:
       ember-compatibility-helpers: 1.2.7(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
-      - supports-color
-
-  ember-element-helper@0.6.1(@babel/core@7.29.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1)):
-    dependencies:
-      '@embroider/util': 1.13.5(@babel/core@7.29.0)(ember-source@5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1))
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.3.0
-      ember-source: 5.12.0(@glimmer/component@1.1.2(@babel/core@7.29.0))(rsvp@4.8.5)(webpack@5.104.1)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@glint/environment-ember-loose'
-      - '@glint/template'
       - supports-color
 
   ember-element-helper@0.8.8:
