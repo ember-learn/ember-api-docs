@@ -4,6 +4,8 @@ import loadInitializers from 'ember-load-initializers';
 import config from 'ember-api-docs/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import { setConfig } from 'ember-basic-dropdown/config';
+import setupInspector from '@embroider/legacy-inspector-support/ember-source-4.12';
+
 import 'ember-power-select/styles';
 import './assets/styles.css';
 
@@ -19,6 +21,7 @@ export default class App extends Application {
   modulePrefix = config.modulePrefix;
   podModulePrefix = config.podModulePrefix;
   Resolver = Resolver;
+  inspector = setupInspector(this);
 }
 
 loadInitializers(App, config.modulePrefix);
