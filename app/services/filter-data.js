@@ -6,8 +6,9 @@ export default class FilterDataService extends Service {
   @tracked showProtected = false;
   @tracked showPrivate = false;
   @tracked showDeprecated = false;
+  @tracked showPrivateClasses = false;
 
-  sideNav = {
-    showPrivate: false,
-  };
+  togglePrivateClasses() {
+    this.showPrivateClasses = !this.showPrivateClasses;
+  }
 }
