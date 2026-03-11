@@ -1,8 +1,6 @@
-// eslint-disable-next-line ember/no-computed-properties-in-native-classes
-import { action, computed, set, get } from '@ember/object';
+import { action } from '@ember/object';
 import { service } from '@ember/service';
 import Controller from '@ember/controller';
-import { A } from '@ember/array';
 import { capitalize } from '@ember/string';
 import { isEmpty } from '@ember/utils';
 import { parentName } from '../../../utils/parent-name';
@@ -26,19 +24,16 @@ export default class ClassController extends Controller {
   @service
   metaStore;
 
-  @computed(
-    'filterData.{showInherited,showProtected,showPrivate,showDeprecated}',
-  )
   get visibilityFilter() {
     let appliedFilters = filterTypes
       .reduce((filters, filter) => {
-        let filterValue = get(this, `filterData.show${capitalize(filter)}`)
+        let filterValue = this.filterData[`show${capitalize(filter)}`]
           ? filter
           : null;
         filters.push(filterValue);
         return filters;
-      }, A())
-      .compact();
+      }, [])
+      .filter(Boolean);
 
     if (isEmpty(appliedFilters)) {
       return DEFAULT_FILTER;
@@ -48,14 +43,13 @@ export default class ClassController extends Controller {
   }
 
   set visibilityFilter(value = '') {
-    let filters = A(value.split(','));
+    let filters = value.split(',');
     filterTypes.forEach((filter) => {
-      let enabled = filters.indexOf(filter) > -1;
-      set(this, `filterData.show${capitalize(filter)}`, enabled);
+      this.filterData[`show${capitalize(filter)}`] =
+        filters.indexOf(filter) > -1;
     });
   }
 
-  @computed('legacyModuleMappings.mappings', 'model.{module,name}')
   get hasImportExample() {
     return this.legacyModuleMappings.hasClassMapping(
       this.model.name,
@@ -63,7 +57,6 @@ export default class ClassController extends Controller {
     );
   }
 
-  @computed('legacyModulemappings.mappings', 'model.{module,name}')
   get module() {
     return this.legacyModuleMappings.getModule(
       this.model.name,
@@ -71,7 +64,6 @@ export default class ClassController extends Controller {
     );
   }
 
-  @computed('metaStore.availableProjectVersions', 'model.project.id')
   get allVersions() {
     return this.metaStore.availableProjectVersions[this.model.project.id];
   }
