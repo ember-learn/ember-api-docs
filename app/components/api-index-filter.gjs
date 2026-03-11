@@ -15,10 +15,12 @@ import sortBy from 'lodash.sortby';
 /**
  * @extends Component<{ Args: Args, Blocks: Blocks }>
  */
-export default class ApiIndexFilter extends Component {<template><div class="api-index-filter">
-  {{yield this.filteredData}}
-</div>
-</template>
+export default class ApiIndexFilter extends Component {
+  <template>
+    <div class="api-index-filter">
+      {{yield this.filteredData}}
+    </div>
+  </template>
   get filteredMethods() {
     return this.filterItems('methods');
   }

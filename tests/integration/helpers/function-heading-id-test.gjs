@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import functionHeadingId from "ember-api-docs/helpers/function-heading-id";
+import functionHeadingId from 'ember-api-docs/helpers/function-heading-id';
 
 module('helper:function-heading-id', function (hooks) {
   setupRenderingTest(hooks);

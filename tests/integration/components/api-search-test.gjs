@@ -1,8 +1,15 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { fillIn, render, waitUntil, click, triggerKeyEvent, tab } from '@ember/test-helpers';
+import {
+  fillIn,
+  render,
+  waitUntil,
+  click,
+  triggerKeyEvent,
+  tab,
+} from '@ember/test-helpers';
 import Selectors from '../../helpers/search-selectors';
-import ApiSearch from "ember-api-docs/components/api-search";
+import ApiSearch from 'ember-api-docs/components/api-search';
 
 const SearchResponse = [
   {
@@ -212,7 +219,11 @@ module('Integration | Component | api search', function (hooks) {
       return SearchResponse;
     };
 
-    await render(<template><ApiSearch /><button>Bar</button></template>);
+    await render(
+      <template>
+        <ApiSearch /><button>Bar</button>
+      </template>,
+    );
     await fillIn(Selectors.input, 'foo');
 
     assert.dom(Selectors.dropdown).isVisible('Dropdown opens on search');
@@ -262,7 +273,11 @@ module('Integration | Component | api search', function (hooks) {
       return SearchResponse;
     };
 
-    await render(<template><ApiSearch /><a href="#">Another thing to tab to</a></template>);
+    await render(
+      <template>
+        <ApiSearch /><a href="#">Another thing to tab to</a>
+      </template>,
+    );
     await fillIn(Selectors.input, 'foo');
     assert.dom(Selectors.dropdown).isVisible();
 

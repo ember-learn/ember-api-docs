@@ -1,27 +1,42 @@
-import eq from "ember-api-docs/helpers/eq";
-import { LinkTo } from "@ember/routing";
-import { array } from "@ember/helper";
-<template><article class="whoops">
-  {{#if (eq @controller.model.status 404)}}
-    <h2 class="whoops__title">Ack! 404 friend, you're in the wrong place</h2>
-    {{#if @controller.model.attemptedVersion}}
-      <h3>
-        {{@controller.model.message}} 
-      </h3>
-      <p>
-        Modules, classes, and functions sometimes move around or are renamed across versions.
-        Try the <LinkTo @route="project-version" @models={{array @controller.model.attemptedProject @controller.model.attemptedVersion}} data-test-version-index-link>v{{@controller.model.attemptedVersion}} API docs index.</LinkTo>
-      </p>
+import eq from 'ember-api-docs/helpers/eq';
+import { LinkTo } from '@ember/routing';
+import { array } from '@ember/helper';
+<template>
+  <article class="whoops">
+    {{#if (eq @controller.model.status 404)}}
+      <h2 class="whoops__title">Ack! 404 friend, you're in the wrong place</h2>
+      {{#if @controller.model.attemptedVersion}}
+        <h3>
+          {{@controller.model.message}}
+        </h3>
+        <p>
+          Modules, classes, and functions sometimes move around or are renamed
+          across versions. Try the
+          <LinkTo
+            @route="project-version"
+            @models={{array
+              @controller.model.attemptedProject
+              @controller.model.attemptedVersion
+            }}
+            data-test-version-index-link
+          >v{{@controller.model.attemptedVersion}} API docs index.</LinkTo>
+        </p>
+      {{else}}
+        <p>
+          This page wasn't found. Please try the
+          <LinkTo @route="index">API docs page</LinkTo>. If you expected
+          something else to be here, please file a
+          <a
+            href="https://github.com/ember-learn/ember-api-docs/issues/new"
+            target="_blank"
+            rel="noopener noreferrer"
+          >ticket</a>.
+        </p>
+      {{/if}}
     {{else}}
-      <p>
-        This page wasn't found. Please try the <LinkTo @route="index">API docs page</LinkTo>.
-        If you expected something else to be here, please file a <a href="https://github.com/ember-learn/ember-api-docs/issues/new" target="_blank" rel="noopener noreferrer">ticket</a>.
-      </p>
+      <h2 class="whoops__title">
+        Whoops! Something went wrong.
+      </h2>
     {{/if}}
-  {{else}}
-    <h2 class="whoops__title">
-      Whoops! Something went wrong.
-    </h2>
-  {{/if}}
-</article>
+  </article>
 </template>

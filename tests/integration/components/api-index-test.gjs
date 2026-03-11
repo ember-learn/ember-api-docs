@@ -2,10 +2,10 @@ import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click, findAll } from '@ember/test-helpers';
-import ApiIndex from "ember-api-docs/components/api-index";
-import { LinkTo } from "@ember/routing";
-import { array, hash, fn } from "@ember/helper";
-import ApiIndexFilter from "ember-api-docs/components/api-index-filter";
+import ApiIndex from 'ember-api-docs/components/api-index';
+import { LinkTo } from '@ember/routing';
+import { array, hash, fn } from '@ember/helper';
+import ApiIndexFilter from 'ember-api-docs/components/api-index-filter';
 
 module('Integration | Component | api index', function (hooks) {
   setupRenderingTest(hooks);
@@ -40,7 +40,8 @@ module('Integration | Component | api index', function (hooks) {
     };
 
     // Template block usage:
-    await render(<template>
+    await render(
+      <template>
         <ApiIndex @itemData={{this.myModel}} as |sectionData|>
           {{#each sectionData.sections as |section|}}
             <h2 class="api-index-section-title">{{section.title}}</h2>
@@ -48,18 +49,28 @@ module('Integration | Component | api index', function (hooks) {
               <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
-                    <LinkTo @route="item.route" @models={{array sectionData.projectId sectionData.projectVersion sectionData.name item.name}} @query={{hash anchor=item.name}}>
+                    <LinkTo
+                      @route="item.route"
+                      @models={{array
+                        sectionData.projectId
+                        sectionData.projectVersion
+                        sectionData.name
+                        item.name
+                      }}
+                      @query={{hash anchor=item.name}}
+                    >
                       {{item.name}}
                     </LinkTo>
                   </li>
                 {{/each}}
               </ul>
-              {{else}}
-                No documented items
+            {{else}}
+              No documented items
             {{/if}}
           {{/each}}
         </ApiIndex>
-    </template>);
+      </template>,
+    );
     assert
       .dom('.api-index-section-title')
       .exists({ count: 3 }, 'should show 3 sections');
@@ -108,7 +119,8 @@ module('Integration | Component | api index', function (hooks) {
     };
 
     // Template block usage:
-    await render(<template>
+    await render(
+      <template>
         <ApiIndex @itemData={{this.myModel}} as |sectionData|>
           {{#each sectionData.sections as |section|}}
             <h2 class="api-index-section-title">{{section.title}}</h2>
@@ -116,18 +128,28 @@ module('Integration | Component | api index', function (hooks) {
               <ul class={{section.class}}>
                 {{#each section.items as |item|}}
                   <li>
-                    <LinkTo @route="item.route" @models={{array sectionData.projectId sectionData.projectVersion sectionData.name item.name}} @query={{hash anchor=item.name}}>
+                    <LinkTo
+                      @route="item.route"
+                      @models={{array
+                        sectionData.projectId
+                        sectionData.projectVersion
+                        sectionData.name
+                        item.name
+                      }}
+                      @query={{hash anchor=item.name}}
+                    >
                       {{item.name}}
                     </LinkTo>
                   </li>
                 {{/each}}
               </ul>
-              {{else}}
-                <p class="{{section.class}}">No documented items</p>
+            {{else}}
+              <p class="{{section.class}}">No documented items</p>
             {{/if}}
           {{/each}}
         </ApiIndex>
-    </template>);
+      </template>,
+    );
     assert
       .dom('.api-index-section-title')
       .exists({ count: 3 }, 'should show 3 sections');
@@ -213,47 +235,82 @@ module('Integration | Component | api index', function (hooks) {
     };
 
     // Template block usage:
-    await render(<template>
-      <ApiIndexFilter @model={{this.myModel}} @filterData={{this.filterData}} as |filteredModel|>
+    await render(
+      <template>
+        <ApiIndexFilter
+          @model={{this.myModel}}
+          @filterData={{this.filterData}}
+          as |filteredModel|
+        >
           <section>
             Show:
             <label class="access-checkbox">
-              <input id="inherited-toggle" type="checkbox" checked={{this.filterData.showInherited}} onchange={{fn this.updateFilter "showInherited"}}>
+              <input
+                id="inherited-toggle"
+                type="checkbox"
+                checked={{this.filterData.showInherited}}
+                onchange={{fn this.updateFilter "showInherited"}}
+              />
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id="protected-toggle" type="checkbox" checked={{this.filterData.showProtected}} onchange={{fn this.updateFilter "showProtected"}}>
+              <input
+                id="protected-toggle"
+                type="checkbox"
+                checked={{this.filterData.showProtected}}
+                onchange={{fn this.updateFilter "showProtected"}}
+              />
               Protected
             </label>
             <label class="access-checkbox">
-              <input id="private-toggle" type="checkbox" checked={{this.filterData.showPrivate}} onchange={{fn this.updateFilter "showPrivate"}}>
+              <input
+                id="private-toggle"
+                type="checkbox"
+                checked={{this.filterData.showPrivate}}
+                onchange={{fn this.updateFilter "showPrivate"}}
+              />
               Private
             </label>
             <label class="access-checkbox">
-              <input id="deprecated-toggle" type="checkbox" checked={{this.filterData.showDeprecated}} onchange={{fn this.updateFilter "showDeprecated"}}>
+              <input
+                id="deprecated-toggle"
+                type="checkbox"
+                checked={{this.filterData.showDeprecated}}
+                onchange={{fn this.updateFilter "showDeprecated"}}
+              />
             </label>
           </section>
 
-        <ApiIndex @itemData={{filteredModel}} as |sectionData|>
-          {{#each sectionData.sections as |section|}}
-            <h2 class="api-index-section-title">{{section.title}}</h2>
-            {{#if section.items}}
-              <ul class={{section.class}}>
-                {{#each section.items as |item|}}
-                  <li>
-                    <LinkTo @route="item.route" @models={{array sectionData.projectId sectionData.projectVersion sectionData.name item.name}} @query={{hash anchor=item.name}}>
-                      {{item.name}}
-                    </LinkTo>
-                  </li>
-                {{/each}}
-              </ul>
+          <ApiIndex @itemData={{filteredModel}} as |sectionData|>
+            {{#each sectionData.sections as |section|}}
+              <h2 class="api-index-section-title">{{section.title}}</h2>
+              {{#if section.items}}
+                <ul class={{section.class}}>
+                  {{#each section.items as |item|}}
+                    <li>
+                      <LinkTo
+                        @route="item.route"
+                        @models={{array
+                          sectionData.projectId
+                          sectionData.projectVersion
+                          sectionData.name
+                          item.name
+                        }}
+                        @query={{hash anchor=item.name}}
+                      >
+                        {{item.name}}
+                      </LinkTo>
+                    </li>
+                  {{/each}}
+                </ul>
               {{else}}
                 No documented items
-            {{/if}}
-          {{/each}}
-        </ApiIndex>
-      </ApiIndexFilter>
-    </template>);
+              {{/if}}
+            {{/each}}
+          </ApiIndex>
+        </ApiIndexFilter>
+      </template>,
+    );
     assert
       .dom('.api-index-section-title')
       .exists({ count: 3 }, 'should show 3 sections');
@@ -338,47 +395,82 @@ module('Integration | Component | api index', function (hooks) {
       this.filterData[field] = !this.filterData[field];
     };
 
-    await render(<template>
-      <ApiIndexFilter @model={{this.myModel}} @filterData={{this.filterData}} as |filteredModel|>
+    await render(
+      <template>
+        <ApiIndexFilter
+          @model={{this.myModel}}
+          @filterData={{this.filterData}}
+          as |filteredModel|
+        >
           <section>
             Show:
             <label class="access-checkbox">
-              <input id="inherited-toggle" type="checkbox" checked={{this.filterData.showInherited}} onchange={{fn this.updateFilter "showInherited"}}>
+              <input
+                id="inherited-toggle"
+                type="checkbox"
+                checked={{this.filterData.showInherited}}
+                onchange={{fn this.updateFilter "showInherited"}}
+              />
               Inherited
             </label>
             <label class="access-checkbox">
-              <input id="protected-toggle" type="checkbox" checked={{this.filterData.showProtected}} onchange={{fn this.updateFilter "showProtected"}}>
+              <input
+                id="protected-toggle"
+                type="checkbox"
+                checked={{this.filterData.showProtected}}
+                onchange={{fn this.updateFilter "showProtected"}}
+              />
               Protected
             </label>
             <label class="access-checkbox">
-              <input id="private-toggle" type="checkbox" checked={{this.filterData.showPrivate}} onchange={{fn this.updateFilter "showPrivate"}}>
+              <input
+                id="private-toggle"
+                type="checkbox"
+                checked={{this.filterData.showPrivate}}
+                onchange={{fn this.updateFilter "showPrivate"}}
+              />
               Private
             </label>
             <label class="access-checkbox">
-              <input id="deprecated-toggle" type="checkbox" checked={{this.filterData.showDeprecated}} onchange={{fn this.updateFilter "showDeprecated"}}>
+              <input
+                id="deprecated-toggle"
+                type="checkbox"
+                checked={{this.filterData.showDeprecated}}
+                onchange={{fn this.updateFilter "showDeprecated"}}
+              />
             </label>
           </section>
 
-        <ApiIndex @itemData={{filteredModel}} as |sectionData|>
-          {{#each sectionData.sections as |section|}}
-            <h2 class="api-index-section-title">{{section.title}}</h2>
-            {{#if section.items}}
-              <ul class={{section.class}}>
-                {{#each section.items as |item|}}
-                  <li>
-                    <LinkTo @route="item.route" @models={{array sectionData.projectId sectionData.projectVersion sectionData.name item.name}} query={{hash anchor=item.name}}>
-                      {{item.name}}
-                    </LinkTo>
-                  </li>
-                {{/each}}
-              </ul>
+          <ApiIndex @itemData={{filteredModel}} as |sectionData|>
+            {{#each sectionData.sections as |section|}}
+              <h2 class="api-index-section-title">{{section.title}}</h2>
+              {{#if section.items}}
+                <ul class={{section.class}}>
+                  {{#each section.items as |item|}}
+                    <li>
+                      <LinkTo
+                        @route="item.route"
+                        @models={{array
+                          sectionData.projectId
+                          sectionData.projectVersion
+                          sectionData.name
+                          item.name
+                        }}
+                        query={{hash anchor=item.name}}
+                      >
+                        {{item.name}}
+                      </LinkTo>
+                    </li>
+                  {{/each}}
+                </ul>
               {{else}}
                 No documented items
-            {{/if}}
-          {{/each}}
-        </ApiIndex>
-      </ApiIndexFilter>
-    </template>);
+              {{/if}}
+            {{/each}}
+          </ApiIndex>
+        </ApiIndexFilter>
+      </template>,
+    );
     assert
       .dom('.api-index-section-title')
       .exists({ count: 3 }, 'should show 3 sections');

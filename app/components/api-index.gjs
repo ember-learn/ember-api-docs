@@ -20,10 +20,13 @@ import Component from '@glimmer/component';
 /**
  * @extends Component<{ Args: Args, Blocks: Blocks }>
  */
-import { hash } from "@ember/helper";
-export default class ApiIndex extends Component {<template><div>
-{{yield (hash sections=this.sections)}}
-</div></template>
+import { hash } from '@ember/helper';
+export default class ApiIndex extends Component {
+  <template>
+    <div>
+      {{yield (hash sections=this.sections)}}
+    </div>
+  </template>
   get sections() {
     return [
       {

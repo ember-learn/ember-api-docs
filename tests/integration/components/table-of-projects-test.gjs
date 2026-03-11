@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import TableOfProjects from "ember-api-docs/components/table-of-projects";
+import TableOfProjects from 'ember-api-docs/components/table-of-projects';
 
 module('Integration | Component | table-of-projects', function (hooks) {
   setupRenderingTest(hooks);

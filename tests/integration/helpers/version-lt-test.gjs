@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import versionLt from "ember-api-docs/helpers/version-lt";
+import versionLt from 'ember-api-docs/helpers/version-lt';
 
 module('helper:version-lt', function (hooks) {
   setupRenderingTest(hooks);

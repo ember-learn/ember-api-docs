@@ -1,7 +1,7 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import LoadingSpinner from "ember-api-docs/components/loading-spinner";
+import LoadingSpinner from 'ember-api-docs/components/loading-spinner';
 
 module('Integration | Component | loading spinner', function (hooks) {
   setupRenderingTest(hooks);
@@ -15,11 +15,13 @@ module('Integration | Component | loading spinner', function (hooks) {
     assert.dom('*').hasText('');
 
     // Template block usage:
-    await render(<template>
-      <LoadingSpinner>
-        template block text
-      </LoadingSpinner>
-    </template>);
+    await render(
+      <template>
+        <LoadingSpinner>
+          template block text
+        </LoadingSpinner>
+      </template>,
+    );
 
     assert.dom('*').hasText('template block text');
   });
