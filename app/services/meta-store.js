@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { isPresent } from '@ember/utils';
-import { set } from '@ember/object';
 import { A } from '@ember/array';
 import getCompactVersion from 'ember-api-docs/utils/get-compact-version';
 import getLastVersion from 'ember-api-docs/utils/get-last-version';
@@ -17,7 +16,7 @@ export default class MetaStoreService extends Service {
     let projectRevMap = this.projectRevMap;
     if (!isPresent(projectRevMap[projectVersionKey])) {
       projectRevMap[projectVersionKey] = projectRevDoc;
-      set(this, 'projectRevMap', projectRevMap);
+      this.projectRevMap = projectRevMap;
     }
   }
 
