@@ -28,9 +28,6 @@ module.exports = function (defaults) {
     svgJar: {
       sourceDirs: ['public/assets/images'],
     },
-    'ember-cli-babel': {
-      includePolyfill: true,
-    },
     babel: {
       plugins: [
         // ... any other plugins
