@@ -104,12 +104,9 @@ export default class ProjectVersionController extends Controller {
       : this.publicNamespaceIDs;
   }
 
-  @computed('metaStore.availableProjectVersions', 'model.project.id')
   get projectVersions() {
-    const projectVersions =
-      this.metaStore.availableProjectVersions[
-        this.model.belongsTo('project').id()
-      ];
+    const id = this.model.belongsTo('project').id();
+    const projectVersions = this.metaStore.availableProjectVersions[id];
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
