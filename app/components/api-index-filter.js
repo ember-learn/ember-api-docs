@@ -1,11 +1,5 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes */
-import { classNames } from '@ember-decorators/component';
-import { computed } from '@ember/object';
-import Component from '@ember/component';
+import Component from '@glimmer/component';
 import sortBy from 'lodash.sortby';
-
-const filterDataComputedParams =
-  'filterData.{showInherited,showProtected,showPrivate,showDeprecated}';
 
 /**
  * @typedef Args
@@ -21,36 +15,34 @@ const filterDataComputedParams =
 /**
  * @extends Component<{ Args: Args, Blocks: Blocks }>
  */
-@classNames('api-index-filter')
 export default class ApiIndexFilter extends Component {
-  @computed('model.methods.[]', filterDataComputedParams)
   get filteredMethods() {
     return this.filterItems('methods');
   }
 
-  @computed('model.events.[]', filterDataComputedParams)
   get filteredEvents() {
     return this.filterItems('events');
   }
 
-  @computed('model.properties.[]', filterDataComputedParams)
   get filteredProperties() {
     return this.filterItems('properties');
   }
 
   filterItems(itemType) {
     let items =
-      this.model[itemType] === undefined ? [] : this.model[`${itemType}`];
-    if (!this.filterData.showInherited) {
+      this.args.model[itemType] === undefined
+        ? []
+        : this.args.model[`${itemType}`];
+    if (!this.args.filterData.showInherited) {
       items = items.filter((item) => item.inherited !== true);
     }
-    if (!this.filterData.showProtected) {
+    if (!this.args.filterData.showProtected) {
       items = items.filter((item) => item.access !== 'protected');
     }
-    if (!this.filterData.showPrivate) {
+    if (!this.args.filterData.showPrivate) {
       items = items.filter((item) => item.access !== 'private');
     }
-    if (!this.filterData.showDeprecated) {
+    if (!this.args.filterData.showDeprecated) {
       items = items.filter((item) => item.deprecated !== true);
     }
 
@@ -58,7 +50,6 @@ export default class ApiIndexFilter extends Component {
     return this.filterMultipleInheritance(sortedItems);
   }
 
-  @computed('filteredMethods', 'filteredProperties', 'filteredEvents')
   get filteredData() {
     return {
       methods: this.filteredMethods,
@@ -103,8 +94,8 @@ export default class ApiIndexFilter extends Component {
    * @method findMostLocal
    */
   findMostLocal(currentItem, nextItem) {
-    let currentScope = this.model.file;
-    let parentClassScope = this.model.get('parentClass').get('file');
+    let currentScope = this.args.model.file;
+    let parentClassScope = this.args.model.parentClass.get('file');
     if (currentScope === currentItem.file) {
       // if the item belongs to the class, keep it
       return currentItem;

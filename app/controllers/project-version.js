@@ -71,8 +71,7 @@ export default class ProjectVersionController extends Controller {
   }
 
   getRelationshipIDs(relationship) {
-    // eslint-disable-next-line ember/classic-decorator-no-classic-methods
-    const projectId = this.get('model.project.id');
+    const projectId = this.model.project.id;
     const classes = this.model.hasMany(relationship);
     const sorted = A(classes.ids()).sort();
     //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin or ember-4.12.0-alpha.23-@ember/object/promise-proxy-mixin

@@ -1,6 +1,7 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { alias } from '@ember/object/computed';
 import ClassController from '../classes/class';
 import uniq from 'lodash.uniq';
@@ -15,22 +16,20 @@ export default class ModuleController extends ClassController {
 
   @computed('model.submodules')
   get submodules() {
-    return Object.keys(this.get('model.submodules'));
+    return Object.keys(this.model.submodules);
   }
 
   @computed('model.namespaces')
   get namespaces() {
-    return Object.keys(this.get('model.namespaces'));
+    return Object.keys(this.model.namespaces);
   }
 
   @computed('model.{privateclasses,publicclasses}', 'showPrivateClasses')
   get classes() {
     if (this.showPrivateClasses) {
-      return this.get('model.publicclasses').concat(
-        this.get('model.privateclasses'),
-      );
+      return this.model.publicclasses.concat(this.model.privateclasses);
     }
-    return this.get('model.publicclasses');
+    return this.model.publicclasses;
   }
 
   @computed('classes', 'namespaces')
@@ -40,19 +39,19 @@ export default class ModuleController extends ClassController {
 
   @computed('model.{allstaticfunctions,staticfunctions}', 'showPrivateClasses')
   get functionHeadings() {
-    if (this.get('model.allstaticfunctions') && this.showPrivateClasses) {
-      return Object.keys(this.get('model.allstaticfunctions')).sort();
-    } else if (this.get('model.staticfunctions')) {
-      return Object.keys(this.get('model.staticfunctions')).sort();
+    if (this.model.allstaticfunctions && this.showPrivateClasses) {
+      return Object.keys(this.model.allstaticfunctions).sort();
+    } else if (this.model.staticfunctions) {
+      return Object.keys(this.model.staticfunctions).sort();
     }
     return {};
   }
 
   @computed('model.{allstaticfunctions,staticfunctions}', 'showPrivateClasses')
   get functions() {
-    if (this.showPrivateClasses && this.get('model.allstaticfunctions')) {
-      return this.get('model.allstaticfunctions');
+    if (this.showPrivateClasses && this.model.allstaticfunctions) {
+      return this.model.allstaticfunctions;
     }
-    return this.get('model.staticfunctions');
+    return this.model.staticfunctions;
   }
 }

@@ -24,10 +24,10 @@ function scrollToTopOfPageOnClick() {
 
 <template>
   <button
-    type='button'
+    type="button"
     {{showOnScroll}}
-    {{on 'click' scrollToTopOfPageOnClick}}
-    class='scroll-to-top'
-    alt='Scroll to top'
+    {{on "click" scrollToTopOfPageOnClick}}
+    class="scroll-to-top"
+    alt="Scroll to top"
   ></button>
 </template>
