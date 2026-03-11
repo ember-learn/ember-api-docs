@@ -10,16 +10,15 @@ module('Integration | Component | table of contents', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders classes', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    this.set('emberVersion', '2.4.3');
-    this.set('classesIDs', CLASSES);
+    const emberVersion = '2.4.3';
+    const classesIDs = CLASSES;
 
     await render(
       <template>
         <TableOfContents
           @showPrivateClasses={{true}}
-          @version={{this.emberVersion}}
-          @classesIDs={{this.classesIDs}}
+          @version={{emberVersion}}
+          @classesIDs={{classesIDs}}
           @isShowingNamespaces={{true}}
         />
       </template>,
@@ -39,16 +38,15 @@ module('Integration | Component | table of contents', function (hooks) {
   });
 
   test('it renders packages', async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    this.set('emberVersion', '2.4.3');
-    this.set('moduleIDs', MODULES);
+    const emberVersion = '2.4.3';
+    const moduleIDs = MODULES;
 
     await render(
       <template>
         <TableOfContents
           @showPrivateClasses={{true}}
-          @version={{this.emberVersion}}
-          @moduleIDs={{this.moduleIDs}}
+          @version={{emberVersion}}
+          @moduleIDs={{moduleIDs}}
           @isShowingNamespaces={{true}}
         />
       </template>,

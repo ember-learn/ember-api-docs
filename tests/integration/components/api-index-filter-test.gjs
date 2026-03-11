@@ -77,17 +77,17 @@ module('Integration | Component | api index filter', function (hooks) {
       @tracked showDeprecated = false;
     }
 
-    this.model = createModel();
-    this.filterData = new FilterData();
-    this.updateFilter = (field) => {
-      this.filterData[field] = !this.filterData[field];
+    const model = createModel();
+    const filterData = new FilterData();
+    const updateFilter = (field) => {
+      filterData[field] = !filterData[field];
     };
 
     await render(
       <template>
         <ApiIndexFilter
-          @model={{this.model}}
-          @filterData={{this.filterData}}
+          @model={{model}}
+          @filterData={{filterData}}
           as |myModel|
         >
           <section>
@@ -96,8 +96,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="inherited-toggle"
                 type="checkbox"
-                checked={{this.filterData.showInherited}}
-                onchange={{fn this.updateFilter "showInherited"}}
+                checked={{filterData.showInherited}}
+                onchange={{fn updateFilter "showInherited"}}
               />
               Inherited
             </label>
@@ -105,8 +105,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="protected-toggle"
                 type="checkbox"
-                checked={{this.filterData.showProtected}}
-                onchange={{fn this.updateFilter "showProtected"}}
+                checked={{filterData.showProtected}}
+                onchange={{fn updateFilter "showProtected"}}
               />
               Protected
             </label>
@@ -114,8 +114,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="private-toggle"
                 type="checkbox"
-                checked={{this.filterData.showPrivate}}
-                onchange={{fn this.updateFilter "showPrivate"}}
+                checked={{filterData.showPrivate}}
+                onchange={{fn updateFilter "showPrivate"}}
               />
               Private
             </label>
@@ -123,8 +123,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="deprecated-toggle"
                 type="checkbox"
-                checked={{this.filterData.showDeprecated}}
-                onchange={{fn this.updateFilter "showDeprecated"}}
+                checked={{filterData.showDeprecated}}
+                onchange={{fn updateFilter "showDeprecated"}}
               />
             </label>
           </section>
@@ -156,17 +156,17 @@ module('Integration | Component | api index filter', function (hooks) {
       @tracked showDeprecated = false;
     }
 
-    this.model = createModel();
-    this.filterData = new FilterData();
-    this.updateFilter = (field) => {
-      this.filterData[field] = !this.filterData[field];
+    const model = createModel();
+    const filterData = new FilterData();
+    const updateFilter = (field) => {
+      filterData[field] = !filterData[field];
     };
 
     await render(
       <template>
         <ApiIndexFilter
-          @model={{this.model}}
-          @filterData={{this.filterData}}
+          @model={{model}}
+          @filterData={{filterData}}
           as |myModel|
         >
           <section>
@@ -175,8 +175,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="inherited-toggle"
                 type="checkbox"
-                checked={{this.filterData.showInherited}}
-                onchange={{fn this.updateFilter "showInherited"}}
+                checked={{filterData.showInherited}}
+                onchange={{fn updateFilter "showInherited"}}
               />
               Inherited
             </label>
@@ -184,8 +184,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="protected-toggle"
                 type="checkbox"
-                checked={{this.filterData.showProtected}}
-                onchange={{fn this.updateFilter "showProtected"}}
+                checked={{filterData.showProtected}}
+                onchange={{fn updateFilter "showProtected"}}
               />
               Protected
             </label>
@@ -193,8 +193,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="private-toggle"
                 type="checkbox"
-                checked={{this.filterData.showPrivate}}
-                onchange={{fn this.updateFilter "showPrivate"}}
+                checked={{filterData.showPrivate}}
+                onchange={{fn updateFilter "showPrivate"}}
               />
               Private
             </label>
@@ -202,8 +202,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="deprecated-toggle"
                 type="checkbox"
-                checked={{this.filterData.showDeprecated}}
-                onchange={{fn this.updateFilter "showDeprecated"}}
+                checked={{filterData.showDeprecated}}
+                onchange={{fn updateFilter "showDeprecated"}}
               />
             </label>
           </section>
@@ -235,17 +235,17 @@ module('Integration | Component | api index filter', function (hooks) {
       @tracked showDeprecated = false;
     }
 
-    this.model = createModel();
-    this.filterData = new FilterData();
-    this.updateFilter = (field) => {
-      this.filterData[field] = !this.filterData[field];
+    const model = createModel();
+    const filterData = new FilterData();
+    const updateFilter = (field) => {
+      filterData[field] = !filterData[field];
     };
 
     await render(
       <template>
         <ApiIndexFilter
-          @model={{this.model}}
-          @filterData={{this.filterData}}
+          @model={{model}}
+          @filterData={{filterData}}
           as |myModel|
         >
           <section>
@@ -254,8 +254,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="inherited-toggle"
                 type="checkbox"
-                checked={{this.filterData.showInherited}}
-                onchange={{fn this.updateFilter "showInherited"}}
+                checked={{filterData.showInherited}}
+                onchange={{fn updateFilter "showInherited"}}
               />
               Inherited
             </label>
@@ -263,8 +263,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="protected-toggle"
                 type="checkbox"
-                checked={{this.filterData.showProtected}}
-                onchange={{fn this.updateFilter "showProtected"}}
+                checked={{filterData.showProtected}}
+                onchange={{fn updateFilter "showProtected"}}
               />
               Protected
             </label>
@@ -272,8 +272,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="private-toggle"
                 type="checkbox"
-                checked={{this.filterData.showPrivate}}
-                onchange={{fn this.updateFilter "showPrivate"}}
+                checked={{filterData.showPrivate}}
+                onchange={{fn updateFilter "showPrivate"}}
               />
               Private
             </label>
@@ -281,8 +281,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="deprecated-toggle"
                 type="checkbox"
-                checked={{this.filterData.showDeprecated}}
-                onchange={{fn this.updateFilter "showDeprecated"}}
+                checked={{filterData.showDeprecated}}
+                onchange={{fn updateFilter "showDeprecated"}}
               />
             </label>
           </section>
@@ -318,17 +318,17 @@ module('Integration | Component | api index filter', function (hooks) {
       @tracked showDeprecated = false;
     }
 
-    this.model = createModel();
-    this.filterData = new FilterData();
-    this.updateFilter = (field) => {
-      this.filterData[field] = !this.filterData[field];
+    const model = createModel();
+    const filterData = new FilterData();
+    const updateFilter = (field) => {
+      filterData[field] = !filterData[field];
     };
 
     await render(
       <template>
         <ApiIndexFilter
-          @model={{this.model}}
-          @filterData={{this.filterData}}
+          @model={{model}}
+          @filterData={{filterData}}
           as |myModel|
         >
           <section>
@@ -337,8 +337,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="inherited-toggle"
                 type="checkbox"
-                checked={{this.filterData.showInherited}}
-                onchange={{fn this.updateFilter "showInherited"}}
+                checked={{filterData.showInherited}}
+                onchange={{fn updateFilter "showInherited"}}
               />
               Inherited
             </label>
@@ -346,8 +346,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="protected-toggle"
                 type="checkbox"
-                checked={{this.filterData.showProtected}}
-                onchange={{fn this.updateFilter "showProtected"}}
+                checked={{filterData.showProtected}}
+                onchange={{fn updateFilter "showProtected"}}
               />
               Protected
             </label>
@@ -355,8 +355,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="private-toggle"
                 type="checkbox"
-                checked={{this.filterData.showPrivate}}
-                onchange={{fn this.updateFilter "showPrivate"}}
+                checked={{filterData.showPrivate}}
+                onchange={{fn updateFilter "showPrivate"}}
               />
               Private
             </label>
@@ -364,8 +364,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="deprecated-toggle"
                 type="checkbox"
-                checked={{this.filterData.showDeprecated}}
-                onchange={{fn this.updateFilter "showDeprecated"}}
+                checked={{filterData.showDeprecated}}
+                onchange={{fn updateFilter "showDeprecated"}}
               />
             </label>
           </section>
@@ -409,17 +409,17 @@ module('Integration | Component | api index filter', function (hooks) {
       @tracked showDeprecated = true;
     }
 
-    this.model = createModel();
-    this.filterData = new FilterData();
-    this.updateFilter = (field) => {
-      this.filterData[field] = !this.filterData[field];
+    const model = createModel();
+    const filterData = new FilterData();
+    const updateFilter = (field) => {
+      filterData[field] = !filterData[field];
     };
 
     await render(
       <template>
         <ApiIndexFilter
-          @model={{this.model}}
-          @filterData={{this.filterData}}
+          @model={{model}}
+          @filterData={{filterData}}
           as |myModel|
         >
           <section>
@@ -428,8 +428,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="inherited-toggle"
                 type="checkbox"
-                checked={{this.filterData.showInherited}}
-                onchange={{fn this.updateFilter "showInherited"}}
+                checked={{filterData.showInherited}}
+                onchange={{fn updateFilter "showInherited"}}
               />
               Inherited
             </label>
@@ -437,8 +437,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="protected-toggle"
                 type="checkbox"
-                checked={{this.filterData.showProtected}}
-                onchange={{fn this.updateFilter "showProtected"}}
+                checked={{filterData.showProtected}}
+                onchange={{fn updateFilter "showProtected"}}
               />
               Protected
             </label>
@@ -446,8 +446,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="private-toggle"
                 type="checkbox"
-                checked={{this.filterData.showPrivate}}
-                onchange={{fn this.updateFilter "showPrivate"}}
+                checked={{filterData.showPrivate}}
+                onchange={{fn updateFilter "showPrivate"}}
               />
               Private
             </label>
@@ -455,8 +455,8 @@ module('Integration | Component | api index filter', function (hooks) {
               <input
                 id="deprecated-toggle"
                 type="checkbox"
-                checked={{this.filterData.showDeprecated}}
-                onchange={{fn this.updateFilter "showDeprecated"}}
+                checked={{filterData.showDeprecated}}
+                onchange={{fn updateFilter "showDeprecated"}}
               />
             </label>
           </section>
@@ -508,14 +508,14 @@ module('Integration | Component | api index filter', function (hooks) {
       @tracked showDeprecated = false;
     }
 
-    this.model = createModel();
-    this.filterData = new FilterData();
+    const model = createModel();
+    const filterData = new FilterData();
 
     await render(
       <template>
         <ApiIndexFilter
-          @model={{this.model}}
-          @filterData={{this.filterData}}
+          @model={{model}}
+          @filterData={{filterData}}
           as |myModel|
         >
           <h2>Methods</h2>

@@ -7,30 +7,24 @@ module('helper:better-get', function (hooks) {
   setupRenderingTest(hooks);
 
   test('should get dot separated', async function (assert) {
-    let obj = {
+    const dataStructure = {
       'Ember.Object': 'hello',
     };
-    this.set('dataStructure', obj);
-    this.set('key', 'Ember.Object');
+    const key = 'Ember.Object';
 
-    await render(
-      <template>{{betterGet this.dataStructure this.key}}</template>,
-    );
+    await render(<template>{{betterGet dataStructure key}}</template>);
 
-    assert.dom(this.element).hasText('hello');
+    assert.dom().hasText('hello');
   });
 
   test('should get rfc 176 module', async function (assert) {
-    let obj = {
+    const dataStructure = {
       '@ember/object': 'hello',
     };
-    this.set('dataStructure', obj);
-    this.set('key', '@ember/object');
+    const key = '@ember/object';
 
-    await render(
-      <template>{{betterGet this.dataStructure this.key}}</template>,
-    );
+    await render(<template>{{betterGet dataStructure key}}</template>);
 
-    assert.dom(this.element).hasText('hello');
+    assert.dom().hasText('hello');
   });
 });

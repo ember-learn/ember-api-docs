@@ -1,4 +1,3 @@
-import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, findAll, find } from '@ember/test-helpers';
@@ -8,21 +7,18 @@ module('Integration | Component | class field description', function (hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function (assert) {
-    this.set('type', 'method');
-    this.set(
-      'field',
-      EmberObject.create({
-        access: 'public',
-        deprecated: true,
-        name: 'concat',
-        description: 'concatenates',
-        params: [{ name: 'param1' }, { name: 'param2' }, { name: 'param3' }],
-      }),
-    );
+    const type = 'method';
+    const field = {
+      access: 'public',
+      deprecated: true,
+      name: 'concat',
+      description: 'concatenates',
+      params: [{ name: 'param1' }, { name: 'param2' }, { name: 'param3' }],
+    };
 
     await render(
       <template>
-        <ClassFieldDescription @type={{this.type}} @field={{this.field}} />
+        <ClassFieldDescription @type={{type}} @field={{field}} />
       </template>,
     );
 
@@ -33,25 +29,22 @@ module('Integration | Component | class field description', function (hooks) {
   });
 
   test('parameter props are displayed', async function (assert) {
-    this.set('type', 'method');
-    this.set(
-      'field',
-      EmberObject.create({
-        access: 'public',
-        deprecated: true,
-        name: 'concat',
-        description: 'concatenates',
-        params: [
-          { name: 'param1' },
-          { name: 'param2' },
-          { name: 'options', props: [{ name: 'prop1' }, { name: 'prop2' }] },
-        ],
-      }),
-    );
+    const type = 'method';
+    const field = {
+      access: 'public',
+      deprecated: true,
+      name: 'concat',
+      description: 'concatenates',
+      params: [
+        { name: 'param1' },
+        { name: 'param2' },
+        { name: 'options', props: [{ name: 'prop1' }, { name: 'prop2' }] },
+      ],
+    };
 
     await render(
       <template>
-        <ClassFieldDescription @type={{this.type}} @field={{this.field}} />
+        <ClassFieldDescription @type={{type}} @field={{field}} />
       </template>,
     );
 

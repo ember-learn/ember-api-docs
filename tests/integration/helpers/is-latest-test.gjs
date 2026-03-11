@@ -10,30 +10,32 @@ module('helper:is-latest', function (hooks) {
   setupRenderingTest(hooks);
 
   test('should resolve true if latest release', async function (assert) {
-    this.set('version', '3.5.0');
-    this.set('allVersions', versions);
+    const version = '3.5.0';
+    const allVersions = versions;
 
     await render(
       <template>
-        {{#if (isLatest version=this.version allVersions=this.allVersions)}}
+        {{#if (isLatest version=version allVersions=allVersions)}}
           Hello World
         {{/if}}
       </template>,
     );
 
-    assert.dom(this.element).hasText('Hello World');
+    assert.dom().hasText('Hello World');
   });
 
   test('should resolve false if not latest', async function (assert) {
-    this.set('version', '3.1.0');
-    this.set('allVersions', versions);
+    const version = '3.1.0';
+    const allVersions = versions;
+
     await render(
       <template>
-        {{#if (isLatest version=this.version allVersions=this.allVersions)}}
+        {{#if (isLatest version=version allVersions=allVersions)}}
           Hello World
         {{/if}}
       </template>,
     );
-    assert.notEqual(this.element.textContent.trim(), 'Hello World');
+
+    assert.dom().doesNotContainText('Hello World');
   });
 });
