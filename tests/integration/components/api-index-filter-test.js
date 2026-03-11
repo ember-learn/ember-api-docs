@@ -1,19 +1,13 @@
-import EmberObject from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click, findAll } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | api index filter', function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function () {
-    this.actions = {};
-    this.send = (actionName, ...args) =>
-      this.actions[actionName].apply(this, args);
-  });
-
-  const model = EmberObject.create({
+  const createModel = () => ({
     project: {
       id: 'lolwut',
     },
@@ -22,9 +16,12 @@ module('Integration | Component | api index filter', function (hooks) {
     },
     name: 'hai',
     file: 'my-class',
-    parentClass: EmberObject.create({
+    parentClass: {
+      get(key) {
+        return key === 'file' ? 'my-class' : undefined;
+      },
       file: 'my-class',
-    }),
+    },
     methods: [
       {
         name: 'doSomething',
@@ -72,17 +69,17 @@ module('Integration | Component | api index filter', function (hooks) {
   });
 
   test('clicking inherited shows inherited methods', async function (assert) {
-    let filterData = EmberObject.create({
-      showInherited: false,
-      showProtected: false,
-      showPrivate: false,
-      isDeprecated: false,
-    });
+    class FilterData {
+      @tracked showInherited = false;
+      @tracked showProtected = false;
+      @tracked showPrivate = false;
+      @tracked showDeprecated = false;
+    }
 
-    this.set('model', model);
-    this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
-      filterData.set(field, !filterData.get(field));
+    this.model = createModel();
+    this.filterData = new FilterData();
+    this.updateFilter = (field) => {
+      this.filterData[field] = !this.filterData[field];
     };
 
     await render(hbs`
@@ -92,29 +89,29 @@ module('Integration | Component | api index filter', function (hooks) {
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showInherited}}"
-                     onchange={{fn this.actions.updateFilter "showInherited"}}>
+                     checked={{this.filterData.showInherited}}
+                     onchange={{fn this.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{fn this.actions.updateFilter "showProtected"}}>
+                     onchange={{fn this.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
-                     checked={{this.sectionData.showPrivate}}
-                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
+                     checked={{this.filterData.showPrivate}}
+                     onchange={{fn this.updateFilter "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked={{this.sectionData.showDeprecated}}
-                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
+                     checked={{this.filterData.showDeprecated}}
+                     onchange={{fn this.updateFilter "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -137,49 +134,49 @@ module('Integration | Component | api index filter', function (hooks) {
   });
 
   test('clicking private shows private methods', async function (assert) {
-    let filterData = EmberObject.create({
-      showInherited: false,
-      showProtected: false,
-      showPrivate: false,
-      showDeprecated: false,
-    });
+    class FilterData {
+      @tracked showInherited = false;
+      @tracked showProtected = false;
+      @tracked showPrivate = false;
+      @tracked showDeprecated = false;
+    }
 
-    this.set('model', model);
-    this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
-      filterData.set(field, !filterData.get(field));
+    this.model = createModel();
+    this.filterData = new FilterData();
+    this.updateFilter = (field) => {
+      this.filterData[field] = !this.filterData[field];
     };
 
     await render(hbs`
-      <ApiIndexFilter @model={{this.model}} @filterData={{this.filterData}} @updateFilter={{this.actions.updateFilter}} as |myModel|>
+      <ApiIndexFilter @model={{this.model}} @filterData={{this.filterData}} as |myModel|>
           <section>
             Show:
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showInherited}}"
-                     onchange={{fn this.actions.updateFilter "showInherited"}}>
+                     checked={{this.filterData.showInherited}}
+                     onchange={{fn this.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{fn this.actions.updateFilter "showProtected"}}>
+                     onchange={{fn this.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
                      checked={{this.filterData.showPrivate}}
-                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
+                     onchange={{fn this.updateFilter "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked={{this.sectionData.showDeprecated}}
-                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
+                     checked={{this.filterData.showDeprecated}}
+                     onchange={{fn this.updateFilter "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -202,17 +199,17 @@ module('Integration | Component | api index filter', function (hooks) {
   });
 
   test('clicking private and inherited shows both methods', async function (assert) {
-    let filterData = EmberObject.create({
-      showInherited: false,
-      showProtected: false,
-      showPrivate: false,
-      showDeprecated: false,
-    });
+    class FilterData {
+      @tracked showInherited = false;
+      @tracked showProtected = false;
+      @tracked showPrivate = false;
+      @tracked showDeprecated = false;
+    }
 
-    this.set('model', model);
-    this.set('filterData', filterData);
-    this.actions.updateFilter = function (field, value) {
-      filterData.set(field, value);
+    this.model = createModel();
+    this.filterData = new FilterData();
+    this.updateFilter = (field) => {
+      this.filterData[field] = !this.filterData[field];
     };
 
     await render(hbs`
@@ -222,29 +219,29 @@ module('Integration | Component | api index filter', function (hooks) {
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showInherited}}"
-                     onchange={{fn this.actions.updateFilter "showInherited"}}>
+                     checked={{this.filterData.showInherited}}
+                     onchange={{fn this.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{fn this.actions.updateFilter "showProtected"}}>
+                     onchange={{fn this.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
                      checked={{this.filterData.showPrivate}}
-                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
+                     onchange={{fn this.updateFilter "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked="{{this.sectionData.showDeprecated}}"
-                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
+                     checked={{this.filterData.showDeprecated}}
+                     onchange={{fn this.updateFilter "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -271,17 +268,17 @@ module('Integration | Component | api index filter', function (hooks) {
   });
 
   test('clicking all toggles shows all methods', async function (assert) {
-    let filterData = EmberObject.create({
-      showInherited: false,
-      showProtected: false,
-      showPrivate: false,
-      showDeprecated: false,
-    });
+    class FilterData {
+      @tracked showInherited = false;
+      @tracked showProtected = false;
+      @tracked showPrivate = false;
+      @tracked showDeprecated = false;
+    }
 
-    this.set('model', model);
-    this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
-      filterData.set(field, !filterData.get(field));
+    this.model = createModel();
+    this.filterData = new FilterData();
+    this.updateFilter = (field) => {
+      this.filterData[field] = !this.filterData[field];
     };
 
     await render(hbs`
@@ -291,29 +288,29 @@ module('Integration | Component | api index filter', function (hooks) {
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showInherited}}"
-                     onchange={{fn this.actions.updateFilter "showInherited"}}>
+                     checked={{this.filterData.showInherited}}
+                     onchange={{fn this.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{fn this.actions.updateFilter "showProtected"}}>
+                     onchange={{fn this.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
                      checked={{this.filterData.showPrivate}}
-                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
+                     onchange={{fn this.updateFilter "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showDeprecated}}"
-                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
+                     checked={{this.filterData.showDeprecated}}
+                     onchange={{fn this.updateFilter "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -348,17 +345,17 @@ module('Integration | Component | api index filter', function (hooks) {
   });
 
   test('clicking all toggles off should only show public', async function (assert) {
-    let filterData = EmberObject.create({
-      showInherited: true,
-      showProtected: true,
-      showPrivate: true,
-      showDeprecated: true,
-    });
+    class FilterData {
+      @tracked showInherited = true;
+      @tracked showProtected = true;
+      @tracked showPrivate = true;
+      @tracked showDeprecated = true;
+    }
 
-    this.set('model', model);
-    this.set('filterData', filterData);
-    this.actions.updateFilter = function (field) {
-      filterData.set(field, !filterData.get(field));
+    this.model = createModel();
+    this.filterData = new FilterData();
+    this.updateFilter = (field) => {
+      this.filterData[field] = !this.filterData[field];
     };
 
     await render(hbs`
@@ -368,29 +365,29 @@ module('Integration | Component | api index filter', function (hooks) {
             <label class="access-checkbox">
               <input id="inherited-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showInherited}}"
-                     onchange={{fn this.actions.updateFilter "showInherited"}}>
+                     checked={{this.filterData.showInherited}}
+                     onchange={{fn this.updateFilter "showInherited"}}>
               Inherited
             </label>
             <label class="access-checkbox">
               <input id="protected-toggle"
                      type="checkbox"
                      checked={{this.filterData.showProtected}}
-                     onchange={{fn this.actions.updateFilter "showProtected"}}>
+                     onchange={{fn this.updateFilter "showProtected"}}>
               Protected
             </label>
             <label class="access-checkbox">
               <input id="private-toggle"
                      type="checkbox"
                      checked={{this.filterData.showPrivate}}
-                     onchange={{fn this.actions.updateFilter "showPrivate"}}>
+                     onchange={{fn this.updateFilter "showPrivate"}}>
               Private
             </label>
             <label class="access-checkbox">
               <input id="deprecated-toggle"
                      type="checkbox"
-                     checked="{{this.filterData.showDeprecated}}"
-                     onchange={{fn this.actions.updateFilter "showDeprecated"}}>
+                     checked={{this.filterData.showDeprecated}}
+                     onchange={{fn this.updateFilter "showDeprecated"}}>
             </label>
           </section>
           <h2>Methods</h2>
@@ -433,15 +430,15 @@ module('Integration | Component | api index filter', function (hooks) {
   });
 
   test('should show only local method implementation when duplicates', async function (assert) {
-    let filterData = EmberObject.create({
-      showInherited: true,
-      showProtected: false,
-      showPrivate: false,
-      showDeprecated: false,
-    });
+    class FilterData {
+      @tracked showInherited = true;
+      @tracked showProtected = false;
+      @tracked showPrivate = false;
+      @tracked showDeprecated = false;
+    }
 
-    this.set('model', model);
-    this.set('filterData', filterData);
+    this.model = createModel();
+    this.filterData = new FilterData();
 
     await render(hbs`
       <ApiIndexFilter @model={{this.model}} @filterData={{this.filterData}} as |myModel|>

@@ -30,6 +30,7 @@ async function ensureVersionsExist(assert) {
 module('Acceptance | Switch Project', function (hooks) {
   setupApplicationTest(hooks);
 
+  // eslint-disable-next-line qunit/require-expect
   test('Can switch projects back and forth', async function (assert) {
     assert.expect(9);
     await visit('/');
@@ -47,6 +48,7 @@ module('Acceptance | Switch Project', function (hooks) {
     assert.dom(find('.spec-ember-data')).hasClass('active');
   });
 
+  // eslint-disable-next-line qunit/require-expect
   test('Can open class after switching projects back and forth', async function (assert) {
     assert.expect(10);
     await visit('/');

@@ -1,4 +1,4 @@
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { resolve, all } from 'rsvp';
 import Route from '@ember/routing/route';
 import { set } from '@ember/object';
@@ -37,13 +37,13 @@ export default class ClassRoute extends Route {
   }
 
   find(typeName, param) {
-    return this.store.find(typeName, param).catch((e1) => {
+    return this.store.findRecord(typeName, param).catch((e1) => {
       if (typeName != 'namespace') {
         console.warn(
           e1,
           'fetching by class or module failed, retrying as namespace',
         );
-        return this.store.find('namespace', param).catch((e2) => {
+        return this.store.findRecord('namespace', param).catch((e2) => {
           console.error(e2);
           return resolve({
             isError: true,

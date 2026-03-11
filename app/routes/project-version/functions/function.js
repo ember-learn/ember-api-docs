@@ -1,4 +1,4 @@
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import Route from '@ember/routing/route';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
 import { set } from '@ember/object';
@@ -33,13 +33,13 @@ export default class FunctionRoute extends Route {
     let fnModule;
 
     try {
-      fnModule = await this.store.find(
+      fnModule = await this.store.findRecord(
         'class',
         `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
-    } catch (e) {
+    } catch {
       try {
-        fnModule = await this.store.find(
+        fnModule = await this.store.findRecord(
           'namespace',
           `${project}-${projectVersion}-${className}`.toLowerCase(),
         );

@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   /** @type {import('@ember/routing/router-service').default} */
@@ -22,7 +22,7 @@ export default class IndexRoute extends Route {
           includes: 'project-version',
         });
         foundProject = 'ember-data';
-      } catch (e) {
+      } catch {
         foundProject = 'ember-cli';
       }
     }

@@ -1,6 +1,6 @@
 /* eslint-disable ember/no-computed-properties-in-native-classes */
 import { action, computed, set } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import { readOnly, alias } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { A } from '@ember/array';
@@ -71,8 +71,7 @@ export default class ProjectVersionController extends Controller {
   }
 
   getRelationshipIDs(relationship) {
-    // eslint-disable-next-line ember/classic-decorator-no-classic-methods
-    const projectId = this.get('model.project.id');
+    const projectId = this.model.project.id;
     const classes = this.model.hasMany(relationship);
     const sorted = A(classes.ids()).sort();
     //ids come in as ember-2.16.0-@ember/object/promise-proxy-mixin or ember-4.12.0-alpha.23-@ember/object/promise-proxy-mixin
@@ -104,12 +103,9 @@ export default class ProjectVersionController extends Controller {
       : this.publicNamespaceIDs;
   }
 
-  @computed('metaStore.availableProjectVersions', 'model.project.id')
   get projectVersions() {
-    const projectVersions =
-      this.metaStore.availableProjectVersions[
-        this.model.belongsTo('project').id()
-      ];
+    const id = this.model.belongsTo('project').id();
+    const projectVersions = this.metaStore.availableProjectVersions[id];
     let versions = projectVersions.sort((a, b) => semverCompare(b, a));
 
     versions = versions.map((version) => {
