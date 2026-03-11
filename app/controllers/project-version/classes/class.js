@@ -1,6 +1,6 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { action, computed, set, get } from '@ember/object';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import Controller from '@ember/controller';
 import { A } from '@ember/array';
 import { capitalize } from '@ember/string';

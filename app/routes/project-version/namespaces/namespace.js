@@ -1,6 +1,6 @@
 import ClassRoute from '../classes/class';
 import getFullVersion from 'ember-api-docs/utils/get-full-version';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class NamespaceRoute extends ClassRoute {
   @service store;
