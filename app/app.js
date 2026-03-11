@@ -3,12 +3,17 @@ import Resolver from 'ember-resolver';
 import loadInitializers from 'ember-load-initializers';
 import config from 'ember-api-docs/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
+import { setConfig } from 'ember-basic-dropdown/config';
 import 'ember-power-select/styles';
 import './assets/styles.css';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
 }
+
+setConfig({
+  rootElement: config.APP.rootElement,
+});
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
