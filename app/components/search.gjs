@@ -138,52 +138,52 @@ export default class Search extends Component {
 
   <template>
     <div
-      class='search-wrapper'
+      class="search-wrapper"
       {{closeOnFocusOutside this.closeMenu.perform}}
       {{closeOnEscape this.closeMenu.perform this.isOpen}}
       {{closeOnClickOutside this.closeMenu.perform}}
       ...attributes
     >
       <form
-        role='search'
-        {{on 'submit' this.submitSearch}}
+        role="search"
+        {{on "submit" this.submitSearch}}
         data-test-search-form
       >
         <label
-          for='{{this.searchInputId}}'
-          class='screen-reader-text'
+          for="{{this.searchInputId}}"
+          class="screen-reader-text"
           data-test-search-label
         >
-          {{yield to='searchInputScreenReaderLabel'}}
+          {{yield to="searchInputScreenReaderLabel"}}
         </label>
         <input
-          class='search-input'
-          id='{{this.searchInputId}}'
-          type='search'
-          {{on 'input' this.search.perform}}
-          {{on 'focus' this.onfocus}}
-          autocomplete='off'
-          autocorrect='off'
-          autocapitalize='off'
+          class="search-input"
+          id="{{this.searchInputId}}"
+          type="search"
+          {{on "input" this.search.perform}}
+          {{on "focus" this.onfocus}}
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
           spellcheck={{false}}
-          placeholder='Search'
+          placeholder="Search"
           aria-controls={{if this.isOpen this.resultsId}}
           aria-owns={{if this.isOpen this.resultsId}}
-          aria-expanded={{if this.isOpen 'true' 'false'}}
+          aria-expanded={{if this.isOpen "true" "false"}}
           data-test-search-input
         />
       </form>
       {{#if this.isOpen}}
         <div
-          id='{{this.resultsId}}'
-          class='search-results'
-          aria-label='Search Results'
+          id="{{this.resultsId}}"
+          class="search-results"
+          aria-label="Search Results"
           data-test-search-dropdown
         >
           <div
-            class='screen-reader-text'
-            aria-live='polite'
-            aria-atomic='true'
+            class="screen-reader-text"
+            aria-live="polite"
+            aria-atomic="true"
             data-test-screen-reader
           >
             {{#if this.noResults}}
@@ -194,38 +194,38 @@ export default class Search extends Component {
             {{/if}}
           </div>
           {{#if this.searchService.search.isRunning}}
-            <div class='search-results--searching'>
+            <div class="search-results--searching">
               Searching...
             </div>
           {{else if this.noResults}}
-            <div class='search-results--no-results' data-test-search-no-results>
+            <div class="search-results--no-results" data-test-search-no-results>
               No Results Found.
               <p>Try searching the
                 <a
-                  href='https://www.emberjs.com/deprecations/'
-                  target='_deprecations'
+                  href="https://www.emberjs.com/deprecations/"
+                  target="_deprecations"
                 >deprecations guide</a>.</p>
             </div>
           {{else if this.queryIsPresent}}
             {{yield
               this.searchService.results
               this.closeMenu.perform
-              to='results'
+              to="results"
             }}
           {{else}}
-            <div class='search-results--instructions'>
-              {{yield to='instructions'}}
+            <div class="search-results--instructions">
+              {{yield to="instructions"}}
             </div>
           {{/if}}
-          <div class='powered-by-algolia'>
+          <div class="powered-by-algolia">
             <a
-              href='https://www.algolia.com/'
-              target='_blank'
-              rel='noopener noreferrer'
+              href="https://www.algolia.com/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <img
-                src='/assets/images/search-by-algolia.svg'
-                alt='Search Powered by Algolia'
+                src="/assets/images/search-by-algolia.svg"
+                alt="Search Powered by Algolia"
               />
             </a>
           </div>

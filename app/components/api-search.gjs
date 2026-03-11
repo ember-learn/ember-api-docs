@@ -8,21 +8,21 @@ import { on } from '@ember/modifier';
 import Search from './search';
 
 const SearchResultGroupHeader = <template>
-  <div class='search-results--group-header' ...attributes>
+  <div class="search-results--group-header" ...attributes>
     {{yield}}
   </div>
 </template>;
 
 const SearchResultLinkContents = <template>
-  <span class='screen-reader-text'>{{@groupName}}</span>
+  <span class="screen-reader-text">{{@groupName}}</span>
   {{htmlSafe @result._highlightResult.hierarchy.lvl2.value}}
   {{! Do these ever display in API Docs? }}
   {{#if @result._highlightResult.hierarchy.lvl3}}
-    <span aria-hidden='true'> › </span>
+    <span aria-hidden="true"> › </span>
     {{htmlSafe @result._highlightResult.hierarchy.lvl3.value}}
   {{/if}}
   {{#if @result._highlightResult.hierarchy.lvl4}}
-    <span aria-hidden='true'> › </span>
+    <span aria-hidden="true"> › </span>
     {{htmlSafe @result._highlightResult.hierarchy.lvl4.value}}
   {{/if}}
 </template>;
@@ -54,23 +54,23 @@ const SearchResult = class SearchResult extends Component {
   };
 
   <template>
-    <div class='search-results--result'>
-      <div class='search-results--subcategory-column' aria-hidden='true'>
+    <div class="search-results--result">
+      <div class="search-results--subcategory-column" aria-hidden="true">
         {{#if (eq @groupPosition 0)}}
           {{@groupName}}
         {{/if}}
       </div>
-      <div class='search-results--content'>
+      <div class="search-results--content">
         {{#if @result.static}}
           <LinkTo
-            @route='project-version.functions.function'
+            @route="project-version.functions.function"
             @models={{array
               this.module
               this.version
               @result.class
               @result.name
             }}
-            {{on 'click' @closeMenu}}
+            {{on "click" @closeMenu}}
             data-test-search-result
           >
             <SearchResultLinkContents
@@ -79,7 +79,7 @@ const SearchResult = class SearchResult extends Component {
             />
           </LinkTo>
         {{else}}
-          <a href='{{this.urlForClass @result}}' data-test-search-result>
+          <a href="{{this.urlForClass @result}}" data-test-search-result>
             <SearchResultLinkContents
               @result={{@result}}
               @groupName={{@groupName}}
@@ -141,7 +141,7 @@ const SearchResults = class SearchBox extends Component {
 
   <template>
     {{#each-in this.groupedResults as |lvl0section _lvl0results|}}
-      <SearchResultGroupHeader aria-hidden='true'>
+      <SearchResultGroupHeader aria-hidden="true">
         {{lvl0section}}
       </SearchResultGroupHeader>
 

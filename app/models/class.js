@@ -1,4 +1,4 @@
-/* eslint-disable ember/no-computed-properties-in-native-classes, ember/classic-decorator-no-classic-methods */
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { computed } from '@ember/object';
 import Model, { belongsTo, attr } from '@ember-data/model';
 
@@ -13,7 +13,7 @@ const projectNameFromClassName = (key) => {
       return 'ember-data';
     }
 
-    return this.get('project.id');
+    return this.project.id;
   });
 };
 
@@ -25,8 +25,8 @@ const guessVersionFor = (key) => {
     'project.id',
     'projectVersion.version',
     function () {
-      if (this.extendedClassProjectName === this.get('project.id')) {
-        return this.get('projectVersion.version');
+      if (this.extendedClassProjectName === this.project.id) {
+        return this.projectVersion.version;
       }
 
       // try linking to latest version at least
@@ -118,7 +118,7 @@ export default class Class extends Model {
           ? 'ember'
           : className.substr(0, 3) === 'DS'
             ? 'ember-data'
-            : this.get('project.id'),
+            : this.project.id,
     }));
   }
 }

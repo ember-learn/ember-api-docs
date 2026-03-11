@@ -1,12 +1,11 @@
 import Service from '@ember/service';
+import { tracked } from '@glimmer/tracking';
 
 export default class FilterDataService extends Service {
-  // These attributes are not @tracked because they are used in computed
-  // properties and not directly in templates.
-  showInherited = false;
-  showProtected = false;
-  showPrivate = false;
-  showDeprecated = false;
+  @tracked showInherited = false;
+  @tracked showProtected = false;
+  @tracked showPrivate = false;
+  @tracked showDeprecated = false;
 
   sideNav = {
     showPrivate: false,
