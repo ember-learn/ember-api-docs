@@ -33,13 +33,13 @@ export default class FunctionRoute extends Route {
     let fnModule;
 
     try {
-      fnModule = await this.store.find(
+      fnModule = await this.store.findRecord(
         'class',
         `${project}-${projectVersion}-${className}`.toLowerCase(),
       );
     } catch (e) {
       try {
-        fnModule = await this.store.find(
+        fnModule = await this.store.findRecord(
           'namespace',
           `${project}-${projectVersion}-${className}`.toLowerCase(),
         );

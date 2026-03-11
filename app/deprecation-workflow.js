@@ -11,12 +11,5 @@ setupDeprecationWorkflow({
       handler: 'throw',
       matchId: 'deprecated-run-loop-and-computed-dot-access',
     },
-    {
-      handler: 'silence',
-      matchId: 'ember-data:deprecate-non-strict-relationships',
-    },
-    { handler: 'silence', matchId: 'ember-data:deprecate-store-find' },
-    { handler: 'silence', matchId: 'remove-owner-inject' },
-    { handler: 'silence', matchId: 'ember-polyfills.deprecate-assign' },
   ],
 });
