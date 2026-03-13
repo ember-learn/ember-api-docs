@@ -36,7 +36,8 @@ export default {
   name: 'clear-double-boot',
 
   initialize(instance) {
-    if (typeof FastBoot === 'undefined') {
+    const prerender = instance.lookup('service:prerender');
+    if (!prerender.isPrerendering) {
       var originalDidCreateRootView = instance.didCreateRootView;
 
       instance.didCreateRootView = function () {

@@ -74,7 +74,6 @@
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.6",
     "ember-data": "~4.12.8",
-    "ember-data-fastboot": "https://github.com/kategengler/ember-data-fastboot#v0.0.1",
     "ember-decorators": "^6.1.1",
     "ember-eslint-parser": "^0.5.11",
     "ember-inflector": "^6.0.0",
