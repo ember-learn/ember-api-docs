@@ -144,8 +144,8 @@ importers:
         specifier: ~4.12.8
         version: 4.12.8(@babel/core@7.29.0)(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5))(webpack@5.104.1)
       ember-data-fastboot:
-        specifier: https://github.com/mainmatter/ember-data-fastboot#update-babel
-        version: https://codeload.github.com/mainmatter/ember-data-fastboot/tar.gz/2c2919207fd5b7275c1fff095715f40289b0d4ca(@babel/core@7.29.0)
+        specifier: https://github.com/kategengler/ember-data-fastboot#v0.0.1
+        version: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(@babel/core@7.29.0)
       ember-decorators:
         specifier: ^6.1.1
         version: 6.1.1
@@ -4313,8 +4313,8 @@ packages:
       '@glint/template':
         optional: true
 
-  ember-data-fastboot@https://codeload.github.com/mainmatter/ember-data-fastboot/tar.gz/2c2919207fd5b7275c1fff095715f40289b0d4ca:
-    resolution: {tarball: https://codeload.github.com/mainmatter/ember-data-fastboot/tar.gz/2c2919207fd5b7275c1fff095715f40289b0d4ca}
+  ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c:
+    resolution: {tarball: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c}
     version: 0.1.2
     engines: {node: ^4.5 || 6.* || >= 7.*}
 
@@ -14559,9 +14559,9 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-data-fastboot@https://codeload.github.com/mainmatter/ember-data-fastboot/tar.gz/2c2919207fd5b7275c1fff095715f40289b0d4ca(@babel/core@7.29.0):
+  ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(@babel/core@7.29.0):
     dependencies:
-      ember-cli-babel: 8.2.0(@babel/core@7.29.0)
+      ember-cli-babel: 8.3.1(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
