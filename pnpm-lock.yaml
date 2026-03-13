@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  ember-data-fastboot@0.1.2:
-    hash: d43942b2da6f05a2962db8c115fdee0f38acfaa0b61d16b183cee3282897973c
-    path: patches/ember-data-fastboot@0.1.2.patch
-
 importers:
 
   .:
@@ -151,9 +146,6 @@ importers:
       ember-concurrency:
         specifier: ^4.0.6
         version: 4.0.6(@babel/core@7.29.0)
-      ember-data-fastboot:
-        specifier: https://github.com/kategengler/ember-data-fastboot#v0.0.1
-        version: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(patch_hash=d43942b2da6f05a2962db8c115fdee0f38acfaa0b61d16b183cee3282897973c)(@babel/core@7.29.0)
       ember-decorators:
         specifier: ^6.1.1
         version: 6.1.1
@@ -4735,11 +4727,6 @@ packages:
       '@glint/template':
         optional: true
 
-  ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c:
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c}
-    version: 0.1.2
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-
   ember-decorators@6.1.1:
     resolution: {integrity: sha512-63vZPntPn1aqMyeNRLoYjJD+8A8obd+c2iZkJflswpDRNVIsp2m7aQdSCtPt4G0U/TEq2251g+N10maHX3rnJQ==}
     engines: {node: '>= 8.*'}
@@ -7542,7 +7529,6 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
-
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qified@0.6.0:
@@ -15496,13 +15482,6 @@ snapshots:
       '@babel/types': 7.29.0
       '@embroider/addon-shim': 1.10.2
       decorator-transforms: 1.2.1(@babel/core@7.29.0)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
-  ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(patch_hash=d43942b2da6f05a2962db8c115fdee0f38acfaa0b61d16b183cee3282897973c)(@babel/core@7.29.0):
-    dependencies:
-      ember-cli-babel: 8.3.1(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
