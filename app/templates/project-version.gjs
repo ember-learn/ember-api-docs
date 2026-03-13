@@ -44,7 +44,7 @@ import ScrollToTopButton from 'ember-api-docs/components/scroll-to-top-button';
     <section class="content-wrapper">
       {{outlet}}
 
-      {{#unless @controller.fastboot.isFastBoot}}
+      {{#unless @controller.prerender.isPrerendering}}
         <ScrollToTopButton />
       {{/unless}}
     </section>
