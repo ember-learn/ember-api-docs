@@ -15,7 +15,7 @@ export default class ApplicationRoute extends Route {
   router;
 
   @service
-  fastboot;
+  prerender;
 
   @service
   metrics;
@@ -25,7 +25,7 @@ export default class ApplicationRoute extends Route {
 
   constructor() {
     super(...arguments);
-    if (!this.fastboot.isFastBoot) {
+    if (!this.prerender.isPrerendering) {
       this.router.on('routeDidChange', this.trackPage);
 
       /* Hax from https://github.com/DockYard/ember-router-scroll/issues/263 
