@@ -23,6 +23,9 @@ export default class ApplicationRoute extends Route {
   @service
   routerScroll;
 
+  @service
+  shoebox;
+
   constructor() {
     super(...arguments);
     if (!this.prerender.isPrerendering) {
@@ -30,7 +33,7 @@ export default class ApplicationRoute extends Route {
 
       /* Hax from https://github.com/DockYard/ember-router-scroll/issues/263 
          to handle router scroll behavior when the page was initially served 
-         with fastboot
+         pre-rendered
        */
       this.routerScroll.set('preserveScrollPosition', true);
 
@@ -40,7 +43,15 @@ export default class ApplicationRoute extends Route {
         }
       }, 1000);
     }
+
+    if (this.prerender.isPrerendering) {
+      this.router.on('routeDidChange', this.storeShoebox);
+    }
   }
+
+  storeShoebox = () => {
+    this.shoebox.store();
+  };
 
   trackPage = () => {
     // this is constant for this app and is only used to identify page views in the GA dashboard

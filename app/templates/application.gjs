@@ -11,15 +11,20 @@ import config from 'ember-api-docs/config/environment';
 export default class Application extends Component {
   @service headData;
   @service router;
+  @service prerender;
 
   get canonicalUrl() {
     let path = this.router.currentURL;
     let version = new RegExp(this.headData.compactVersion, 'g');
-    return `${config.APP.domain}/${path.replace(version, 'release')}`;
+    return `${config.APP.domain}${path.replace(version, 'release')}`;
   }
 
   <template>
     {{pageTitle "Ember API Documentation"}}
+
+    {{#if this.prerender.isPrerendering}}
+      <script type="x/boundary" id="prerender-body-start"></script>
+    {{/if}}
 
     <InHead>
       <link rel="dns-prefetch" href="{{this.headData.cdnDomain}}" />
@@ -44,5 +49,9 @@ export default class Application extends Component {
 
     <EsFooter />
     <BasicDropdownWormhole />
+
+    {{#if this.prerender.isPrerendering}}
+      <script type="x/boundary" id="prerender-body-end"></script>
+    {{/if}}
   </template>
 }

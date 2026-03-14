@@ -89,6 +89,7 @@ export default [
       'ember-cli-build.js',
       'prember-urls.js',
       'lib/api-docs-data/**/*.js',
+      'prerender.js',
     ],
     ...n.configs['flat/recommended-script'],
     plugins: {

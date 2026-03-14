@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { dasherize } from '@ember/string';
 
 export function initialize(applicationInstance) {
+  window.__emberApiDocs = window.__emberApiDocs ?? applicationInstance;
+
   let store = applicationInstance.lookup('service:store');
-  let shoebox = applicationInstance.lookup('service:fastboot').get('shoebox');
+  let shoebox = applicationInstance.lookup('service:shoebox');
   const isPrerendering =
     applicationInstance.lookup('service:prerender').isPrerendering;
 
@@ -18,7 +20,7 @@ export function initialize(applicationInstance) {
     return;
   }
 
-  shoebox.put('ember-data-store', {
+  shoebox?.put('ember-data-store', {
     get records() {
       const modelNames = Object.keys(store._modelFactoryCache);
       return modelNames
@@ -34,7 +36,7 @@ export function initialize(applicationInstance) {
             const link = record[meta.kind](name).link();
 
             if (link) {
-              const dashName = Ember.String.dasherize(name);
+              const dashName = dasherize(name);
 
               serializedRecord.data.relationships =
                 serializedRecord.data.relationships || {};
@@ -60,6 +62,6 @@ export function initialize(applicationInstance) {
 }
 
 export default {
-  name: 'ember-data-fastboot',
+  name: 'ember-data-prerender',
   initialize,
 };
