@@ -6,10 +6,7 @@ const getPremberUrls = require('./prember-urls');
 const BASE_URL = 'http://127.0.0.1:8080';
 const PRERENDER_DIR = 'prerender';
 
-async function prerender() {
-  const urls = getPremberUrls();
-  console.log(`Prerendering ${urls.length} URLs...`);
-
+async function prerenderVersion(urls) {
   const browser = await chromium.launch();
   const page = await browser.newPage();
 
@@ -46,8 +43,6 @@ async function prerender() {
 
       // Check if we got a 404 by looking for common error indicators
       const is404 = await page.evaluate(() => {
-        // Check for "Not Found" text or 404 status indicator
-        const bodyText = document.body.innerText;
         return document.title.includes('Page Not Found');
       });
 
@@ -83,11 +78,22 @@ async function prerender() {
   }
 
   await browser.close();
+}
+async function prerender() {
+  const urlsByVersion = getPremberUrls();
+  const totalUrls = Array.from(urlsByVersion.values()).reduce(
+    (sum, urls) => sum + urls.length,
+    0,
+  );
+
+  console.log(`Prerendering ${totalUrls} URLs...`);
+
+  for (const [version, urls] of urlsByVersion.entries()) {
+    await prerenderVersion(urls);
+  }
 
   console.log('\nPrerendering complete!');
-  console.log(`Total URLs: ${urls.length}`);
-  console.log(`Successfully saved: ${successCount}`);
-  console.log(`Not found: ${notFoundCount}`);
+  console.log(`Total URLs: ${totalUrls}`);
 }
 
 prerender().catch((error) => {
