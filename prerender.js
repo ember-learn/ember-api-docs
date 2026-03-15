@@ -6,8 +6,43 @@ const getPremberUrls = require('./prember-urls');
 const BASE_URL = 'http://127.0.0.1:8080';
 const PRERENDER_DIR = 'prerender';
 
-async function prerenderVersion(urls) {
-  const browser = await chromium.launch();
+async function prerenderPage(page, url) {
+  try {
+    // Use router transition
+    await page.evaluate((path) => {
+      return window.__router?.transitionTo(path);
+    }, url);
+
+    // Check if we got a 404 by looking for common error indicators
+    const is404 = await page.evaluate(() => {
+      return document.title.includes('Page Not Found');
+    });
+
+    if (is404) {
+      return { url, status: 'not-found' };
+    }
+
+    // Get the HTML content
+    const html = await page.content();
+
+    // Convert URL to file path
+    // e.g., /ember/release/classes/ApplicationInstance -> prerender/ember/release/classes/ApplicationInstance/index.html
+    const filePath = join(PRERENDER_DIR, url, 'index.html');
+    const dir = dirname(filePath);
+
+    // Create directory structure
+    mkdirSync(dir, { recursive: true });
+
+    // Write HTML file
+    writeFileSync(filePath, html, 'utf-8');
+
+    return { url, status: 'success' };
+  } catch (error) {
+    return { url, status: 'error', error: error.message };
+  }
+}
+
+async function initializePage(browser) {
   const page = await browser.newPage();
 
   await page.addInitScript(() => {
@@ -26,57 +61,50 @@ async function prerenderVersion(urls) {
     return router && !router.currentRouteName?.includes('loading');
   });
 
+  return page;
+}
+
+async function prerenderVersion(urls) {
+  const browser = await chromium.launch();
+  const CONCURRENCY = 5; // Number of parallel pages
+
+  // Initialize multiple pages
+  const pages = await Promise.all(
+    Array.from({ length: CONCURRENCY }, () => initializePage(browser)),
+  );
+
   let successCount = 0;
   let notFoundCount = 0;
+  let errorCount = 0;
+  let urlIndex = 0;
 
-  for (let i = 0; i < urls.length; i++) {
-    const url = urls[i];
+  // Process URLs in parallel using a worker pool pattern
+  const workers = pages.map(async (page) => {
+    while (urlIndex < urls.length) {
+      const currentIndex = urlIndex++;
+      const url = urls[currentIndex];
 
-    try {
-      // Subsequent URLs: use router transition
-      await page.evaluate((path) => {
-        return window.__router?.transitionTo(path);
-      }, url);
+      const result = await prerenderPage(page, url);
 
-      // Wait for network to be idle after transition
-      await page.waitForLoadState('networkidle');
-
-      // Check if we got a 404 by looking for common error indicators
-      const is404 = await page.evaluate(() => {
-        return document.title.includes('Page Not Found');
-      });
-
-      if (is404) {
+      if (result.status === 'success') {
+        successCount++;
+      } else if (result.status === 'not-found') {
         console.log(`Not Found: ${url}`);
         notFoundCount++;
-        continue;
+      } else {
+        console.error(`Error processing ${url}:`, result.error);
+        errorCount++;
       }
 
-      // Get the HTML content
-      const html = await page.content();
-
-      // Convert URL to file path
-      // e.g., /ember/release/classes/ApplicationInstance -> prerender/ember/release/classes/ApplicationInstance/index.html
-      const filePath = join(PRERENDER_DIR, url, 'index.html');
-      const dir = dirname(filePath);
-
-      // Create directory structure
-      mkdirSync(dir, { recursive: true });
-
-      // Write HTML file
-      writeFileSync(filePath, html, 'utf-8');
-
-      successCount++;
-      if ((i + 1) % 100 === 0) {
+      if ((currentIndex + 1) % 100 === 0) {
         console.log(
-          `Progress: ${i + 1}/${urls.length} (${successCount} saved, ${notFoundCount} not found)`,
+          `Progress: ${currentIndex + 1}/${urls.length} (${successCount} saved, ${notFoundCount} not found, ${errorCount} errors)`,
         );
       }
-    } catch (error) {
-      console.error(`Error processing ${url}:`, error.message);
     }
-  }
+  });
 
+  await Promise.all(workers);
   await browser.close();
 }
 async function prerender() {
@@ -86,7 +114,9 @@ async function prerender() {
     0,
   );
 
-  console.log(`Prerendering ${totalUrls} URLs...`);
+  console.log(
+    `Prerendering ${totalUrls} URLs across ${urlsByVersion.size} versions...`,
+  );
 
   for (const [version, urls] of urlsByVersion.entries()) {
     await prerenderVersion(urls);
