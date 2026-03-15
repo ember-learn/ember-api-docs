@@ -100,6 +100,7 @@
     "eslint-plugin-qunit": "^8.2.5",
     "express-sslify": "^1.2.0",
     "globals": "^15.15.0",
+    "http-server": "^14.1.1",
     "lint-to-the-future": "^2.6.3",
     "lint-to-the-future-ember-template": "^4.1.0",
     "lint-to-the-future-eslint": "^3.1.0",
