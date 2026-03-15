@@ -8,9 +8,9 @@ console.log('Building production app...');
 execSync('ember build --environment=production', { stdio: 'inherit' });
 
 console.log(`\nStarting http-server on port ${PORT}...`);
-const server = spawn('npx', ['http-server', '-p', String(PORT)], {
+const server = spawn('http-server', ['-p', String(PORT), '--silent'], {
   cwd: join(process.cwd(), 'dist'),
-  stdio: 'inherit',
+  stdio: 'ignore',
 });
 
 // Wait for server to be ready
