@@ -118,7 +118,7 @@ async function prerender() {
     `Prerendering ${totalUrls} URLs across ${urlsByVersion.size} versions...`,
   );
 
-  for (const [version, urls] of urlsByVersion.entries()) {
+  for (const [, urls] of urlsByVersion.entries()) {
     await prerenderVersion(urls);
   }
 
@@ -128,5 +128,6 @@ async function prerender() {
 
 prerender().catch((error) => {
   console.error('Prerendering failed:', error);
+  // eslint-disable-next-line n/no-process-exit
   process.exit(1);
 });

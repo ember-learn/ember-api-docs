@@ -2,7 +2,6 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const envIsProduction = process.env.EMBER_ENV === 'production';
-const premberUrls = require('./prember-urls');
 const { setConfig } = require('@warp-drive/core/build-config');
 
 module.exports = function (defaults) {

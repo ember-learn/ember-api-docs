@@ -23,10 +23,12 @@ export default class Application extends Component {
     {{pageTitle "Ember API Documentation"}}
 
     {{#if this.prerender.isPrerendering}}
+      {{! template-lint-disable no-forbidden-elements}}
       <script type="x/boundary" id="prerender-body-start"></script>
     {{/if}}
 
     <InHead>
+      {{! template-lint-disable no-forbidden-elements}}
       <link rel="dns-prefetch" href="{{this.headData.cdnDomain}}" />
 
       {{#if this.headData.description}}
@@ -51,6 +53,7 @@ export default class Application extends Component {
     <BasicDropdownWormhole />
 
     {{#if this.prerender.isPrerendering}}
+      {{! template-lint-disable no-forbidden-elements}}
       <script type="x/boundary" id="prerender-body-end"></script>
     {{/if}}
   </template>
