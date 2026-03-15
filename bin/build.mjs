@@ -4,7 +4,10 @@ import { join } from 'path';
 
 const PORT = 8080;
 
-console.log('Building production app...');
+console.log('Installing playwright browsers...');
+execSync('pnpm exec playwright install', { stdio: 'inherit' });
+
+console.log('\nBuilding production app...');
 execSync('ember build --environment=production', { stdio: 'inherit' });
 
 console.log(`\nStarting http-server on port ${PORT}...`);
