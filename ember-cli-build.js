@@ -2,7 +2,6 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const envIsProduction = process.env.EMBER_ENV === 'production';
-const premberUrls = require('./prember-urls');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
