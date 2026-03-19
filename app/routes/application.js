@@ -1,6 +1,5 @@
 import { service } from '@ember/service';
 import Route from '@ember/routing/route';
-import { set } from '@ember/object';
 import ENV from 'ember-api-docs/config/environment';
 import { isDestroying, isDestroyed } from '@ember/destroyable';
 
@@ -28,8 +27,8 @@ export default class ApplicationRoute extends Route {
     if (!this.fastboot.isFastBoot) {
       this.router.on('routeDidChange', this.trackPage);
 
-      /* Hax from https://github.com/DockYard/ember-router-scroll/issues/263 
-         to handle router scroll behavior when the page was initially served 
+      /* Hax from https://github.com/DockYard/ember-router-scroll/issues/263
+         to handle router scroll behavior when the page was initially served
          with fastboot
        */
       this.routerScroll.set('preserveScrollPosition', true);
@@ -52,7 +51,6 @@ export default class ApplicationRoute extends Route {
   };
 
   async afterModel() {
-    set(this, 'headData.cdnDomain', ENV.API_HOST);
     await this.legacyModuleMappings.initMappings();
     return super.afterModel(...arguments);
   }

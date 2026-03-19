@@ -12,7 +12,6 @@ module.exports = function (environment) {
     rootURL: '/',
     routerRootURL: '/',
     locationType: 'history',
-    API_HOST: process.env.API_HOST || 'https://api-store.emberjs.com',
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {

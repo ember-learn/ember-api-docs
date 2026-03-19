@@ -8,5 +8,4 @@ export default class HeadDataService extends Service {
   @tracked urlVersion;
   @tracked canonicalUrl;
   @tracked description;
-  @tracked cdnDomain;
 }
