@@ -2,13 +2,9 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const envIsProduction = process.env.EMBER_ENV === 'production';
-const premberUrls = require('./prember-urls');
 
 module.exports = function (defaults) {
   const app = new EmberApp(defaults, {
-    prember: {
-      urls: premberUrls(),
-    },
     fingerprint: {
       extensions: ['js', 'css', 'jpg', 'png', 'gif', 'map', 'webmanifest'],
       generateAssetMap: true,
@@ -48,13 +44,11 @@ module.exports = function (defaults) {
   });
 
   const { Webpack } = require('@embroider/webpack');
-  const appTree = require('@embroider/compat').compatBuild(app, Webpack, {
+  return require('@embroider/compat').compatBuild(app, Webpack, {
     staticAddonTrees: true,
     staticAddonTestSupportTrees: true,
     staticHelpers: true,
     staticModifiers: true,
     staticComponents: true,
   });
-
-  return require('prember').prerender(app, appTree);
 };

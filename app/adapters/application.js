@@ -2,7 +2,6 @@ import { service } from '@ember/service';
 import JSONAPIAdapter from '@ember-data/adapter/json-api';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
-import config from 'ember-api-docs/config/environment';
 
 export default class Application extends JSONAPIAdapter {
   currentProject = '';
@@ -80,9 +79,7 @@ export default class Application extends JSONAPIAdapter {
       throw new Error('Unexpected model lookup');
     }
 
-    const base = this.fastboot.isFastBoot
-      ? config.APP.domain
-      : window.location.origin;
+    const base = window.location.origin;
 
     url = `${base}/${url}.json`;
     try {

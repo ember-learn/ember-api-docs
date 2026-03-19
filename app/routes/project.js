@@ -25,7 +25,7 @@ export default class ProjectRoute extends Route {
     });
   }
 
-  // Using redirect instead of afterModel so transition succeeds and returns 307 in fastboot
+  // Using redirect instead of afterModel so transition succeeds
   redirect(project /*, transition */) {
     return this.router.transitionTo(
       'project-version',

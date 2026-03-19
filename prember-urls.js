@@ -15,11 +15,18 @@ const singularData = {
 module.exports = function () {
   const projects = readdirSync('ember-api-docs-data/json-docs');
 
-  const urls = [];
+  const urlsByVersion = new Map();
+
+  const addUrlToVersion = (versionKey, url) => {
+    if (!urlsByVersion.has(versionKey)) {
+      urlsByVersion.set(versionKey, []);
+    }
+    urlsByVersion.get(versionKey).push(url);
+  };
 
   projects.forEach((p) => {
     // add release index for each of the projects
-    urls.push(`/${p}/release`);
+    addUrlToVersion(`${p}/release`, `/${p}/release`);
 
     const fullProjectVersions = readdirSync(
       `ember-api-docs-data/json-docs/${p}`,
@@ -44,9 +51,9 @@ module.exports = function () {
     const addUrl = (p, uniqVersion, suffix) => {
       // If it's the latest release version, also create release URLs
       if (projectVersions[projectVersions.length - 1] === uniqVersion) {
-        urls.push(`/${p}/release/${suffix}`);
+        addUrlToVersion(`${p}/release`, `/${p}/release/${suffix}`);
       }
-      urls.push(`/${p}/${uniqVersion}/${suffix}`);
+      addUrlToVersion(`${p}/${uniqVersion}`, `/${p}/${uniqVersion}/${suffix}`);
     };
 
     const oldVersions = ['1.13', '2.18', '3.28', '4.12', '5.12'];
@@ -68,7 +75,7 @@ module.exports = function () {
         return;
       }
 
-      urls.push(`/${p}/${uniqVersion}`);
+      addUrlToVersion(`${p}/${uniqVersion}`, `/${p}/${uniqVersion}`);
 
       const sortedPatchVersions = fullProjectVersions
         .filter((projectVersion) => {
@@ -144,7 +151,7 @@ module.exports = function () {
     });
   });
 
-  return urls;
+  return urlsByVersion;
 };
 
 // this is useful to debug why a url isn't being prembered

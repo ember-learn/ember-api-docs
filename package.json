@@ -14,7 +14,7 @@
   },
   "scripts": {
     "clone": "rm -rf ember-api-docs-data && git clone --depth=1 https://github.com/ember-learn/ember-api-docs-data.git",
-    "build": "ember build --environment=production",
+    "build": "node bin/build.mjs",
     "format": "prettier . --cache --write",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefixColors auto",
     "lint:css": "stylelint \"**/*.css\"",
@@ -25,6 +25,7 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
+    "prerender": "node prerender.js",
     "start:local": "API_HOST=http://localhost:5050 ember serve",
     "start": "ember serve",
     "test:ember": "ember test"
@@ -65,8 +66,6 @@
     "ember-cli-deploy-build": "^3.0.0",
     "ember-cli-deploy-gzip": "^3.0.0",
     "ember-cli-deprecation-workflow": "^3.4.0",
-    "ember-cli-fastboot": "^4.1.5",
-    "ember-cli-head": "^2.0.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-cli-inject-live-reload": "^2.1.0",
     "ember-cli-showdown": "^9.0.1",
@@ -74,7 +73,6 @@
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.6",
     "ember-data": "~4.12.8",
-    "ember-data-fastboot": "https://github.com/kategengler/ember-data-fastboot#v0.0.1",
     "ember-decorators": "^6.1.1",
     "ember-eslint-parser": "^0.5.11",
     "ember-inflector": "^6.0.0",
@@ -101,8 +99,8 @@
     "eslint-plugin-n": "^17.21.3",
     "eslint-plugin-qunit": "^8.2.5",
     "express-sslify": "^1.2.0",
-    "fastboot-app-server": "^4.1.4",
     "globals": "^15.15.0",
+    "http-server": "^14.1.1",
     "lint-to-the-future": "^2.6.3",
     "lint-to-the-future-ember-template": "^4.1.0",
     "lint-to-the-future-eslint": "^3.1.0",
@@ -116,6 +114,7 @@
     "lodash.values": "^4.3.0",
     "minimist": "^1.2.6",
     "normalize.css": "^8.0.1",
+    "playwright": "^1.58.2",
     "prember": "^2.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-ember-template-tag": "^2.1.0",
@@ -131,7 +130,7 @@
     "webpack": "^5.101.3"
   },
   "engines": {
-    "node": ">= 20.11",
+    "node": ">= 22.22",
     "pnpm": "10"
   },
   "packageManager": "pnpm@10.30.2",
@@ -146,13 +145,6 @@
   "ember": {
     "edition": "octane"
   },
-  "fastbootDependencies": [
-    "crypto",
-    "algoliasearch",
-    "node-fetch",
-    "abortcontroller-polyfill",
-    "abortcontroller-polyfill/dist/cjs-ponyfill"
-  ],
   "ember-addon": {
     "paths": [
       "lib/api-docs-data"

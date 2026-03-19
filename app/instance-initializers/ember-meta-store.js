@@ -2,11 +2,10 @@ import { isPresent } from '@ember/utils';
 
 export function initialize(appInstance) {
   const metaStore = appInstance.lookup('service:meta-store');
-  const fastBootService = appInstance.lookup('service:fastboot');
+  const shoebox = appInstance.lookup('service:shoebox');
+  const isPrerendering = appInstance.lookup('service:prerender').isPrerendering;
 
-  const shoebox = fastBootService.get('shoebox');
-
-  if (typeof FastBoot !== 'undefined') {
+  if (isPrerendering) {
     shoebox.put(
       'meta-store',
       metaStore.getProperties('availableProjectVersions', 'projectRevMap'),

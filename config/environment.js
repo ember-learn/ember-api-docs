@@ -29,15 +29,6 @@ module.exports = function (environment) {
       domain: 'http://localhost:4200',
     },
 
-    fastboot: {
-      hostWhitelist: [
-        /^[\w-]+\.herokuapp\.com$/,
-        /^localhost:\d+$/,
-        /^127\.0\.0\.1:\d+$/,
-        /^[\w-]+\.fastly\.net$/,
-        /^[\w-]+\.emberjs\.com$/,
-      ],
-    },
     algolia: {
       algoliaId: ALGOLIA_APP_ID,
       algoliaKey: ALGOLIA_API_KEY,

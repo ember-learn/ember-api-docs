@@ -17,7 +17,7 @@ export default class ProjectVersionController extends Controller {
   project;
 
   @service
-  fastboot;
+  prerender;
 
   @service router;
   @service('project') projectService;

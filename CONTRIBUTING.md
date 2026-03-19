@@ -80,22 +80,22 @@ cd to the cloned ember-api-docs directory
 ensure Node.js and npm are installed
 
 follow these commands to build ember.js
- - npm install
- - npm build
+ - pnpm install
+ - pnpm build
 ```
 
 ## Development steps
 
 1. Follow the setup steps listed above under [Building Ember.js API](#building-emberjs-api-docs).
 
-2. To start the development server, run `npm start`.
+2. To start the development server, run `pnpm start`.
 
-3. To run all tests run `npm test`
+3. To run all tests run `pnpm test`
 
-4. To run the app with fastboot cli like our server deployment run the following commands,
+4. To run prerender and run the site as it would be for a production deploy,
 ```
-- ember deploy production
-- ./bin/ember-fastboot tmp/deploy-dist
+- pnpm build
+- cd dist && npx http-server
 ```
 
 
