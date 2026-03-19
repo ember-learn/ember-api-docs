@@ -10,8 +10,15 @@ async function prerenderPage(page, url) {
   try {
     // Use router transition
     await page.evaluate((path) => {
-      return window.__router?.transitionTo(path);
+      window.__router?.transitionTo(path);
     }, url);
+
+    await page.waitForFunction(() => {
+      return (
+        window.__router &&
+        !window.__router.currentRouteName?.includes('loading')
+      );
+    });
 
     // Check if we got a 404 by looking for common error indicators
     const is404 = await page.evaluate(() => {
