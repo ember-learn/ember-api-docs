@@ -70,7 +70,7 @@ module.exports = function () {
       }
       if (
         !oldVersions.includes(baseVersion) &&
-        !semver.gte(`${baseVersion}.0`, '6.11.0')
+        !semver.gte(`${baseVersion}.0`, '6.0.0')
       ) {
         return;
       }
