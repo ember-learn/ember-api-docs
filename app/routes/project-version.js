@@ -8,9 +8,6 @@ import config from 'ember-api-docs/config/environment';
 
 export default class ProjectVersionRoute extends Route {
   @service
-  fastboot;
-
-  @service
   headData;
 
   @service
@@ -117,10 +114,7 @@ export default class ProjectVersionRoute extends Route {
     this.headData.compactVersion = model.get('compactVersion');
     this.headData.urlVersion = projectVersion;
     if (!this.headData.isRelease) {
-      let request = this.fastboot.request;
-      let href = this.fastboot.isFastBoot
-        ? `${config.APP.domain}/${request.path}`
-        : window.location.href;
+      let href = window.location.href;
       let version = new RegExp(model.get('compactVersion'), 'g');
       let canonicalUrl = href.replace(version, 'release');
       this.headData.canonicalUrl = canonicalUrl;

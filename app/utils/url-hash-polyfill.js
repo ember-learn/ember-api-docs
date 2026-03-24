@@ -9,7 +9,7 @@ import { schedule } from '@ember/runloop';
 import { waitForPromise } from '@ember/test-waiters';
 
 /* Taken from ember-url-hash-polyfill (https://github.com/CrowdStrike/ember-url-hash-polyfill/)
-   and modified to not run in Fastboot. The original addon is not maintained. 
+   and modified to not run in Fastboot. The original addon is not maintained.
    There is a PR to add it to ember-primitives https://github.com/universal-ember/ember-primitives/pull/529
 */
 
@@ -72,10 +72,6 @@ function isLoadingRoute(routeName) {
 async function setupHashSupport(router) {
   let initialURL;
   let owner = getOwner(router);
-
-  if (owner.lookup('service:fastboot').isFastBoot) {
-    return;
-  }
 
   await new Promise((resolve) => {
     let interval = setInterval(() => {

@@ -56,5 +56,5 @@ module.exports = function (defaults) {
     staticComponents: true,
   });
 
-  return require('prember').prerender(app, appTree);
+  return appTree;
 };
