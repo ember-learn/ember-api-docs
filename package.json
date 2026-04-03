@@ -134,7 +134,7 @@
     "node": ">= 20.11",
     "pnpm": "10"
   },
-  "packageManager": "pnpm@10.30.2",
+  "packageManager": "pnpm@10.33.0",
   "pnpm": {
     "overrides": {
       "ember-data>ember-inflector": "^6.0.0"
