@@ -58,7 +58,7 @@ importers:
         version: 0.0.2(@babel/core@7.29.0)(ember-source@6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
       '@percy/cli':
         specifier: ^1.28.7
-        version: 1.31.8(typescript@4.9.5)
+        version: 1.31.12(typescript@4.9.5)
       '@percy/ember':
         specifier: ^5.0.0
         version: 5.0.0(@babel/core@7.29.0)(webpack@5.104.1)
@@ -88,7 +88,7 @@ importers:
         version: 8.11.0(@babel/core@7.29.0)(@ember/string@3.1.1)(@ember/test-helpers@5.4.1(@babel/core@7.29.0))(@glimmer/component@2.0.0)(ember-source@6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
       ember-cli:
         specifier: ~6.7.0
-        version: 6.7.2(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)
+        version: 6.7.2(@types/node@25.6.0)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)
       ember-cli-app-version:
         specifier: ^7.0.0
         version: 7.0.0(ember-source@6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5))
@@ -103,7 +103,7 @@ importers:
         version: 3.0.0
       ember-cli-dependency-checker:
         specifier: ^3.3.3
-        version: 3.3.3(ember-cli@6.7.2(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8))
+        version: 3.3.3(ember-cli@6.7.2(@types/node@25.6.0)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8))
       ember-cli-deploy:
         specifier: ^2.0.0
         version: 2.0.0
@@ -2023,81 +2023,85 @@ packages:
     peerDependencies:
       ember-source: '>= 4.12.0'
 
-  '@percy/cli-app@1.31.8':
-    resolution: {integrity: sha512-kbSv+ZVf/fpk5R8ewLb8LwHftTOHT2XJ6MNU9s81sKEv9iDqsf6vIiDF+/nKMSsMX+ns1evw+4I2vEjASmDzoA==}
+  '@percy/cli-app@1.31.12':
+    resolution: {integrity: sha512-oJVEDw7MPdn3k3OsYf0QWdIJinF2Rr7OuUccX0hZemxEQbVQYKEtlB7dA6ptrWHkhaRdGZwZ8cgpjM/eEBNkOQ==}
     engines: {node: '>=14'}
 
-  '@percy/cli-build@1.31.8':
-    resolution: {integrity: sha512-aPZV6Lv7BRbGFqdGGPgfV8mMjgnoYQQQ7E1GFyVbZvsOrmqOif3osrmvwSwO7kd730cmKfhzg2iHbVBzEg+z4g==}
+  '@percy/cli-build@1.31.12':
+    resolution: {integrity: sha512-vQH5+TddKKfFqxxrsShqnmFFxEkrrfmM/mXR2k0OtJ5iDbMOyS8MpEPJQH1/ANKM0PWLXmVP8paMyamZi48MpA==}
     engines: {node: '>=14'}
 
-  '@percy/cli-command@1.31.8':
-    resolution: {integrity: sha512-nANwIfbLS78OJ9LV7WE4A6Tp1bN9OLpIPsZR7RgfNxG8YZFkyprbDA2zV+p6IYcfKoSnJBBD9isIUL+ITK+cgw==}
-    engines: {node: '>=14'}
-    hasBin: true
-
-  '@percy/cli-config@1.31.8':
-    resolution: {integrity: sha512-VmJkkwUkckbQVXecgQAewHR1lMWh/t8mEbVR9W/8iX/H1hOg1ONADFxNC/qfi3PhOO5kdWktS4r51jc0BgIEDg==}
-    engines: {node: '>=14'}
-
-  '@percy/cli-exec@1.31.8':
-    resolution: {integrity: sha512-SRZNwIZCyh38OtGWwPcQuwMVxeViHy4kP/Y0QJleDaOdH34MITwQuNMquf4Q7vZmEJ1mCamZpy/WUCDJICTuWg==}
-    engines: {node: '>=14'}
-
-  '@percy/cli-snapshot@1.31.8':
-    resolution: {integrity: sha512-RQNx7eUq7Xml/EtQjsYvb9nWP/Wk4vf5SqAYHjAXSDDiK1K4BHdcxT7+GO1F+qq720/KgjwnC/JmBTulpC5a5A==}
-    engines: {node: '>=14'}
-
-  '@percy/cli-upload@1.31.8':
-    resolution: {integrity: sha512-yuegEGVcxd/PneheBfd0D9HE36EkdPS6u3m9m6Y8GPkN0UN7eOVxoOqfPHT9wCRfUjR3K9qcdBvo11S6biLWTA==}
-    engines: {node: '>=14'}
-
-  '@percy/cli@1.31.8':
-    resolution: {integrity: sha512-soyU/AgK3dkKIv1tNKIaU4oi+JBroWhpvm29LlQMeLk87cItkt/Lp3aTs3HHXUKZqYGuhLQlci11n2uLtUvmVA==}
+  '@percy/cli-command@1.31.12':
+    resolution: {integrity: sha512-J6gEemXcoy0rzNb0s+u1taP7mNQiZlm1AmbsMpL6bKSRQfS0KURul4gDy71jYUhDFJceNuk7s0IVpN7P3vbEcA==}
     engines: {node: '>=14'}
     hasBin: true
 
-  '@percy/client@1.31.8':
-    resolution: {integrity: sha512-MxhOY5DWJnW3dsmzYICgYOyKCFLwJcaC19jTsonfmQHBa8/cKs4mUKnrUgvtJlOsW6mSk6WrAn8vUUwZ4438xQ==}
+  '@percy/cli-config@1.31.12':
+    resolution: {integrity: sha512-MPI6cfgO+t3vr2yFkNTsYzi4fXue6fhT9Cas8tivszOTKUp1UNR2I428LIDXYj5/ktelc+dVhsRZjzK/J9MQDA==}
     engines: {node: '>=14'}
 
-  '@percy/config@1.31.8':
-    resolution: {integrity: sha512-iK7n0YOlmk4ITvQ8l4BeaInrS/cE8MqD+368cAEGVhPjGjarDKZ06FvEZXoxU8J+4LZbNyN9h/o+2UDtFRPYyg==}
+  '@percy/cli-doctor@1.31.12':
+    resolution: {integrity: sha512-U9pGYNP9RUdva7RjIcMG4OEbVWplwCnCMoXUSA4a3zAGGEZEr4uT7WacCBHjHmhHATqpW/U4OcKENFTK8s6Raw==}
     engines: {node: '>=14'}
 
-  '@percy/core@1.31.8':
-    resolution: {integrity: sha512-p5KWNvbU8GUlA/DxV8q9N0alSzaEKx8aJxgO8TkmMA3HalMl/HogYw5+B7tvOUU0CAw9ar5vXyPXuOIm4wpqvA==}
+  '@percy/cli-exec@1.31.12':
+    resolution: {integrity: sha512-e2BIbEJsDiwjK8arHxwjy+DQJPLolqqz/wapeh+1Mwk3HnRa4a0Dg11MeO4kFjC/G4euEJslLwNoiFZH2rqpQQ==}
     engines: {node: '>=14'}
 
-  '@percy/dom@1.31.8':
-    resolution: {integrity: sha512-uw4aOTTXWgj3dZPrDlM+j0+MzwDz9u8EfE92fi2HsyqDXgp0hw957b3F/YEE9TMR27s9OgwXKnOCd8zauoj0Ew==}
+  '@percy/cli-snapshot@1.31.12':
+    resolution: {integrity: sha512-4+3NXUGxnxVQ4HhjhcnM+4tV0vKOIkYKTAZMTvw6tVG+DmAq4PpssRsAp0h2QdwtdFfadSTSXJ6A61flBrY8Lw==}
+    engines: {node: '>=14'}
+
+  '@percy/cli-upload@1.31.12':
+    resolution: {integrity: sha512-vNbD/Vbiz1CVQI3TQqGA0bDZCPvhaIV3atnrpU5ft7rJMTrBcuS72oM7IEoWM1nKmzET2314nhO45NNDXPOlPA==}
+    engines: {node: '>=14'}
+
+  '@percy/cli@1.31.12':
+    resolution: {integrity: sha512-sLeAdd6GPZdPtUlop0WLzXT6sEmouZkAIZZB8QwdML8s3QekdHB/L9NxJc7wLPqlrfSXZTfRWyy9NIPupElsRQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  '@percy/client@1.31.12':
+    resolution: {integrity: sha512-HPyE5uDJ6+gACMwb33Kyg7CnMf/DiUd5/4lV5eT//UUq3HAo8zzmevXaGyrJ2XzLFYttZv1G+bFH0PneQsvYMw==}
+    engines: {node: '>=14'}
+
+  '@percy/config@1.31.12':
+    resolution: {integrity: sha512-rt7N2b7wjwSDdy43vFiYBKEdTg+enKTddoAlsL4AF+g0k1lVBW/r6lVLS/WTUs8X3JsXCTeV3LbQ6OXOclkq0g==}
+    engines: {node: '>=14'}
+
+  '@percy/core@1.31.12':
+    resolution: {integrity: sha512-b0xZfcT/tA3T+UNDgE3RC4p1zhKEhlz6CUTZC7Up49gHRafO62rx94SK4EVzehqVTZhcf6ZYVj5QHhD1B82Jkw==}
+    engines: {node: '>=14'}
+
+  '@percy/dom@1.31.12':
+    resolution: {integrity: sha512-8qrtNbmKgXBxiaHWNu6JJUM5jFjLA9IxCy7Tc1vMcW5UFbKbvqHYvMtufsRAZT7O1TK/oxbrTmtEyhPbx4BjKQ==}
 
   '@percy/ember@5.0.0':
     resolution: {integrity: sha512-Nod2k3zMUQKnAK29dO9Xp4tdIMUiLrEffntLXjHtQroEq2wqCTeS6gfLLEjV++TgPE0q2ehex/fd2QXzgKFKEA==}
     engines: {node: '>= 16'}
 
-  '@percy/env@1.31.8':
-    resolution: {integrity: sha512-nIwSkwIijMCxvRZE2MV1rn51NGHM3EgRayuKxgkhevzc1s4Y785GTS8CZyJaPshs1fWVBork87Tm9Tbuh3u1PQ==}
+  '@percy/env@1.31.12':
+    resolution: {integrity: sha512-m5yv7J2TxwrloYJ2etgIbJKOHTqhqRRAbJFC1MqQPtVMDmioXi1zPeuYlT3R65a0A57P/z7H5JII6ng+Mfz0Nw==}
     engines: {node: '>=14'}
 
-  '@percy/logger@1.31.8':
-    resolution: {integrity: sha512-OqnrtfmCdKW+2Z8LYk8Jc9HK0P89TJqp2qWnM913eDeoYZOKJX+2IyAZfsaFTcfEBAqHn0v1eynfldRedbTk3A==}
+  '@percy/logger@1.31.12':
+    resolution: {integrity: sha512-8pRXbhBLEKpcQMBAwuolf0YHozKEkyWQV9KcsEPbMvMOJubbaw3Ziv/Vtb+DRJT3LCreWwdC6ShP7hCAzh5HKg==}
     engines: {node: '>=14'}
 
-  '@percy/monitoring@1.31.8':
-    resolution: {integrity: sha512-NBLQIoXWZb1Oi8M6Q6o8rmA6PzZi+65cxgyoKXHboxF7wAb8i8Vyc2JM7zTvay6RZ6JGuVHpqkxPcQaarxM1IQ==}
+  '@percy/monitoring@1.31.12':
+    resolution: {integrity: sha512-oVsa+0g203DcfFYObxwBxLrTr1lmerjhHVwmYNEck4Hw/7bxLXRbLekRoWRZI0sBQF296wVDIJ1RuLzf5vz65Q==}
     engines: {node: '>=14'}
 
   '@percy/sdk-utils@1.28.7':
     resolution: {integrity: sha512-LIhfHnkcS0fyIdo3gvKn7rwodZjbEtyLkgiDRSRulcBOatI2mhn2Bh269sXXiiFTyAW2BDQjyE3DWc4hkGbsbQ==}
     engines: {node: '>=14'}
 
-  '@percy/sdk-utils@1.31.8':
-    resolution: {integrity: sha512-S+qxi4TIOvToAD5j89nkdDj0Xj5CH8YJxpI6ZRVJE/UQE+amHIP34KiTdrWKw5aPlYEwNPeNn9UlXz5HUr5Z9g==}
+  '@percy/sdk-utils@1.31.12':
+    resolution: {integrity: sha512-RDAyzT/YhnBtecC2zKI9Nmc3SU4uydGioTWP9M2soHs3aLJO0bCXNxBnXUa9lZoB8/c2XUzNIOwmn4t2zBugRA==}
     engines: {node: '>=14'}
 
-  '@percy/webdriver-utils@1.31.8':
-    resolution: {integrity: sha512-mfKR5EaXTTTLXX2JBFKmz9OphhHHBIMwe6lkI/hVgl1jvnTV2FXSSS2xb2Sume86uGFyj53NRH+HTNf/tepQKg==}
+  '@percy/webdriver-utils@1.31.12':
+    resolution: {integrity: sha512-uWQsBKrafE98gFJFvZ2zZ9lzGPBuzkgYdprLfX/LleS/EZ3/HuXPvv9c6LqrWA5Dfn171pHxwQBLRbzoUIFDUw==}
     engines: {node: '>=14'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -2225,6 +2229,9 @@ packages:
   '@types/node@25.3.5':
     resolution: {integrity: sha512-oX8xrhvpiyRCQkG1MFchB09f+cXftgIXb3a7UUa4Y3wpmZPw5tyZGTLWhlESOLq1Rq6oDlc8npVU2/9xiCuXMA==}
 
+  '@types/node@25.6.0':
+    resolution: {integrity: sha512-+qIYRKdNYJwY3vRCZMdJbPLJAtGjQBudzZzdzwQYkEPQd+PJGixUL5QfvCLDaULoLv+RhT3LDkwEfKaAkgSmNQ==}
+
   '@types/q@1.5.8':
     resolution: {integrity: sha512-hroOstUScF6zhIi+5+x0dzqrHA1EJi+Irri6b1fxolMTqqHIV/Cg77EtnQcZqZCu8hR3mX2BzIxN4/GzI68Kfw==}
 
@@ -2343,6 +2350,7 @@ packages:
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -2420,6 +2428,9 @@ packages:
 
   ajv@8.18.0:
     resolution: {integrity: sha512-PlXPeEWMXMZ7sPYOHqmDyCJzcfNrUr3fGNKtezX14ykXOEIvyK81d+qydx89KY5O71FKMPaQ2vBfBFI5NHR63A==}
+
+  ajv@8.20.0:
+    resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
 
   algoliasearch@4.23.3:
     resolution: {integrity: sha512-Le/3YgNvjW9zxIQMRhUHuhiUjAlKY/zsdZpfq4dlLqg6mEm0nL6yk+7f2hDOtLpxsgE4jSzDmvHL7nXdBp5feg==}
@@ -2955,8 +2966,8 @@ packages:
     resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
     engines: {node: '>= 0.8'}
 
-  basic-ftp@5.2.0:
-    resolution: {integrity: sha512-VoMINM2rqJwJgfdHq6RiUudKt2BV+FY5ZFezP/ypmwayk68+NzzAQy4XXLlqsGD4MCzq3DrmNFD/uUmBJuGoXw==}
+  basic-ftp@5.3.1:
+    resolution: {integrity: sha512-bopVNp6ugyA150DDuZfPFdt1KZ5a94ZDiwX4hMgZDzF+GttD80lEy8kj98kbyhLXnPvhtIo93mdnLIjpCAeeOw==}
     engines: {node: '>=10.0.0'}
 
   better-path-resolve@1.0.0:
@@ -3007,6 +3018,9 @@ packages:
 
   brace-expansion@2.0.2:
     resolution: {integrity: sha512-Jt0vHyM+jmUBqojB7E1NIYadt0vI0Qxjxd2TErW94wDz+E2LAm5vKMXXwg6ZZBTHPuUlDgQHKXvjGBdfcF1ZDQ==}
+
+  brace-expansion@2.1.0:
+    resolution: {integrity: sha512-TN1kCZAgdgweJhWWpgKYrQaMNHcDULHkWwQIspdtjV4Y5aurRdZpjAqn6yX3FPqTA9ngHCc4hJxMAMgGfve85w==}
 
   brace-expansion@5.0.4:
     resolution: {integrity: sha512-h+DEnpVvxmfVefa4jFbCf5HdH5YMDXRsmKflpf1pILZWRFlTbJpxeU55nJl4Smt5HQaGzg1o6RHFPJaOqnmBDg==}
@@ -5483,6 +5497,10 @@ packages:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
 
+  import-fresh@3.3.1:
+    resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==}
+    engines: {node: '>=6'}
+
   import-from@3.0.0:
     resolution: {integrity: sha512-CiuXOFFSzkU5x/CR0+z7T91Iht4CXgfCxVOFRhh2Zyhg5wOpWvvDLQUsWl+gcN+QscYBjez8hDCt85O7RLDttQ==}
     engines: {node: '>=8'}
@@ -5541,8 +5559,8 @@ packages:
     resolution: {integrity: sha512-CYdFeFexxhv/Bcny+Q0BfOV+ltRlJcd4BBZBYFX/O0u4npJrgZtIcjokegtiSMAvlMTJ+Koq0GBCc//3bueQxw==}
     engines: {node: '>=8'}
 
-  ip-address@10.1.0:
-    resolution: {integrity: sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==}
+  ip-address@10.2.0:
+    resolution: {integrity: sha512-/+S6j4E9AHvW9SWMSEY9Xfy66O5PWvVEJ08O0y5JGyEKQpojb0K0GKpz/v5HJ/G0vi3D2sjGK78119oXZeE0qA==}
     engines: {node: '>= 12'}
 
   ipaddr.js@1.9.1:
@@ -6096,6 +6114,9 @@ packages:
   lodash@4.17.23:
     resolution: {integrity: sha512-LgVTMpQtIopCi79SJeDiP0TfWi5CNEc/L/aRdTh3yIvmZXTnheWpKjSZhnvMl8iXbC1tFg9gdHHDMLoV7CnG+w==}
 
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
+
   log-symbols@2.2.0:
     resolution: {integrity: sha512-VeIAFslyIerEJLXHziedo2basKbMKtTw3vfn5IzG0XTjhAVEJyNHnL2p7vc+wBDSdQuUpNw3M2u6xb9QsAY5Eg==}
     engines: {node: '>=4'}
@@ -6395,8 +6416,8 @@ packages:
   neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
 
-  netmask@2.0.2:
-    resolution: {integrity: sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==}
+  netmask@2.1.1:
+    resolution: {integrity: sha512-eonl3sLUha+S1GzTPxychyhnUzKyeQkZ7jLjKrBagJgPla13F+uQ71HgpFefyHgqrjEbCPkDArxYsjY8/+gLKA==}
     engines: {node: '>= 0.4.0'}
 
   nice-try@1.0.5:
@@ -7674,8 +7695,8 @@ packages:
     resolution: {integrity: sha512-HehCEsotFqbPW9sJ8WVYB6UbmIMv7kUUORIF2Nncq4VQvBfNBLibW9YZR5dlYCSUhwcD628pRllm7n+E+YTzJw==}
     engines: {node: '>= 14'}
 
-  socks@2.8.7:
-    resolution: {integrity: sha512-HLpt+uLy/pxB+bum/9DzAgiKS8CX1EvbWxI4zlmgGCExImLdiad2iCwXT5Z4c9c3Eq8rP2318mPW2c+QbtjK8A==}
+  socks@2.8.8:
+    resolution: {integrity: sha512-NlGELfPrgX2f1TAAcz0WawlLn+0r3FyhhCRpFFK2CemXenPYvzMWWZINv3eDNo9ucdwme7oCHRY0Jnbs4aIkog==}
     engines: {node: '>= 10.0.0', npm: '>= 3.0.0'}
 
   sort-object-keys@1.1.3:
@@ -7918,8 +7939,8 @@ packages:
     resolution: {integrity: sha512-vngT2JmkSapgq0z7uIoYtB9kWOOzMihAAYq/D3Pjm/ODOGMgS4r++B+OZ09U4hWR6EaOdy9eqQ7/8ygbH3wehA==}
     engines: {node: 8.* || >= 10.*}
 
-  systeminformation@5.31.3:
-    resolution: {integrity: sha512-vX0eeI7oGIr79NLiJRWnK8SyxDjyiNOEanaQnHRNyb5ep8QcpD8QMDvrukdrxV4pV4AKjwUDfaypXnWHMC/65A==}
+  systeminformation@5.31.5:
+    resolution: {integrity: sha512-5SyLdip4/3alxD4Kh+63bUQTJmu7YMfYQTC+koZy7X73HgNqZSD2P4wOZQWtUncvPvcEmnfIjCoygN4MRoEejQ==}
     engines: {node: '>=8.0.0'}
     os: [darwin, linux, win32, freebsd, openbsd, netbsd, sunos, android]
     hasBin: true
@@ -8188,6 +8209,9 @@ packages:
   undici-types@7.18.2:
     resolution: {integrity: sha512-AsuCzffGHJybSaRrmr5eHr81mwJU3kjw6M+uprWvCXiNeN9SOGwQ3Jn8jb8m3Z6izVgknn1R0FTCEAP2QrLY/w==}
 
+  undici-types@7.19.2:
+    resolution: {integrity: sha512-qYVnV5OEm2AW8cJMCpdV20CDyaN3g0AjDlOGf1OW4iaDEx8MwdtChUp4zu4H0VP3nDRF/8RKWH+IPp9uW0YGZg==}
+
   undici@6.23.0:
     resolution: {integrity: sha512-VfQPToRA5FZs/qJxLIinmU59u0r7LXqoJkCzinq3ckNJp3vKEh7jTWN589YQ5+aoAC/TGRLyJLCPKcLQbM8r9g==}
     engines: {node: '>=18.17'}
@@ -8289,6 +8313,7 @@ packages:
 
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   validate-npm-package-name@6.0.2:
@@ -8505,18 +8530,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.17.0:
-    resolution: {integrity: sha512-uJq6108EgZMAl20KagGkzCKfMEjxmKvZHG7Tlq0Z6nOky7YF7aq4mOx6xK8TJ/i1LeK4Qus7INktacctDgY8Ow==}
-    engines: {node: '>=10.0.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: '>=5.0.2'
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   ws@8.18.3:
     resolution: {integrity: sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==}
     engines: {node: '>=10.0.0'}
@@ -8531,6 +8544,18 @@ packages:
 
   ws@8.19.0:
     resolution: {integrity: sha512-blAT2mjOEIi0ZzruJfIhb3nps74PRWTCz1IjglWEEpQl5XS/UNama6u2/rjFkDDouqr4L67ry+1aGIALViWjDg==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  ws@8.20.0:
+    resolution: {integrity: sha512-sAt8BhgNbzCtgGbt2OxmpuryO63ZoDk/sqaB/znQm94T4fCEsy/yV+7CdC1kJhOU9lboAEU7R3kquuycDoibVA==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -8578,8 +8603,8 @@ packages:
     resolution: {integrity: sha512-Hv9xxHtsJ9228wNhk03xnlDReUuWVvHwM4rIbjdAXYvHLs17xjuyF50N6XXFMN6N0omBaqgOok/MCK3At9fTAg==}
     engines: {node: ^4.5 || 6.* || >= 7.*}
 
-  yaml@2.8.2:
-    resolution: {integrity: sha512-mplynKqc1C2hTVYxd0PU2xQAc22TI1vShAYGksCCfxbn/dFwnHTNi1bvYsBTkhdUNtGIf5xNOg938rrSSYvS9A==}
+  yaml@2.8.3:
+    resolution: {integrity: sha512-AvbaCLOO2Otw/lW5bmh9d/WEdcDFdQp2Z2ZUH3pX9U2ihyUY0nvLv7J6TrWowklRGPYbB/IuIMfYgxaCPg5Bpg==}
     engines: {node: '>= 14.6'}
     hasBin: true
 
@@ -10994,12 +11019,12 @@ snapshots:
 
   '@humanwhocodes/retry@0.4.3': {}
 
-  '@inquirer/external-editor@1.0.3(@types/node@25.3.5)':
+  '@inquirer/external-editor@1.0.3(@types/node@25.6.0)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.2
     optionalDependencies:
-      '@types/node': 25.3.5
+      '@types/node': 25.6.0
 
   '@inquirer/figures@1.0.15': {}
 
@@ -11094,123 +11119,123 @@ snapshots:
       - '@glint/template'
       - supports-color
 
-  '@percy/cli-app@1.31.8(typescript@4.9.5)':
+  '@percy/cli-app@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
-      '@percy/cli-exec': 1.31.8(typescript@4.9.5)
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+      '@percy/cli-exec': 1.31.12(typescript@4.9.5)
+    transitivePeerDependencies:
+      - typescript
+
+  '@percy/cli-build@1.31.12(typescript@4.9.5)':
+    dependencies:
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+    transitivePeerDependencies:
+      - typescript
+
+  '@percy/cli-command@1.31.12(typescript@4.9.5)':
+    dependencies:
+      '@percy/config': 1.31.12(typescript@4.9.5)
+      '@percy/core': 1.31.12(typescript@4.9.5)
+      '@percy/logger': 1.31.12
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - typescript
       - utf-8-validate
 
-  '@percy/cli-build@1.31.8(typescript@4.9.5)':
+  '@percy/cli-config@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+    transitivePeerDependencies:
+      - typescript
+
+  '@percy/cli-doctor@1.31.12(typescript@4.9.5)':
+    dependencies:
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+      '@percy/client': 1.31.12(typescript@4.9.5)
+      '@percy/config': 1.31.12(typescript@4.9.5)
+      '@percy/core': 1.31.12(typescript@4.9.5)
+      '@percy/env': 1.31.12
+      '@percy/logger': 1.31.12
+      '@percy/monitoring': 1.31.12(typescript@4.9.5)
+      minimatch: 9.0.9
+      ws: 8.20.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - typescript
       - utf-8-validate
 
-  '@percy/cli-command@1.31.8(typescript@4.9.5)':
+  '@percy/cli-exec@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/config': 1.31.8(typescript@4.9.5)
-      '@percy/core': 1.31.8(typescript@4.9.5)
-      '@percy/logger': 1.31.8
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - typescript
-      - utf-8-validate
-
-  '@percy/cli-config@1.31.8(typescript@4.9.5)':
-    dependencies:
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - typescript
-      - utf-8-validate
-
-  '@percy/cli-exec@1.31.8(typescript@4.9.5)':
-    dependencies:
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
-      '@percy/logger': 1.31.8
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+      '@percy/logger': 1.31.12
       cross-spawn: 7.0.6
       which: 2.0.2
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
-  '@percy/cli-snapshot@1.31.8(typescript@4.9.5)':
+  '@percy/cli-snapshot@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
-      yaml: 2.8.2
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+      yaml: 2.8.3
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
-  '@percy/cli-upload@1.31.8(typescript@4.9.5)':
+  '@percy/cli-upload@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
       fast-glob: 3.3.3
       image-size: 1.2.1
     transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - typescript
-      - utf-8-validate
 
-  '@percy/cli@1.31.8(typescript@4.9.5)':
+  '@percy/cli@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/cli-app': 1.31.8(typescript@4.9.5)
-      '@percy/cli-build': 1.31.8(typescript@4.9.5)
-      '@percy/cli-command': 1.31.8(typescript@4.9.5)
-      '@percy/cli-config': 1.31.8(typescript@4.9.5)
-      '@percy/cli-exec': 1.31.8(typescript@4.9.5)
-      '@percy/cli-snapshot': 1.31.8(typescript@4.9.5)
-      '@percy/cli-upload': 1.31.8(typescript@4.9.5)
-      '@percy/client': 1.31.8(typescript@4.9.5)
-      '@percy/logger': 1.31.8
+      '@percy/cli-app': 1.31.12(typescript@4.9.5)
+      '@percy/cli-build': 1.31.12(typescript@4.9.5)
+      '@percy/cli-command': 1.31.12(typescript@4.9.5)
+      '@percy/cli-config': 1.31.12(typescript@4.9.5)
+      '@percy/cli-doctor': 1.31.12(typescript@4.9.5)
+      '@percy/cli-exec': 1.31.12(typescript@4.9.5)
+      '@percy/cli-snapshot': 1.31.12(typescript@4.9.5)
+      '@percy/cli-upload': 1.31.12(typescript@4.9.5)
+      '@percy/client': 1.31.12(typescript@4.9.5)
+      '@percy/logger': 1.31.12
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - typescript
       - utf-8-validate
 
-  '@percy/client@1.31.8(typescript@4.9.5)':
+  '@percy/client@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/config': 1.31.8(typescript@4.9.5)
-      '@percy/env': 1.31.8
-      '@percy/logger': 1.31.8
+      '@percy/config': 1.31.12(typescript@4.9.5)
+      '@percy/env': 1.31.12
+      '@percy/logger': 1.31.12
       pac-proxy-agent: 7.2.0
       pako: 2.1.0
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  '@percy/config@1.31.8(typescript@4.9.5)':
+  '@percy/config@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/logger': 1.31.8
-      ajv: 8.18.0
+      '@percy/logger': 1.31.12
+      ajv: 8.20.0
       cosmiconfig: 8.3.6(typescript@4.9.5)
-      yaml: 2.8.2
+      yaml: 2.8.3
     transitivePeerDependencies:
       - typescript
 
-  '@percy/core@1.31.8(typescript@4.9.5)':
+  '@percy/core@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/client': 1.31.8(typescript@4.9.5)
-      '@percy/config': 1.31.8(typescript@4.9.5)
-      '@percy/dom': 1.31.8
-      '@percy/logger': 1.31.8
-      '@percy/monitoring': 1.31.8(typescript@4.9.5)
-      '@percy/webdriver-utils': 1.31.8(typescript@4.9.5)
+      '@percy/client': 1.31.12(typescript@4.9.5)
+      '@percy/config': 1.31.12(typescript@4.9.5)
+      '@percy/dom': 1.31.12
+      '@percy/logger': 1.31.12
+      '@percy/monitoring': 1.31.12(typescript@4.9.5)
+      '@percy/webdriver-utils': 1.31.12(typescript@4.9.5)
       content-disposition: 0.5.4
       cross-spawn: 7.0.6
       extract-zip: 2.0.1
@@ -11220,15 +11245,17 @@ snapshots:
       pako: 2.1.0
       path-to-regexp: 6.3.0
       rimraf: 3.0.2
-      ws: 8.19.0
-      yaml: 2.8.2
+      ws: 8.20.0
+      yaml: 2.8.3
+    optionalDependencies:
+      '@percy/cli-doctor': 1.31.12(typescript@4.9.5)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
       - typescript
       - utf-8-validate
 
-  '@percy/dom@1.31.8': {}
+  '@percy/dom@1.31.12': {}
 
   '@percy/ember@5.0.0(@babel/core@7.29.0)(webpack@5.104.1)':
     dependencies:
@@ -11241,34 +11268,34 @@ snapshots:
       - supports-color
       - webpack
 
-  '@percy/env@1.31.8':
+  '@percy/env@1.31.12':
     dependencies:
-      '@percy/logger': 1.31.8
+      '@percy/logger': 1.31.12
 
-  '@percy/logger@1.31.8': {}
+  '@percy/logger@1.31.12': {}
 
-  '@percy/monitoring@1.31.8(typescript@4.9.5)':
+  '@percy/monitoring@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/config': 1.31.8(typescript@4.9.5)
-      '@percy/logger': 1.31.8
-      '@percy/sdk-utils': 1.31.8
-      systeminformation: 5.31.3
+      '@percy/config': 1.31.12(typescript@4.9.5)
+      '@percy/logger': 1.31.12
+      '@percy/sdk-utils': 1.31.12
+      systeminformation: 5.31.5
     transitivePeerDependencies:
       - supports-color
       - typescript
 
   '@percy/sdk-utils@1.28.7': {}
 
-  '@percy/sdk-utils@1.31.8':
+  '@percy/sdk-utils@1.31.12':
     dependencies:
       pac-proxy-agent: 7.2.0
     transitivePeerDependencies:
       - supports-color
 
-  '@percy/webdriver-utils@1.31.8(typescript@4.9.5)':
+  '@percy/webdriver-utils@1.31.12(typescript@4.9.5)':
     dependencies:
-      '@percy/config': 1.31.8(typescript@4.9.5)
-      '@percy/sdk-utils': 1.31.8
+      '@percy/config': 1.31.12(typescript@4.9.5)
+      '@percy/sdk-utils': 1.31.12
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -11408,6 +11435,11 @@ snapshots:
     dependencies:
       undici-types: 7.18.2
 
+  '@types/node@25.6.0':
+    dependencies:
+      undici-types: 7.19.2
+    optional: true
+
   '@types/q@1.5.8': {}
 
   '@types/qs@6.9.15': {}
@@ -11442,7 +11474,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 25.6.0
     optional: true
 
   '@typescript-eslint/parser@8.56.1(eslint@9.39.4)(typescript@4.9.5)':
@@ -11636,6 +11668,13 @@ snapshots:
       uri-js: 4.4.1
 
   ajv@8.18.0:
+    dependencies:
+      fast-deep-equal: 3.1.3
+      fast-uri: 3.1.0
+      json-schema-traverse: 1.0.0
+      require-from-string: 2.0.2
+
+  ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
       fast-uri: 3.1.0
@@ -11891,7 +11930,7 @@ snapshots:
       convert-source-map: 1.9.0
       debug: 2.6.9(supports-color@8.1.1)
       json5: 0.5.1
-      lodash: 4.17.23
+      lodash: 4.18.1
       minimatch: 3.1.5
       path-is-absolute: 1.0.1
       private: 0.1.8
@@ -11908,7 +11947,7 @@ snapshots:
       babel-types: 6.26.0
       detect-indent: 4.0.0
       jsesc: 1.3.0
-      lodash: 4.17.23
+      lodash: 4.18.1
       source-map: 0.5.7
       trim-right: 1.0.1
     optional: true
@@ -12379,7 +12418,7 @@ snapshots:
       babel-runtime: 6.26.0
       core-js: 2.6.12
       home-or-tmp: 2.0.0
-      lodash: 4.17.23
+      lodash: 4.18.1
       mkdirp: 0.5.6
       source-map-support: 0.4.18
     transitivePeerDependencies:
@@ -12467,7 +12506,7 @@ snapshots:
     dependencies:
       safe-buffer: 5.1.2
 
-  basic-ftp@5.2.0: {}
+  basic-ftp@5.3.1: {}
 
   better-path-resolve@1.0.0:
     dependencies:
@@ -12545,6 +12584,10 @@ snapshots:
       concat-map: 0.0.1
 
   brace-expansion@2.0.2:
+    dependencies:
+      balanced-match: 1.0.2
+
+  brace-expansion@2.1.0:
     dependencies:
       balanced-match: 1.0.2
 
@@ -13482,7 +13525,7 @@ snapshots:
 
   cosmiconfig@8.3.6(typescript@4.9.5):
     dependencies:
-      import-fresh: 3.3.0
+      import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
       path-type: 4.0.0
@@ -14075,10 +14118,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli-dependency-checker@3.3.3(ember-cli@6.7.2(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)):
+  ember-cli-dependency-checker@3.3.3(ember-cli@6.7.2(@types/node@25.6.0)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)):
     dependencies:
       chalk: 2.4.2
-      ember-cli: 6.7.2(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)
+      ember-cli: 6.7.2(@types/node@25.6.0)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8)
       find-yarn-workspace-root: 2.0.0
       is-git-url: 1.0.0
       resolve: 1.22.11
@@ -14368,7 +14411,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli@6.7.2(@types/node@25.3.5)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8):
+  ember-cli@6.7.2(@types/node@25.6.0)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.8):
     dependencies:
       '@ember-tooling/blueprint-blueprint': 0.0.2
       '@ember-tooling/blueprint-model': 0.0.2
@@ -14423,7 +14466,7 @@ snapshots:
       heimdalljs-logger: 0.1.10
       http-proxy: 1.18.1
       inflection: 2.0.1
-      inquirer: 9.3.8(@types/node@25.3.5)
+      inquirer: 9.3.8(@types/node@25.6.0)
       is-git-url: 1.0.0
       is-language-code: 3.1.0
       isbinaryfile: 5.0.7
@@ -15957,7 +16000,7 @@ snapshots:
 
   get-uri@6.0.5:
     dependencies:
-      basic-ftp: 5.2.0
+      basic-ftp: 5.3.1
       data-uri-to-buffer: 6.0.2
       debug: 4.4.3(supports-color@8.1.1)
     transitivePeerDependencies:
@@ -15992,7 +16035,7 @@ snapshots:
     dependencies:
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
 
@@ -16355,6 +16398,11 @@ snapshots:
       parent-module: 1.0.1
       resolve-from: 4.0.0
 
+  import-fresh@3.3.1:
+    dependencies:
+      parent-module: 1.0.1
+      resolve-from: 4.0.0
+
   import-from@3.0.0:
     dependencies:
       resolve-from: 5.0.0
@@ -16418,9 +16466,9 @@ snapshots:
       strip-ansi: 6.0.1
       through: 2.3.8
 
-  inquirer@9.3.8(@types/node@25.3.5):
+  inquirer@9.3.8(@types/node@25.6.0):
     dependencies:
-      '@inquirer/external-editor': 1.0.3(@types/node@25.3.5)
+      '@inquirer/external-editor': 1.0.3(@types/node@25.6.0)
       '@inquirer/figures': 1.0.15
       ansi-escapes: 4.3.2
       cli-width: 4.1.0
@@ -16447,7 +16495,7 @@ snapshots:
 
   invert-kv@3.0.1: {}
 
-  ip-address@10.1.0: {}
+  ip-address@10.2.0: {}
 
   ipaddr.js@1.9.1: {}
 
@@ -16789,7 +16837,7 @@ snapshots:
       whatwg-encoding: 2.0.0
       whatwg-mimetype: 3.0.0
       whatwg-url: 10.0.0
-      ws: 8.17.0
+      ws: 8.20.0
       xml-name-validator: 4.0.0
     transitivePeerDependencies:
       - bufferutil
@@ -17052,6 +17100,9 @@ snapshots:
 
   lodash@4.17.23: {}
 
+  lodash@4.18.1:
+    optional: true
+
   log-symbols@2.2.0:
     dependencies:
       chalk: 2.4.2
@@ -17268,11 +17319,11 @@ snapshots:
 
   minimatch@8.0.7:
     dependencies:
-      brace-expansion: 2.0.2
+      brace-expansion: 2.1.0
 
   minimatch@9.0.9:
     dependencies:
-      brace-expansion: 2.0.2
+      brace-expansion: 2.1.0
 
   minimist@1.2.8: {}
 
@@ -17352,7 +17403,7 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  netmask@2.0.2: {}
+  netmask@2.1.1: {}
 
   nice-try@1.0.5: {}
 
@@ -17631,7 +17682,7 @@ snapshots:
   pac-resolver@7.0.1:
     dependencies:
       degenerator: 5.0.1
-      netmask: 2.0.2
+      netmask: 2.1.1
 
   package-json-from-dist@1.0.1: {}
 
@@ -18797,13 +18848,13 @@ snapshots:
     dependencies:
       agent-base: 7.1.4
       debug: 4.4.3(supports-color@8.1.1)
-      socks: 2.8.7
+      socks: 2.8.8
     transitivePeerDependencies:
       - supports-color
 
-  socks@2.8.7:
+  socks@2.8.8:
     dependencies:
-      ip-address: 10.1.0
+      ip-address: 10.2.0
       smart-buffer: 4.2.0
 
   sort-object-keys@1.1.3: {}
@@ -19120,7 +19171,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  systeminformation@5.31.3: {}
+  systeminformation@5.31.5: {}
 
   table@6.9.0:
     dependencies:
@@ -19495,6 +19546,9 @@ snapshots:
 
   undici-types@7.18.2: {}
 
+  undici-types@7.19.2:
+    optional: true
+
   undici@6.23.0: {}
 
   unicode-canonical-property-names-ecmascript@2.0.1: {}
@@ -19843,11 +19897,11 @@ snapshots:
 
   ws@7.5.9: {}
 
-  ws@8.17.0: {}
-
   ws@8.18.3: {}
 
   ws@8.19.0: {}
+
+  ws@8.20.0: {}
 
   xdg-basedir@4.0.0: {}
 
@@ -19872,7 +19926,7 @@ snapshots:
       fs-extra: 4.0.3
       lodash.merge: 4.6.2
 
-  yaml@2.8.2: {}
+  yaml@2.8.3: {}
 
   yargs-parser@21.1.1: {}
 
