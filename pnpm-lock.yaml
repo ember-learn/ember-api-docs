@@ -4314,7 +4314,7 @@ packages:
         optional: true
 
   ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c:
-    resolution: {tarball: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c}
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c}
     version: 0.1.2
     engines: {node: ^4.5 || 6.* || >= 7.*}
 
