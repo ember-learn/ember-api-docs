@@ -15,7 +15,7 @@ import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
  * @param {[{name: string}]} items
  */
 function combineNames(items) {
-  return items.map(item => item.name).join(', ')
+  return items.map((item) => item.name).join(', ');
 }
 
 export default class ClassFieldDescription extends Component {
@@ -27,7 +27,9 @@ export default class ClassFieldDescription extends Component {
           <span class="{{@type}}-name">
             {{@field.name}}
           </span>
-          {{#if @field.params}}(<span class="args">{{combineNames @field.params}}</span>){{/if}}
+          {{#if @field.params}}(<span class="args">{{combineNames
+                @field.params
+              }}</span>){{/if}}
           {{#if @field.return}}
             :
             <span class="return-type">{{@field.return.type}}</span>
