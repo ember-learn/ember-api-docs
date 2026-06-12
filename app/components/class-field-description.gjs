@@ -1,7 +1,5 @@
 import { service } from '@ember/service';
 import Component from '@glimmer/component';
-import join from 'ember-composable-helpers/helpers/join';
-import mapBy from 'ember-composable-helpers/helpers/map-by';
 import svgJar from 'ember-svg-jar/helpers/svg-jar';
 import { LinkTo } from '@ember/routing';
 import { array, concat } from '@ember/helper';
@@ -10,6 +8,15 @@ import and from 'ember-truth-helpers/helpers/and';
 import eq from 'ember-api-docs/helpers/eq';
 import ImportExample from 'ember-api-docs/components/import-example';
 import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
+
+/**
+ * Extract the name field from the passed items an string-join them with `, ` in the middle
+ *
+ * @param {[{name: string}]} items
+ */
+function combineNames(items) {
+  return items.map((item) => item.name).join(', ');
+}
 
 export default class ClassFieldDescription extends Component {
   <template>
@@ -20,9 +27,8 @@ export default class ClassFieldDescription extends Component {
           <span class="{{@type}}-name">
             {{@field.name}}
           </span>
-          {{#if @field.params}}(<span class="args">{{join
-                ", "
-                (mapBy "name" @field.params)
+          {{#if @field.params}}(<span class="args">{{combineNames
+                @field.params
               }}</span>){{/if}}
           {{#if @field.return}}
             :
