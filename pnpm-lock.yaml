@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  ember-data-fastboot@0.1.2:
+    hash: d43942b2da6f05a2962db8c115fdee0f38acfaa0b61d16b183cee3282897973c
+    path: patches/ember-data-fastboot@0.1.2.patch
+
 importers:
 
   .:
@@ -148,7 +153,7 @@ importers:
         version: 4.0.6(@babel/core@7.29.0)
       ember-data-fastboot:
         specifier: https://github.com/kategengler/ember-data-fastboot#v0.0.1
-        version: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(@babel/core@7.29.0)
+        version: https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(patch_hash=d43942b2da6f05a2962db8c115fdee0f38acfaa0b61d16b183cee3282897973c)(@babel/core@7.29.0)
       ember-decorators:
         specifier: ^6.1.1
         version: 6.1.1
@@ -186,7 +191,7 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1(@babel/core@7.29.0)(showdown@2.1.0)
       ember-source:
-        specifier: 6.7.0
+        specifier: ~6.7.0
         version: 6.7.0(@glimmer/component@2.0.0)(rsvp@4.8.5)
       ember-styleguide:
         specifier: ^11.3.1
@@ -15495,7 +15500,7 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(@babel/core@7.29.0):
+  ember-data-fastboot@https://codeload.github.com/kategengler/ember-data-fastboot/tar.gz/fd24e8b4043e3b911ef7ce0b438f6e149d7fb51c(patch_hash=d43942b2da6f05a2962db8c115fdee0f38acfaa0b61d16b183cee3282897973c)(@babel/core@7.29.0):
     dependencies:
       ember-cli-babel: 8.3.1(@babel/core@7.29.0)
     transitivePeerDependencies:
@@ -15645,8 +15650,8 @@ snapshots:
 
   ember-router-generator@2.0.0:
     dependencies:
-      '@babel/parser': 7.29.0
-      '@babel/traverse': 7.29.0(supports-color@8.1.1)
+      '@babel/parser': 7.29.7
+      '@babel/traverse': 7.29.7
       recast: 0.18.10
     transitivePeerDependencies:
       - supports-color
