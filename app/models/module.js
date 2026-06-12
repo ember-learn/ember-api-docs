@@ -1,4 +1,4 @@
-import { belongsTo, attr } from '@ember-data/model';
+import { belongsTo, attr } from '@warp-drive/legacy/model';
 import ClassModel from './class';
 
 export default class Module extends ClassModel {
@@ -23,6 +23,6 @@ export default class Module extends ClassModel {
   @attr()
   allstaticfunctions;
 
-  @belongsTo('project-version', { inverse: 'modules' })
+  @belongsTo('project-version', { async: false, inverse: null })
   projectVersion;
 }
