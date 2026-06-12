@@ -19,9 +19,6 @@ module.exports = function (defaults) {
       sourcemap: !envIsProduction,
       overrideBrowsersList: ['default'],
     },
-    'ember-composable-helpers': {
-      only: ['join', 'map-by'],
-    },
     'asset-cache': {
       version: '4', //Might have to change this with the app build,
     },
