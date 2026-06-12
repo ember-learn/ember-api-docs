@@ -67,7 +67,7 @@ export default class ProjectVersionRoute extends Route {
     if (!classParams && !moduleParams && !namespaceParams && !functionParams) {
       // if there is no class, module, or namespace specified...
       let latestVersion = getLastVersion(
-        model.get('project.content').hasMany('projectVersions').ids(),
+        model.project.hasMany('projectVersions').ids(),
       );
       let isLatestVersion =
         transitionVersion === latestVersion || transitionVersion === 'release';

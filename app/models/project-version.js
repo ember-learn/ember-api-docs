@@ -12,7 +12,7 @@ export default class ProjectVersionModel extends Model {
   @hasMany('module', { async: true, inverse: null }) 'private-modules';
   @hasMany('namespace', { async: true, inverse: null }) 'public-namespaces';
   @hasMany('namespace', { async: true, inverse: null }) 'private-namespaces';
-  @belongsTo('project', { async: false, inverse: null }) project;
+  @belongsTo('project', { async: false, inverse: 'projectVersions' }) project;
 
   get compactVersion() {
     return getCompactVersion(this.version);
