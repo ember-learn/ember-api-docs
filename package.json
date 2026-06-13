@@ -47,6 +47,10 @@
     "@percy/cli": "^1.28.7",
     "@percy/ember": "^5.0.0",
     "@typescript-eslint/parser": "^8.43.0",
+    "@warp-drive/core": "^5.8.2",
+    "@warp-drive/ember": "^5.8.2",
+    "@warp-drive/json-api": "^5.8.2",
+    "@warp-drive/legacy": "^5.8.2",
     "algoliasearch": "^4.20.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^2.0.1",
@@ -71,7 +75,6 @@
     "ember-cli-showdown": "^9.0.1",
     "ember-cli-terser": "^4.0.2",
     "ember-concurrency": "^4.0.6",
-    "ember-data": "~4.12.8",
     "ember-data-fastboot": "https://github.com/kategengler/ember-data-fastboot#v0.0.1",
     "ember-decorators": "^6.1.1",
     "ember-eslint-parser": "^0.5.11",
@@ -85,7 +88,7 @@
     "ember-resolver": "^13.1.1",
     "ember-rfc176-data": "^0.3.17",
     "ember-showdown-shiki": "^1.2.1",
-    "ember-source": "6.7.0",
+    "ember-source": "~6.7.0",
     "ember-styleguide": "^11.3.1",
     "ember-svg-jar": "^2.7.1",
     "ember-template-imports": "^4.3.0",
@@ -133,11 +136,6 @@
     "pnpm": "10"
   },
   "packageManager": "pnpm@10.34.1",
-  "pnpm": {
-    "overrides": {
-      "ember-data>ember-inflector": "^6.0.0"
-    }
-  },
   "cacheDirectories": [
     "node_modules"
   ],

@@ -1,4 +1,4 @@
-import Model, { hasMany, attr } from '@ember-data/model';
+import { Model, hasMany, attr } from '@warp-drive/legacy/model';
 
 export default class Project extends Model {
   @attr()
@@ -7,6 +7,6 @@ export default class Project extends Model {
   @attr()
   githubUrl;
 
-  @hasMany('project-version', { async: true })
+  @hasMany('project-version', { async: true, inverse: 'project' })
   projectVersions;
 }

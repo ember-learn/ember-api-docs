@@ -1,4 +1,4 @@
-import Model, { belongsTo, attr } from '@ember-data/model';
+import { Model, belongsTo, attr } from '@warp-drive/legacy/model';
 
 export default class Class extends Model {
   @attr()
@@ -43,7 +43,7 @@ export default class Class extends Model {
   @belongsTo('class', { async: true, inverse: null })
   parentClass;
 
-  @belongsTo('project-version', { inverse: 'classes' })
+  @belongsTo('project-version', { async: false, inverse: null })
   projectVersion;
 
   get project() {

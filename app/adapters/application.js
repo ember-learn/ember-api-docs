@@ -1,5 +1,5 @@
 import { service } from '@ember/service';
-import JSONAPIAdapter from '@ember-data/adapter/json-api';
+import { JSONAPIAdapter } from '@warp-drive/legacy/adapter/json-api';
 import { pluralize } from 'ember-inflector';
 import { isBlank } from '@ember/utils';
 import config from 'ember-api-docs/config/environment';

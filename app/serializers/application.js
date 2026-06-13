@@ -1,5 +1,5 @@
 import { service } from '@ember/service';
-import JSONAPISerializer from '@ember-data/serializer/json-api';
+import { JSONAPISerializer } from '@warp-drive/legacy/serializer/json-api';
 
 export default class Application extends JSONAPISerializer {
   @service

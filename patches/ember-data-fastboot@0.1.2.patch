@@ -1,0 +1,16 @@
+diff --git a/fastboot/instance-initializers/ember-data-fastboot.js b/fastboot/instance-initializers/ember-data-fastboot.js
+index b6db25d90653b5a6b742cb02f2dbba0fd66fefca..9cbafde3d3281f45344b2152dccef4e55ba5984a 100644
+--- a/fastboot/instance-initializers/ember-data-fastboot.js
++++ b/fastboot/instance-initializers/ember-data-fastboot.js
+@@ -6,9 +6,9 @@ export function initialize(applicationInstance) {
+ 
+   shoebox.put('ember-data-store', {
+     get records() {
+-      const modelNames = Object.keys(store._modelFactoryCache);
++      const modelNames = Object.keys(store.cacheKeyManager._cache.resourcesByType);
+       return modelNames.map(name => {
+-        return store.peekAll(name).toArray();
++        return store.peekAll(name);
+       }).reduce((a,b) => a.concat(b), [])
+         .filter(record => record.get('isLoaded') && !record.get('isNew'))
+         .map(record => {

@@ -5,6 +5,8 @@ module.exports = function () {
     buildSandboxGlobals(defaultGlobals) {
       return Object.assign({}, defaultGlobals, {
         atob: atob,
+        setInterval: setInterval,
+        structuredClone: structuredClone,
         AbortController,
         fetch: fetch,
         ReadableStream:
