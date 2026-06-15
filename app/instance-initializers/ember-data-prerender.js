@@ -22,10 +22,12 @@ export function initialize(applicationInstance) {
 
   shoebox?.put('ember-data-store', {
     get records() {
-      const modelNames = Object.keys(store._modelFactoryCache);
+      const modelNames = Object.keys(
+        store.cacheKeyManager._cache.resourcesByType,
+      );
       return modelNames
         .map((name) => {
-          return store.peekAll(name).toArray();
+          return store.peekAll(name);
         })
         .reduce((a, b) => a.concat(b), [])
         .filter((record) => record.get('isLoaded') && !record.get('isNew'))
