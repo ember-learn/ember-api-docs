@@ -1,11 +1,8 @@
-import { service } from '@ember/service';
 import Component from '@glimmer/component';
 import svgJar from 'ember-svg-jar/helpers/svg-jar';
 import { LinkTo } from '@ember/routing';
 import { array, concat } from '@ember/helper';
 import githubLink from 'ember-api-docs/helpers/github-link';
-import and from 'ember-truth-helpers/helpers/and';
-import eq from 'ember-api-docs/helpers/eq';
 import ImportExample from 'ember-api-docs/components/import-example';
 import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
 
@@ -19,6 +16,16 @@ function combineNames(items) {
 }
 
 export default class ClassFieldDescription extends Component {
+  get displayImportExample() {
+    return (
+      this.args.field.exampleimport !== undefined ||
+      (this.args.field.noimport === undefined &&
+        this.args.field.static === 1 &&
+        this.args.field.itemtype === 'method' &&
+        isImportablePackage(this.args.field.class))
+    );
+  }
+
   <template>
     {{! template-lint-disable no-invalid-interactive }}
     <section class="class-field-description {{@type}}">
@@ -101,16 +108,11 @@ export default class ClassFieldDescription extends Component {
           Available since v{{@field.since}}
         </p>
       {{/if}}
-      {{#if
-        (and
-          (eq @field.static 1)
-          (eq @field.itemtype "method")
-          this.hasImportExample
-        )
-      }}
+      {{#if this.displayImportExample}}
         <ImportExample
           @item={{concat "{ " @field.name " }"}}
           @package={{@field.class}}
+          @exampleimport={{@field.exampleimport}}
         />
       {{/if}}
       <dl class="parameters">
@@ -143,13 +145,15 @@ export default class ClassFieldDescription extends Component {
       <MarkdownToHtml @markdown={{@field.description}} />
     </section>
   </template>
-  @service
-  legacyModuleMappings;
+}
 
-  get hasImportExample() {
-    return this.legacyModuleMappings.hasFunctionMapping(
-      this.args.field.name,
-      this.args.field.class,
-    );
-  }
+function isImportablePackage(packageName) {
+  /* Broadly define which types of static functions display generated import 
+     examples. This previously relied on `mappings.json` but this meant that newly
+     added APIs did not display import examples.
+     
+     This should strike a balance of displaying import examples for new APIs and
+     not displaying them before the APIs were importable.     
+   */
+  return packageName.startsWith('@') || packageName === 'rsvp';
 }

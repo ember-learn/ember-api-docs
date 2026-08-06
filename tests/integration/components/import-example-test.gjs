@@ -25,4 +25,20 @@ module('Integration | Component | import example', function (hooks) {
     );
     assert.dom('*').hasText("import { uniqBy } from '@ember/object/computed';");
   });
+
+  test('it renders a custom exampleimport override', async function (assert) {
+    await render(
+      <template>
+        {{! template-lint-disable no-potential-path-strings }}
+        <ImportExample
+          @item="{ someMethod }"
+          @package="@ember/utils"
+          @exampleimport="import { someMethod } from '@ember/utils/legacy';"
+        />
+      </template>,
+    );
+    assert
+      .dom('*')
+      .hasText("import { someMethod } from '@ember/utils/legacy';");
+  });
 });
