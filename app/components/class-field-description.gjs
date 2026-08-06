@@ -49,7 +49,7 @@ export default class ClassFieldDescription extends Component {
           {{svgJar "link" width="20px" height="20px" aria-hidden="true"}}
         </a>
       </h3>
-      {{#if @model.module}}
+      {{#if @field.module}}
         <div class="attributes">
           <div class="attribute">
             <span class="attribute-label">Module:</span>
@@ -57,9 +57,10 @@ export default class ClassFieldDescription extends Component {
                 @route="project-version.modules.module"
                 @models={{array
                   @model.projectVersion.compactVersion
-                  @model.module
+                  @field.module
                 }}
-              >{{@model.module}}</LinkTo></span>
+                data-test-module
+              >{{@field.module}}</LinkTo></span>
           </div>
         </div>
       {{/if}}
