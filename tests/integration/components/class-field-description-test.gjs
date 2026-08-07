@@ -28,6 +28,30 @@ module('Integration | Component | class field description', function (hooks) {
     assert.dom(findAll('.args')[0]).hasText('param1, param2, param3');
   });
 
+  test('shows module link from field.module', async function (assert) {
+    const type = 'method';
+    const field = {
+      name: 'myMethod',
+      module: '@ember/component',
+    };
+    const model = {
+      projectVersion: { compactVersion: '6.0' },
+      project: { id: 'ember' },
+    };
+
+    await render(
+      <template>
+        <ClassFieldDescription
+          @type={{type}}
+          @field={{field}}
+          @model={{model}}
+        />
+      </template>,
+    );
+
+    assert.dom('[data-test-module]').hasText('@ember/component');
+  });
+
   test('parameter props are displayed', async function (assert) {
     const type = 'method';
     const field = {
