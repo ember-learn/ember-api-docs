@@ -29,7 +29,7 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.4",
+    "@babel/core": "^7.29.6",
     "@babel/eslint-parser": "^7.28.4",
     "@babel/plugin-proposal-decorators": "^7.28.0",
     "@ember/optional-features": "^2.2.0",
