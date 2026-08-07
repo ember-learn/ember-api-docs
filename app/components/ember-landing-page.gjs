@@ -65,6 +65,15 @@ import { array } from '@ember/helper';
       </li>
       <li>
         <LinkTo
+          @route="project-version.functions.function"
+          @models={{array "@ember/routing" "LinkTo"}}
+        >
+          &lt;LinkTo/&gt;
+        </LinkTo>
+        - a built-in component for linking to a Route within your application
+      </li>
+      <li>
+        <LinkTo
           @route="project-version.classes.class"
           @model="Service"
         >Service</LinkTo>
