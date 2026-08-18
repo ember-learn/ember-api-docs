@@ -111,9 +111,9 @@ import { array } from '@ember/helper';
       </li>
     </ul>
 
-    <h2>Commonly reached for Classic documentation</h2>
-    <p>These are Classic Ember concepts that have modern replacements but are
-      still supported. Please avoid using them in new code.</p>
+    <h2>Classic documentation</h2>
+    <p>These are older Ember concepts that have modern replacements. Although
+      they are still supported, it is best to avoid using them in new code.</p>
     <ul class="spec-method-list">
       {{! template-lint-disable no-potential-path-strings }}
       <li>
