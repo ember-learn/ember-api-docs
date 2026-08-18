@@ -11,7 +11,8 @@ module.exports = function (environment) {
     environment,
     rootURL: '/',
     routerRootURL: '/',
-    locationType: 'history',
+    locationType: 'trailing-history',
+    historySupportMiddleware: true,
     EmberENV: {
       EXTEND_PROTOTYPES: false,
       FEATURES: {
