@@ -29,3 +29,6 @@ local.log
 # ember-api-docs-data checkout
 /ember-api-docs-data/
 /ember-api-docs-data
+
+# prerendered output tmp dir
+/prerender
