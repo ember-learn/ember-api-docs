@@ -33,6 +33,22 @@ module.exports = function (environment) {
       algoliaId: ALGOLIA_APP_ID,
       algoliaKey: ALGOLIA_API_KEY,
     },
+
+    'ember-showdown-shiki': {
+      languages: [
+        'bash',
+        'css',
+        'diff',
+        'glimmer-js',
+        'glimmer-ts',
+        'handlebars',
+        'html',
+        'javascript',
+        'json',
+        'typescript',
+      ],
+    },
+
     metricsAdapters: [
       {
         name: 'GoogleAnalytics',
