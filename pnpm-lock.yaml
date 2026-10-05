@@ -43,7 +43,7 @@ importers:
         version: 3.2.3(@embroider/core@3.5.9)(webpack@5.104.1)
       '@eslint/js':
         specifier: ^9.35.0
-        version: 9.39.4
+        version: 9.39.5
       '@glimmer/component':
         specifier: ^2.0.0
         version: 2.0.0
@@ -2149,8 +2149,8 @@ packages:
       '@glint/template':
         optional: true
 
-  '@embroider/macros@1.21.1':
-    resolution: {integrity: sha512-57jR1QobqR3NKZX8bGi8ljONPfQdmQ01/LAzkwx/InGySyiC1HkvgPT4NdNWAFtK5Q00SYGYMQzJXZg3/zh9cQ==}
+  '@embroider/macros@1.21.2':
+    resolution: {integrity: sha512-ptZJPRWG01zX8joF+PegnzRsfUelrrZPUADGn0pq6/LRH0PNwBAosxvdIQ881t4Y1BEXLxqiFD1Ggza43Bnn2g==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       '@glint/template': ^1.0.0
@@ -2230,6 +2230,10 @@ packages:
 
   '@eslint/js@9.39.4':
     resolution: {integrity: sha512-nE7DEIchvtiFTwBw4Lfbu59PG+kCofhjsKaCWzxTpt4lfRjRMqG6uMBzKXuEcyXhOHoUp9riAm7/aWYGhXZ9cw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.39.5':
+    resolution: {integrity: sha512-QywQuszQh77pIXCsq998c8hbhSTI/azTty1Z6N53dmAudKHhy573j3yvRLsX2BSp8YpLtoCEG8E9DJe+8zUh4A==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@2.1.7':
@@ -11871,7 +11875,7 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@embroider/macros@1.21.1(@babel/core@7.29.0)':
+  '@embroider/macros@1.21.2(@babel/core@7.29.0)':
     dependencies:
       '@embroider/shared-internals': 3.2.0
       assert-never: 1.4.0
@@ -12055,6 +12059,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@9.39.4': {}
+
+  '@eslint/js@9.39.5': {}
 
   '@eslint/object-schema@2.1.7': {}
 
@@ -12390,12 +12396,9 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.32.10(typanion@3.14.0)(typescript@4.9.5)
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
       - typanion
       - typescript
-      - utf-8-validate
-      - worker-loader
 
   '@percy/cli-command@1.32.10(typanion@3.14.0)(typescript@4.9.5)':
     dependencies:
@@ -12417,12 +12420,9 @@ snapshots:
     dependencies:
       '@percy/cli-command': 1.32.10(typanion@3.14.0)(typescript@4.9.5)
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
       - typanion
       - typescript
-      - utf-8-validate
-      - worker-loader
 
   '@percy/cli-doctor@1.32.10(typanion@3.14.0)(typescript@4.9.5)':
     dependencies:
@@ -12470,12 +12470,9 @@ snapshots:
       '@percy/cli-command': 1.32.10(typanion@3.14.0)(typescript@4.9.5)
       yaml: 2.9.1
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
       - typanion
       - typescript
-      - utf-8-validate
-      - worker-loader
 
   '@percy/cli-upload@1.32.10(typanion@3.14.0)(typescript@4.9.5)':
     dependencies:
@@ -12483,12 +12480,9 @@ snapshots:
       fast-glob: 3.3.3
       probe-image-size: 7.4.0
     transitivePeerDependencies:
-      - bufferutil
       - supports-color
       - typanion
       - typescript
-      - utf-8-validate
-      - worker-loader
 
   '@percy/cli@1.32.10(typanion@3.14.0)(typescript@4.9.5)':
     dependencies:
@@ -12969,7 +12963,7 @@ snapshots:
 
   '@warp-drive/utilities@5.8.2(@babel/core@7.29.0)(@warp-drive/core@5.8.2(@babel/core@7.29.0))':
     dependencies:
-      '@embroider/macros': 1.21.1(@babel/core@7.29.0)
+      '@embroider/macros': 1.21.2(@babel/core@7.29.0)
       '@warp-drive/core': 5.8.2(@babel/core@7.29.0)
     transitivePeerDependencies:
       - '@babel/core'
