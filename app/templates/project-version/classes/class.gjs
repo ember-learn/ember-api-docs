@@ -27,6 +27,9 @@ import ApiIndex from 'ember-api-docs/components/api-index';
         {{#if @model.access}}
           <span class="access">{{@model.access}}</span>
         {{/if}}
+        {{#if @model.deprecated}}
+          <span class="access">deprecated</span>
+        {{/if}}
       </h1>
       {{#if
         (and

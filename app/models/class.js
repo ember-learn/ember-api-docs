@@ -11,6 +11,9 @@ export default class Class extends Model {
   properties;
 
   @attr()
+  deprecated;
+
+  @attr()
   access;
 
   @attr()
