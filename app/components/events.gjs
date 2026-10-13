@@ -8,6 +8,10 @@ import ClassFieldDescription from 'ember-api-docs/components/class-field-descrip
   >
     {{#each filteredModel.events as |event|}}
       <ClassFieldDescription @type="event" @field={{event}} @model={{@model}} />
+    {{else}}
+      <p>
+        No events match the current filter settings.
+      </p>
     {{/each}}
   </ApiIndexFilter>
 </template>

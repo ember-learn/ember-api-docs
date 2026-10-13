@@ -12,6 +12,10 @@ import ClassFieldDescription from 'ember-api-docs/components/class-field-descrip
         @field={{method}}
         @model={{@model}}
       />
+    {{else}}
+      <p>
+        No methods match the current filter settings.
+      </p>
     {{/each}}
   </ApiIndexFilter>
 </template>
