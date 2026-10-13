@@ -30,4 +30,11 @@ export default class Application extends JSONAPISerializer {
 
     return normalizedDocument;
   }
+
+  keyForAttribute(key) {
+    if (key === 'deprecationMessage') {
+      return key;
+    }
+    return super.keyForAttribute(key);
+  }
 }

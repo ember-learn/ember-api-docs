@@ -14,6 +14,9 @@ export default class Class extends Model {
   deprecated;
 
   @attr()
+  deprecationMessage;
+
+  @attr()
   access;
 
   @attr()

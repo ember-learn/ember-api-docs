@@ -27,6 +27,14 @@ html {
   vertical-align: middle;
 }
 
+.deprecated-warning {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-800);
+  margin-bottom: var(--spacing-2);
+  line-break: anywhere;
+}
+
 main a.edit-icon {
   height: 1rem;
   width: 16px;

@@ -142,6 +142,19 @@ export default class ClassFieldDescription extends Component {
           </div>
         {{/if}}
       </dl>
+
+      {{#if @field.deprecated}}
+        <div class="deprecated-warning">
+          <h4>This {{@type}} is deprecated!</h4>
+          {{#if @field.deprecationMessage}}
+            <MarkdownToHtml
+              @markdown={{@field.deprecationMessage}}
+              @simplifiedAutoLink={{true}}
+            />
+          {{/if}}
+        </div>
+      {{/if}}
+
       <MarkdownToHtml @markdown={{@field.description}} />
     </section>
   </template>
