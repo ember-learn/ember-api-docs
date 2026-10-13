@@ -140,7 +140,6 @@ import ApiIndex from 'ember-api-docs/components/api-index';
       <hr />
       <div class="deprecated-warning">
         <h2>This class is deprecated!</h2>
-        {{log @model.deprecationMessage}}
         <p class="description"><MarkdownToHtml
             @markdown={{@model.deprecationMessage}}
             @simplifiedAutoLink={{true}}

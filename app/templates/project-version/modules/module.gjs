@@ -3,6 +3,7 @@ import { LinkTo } from '@ember/routing';
 import { array } from '@ember/helper';
 import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
 import not from 'ember-truth-helpers/helpers/not';
+import notEq from 'ember-truth-helpers/helpers/not-eq';
 import and from 'ember-truth-helpers/helpers/and';
 import or from 'ember-truth-helpers/helpers/or';
 import gt from 'ember-truth-helpers/helpers/gt';
@@ -126,22 +127,27 @@ import betterGet from 'ember-api-docs/helpers/better-get';
       {{/each}}
 
     {{/if}}
-    {{#unless
-      (or
-        @controller.submodules
-        @controller.classesAndNamespaces
-        (and
-          @controller.functionHeadings
-          (gt @controller.functionHeadings.length 0)
+    {{#if (notEq @controller.model.name "ember-data-overview")}}
+      {{#if
+        (not
+          (or
+            @controller.submodules
+            @controller.classesAndNamespaces
+            (and
+              @controller.functionHeadings
+              (gt @controller.functionHeadings.length 0)
+            )
+          )
         )
-      )
-    }}
-      <p>
-        No submodules, classes, namespaces, or functions are visible. Some may
-        be hidden because private and deprecated packages are not shown. Toggle
-        "Show Private / Deprecated packages" in the sidebar to reveal them.
-      </p>
-    {{/unless}}
+      }}
+        <p data-test-empty-module-warning>
+          No submodules, classes, namespaces, or functions are visible. Some may
+          be hidden because private and deprecated packages are not shown.
+          Toggle "Show Private / Deprecated packages" in the sidebar to reveal
+          them.
+        </p>
+      {{/if}}
+    {{/if}}
     {{outlet}}
 
   </article>
