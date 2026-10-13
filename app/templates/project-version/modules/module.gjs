@@ -4,6 +4,7 @@ import { array } from '@ember/helper';
 import MarkdownToHtml from 'ember-cli-showdown/components/markdown-to-html';
 import not from 'ember-truth-helpers/helpers/not';
 import and from 'ember-truth-helpers/helpers/and';
+import or from 'ember-truth-helpers/helpers/or';
 import gt from 'ember-truth-helpers/helpers/gt';
 import functionHeadingId from 'ember-api-docs/helpers/function-heading-id';
 import betterGet from 'ember-api-docs/helpers/better-get';
@@ -19,6 +20,9 @@ import betterGet from 'ember-api-docs/helpers/better-get';
           {{#if @controller.model.access}}<span
               class="access"
             >{{@controller.model.access}}</span>{{/if}}
+          {{#if @controller.model.deprecated}}<span
+              class="access"
+            >deprecated</span>{{/if}}
         </h1>
       {{/if}}
     </div>
@@ -122,6 +126,22 @@ import betterGet from 'ember-api-docs/helpers/better-get';
       {{/each}}
 
     {{/if}}
+    {{#unless
+      (or
+        @controller.submodules
+        @controller.classesAndNamespaces
+        (and
+          @controller.functionHeadings
+          (gt @controller.functionHeadings.length 0)
+        )
+      )
+    }}
+      <p>
+        No submodules, classes, namespaces, or functions are visible. Some may
+        be hidden because private and deprecated packages are not shown. Toggle
+        "Show Private / Deprecated packages" in the sidebar to reveal them.
+      </p>
+    {{/unless}}
     {{outlet}}
 
   </article>

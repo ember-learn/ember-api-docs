@@ -23,6 +23,9 @@ export default class Module extends ClassModel {
   @attr()
   allstaticfunctions;
 
+  @attr()
+  deprecated;
+
   @belongsTo('project-version', { async: false, inverse: null })
   projectVersion;
 }
