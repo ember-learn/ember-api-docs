@@ -12,6 +12,10 @@ import ClassFieldDescription from 'ember-api-docs/components/class-field-descrip
         @field={{property}}
         @model={{@model}}
       />
+    {{else}}
+      <p>
+        No properties match the current filter settings.
+      </p>
     {{/each}}
   </ApiIndexFilter>
 </template>
