@@ -136,6 +136,17 @@ import ApiIndex from 'ember-api-docs/components/api-index';
         </div>
       {{/if}}
     </div>
+    {{#if @model.deprecated}}
+      <hr />
+      <div class="deprecated-warning">
+        <h2>This class is deprecated!</h2>
+        {{log @model.deprecationMessage}}
+        <p class="description"><MarkdownToHtml
+            @markdown={{@model.deprecationMessage}}
+            @simplifiedAutoLink={{true}}
+          /></p>
+      </div>
+    {{/if}}
     {{#if (and (not (eq @controller.static 1)) @controller.hasImportExample)}}
       <ImportExample @item={{@model.name}} @package={{@controller.module}} />
     {{/if}}
