@@ -35,6 +35,17 @@ html {
   line-break: anywhere;
 }
 
+.moved-notice {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-800);
+  margin-bottom: var(--spacing-2);
+}
+
+.moved-notice p {
+  margin: 0;
+}
+
 main a.edit-icon {
   height: 1rem;
   width: 16px;

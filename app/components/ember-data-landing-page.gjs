@@ -7,7 +7,9 @@ import { LinkTo } from '@ember/routing';
     <hr />
     <p>
       Ember Data is a library for robustly managing data in applications built
-      with Ember.js.
+      with Ember.js. It is now named WarpDrive, and its current API
+      documentation is at
+      <a href="https://warp-drive.io/api/">warp-drive.io</a>.
     </p>
     <h2>
       Commonly searched-for documentation
@@ -48,6 +50,13 @@ import { LinkTo } from '@ember/routing';
         <h5>
           <a href="https://github.com/ember-learn/ember-api-docs">
             API Documentation Github Repository
+          </a>
+        </h5>
+      </li>
+      <li>
+        <h5>
+          <a href="https://warp-drive.io/api/">
+            WarpDrive API Documentation
           </a>
         </h5>
       </li>

@@ -10,4 +10,18 @@ module('Acceptance | WarpDrive', function (hooks) {
 
     assert.dom('.module-name').includesText('Package @warp-drive/build-config');
   });
+
+  test('EmberData pages point to the WarpDrive API docs', async function (assert) {
+    await visit('/ember-data/release/classes/Store');
+
+    assert
+      .dom('[data-test-warp-drive-notice] a')
+      .hasAttribute('href', 'https://warp-drive.io/api/');
+  });
+
+  test('Ember pages have no WarpDrive notice', async function (assert) {
+    await visit('/ember/release/classes/Component');
+
+    assert.dom('[data-test-warp-drive-notice]').doesNotExist();
+  });
 });

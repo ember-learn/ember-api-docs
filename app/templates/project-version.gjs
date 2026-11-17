@@ -6,6 +6,7 @@ import { fn } from '@ember/helper';
 import TableOfContents from 'ember-api-docs/components/table-of-contents';
 import versionLt from 'ember-api-docs/helpers/version-lt';
 import ScrollToTopButton from 'ember-api-docs/components/scroll-to-top-button';
+import eq from 'ember-api-docs/helpers/eq';
 <template>
   {{pageTitle @model.version}}
 
@@ -42,6 +43,16 @@ import ScrollToTopButton from 'ember-api-docs/components/scroll-to-top-button';
       />
     </EsSidebar>
     <section class="content-wrapper">
+      {{#if (eq @controller.activeProject "ember-data")}}
+        <div class="moved-notice" data-test-warp-drive-notice>
+          <p>
+            EmberData is now WarpDrive. These pages are no longer updated. Find
+            the current API docs at
+            <a href="https://warp-drive.io/api/">warp-drive.io</a>.
+          </p>
+        </div>
+      {{/if}}
+
       {{outlet}}
 
       {{#unless @controller.prerender.isPrerendering}}
